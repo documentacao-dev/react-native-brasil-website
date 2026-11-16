@@ -118,9 +118,9 @@ Toda tradução e retradução de página (tradução nova, sync com o upstream,
 
 O ciclo inteiro (sync, semeadura, tradução, verificação, commit, PR, review,
 correção e merge) está na skill `.claude/skills/traduzir/SKILL.md`. Rode
-`/traduzir` numa sessão local ou na web; o workflow `traducao-automatica.yml`
-roda a mesma skill toda segunda às 12h UTC e por disparo manual (Actions →
-Tradução automática, com `paginas` e `sem_merge`).
+`/traduzir` numa sessão local ou na web.
+
+O ciclo semanal roda por rotina agendada do Claude na nuvem, que executa a skill `traduzir`; o workflow traducao-automatica.yml fica para disparo manual (Actions → Tradução automática, com `paginas` e `sem_merge`).
 
 No workflow, as etapas determinísticas rodam **sem Claude**, na fase
 `preparar`: detectar commits novos do upstream e páginas pendentes (sem nada,
