@@ -2377,3 +2377,19 @@ img {
     display: none;
   }
 }
+
+// React Native Brasil: aviso de página ainda não traduzida
+// (website/remark/aviso-nao-traduzido.ts).
+.aviso-nao-traduzido {
+  margin-bottom: var(--ifm-spacing-vertical);
+  overflow-wrap: anywhere;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    font-weight: var(--ifm-font-weight-semibold);
+    white-space: nowrap;
+  }
+}
