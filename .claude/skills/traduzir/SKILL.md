@@ -8,8 +8,8 @@ description: >-
   review independente em Sonnet, correção em Haiku e merge quando tudo fica
   verde. Use quando pedirem "traduzir", "sincronizar com o upstream", "rodar o
   sync", "atualizar a tradução", "o inglês mudou", "tem página defasada", "saiu
-  versão nova do React Native", ou quando o workflow semanal
-  traducao-automatica.yml chamar. Também serve para traduzir só um conjunto de
+  versão nova do React Native", ou quando a rotina semanal
+  agendada na nuvem ou o workflow manual traducao-automatica.yml chamar. Também serve para traduzir só um conjunto de
   páginas: passe os caminhos como argumento.
 ---
 
