@@ -100,7 +100,8 @@ const config: Config = {
   ],
   trailingSlash: false, // because trailing slashes can break some existing relative links
   // React Native Brasil: sem analytics nem pesquisas do reactnative.dev oficial
-  // (gtag G-58L13S6BDP e widget do SurveyMonkey removidos). Os scripts abaixo
+  // (Google Analytics e widget de pesquisa removidos; tool/traducao/verificar.py
+  // barra a volta deles no sync). Os scripts abaixo
   // são funcionais: foco acessível, Snack e os tweets embutidos.
   scripts: [
     {
@@ -206,7 +207,7 @@ const config: Config = {
           // Ignore for now due to old posts
           onUntruncatedBlogPosts: 'ignore',
         },
-        // Sem `gtag`: o Google Analytics era a conta do reactnative.dev oficial.
+        // Sem Google Analytics: era a conta do reactnative.dev oficial.
         theme: {
           customCss: [
             require.resolve('./src/css/customTheme.scss'),

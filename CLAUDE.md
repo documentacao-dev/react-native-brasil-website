@@ -181,6 +181,17 @@ Em toda sincronização com o upstream:
    `python3 tool/traducao/gerar_todo.py` e faça o commit.
 9. Só depois disso siga para as páginas novas (`TODO-TRADUCAO.md`).
 
+**Analytics do upstream não volta.** O fork não publica o analytics nem a
+telemetria do reactnative.dev oficial (Google Analytics `G-58L13S6BDP` via
+`gtag`/googletagmanager, `@docusaurus/plugin-google-gtag`, o widget do
+SurveyMonkey, `facebookAppId`): os visitantes daqui virariam dados das contas
+da Meta/Google. Como o sync adota a árvore do upstream, ele pode trazer isso
+de volta em `website/docusaurus.config.ts` ou `website/package.json`. O
+`verificar.py` acusa como erro (`analytics`) qualquer um desses termos em
+`website/` fora do conteúdo `.md`/`.mdx`; remova no próprio PR do sync
+(e rode `yarn install` se mexer no `package.json`, para atualizar o
+`yarn.lock`).
+
 Nunca resolva um conflito trocando a página pela versão em inglês e mantendo
 `ia-translated: true`, nem descartando o texto novo do upstream.
 
@@ -223,7 +234,9 @@ O `verificar.py` acusa como **erro**:
 - `pendente`: `.traducao-pendente/` com arquivos não resolvidos;
 - `ancora`: título traduzido sem o `{#id}` do inglês (corrija com
   `ancorar_titulos.py`);
-- `link-interno`: link `](#id)` para âncora da própria página que não existe.
+- `link-interno`: link `](#id)` para âncora da própria página que não existe;
+- `analytics`: analytics/telemetria do reactnative.dev oficial de volta no
+  código do site (veja a regra do sync acima).
 
 E como **aviso**: `parcial` (30% a 70% da prosa em inglês) e `defs-link`.
 
