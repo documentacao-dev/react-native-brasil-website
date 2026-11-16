@@ -99,13 +99,12 @@ const config: Config = {
     './modules/jumpToFragment.ts',
   ],
   trailingSlash: false, // because trailing slashes can break some existing relative links
+  // React Native Brasil: sem analytics nem pesquisas do reactnative.dev oficial
+  // (gtag G-58L13S6BDP e widget do SurveyMonkey removidos). Os scripts abaixo
+  // são funcionais: foco acessível, Snack e os tweets embutidos.
   scripts: [
     {
       src: 'https://cdn.jsdelivr.net/npm/focus-visible@5.2.0/dist/focus-visible.min.js',
-      defer: true,
-    },
-    {
-      src: 'https://widget.surveymonkey.com/collect/website/js/tRaiETqnLgj758hTBazgd8ryO5qrZo8Exadq9qmt1wtm4_2FdZGEAKHDFEt_2BBlwwM4.js',
       defer: true,
     },
     {src: 'https://snack.expo.dev/embed.js', defer: true},
@@ -115,7 +114,6 @@ const config: Config = {
   titleDelimiter: '·',
   customFields: {
     users,
-    facebookAppId: '1677033832619985',
   },
   i18n: {
     defaultLocale: 'pt-br',
@@ -208,6 +206,7 @@ const config: Config = {
           // Ignore for now due to old posts
           onUntruncatedBlogPosts: 'ignore',
         },
+        // Sem `gtag`: o Google Analytics era a conta do reactnative.dev oficial.
         theme: {
           customCss: [
             require.resolve('./src/css/customTheme.scss'),
@@ -215,9 +214,6 @@ const config: Config = {
             require.resolve('./src/css/showcase.scss'),
             require.resolve('./src/css/versions.scss'),
           ],
-        },
-        gtag: {
-          trackingID: 'G-58L13S6BDP',
         },
       } satisfies Preset.Options,
     ],

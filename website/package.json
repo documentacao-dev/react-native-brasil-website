@@ -50,7 +50,6 @@
   "dependencies": {
     "@docusaurus/core": "3.9.2",
     "@docusaurus/faster": "3.9.2",
-    "@docusaurus/plugin-google-gtag": "3.9.2",
     "@docusaurus/plugin-pwa": "3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "docusaurus-plugin-sass": "^0.2.6",
@@ -63,7 +62,6 @@
     "@docusaurus/tsconfig": "3.9.2",
     "@docusaurus/types": "3.9.2",
     "@react-native-website/lint-examples": "*",
-    "@types/google.analytics": "^0.0.46",
     "@types/react": "^19.1.13",
     "alex": "^11.0.1",
     "case-police": "^1.0.0",

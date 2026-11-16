@@ -5425,13 +5425,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/google.analytics@npm:^0.0.46":
-  version: 0.0.46
-  resolution: "@types/google.analytics@npm:0.0.46"
-  checksum: 10c0/1d763c3e99711eb24b2723195aef398ee1bdbbd32d02e28d493707706f6c0b7bd2a9c23903f5ddce887b8c4cf202c507e78cf77f7ea229b0cba04667cc8cce51
-  languageName: node
-  linkType: hard
-
 "@types/graceful-fs@npm:^4.1.3":
   version: 4.1.9
   resolution: "@types/graceful-fs@npm:4.1.9"
@@ -17812,13 +17805,11 @@ __metadata:
     "@docusaurus/core": "npm:3.9.2"
     "@docusaurus/faster": "npm:3.9.2"
     "@docusaurus/module-type-aliases": "npm:3.9.2"
-    "@docusaurus/plugin-google-gtag": "npm:3.9.2"
     "@docusaurus/plugin-pwa": "npm:3.9.2"
     "@docusaurus/preset-classic": "npm:3.9.2"
     "@docusaurus/tsconfig": "npm:3.9.2"
     "@docusaurus/types": "npm:3.9.2"
     "@react-native-website/lint-examples": "npm:*"
-    "@types/google.analytics": "npm:^0.0.46"
     "@types/react": "npm:^19.1.13"
     alex: "npm:^11.0.1"
     case-police: "npm:^1.0.0"
