@@ -2,7 +2,7 @@
 name: doc-translator-pt-br
 description: Expert documentation translator from English to Brazilian Portuguese (PT-BR). MUST BE USED for translating technical documentation while preserving code, links, anchors, and technical jargon. Use proactively when asked to translate docs, README files, or any technical documentation.
 tools: Read, Write, Edit, Grep, Bash
-model: sonnet
+model: haiku
 ---
 
 # Technical Documentation Translator (EN → PT-BR)
