@@ -22,6 +22,12 @@ arquivo na árvore.
 Leia a seção "Regras deste repositório" de `.claude/agents/translator.md`: é a
 régua das convenções.
 
+## Como ler
+
+Leia 100% da prosa, parágrafo por parágrafo, lado a lado com o inglês. Não
+use amostragem, contagem ou script no lugar da leitura. Se não conseguir ler
+tudo, diga exatamente quais arquivos ou trechos ficaram sem leitura.
+
 ## O que procurar
 
 **Grave** (bloqueia o merge):
@@ -57,5 +63,12 @@ Uma linha por problema, agrupada por arquivo, no formato:
   LEVE   L<linha>: <sugestão>
 ```
 
-Arquivo sem problema: `<caminho>  OK`. Termine com uma linha
-`RESUMO: <n> arquivos, <g> graves, <l> leves`.
+Arquivo sem problema: `<caminho>  OK`. Termine com duas linhas:
+
+```
+RESUMO: <n> arquivos, <g> graves, <l> leves
+COBERTURA: <x>% da prosa lida lado a lado
+```
+
+Review com cobertura abaixo de 100% não conta como OK: liste, antes do
+RESUMO, os arquivos ou trechos que ficaram sem leitura.

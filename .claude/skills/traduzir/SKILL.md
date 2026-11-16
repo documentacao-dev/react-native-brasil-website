@@ -115,7 +115,14 @@ A compilação do MDX não é conferida aqui: ela acontece no job `build` do
 Dispare o subagente `revisar-traducao` (`.claude/agents/revisar-traducao.md`,
 `model: "sonnet"`) passando **só** a lista de arquivos traduzidos ou
 retraduzidos neste ciclo e o commit do upstream. Não passe sua opinião nem o
-resumo do que foi feito. Até 5 revisores em paralelo para listas grandes.
+resumo do que foi feito. Lotes de no máximo ~1.500 linhas por revisor, até 5
+revisores em paralelo. Um revisor com muitas páginas de uma vez tende a ler
+poucas e amostrar o resto.
+
+Cada revisor termina com `COBERTURA: <x>% da prosa lida lado a lado`. Se algum
+declarar cobertura abaixo de 100%, o pedaço que faltou volta para outro
+revisor antes da etapa 8. Review com cobertura abaixo de 100% não conta como
+OK.
 Páginas semeadas sem conflito (cópia de `docs/` já revisado) não precisam de
 review.
 
@@ -138,7 +145,7 @@ corrigidos**. No máximo 2 voltas de review + correção.
 Merge **só** se as quatro condições valerem:
 
 1. `verificar.py` com 0 erros;
-2. o último review sem nenhum problema grave em aberto;
+2. o último review sem nenhum problema grave em aberto e com 100% de cobertura;
 3. os checks do PR verdes: `gh pr checks <n> --watch --fail-fast`
    (o `Pre-merge / build` compila o MDX de todas as páginas);
 4. o argumento `sem-merge` não foi passado.
