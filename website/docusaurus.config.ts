@@ -18,6 +18,7 @@ import prismTheme from './core/PrismTheme';
 
 import remarkSnackPlayer from '@react-native-website/remark-snackplayer';
 import remarkCodeblockLanguageTitle from '@react-native-website/remark-codeblock-language-as-title';
+import remarkAvisoNaoTraduzido from './remark/aviso-nao-traduzido';
 
 // See https://docs.netlify.com/configure-builds/environment-variables/
 const isProductionDeployment =
@@ -42,7 +43,9 @@ const commonDocsOptions: PluginContentDocs.Options = {
     const isNextRelease = options.version === 'current';
     const buttons: EditUrlButton[] = [
       {
-        label: isNextRelease ? 'Editar esta página' : 'Editar página para próxima versão',
+        label: isNextRelease
+          ? 'Editar esta página'
+          : 'Editar página para próxima versão',
         href: `${baseUrl}/${nextReleasePath}`,
       },
     ];
@@ -63,7 +66,12 @@ const commonDocsOptions: PluginContentDocs.Options = {
     }
     return JSON.stringify(buttons);
   }) as PluginContentDocs.EditUrlFunction,
-  remarkPlugins: [remarkSnackPlayer, remarkCodeblockLanguageTitle],
+  remarkPlugins: [
+    remarkSnackPlayer,
+    remarkCodeblockLanguageTitle,
+    // Aviso no topo das páginas sem `ia-translated: true` (só docs; não pega blog nem home).
+    remarkAvisoNaoTraduzido,
+  ],
 };
 
 const isDeployPreview = process.env.PREVIEW_DEPLOY === 'true';

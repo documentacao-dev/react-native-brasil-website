@@ -233,6 +233,17 @@ que escapou, acrescente-a ao `verificar.py` em vez de corrigir só o arquivo.
 
 ## Personalizações do fork fora do conteúdo
 
+### Aviso de página não traduzida
+
+O plugin remark `website/remark/aviso-nao-traduzido.ts`, registrado em
+`commonDocsOptions.remarkPlugins` do `docusaurus.config.ts`, põe no topo de
+toda página de documentação **sem** a marcação `ia-translated` um aviso
+("Esta página ainda está em inglês...") com link para o arquivo no GitHub. A
+regra da marcação é a mesma do `tool/traducao/escopo.py`; mudou uma, mude a
+outra. Vale para docs/, todas as versões e architecture/contributing/
+community (os plugins de docs); não pega blog, home nem parciais `_*.mdx`. O
+estilo está no fim de `website/src/css/customTheme.scss`.
+
 Ao sincronizar, confira se continuam funcionando:
 
 - `website/docusaurus.config.ts` (locale `pt-br`, textos da navegação),
