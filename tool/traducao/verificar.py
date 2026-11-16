@@ -44,6 +44,11 @@ ERROS
                 quebrariam). Corrija com tool/traducao/ancorar_titulos.py.
 - link-interno: link para âncora da própria página (`](#id)`) que não existe
                 (títulos, `id="..."` e parciais importados incluídos).
+- analytics:    analytics/telemetria do reactnative.dev oficial no código do
+                site (website/, fora o conteúdo .md/.mdx): gtag, G-58L13S6BDP,
+                googletagmanager, plugin-google-gtag, surveymonkey.com/,
+                facebookAppId. O sync traz de volta o que o upstream tem;
+                remova antes do commit. Conferido em toda execução sem arquivos.
 
 AVISOS
 - parcial:      proporção de inglês entre 0.3 e 0.7 (tradução incompleta).
@@ -291,6 +296,16 @@ def checar_arquivo(caminho, ref, sync):
     return erros, avisos
 
 
+# Analytics e telemetria do reactnative.dev oficial que o fork não publica: os
+# visitantes do React Native Brasil virariam dados das contas da Meta/Google.
+ANALYTICS = r'gtag|G-58L13S6BDP|googletagmanager|plugin-google-gtag|surveymonkey\.com/|facebookAppId'
+
+
+def analytics_herdado():
+    saida = git('grep', '-nIE', ANALYTICS, '--', 'website', ':!*.md', ':!*.mdx') or ''
+    return saida.splitlines()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--ref', default='upstream/main')
@@ -332,6 +347,17 @@ def main():
             f.name != 'RELATORIO.md' for f in PEND.rglob('*') if f.is_file()):
         print('✗ .traducao-pendente/\n    erro  [pendente] ainda há conflitos para resolver')
         total_erros += 1
+
+    if not a.arquivos:
+        achados = analytics_herdado()
+        if achados:
+            print('✗ analytics herdado do upstream')
+            for l in achados[:20]:
+                print(f'    erro  [analytics] {l[:140]}')
+            print('    É analytics/telemetria do reactnative.dev oficial que voltou com o sync: '
+                  'remova (ver CLAUDE.md, regra do sync).')
+            total_erros += 1
+            por_tipo['erro  analytics'] = len(achados)
 
     if a.resumo:
         for k in sorted(por_tipo):
