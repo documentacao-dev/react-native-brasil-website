@@ -10,14 +10,14 @@ Hoje estamos lançando o React Native 0.74! Esta versão adiciona Yoga 3.0, Brid
 
 Também estamos removendo APIs descontinuadas, com a remoção de `PropTypes` e mudanças incompatíveis no `PushNotificationIOS`. No Android, SDK 23 (Android 6.0) é agora a versão mínima suportada.
 
-### Destaques
+### Destaques {#highlights}
 
 - [Yoga 3.0](/blog/2024/04/22/release-0.74#yoga-30)
 - [New Architecture: Bridgeless por Padrão](/blog/2024/04/22/release-0.74#new-architecture-bridgeless-by-default)
 - [New Architecture: Atualizações de `onLayout` em Lote](/blog/2024/04/22/release-0.74#new-architecture-batched-onlayout-updates)
 - [Yarn 3 para Novos Projetos](/blog/2024/04/22/release-0.74#yarn-3-for-new-projects)
 
-### Mudanças Incompatíveis
+### Mudanças Incompatíveis {#breaking-changes}
 
 - [Aumento do SDK Mínimo do Android (Android 6.0)](/blog/2024/04/22/release-0.74#android-minimum-sdk-bump-android-60)
 - [Mudanças na API do PushNotificationIOS (Descontinuado)](/blog/2024/04/22/release-0.74#api-changes-to-pushnotificationios-deprecated)
@@ -27,11 +27,11 @@ Também estamos removendo APIs descontinuadas, com a remoção de `PropTypes` e 
 
 {/* truncate */}
 
-## Destaques
+## Destaques {#highlights}
 
 ### Yoga 3.0
 
-#### Novos Comportamentos de Layout
+#### Novos Comportamentos de Layout {#new-layout-behaviors}
 
 O React Native 0.74 inclui [Yoga 3.0](https://yogalayout.dev/blog/announcing-yoga-3.0), a versão mais recente do nosso mecanismo de layout. O Yoga 3.0 melhora o layout tornando a estilização mais previsível e suporta a renderização de componentes escritos para a web.
 
@@ -94,7 +94,7 @@ O React Native [anteriormente invertia](https://yogalayout.dev/blog/announcing-y
 
 :::
 
-#### Suporte para `align-content: 'space-evenly'`
+#### Suporte para `align-content: 'space-evenly'` {#support-for-align-content-space-evenly}
 
 O Yoga 3.0 traz suporte para [`alignContent: 'space-evenly'`](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content#space-evenly). `space-evenly` distribui as linhas em um container flex multi-linha usando espaçamentos uniformes, colocados entre a linha e as bordas do container.
 
@@ -112,7 +112,7 @@ O Yoga 3.0 traz suporte para [`alignContent: 'space-evenly'`](https://developer.
   </figcaption>
 </figure>
 
-#### Suporte para `position: 'static'`
+#### Suporte para `position: 'static'` {#support-for-position-static}
 
 :::info
 `position: 'static'` é suportado apenas na New Architecture.
@@ -166,7 +166,7 @@ Observe como o `<View>` verde declara `left` e `top` e é posicionado em relaç�
 
 O React Native continua a usar `position: 'relative'` por padrão quando nenhuma `position` é definida.
 
-### New Architecture: Bridgeless por Padrão
+### New Architecture: Bridgeless por Padrão {#new-architecture-bridgeless-by-default}
 
 Nesta versão, estamos tornando o Bridgeless Mode o padrão quando a New Architecture está habilitada. Você pode aprender mais sobre nossa mudança para Bridgeless como padrão em [este post](https://github.com/reactwg/react-native-new-architecture/discussions/174). Para tornar a transição mais suave, aprimoramos as camadas de interoperabilidade para cobrir Bridgeless e trabalhamos com várias bibliotecas para garantir que funcionarão em Bridgeless desde o primeiro dia.
 
@@ -174,7 +174,7 @@ Bridgeless não é a única camada de interoperabilidade em que trabalhamos: mel
 
 Finalmente, se você quiser aprender mais sobre a New Architecture, pode encontrar documentação no repositório [react-native-new-architecture](https://github.com/reactwg/react-native-new-architecture/tree/main/docs). Quando a New Architecture se tornar o padrão, essas informações serão incorporadas ao [reactnative.dev](https://reactnative.dev).
 
-### New Architecture: Atualizações de `onLayout` em Lote
+### New Architecture: Atualizações de `onLayout` em Lote {#new-architecture-batched-onlayout-updates}
 
 Atualizações de state em callbacks `onLayout` agora são processadas em lote. Anteriormente, cada atualização de state no evento `onLayout` resultaria em um novo commit de renderização.
 
@@ -206,7 +206,7 @@ Na versão 0.74, as atualizações de `setState1` e `setState2` são processadas
 Esta mudança **pode quebrar código** que dependia de atualizações de state não processadas em lote. Você precisará refatorar este código para usar [funções atualizadoras](https://react.dev/learn/queueing-a-series-of-state-updates#updating-the-same-state-multiple-times-before-the-next-render) ou equivalente.
 :::
 
-### Yarn 3 para Novos Projetos
+### Yarn 3 para Novos Projetos {#yarn-3-for-new-projects}
 
 [Yarn 3](https://yarnpkg.com/blog/release/3.0) agora é o gerenciador de pacotes JavaScript padrão para novos projetos inicializados com React Native Community CLI.
 
@@ -221,13 +221,13 @@ $ yarn --help
 
 O Community CLI também suporta a inicialização de projetos com outros gerenciadores de pacotes via flag `--pm` ([leia mais](https://github.com/react-native-community/cli/blob/main/docs/init.md)).
 
-## Mudanças Incompatíveis
+## Mudanças Incompatíveis {#breaking-changes}
 
-### Aumento do SDK Mínimo do Android (Android 6.0)
+### Aumento do SDK Mínimo do Android (Android 6.0) {#android-minimum-sdk-bump-android-60}
 
 O React Native 0.74 tem um requisito de versão mínima do Android SDK de 23 (Android 6.0). Anteriormente, era Android 5.0 (API 21). Veja nosso contexto para esta mudança [aqui](https://github.com/react-native-community/discussions-and-proposals/discussions/740).
 
-#### Bônus: Redução do tamanho do aplicativo Android
+#### Bônus: Redução do tamanho do aplicativo Android {#bonus-android-app-size-reduction}
 
 O aumento do SDK mínimo, juntamente com várias melhorias em nossa build nativa, nos permitiu reduzir bastante o tamanho do aplicativo nos dispositivos dos usuários.
 
@@ -235,7 +235,7 @@ Por exemplo, um aplicativo recém-criado com React Native 0.74 ocupa ~13% menos 
 
 ![Comparação lado a lado de um novo aplicativo React Native na visualização de armazenamento do sistema Android](/blog/assets/0.74-android-app-size.jpg)
 
-### Remoção de `PropTypes` Descontinuados
+### Remoção de `PropTypes` Descontinuados {#removal-of-deprecated-proptypes}
 
 Antes da versão 0.74, o React Native continuava a incluir `PropTypes`, uma API que foi descontinuada desde o React 15.5 em 2017! Agora estamos removendo todos os `PropTypes` integrados do React Native, reduzindo o tamanho do aplicativo (26.4kB em um bundle minificado) e a sobrecarga de memória.
 
@@ -243,13 +243,13 @@ As seguintes propriedades `PropTypes` foram removidas: `Image.propTypes`, `Text.
 
 Se seu aplicativo ou biblioteca depende de `PropTypes`, recomendamos fortemente migrar para um sistema de tipos como TypeScript.
 
-### Mudanças na API do PushNotificationIOS (Descontinuado)
+### Mudanças na API do PushNotificationIOS (Descontinuado) {#api-changes-to-pushnotificationios-deprecated}
 
 No React Native 0.74, estamos tomando medidas para remover a biblioteca descontinuada [PushNotificationIOS](https://reactnative.dev/docs/pushnotificationios). As mudanças nesta versão estão focadas em remover referências a APIs antigas do iOS. O PushNotificationIOS foi migrado para o framework [User Notifications](https://developer.apple.com/documentation/usernotifications?language=objc) da Apple e expõe novas APIs para agendar e lidar com notificações.
 
 Na próxima versão (0.75), estamos planejando **remover esta biblioteca**, realocando-a para fora do core do React Native e para o pacote da comunidade, [@react-native-community/push-notification-ios](https://github.com/react-native-push-notification/ios). Se você ainda depende do PushNotificationIOS, precisará migrar antes da próxima versão.
 
-#### Mudanças na API
+#### Mudanças na API {#api-changes}
 
 O callback `didRegisterUserNotificationSettings:` no `RCTPushNotificationManager` era um no-op e foi excluído.
 
@@ -370,7 +370,7 @@ Exclua quaisquer usos de <code>[application:didRegisterUserNotificationSettings:
 
 </details>
 
-### Remoção do Plugin React Native do Flipper
+### Remoção do Plugin React Native do Flipper {#removal-of-flipper-react-native-plugin}
 
 O uso de [Flipper](https://fbflipper.com/) para inspecionar layouts do React Native, requisições de rede e [outros recursos de plugin do React Native](https://fbflipper.com/docs/features/react-native/), agora não é mais suportado. Na versão 0.74, removemos as bibliotecas nativas do Flipper e o código de configuração de novos projetos React Native. Isso significa menos dependências e configuração local mais rápida (veja [RFC original](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0641-decoupling-flipper-from-react-native-core.md)).
 
@@ -387,7 +387,7 @@ Recomendamos que as equipes invistam em migrar para ferramentas de depuração n
 
 :::tip
 
-#### Substituindo o Flipper
+#### Substituindo o Flipper {#replacing-flipper}
 
 Existem várias ferramentas de depuração dedicadas que substituem os recursos do Flipper. Para mais informações, recomendamos ler o excelente artigo [_Why you don't need Flipper in your React Native app_](https://shift.infinite.red/why-you-dont-need-flipper-in-your-react-native-app-and-how-to-get-by-without-it-3af461955109) de Jamon Holmgren.
 
@@ -397,7 +397,7 @@ Existem várias ferramentas de depuração dedicadas que substituem os recursos 
 
 Usar o [Hermes Debugger](https://reactnative.dev/docs/debugging?js-debugger=hermes#opening-the-debugger) continua sendo nossa opção de depuração recomendada para 0.74. Você também pode experimentar o [Experimental New Debugger](https://reactnative.dev/docs/debugging?js-debugger=new-debugger#opening-the-debugger), que também é o padrão no Expo. Isso continua sendo uma prévia inicial — problemas conhecidos e atualizações podem ser acompanhados [aqui](https://github.com/react-native-community/discussions-and-proposals/discussions/733).
 
-### Outras Mudanças Incompatíveis
+### Outras Mudanças Incompatíveis {#other-breaking-changes}
 
 **Geral**
 
@@ -420,13 +420,13 @@ Usar o [Hermes Debugger](https://reactnative.dev/docs/debugging?js-debugger=herm
 
 Por favor, veja o [changelog completo](https://github.com/facebook/react-native/blob/main/CHANGELOG.md) para uma lista completa de mudanças incompatíveis.
 
-## Problemas Conhecidos
+## Problemas Conhecidos {#known-issues}
 
 **iOS**
 
 - Caso extremo ao usar múltiplas janelas: Quando a janela principal está inativa e o sistema tenta apresentar um diálogo, o diálogo não é apresentado na posição correta na tela. Uma correção está a caminho em [#44167](https://github.com/facebook/react-native/pull/44167) e será lançada na versão 0.74.1.
 
-## Agradecimentos
+## Agradecimentos {#acknowledgements}
 
 O React Native 0.74 contém mais de [1673 commits](https://github.com/facebook/react-native/compare/v0.73.6...v0.74.0) de 57 contribuidores. Obrigado por todo o trabalho árduo!
 
@@ -439,7 +439,7 @@ Agradecimentos a todos os autores adicionais que trabalharam na documentação d
 - [Tim Yung](https://twitter.com/yungsters) por _Remoção de `PropTypes` Descontinuados_
 - [Ingrid Wang](https://github.com/ingridwang) por _Mudanças na API do PushNotificationIOS (Descontinuado)_
 
-## Atualize para 0.74
+## Atualize para 0.74 {#upgrade-to-074}
 
 Por favor, use o [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) para visualizar as mudanças de código entre versões do React Native para projetos existentes, além da [documentação de Atualização](/docs/upgrading).
 

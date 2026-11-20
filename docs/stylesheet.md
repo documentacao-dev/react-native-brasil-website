@@ -51,7 +51,7 @@ Dicas de qualidade de código:
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `compose()`
 
@@ -185,7 +185,7 @@ static setStyleAttributePreprocessor(
 
 Define uma função a ser usada para pré-processar um valor de propriedade de estilo. Isso é usado internamente para processar valores de cor e transformação. Você não deve usar isso a menos que realmente saiba o que está fazendo e tenha esgotado outras opções.
 
-## Propriedades
+## Propriedades {#properties}
 
 ---
 
