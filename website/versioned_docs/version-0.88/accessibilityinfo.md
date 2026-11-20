@@ -262,8 +262,8 @@ Consulta se as configurações de redução de movimento e preferência por tran
 
 ### 🗑️ `setAccessibilityFocus()`
 
-:::warning[Deprecated]
-Prefer using `sendAccessibilityEvent` with eventType `focus` instead.
+:::warning[Descontinuado]
+Prefira usar `sendAccessibilityEvent` com eventType `focus`.
 :::
 
 ```tsx
