@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: textinput
 title: TextInput
 ---
 
-A foundational component for inputting text into the app via a keyboard. Props provide configurability for several features, such as auto-correction, auto-capitalization, placeholder text, and different keyboard types, such as a numeric keypad.
+Um componente fundamental para inserir texto no aplicativo através de um teclado. As props fornecem configurabilidade para vários recursos, como correção automática, capitalização automática, texto placeholder e diferentes tipos de teclado, como um teclado numérico.
 
-The most basic use case is to plop down a `TextInput` and subscribe to the `onChangeText` events to read the user input. There are also other events, such as `onSubmitEditing` and `onFocus` that can be subscribed to. A minimal example:
+O caso de uso mais básico é colocar um `TextInput` e se inscrever nos eventos `onChangeText` para ler a entrada do usuário. Existem também outros eventos, como `onSubmitEditing` e `onFocus` que podem ser assinados. Um exemplo mínimo:
 
 ```SnackPlayer name=TextInput%20Example
 import {useState} from 'react';
@@ -48,9 +49,9 @@ const styles = StyleSheet.create({
 export default TextInputExample;
 ```
 
-Two methods exposed via the native element are `.focus()` and `.blur()` that will focus or blur the TextInput programmatically.
+Dois métodos expostos através do elemento nativo são `.focus()` e `.blur()` que focam ou desfocam o TextInput programaticamente.
 
-Note that some props are only available with `multiline={true/false}`:
+Note que algumas props estão disponíveis apenas com `multiline={true/false}`:
 
 ```SnackPlayer name=Multiline%20TextInput%20Example
 import {useState} from 'react';
@@ -95,9 +96,9 @@ const styles = StyleSheet.create({
 export default MultilineTextInputExample;
 ```
 
-`TextInput` has a border at the bottom of its view by default. This border has its padding set by the background image provided by the system, and it cannot be changed. Solutions to avoid this are to either not set height explicitly, in which case the system will take care of displaying the border in the correct position, or to not display the border by setting `underlineColorAndroid` to transparent.
+`TextInput` tem uma borda na parte inferior de sua view por padrão. Esta borda tem seu padding definido pela imagem de fundo fornecida pelo sistema, e não pode ser alterada. Soluções para evitar isso são não definir a altura explicitamente, caso em que o sistema cuidará de exibir a borda na posição correta, ou não exibir a borda definindo `underlineColorAndroid` como transparente.
 
-Note that on Android performing text selection in an input can change the app's activity `windowSoftInputMode` param to `adjustResize`. This may cause issues with components that have position: 'absolute' while the keyboard is active. To avoid this behavior either specify `windowSoftInputMode` in AndroidManifest.xml ( https://developer.android.com/guide/topics/manifest/activity-element.html ) or control this param programmatically with native code.
+Note que no Android, realizar seleção de texto em um input pode alterar o parâmetro `windowSoftInputMode` da activity do aplicativo para `adjustResize`. Isso pode causar problemas com componentes que têm position: 'absolute' enquanto o teclado está ativo. Para evitar esse comportamento, especifique `windowSoftInputMode` no AndroidManifest.xml ( https://developer.android.com/guide/topics/manifest/activity-element.html ) ou controle este parâmetro programaticamente com código nativo.
 
 ---
 
@@ -107,13 +108,13 @@ Note that on Android performing text selection in an input can change the app's 
 
 ### [View Props](view.md#props)
 
-Inherits [View Props](view.md#props).
+Herda [View Props](view.md#props).
 
 ---
 
 ### `allowFontScaling`
 
-Specifies whether fonts should scale to respect Text Size accessibility settings. The default is `true`.
+Especifica se as fontes devem escalar para respeitar as configurações de acessibilidade de Tamanho de Texto. O padrão é `true`.
 
 | Type |
 | ---- |
@@ -123,12 +124,12 @@ Specifies whether fonts should scale to respect Text Size accessibility settings
 
 ### `autoCapitalize`
 
-Tells `TextInput` to automatically capitalize certain characters. This property is not supported by some keyboard types such as `name-phone-pad`.
+Diz ao `TextInput` para capitalizar automaticamente certos caracteres. Esta propriedade não é suportada por alguns tipos de teclado, como `name-phone-pad`.
 
-- `characters`: all characters.
-- `words`: first letter of each word.
-- `sentences`: first letter of each sentence (_default_).
-- `none`: don't auto capitalize anything.
+- `characters`: todos os caracteres.
+- `words`: primeira letra de cada palavra.
+- `sentences`: primeira letra de cada sentença (_padrão_).
+- `none`: não capitalizar automaticamente nada.
 
 | Type                                             |
 | ------------------------------------------------ |
@@ -138,9 +139,9 @@ Tells `TextInput` to automatically capitalize certain characters. This property 
 
 ### `autoComplete`
 
-Specifies autocomplete hints for the system, so it can provide autofill. On Android, the system will always attempt to offer autofill by using heuristics to identify the type of content. To disable autocomplete, set `autoComplete` to `off`.
+Especifica dicas de autocomplete para o sistema, para que ele possa fornecer preenchimento automático. No Android, o sistema sempre tentará oferecer preenchimento automático usando heurísticas para identificar o tipo de conteúdo. Para desativar o autocomplete, defina `autoComplete` como `off`.
 
-The following values work across platforms:
+Os seguintes valores funcionam em todas as plataformas:
 
 - `additional-name`
 - `address-line1`
@@ -173,7 +174,7 @@ The following values work across platforms:
 
 <div className="label basic ios">iOS</div>
 
-The following values work on iOS only:
+Os seguintes valores funcionam apenas no iOS:
 
 - `cc-family-name` (iOS 17+)
 - `cc-given-name` (iOS 17+)
@@ -187,7 +188,7 @@ The following values work on iOS only:
 
 <div className="label basic android">Android</div>
 
-The following values work on Android only:
+Os seguintes valores funcionam apenas no Android:
 
 - `gender`
 - `name-family`
@@ -218,7 +219,7 @@ The following values work on Android only:
 
 ### `autoCorrect`
 
-If `false`, disables auto-correct. The default value is `true`.
+Se `false`, desativa a correção automática. O valor padrão é `true`.
 
 | Type |
 | ---- |
@@ -228,7 +229,7 @@ If `false`, disables auto-correct. The default value is `true`.
 
 ### `autoFocus`
 
-If `true`, focuses the input. The default value is `false`.
+Se `true`, foca o input. O valor padrão é `false`.
 
 | Type |
 | ---- |
@@ -238,7 +239,7 @@ If `true`, focuses the input. The default value is `false`.
 
 ### `caretHidden`
 
-If `true`, caret is hidden. The default value is `false`.
+Se `true`, o cursor é oculto. O valor padrão é `false`.
 
 | Type |
 | ---- |
@@ -248,7 +249,7 @@ If `true`, caret is hidden. The default value is `false`.
 
 ### `clearButtonMode` <div className="label ios">iOS</div>
 
-When the clear button should appear on the right side of the text view. This property is supported only for single-line TextInput component. The default value is `never`.
+Quando o botão de limpar deve aparecer no lado direito da view de texto. Esta propriedade é suportada apenas para componentes TextInput de linha única. O valor padrão é `never`.
 
 | Type                                                       |
 | ---------------------------------------------------------- |
@@ -258,7 +259,7 @@ When the clear button should appear on the right side of the text view. This pro
 
 ### `clearTextOnFocus` <div className="label ios">iOS</div>
 
-If `true`, clears the text field automatically when editing begins.
+Se `true`, limpa o campo de texto automaticamente quando a edição começa.
 
 | Type |
 | ---- |
@@ -268,7 +269,7 @@ If `true`, clears the text field automatically when editing begins.
 
 ### `contextMenuHidden`
 
-If `true`, context menu is hidden. The default value is `false`.
+Se `true`, o menu de contexto é oculto. O valor padrão é `false`.
 
 | Type |
 | ---- |
@@ -278,11 +279,11 @@ If `true`, context menu is hidden. The default value is `false`.
 
 ### `dataDetectorTypes` <div className="label ios">iOS</div>
 
-Determines the types of data converted to clickable URLs in the text input. Only valid if `multiline={true}` and `editable={false}`. By default no data types are detected.
+Determina os tipos de dados convertidos em URLs clicáveis no input de texto. Válido apenas se `multiline={true}` e `editable={false}`. Por padrão, nenhum tipo de dado é detectado.
 
-You can provide one type or an array of many types.
+Você pode fornecer um tipo ou um array de vários tipos.
 
-Possible values for `dataDetectorTypes` are:
+Valores possíveis para `dataDetectorTypes` são:
 
 - `'phoneNumber'`
 - `'link'`
@@ -299,7 +300,7 @@ Possible values for `dataDetectorTypes` are:
 
 ### `defaultValue`
 
-Provides an initial value that will change when the user starts typing. Useful for use-cases where you do not want to deal with listening to events and updating the value prop to keep the controlled state in sync.
+Fornece um valor inicial que mudará quando o usuário começar a digitar. Útil para casos de uso onde você não quer lidar com escutar eventos e atualizar a prop value para manter o estado controlado sincronizado.
 
 | Type   |
 | ------ |
@@ -309,7 +310,7 @@ Provides an initial value that will change when the user starts typing. Useful f
 
 ### `disableKeyboardShortcuts` <div className="label ios">iOS</div>
 
-If `true`, the keyboard shortcuts (undo/redo and copy buttons) are disabled.
+Se `true`, os atalhos de teclado (botões de desfazer/refazer e copiar) são desativados.
 
 | Type | Default |
 | ---- | ------- |
@@ -319,7 +320,7 @@ If `true`, the keyboard shortcuts (undo/redo and copy buttons) are disabled.
 
 ### `cursorColor` <div className="label android">Android</div>
 
-When provided it will set the color of the cursor (or "caret") in the component. Unlike the behavior of `selectionColor` the cursor color will be set independently from the color of the text selection box.
+Quando fornecido, definirá a cor do cursor (ou "caret") no componente. Diferente do comportamento de `selectionColor`, a cor do cursor será definida independentemente da cor da caixa de seleção de texto.
 
 | Type               |
 | ------------------ |
@@ -329,7 +330,7 @@ When provided it will set the color of the cursor (or "caret") in the component.
 
 ### `disableFullscreenUI` <div className="label android">Android</div>
 
-When `false`, if there is a small amount of space available around a text input (e.g. landscape orientation on a phone), the OS may choose to have the user edit the text inside of a full screen text input mode. When `true`, this feature is disabled and users will always edit the text directly inside of the text input. Defaults to `false`.
+Quando `false`, se houver uma pequena quantidade de espaço disponível ao redor de um input de texto (por exemplo, orientação paisagem em um telefone), o SO pode escolher que o usuário edite o texto dentro de um modo de input de texto de tela cheia. Quando `true`, este recurso é desativado e os usuários sempre editarão o texto diretamente dentro do input de texto. O padrão é `false`.
 
 | Type |
 | ---- |
@@ -339,7 +340,7 @@ When `false`, if there is a small amount of space available around a text input 
 
 ### `editable`
 
-If `false`, text is not editable. The default value is `true`.
+Se `false`, o texto não é editável. O valor padrão é `true`.
 
 | Type |
 | ---- |
@@ -349,7 +350,7 @@ If `false`, text is not editable. The default value is `true`.
 
 ### `enablesReturnKeyAutomatically` <div className="label ios">iOS</div>
 
-If `true`, the keyboard disables the return key when there is no text and automatically enables it when there is text. The default value is `false`.
+Se `true`, o teclado desativa a tecla return quando não há texto e automaticamente a ativa quando há texto. O valor padrão é `false`.
 
 | Type |
 | ---- |
@@ -359,9 +360,9 @@ If `true`, the keyboard disables the return key when there is no text and automa
 
 ### `enterKeyHint`
 
-Determines what text should be shown to the return key. Has precedence over the `returnKeyType` prop.
+Determina qual texto deve ser mostrado na tecla return. Tem precedência sobre a prop `returnKeyType`.
 
-The following values work across platforms:
+Os seguintes valores funcionam em todas as plataformas:
 
 - `done`
 - `next`
@@ -371,13 +372,13 @@ The following values work across platforms:
 
 _Android Only_
 
-The following values work on Android only:
+Os seguintes valores funcionam apenas no Android:
 
 - `previous`
 
 _iOS Only_
 
-The following values work on iOS only:
+Os seguintes valores funcionam apenas no iOS:
 
 - `enter`
 
@@ -389,13 +390,13 @@ The following values work on iOS only:
 
 ### `importantForAutofill` <div className="label android">Android</div>
 
-Tells the operating system whether the individual fields in your app should be included in a view structure for autofill purposes on Android API Level 26+. Possible values are `auto`, `no`, `noExcludeDescendants`, `yes`, and `yesExcludeDescendants`. The default value is `auto`.
+Informa ao sistema operacional se os campos individuais em seu aplicativo devem ser incluídos em uma estrutura de view para fins de preenchimento automático no Android API Level 26+. Os valores possíveis são `auto`, `no`, `noExcludeDescendants`, `yes` e `yesExcludeDescendants`. O valor padrão é `auto`.
 
-- `auto`: Let the Android System use its heuristics to determine if the view is important for autofill.
-- `no`: This view isn't important for autofill.
-- `noExcludeDescendants`: This view and its children aren't important for autofill.
-- `yes`: This view is important for autofill.
-- `yesExcludeDescendants`: This view is important for autofill, but its children aren't important for autofill.
+- `auto`: Deixe o Sistema Android usar suas heurísticas para determinar se a view é importante para preenchimento automático.
+- `no`: Esta view não é importante para preenchimento automático.
+- `noExcludeDescendants`: Esta view e seus filhos não são importantes para preenchimento automático.
+- `yes`: Esta view é importante para preenchimento automático.
+- `yesExcludeDescendants`: Esta view é importante para preenchimento automático, mas seus filhos não são importantes para preenchimento automático.
 
 | Type                                                                       |
 | -------------------------------------------------------------------------- |
@@ -405,7 +406,7 @@ Tells the operating system whether the individual fields in your app should be i
 
 ### `inlineImageLeft` <div className="label android">Android</div>
 
-If defined, the provided image resource will be rendered on the left. The image resource must be inside `/android/app/src/main/res/drawable` and referenced like
+Se definido, o recurso de imagem fornecido será renderizado à esquerda. O recurso de imagem deve estar dentro de `/android/app/src/main/res/drawable` e referenciado como
 
 ```
 <TextInput
@@ -421,7 +422,7 @@ If defined, the provided image resource will be rendered on the left. The image 
 
 ### `inlineImagePadding` <div className="label android">Android</div>
 
-Padding between the inline image, if any, and the text input itself.
+Padding entre a imagem inline, se houver, e o próprio input de texto.
 
 | Type   |
 | ------ |
@@ -431,7 +432,7 @@ Padding between the inline image, if any, and the text input itself.
 
 ### `inputAccessoryViewID` <div className="label ios">iOS</div>
 
-An optional identifier which links a custom [InputAccessoryView](inputaccessoryview.md) to this text input. The InputAccessoryView is rendered above the keyboard when this text input is focused.
+Um identificador opcional que vincula um [InputAccessoryView](inputaccessoryview.md) personalizado a este input de texto. O InputAccessoryView é renderizado acima do teclado quando este input de texto está focado.
 
 | Type   |
 | ------ |
@@ -441,9 +442,9 @@ An optional identifier which links a custom [InputAccessoryView](inputaccessoryv
 
 ### `inputAccessoryViewButtonLabel` <div className="label ios">iOS</div>
 
-An optional label that overrides the default [InputAccessoryView](inputaccessoryview.md) button label.
+Um label opcional que substitui o label padrão do botão [InputAccessoryView](inputaccessoryview.md).
 
-By default, the default button label is not localized. Use this property to provide a localized version.
+Por padrão, o label do botão padrão não é localizado. Use esta propriedade para fornecer uma versão localizada.
 
 | Type   |
 | ------ |
@@ -453,9 +454,9 @@ By default, the default button label is not localized. Use this property to prov
 
 ### `inputMode`
 
-Works like the `inputmode` attribute in HTML, it determines which keyboard to open, e.g. `numeric` and has precedence over `keyboardType`.
+Funciona como o atributo `inputmode` em HTML, determina qual teclado abrir, por exemplo `numeric` e tem precedência sobre `keyboardType`.
 
-Support the following values:
+Suporta os seguintes valores:
 
 - `none`
 - `text`
@@ -474,7 +475,7 @@ Support the following values:
 
 ### `keyboardAppearance` <div className="label ios">iOS</div>
 
-Determines the color of the keyboard.
+Determina a cor do teclado.
 
 | Type                             |
 | -------------------------------- |
@@ -484,11 +485,11 @@ Determines the color of the keyboard.
 
 ### `keyboardType`
 
-Determines which keyboard to open, e.g.`numeric`.
+Determina qual teclado abrir, por exemplo `numeric`.
 
-See screenshots of all the types [here](https://davidl.fr/blog/keyboard-react-native-ios-android#all-react-native-keyboard-type-examples-i-os-on-the-left-android-on-the-right).
+Veja capturas de tela de todos os tipos [aqui](https://davidl.fr/blog/keyboard-react-native-ios-android#all-react-native-keyboard-type-examples-i-os-on-the-left-android-on-the-right).
 
-The following values work across platforms:
+Os seguintes valores funcionam em todas as plataformas:
 
 - `default`
 - `number-pad`
@@ -500,7 +501,7 @@ The following values work across platforms:
 
 _iOS Only_
 
-The following values work on iOS only:
+Os seguintes valores funcionam apenas no iOS:
 
 - `ascii-capable`
 - `numbers-and-punctuation`
@@ -510,7 +511,7 @@ The following values work on iOS only:
 
 _Android Only_
 
-The following values work on Android only:
+Os seguintes valores funcionam apenas no Android:
 
 - `visible-password`
 
@@ -522,7 +523,7 @@ The following values work on Android only:
 
 ### `lineBreakStrategyIOS` <div className="label ios">iOS</div>
 
-Set line break strategy on iOS 14+. Possible values are `none`, `standard`, `hangul-word` and `push-out`.
+Define a estratégia de quebra de linha no iOS 14+. Os valores possíveis são `none`, `standard`, `hangul-word` e `push-out`.
 
 | Type                                                        | Default  |
 | ----------------------------------------------------------- | -------- |
@@ -532,7 +533,7 @@ Set line break strategy on iOS 14+. Possible values are `none`, `standard`, `han
 
 ### `lineBreakModeIOS` <div className="label ios">iOS</div>
 
-Set line break mode on iOS. Possible values are `wordWrapping`, `char`, `clip`, `head`, `middle` and `tail`.
+Define o modo de quebra de linha no iOS. Os valores possíveis são `wordWrapping`, `char`, `clip`, `head`, `middle` e `tail`.
 
 | Type                                                                       | Default          |
 | -------------------------------------------------------------------------- | ---------------- |
@@ -542,11 +543,11 @@ Set line break mode on iOS. Possible values are `wordWrapping`, `char`, `clip`, 
 
 ### `maxFontSizeMultiplier`
 
-Specifies largest possible scale a font can reach when `allowFontScaling` is enabled. Possible values:
+Especifica a maior escala possível que uma fonte pode alcançar quando `allowFontScaling` está habilitado. Valores possíveis:
 
-- `null/undefined` (default): inherit from the parent node or the global default (0)
-- `0`: no max, ignore parent/global default
-- `>= 1`: sets the `maxFontSizeMultiplier` of this node to this value
+- `null/undefined` (padrão): herdar do nó pai ou do padrão global (0)
+- `0`: sem máximo, ignorar padrão pai/global
+- `>= 1`: define o `maxFontSizeMultiplier` deste nó para este valor
 
 | Type   |
 | ------ |
@@ -556,7 +557,7 @@ Specifies largest possible scale a font can reach when `allowFontScaling` is ena
 
 ### `maxLength`
 
-Limits the maximum number of characters that can be entered. Use this instead of implementing the logic in JS to avoid flicker.
+Limita o número máximo de caracteres que podem ser inseridos. Use isso em vez de implementar a lógica em JS para evitar oscilação.
 
 | Type   |
 | ------ |
@@ -566,10 +567,10 @@ Limits the maximum number of characters that can be entered. Use this instead of
 
 ### `multiline`
 
-If `true`, the text input can be multiple lines. The default value is `false`.
+Se `true`, o input de texto pode ter várias linhas. O valor padrão é `false`.
 
 :::note
-It is important to note that this aligns the text to the top on iOS, and centers it on Android. Use with `textAlignVertical` set to `top` for the same behavior in both platforms.
+É importante notar que isso alinha o texto ao topo no iOS e o centraliza no Android. Use com `textAlignVertical` definido como `top` para o mesmo comportamento em ambas as plataformas.
 :::
 
 | Type |
@@ -581,10 +582,10 @@ It is important to note that this aligns the text to the top on iOS, and centers
 ### `numberOfLines`
 
 :::note
-`numberOfLines` on iOS is only available on the [New Architecture](/architecture/landing-page)
+`numberOfLines` no iOS está disponível apenas na [New Architecture](/architecture/landing-page)
 :::
 
-Sets the maximum number of lines for a `TextInput`. Use it with multiline set to `true` to be able to fill the lines.
+Define o número máximo de linhas para um `TextInput`. Use com multiline definido como `true` para poder preencher as linhas.
 
 | Type   |
 | ------ |
@@ -594,10 +595,10 @@ Sets the maximum number of lines for a `TextInput`. Use it with multiline set to
 
 ### `onBlur`
 
-Callback that is called when the text input is blurred.
+Callback que é chamado quando o input de texto é desfocado.
 
 :::note
-If you are attempting to access the `text` value from `nativeEvent` keep in mind that the resulting value you get can be `undefined` which can cause unintended errors. If you are trying to find the last value of TextInput, you can use the [`onEndEditing`](textinput#onendediting) event, which is fired upon completion of editing.
+Se você está tentando acessar o valor `text` de `nativeEvent`, tenha em mente que o valor resultante que você obtém pode ser `undefined`, o que pode causar erros não intencionais. Se você está tentando encontrar o último valor do TextInput, você pode usar o evento [`onEndEditing`](textinput#onendediting), que é disparado após a conclusão da edição.
 :::
 
 | Type                                                     |
@@ -608,7 +609,7 @@ If you are attempting to access the `text` value from `nativeEvent` keep in mind
 
 ### `onChange`
 
-Callback that is called when the text input's text changes.
+Callback que é chamado quando o texto do input de texto muda.
 
 | Type                                                  |
 | ----------------------------------------------------- |
@@ -618,7 +619,7 @@ Callback that is called when the text input's text changes.
 
 ### `onChangeText`
 
-Callback that is called when the text input's text changes. Changed text is passed as a single string argument to the callback handler.
+Callback que é chamado quando o texto do input de texto muda. O texto alterado é passado como um único argumento string para o handler do callback.
 
 | Type     |
 | -------- |
@@ -628,9 +629,9 @@ Callback that is called when the text input's text changes. Changed text is pass
 
 ### `onContentSizeChange`
 
-Callback that is called when the text input's content size changes.
+Callback que é chamado quando o tamanho do conteúdo do input de texto muda.
 
-Only called for multiline text inputs.
+Chamado apenas para inputs de texto multilinha.
 
 | Type                                                       |
 | ---------------------------------------------------------- |
@@ -640,7 +641,7 @@ Only called for multiline text inputs.
 
 ### `onEndEditing`
 
-Callback that is called when text input ends.
+Callback que é chamado quando o input de texto termina.
 
 | Type     |
 | -------- |
@@ -650,7 +651,7 @@ Callback that is called when text input ends.
 
 ### `onPressIn`
 
-Callback that is called when a touch is engaged.
+Callback que é chamado quando um toque é iniciado.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -660,7 +661,7 @@ Callback that is called when a touch is engaged.
 
 ### `onPressOut`
 
-Callback that is called when a touch is released.
+Callback que é chamado quando um toque é liberado.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -670,7 +671,7 @@ Callback that is called when a touch is released.
 
 ### `onFocus`
 
-Callback that is called when the text input is focused.
+Callback que é chamado quando o input de texto é focado.
 
 | Type                                                     |
 | -------------------------------------------------------- |
@@ -680,7 +681,7 @@ Callback that is called when the text input is focused.
 
 ### `onKeyPress`
 
-Callback that is called when a key is pressed. This will be called with object where `keyValue` is `'Enter'` or `'Backspace'` for respective keys and the typed-in character otherwise including `' '` for space. Fires before `onChange` callbacks. Note: on Android only the inputs from soft keyboard are handled, not the hardware keyboard inputs.
+Callback que é chamado quando uma tecla é pressionada. Isso será chamado com um objeto onde `keyValue` é `'Enter'` ou `'Backspace'` para as respectivas teclas e o caractere digitado caso contrário, incluindo `' '` para espaço. Dispara antes dos callbacks `onChange`. Nota: no Android, apenas as entradas do teclado virtual são tratadas, não as entradas do teclado físico.
 
 | Type                                        |
 | ------------------------------------------- |
@@ -690,7 +691,7 @@ Callback that is called when a key is pressed. This will be called with object w
 
 ### `onLayout`
 
-Invoked on mount and on layout changes.
+Invocado na montagem e nas mudanças de layout.
 
 | Type                                                     |
 | -------------------------------------------------------- |
@@ -700,7 +701,7 @@ Invoked on mount and on layout changes.
 
 ### `onScroll`
 
-Invoked on content scroll. May also contain other properties from `ScrollEvent` but on Android `contentSize` is not provided for performance reasons.
+Invocado na rolagem de conteúdo. Também pode conter outras propriedades de `ScrollEvent`, mas no Android `contentSize` não é fornecido por motivos de desempenho.
 
 | Type                                                |
 | --------------------------------------------------- |
@@ -710,7 +711,7 @@ Invoked on content scroll. May also contain other properties from `ScrollEvent` 
 
 ### `onSelectionChange`
 
-Callback that is called when the text input selection is changed.
+Callback que é chamado quando a seleção do input de texto é alterada.
 
 | Type                                                  |
 | ----------------------------------------------------- |
@@ -720,19 +721,19 @@ Callback that is called when the text input selection is changed.
 
 ### `onSubmitEditing`
 
-Callback that is called when the text input's submit button is pressed.
+Callback que é chamado quando o botão de envio do input de texto é pressionado.
 
 | Type                                                  |
 | ----------------------------------------------------- |
 | (`{nativeEvent: {text, eventCount, target}}`) => void |
 
-Note that on iOS this method isn't called when using `keyboardType="phone-pad"`.
+Note que no iOS este método não é chamado quando usando `keyboardType="phone-pad"`.
 
 ---
 
 ### `placeholder`
 
-The string that will be rendered before text input has been entered.
+A string que será renderizada antes de qualquer texto ter sido inserido no input de texto.
 
 | Type   |
 | ------ |
@@ -742,7 +743,7 @@ The string that will be rendered before text input has been entered.
 
 ### `placeholderTextColor`
 
-The text color of the placeholder string.
+A cor do texto da string placeholder.
 
 | Type               |
 | ------------------ |
@@ -752,7 +753,7 @@ The text color of the placeholder string.
 
 ### `readOnly`
 
-If `true`, text is not editable. The default value is `false`.
+Se `true`, o texto não é editável. O valor padrão é `false`.
 
 | Type |
 | ---- |
@@ -762,7 +763,7 @@ If `true`, text is not editable. The default value is `false`.
 
 ### `returnKeyLabel` <div className="label android">Android</div>
 
-Sets the return key to the label. Use it instead of `returnKeyType`.
+Define a tecla return para o label. Use em vez de `returnKeyType`.
 
 | Type   |
 | ------ |
@@ -772,11 +773,11 @@ Sets the return key to the label. Use it instead of `returnKeyType`.
 
 ### `returnKeyType`
 
-Determines how the return key should look. On Android you can also use `returnKeyLabel`.
+Determina como a tecla return deve parecer. No Android você também pode usar `returnKeyLabel`.
 
 _Cross platform_
 
-The following values work across platforms:
+Os seguintes valores funcionam em todas as plataformas:
 
 - `done`
 - `go`
@@ -786,14 +787,14 @@ The following values work across platforms:
 
 _Android Only_
 
-The following values work on Android only:
+Os seguintes valores funcionam apenas no Android:
 
 - `none`
 - `previous`
 
 _iOS Only_
 
-The following values work on iOS only:
+Os seguintes valores funcionam apenas no iOS:
 
 - `default`
 - `emergency-call`
@@ -808,7 +809,7 @@ The following values work on iOS only:
 
 ### `rejectResponderTermination` <div className="label ios">iOS</div>
 
-If `true`, allows TextInput to pass touch events to the parent component. This allows components such as SwipeableListView to be swipeable from the TextInput on iOS, as is the case on Android by default. If `false`, TextInput always asks to handle the input (except when disabled). The default value is `true`.
+Se `true`, permite que o TextInput passe eventos de toque para o componente pai. Isso permite que componentes como SwipeableListView sejam deslizáveis a partir do TextInput no iOS, como é o caso no Android por padrão. Se `false`, o TextInput sempre pede para manipular o input (exceto quando desativado). O valor padrão é `true`.
 
 | Type |
 | ---- |
@@ -818,7 +819,7 @@ If `true`, allows TextInput to pass touch events to the parent component. This a
 
 ### `rows` <div className="label android">Android</div>
 
-Sets the number of lines for a `TextInput`. Use it with multiline set to `true` to be able to fill the lines.
+Define o número de linhas para um `TextInput`. Use com multiline definido como `true` para poder preencher as linhas.
 
 | Type   |
 | ------ |
@@ -828,7 +829,7 @@ Sets the number of lines for a `TextInput`. Use it with multiline set to `true` 
 
 ### `scrollEnabled` <div className="label ios">iOS</div>
 
-If `false`, scrolling of the text view will be disabled. The default value is `true`. Only works with `multiline={true}`.
+Se `false`, a rolagem da view de texto será desativada. O valor padrão é `true`. Funciona apenas com `multiline={true}`.
 
 | Type |
 | ---- |
@@ -838,7 +839,7 @@ If `false`, scrolling of the text view will be disabled. The default value is `t
 
 ### `secureTextEntry`
 
-If `true`, the text input obscures the text entered so that sensitive text like passwords stay secure. The default value is `false`. Does not work with `multiline={true}`.
+Se `true`, o input de texto obscurece o texto inserido para que textos sensíveis como senhas permaneçam seguros. O valor padrão é `false`. Não funciona com `multiline={true}`.
 
 | Type |
 | ---- |
@@ -848,7 +849,7 @@ If `true`, the text input obscures the text entered so that sensitive text like 
 
 ### `selection`
 
-The start and end of the text input's selection. Set start and end to the same value to position the cursor.
+O início e o fim da seleção do input de texto. Defina start e end com o mesmo valor para posicionar o cursor.
 
 | Type                                  |
 | ------------------------------------- |
@@ -858,7 +859,7 @@ The start and end of the text input's selection. Set start and end to the same v
 
 ### `selectionColor`
 
-The highlight, selection handle and cursor color of the text input.
+A cor do destaque, da alça de seleção e do cursor do input de texto.
 
 | Type               |
 | ------------------ |
@@ -868,7 +869,7 @@ The highlight, selection handle and cursor color of the text input.
 
 ### `selectionHandleColor` <div className="label android">Android</div>
 
-Sets the color of the selection handle. Unlike `selectionColor`, it allows the selection handle color to be customized independently of the selection's color.
+Define a cor da alça de seleção. Diferente de `selectionColor`, permite que a cor da alça de seleção seja personalizada independentemente da cor da seleção.
 
 | Type               |
 | ------------------ |
@@ -878,7 +879,7 @@ Sets the color of the selection handle. Unlike `selectionColor`, it allows the s
 
 ### `selectTextOnFocus`
 
-If `true`, all text will automatically be selected on focus.
+Se `true`, todo o texto será automaticamente selecionado no foco.
 
 | Type |
 | ---- |
@@ -888,7 +889,7 @@ If `true`, all text will automatically be selected on focus.
 
 ### `showSoftInputOnFocus`
 
-When `false`, it will prevent the soft keyboard from showing when the field is focused. The default value is `true`.
+Quando `false`, impedirá que o teclado virtual apareça quando o campo estiver focado. O valor padrão é `true`.
 
 | Type |
 | ---- |
@@ -898,7 +899,7 @@ When `false`, it will prevent the soft keyboard from showing when the field is f
 
 ### `smartInsertDelete` <div className="label ios">iOS</div>
 
-If `false`, the iOS system will not insert an extra space after a paste operation neither delete one or two spaces after a cut or delete operation.
+Se `false`, o sistema iOS não inserirá um espaço extra após uma operação de colar nem deletará um ou dois espaços após uma operação de cortar ou deletar.
 
 | Type | Default |
 | ---- | ------- |
@@ -908,7 +909,7 @@ If `false`, the iOS system will not insert an extra space after a paste operatio
 
 ### `spellCheck` <div className="label ios">iOS</div>
 
-If `false`, disables spell-check style (i.e. red underlines). The default value is inherited from `autoCorrect`.
+Se `false`, desativa o estilo de verificação ortográfica (ou seja, sublinhados vermelhos). O valor padrão é herdado de `autoCorrect`.
 
 | Type |
 | ---- |
@@ -918,22 +919,22 @@ If `false`, disables spell-check style (i.e. red underlines). The default value 
 
 ### `submitBehavior`
 
-When the return key is pressed,
+Quando a tecla return é pressionada,
 
-For single line inputs:
+Para inputs de linha única:
 
-- `'newline'` defaults to `'blurAndSubmit'`
-- `undefined` defaults to `'blurAndSubmit'`
+- `'newline'` padrão para `'blurAndSubmit'`
+- `undefined` padrão para `'blurAndSubmit'`
 
-For multiline inputs:
+Para inputs multilinha:
 
-- `'newline'` adds a newline
-- `undefined` defaults to `'newline'`
+- `'newline'` adiciona uma nova linha
+- `undefined` padrão para `'newline'`
 
-For both single line and multiline inputs:
+Para inputs de linha única e multilinha:
 
-- `'submit'` will only send a submit event and not blur the input
-- `'blurAndSubmit`' will both blur the input and send a submit event
+- `'submit'` enviará apenas um evento de envio e não desfocará o input
+- `'blurAndSubmit`' desfocará o input e enviará um evento de envio
 
 | Type                                       |
 | ------------------------------------------ |
@@ -943,9 +944,9 @@ For both single line and multiline inputs:
 
 ### `textAlign`
 
-Align the input text to the left, center, or right sides of the input field.
+Alinha o texto do input para os lados esquerdo, centro ou direito do campo de input.
 
-Possible values for `textAlign` are:
+Valores possíveis para `textAlign` são:
 
 - `left`
 - `center`
@@ -959,21 +960,21 @@ Possible values for `textAlign` are:
 
 ### `textContentType` <div className="label ios">iOS</div>
 
-Give the keyboard and the system information about the expected semantic meaning for the content that users enter.
+Forneça ao teclado e ao sistema informações sobre o significado semântico esperado para o conteúdo que os usuários inserem.
 
 :::note
-[`autoComplete`](#autocomplete), provides the same functionality and is available for all platforms. You can use [`Platform.select`](/docs/next/platform#select) for differing platform behaviors.
+[`autoComplete`](#autocomplete), fornece a mesma funcionalidade e está disponível para todas as plataformas. Você pode usar [`Platform.select`](/docs/next/platform#select) para comportamentos de plataforma diferentes.
 
-Avoid using both `textContentType` and `autoComplete`. For backwards compatibility, `textContentType` takes precedence when both properties are set.
+Evite usar `textContentType` e `autoComplete` juntos. Para compatibilidade com versões anteriores, `textContentType` tem precedência quando ambas as propriedades estão definidas.
 :::
 
-You can set `textContentType` to `username` or `password` to enable autofill of login details from the device keychain.
+Você pode definir `textContentType` como `username` ou `password` para habilitar o preenchimento automático de detalhes de login do keychain do dispositivo.
 
-`newPassword` can be used to indicate a new password input the user may want to save in the keychain, and `oneTimeCode` can be used to indicate that a field can be autofilled by a code arriving in an SMS.
+`newPassword` pode ser usado para indicar um novo input de senha que o usuário pode querer salvar no keychain, e `oneTimeCode` pode ser usado para indicar que um campo pode ser preenchido automaticamente por um código que chega em um SMS.
 
-To disable autofill, set `textContentType` to `none`.
+Para desativar o preenchimento automático, defina `textContentType` como `none`.
 
-Possible values for `textContentType` are:
+Valores possíveis para `textContentType` são:
 
 - `none`
 - `addressCity`
@@ -1025,13 +1026,13 @@ Possible values for `textContentType` are:
 
 ### `passwordRules` <div className="label ios">iOS</div>
 
-When using `textContentType` as `newPassword` on iOS we can let the OS know the minimum requirements of the password so that it can generate one that will satisfy them. In order to create a valid string for `PasswordRules` take a look to the [Apple Docs](https://developer.apple.com/password-rules/).
+Ao usar `textContentType` como `newPassword` no iOS, podemos informar ao SO os requisitos mínimos da senha para que ele possa gerar uma que os satisfaça. Para criar uma string válida para `PasswordRules`, dê uma olhada nos [Apple Docs](https://developer.apple.com/password-rules/).
 
 :::tip
-If passwords generation dialog doesn't appear please make sure that:
+Se o diálogo de geração de senhas não aparecer, certifique-se de que:
 
-- AutoFill is enabled: **Settings** → **Passwords & Accounts** → toggle "On" the **AutoFill Passwords**,
-- iCloud Keychain is used: **Settings** → **Apple ID** → **iCloud** → **Keychain** → toggle "On" the **iCloud Keychain**.
+- AutoFill está habilitado: **Settings** → **Passwords & Accounts** → toggle "On" o **AutoFill Passwords**,
+- iCloud Keychain está em uso: **Settings** → **Apple ID** → **iCloud** → **Keychain** → toggle "On" o **iCloud Keychain**.
   :::
 
 | Type   |
@@ -1042,7 +1043,7 @@ If passwords generation dialog doesn't appear please make sure that:
 
 ### `style`
 
-Note that not all Text styles are supported, an incomplete list of what is not supported includes:
+Note que nem todos os estilos Text são suportados, uma lista incompleta do que não é suportado inclui:
 
 - `borderLeftWidth`
 - `borderTopWidth`
@@ -1063,7 +1064,7 @@ Note that not all Text styles are supported, an incomplete list of what is not s
 
 ### `textBreakStrategy` <div className="label android">Android</div>
 
-Set text break strategy on Android API Level 23+, possible values are `simple`, `highQuality`, `balanced` The default value is `highQuality`.
+Define a estratégia de quebra de texto no Android API Level 23+, os valores possíveis são `simple`, `highQuality`, `balanced`. O valor padrão é `highQuality`.
 
 | Type                                      |
 | ----------------------------------------- |
@@ -1073,7 +1074,7 @@ Set text break strategy on Android API Level 23+, possible values are `simple`, 
 
 ### `underlineColorAndroid` <div className="label android">Android</div>
 
-The color of the `TextInput` underline.
+A cor do sublinhado do `TextInput`.
 
 | Type               |
 | ------------------ |
@@ -1083,7 +1084,7 @@ The color of the `TextInput` underline.
 
 ### `value`
 
-The value to show for the text input. `TextInput` is a controlled component, which means the native value will be forced to match this value prop if provided. For most uses, this works great, but in some cases this may cause flickering - one common cause is preventing edits by keeping value the same. In addition to setting the same value, either set `editable={false}`, or set/update `maxLength` to prevent unwanted edits without flicker.
+O valor a mostrar para o input de texto. `TextInput` é um componente controlado, o que significa que o valor nativo será forçado a corresponder a esta prop value se fornecido. Para a maioria dos usos, isso funciona muito bem, mas em alguns casos isso pode causar oscilação - uma causa comum é impedir edições mantendo o valor o mesmo. Além de definir o mesmo valor, defina `editable={false}`, ou defina/atualize `maxLength` para evitar edições indesejadas sem oscilação.
 
 | Type   |
 | ------ |
@@ -1097,7 +1098,7 @@ The value to show for the text input. `TextInput` is a controlled component, whi
 focus();
 ```
 
-Makes the native input request focus.
+Faz o input nativo solicitar foco.
 
 ### `.blur()`
 
@@ -1105,7 +1106,7 @@ Makes the native input request focus.
 blur();
 ```
 
-Makes the native input lose focus.
+Faz o input nativo perder o foco.
 
 ### `clear()`
 
@@ -1113,7 +1114,7 @@ Makes the native input lose focus.
 clear();
 ```
 
-Removes all text from the `TextInput`.
+Remove todo o texto do `TextInput`.
 
 ---
 
@@ -1123,10 +1124,10 @@ Removes all text from the `TextInput`.
 isFocused(): boolean;
 ```
 
-Returns `true` if the input is currently focused; `false` otherwise.
+Retorna `true` se o input estiver atualmente focado; `false` caso contrário.
 
 # Known issues
 
-- [react-native#19096](https://github.com/react/react-native/issues/19096): Doesn't support Android's `onKeyPreIme`.
-- [react-native#19366](https://github.com/react/react-native/issues/19366): Calling .focus() after closing Android's keyboard via back button doesn't bring keyboard up again.
-- [react-native#26799](https://github.com/react/react-native/issues/26799): Doesn't support Android's `secureTextEntry` when `keyboardType="email-address"` or `keyboardType="phone-pad"`.
+- [react-native#19096](https://github.com/react/react-native/issues/19096): Não suporta o `onKeyPreIme` do Android.
+- [react-native#19366](https://github.com/react/react-native/issues/19366): Chamar .focus() após fechar o teclado do Android via botão voltar não abre o teclado novamente.
+- [react-native#26799](https://github.com/react/react-native/issues/26799): Não suporta `secureTextEntry` do Android quando `keyboardType="email-address"` ou `keyboardType="phone-pad"`.
