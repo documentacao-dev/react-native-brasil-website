@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import type * as PluginContentDocs from '@docusaurus/plugin-content-docs';
 import type * as Preset from '@docusaurus/preset-classic';
 import type {Config} from '@docusaurus/types';
@@ -17,13 +19,14 @@ import prismThemeLight from './core/PrismThemeLight';
 
 import remarkSnackPlayer from '@react-native-website/remark-snackplayer';
 import remarkCodeblockLanguageTitle from '@react-native-website/remark-codeblock-language-as-title';
+import remarkAvisoNaoTraduzido from './remark/aviso-nao-traduzido';
 
 const isProductionDeployment =
   (!!process.env.NETLIFY && process.env.CONTEXT === 'production') ||
   (!!process.env.VERCEL && process.env.VERCEL_ENV === 'production');
 
 const lastVersion = versions[0];
-const copyright = `Copyright © Meta Platforms, Inc.`;
+const copyright = `Copyright © ${new Date().getFullYear()} Meta Platforms, Inc.`;
 
 export type EditUrlButton = {
   label: string;
@@ -41,15 +44,17 @@ const commonDocsOptions: PluginContentDocs.Options = {
     const isNextRelease = options.version === 'current';
     const buttons: EditUrlButton[] = [
       {
-        label: isNextRelease ? 'Edit this page' : 'Edit page for next release',
+        label: isNextRelease
+          ? 'Editar esta página'
+          : 'Editar página para próxima versão',
         href: `${baseUrl}/${nextReleasePath}`,
       },
     ];
     if (!isNextRelease) {
       const label =
         options.version === lastVersion
-          ? 'Edit page for current release'
-          : `Edit page for ${options.version} release`;
+          ? 'Editar página para versão atual'
+          : `Editar página para versão ${options.version}`;
       const thisVersionPath = path.posix.join(
         'website',
         options.versionDocsDirPath,
@@ -62,7 +67,12 @@ const commonDocsOptions: PluginContentDocs.Options = {
     }
     return JSON.stringify(buttons);
   }) as PluginContentDocs.EditUrlFunction,
-  remarkPlugins: [remarkSnackPlayer, remarkCodeblockLanguageTitle],
+  remarkPlugins: [
+    remarkSnackPlayer,
+    remarkCodeblockLanguageTitle,
+    // Aviso no topo das páginas sem `ia-translated: true` (só docs; não pega blog nem home).
+    remarkAvisoNaoTraduzido,
+  ],
 };
 
 const isDeployPreview =
@@ -86,7 +96,7 @@ const config: Config = {
 
   title: 'React Native',
   tagline:
-    'A framework for building native apps for Android, iOS, and more using React',
+    'Um framework para construir apps nativos para Android, iOS e mais usando React',
   organizationName: 'Meta Platforms, Inc.',
   projectName: 'react-native',
   url: 'https://reactnative.dev',
@@ -101,10 +111,6 @@ const config: Config = {
       src: 'https://cdn.jsdelivr.net/npm/focus-visible@5.2.0/dist/focus-visible.min.js',
       defer: true,
     },
-    {
-      src: 'https://widget.surveymonkey.com/collect/website/js/tRaiETqnLgj758hTBazgd8ryO5qrZo8Exadq9qmt1wtm4_2FdZGEAKHDFEt_2BBlwwM4.js',
-      defer: true,
-    },
     {src: 'https://snack.expo.dev/embed.js', defer: true},
     {src: 'https://platform.twitter.com/widgets.js', async: true},
   ],
@@ -112,11 +118,10 @@ const config: Config = {
   titleDelimiter: '·',
   customFields: {
     users,
-    facebookAppId: '1677033832619985',
   },
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'pt-br',
+    locales: ['pt-br'],
   },
   onBrokenLinks: 'warn',
   headTags: [
@@ -130,11 +135,11 @@ const config: Config = {
         '@type': 'WebPage',
         '@id': 'https://reactnative.dev/',
         url: 'https://reactnative.dev/',
-        name: 'React Native · Learn once, write anywhere',
+        name: 'React Native · Aprenda uma vez, escreva em qualquer lugar',
         description:
-          'A framework for building native apps for Android, iOS, and more using React',
+          'Um framework para construir apps nativos para Android, iOS e mais usando React',
         logo: 'https://reactnative.dev/img/pwa/manifest-icon-192.png',
-        inLanguage: 'en-US',
+        inLanguage: 'pt-BR',
       }),
     },
     {
@@ -146,9 +151,9 @@ const config: Config = {
         '@type': 'WebSite',
         '@id': 'https://reactnative.dev/',
         url: 'https://reactnative.dev/',
-        name: 'React Native · Learn once, write anywhere',
+        name: 'React Native · Aprenda uma vez, escreva em qualquer lugar',
         description:
-          'A framework for building native apps for Android, iOS, and more using React',
+          'Um framework para construir apps nativos para Android, iOS e mais usando React',
         publisher: 'Meta Platforms, Inc.',
         potentialAction: [
           {
@@ -164,7 +169,7 @@ const config: Config = {
             },
           },
         ],
-        inLanguage: 'en-US',
+        inLanguage: 'pt-BR',
       }),
     },
     {
@@ -196,7 +201,7 @@ const config: Config = {
         blog: {
           path: 'blog',
           blogSidebarCount: 'ALL',
-          blogSidebarTitle: 'All Blog Posts',
+          blogSidebarTitle: 'Todos os Posts do Blog',
           feedOptions: {
             type: 'all',
             copyright,
@@ -215,9 +220,7 @@ const config: Config = {
             require.resolve('./src/css/releases.scss'),
           ],
         },
-        gtag: {
-          trackingID: 'G-58L13S6BDP',
-        },
+        // Sem Google Analytics: era a conta do reactnative.dev oficial.
       } satisfies Preset.Options,
     ],
   ],
@@ -336,9 +339,9 @@ const config: Config = {
     [
       '@signalwire/docusaurus-plugin-llms-txt',
       {
-        siteTitle: 'React Native · Learn once, write anywhere',
+        siteTitle: 'React Native · Aprenda uma vez, escreva em qualquer lugar',
         siteDescription:
-          'A framework for building native apps for Android, iOS, and more using React',
+          'Um framework para construir apps nativos para Android, iOS e mais usando React',
         depth: 3,
         includeOrder: [
           '/docs/getting-started',
@@ -438,13 +441,13 @@ const config: Config = {
       items: [
         {
           type: 'dropdown',
-          label: 'Docs',
+          label: 'Desenvolvimento',
           position: 'right',
           items: [
-            {label: 'Guides', to: '/docs/getting-started'},
-            {label: 'Components', to: '/docs/components-and-apis'},
+            {label: 'Guias', to: '/docs/getting-started'},
+            {label: 'Componentes', to: '/docs/components-and-apis'},
             {label: 'APIs', to: '/docs/accessibilityinfo'},
-            {label: 'Architecture', to: '/architecture/overview'},
+            {label: 'Arquitetura', to: '/architecture/overview'},
           ],
         },
         {
@@ -456,20 +459,20 @@ const config: Config = {
         {
           type: 'doc',
           docId: 'overview',
-          label: 'Contributing',
+          label: 'Contribuindo',
           position: 'right',
           docsPluginId: 'contributing',
         },
         {
           type: 'doc',
           docId: 'overview',
-          label: 'Community',
+          label: 'Comunidade',
           position: 'right',
           docsPluginId: 'community',
         },
         {
           to: '/showcase',
-          label: 'Showcase',
+          label: 'Vitrine',
           position: 'right',
         },
         {
@@ -479,7 +482,7 @@ const config: Config = {
         },
         {
           href: 'https://github.com/react/react-native',
-          'aria-label': 'GitHub repository',
+          'aria-label': 'Repositório no GitHub',
           position: 'right',
           className: 'navbar-github-link',
         },
@@ -490,14 +493,14 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Develop',
+          title: 'Desenvolver',
           items: [
             {
-              label: 'Guides',
+              label: 'Guias',
               to: 'docs/getting-started',
             },
             {
-              label: 'Components',
+              label: 'Componentes',
               to: 'docs/components-and-apis',
             },
             {
@@ -505,34 +508,34 @@ const config: Config = {
               to: 'docs/accessibilityinfo',
             },
             {
-              label: 'Architecture',
+              label: 'Arquitetura',
               to: 'architecture/overview',
             },
           ],
         },
         {
-          title: 'Participate',
+          title: 'Participar',
           items: [
             {
-              label: 'Showcase',
+              label: 'Vitrine',
               to: 'showcase',
             },
             {
-              label: 'Contributing',
+              label: 'Contribuindo',
               to: 'contributing/overview',
             },
             {
-              label: 'Community',
+              label: 'Comunidade',
               to: 'community/overview',
             },
             {
-              label: 'Code of Conduct',
+              label: 'Código de Conduta',
               href: 'https://github.com/react/react-native/blob/main/CODE_OF_CONDUCT.md',
             },
           ],
         },
         {
-          title: 'Find us',
+          title: 'Encontre-nos',
           items: [
             {
               label: 'Blog',
@@ -553,22 +556,22 @@ const config: Config = {
           ],
         },
         {
-          title: 'Explore More',
+          title: 'Explorar Mais',
           items: [
             {
-              label: 'React',
+              label: 'ReactJS',
               href: 'https://react.dev/',
             },
             {
-              label: 'Packages Directory',
+              label: 'Diretório de Pacotes',
               href: 'https://reactnative.directory/',
             },
             {
-              label: 'Privacy Policy',
+              label: 'Política de Privacidade',
               href: 'https://opensource.fb.com/legal/privacy/',
             },
             {
-              label: 'Terms of Service',
+              label: 'Termos de Serviço',
               href: 'https://opensource.fb.com/legal/terms/',
             },
           ],
