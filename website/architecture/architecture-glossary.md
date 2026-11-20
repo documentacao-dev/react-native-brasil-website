@@ -17,7 +17,7 @@ React Native executa o mesmo código do framework React que o React para a web. 
 
 A plataforma que incorpora React Native (por exemplo, Android, iOS, macOS, Windows).
 
-## Host View Tree (e Host View)
+## Host View Tree (e Host View) {#host-view-tree-and-host-view}
 
 Representação em árvore de views na plataforma host (por exemplo, Android, iOS). No Android, as host views são instâncias de `android.view.ViewGroup`, `android.widget.TextView`, etc., que são os blocos de construção da host view tree. O tamanho e localização de cada host view são baseados em `LayoutMetrics` calculados com Yoga, e o estilo e conteúdo de cada host view são baseados em informações da React Shadow Tree.
 
@@ -37,11 +37,11 @@ Uma função ou classe JavaScript que instrui como criar um React Element. [Leia
 
 React Components com implementações `render` que se reduzem a outros React Composite Components ou React Host Components.
 
-## React Host Components ou Host Components
+## React Host Components ou Host Components {#react-host-components-or-host-components}
 
 React Components cuja implementação de view é fornecida por uma host view (por exemplo, `<View>, <Text>`). Na Web, os Host Components do ReactDOM seriam componentes como `<p>` e `<div>`.
 
-## React Element Tree (e React Element)
+## React Element Tree (e React Element) {#react-element-tree-and-react-element}
 
 Uma _React Element Tree_ é criada pelo React em JavaScript e consiste de React Elements. Um _React Element_ é um objeto JavaScript simples que descreve o que deve aparecer na tela. Ele inclui props, estilos e filhos. React Elements existem apenas em JavaScript e podem representar instanciações de React Composite Components ou React Host Components. [Leia mais sobre React components e elementos neste post de blog.](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
 
@@ -55,10 +55,10 @@ Quando essas ferramentas e bibliotecas são coletadas para formar um framework c
 
 Um exemplo de React Native Framework de código aberto é [Expo](https://expo.dev/).
 
-## React Shadow Tree (e React Shadow Node)
+## React Shadow Tree (e React Shadow Node) {#react-shadow-tree-and-react-shadow-node}
 
 Uma _React Shadow Tree_ é criada pelo Fabric Renderer e consiste de React Shadow Nodes. Um React Shadow Node é um objeto que representa um React Host Component a ser montado, e contém props que se originam do JavaScript. Eles também contêm informações de layout (x, y, largura, altura). No Fabric, objetos React Shadow Node existem em C++. Antes do Fabric, estes existiam no heap do runtime móvel (por exemplo, Android JVM).
 
-## Yoga Tree (e Yoga Node)
+## Yoga Tree (e Yoga Node) {#yoga-tree-and-yoga-node}
 
 A _Yoga Tree_ é usada pelo [Yoga](https://www.yogalayout.dev/) para calcular informações de layout para uma React Shadow Tree. Cada React Shadow Node tipicamente cria um _Yoga Node_ porque React Native emprega Yoga para calcular layout. No entanto, este não é um requisito rígido. Fabric também pode criar React Shadow Nodes que não usam Yoga; a implementação de cada React Shadow Node determina como calcular layout.

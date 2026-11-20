@@ -6,7 +6,7 @@ title: Animated.ValueXY
 
 Value 2D para conduzir animações 2D, como gestos de pan. API quase idêntica ao [`Animated.Value`](animatedvalue) normal, mas multiplexado. Contém dois `Animated.Value`s regulares internamente.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=Animated.ValueXY%20Example
 import {useRef} from 'react';
@@ -69,7 +69,7 @@ export default DraggableView;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `setValue()`
 

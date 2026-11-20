@@ -12,7 +12,7 @@ O propósito do `SafeAreaView` é renderizar conteúdo dentro dos limites da ár
 
 `SafeAreaView` renderiza conteúdo aninhado e aplica automaticamente padding para refletir a porção da view que não é coberta por barras de navegação, barras de abas, barras de ferramentas e outras views ancestrais. Além disso, e mais importante, os paddings da Safe Area refletem a limitação física da tela, como cantos arredondados ou entalhes da câmera (ou seja, a área de alojamento do sensor no iPhone 13).
 
-## Exemplo
+## Exemplo {#example}
 
 Para usar, envolva sua view de nível superior com um `SafeAreaView` com um estilo `flex: 1` aplicado a ele. Você também pode querer usar uma cor de fundo que combine com o design da sua aplicação.
 

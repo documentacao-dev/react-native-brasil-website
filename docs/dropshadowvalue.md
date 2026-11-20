@@ -6,7 +6,7 @@ title: Tipo de Objeto DropShadowValue
 
 O objeto `DropShadowValue` é aceito pela propriedade de estilo [`filter`](./view-style-props.md#filter) para a função `dropShadow`. Ele é composto por 2 ou 3 comprimentos e uma cor opcional. Esses valores definem coletivamente a cor, posição e desfoque da sombra projetada.
 
-## Exemplo
+## Exemplo {#example}
 
 ```js
 {
@@ -17,7 +17,7 @@ O objeto `DropShadowValue` é aceito pela propriedade de estilo [`filter`](./vie
 }
 ```
 
-## Chaves e valores
+## Chaves e valores {#keys-and-values}
 
 ### `offsetX`
 
@@ -51,6 +51,6 @@ A cor da sombra. O padrão é `black`.
 | -------------------- | -------- |
 | [color](./colors.md) | Sim      |
 
-## Usado por
+## Usado por {#used-by}
 
 - [`filter`](./view-style-props.md#filter)

@@ -17,7 +17,7 @@ Options:
   -h, --help           display help for command
 ```
 
-## Exemplos
+## Exemplos {#examples}
 
 - Leia `package.json` do diretório de trabalho atual, gere código baseado no seu codegenConfig.
 
@@ -40,7 +40,7 @@ npx @react-native-community/cli codegen \
     --outputPath third-party/some-library/android/generated
 ```
 
-## Incluindo Código Gerado em Bibliotecas
+## Incluindo Código Gerado em Bibliotecas {#including-generated-code-into-libraries}
 
 O CLI Codegen é uma ótima ferramenta para desenvolvedores de bibliotecas. Ele pode ser usado para dar uma prévia do código gerado para ver quais interfaces você precisa implementar.
 
@@ -58,7 +58,7 @@ Por outro lado, você também precisa estar ciente de uma desvantagem:
 
 - O código gerado usará a versão do React Native definida dentro da sua biblioteca. Então, se sua biblioteca está sendo entregue com React Native 0.76, o código gerado será baseado nessa versão. Isso pode significar que o código gerado não é compatível com apps usando versões **anteriores** do React Native usadas pelo app (por exemplo, um App rodando no React Native 0.75).
 
-## Habilitando `includesGeneratedCode`
+## Habilitando `includesGeneratedCode` {#enabling-includesgeneratedcode}
 
 Para habilitar essa configuração:
 

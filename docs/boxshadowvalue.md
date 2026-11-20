@@ -6,7 +6,7 @@ title: Tipo de Objeto BoxShadowValue
 
 O objeto `BoxShadowValue` é recebido pela propriedade de estilo [`boxShadow`](./view-style-props.md#boxshadow). Ele é composto por 2-4 comprimentos, uma cor opcional e um booleano `inset` opcional. Esses valores definem coletivamente a cor, posição, tamanho e desfoque da sombra da caixa.
 
-## Exemplo
+## Exemplo {#example}
 
 ```js
 {
@@ -19,7 +19,7 @@ O objeto `BoxShadowValue` é recebido pela propriedade de estilo [`boxShadow`](.
 }
 ```
 
-## Chaves e valores
+## Chaves e valores {#keys-and-values}
 
 ### `offsetX`
 
@@ -69,6 +69,6 @@ Se a sombra é inset ou não. Sombras inset aparecem ao redor do interior da cai
 | ------- | -------- |
 | boolean | Sim      |
 
-## Usado por
+## Usado por {#used-by}
 
 - [`boxShadow`](./view-style-props.md#boxshadow)

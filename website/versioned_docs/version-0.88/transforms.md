@@ -1,9 +1,10 @@
 ---
+ia-translated: true
 id: transforms
-title: Transforms
+title: Transformações
 ---
 
-Transforms are style properties that will help you modify the appearance and position of your components using 2D or 3D transformations. However, once you apply transforms, the layouts remain the same around the transformed component hence it might overlap with the nearby components. You can apply margin to the transformed component, the nearby components or padding to the container to prevent such overlaps.
+Transformações são propriedades de estilo que ajudam você a modificar a aparência e a posição de seus components usando transformações 2D ou 3D. No entanto, uma vez que você aplica transformações, os layouts permanecem os mesmos ao redor do component transformado, o que pode fazer com que ele se sobreponha aos components próximos. Você pode aplicar margem ao component transformado, aos components próximos ou padding ao container para evitar tais sobreposições.
 
 ## Example
 
@@ -182,9 +183,9 @@ export default App;
 
 ## Transform
 
-`transform` accepts an array of transformation objects or space-separated string values. Each object specifies the property that will be transformed as the key, and the value to use in the transformation. Objects should not be combined. Use a single key/value pair per object.
+`transform` aceita um array de objetos de transformação ou valores em string separados por espaços. Cada objeto especifica a propriedade que será transformada como a chave, e o valor a ser usado na transformação. Os objetos não devem ser combinados. Use um único par chave/valor por objeto.
 
-The rotate transformations require a string so that the transform may be expressed in degrees (deg) or radians (rad). For example:
+As transformações de rotação requerem uma string para que a transformação possa ser expressa em graus (deg) ou radianos (rad). Por exemplo:
 
 ```js
 {
@@ -192,7 +193,7 @@ The rotate transformations require a string so that the transform may be express
 }
 ```
 
-The same could also be achieved using a space-separated string:
+O mesmo também pode ser alcançado usando uma string separada por espaços:
 
 ```js
 {
@@ -200,7 +201,7 @@ The same could also be achieved using a space-separated string:
 }
 ```
 
-The skew transformations require a string so that the transform may be expressed in degrees (deg). For example:
+As transformações de inclinação requerem uma string para que a transformação possa ser expressa em graus (deg). Por exemplo:
 
 ```js
 {
@@ -208,7 +209,7 @@ The skew transformations require a string so that the transform may be expressed
 }
 ```
 
-The translate transformations (`translateX` and `translateY`) accept numbers (points) or percentage strings (e.g. `'50%'`, `'100%'`). When using percentages, the offset is relative to the element's width (for `translateX`) or height (for `translateY`). Percentage translation is supported on the [New Architecture](/architecture/landing-page). For example:
+As transformações de translação (`translateX` e `translateY`) aceitam números (pontos) ou strings de porcentagem (por exemplo, `'50%'`, `'100%'`). Ao usar porcentagens, o deslocamento é relativo à largura do elemento (para `translateX`) ou à altura (para `translateY`). A translação com porcentagem é suportada na [New Architecture](/architecture/landing-page). Por exemplo:
 
 ```js
 {
@@ -216,11 +217,11 @@ The translate transformations (`translateX` and `translateY`) accept numbers (po
 }
 ```
 
-### Matrix Transform
+### Transformação de matriz {#matrix-transform}
 
-The `matrix` transform accepts a 4x4 transformation matrix as an array of 16 numbers. This allows you to apply complex transformations that combine translation, rotation, scaling, and skewing in a single operation.
+A transformação `matrix` aceita uma matriz de transformação 4x4 como um array de 16 números. Isso permite aplicar transformações complexas que combinam translação, rotação, escala e inclinação em uma única operação.
 
-The matrix is specified in column-major order:
+A matriz é especificada na ordem column-major:
 
 ```js
 {
@@ -249,7 +250,7 @@ The matrix is specified in column-major order:
 }
 ```
 
-For example, to apply a combination of scale and skew:
+Por exemplo, para aplicar uma combinação de escala e inclinação:
 
 ```js
 {
@@ -264,24 +265,24 @@ For example, to apply a combination of scale and skew:
 ```
 
 :::note
-Matrix transforms are useful when you need to apply pre-calculated transformation matrices, such as those from animation libraries or when building UI editor applications. For basic transformations, it's recommended to use the individual transform properties (scale, rotate, translate, etc.) as they are more readable.
+Transformações de matriz são úteis quando você precisa aplicar matrizes de transformação pré-calculadas, como as de bibliotecas de animação ou ao criar aplicativos de editor de UI. Para transformações básicas, recomenda-se usar as propriedades de transformação individuais (scale, rotate, translate etc.), pois são mais legíveis.
 :::
 
-| Type                                                                                                                                                                                                                                                                                                                              | Required |
+| Tipo                                                                                                                                                                                                                                                                                                                              | Obrigatório |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| array of objects: `{matrix: number[]}`, `{perspective: number}`, `{rotate: string}`, `{rotateX: string}`, `{rotateY: string}`, `{rotateZ: string}`, `{scale: number}`, `{scaleX: number}`, `{scaleY: number}`, `{translateX: number \| string}`, `{translateY: number \| string}`, `{skewX: string}`, `{skewY: string}` or string | No       |
+| array de objetos: `{matrix: number[]}`, `{perspective: number}`, `{rotate: string}`, `{rotateX: string}`, `{rotateY: string}`, `{rotateZ: string}`, `{scale: number}`, `{scaleX: number}`, `{scaleY: number}`, `{translateX: number \| string}`, `{translateY: number \| string}`, `{skewX: string}`, `{skewY: string}` ou string | Não       |
 
 ---
 
 ### 🗑️ `decomposedMatrix`, `rotation`, `scaleX`, `scaleY`, `transformMatrix`, `translateX`, `translateY`
 
 :::warning[Deprecated]
-Use the [`transform`](transforms#transform) prop instead.
+Use a prop [`transform`](transforms#transform) no lugar.
 :::
 
 ## Transform Origin
 
-The `transformOrigin` property sets the origin for a view's transformations. The transform origin is the point around which a transformation is applied. By default, the origin of a transform is `center`.
+A propriedade `transformOrigin` define a origem para as transformações de uma view. A origem da transformação é o ponto ao redor do qual uma transformação é aplicada. Por padrão, a origem de uma transformação é `center`.
 
 # Example
 
@@ -350,13 +351,13 @@ export default App;
 
 ### Values
 
-Transform origin supports `px`, `percentage` and keywords `top`, `left`, `right`, `bottom`, `center` values.
+Transform origin suporta valores em `px`, `percentage` e as palavras-chave `top`, `left`, `right`, `bottom`, `center`.
 
-The `transformOrigin` property may be specified using one, two, or three values, where each value represents an offset.
+A propriedade `transformOrigin` pode ser especificada usando um, dois ou três valores, onde cada valor representa um deslocamento.
 
 #### One-value syntax:
 
-- The value must be a `px`, a `percentage`, or one of the keywords `left`, `center`, `right`, `top`, and `bottom`.
+- O valor deve ser um `px`, uma `percentage`, ou uma das palavras-chave `left`, `center`, `right`, `top` e `bottom`.
 
 ```js
 {
@@ -367,8 +368,8 @@ The `transformOrigin` property may be specified using one, two, or three values,
 
 #### Two-value syntax:
 
-- First value (x-offset) must be a `px`, a `percentage`, or one of the keywords `left`, `center`, and `right`.
-- The second value (y-offset) must be a `px`, a `percentage`, or one of the keywords `top`, `center`, and `bottom`.
+- O primeiro valor (x-offset) deve ser um `px`, uma `percentage`, ou uma das palavras-chave `left`, `center` e `right`.
+- O segundo valor (y-offset) deve ser um `px`, uma `percentage`, ou uma das palavras-chave `top`, `center` e `bottom`.
 
 ```js
 {
@@ -380,8 +381,8 @@ The `transformOrigin` property may be specified using one, two, or three values,
 
 #### Three-value syntax:
 
-- The first two values are the same as for the two-value syntax.
-- The third value (z-offset) must be a `px`. It always represents the Z offset.
+- Os primeiros dois valores são os mesmos que para a sintaxe de dois valores.
+- O terceiro valor (z-offset) deve ser um `px`. Ele sempre representa o deslocamento Z.
 
 ```js
 {
@@ -392,7 +393,7 @@ The `transformOrigin` property may be specified using one, two, or three values,
 
 #### Array syntax
 
-`transformOrigin` also supports an array syntax. It makes it convenient to use it with Animated APIs. It also avoids string parsing, so should be more efficient.
+`transformOrigin` também suporta uma sintaxe de array. Isso torna conveniente usá-la com APIs Animated. Também evita análise de strings, então deve ser mais eficiente.
 
 ```js
 {
@@ -403,4 +404,4 @@ The `transformOrigin` property may be specified using one, two, or three values,
 }
 ```
 
-You may refer to MDN's guide on [Transform origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) for additional information.
+Você pode consultar o guia do MDN sobre [Transform origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) para informações adicionais.

@@ -13,7 +13,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 [Hermes](https://hermesengine.dev) é um motor JavaScript de código aberto otimizado para React Native. Para muitos apps, usar Hermes resultará em tempo de inicialização melhorado, uso de memória reduzido e tamanho de app menor quando comparado ao JavaScriptCore.
 Hermes é usado por padrão pelo React Native e nenhuma configuração adicional é necessária para habilitá-lo.
 
-## Hermes Empacotado
+## Hermes Empacotado {#bundled-hermes}
 
 React Native vem com uma **versão empacotada** do Hermes.
 Estamos construindo uma versão do Hermes para você sempre que lançamos uma nova versão do React Native. Isso garantirá que você está consumindo uma versão do Hermes que é totalmente compatível com a versão do React Native que você está usando.
@@ -21,7 +21,7 @@ Estamos construindo uma versão do Hermes para você sempre que lançamos uma no
 Esta mudança é totalmente transparente para usuários do React Native. Você ainda pode desabilitar Hermes usando o comando descrito nesta página.
 Você pode [ler mais sobre a implementação técnica nesta página](/architecture/bundled-hermes).
 
-## Confirmando que Hermes está em uso
+## Confirmando que Hermes está em uso {#confirming-hermes-is-in-use}
 
 Se você criou recentemente um novo app do zero, você deve ver se Hermes está habilitado na tela de boas-vindas:
 
@@ -91,6 +91,6 @@ yarn ios --mode Release
 
 Isso compilará JavaScript para Hermes Bytecode durante o tempo de build, o que melhorará a velocidade de inicialização do seu app no dispositivo.
 
-## Voltando para JavaScriptCore
+## Voltando para JavaScriptCore {#switching-back-to-javascriptcore}
 
 React Native também suporta usar JavaScriptCore como o [motor JavaScript](javascript-environment). Siga as instruções [do repositório da comunidade](https://github.com/react-native-community/javascriptcore) para optar por não usar Hermes.

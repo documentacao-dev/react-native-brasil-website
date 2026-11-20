@@ -8,7 +8,7 @@ import FabricWarning from './\_fabric-warning.mdx';
 
 <FabricWarning />
 
-#### O renderizador do React Native utiliza uma implementação de renderização central para ser compartilhada entre plataformas
+#### O renderizador do React Native utiliza uma implementação de renderização central para ser compartilhada entre plataformas {#the-react-native-renderer-utilizes-a-core-render-implementation-to-be-shared-across-platforms}
 
 No sistema de renderização anterior do React Native, a **[React Shadow Tree](architecture-glossary.md#react-shadow-tree-and-react-shadow-node)**, lógica de layout e algoritmo de **[View Flattening](view-flattening.md)** eram implementados uma vez para cada plataforma. O renderizador atual foi projetado para ser uma solução cross-platform compartilhando uma implementação central em C++.
 

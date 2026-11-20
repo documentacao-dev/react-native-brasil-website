@@ -6,7 +6,7 @@ title: Tipo de Objeto TargetEvent
 
 O objeto `TargetEvent` é retornado no callback como resultado de uma mudança de foco, por exemplo `onFocus` ou `onBlur` no componente [TextInput](textinput).
 
-## Exemplo
+## Exemplo {#example}
 
 ```
 {
@@ -14,7 +14,7 @@ O objeto `TargetEvent` é retornado no callback como resultado de uma mudança d
 }
 ```
 
-## Chaves e valores
+## Chaves e valores {#keys-and-values}
 
 ### `target`
 
@@ -24,7 +24,7 @@ O node id do elemento que recebe o TargetEvent.
 | --------------------------- | -------- |
 | number, `null`, `undefined` | Não       |
 
-## Usado por
+## Usado por {#used-by}
 
 - [`TextInput`](textinput)
 - [`TouchableWithoutFeedback`](touchablewithoutfeedback)

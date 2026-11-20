@@ -1,47 +1,49 @@
+<!-- ia-translated: true -->
+
 # [reactnative.dev](https://reactnative.dev/) &middot; [![CC BY 4.0 license](https://img.shields.io/badge/license-CC%20BY%204.0-blue.svg)](LICENSE-docs) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) <a href="https://twitter.com/intent/follow?screen_name=reactnative"><img src="https://img.shields.io/twitter/follow/reactnative.svg?label=Follow%20@reactnative" alt="Follow @reactnative on X" /></a> <a href="https://bsky.app/profile/reactnative.dev"><img src="https://img.shields.io/badge/Bluesky-0285FF?logo=bluesky&logoColor=fff" alt="Follow @reactnative.dev on Bluesky" /></a>
 
-This repo contains the website configuration and documentation powering the [React Native website](https://reactnative.dev/).
+Este repositório contém a configuração do site e a documentação que alimenta o [site do React Native](https://reactnative.dev/).
 
-> If you are looking for the source code of the [React Native Archive website](https://archive.reactnative.dev/) select the [`archive`](https://github.com/react/react-native-website/tree/archive) branch.
+> Se você está procurando o código-fonte do [site React Native Archive](https://archive.reactnative.dev/), selecione a branch [`archive`](https://github.com/react/react-native-website/tree/archive).
 
-## Contents
+## Conteúdo {#contents}
 
-- [Getting started](#%EF%B8%8F-getting-started)
-- [Overview](#-overview)
-- [Website configuration](#-website-configuration)
-- [Contributing](#-contributing)
-- [License](#-license)
+- [Começando](#-getting-started)
+- [Visão geral](#-overview)
+- [Configuração do site](#-website-configuration)
+- [Contribuindo](#-contributing)
+- [Licença](#-license)
 
-## ✈️ Getting started
+## ✈️ Começando {#-getting-started}
 
-### Prerequisites
+### Pré-requisitos {#prerequisites}
 
 1. [Git](https://git-scm.com/downloads).
-1. [Node](https://nodejs.org/en/download/) _(version 22 or greater)_.
-1. [Yarn Classic](https://classic.yarnpkg.com/en/docs/install) _(version 1)_.
-1. A fork and clone of the `react-native-website` repo _(for any contributions)_.
+1. [Node](https://nodejs.org/en/download/) _(versão 22 ou superior)_.
+1. [Yarn Classic](https://classic.yarnpkg.com/en/docs/install) _(versão 1)_.
+1. Um fork e clone do repositório `react-native-website` _(para quaisquer contribuições)_.
 
-### Installation
+### Instalação {#installation}
 
-1. `cd react-native-website` to go into the project root.
-1. Run `yarn` to install the website's workspace dependencies.
+1. `cd react-native-website` para entrar na raiz do projeto.
+1. Execute `yarn` para instalar as dependências do workspace do site.
 
-### Running locally
+### Executando localmente {#running-locally}
 
-1. Run `yarn start` to start the development server _(powered by [Docusaurus](https://docusaurus.io))_.
-1. Open <http://localhost:3000/> site in your favorite browser.
+1. Execute `yarn start` para iniciar o servidor de desenvolvimento _(alimentado pelo [Docusaurus](https://docusaurus.io))_.
+1. Abra o site <http://localhost:3000/> no seu navegador favorito.
 
-## 📖 Overview
+## 📖 Visão geral {#-overview}
 
-If you would like to **_contribute an edit or addition to the docs,_** read through our [style guide](STYLEGUIDE.md) before you write anything.
-Almost all our content is generated from markdown files you can find in the `docs`, `website/architecture` and `website/contributing` directories.
+Se você gostaria de **_contribuir com uma edição ou adição à documentação,_** leia nosso [guia de estilo](STYLEGUIDE.md) antes de escrever qualquer coisa.
+Quase todo o nosso conteúdo é gerado a partir de arquivos markdown que você pode encontrar nos diretórios `docs`, `website/architecture` e `website/contributing`.
 
-**_To edit the internals of how the site is built,_** you may want to get familiarized with how the site is built. The React Native website is a static site generated using [Docusaurus](https://docusaurus.io/).
-The website configuration can be found in the `website` directory. Visit the Docusaurus website to learn more about all the available configuration options.
+**_Para editar os componentes internos de como o site é construído,_** você pode querer se familiarizar com como o site é construído. O site do React Native é um site estático gerado usando [Docusaurus](https://docusaurus.io/).
+A configuração do site pode ser encontrada no diretório `website`. Visite o site do Docusaurus para saber mais sobre todas as opções de configuração disponíveis.
 
-### Directory Structure
+### Estrutura de Diretórios {#directory-structure}
 
-The following is a high-level overview of relevant files and folders.
+O seguinte é uma visão geral de alto nível dos arquivos e pastas relevantes.
 
 ```
 react-native-website/
@@ -93,94 +95,94 @@ react-native-website/
     └── versions.json
 ```
 
-### Documentation sources
+### Fontes da documentação {#documentation-sources}
 
-As mentioned above, the `docs` folder contains the source files for docs from "Guides", "Components" and "APIs" tabs on the React Native website (versioned docs).
-The doc files for the "Architecture" and "Contribution" tabs are located inside `website` in the respective directories (unversioned/static docs).
-In most cases, you will only want to edit the files within those directories.
+Como mencionado acima, a pasta `docs` contém os arquivos-fonte para a documentação das abas "Guides", "Components" e "APIs" no site do React Native (documentação versionada).
+Os arquivos de documentação para as abas "Architecture" e "Contribution" estão localizados dentro de `website` nos respectivos diretórios (documentação não versionada/estática).
+Na maioria dos casos, você só vai querer editar os arquivos dentro desses diretórios.
 
-If you're adding a new doc or you need to alter the order the docs appear in the sidebar, take a look at the `sidebars.ts`, `sidebarsArchitecture.ts` and `sidebarsContributing.ts` files in the `website` directory. The sidebar files contain a list of document ids that should match those defined in the header metadata (aka frontmatter) of the docs markdown files.
+Se você está adicionando uma nova documentação ou precisa alterar a ordem em que a documentação aparece na barra lateral, dê uma olhada nos arquivos `sidebars.ts`, `sidebarsArchitecture.ts` e `sidebarsContributing.ts` no diretório `website`. Os arquivos da barra lateral contêm uma lista de IDs de documentos que devem corresponder àqueles definidos nos metadados do cabeçalho (também conhecido como frontmatter) dos arquivos markdown da documentação.
 
-### Versioned docs
+### Documentação versionada {#versioned-docs}
 
-Part of the React Native website is versioned to allow users to go back and see the Guides or API reference documentation for any given release. A new version of the website is generally generated whenever there is a new React Native release. When this happens, any changes made to the `docs` and `website/sidebars.ts` files will be copied over to the corresponding location within `website/versioned_docs` and `website/versioned_sidebars`.
-
-> [!NOTE]
-> Do not edit the auto-generated files within `versioned_docs` or `versioned_sidebars` unless you are sure it is necessary. Edits made to older versions will not be propagated to newer versions of the versioned docs.
-
-Docusaurus keeps track of the list of versions for the site in the `website/versions.json` file. The ordering of versions in this file should be in reverse chronological order.
-
-#### Cutting a new version
-
-##### After RC
-
-The React Native website lints and typechecks documents in "next". The version of React Native used by the linter should be updated before a release for consistency and to catch any documents/examples where APIs have changed.
-
-This can be done by updating the `package.json` and configuration files in `script/lint-examples` the same way a React Native application would be updated. The diff of these files can be seen using a tool like [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/?from=0.70.6&to=0.71.0).
-
-##### After Release
-
-1. `cd react-native-website` to go into the project root.
-1. `cd website` to go into the website portion of the project.
-1. Run `yarn version:cut <newVersion>` where `<newVersion>` is the new version being released (e.g. `0.81`).
-1. Open a PR and commit this change as "Cut branch <newVersion>"
-
-## 🔧 Website configuration
-
-The main config file for the website can be found at `website/docusaurus.config.ts`. This file tells [Docusaurus how to build the website](https://docusaurus.io/docs/configuration). Edits to this file are rarely necessary.
-
-The `core` subdirectory contains JavaScript and React components that are the core part of the website.
-
-The `src/pages` subdirectory contains the React components that make up the non-documentation pages of the site, such as the homepage.
-
-The `src/theme` subdirectory contains the swizzled React components from the Docusaurus theme.
-
-The `showcase.json` file contains the list of users that are highlighted in the React Native showcase.
-
-## 👏 Contributing
-
-### Create a branch
-
-1. `git checkout main` from any folder in your local `react-native-website` repository.
-1. `git pull origin main` to ensure you have the latest main code.
-1. `git checkout -b the-name-of-my-branch` to create a branch.
-   > replace `the-name-of-my-branch` with a suitable name, such as `update-animations-page`
-
-### Make the change
-
-1. Follow the "[Running locally](#running-locally)" instructions.
-1. Save the files and check in the browser.
-1. Some changes may require a server restart to generate new files. (Pages in `docs` always do!)
-1. Edits to pages in `docs` will only be visible in the latest version of the documentation, called "Next", located under the `docs/next` path.
-
-Visit **<http://localhost:3000/docs/next/YOUR-DOCS-PAGE>** to see your work.
+Parte do site do React Native é versionada para permitir que os usuários voltem e vejam os Guias ou a documentação de referência da API para qualquer versão lançada. Uma nova versão do site é geralmente gerada sempre que há um novo lançamento do React Native. Quando isso acontece, quaisquer alterações feitas nos arquivos `docs` e `website/sidebars.ts` serão copiadas para o local correspondente dentro de `website/versioned_docs` e `website/versioned_sidebars`.
 
 > [!NOTE]
-> Visit <http://localhost:3000/versions> to see the list of all versions of the docs, if you have backported some of the changes.
+> Não edite os arquivos gerados automaticamente dentro de `versioned_docs` ou `versioned_sidebars` a menos que você tenha certeza de que é necessário. Edições feitas em versões mais antigas não serão propagadas para versões mais recentes da documentação versionada.
+
+O Docusaurus mantém o controle da lista de versões do site no arquivo `website/versions.json`. A ordenação das versões neste arquivo deve estar em ordem cronológica reversa.
+
+#### Criando uma nova versão {#cutting-a-new-version}
+
+##### Após RC {#after-rc}
+
+O site do React Native faz lint e verificação de tipos em documentos em "next". A versão do React Native usada pelo linter deve ser atualizada antes de um lançamento para consistência e para detectar quaisquer documentos/exemplos onde as APIs mudaram.
+
+Isso pode ser feito atualizando o `package.json` e arquivos de configuração em `script/lint-examples` da mesma forma que um app React Native seria atualizado. O diff desses arquivos pode ser visto usando uma ferramenta como [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/?from=0.70.6&to=0.71.0).
+
+##### Após o Lançamento {#after-release}
+
+1. `cd react-native-website` para entrar na raiz do projeto.
+1. `cd website` para entrar na parte do site do projeto.
+1. Execute `yarn version:cut <newVersion>` onde `<newVersion>` é a nova versão sendo lançada (por exemplo, `0.81`).
+1. Abra um PR e faça commit dessa alteração como "Cut branch <newVersion>"
+
+## 🔧 Configuração do site {#-website-configuration}
+
+O arquivo de configuração principal do site pode ser encontrado em `website/docusaurus.config.ts`. Este arquivo diz ao [Docusaurus como construir o site](https://docusaurus.io/docs/configuration). Edições neste arquivo são raramente necessárias.
+
+O subdiretório `core` contém componentes JavaScript e React que são a parte central do site.
+
+O subdiretório `src/pages` contém os componentes React que compõem as páginas não documentais do site, como a página inicial.
+
+O subdiretório `src/theme` contém os componentes React swizzled do tema do Docusaurus.
+
+O arquivo `showcase.json` contém a lista de usuários que são destacados no showcase do React Native.
+
+## 👏 Contribuindo {#-contributing}
+
+### Criar uma branch {#create-a-branch}
+
+1. `git checkout main` de qualquer pasta no seu repositório local `react-native-website`.
+1. `git pull origin main` para garantir que você tenha o código main mais recente.
+1. `git checkout -b the-name-of-my-branch` para criar uma branch.
+   > substitua `the-name-of-my-branch` por um nome adequado, como `update-animations-page`
+
+### Fazer a alteração {#make-the-change}
+
+1. Siga as instruções "[Executando localmente](#running-locally)".
+1. Salve os arquivos e verifique no navegador.
+1. Algumas alterações podem exigir uma reinicialização do servidor para gerar novos arquivos. (Páginas em `docs` sempre exigem!)
+1. Edições em páginas em `docs` só serão visíveis na versão mais recente da documentação, chamada "Next", localizada sob o caminho `docs/next`.
+
+Visite **<http://localhost:3000/docs/next/YOUR-DOCS-PAGE>** para ver seu trabalho.
+
+> [!NOTE]
+> Visite <http://localhost:3000/versions> para ver a lista de todas as versões da documentação, se você fez backport de algumas das alterações.
 
 > [!TIP]
-> If you're adding assets, make sure they’re optimized for the web. You can use tools like [ImageOptim](https://imageoptim.com/mac) to automatically apply lossless compression to various file types.
+> Se você está adicionando assets, certifique-se de que eles estejam otimizados para a web. Você pode usar ferramentas como [ImageOptim](https://imageoptim.com/mac) para aplicar automaticamente compressão sem perdas em vários tipos de arquivo.
 
-### Test the change
+### Testar a alteração {#test-the-change}
 
-If possible, test any visual changes in all latest versions of the following browsers:
+Se possível, teste quaisquer alterações visuais em todas as versões mais recentes dos seguintes navegadores:
 
-- Chrome and Firefox on the desktop.
-- Chrome and Safari on mobile.
+- Chrome e Firefox no desktop.
+- Chrome e Safari no mobile.
 
-### Push it
+### Fazer o push {#push-it}
 
-1. Run `yarn lint` and `yarn prettier` in `./website` directory to ensure your changes are consistent with other files in the repo.
-1. Run `yarn update-lock` to [deduplicate dependencies](https://yarnpkg.com/cli/dedupe).
-1. `git add -A && git commit -m "My message"` to stage and commit your changes.
-   > replace `My message` with a commit message, such as `Fixed header logo on Android`
+1. Execute `yarn lint` e `yarn prettier` no diretório `./website` para garantir que suas alterações sejam consistentes com outros arquivos no repositório.
+1. Execute `yarn update-lock` para [deduplicar dependências](https://yarnpkg.com/cli/dedupe).
+1. `git add -A && git commit -m "My message"` para preparar e fazer commit das suas alterações.
+   > substitua `My message` por uma mensagem de commit, como `Fixed header logo on Android`
 1. `git push my-fork-name the-name-of-my-branch`
-1. Go to the [react-native-website repo](https://github.com/react/react-native-website) and you should see recently pushed branches.
-1. Follow GitHub's instructions.
-1. Describe briefly your changes (in case of visual changes, please include screenshots).
+1. Vá para o [repositório react-native-website](https://github.com/react/react-native-website) e você deve ver branches enviadas recentemente.
+1. Siga as instruções do GitHub.
+1. Descreva brevemente suas alterações (no caso de alterações visuais, por favor inclua screenshots).
 
-## 📄 License
+## 📄 Licença {#-license}
 
-React Native is [MIT licensed](./LICENSE).
+React Native é [licenciado sob MIT](./LICENSE).
 
-React Native documentation is [Creative Commons licensed](./LICENSE-docs).
+A documentação do React Native é [licenciada sob Creative Commons](./LICENSE-docs).

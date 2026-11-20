@@ -6,7 +6,7 @@ title: Tipo de Objeto Rect
 
 `Rect` aceita valores numéricos em pixels para descrever o quanto deve-se estender uma área retangular. Esses valores são adicionados ao tamanho da área original para expandi-la.
 
-## Exemplo
+## Exemplo {#example}
 
 ```js
 {
@@ -17,7 +17,7 @@ title: Tipo de Objeto Rect
 }
 ```
 
-## Chaves e valores
+## Chaves e valores {#keys-and-values}
 
 ### `bottom`
 
@@ -43,7 +43,7 @@ title: Tipo de Objeto Rect
 | --------------------------- | ----------- |
 | number, `null`, `undefined` | Não         |
 
-## Usado por
+## Usado por {#used-by}
 
 - [`Image`](image)
 - [`Pressable`](pressable)

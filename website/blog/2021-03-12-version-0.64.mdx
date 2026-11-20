@@ -7,7 +7,7 @@ tags: [announcement, release]
 
 Hoje estamos lançando o React Native 0.64 que inclui suporte para Hermes no iOS.
 
-## Hermes opt-in no iOS
+## Hermes opt-in no iOS {#hermes-opt-in-on-ios}
 
 [Hermes](https://hermesengine.dev) é um motor JavaScript open source otimizado para executar React Native. Ele melhora o desempenho ao diminuir a utilização de memória, reduzir o tamanho do download e diminuir o tempo necessário para o aplicativo se tornar utilizável ou "tempo para interação" (TTI).
 
@@ -23,7 +23,7 @@ use_react_native!(
 
 Lembre-se de que o suporte do Hermes no iOS ainda está em estágio inicial. Estamos mantendo-o como opt-in enquanto executamos mais benchmarks. Encorajamos você a experimentá-lo em seus próprios aplicativos e nos dizer como está funcionando para você!
 
-## Inline Requires habilitado por padrão
+## Inline Requires habilitado por padrão {#inline-requires-enabled-by-default}
 
 Inline Requires é uma opção de configuração do Metro que melhora o tempo de inicialização ao atrasar a execução de módulos JavaScript até que sejam usados, em vez de na inicialização.
 
@@ -55,7 +55,7 @@ const MyComponent = props => {
 
 Mais informações sobre Inline Requires estão disponíveis na [documentação de Performance](https://reactnative.dev/docs/0.74/ram-bundles-inline-requires#inline-requires).
 
-## Visualizar traces do Hermes com Chrome
+## Visualizar traces do Hermes com Chrome {#view-hermes-traces-with-chrome}
 
 {/* alex ignore fellowship */}
 
@@ -63,7 +63,7 @@ Durante o último ano, o Facebook patrocinou a [bolsa Major League Hacking](http
 
 Para mais informações, confira a [nova página de documentação](https://reactnative-archive-august-2023.netlify.app/docs/0.64/profile-hermes#record-a-hermes-sampling-profile).
 
-## Hermes com Suporte a Proxy
+## Hermes com Suporte a Proxy {#hermes-with-proxy-support}
 
 Adicionamos suporte a Proxy ao Hermes, habilitando compatibilidade com projetos populares da comunidade como react-native-firebase e mobx. Se você tem usado esses pacotes, agora pode migrar para o Hermes em seu projeto.
 
@@ -75,13 +75,13 @@ O React 17 não inclui novos recursos voltados para desenvolvedores ou mudanças
 
 Mais informações sobre o React 17 estão disponíveis [no blog do React](https://reactjs.org/blog/2020/10/20/react-v17.html).
 
-## Principais Mudanças de Versão de Dependências
+## Principais Mudanças de Versão de Dependências {#major-dependency-version-changes}
 
 - Removido suporte para Android API levels 16-20. O aplicativo do Facebook consistentemente remove suporte para versões do Android com uso suficientemente baixo. Como o aplicativo do Facebook não suporta mais essas versões e é a principal superfície de teste do React Native, o React Native também está removendo o suporte.
 - Xcode 12 e CocoaPods 1.10 são obrigatórios
 - Suporte mínimo do Node aumentado do Node 10 para Node 12
 - Flipper atualizado para 0.75.1
 
-## Agradecimentos
+## Agradecimentos {#thanks}
 
 Obrigado às centenas de contribuidores que ajudaram a tornar a versão 0.64 possível! O [changelog 0.64](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#v0640) inclui todas as mudanças incluídas neste lançamento.

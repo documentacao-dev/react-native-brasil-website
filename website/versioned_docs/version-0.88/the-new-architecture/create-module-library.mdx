@@ -11,7 +11,7 @@ Neste guia, você aprenderá:
 - como extrair um módulo em uma biblioteca
 - como distribuir a biblioteca usando NPM
 
-## Extraia o Módulo em uma Biblioteca
+## Extraia o Módulo em uma Biblioteca {#extract-the-module-into-a-library}
 
 Você pode usar a ferramenta [`create-react-native-library`](https://callstack.github.io/react-native-builder-bob/create) para criar uma nova biblioteca. Esta ferramenta configura uma nova biblioteca com todo o código boilerplate necessário: todos os arquivos de configuração e todos os arquivos exigidos pelas várias plataformas. Ela também vem com um menu interativo agradável para guiá-lo através da criação da biblioteca.
 
@@ -22,7 +22,7 @@ Para extrair um módulo em uma biblioteca separada, você pode seguir estes pass
 3. Atualize o código para refletir a nova estrutura
 4. Publique-o.
 
-### 1. Crie uma Biblioteca
+### 1. Crie uma Biblioteca {#1-create-a-library}
 
 1. Inicie o processo de criação executando o comando:
 
@@ -72,7 +72,7 @@ O `package.json` já está configurado com todas as informações que fornecemos
 
 Finalmente, a biblioteca já contém toda a infraestrutura para permitir que a biblioteca seja linkada com iOS e Android.
 
-### 2. Copie o Código do Seu App
+### 2. Copie o Código do Seu App {#2-copy-the-code-over-from-your-app}
 
 O resto do guia assume que você tem um Turbo Native Module local no seu app, criado seguindo as diretrizes mostradas nos outros guias no site: Turbo Native Modules específicos de plataforma, ou [Turbo Native Modules multiplataforma](./pure-cxx-modules). Mas funciona também para Components e módulos e componentes de legacy architecture. Você terá que adaptar os arquivos que precisa copiar e atualizar.
 
@@ -96,7 +96,7 @@ export default NativeSampleModule;
 
 É isso! Você moveu todo o código necessário para fora do seu app e em uma biblioteca separada.
 
-## Testando sua Biblioteca
+## Testando sua Biblioteca {#testing-your-library}
 
 O `create-react-native-library` vem com uma aplicação de exemplo útil que já está configurada para funcionar adequadamente com a biblioteca. Esta é uma ótima maneira de testá-la!
 
@@ -110,7 +110,7 @@ Para testar sua biblioteca:
 4. Compile e execute Android com `yarn android` da pasta `example`.
 5. Compile e execute iOS com `yarn ios` da pasta `example`.
 
-## Use sua Biblioteca como um Module Local
+## Use sua Biblioteca como um Module Local {#use-your-library-as-a-local-module}
 
 Existem alguns cenários onde você pode querer reutilizar sua biblioteca como um módulo local para suas aplicações, sem publicá-la no NPM.
 
@@ -169,7 +169,7 @@ Neste ponto, você pode compilar e executar seu app como de costume:
 - Compile e execute Android com `yarn android` da pasta `example`.
 - Compile e execute iOS com `yarn ios` da pasta `example`.
 
-## Publique a Biblioteca no NPM
+## Publique a Biblioteca no NPM {#publish-the-library-on-npm}
 
 A configuração para publicar tudo no NPM já está no lugar, graças ao `create-react-native-library`.
 

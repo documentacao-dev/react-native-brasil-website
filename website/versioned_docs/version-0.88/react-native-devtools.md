@@ -1,123 +1,124 @@
 ---
+ia-translated: true
 id: react-native-devtools
 title: React Native DevTools
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-React Native DevTools is our modern debugging experience for React Native. Purpose-built from the ground up, it aims to be fundamentally more integrated, correct, and reliable than previous debugging methods.
+React Native DevTools é nossa experiência moderna de debugging para React Native. Construído propositalmente do zero, visa ser fundamentalmente mais integrado, correto e confiável do que métodos de debugging anteriores.
 
 ![React Native DevTools opened to the "Welcome" pane](/docs/assets/debugging-rndt-welcome-083.jpg)
 
-React Native DevTools is designed for debugging React app concerns, and not to replace native tools. If you want to inspect React Native’s underlying platform layers (for example, while developing a Native Module), please use the debugging tools available in Android Studio and Xcode (see [Debugging Native Code](/docs/debugging-native-code)).
+React Native DevTools foi projetado para debugging de preocupações de aplicativos React, e não para substituir ferramentas nativas. Se você quiser inspecionar as camadas de plataforma subjacentes do React Native (por exemplo, ao desenvolver um Native Module), use as ferramentas de debugging disponíveis no Android Studio e Xcode (veja [Debugging Native Code](/docs/debugging-native-code)).
 
-## Core features
+## Recursos principais {#core-features}
 
-React Native DevTools is based on the Chrome DevTools frontend. If you have a web development background, its features should be familiar. As a starting point, we recommend browsing the [Chrome DevTools docs](https://developer.chrome.com/docs/devtools) which contain full guides as well as video resources.
+React Native DevTools é baseado no frontend Chrome DevTools. Se você tem experiência em desenvolvimento web, seus recursos devem ser familiares. Como ponto de partida, recomendamos navegar nos [docs do Chrome DevTools](https://developer.chrome.com/docs/devtools) que contêm guias completos, bem como recursos de vídeo.
 
 ### Console
 
 ![A series of logs React Native DevTools Sources view, alongside a device](/docs/assets/debugging-rndt-console.jpg)
 
-The Console panel allows you to view and filter messages, evaluate JavaScript, inspect object properties, and more.
+O painel Console permite visualizar e filtrar mensagens, avaliar JavaScript, inspecionar propriedades de objetos e mais.
 
 [Console features reference | Chrome DevTools](https://developer.chrome.com/docs/devtools/console/reference)
 
-#### Useful tips
+#### Dicas úteis {#useful-tips}
 
-- If your app has a lot of logs, use the filter box or change the log levels that are shown.
-- Watch values over time with [Live Expressions](https://developer.chrome.com/docs/devtools/console/live-expressions).
-- Persist messages across reloads with [Preserve Logs](https://developer.chrome.com/docs/devtools/console/reference#persist).
-- Use <kbd>Ctrl</kbd> + <kbd>L</kbd> to clear the console view.
+- Se seu aplicativo tem muitos logs, use a caixa de filtro ou altere os níveis de log que são mostrados.
+- Observe valores ao longo do tempo com [Live Expressions](https://developer.chrome.com/docs/devtools/console/live-expressions).
+- Persista mensagens através de reloads com [Preserve Logs](https://developer.chrome.com/docs/devtools/console/reference#persist).
+- Use <kbd>Ctrl</kbd> + <kbd>L</kbd> para limpar a view do console.
 
 ### Sources & breakpoints
 
 ![A paused breakpoint in the React Native DevTools Sources view, alongside a device](/docs/assets/debugging-rndt-sources-paused-with-device.jpg)
 
-The Sources panel allows you to view the source files in your app and register breakpoints. Use a breakpoint to define a line of code where your app should pause — allowing you to inspect the live state of the program and incrementally step through code.
+O painel Sources permite visualizar os arquivos fonte em seu aplicativo e registrar breakpoints. Use um breakpoint para definir uma linha de código onde seu aplicativo deve pausar — permitindo que você inspecione o estado vivo do programa e incremente através do código.
 
 [Pause your code with breakpoints | Chrome DevTools](https://developer.chrome.com/docs/devtools/javascript/breakpoints)
 
 :::tip
 
-#### Mini-guide
+#### Mini-guia {#mini-guide}
 
-Breakpoints are a fundamental tool in your debugging toolkit!
+Breakpoints são uma ferramenta fundamental em seu kit de debugging!
 
-1. Navigate to a source file using the sidebar or <kbd>Cmd ⌘</kbd>+<kbd>P</kbd> / <kbd>Ctrl</kbd>+<kbd>P</kbd>.
-2. Click in the line number column next to a line of code to add a breakpoint.
-3. Use the navigation controls at the top right to [step through code](https://developer.chrome.com/docs/devtools/javascript/reference#stepping) when paused.
+1. Navegue até um arquivo fonte usando a barra lateral ou <kbd>Cmd ⌘</kbd>+<kbd>P</kbd> / <kbd>Ctrl</kbd>+<kbd>P</kbd>.
+2. Clique na coluna de números de linha ao lado de uma linha de código para adicionar um breakpoint.
+3. Use os controles de navegação no canto superior direito para [step through code](https://developer.chrome.com/docs/devtools/javascript/reference#stepping) quando pausado.
 
 :::
 
-#### Useful tips
+#### Dicas úteis {#useful-tips}
 
-- A "Paused in Debugger" overlay appears when your app is paused. Tap it to resume.
-- Pay attention to the right-hand panels when on a breakpoint, which allow you to inspect the current scope and call stack, and set watch expressions.
-- Use a `debugger;` statement to quickly set a breakpoint from your text editor. This will reach the device immediately via Fast Refresh.
-- There are multiple kinds of breakpoints! For example, [Conditional Breakpoints and Logpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints#overview).
+- Um overlay "Paused in Debugger" aparece quando seu aplicativo está pausado. Toque nele para retomar.
+- Preste atenção aos painéis do lado direito quando em um breakpoint, que permitem inspecionar o escopo atual e call stack, e definir watch expressions.
+- Use uma declaração `debugger;` para rapidamente definir um breakpoint do seu editor de texto. Isso chegará ao dispositivo imediatamente via Fast Refresh.
+- Existem múltiplos tipos de breakpoints! Por exemplo, [Conditional Breakpoints e Logpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints#overview).
 
 ### Network <div className="label primary">Since 0.83</div>
 
-![A network request in the React Native DevTools Network panel](/docs/assets/debugging-rndt-network.jpg)
+![Uma requisição de rede no painel Network do React Native DevTools](/docs/assets/debugging-rndt-network.jpg)
 
-The Network panel allows you to view and inspect the network requests made by your app. Logged requests provide detailed metadata such as timings and headers sent/received, as well as response previews.
+O painel Network permite visualizar e inspecionar as requisições de rede feitas pelo seu app. As requisições registradas trazem metadados detalhados, como tempos e headers enviados e recebidos, além de prévias das respostas.
 
-Network requests are recorded automatically when DevTools is open. We support most features from Chrome, with some exceptions. See more below.
+As requisições são registradas automaticamente enquanto o DevTools está aberto. Oferecemos suporte à maioria dos recursos do Chrome, com algumas exceções. Veja mais abaixo.
 
 <details>
-<summary><strong>💡 Network event coverage, Expo support</strong></summary>
+<summary><strong>💡 Cobertura de eventos de rede, suporte ao Expo</strong></summary>
 
-**Which network events are captured?**
+**Quais eventos de rede são capturados?**
 
-Today, we record all network calls through `fetch()`, `XMLHttpRequest`, and `<Image>` — with support for custom networking libraries, such as Expo Fetch, coming later.
+Hoje, registramos todas as chamadas de rede feitas por `fetch()`, `XMLHttpRequest` e `<Image>`, com suporte a bibliotecas de rede customizadas, como o Expo Fetch, previsto para depois.
 
-**Expo Network differences**
+**Diferenças do Expo Network**
 
-Because of this, apps using Expo will continue to see the "Expo Network" panel — a separate implementation by the Expo framework which will log these additional request sources but has slightly reduced features.
+Por causa disso, apps que usam Expo continuarão vendo o painel "Expo Network", uma implementação separada do framework Expo que registra essas fontes de requisição adicionais, mas com alguns recursos ligeiramente reduzidos.
 
-- Coverage for Expo-specific network events.
-- No request initiator support.
-- No Performance panel integration.
+- Cobertura para eventos de rede específicos do Expo.
+- Sem suporte a initiator de requisições.
+- Sem integração com o painel Performance.
 
-We're working with Expo to integrate Expo Fetch and third party networking libraries with our new Network inspection pipeline in future releases.
+Estamos trabalhando com o Expo para integrar o Expo Fetch e bibliotecas de rede de terceiros ao nosso novo pipeline de inspeção de rede em versões futuras.
 
-**Unimplemented features**
+**Recursos não implementados**
 
-At launch, these are the features we don't yet support in React Native:
+No lançamento, estes são os recursos de rede que ainda não são suportados no React Native:
 
-- WebSocket events
-- Network response mocking
-- Simulated network throttling
+- Eventos de WebSocket
+- Mock de respostas de rede
+- Simulação de throttling de rede
 
 </details>
 
 <details>
-<summary><strong>💡 Response previews buffer size</strong></summary>
+<summary><strong>💡 Tamanho do buffer de prévias de respostas</strong></summary>
 
-If you are inspecting a large volume of response data, please note that response previews are cached in an on-device buffer with a maximum size of 100MB. This means we may evict response previews (but not metadata) if the cache becomes too large, oldest request first.
+Se você estiver inspecionando um grande volume de dados de resposta, saiba que as prévias de respostas são armazenadas em cache em um buffer no dispositivo, com tamanho máximo de 100MB. Isso significa que podemos descartar prévias de respostas (mas não os metadados) se o cache ficar grande demais, começando pela requisição mais antiga.
 
 </details>
 
-#### Useful tips
+#### Dicas úteis {#useful-tips}
 
-- Use the Initiator tab to see the call stack of where a network request was initiated in your app.
-- Network events will also be shown in the Network track in the Performance panel.
+- Use a aba Initiator para ver a call stack do ponto em que uma requisição de rede foi iniciada no seu app.
+- Eventos de rede também aparecem na faixa Network do painel Performance.
 
 ### Performance <div className="label primary">Since 0.83</div>
 
-![A performance trace in the React Native DevTools Performance panel](/docs/assets/debugging-rndt-performance.jpg)
+![Um trace de performance no painel Performance do React Native DevTools](/docs/assets/debugging-rndt-performance.jpg)
 
-Performance tracing allows you to record a performance session within your app to understand how your JavaScript code is running and what operations took the most time. In React Native, we show JavaScript execution, React Performance tracks, Network events, and custom [User Timings](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/User_timing), rendered in a single performance timeline.
+O rastreamento de performance permite gravar uma sessão de performance dentro do seu app, para entender como o seu código JavaScript está sendo executado e quais operações levaram mais tempo. No React Native, mostramos a execução de JavaScript, as faixas de performance do React, eventos de rede e [User Timings](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/User_timing) personalizados, tudo renderizado em uma única linha do tempo de performance.
 
-#### Useful tips
+#### Dicas úteis {#useful-tips}
 
-- Use [Annotations](https://developer.chrome.com/docs/devtools/performance/annotations) (shift-drag) to label and mark up a performance trace — useful before [downloading and sharing](https://developer.chrome.com/docs/devtools/performance/save-trace) a trace with a teammate. Annotations also provide a quick way to gauge time spans in **seconds**.
-- Use the [`PerformanceObserver` API](./global-PerformanceObserver.md) in your app to observe performance events at runtime — useful if you want to capture performance telemetry.
+- Use [Annotations](https://developer.chrome.com/docs/devtools/performance/annotations) (shift + arrastar) para rotular e marcar um trace de performance, o que é útil antes de [baixar e compartilhar](https://developer.chrome.com/docs/devtools/performance/save-trace) o trace com alguém da equipe. As anotações também oferecem uma forma rápida de medir intervalos de tempo em **segundos**.
+- Use a [API `PerformanceObserver`](./global-PerformanceObserver.md) no seu app para observar eventos de performance em tempo de execução, o que é útil se você quiser capturar telemetria de performance.
 
-#### Learn more
+#### Saiba mais {#learn-more}
 
-- [React Performance tracks](https://react.dev/reference/dev-tools/react-performance-tracks)
+- [Faixas de performance do React](https://react.dev/reference/dev-tools/react-performance-tracks)
 - [Performance APIs > User Timings | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/User_timing)
 - ["Debug Like a Senior — React Native Performance Panel" | Software Mansion](https://blog.swmansion.com/react-native-debugging-new-performance-panel-in-react-native-0-83-21ca90871f6d)
 
@@ -125,40 +126,40 @@ Performance tracing allows you to record a performance session within your app t
 
 ![Inspecting a heap snapshot in the Memory panel](/docs/assets/debugging-rndt-memory.jpg)
 
-The Memory panel allows you to take a heap snapshot and view the memory usage of your JavaScript code over time.
+O painel Memory permite tirar um heap snapshot e visualizar o uso de memória do seu código JavaScript ao longo do tempo.
 
 [Record heap snapshots | Chrome DevTools](https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots)
 
-#### Useful tips
+#### Dicas úteis {#useful-tips}
 
-- Use <kbd>Cmd ⌘</kbd>+<kbd>F</kbd> / <kbd>Ctrl</kbd>+<kbd>F</kbd> to filter for specific objects in the heap.
-- Taking an [allocation timeline report](https://developer.chrome.com/docs/devtools/memory-problems/allocation-profiler) can be useful to see memory usage over time as a graph, to identify possible memory leaks.
+- Use <kbd>Cmd ⌘</kbd>+<kbd>F</kbd> / <kbd>Ctrl</kbd>+<kbd>F</kbd> para filtrar por objetos específicos no heap.
+- Tirar um [allocation timeline report](https://developer.chrome.com/docs/devtools/memory-problems/allocation-profiler) pode ser útil para ver o uso de memória ao longo do tempo como um gráfico, para identificar possíveis memory leaks.
 
-## React DevTools features
+## Recursos do React DevTools {#react-devtools-features}
 
-In the integrated Components and Profiler panels, you'll find all the features of the [React DevTools](https://react.dev/learn/react-developer-tools) browser extension. These work seamlessly in React Native DevTools.
+Nos painéis integrados Components e Profiler, você encontrará todos os recursos da extensão de navegador [React DevTools](https://react.dev/learn/react-developer-tools). Esses funcionam perfeitamente no React Native DevTools.
 
 ### React Components
 
 ![Selecting and locating elements using the React Components panel](/docs/assets/debugging-rndt-react-components.gif)
 
-The React Components panel allows you to inspect and update the rendered React component tree.
+O painel React Components permite inspecionar e atualizar a árvore de componentes React renderizada.
 
-- Hover or select an element in DevTools to highlight it on the device.
-- To locate an element in DevTools, click the top-left "Select element" button, then tap any element in the app.
+- Passe o mouse ou selecione um elemento no DevTools para destacá-lo no dispositivo.
+- Para localizar um elemento no DevTools, clique no botão "Select element" no canto superior esquerdo, depois toque em qualquer elemento no aplicativo.
 
-#### Useful tips
+#### Dicas úteis {#useful-tips}
 
-- Props and state on a component can be viewed and modified at runtime using the right hand panel.
-- Components optimized with [React Compiler](https://react.dev/learn/react-compiler) will be annotated with a "Memo ✨" badge.
+- Props e state em um componente podem ser visualizados e modificados em tempo de execução usando o painel do lado direito.
+- Componentes otimizados com [React Compiler](https://react.dev/learn/react-compiler) serão anotados com um badge "Memo ✨".
 
 :::tip
 
-#### Protip: Highlight re-renders
+#### Dica profissional: Destacar re-renders {#protip-highlight-re-renders}
 
-Re-renders can be a significant contributor to performance issues in React apps. DevTools can highlight component re-renders as they happen.
+Re-renders podem ser um contribuidor significativo para problemas de performance em aplicativos React. DevTools pode destacar re-renders de componentes à medida que acontecem.
 
-- To enable, click the View Settings (`⚙︎`) icon and check "Highlight updates when components render".
+- Para habilitar, clique no ícone View Settings (`⚙︎`) e marque "Highlight updates when components render".
 
 ![Location of the "highlight updates" setting, next to a recording of the live render overlay](/docs/assets/debugging-rndt-highlight-renders.gif)
 
@@ -168,25 +169,25 @@ Re-renders can be a significant contributor to performance issues in React apps.
 
 ![A profile rendered as a flame graph](/docs/assets/debugging-rndt-react-profiler.jpg)
 
-The React Profiler panel allows you to record performance profiles to understand the timing of component renders and React commits.
+O painel React Profiler permite gravar perfis de performance para entender o timing de renderizações de componentes e commits do React.
 
-For more info, see the [original 2018 guide](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html#reading-performance-data) (note that parts of this may be outdated).
+Para mais informações, veja o [guia original de 2018](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html#reading-performance-data) (note que partes disso podem estar desatualizadas).
 
-## Reconnecting DevTools
+## Reconectando DevTools {#reconnecting-devtools}
 
-Occasionally, DevTools might disconnect from the target device. This can happen if:
+Ocasionalmente, DevTools pode desconectar do dispositivo alvo. Isso pode acontecer se:
 
-- The app is closed.
-- The app is rebuilt (a new native build is installed).
-- The app crashes on the native side.
-- The dev server (Metro) is quit.
-- A physical device is disconnected.
+- O aplicativo é fechado.
+- O aplicativo é recompilado (uma nova build nativa é instalada).
+- O aplicativo trava no lado nativo.
+- O dev server (Metro) é encerrado.
+- Um dispositivo físico é desconectado.
 
-On disconnect, a dialog will be shown with the message "Debugging connection was closed".
+Na desconexão, um diálogo será mostrado com a mensagem "Debugging connection was closed".
 
 ![A reconnect dialog shown when a device is disconnected](/docs/assets/debugging-reconnect-menu.jpg)
 
-From here, you can either:
+Daqui, você pode:
 
-- **Dismiss**: Select the close (`×`) icon or click outside the dialog to return to the DevTools UI in the last state before disconnection.
-- **Reconnect**: Select "Reconnect DevTools", having addressed the reason for disconnection.
+- **Dismiss**: Selecione o ícone fechar (`×`) ou clique fora do diálogo para retornar à UI do DevTools no último estado antes da desconexão.
+- **Reconnect**: Selecione "Reconnect DevTools", tendo resolvido o motivo da desconexão.

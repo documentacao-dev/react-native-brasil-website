@@ -9,7 +9,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 React Native é um framework open source para construir aplicações Android e iOS usando [React](https://react.dev/) e as capacidades nativas da plataforma do app. Com React Native, você usa JavaScript para acessar as APIs da sua plataforma, assim como para descrever a aparência e o comportamento da sua UI usando componentes React: pacotes de código reutilizável e aninhável. Você pode aprender mais sobre React na próxima seção. Mas primeiro, vamos cobrir como os componentes funcionam no React Native.
 
-## Views e desenvolvimento mobile
+## Views e desenvolvimento mobile {#views-and-mobile-development}
 
 No desenvolvimento Android e iOS, uma **view** é o bloco de construção básico da UI: um pequeno elemento retangular na tela que pode ser usado para exibir texto, imagens ou responder a entrada do usuário. Até mesmo os menores elementos visuais de um app, como uma linha de texto ou um botão, são tipos de views. Alguns tipos de views podem conter outras views. São views até o fim!
 

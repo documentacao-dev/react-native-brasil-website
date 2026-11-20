@@ -9,7 +9,7 @@ import constants from '@site/core/TabsConstants';
 
 Headless JS é uma forma de executar tarefas em JavaScript enquanto seu aplicativo está em segundo plano. Pode ser usado, por exemplo, para sincronizar dados atualizados, lidar com notificações push ou tocar música.
 
-## A API JS
+## A API JS {#the-js-api}
 
 Uma task é uma função async que você registra no `AppRegistry`, similar a registrar aplicações React:
 
@@ -30,7 +30,7 @@ module.exports = async taskData => {
 
 Você pode fazer qualquer coisa em sua task, como requisições de rede, timers e assim por diante, desde que não toque na UI. Uma vez que sua task for concluída (ou seja, a promise for resolvida), o React Native entrará no modo "pausado" (a menos que haja outras tasks em execução ou um aplicativo em primeiro plano).
 
-## A API da Plataforma
+## A API da Plataforma {#the-platform-api}
 
 Sim, isso ainda requer algum código nativo, mas é bem simples. Você precisa estender `HeadlessJsTaskService` e sobrescrever `getTaskConfig`, por exemplo:
 
@@ -135,7 +135,7 @@ applicationContext.startForegroundService(service)
 </TabItem>
 </Tabs>
 
-## Tentativas
+## Tentativas {#retries}
 
 Por padrão, a task headless JS não realizará nenhuma tentativa. Para fazer isso, você precisa criar um `HeadlessJsRetryPolicy` e lançar um `Error` específico.
 
@@ -192,12 +192,12 @@ module.exports = async taskData => {
 
 Se você deseja que todos os erros causem uma tentativa, você precisará capturá-los e lançar o erro acima.
 
-## Ressalvas
+## Ressalvas {#caveats}
 
 - Por padrão, seu aplicativo travará se você tentar executar uma task enquanto o aplicativo estiver em primeiro plano. Isso é para evitar que desenvolvedores se prejudiquem fazendo muito trabalho em uma task e deixando a UI lenta. Você pode passar um quarto argumento `boolean` para controlar esse comportamento.
 - Se você iniciar seu service a partir de um `BroadcastReceiver`, certifique-se de chamar `HeadlessJsTaskService.acquireWakeLockNow()` antes de retornar de `onReceive()`.
 
-## Exemplo de Uso
+## Exemplo de Uso {#example-usage}
 
 O service pode ser iniciado a partir da API Java. Primeiro você precisa decidir quando o service deve ser iniciado e implementar sua solução adequadamente. Aqui está um exemplo que reage a mudanças na conexão de rede.
 

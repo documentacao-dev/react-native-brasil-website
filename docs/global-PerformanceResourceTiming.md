@@ -1,13 +1,14 @@
 ---
 id: global-PerformanceResourceTiming
 title: PerformanceResourceTiming
+ia-translated: true
 ---
 
-The global [`PerformanceResourceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming) class, as defined in Web specifications.
+A classe global [`PerformanceResourceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming), conforme definida nas especificações Web.
 
-:::warning[Partial support]
+:::warning[Suporte parcial]
 
-React Native implements the following `PerformanceResourceTiming` properties only:
+O React Native implementa apenas as seguintes propriedades de `PerformanceResourceTiming`:
 
 - `fetchStart`
 - `requestStart`

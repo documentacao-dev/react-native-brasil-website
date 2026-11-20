@@ -12,7 +12,7 @@ Os colaboradores que ajudaram a resolver o incidente participaram recentemente d
 
 {/* truncate */}
 
-## O que aconteceu
+## O que aconteceu {#what-happened}
 
 Em 4 de novembro de 2022, publicamos a versão `0.71.0-rc0` do React Native, o primeiro release candidate para 0.71, em vários repositórios públicos.
 
@@ -20,7 +20,7 @@ Uma mudança importante feita neste release candidate ajudou a melhorar os tempo
 
 Infelizmente, devido à forma como estruturamos novos projetos a partir do template, isso causou falhas de build para qualquer usuário Android em versões mais antigas, porque eles começariam a baixar novos artifacts para `0.71.0-rc0` em vez da versão que estavam usando em seu projeto (como `0.68.0`).
 
-## Por que isso aconteceu
+## Por que isso aconteceu {#why-this-happened}
 
 O template do React Native fornece um arquivo `build.gradle` para compilar aplicativos Android. Este arquivo contém uma dependência na biblioteca Android do React Native da seguinte forma:
 `implementation("com.facebook.react:react-native:+")`.
@@ -33,7 +33,7 @@ Isso fez com que builds com versões do React Native anteriores a `0.71.0-rc.0` 
 
 Mais detalhes técnicos sobre este evento também estão disponíveis [neste issue do GitHub](https://github.com/facebook/react-native/issues/35210).
 
-## Como mitigamos e resolvemos
+## Como mitigamos e resolvemos {#how-we-mitigated--resolved}
 
 Assim que identificamos o problema em 4 de novembro, a comunidade encontrou e compartilhou uma solução manual para corrigir o problema que fixaria o React Native em uma versão específica, corrigindo o erro.
 
@@ -43,7 +43,7 @@ Ao mesmo tempo, [entramos em contato com a Sonatype](https://issues.sonatype.org
 
 O problema foi totalmente resolvido em 8 de novembro, quando os artifacts foram completamente removidos do Maven Central.
 
-## Cronologia dos eventos
+## Cronologia dos eventos {#timeline-of-events}
 
 _Esta seção contém uma breve cronologia dos eventos. Todos os horários estão em GMT/UTC +0_
 
@@ -59,11 +59,11 @@ _Esta seção contém uma breve cronologia dos eventos. Todos os horários estã
 - 8 de nov - 08:04 PM: Artifacts no Maven Central são [completamente removidos](https://issues.sonatype.org/browse/OSSRH-86006?focusedCommentId=1216303&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-1216303).
 - 10 de nov - 11:51 AM: Issue sobre o [incidente é fechado](https://github.com/facebook/react-native/issues/35210#issuecomment-1310170361).
 
-## Lições aprendidas
+## Lições aprendidas {#lessons-learned}
 
 Embora de muitas maneiras as condições para desencadear este incidente existam desde o React Native 0.12.0, queremos garantir que as bases sobre as quais desenvolvemos e lançamos o React Native no futuro sejam mais fortes. Aqui estão algumas das lições aprendidas e as ações sobre como adaptaremos nossos processos e infraestrutura para responder mais rápido e de forma mais robusta no futuro.
 
-### Estratégia de resposta a incidentes
+### Estratégia de resposta a incidentes {#incident-response-strategy}
 
 Este incidente destacou lacunas em nossa estratégia de resposta a incidentes para problemas de código aberto relacionados ao React Native.
 
@@ -73,7 +73,7 @@ Levamos 48 horas para reconhecer o escopo maior deste problema e que não poder�
 
 Estaremos revisando nossos processos sobre quando confiar em soluções aplicadas pelo desenvolvedor versus correções que podemos implementar automaticamente. Também analisaremos nossas opções para obter uma melhor percepção em tempo real da saúde do nosso ecossistema.
 
-### Política de suporte a releases
+### Política de suporte a releases {#release-support-policy}
 
 Como visualizado na [ferramenta rn-versions](https://rn-versions.github.io/), para cobrir mais de 90% da base de desenvolvedores do React Native no momento do incidente, tivemos que lançar patches até a versão 0.63.
 
@@ -85,7 +85,7 @@ Da mesma forma, também queremos enfatizar a importância de estar atualizado co
 
 No futuro, comunicaremos nossa política de suporte em nossos canais de comunicação e consideraremos [depreciar versões mais antigas do React Native no npm](https://docs.npmjs.com/deprecating-and-undeprecating-packages-or-package-versions).
 
-### Testes aprimorados e melhores práticas para bibliotecas de terceiros
+### Testes aprimorados e melhores práticas para bibliotecas de terceiros {#improved-testing-and-best-practices-for-3rd-party-libraries}
 
 Este incidente destacou a importância de ter melhores testes de release e melhores orientações para bibliotecas de terceiros.
 
@@ -95,7 +95,7 @@ Especificamente, agora estamos incentivando e apoiando testes de bibliotecas de 
 
 Além disso, iniciamos uma colaboração mais próxima com a Callstack, os mantenedores do [create-react-native-library](https://github.com/callstack/react-native-builder-bob/tree/main/packages/create-react-native-library), para melhorar o template de biblioteca e garantir que ele siga todas as melhores práticas necessárias para integração com projetos React Native. A versão mais nova do `create-react-native-library` agora é totalmente compatível com projetos 0.71, enquanto ainda oferece compatibilidade retroativa.
 
-## Conclusões
+## Conclusões {#conclusions}
 
 Queremos nos desculpar pela interrupção que isso causou aos fluxos de trabalho de desenvolvedores em todo o mundo. Como destacado acima, já começamos a tomar medidas para fortalecer nossa base - e mais trabalho está por vir.
 

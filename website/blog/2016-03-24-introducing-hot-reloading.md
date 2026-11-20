@@ -41,7 +41,7 @@ Hot reloading está disponível a partir da versão 0.22, você pode habilitá-l
 - Abra o menu de desenvolvedor
 - Toque em "Enable Hot Reloading"
 
-## Implementação em resumo
+## Implementação em resumo {#implementation-in-a-nutshell}
 
 Agora que vimos por que queremos isso e como usá-lo, a parte divertida começa: como realmente funciona.
 
@@ -206,7 +206,7 @@ export default function configureStore(initialState) {
 
 Quando você altera um reducer, o código para aceitar esse reducer será enviado ao cliente. Então o cliente perceberá que o reducer não sabe como se aceitar, então ele procurará todos os módulos que se referem a ele e tentará aceitá-los. Eventualmente, o fluxo chegará à store única, o módulo `configureStore`, que aceitará a atualização HMR.
 
-## Conclusão
+## Conclusão {#conclusion}
 
 Se você está interessado em ajudar a melhorar o hot reloading, eu encorajo você a ler [o post de Dan Abramov sobre o futuro do hot reloading](https://medium.com/@dan_abramov/hot-reloading-in-react-1140438583bf#.jmivpvmz4) e a contribuir. Por exemplo, Johny Days vai [fazê-lo funcionar com vários clientes conectados](https://github.com/facebook/react-native/pull/6179). Estamos contando com todos vocês para manter e melhorar este recurso.
 

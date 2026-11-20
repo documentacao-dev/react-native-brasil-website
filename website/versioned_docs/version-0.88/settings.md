@@ -6,7 +6,7 @@ title: Settings
 
 `Settings` serve como um wrapper para [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/nsuserdefaults), um armazenamento persistente de chave-valor disponível apenas no iOS.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=Settings%20Example&supportedPlatforms=ios
 import {useState} from 'react';
@@ -59,7 +59,7 @@ export default App;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `clearWatch()`
 

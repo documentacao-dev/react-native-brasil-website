@@ -8,7 +8,7 @@ date: 2023-12-06
 
 Hoje estamos lançando o React Native 0.73! Esta versão adiciona melhorias na depuração com Hermes, suporte estável a symlinks, suporte ao Android 14 e novos recursos experimentais. Também estamos descontinuando recursos legados de depuração e lançando o próximo pilar da Nova Arquitetura: o Bridgeless Mode!
 
-### Destaques
+### Destaques {#highlights}
 
 - [Melhorias na Depuração](/blog/2023/12/06/0.73-debugging-improvements-stable-symlinks#debugging-improvements)
 - [Suporte Estável a Symlink no Metro](/blog/2023/12/06/0.73-debugging-improvements-stable-symlinks#stable-symlink-support-in-metro)
@@ -17,7 +17,7 @@ Hoje estamos lançando o React Native 0.73! Esta versão adiciona melhorias na d
 - [Atualizações da Nova Arquitetura](/blog/2023/12/06/0.73-debugging-improvements-stable-symlinks#new-architecture-updates)
 - [Recursos de Depuração Descontinuados](/blog/2023/12/06/0.73-debugging-improvements-stable-symlinks#deprecated-debugging-features)
 
-### Mudanças Incompatíveis
+### Mudanças Incompatíveis {#breaking-changes}
 
 - [Renomeação de Pacotes Babel](/blog/2023/12/06/0.73-debugging-improvements-stable-symlinks#babel-package-renames)
 - [Outras Mudanças Incompatíveis](/blog/2023/12/06/0.73-debugging-improvements-stable-symlinks#other-breaking-changes)
@@ -26,25 +26,25 @@ Hoje estamos lançando o React Native 0.73! Esta versão adiciona melhorias na d
 
 {/* truncate */}
 
-## Destaques
+## Destaques {#highlights}
 
-### Melhorias na Depuração
+### Melhorias na Depuração {#debugging-improvements}
 
 As equipes do React Native e Hermes estão comprometidas em melhorar a experiência de depuração no React Native. Na versão 0.73, temos o prazer de compartilhar alguns progressos iniciais deste investimento contínuo.
 
-#### Histórico de Console Log no Hermes
+#### Histórico de Console Log no Hermes {#console-log-history-in-hermes}
 
 `console.log()` é uma maneira sempre popular para desenvolvedores depurarem rapidamente seu código JavaScript. Em versões anteriores, logs de console em aplicativos React Native não eram gravados até que um depurador fosse conectado. Isso dificultava a observação de logs que ocorrem no início durante o carregamento do aplicativo.
 
 No React Native 0.73 resolvemos este problema. O Hermes agora captura todas as chamadas `console.log()` em segundo plano, que serão enviadas para a aba Console quando um depurador for conectado pela primeira vez — correspondendo à experiência de depuração em navegadores web. Este novo comportamento funciona no Flipper, Chrome DevTools conectado ao Hermes e no novo Debugger experimental.
 
-#### Documentação de Depuração Atualizada
+#### Documentação de Depuração Atualizada {#updated-debugging-docs}
 
 Atualizamos a seção [Debugging](/docs/debugging) da nossa documentação, que agora inclui informações atualizadas sobre como conectar todos os depuradores suportados, mais informações sobre o React DevTools e visuais renovados.
 
 ![Visão geral da documentação de Debugging na versão 0.73](/blog/assets/0.73-debugging-docs.jpg)
 
-#### Novo Debugger Experimental
+#### Novo Debugger Experimental {#experimental-new-debugger}
 
 A equipe do React Native está trabalhando em uma nova experiência de depurador JavaScript, destinada a substituir o Flipper, com uma Technical Preview disponível a partir do React Native 0.73. O novo depurador abre imediatamente e apresenta uma interface simplificada do Chrome DevTools personalizada para depuração do React Native com Hermes.
 
@@ -56,7 +56,7 @@ O novo depurador é **experimental** e tem alguns [problemas conhecidos](https:/
 
 Saiba mais sobre como habilitar esta experiência [na documentação](/docs/next/debugging?js-debugger=new-debugger#opening-the-debugger).
 
-### Suporte Estável a Symlink no Metro
+### Suporte Estável a Symlink no Metro {#stable-symlink-support-in-metro}
 
 O suporte para resolução de symlinks no Metro agora está **habilitado por padrão**. O suporte a symlink permite que o React Native funcione com configurações de monorepo quando os diretórios contidos são configurados com [`watchFolders`](https://metrobundler.dev/docs/configuration/#watchfolders).
 
@@ -64,7 +64,7 @@ Os symlinks são profundamente representados nos componentes internos do Metro, 
 
 :::info
 
-#### Soluções alternativas para monorepo
+#### Soluções alternativas para monorepo {#monorepo-workarounds}
 
 Estamos cientes de que ainda existem casos extremos ao usar o React Native em um layout de monorepo. Temos trabalho planejado para resolver alguns deles, que não foram incluídos na versão 0.73 — mas que pretendemos lançar o mais rápido possível.
 
@@ -73,7 +73,7 @@ Estamos cientes de que ainda existem casos extremos ao usar o React Native em um
 **Para aplicativos Expo**, o suporte para workspaces Yarn (Classic) é configurado por padrão. Veja também o guia [Work with monorepos](https://docs.expo.dev/guides/monorepos/) na documentação do Expo.
 :::
 
-### Template Kotlin no Android
+### Template Kotlin no Android {#kotlin-template-on-android}
 
 Estamos empolgados em anunciar que, a partir da versão 0.73, Kotlin agora é a **linguagem recomendada** para aplicativos Android construídos com React Native. Isso segue a direção que o ecossistema Android vem tomando há vários anos e permite que você escreva seu aplicativo usando uma linguagem moderna.
 
@@ -82,11 +82,11 @@ Atualizamos o template do React Native no Android para usar Kotlin em vez de Jav
 O [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) também foi atualizado para facilitar a migração de seus arquivos `.java` para arquivos `.kt`.
 Se você modificou anteriormente os arquivos Java em seu projeto e precisa de suporte para migrá-los para Kotlin, você pode usar o utilitário `Code > Convert Java file to Kotlin File` do Android Studio (também acessível com o atalho <kbd>Cmd ⌘</kbd> + <kbd>Shift ⇧</kbd> + <kbd>Option ⌥</kbd> + <kbd>K</kbd>).
 
-### Suporte ao Android 14
+### Suporte ao Android 14 {#android-14-support}
 
 Atualizamos o React Native para oferecer suporte total ao Android 14. A partir da versão 0.73, desenvolvedores React Native agora podem ter como alvo a versão mais recente do SDK Android, [API Level 34](https://developer.android.com/guide/topics/manifest/uses-sdk-element?hl=en#ApiLevels) (_Upside Down Cake_).
 
-#### Atualização do Java 17 e Android Gradle Plugin
+#### Atualização do Java 17 e Android Gradle Plugin {#java-17-and-android-gradle-plugin-upgrade}
 
 Para suportar o Android 14, atualizamos a versão do Android Gradle Plugin (AGP) usado para construir aplicativos Android de `7.4.x` para `8.1.x`.
 
@@ -102,17 +102,17 @@ e atualizando seu `JAVA_HOME` conforme documentado no [guia Getting Started](htt
 
 Se você é desenvolvedor de biblioteca, suas bibliotecas devem funcionar com React Native 0.73 sem alterações. No início deste ano, [publicamos uma nota](https://github.com/react-native-community/discussions-and-proposals/issues/671) com um esclarecimento sobre o que o aumento do AGP significa para você como autor de biblioteca.
 
-#### Conceder acesso parcial a fotos e vídeos
+#### Conceder acesso parcial a fotos e vídeos {#grant-partial-access-to-photos-and-videos}
 
 [Selected Photos Access](https://developer.android.com/about/versions/14/changes/partial-photo-video-access) permite que usuários do Android 14 concedam aos aplicativos acesso a itens específicos em sua biblioteca de mídia, em vez de acesso a toda a mídia. Na versão 0.73, aplicativos React Native agora suportam essa capacidade, usando a permissão `READ_MEDIA_VISUAL_USER_SELECTED` na API [`PermissionsAndroid`](/docs/permissionsandroid).
 
 ![Selected Photos Access no Android 14](/blog/assets/0.73-android-media-picker.jpg)
 
-#### Aumento do Min SDK
+#### Aumento do Min SDK {#min-sdk-bump}
 
 React Native 0.73 será a versão final que suporta Android 5.0 (API Level 21). A próxima versão do React Native terá uma versão mínima de SDK de 23 (Android 6.0). Leia mais sobre as próximas mudanças no aumento do min SDK [aqui](https://github.com/react-native-community/discussions-and-proposals/discussions/740).
 
-### Atualizações da Nova Arquitetura
+### Atualizações da Nova Arquitetura {#new-architecture-updates}
 
 Continuamos a implantação da Nova Arquitetura do React Native, para disponibilizá-la a todos na comunidade Open Source.
 
@@ -124,9 +124,9 @@ Junto com o Bridgeless Mode, estamos lançando uma Native Module Interop Layer, 
 
 Assim como o resto da Nova Arquitetura, o Bridgeless Mode é inicialmente experimental. Convidamos usuários interessados a habilitá-lo e reportar quaisquer problemas e incompatibilidades que você encontrar no [grupo de trabalho da Nova Arquitetura](https://github.com/reactwg/react-native-new-architecture/discussions).
 
-### Recursos de Depuração Descontinuados
+### Recursos de Depuração Descontinuados {#deprecated-debugging-features}
 
-#### Integração Flipper ↔ React Native
+#### Integração Flipper ↔ React Native {#flipper--react-native-integration}
 
 Estamos gradualmente nos afastando do Flipper como a ferramenta padrão para depuração de aplicativos React Native. Na versão 0.73, isso começa com a descontinuação da integração nativa do Flipper incluída com o React Native (código de inicialização que conecta os plugins principais do Flipper). Removeremos esta integração e dependência na próxima versão — o que significa que partes do Flipper, como o plugin Network, deixarão de funcionar.
 
@@ -146,9 +146,9 @@ Remote JavaScript Debugging era anteriormente a experiência de depuração padr
 Recomendamos usar [Hermes](/docs/hermes) para uma experiência de depuração consistente em todas as plataformas.
 :::
 
-## Mudanças Incompatíveis
+## Mudanças Incompatíveis {#breaking-changes}
 
-### Renomeação de Pacotes Babel
+### Renomeação de Pacotes Babel {#babel-package-renames}
 
 Realocamos dois pacotes relacionados ao Babel para fora do Metro e para o repositório e esquema de versionamento do React Native, permitindo-nos simplificar a manutenção e atualizações. As novas versões desses pacotes suportam recursos da Nova Arquitetura na versão 0.73, o que significa que essas dependências devem ser atualizadas.
 
@@ -163,7 +163,7 @@ Por favor, siga o [Upgrade Helper](https://react-native-community.github.io/upgr
 `@react-native/babel-preset` agora inclui `@react-native/babel-plugin-codegen`, isso não precisa mais ser especificado separadamente em seu arquivo de configuração Babel.
 :::
 
-### Outras Mudanças Incompatíveis
+### Outras Mudanças Incompatíveis {#other-breaking-changes}
 
 Estas são algumas das principais mudanças incompatíveis na versão 0.73. Por favor, consulte o [changelog completo](https://github.com/facebook/react-native/blob/main/CHANGELOG.md) para a lista completa de mudanças incompatíveis.
 
@@ -179,9 +179,9 @@ Para autores de biblioteca:
 
 - **Android**: Atualização para AGP 8.1.1 ([discussão](https://github.com/react-native-community/discussions-and-proposals/issues/671))
 
-### Mudanças no React Native CLI
+### Mudanças no React Native CLI {#react-native-cli-changes}
 
-#### Mudanças incompatíveis destacadas
+#### Mudanças incompatíveis destacadas {#highlighted-breaking-changes}
 
 - Alteração do prefixo de tarefa padrão no comando `build-android`. A partir de agora, quando você executar `build-android`, a tarefa `bundle` será executada em vez de `assemble` ([#1913](https://github.com/react-native-community/cli/pull/1913)).
 - Remoção do fluxo de fallback para padrões de configuração do Metro ([#1972](https://github.com/react-native-community/cli/pull/1972)).
@@ -191,17 +191,17 @@ Para autores de biblioteca:
 
 [Veja o changelog completo para v12.0.0](https://github.com/react-native-community/cli/releases/tag/v12.0.0).
 
-### Descontinuação do `@types/react-native`
+### Descontinuação do `@types/react-native` {#deprecated-typesreact-native}
 
 Como mencionado em [First-class Support for TypeScript](/blog/2023/01/03/typescript-first#declarations-shipped-with-react-native), estamos enviando tipos TypeScript com `react-native` desde a versão 0.71 e agora estamos descontinuando `@types/react-native` para a versão 0.73.
 
 Não lançaremos nenhum patch futuro para versões existentes. A orientação é migrar do `@types/react-native`. Veja instruções sobre [como migrar](/blog/2023/01/03/typescript-first#how-to-migrate).
 
-## Agradecimentos
+## Agradecimentos {#acknowledgements}
 
 React Native 0.73 contém mais de [2259 commits](https://github.com/facebook/react-native/compare/v0.72.7...v0.73.0) de 68 colaboradores. Obrigado por todo o trabalho árduo!
 
-## Atualizar para 0.73
+## Atualizar para 0.73 {#upgrade-to-073}
 
 Por favor, use o [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) para visualizar mudanças de código entre versões do React Native para projetos existentes, além da [documentação de Upgrading](/docs/upgrading). Você também pode criar um novo projeto com `npx react-native@latest init MyProject`.
 

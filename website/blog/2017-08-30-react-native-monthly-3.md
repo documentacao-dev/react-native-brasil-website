@@ -7,7 +7,7 @@ tags: [engineering]
 
 A reunião mensal do React Native continua! A reunião deste mês foi um pouco mais curta, pois a maioria de nossas equipes estava ocupada com lançamentos. No próximo mês, estaremos na conferência [React Native EU](https://react-native.eu/) em Wroclaw, Polônia. Certifique-se de pegar um ingresso e nos vemos lá pessoalmente! Enquanto isso, vamos ver o que nossas equipes estão fazendo.
 
-## Equipes
+## Equipes {#teams}
 
 Nesta terceira reunião, tivemos 5 equipes se juntando a nós:
 
@@ -17,7 +17,7 @@ Nesta terceira reunião, tivemos 5 equipes se juntando a nós:
 - [Microsoft](https://github.com/microsoft)
 - [Shoutem](https://github.com/shoutem)
 
-## Notas
+## Notas {#notes}
 
 Aqui estão as notas de cada equipe:
 
@@ -52,6 +52,6 @@ Aqui estão as notas de cada equipe:
 - Começamos a migrar todos os nossos aplicativos para react-navigation, mas acabamos adiando isso até que uma versão mais estável seja lançada, ou uma das soluções de navegação nativa se torne estável.
 - Atualizando todas as nossas [extensões](https://github.com/shoutem/extensions) e a maioria de nossas bibliotecas open source ([animation](https://github.com/shoutem/animation), [theme](https://github.com/shoutem/theme), [ui](https://github.com/shoutem/ui)) para React Native 0.47.1.
 
-## Próxima sessão
+## Próxima sessão {#next-session}
 
 A próxima sessão está agendada para quarta-feira, 13 de setembro de 2017. Como esta foi apenas nossa terceira reunião, gostaríamos de saber como essas notas beneficiam a comunidade React Native. Sinta-se à vontade para me contatar [no Twitter](https://twitter.com/grabbou) se você tiver alguma sugestão sobre como devemos melhorar o resultado da reunião.

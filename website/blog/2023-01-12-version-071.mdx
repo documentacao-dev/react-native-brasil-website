@@ -23,7 +23,7 @@ Neste post, vamos cobrir alguns dos destaques da versão 0.71.
 Para uma lista completa de mudanças, confira o [CHANGELOG.md](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#v071).
 :::
 
-## TypeScript por padrão
+## TypeScript por padrão {#typescript-by-default}
 
 Nesta versão, estamos investindo na experiência TypeScript do React Native.
 
@@ -41,7 +41,7 @@ Após atualizar para o React Native 0.71, recomendamos remover `@types/react-nat
 
 Para mais detalhes sobre esta mudança, incluindo passos de migração e como isso afeta usuários de Flow, confira nosso post anterior [First-class Support for TypeScript](https://reactnative.dev/blog/2023/01/03/typescript-first).
 
-## Simplificando layouts com Flexbox gap
+## Simplificando layouts com Flexbox gap {#simplifying-layouts-with-flexbox-gap}
 
 Com React Native você pode fazer layouts flexíveis de componentes em diferentes tamanhos de tela usando Flexbox. Os navegadores têm suportado as propriedades Flexbox [gap](https://developer.mozilla.org/en-US/docs/Web/CSS/gap), [rowGap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap) e [columnGap](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap), que permitem especificar a quantidade de espaço entre todos os itens em um Flexbox.
 
@@ -61,7 +61,7 @@ Com flex gap, este layout pode ser alcançado definindo `gap: 10` no container p
 
 Para mais informações sobre Flexbox gaps, veja [este post do blog CSS Tricks](https://css-tricks.com/minding-the-gap/#aa-flexbox-gaps).
 
-## Props inspirados na web para acessibilidade, estilos e eventos
+## Props inspirados na web para acessibilidade, estilos e eventos {#web-inspired-props-for-accessibility-styles-and-events}
 
 Esta versão inclui uma série de novos props inspirados em padrões web para alinhar as APIs do React Native em várias plataformas. Esses novos props são puramente aditivos, portanto não há migrações esperadas ou mudanças de comportamento para props equivalentes de acessibilidade, comportamento ou estilo.
 
@@ -72,7 +72,7 @@ Para qualquer novo alias de prop introduzido, se houver um prop existente com um
 Para mais contexto sobre alinhar React Native aos padrões web, confira esta [proposta](https://github.com/necolas/discussions-and-proposals/blob/reduce-fragmentation/proposals/0000-reduce-fragmentation.md) e [discussão relacionada](https://github.com/react-native-community/discussions-and-proposals/pull/496).
 :::
 
-#### Acessibilidade
+#### Acessibilidade {#accessibility}
 
 Introduzimos props ARIA como alias para props de acessibilidade existentes do React Native.
 
@@ -82,7 +82,7 @@ Também introduzimos comportamento web equivalente para: `aria-hidden`, `aria-li
 
 Veja esta [issue](https://github.com/facebook/react-native/issues/34424) para mais detalhes.
 
-#### Comportamento Específico de Componente
+#### Comportamento Específico de Componente {#component-specific-behavior}
 
 Também foram introduzidos props para alinhar nomes de props com nomes de props DOM equivalentes para componentes principais.
 
@@ -91,7 +91,7 @@ Também foram introduzidos props para alinhar nomes de props com nomes de props 
 
 Veja esta [issue](https://github.com/facebook/react-native/issues/34424) para mais detalhes.
 
-#### Estilos
+#### Estilos {#styles}
 
 Para alinhar com certos estilos CSS, houve extensões de recursos para os seguintes estilos:
 
@@ -109,7 +109,7 @@ Os seguintes aliases foram adicionados para sombrear estilos existentes do React
 
 Veja esta [issue](https://github.com/facebook/react-native/issues/34425) para mais detalhes.
 
-#### Eventos
+#### Eventos {#events}
 
 Finalmente, também adicionamos uma implementação opt-in de [PointerEvents](https://w3c.github.io/pointerevents)
 
@@ -142,7 +142,7 @@ Você também precisará habilitar flags de recursos React em sua configuração
 
 Confira nosso [post dedicado sobre PointerEvents](https://reactnative.dev/blog/2022/12/13/pointer-events-in-react-native) para saber mais.
 
-## Restaurando PropTypes
+## Restaurando PropTypes {#restoring-proptypes}
 
 Os prop types do React Native, como `ViewPropTypes` e `Text.propTypes`, foram descontinuados na versão 0.66 e acessá-los gerava avisos de descontinuação. Quando foram removidos na versão 0.68, muitos desenvolvedores começaram a experimentar erros ao atualizar para a versão mais recente do React Native.
 
@@ -157,7 +157,7 @@ Como parte desta mudança, também estamos removendo a filtragem de console do `
 Isso é esperado, porque permite que logs como avisos de descontinuação sejam encontrados e corrigidos.
 :::
 
-## Melhorias na Experiência do Desenvolvedor
+## Melhorias na Experiência do Desenvolvedor {#developer-experience-improvements}
 
 ### React DevTools
 
@@ -183,7 +183,7 @@ No React Native 0.71, estamos atualizando o Hermes com algumas melhorias notáve
 
 Para uma lista completa de mudanças, veja [a issue Road to 71](https://github.com/reactwg/react-native-releases/discussions/41#discussioncomment-4089256).
 
-### Nova Arquitetura
+### Nova Arquitetura {#new-architecture}
 
 Esta versão traz muitas melhorias para a experiência experimental da Nova Arquitetura com base no feedback de usuários e relatórios que coletamos até agora.
 
@@ -195,19 +195,19 @@ Esta versão traz muitas melhorias para a experiência experimental da Nova Arqu
 
 Como lembrete, a Nova Arquitetura ainda é uma experiência de API experimental enquanto iteramos em mudanças para facilitar a adoção. Por favor, experimente os novos passos simplificados na [documentação da Nova Arquitetura](https://reactnative.dev/docs/new-architecture-intro) e poste qualquer feedback que você tenha no [Grupo de Trabalho da Nova Arquitetura](https://github.com/reactwg/react-native-new-architecture/discussions).
 
-### Outras Correções Notáveis
+### Outras Correções Notáveis {#other-notable-fixes}
 
 - **Melhor colapso de stack frames**: [Atualizamos a lista de frames internos](https://github.com/react-native-community/cli/pull/1699) para o React Native para que o LogBox mostre seu código com mais frequência em vez de frames internos do React Native, ajudando você a depurar problemas mais rapidamente.
 - **Melhorias no tempo de build**: Migramos assets para o Maven Central para prefabs para melhorar os tempos de build (tanto iOS quanto Android) para Hermes nas arquiteturas atual e nova.
 - **Melhorias no template Android**: O template Android foi bastante limpo e agora depende totalmente do React Native Gradle Plugin. Você pode encontrar as instruções de configuração diretamente dentro do template ou na [nova página dedicada no site](https://reactnative.dev/docs/react-native-gradle-plugin).
 
-## Mudanças que quebram compatibilidade
+## Mudanças que quebram compatibilidade {#breaking-changes}
 
 - **Mudanças no Log do Console:** `LogBox.ignoreLog` não filtra mais logs do console. Isso significa que você começará a ver logs no console que você silenciou no LogBox. Veja [este comentário](https://github.com/facebook/react-native/pull/34476#issuecomment-1240667794) para mais detalhes.
 - **AsyncStorage e MaskedViewIOS removidos**: Esses componentes foram descontinuados desde a versão [0.59](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#deprecated-8), então é hora de removê-los completamente. Para alternativas, por favor confira o [React Native Directory](https://reactnative.directory/) para pacotes da comunidade que cobrem esses casos de uso.
 - **JSCRuntime movido para react-jsc:** react-jsi agora está dividido em react-jsc e react-jsi. Se você usa JSCRuntime, precisará adicionar react-jsc como uma dependência ([facebook/react-native@6b129d8](https://github.com/facebook/react-native/commit/6b129d81ed8cab301775d2a04971e255df9290de)).
 
-## Agradecimentos
+## Agradecimentos {#acknowledgements}
 
 Esta versão é possível graças ao trabalho de mais de 70 contribuidores adicionando mais de 1000 commits.
 
@@ -219,7 +219,7 @@ Queremos agradecer especialmente aqueles que contribuíram para esses grandes pr
 
 Finalmente, obrigado a [@cortinico](https://github.com/cortinico), [@kelset](https://github.com/kelset), [@dmytrorykun](https://github.com/dmytrorykun), [@cipolleschi](https://github.com/cipolleschi) e [@titozzz](https://github.com/titozzz) por lançar esta versão!
 
-## Experimente a versão 0.71.0 agora!
+## Experimente a versão 0.71.0 agora! {#try-out-0710-now}
 
 Para usuários do React Native CLI, veja a [documentação de atualização](https://reactnative.dev/docs/upgrading) para saber como atualizar seu projeto existente, ou crie um novo projeto com `npx react-native init MyProject`.
 

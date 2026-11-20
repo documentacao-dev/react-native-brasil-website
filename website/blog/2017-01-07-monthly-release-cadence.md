@@ -13,13 +13,13 @@ Logo após a introdução do React Native, começamos a lançar versões a cada 
 
 Frequentemente ouvimos feedback da comunidade de que a taxa de lançamento é difícil de acompanhar. Ferramentas como [Expo](https://expo.io/) tiveram que pular todos os outros lançamentos para gerenciar a rápida mudança de versão. Portanto, parece claro que os lançamentos quinzenais não serviram bem à comunidade.
 
-### Agora lançando mensalmente
+### Agora lançando mensalmente {#now-releasing-monthly}
 
 Estamos felizes em anunciar a nova cadência de lançamento mensal e o lançamento de dezembro de 2016, `v0.40`, que está estabilizando durante todo o mês passado e está pronto para adoção. (Apenas certifique-se de [atualizar os headers em seus módulos nativos no iOS](https://github.com/facebook/react-native/releases/tag/v0.40.0)).
 
 Embora possa variar alguns dias para evitar fins de semana ou lidar com problemas imprevistos, agora você pode esperar que uma determinada versão esteja disponível no primeiro dia do mês e lançada no último.
 
-### Use o mês atual para obter o melhor suporte
+### Use o mês atual para obter o melhor suporte {#use-the-current-month-for-the-best-support}
 
 O release candidate de janeiro está pronto para experimentar, e você pode [ver o que há de novo aqui](https://github.com/facebook/react-native/releases/tag/v0.41.0-rc.0).
 

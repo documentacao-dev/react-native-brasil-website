@@ -211,7 +211,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-## Gerencie o layout quando o teclado está visível
+## Gerencie o layout quando o teclado está visível {#manage-layout-when-keyboard-is-visible}
 
 O teclado de software ocupa quase metade da tela. Se você tiver elementos interativos que podem ser cobertos pelo teclado, certifique-se de que eles ainda estejam acessíveis usando o [componente `KeyboardAvoidingView`](keyboardavoidingview.md).
 
@@ -414,7 +414,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-## Torne áreas tocáveis maiores
+## Torne áreas tocáveis maiores {#make-tappable-areas-larger}
 
 Em telefones celulares é difícil ser muito preciso ao pressionar botões. Certifique-se de que todos os elementos interativos tenham 44x44 ou mais. Uma maneira de fazer isso é deixar espaço suficiente para o elemento, os valores de estilo `padding`, `minWidth` e `minHeight` podem ser úteis para isso. Alternativamente, você pode usar a [prop `hitSlop`](touchablewithoutfeedback.md#hitslop) para aumentar a área interativa sem afetar o layout. Aqui está uma demonstração:
 
@@ -588,7 +588,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-## Bloqueio de orientação de tela
+## Bloqueio de orientação de tela {#screen-orientation-lock}
 
 Múltiplas orientações de tela devem funcionar bem por padrão, a menos que você esteja usando a API `Dimensions` e não lide com mudanças de orientação. Se você não quiser suportar múltiplas orientações de tela, você pode bloquear a orientação da tela para retrato ou paisagem.
 

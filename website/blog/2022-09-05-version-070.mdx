@@ -9,7 +9,7 @@ tags: [announcement, release]
 
 Estamos empolgados em lançar uma nova versão do React Native, 0.70.0. Esta versão vem com várias melhorias como uma nova configuração unificada para Codegen, Hermes como engine padrão e suporte completo ao CMake para builds Android, juntamente com uma atualização da documentação para a New Architecture. Continue lendo para saber mais!
 
-### Seções
+### Seções {#sections}
 
 - [Nova Documentação da New Architecture](/blog/2022/09/05/version-070#new-architectures-new-documentation)
 - [Hermes como engine padrão](/blog/2022/09/05/version-070#hermes-as-default-engine)
@@ -20,7 +20,7 @@ Estamos empolgados em lançar uma nova versão do React Native, 0.70.0. Esta ver
 
 {/* truncate */}
 
-## Nova Documentação da New Architecture
+## Nova Documentação da New Architecture {#new-architectures-new-documentation}
 
 Nos últimos meses, estivemos trabalhando para adicionar mais conteúdo à seção [New Architecture](/architecture/landing-page) da documentação. Na nova seção você pode encontrar guias de migração, exemplos e tutoriais para se atualizar.
 
@@ -28,7 +28,7 @@ Junto com isso, você pode encontrar novos documentos mergulhando em [Por que um
 
 Qualquer feedback é mais do que bem-vindo, por favor nos avise no repositório [react-native-website](https://github.com/facebook/react-native-website).
 
-## Hermes como engine padrão
+## Hermes como engine padrão {#hermes-as-default-engine}
 
 React Native 0.70 é a primeira versão com Hermes, nosso engine JS interno, habilitado por padrão.
 
@@ -36,7 +36,7 @@ Este é o resultado do esforço colaborativo entre a equipe do Hermes e a equipe
 
 Você pode ler mais sobre isso no [post de anúncio oficial](https://reactnative.dev/blog/2022/07/08/hermes-as-the-default).
 
-## Uma nova configuração unificada para Codegen
+## Uma nova configuração unificada para Codegen {#a-new-unified-configuration-for-codegen}
 
 Com 0.70, introduzimos uma maneira unificada de definir as specs do Codegen tanto para iOS quanto para Android. Anteriormente, você tinha que colocar a configuração do Android em um arquivo `build.gradle` separado.
 
@@ -57,7 +57,7 @@ Esta melhoria fornece uma experiência mais consistente para mantenedores de bib
 
 Se você é um mantenedor de biblioteca, certifique-se de nos informar como o processo está indo para você [nesta discussão](https://github.com/reactwg/react-native-new-architecture/discussions/6) no [React Native New Architecture working group](https://github.com/reactwg/react-native-new-architecture).
 
-## Auto-linking Android para bibliotecas New Architecture
+## Auto-linking Android para bibliotecas New Architecture {#android-auto-linking-for-new-architecture-libraries}
 
 Com 0.70, usuários na New Architecture podem automaticamente linkar bibliotecas sem nenhuma configuração adicional em seus arquivos Android.mk ou CMake.
 
@@ -67,7 +67,7 @@ A New Architecture exigiu que adaptássemos os recursos de auto-linking para sup
 
 Embora o Autolinking funcionasse bem para bibliotecas New Architecture no iOS, o mesmo não era verdade para Android. Com 0.70 fechamos esta lacuna e agora você pode continuar incluindo bibliotecas com `yarn add` ao seu projeto: elas serão linkadas corretamente em qualquer arquitetura.
 
-## Suporte completo ao CMake para builds Android
+## Suporte completo ao CMake para builds Android {#full-cmake-support-for-android-builds}
 
 A partir de 0.70, os usuários agora podem usar CMake para configurar seus builds Native. Embora não esperemos que usuários de aplicativos escrevam código C++ diretamente, você ainda precisa de um ponto de entrada para a compilação nativa.
 
@@ -80,7 +80,7 @@ Esta mudança beneficia tanto usuários de aplicativos quanto de bibliotecas na 
 - O Auto-linking mencionado acima funcionará com arquivos CMake e Android.mk prontos para uso.
 - Apesar dos aplicativos serem livres para usar arquivos `Android.mk` ou CMake, a solução recomendada no futuro seria arquivos CMake (devido à melhor documentação, ferramentas e ecossistema em torno do CMake).
 
-## Destaques do 0.70
+## Destaques do 0.70 {#highlights-of-070}
 
 Como mencionado acima, algumas das melhorias mais importantes neste lançamento estão centradas na experiência da New Architecture. No entanto, houve outras mudanças notáveis, incluindo:
 
@@ -97,7 +97,7 @@ Também houve algumas breaking changes:
 
 Observe também que a versão do Metro foi atualizada para 0.72, que vem [com 5 breaking changes](https://github.com/facebook/metro/releases/tag/v0.72.0).
 
-### Atualizações
+### Atualizações {#upgrades}
 
 E atualizamos algumas de nossas dependências:
 
@@ -110,6 +110,6 @@ E atualizamos algumas de nossas dependências:
 
 Você pode conferir a lista completa de mudanças [no changelog](https://github.com/facebook/react-native/blob/main/CHANGELOG.md).
 
-### Agradecimentos
+### Agradecimentos {#acknowledgements}
 
 88 colaboradores com seus 493 commits ajudaram a tornar este lançamento possível - obrigado a todos! Também agradecemos a todos os outros que deram seu feedback para garantir que este lançamento seja o mais estável possível.

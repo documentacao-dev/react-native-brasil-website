@@ -1,7 +1,7 @@
 <!-- ia-translated: true -->
 # Apêndice
 
-## I. Terminologia
+## I. Terminologia {#i-terminology}
 
 - **Spec** - Código TypeScript ou Flow que descreve a API para um Turbo Native Module ou Fabric Native component. Usado pelo **Codegen** para gerar código boilerplate.
 
@@ -11,7 +11,7 @@
 - **Legacy Native Components** - Components que estão executando na arquitetura antiga do React Native.
 - **Legacy Native Modules** - Modules que estão executando na arquitetura antiga do React Native.
 
-## II. Tipagens do Codegen
+## II. Tipagens do Codegen {#ii-codegen-typings}
 
 Você pode usar a tabela a seguir como referência para quais tipos são suportados e para o que eles mapeiam em cada plataforma:
 

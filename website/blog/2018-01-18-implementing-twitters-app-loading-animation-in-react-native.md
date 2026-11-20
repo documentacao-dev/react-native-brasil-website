@@ -33,7 +33,7 @@ Felizmente para você, caro leitor, você não precisa passar pela mesma frustra
 
 <hr style={{clear: 'both', marginBottom: 40, width: 80}} />
 
-## O caminho certo
+## O caminho certo {#the-right-way}
 
 Antes de chegarmos ao código, é importante entender como decompor isso. Para ajudar a visualizar este efeito, eu o recriei no [CodePen](https://codepen.io/TheSavior/pen/NXNoJM) (incorporado em alguns parágrafos) para que você possa ver interativamente as diferentes camadas.
 
@@ -75,7 +75,7 @@ Dizem que uma imagem vale 1.000 palavras. Quantas palavras vale uma visualizaç�
   <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
-## Agora, para o React Native
+## Agora, para o React Native {#now-for-the-react-native}
 
 Muito bem. Agora que sabemos o que estamos construindo e como a animação funciona, podemos descer para o código — a razão pela qual você está realmente aqui.
 
@@ -115,7 +115,7 @@ Isso nos dará as camadas que vemos abaixo.
 
 <img src="/blog/assets/loading-screen-04.png" style={{marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
 
-## Agora para a parte Animated
+## Agora para a parte Animated {#now-for-the-animated-part}
 
 Temos todas as peças que precisamos para fazer isso funcionar, o próximo passo é animá-las. Para fazer esta animação ter uma boa sensação, utilizaremos a API [Animated](/docs/animated) do React Native.
 
@@ -125,7 +125,7 @@ Animated tem um comportamento especial para permitir que você tenha animações
 
 Como queremos que esta animação seja suave, trabalharemos dentro dessas restrições. Para uma visão mais aprofundada de como `useNativeDriver` funciona nos bastidores, confira nosso [blog post anunciando isso](/blog/2017/02/14/using-native-driver-for-animated).
 
-## Decompondo nossa animação
+## Decompondo nossa animação {#breaking-down-our-animation}
 
 Existem 4 componentes para nossa animação:
 
@@ -170,7 +170,7 @@ O app deve ficar opaco por um tempo, pelo menos até o logo do Twitter ficar men
 
 A escala do app começa em 1.1 e escala para sua escala regular até o final da animação.
 
-## E agora, em código.
+## E agora, em código. {#and-now-in-code}
 
 O que essencialmente fizemos acima é mapear os valores da porcentagem de progresso da animação para os valores das peças individuais. Fazemos isso com Animated usando `.interpolate`. Criamos 3 objetos de estilo diferentes, um para cada peça da animação, usando valores interpolados baseados em `this.state.loadingProgress`.
 
@@ -273,7 +273,7 @@ const fullScreenWhiteLayer = this.state.animationDone ? null : (
 
 Voilà! Nossa animação agora funciona e limpamos nossas camadas não utilizadas quando a animação termina. Construímos a animação de carregamento do app do Twitter!
 
-## Mas espere, o meu não funciona!
+## Mas espere, o meu não funciona! {#but-wait-mine-doesnt-work}
 
 Não se preocupe, caro leitor. Eu também odeio quando guias só te dão pedaços do código e não te dão o código-fonte completo.
 
@@ -281,7 +281,7 @@ Este componente foi publicado no npm e está no GitHub como [react-native-mask-l
 
 <img src="/blog/assets/loading-screen-07.png" style={{marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
 
-## Mais Leitura / Crédito Extra
+## Mais Leitura / Crédito Extra {#more-reading--extra-credit}
 
 1. [Este gitbook](https://browniefed.com/react-native-animation-book/) é um ótimo recurso para aprender mais sobre Animated depois de ter lido a documentação do React Native.
 1. A animação real do Twitter parece acelerar a revelação da máscara no final. Tente modificar o loader para usar uma função de easing diferente (ou uma mola!) para combinar melhor com esse comportamento.

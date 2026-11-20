@@ -17,7 +17,7 @@ Nenhuma dessas opções é ideal. Ao sobrescrever o arquivo perdemos nossas muda
 
 Hoje estou orgulhoso de introduzir uma nova ferramenta que ajuda a resolver este problema. A ferramenta é chamada `react-native-git-upgrade` e usa Git por trás dos panos para resolver conflitos automaticamente sempre que possível.
 
-## Uso
+## Uso {#usage}
 
 > **Requisito**: Git precisa estar disponível no `PATH`. Seu projeto não precisa ser gerenciado pelo Git.
 
@@ -52,7 +52,7 @@ Tentamos preservar suas mudanças nos arquivos de build Android e iOS, então vo
 
 Projetamos a implementação para ser o menos intrusiva possível. É inteiramente baseada em um repositório Git local criado dinamicamente em um diretório temporário. Não interferirá com o repositório do seu projeto (não importa qual VCS você use: Git, SVN, Mercurial, ... ou nenhum). Suas fontes são restauradas em caso de erros inesperados.
 
-## Como funciona?
+## Como funciona? {#how-does-it-work}
 
 O passo chave é gerar um patch Git. O patch contém todas as mudanças feitas nos templates React Native entre a versão que seu aplicativo está usando e a nova versão.
 
@@ -104,7 +104,7 @@ Tudo o que precisamos agora é aplicar este patch aos seus arquivos de origem. E
 
 Esses conflitos geralmente são fáceis de raciocinar. O delimitador **ours** representa "sua equipe", enquanto **theirs** pode ser visto como "a equipe React Native".
 
-## Por que introduzir um novo pacote global?
+## Por que introduzir um novo pacote global? {#why-introduce-a-new-global-package}
 
 React Native vem com um CLI global (o pacote [react-native-cli](https://www.npmjs.com/package/react-native-cli)) que delega comandos ao CLI local incorporado no diretório `node_modules/react-native/local-cli`.
 
@@ -114,10 +114,10 @@ Atualizar com base em Git é uma grande melhoria na experiência do desenvolvedo
 
 Mais uma razão é a recente [eliminação do Yeoman](https://twitter.com/martinkonicek/status/800730190141857793) por Martin Konicek. Não queríamos trazer essas dependências do Yeoman de volta para o pacote `react-native` para poder avaliar o template antigo e criar o patch.
 
-## Experimente e dê feedback
+## Experimente e dê feedback {#try-it-out-and-provide-feedback}
 
 Para concluir, eu diria, aproveite o recurso e sinta-se à vontade para [sugerir melhorias, relatar problemas](https://github.com/facebook/react-native/issues) e especialmente [enviar pull requests](https://github.com/facebook/react-native/pulls). Cada ambiente é um pouco diferente e cada projeto React Native é diferente, e precisamos do seu feedback para fazer isso funcionar bem para todos.
 
-### Obrigado!
+### Obrigado! {#thank-you}
 
 Gostaria de agradecer às incríveis empresas [Zenika](https://www.zenika.com) e [M6 Web (arquivado)](https://web.archive.org/web/20161230163633/http://www.groupem6.fr:80/le-groupe_en/activites/diversifications/m6-web.html) sem as quais nada disso teria sido possível!

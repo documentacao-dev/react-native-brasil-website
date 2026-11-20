@@ -31,7 +31,7 @@ Para "parar" um aplicativo quando uma view deve ser destruída, chame `AppRegist
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `getAppKeys()`
 
@@ -294,7 +294,7 @@ Para um aplicativo quando uma view deve ser destruída.
 | ---------------------------------------------------------------- | ------ |
 | rootTag <div className="label basic required">Obrigatório</div> | number |
 
-## Definições de Tipo
+## Definições de Tipo {#type-definitions}
 
 ### AppConfig
 

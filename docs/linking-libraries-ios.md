@@ -15,7 +15,7 @@ Todas as bibliotecas que enviamos com React Native ficam na pasta `Libraries` na
 Outras bibliotecas também dependem de algum código nativo, nesse caso você terá que adicionar esses arquivos ao seu aplicativo, caso contrário o aplicativo lançará um erro assim que você tentar usar a biblioteca.
 :::
 
-## Aqui estão os poucos passos para vincular suas bibliotecas que contêm código nativo
+## Aqui estão os poucos passos para vincular suas bibliotecas que contêm código nativo {#here-are-the-few-steps-to-link-your-libraries-that-contain-native-code}
 
 ### Automatic linking
 

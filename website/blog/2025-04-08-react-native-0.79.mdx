@@ -12,7 +12,7 @@ Hoje estamos animados em lançar o React Native 0.79!
 
 Esta versão traz melhorias de performance em várias frentes, além de diversas correções de bugs. Primeiro, o Metro agora inicia mais rápido graças ao hashing diferido, e tem suporte estável para exports de pacotes. O tempo de inicialização no Android também será melhorado graças a mudanças na compressão do bundle JS e muito mais.
 
-### Destaques
+### Destaques {#highlights}
 
 - [Novos Recursos do Metro](/blog/2025/04/08/react-native-0.79#metro-faster-startup-and-package-exports-support)
 - [JSC Movendo para um Pacote da Comunidade](/blog/2025/04/08/react-native-0.79#jsc-moving-to-community-package)
@@ -22,9 +22,9 @@ Esta versão traz melhorias de performance em várias frentes, além de diversas
 
 {/* truncate */}
 
-## Destaques
+## Destaques {#highlights}
 
-### Metro: Inicialização mais rápida e suporte a exports de pacotes
+### Metro: Inicialização mais rápida e suporte a exports de pacotes {#metro-faster-startup-and-package-exports-support}
 
 Esta versão vem com o [Metro 0.82](https://github.com/facebook/metro/releases/tag/v0.82.0). Esta versão usa hashing diferido para melhorar a velocidade do primeiro `yarn start` tipicamente em mais de 3x (mais em projetos maiores e monorepos), tornando sua experiência de desenvolvimento e builds de CI mais rápidos no dia a dia.
 
@@ -47,7 +47,7 @@ Se você estiver encontrando problemas:
 
 :::
 
-### JSC Movendo para Pacote da Comunidade
+### JSC Movendo para Pacote da Comunidade {#jsc-moving-to-community-package}
 
 Como parte de nosso esforço para reduzir a superfície de API do React Native, estamos no processo de mover o engine JavaScriptCore (JSC) para um pacote mantido pela comunidade: `@react-native-community/javascriptcore`
 
@@ -57,7 +57,7 @@ A partir do React Native 0.79, você pode usar uma versão suportada pela comuni
 
 Mover o JSC para um pacote mantido pela comunidade nos permitirá atualizar a versão do JSC com mais frequência e oferecer a você os recursos mais recentes. O JSC mantido pela comunidade seguirá um cronograma de lançamento separado do React Native.
 
-### iOS: Registro de Native Modules Compatível com Swift
+### iOS: Registro de Native Modules Compatível com Swift {#ios-swift-compatible-native-modules-registration}
 
 Nesta versão, estamos reformulando a maneira como você pode registrar seu Native Module no runtime do React Native. A nova abordagem segue a mesma abordagem de componentes, descrita na [documentação oficial](/docs/next/the-new-architecture/using-codegen#configuring-codegen).
 
@@ -116,7 +116,7 @@ Com esta nova abordagem, unificamos o registro de Native Modules tanto para dese
 
 Esta abordagem resolve a limitação que introduzimos na 0.77 que impedia o registro de um Native Module C++ puro com um `AppDelegate` Swift. Como você pode ver, nenhuma dessas mudanças modifica o `AppDelegate` e o código gerado funcionará para `AppDelegate` implementado tanto com Swift quanto com Objective-C.
 
-### Android: Inicialização Mais Rápida do App
+### Android: Inicialização Mais Rápida do App {#android-faster-app-startup}
 
 Também estamos lançando uma mudança para melhorar seu tempo de inicialização no Android em uma quantidade significativa.
 
@@ -146,7 +146,7 @@ Por favor, note que o tamanho do APK aumentará nesta versão, mas seus usuário
 
 ## Breaking Changes
 
-### Remoção do Remote JS Debugging
+### Remoção do Remote JS Debugging {#removal-of-remote-js-debugging}
 
 Como parte de nossos esforços contínuos para melhorar a depuração, estamos removendo o Remote JS Debugging via Chrome. Este método de depuração legado foi descontinuado [e movido para um opt-in de runtime no React Native 0.73](/blog/2023/12/06/0.73-debugging-improvements-stable-symlinks#remote-javascript-debugging). Por favor, use o [React Native DevTools](/docs/react-native-devtools) para depuração moderna e confiável.
 
@@ -154,7 +154,7 @@ Isso também significa que o React Native não é mais compatível com o projeto
 
 Leia mais neste [post dedicado](https://github.com/react-native-community/discussions-and-proposals/discussions/872).
 
-### Módulos internos atualizados para sintaxe `export`
+### Módulos internos atualizados para sintaxe `export` {#internal-modules-updated-to-export-syntax}
 
 Como parte da modernização de nossa base de código JavaScript, atualizamos vários módulos de implementação dentro do `react-native` para usar consistentemente a sintaxe `export` em vez de `module.exports`.
 
@@ -217,7 +217,7 @@ Como uma conclusão geral, recomendamos fortemente importar do caminho raiz `'re
 
 :::
 
-### Outras Breaking Changes
+### Outras Breaking Changes {#other-breaking-changes}
 
 Esta lista contém uma série de outras breaking changes que suspeitamos que podem ter um impacto menor no código do seu produto e que valem a pena mencionar.
 
@@ -228,7 +228,7 @@ Esta lista contém uma série de outras breaking changes que suspeitamos que pod
 - **Atualização de exports do Libraries/Core/ExceptionsManager**
   - Como parte de nosso esforço para modernizar a API JS do React Native, atualizamos <code>[ExceptionsManager](https://github.com/facebook/react-native/blob/0.79-stable/packages/react-native/Libraries/Core/ExceptionsManager.js)</code> para agora exportar um objeto `ExceptionsManager` padrão, e `SyntheticError` como uma exportação secundária.
 
-## Agradecimentos
+## Agradecimentos {#acknowledgements}
 
 O React Native 0.79 contém mais de 944 commits de 100 contribuidores. Obrigado por todo seu trabalho duro!
 
@@ -244,7 +244,7 @@ Além disso, também queremos agradecer aos autores adicionais que trabalharam d
 - [Alex Hunt](https://github.com/huntie) pelas seções "Removal of Remote JS Debugging" e "Internal modules updated to export syntax"
 - [Riccardo Cipolleschi](https://github.com/cipolleschi) pelo trabalho no registro de Native Module para iOS
 
-## Atualizar para 0.79
+## Atualizar para 0.79 {#upgrade-to-079}
 
 Por favor, use o [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) para visualizar as mudanças de código entre versões do React Native para projetos existentes, além dos documentos de Atualização.
 

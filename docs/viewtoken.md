@@ -6,7 +6,7 @@ ia-translated: true
 
 O objeto `ViewToken` é retornado como uma das propriedades no callback `onViewableItemsChanged` (por exemplo, no componente [FlatList](flatlist)). Ele é exportado pelo [`ViewabilityHelper.js`](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js).
 
-## Exemplo
+## Exemplo {#example}
 
 ```js
 {
@@ -17,7 +17,7 @@ O objeto `ViewToken` é retornado como uma das propriedades no callback `onViewa
 }
 ```
 
-## Chaves e valores
+## Chaves e valores {#keys-and-values}
 
 ### `index`
 
@@ -61,7 +61,7 @@ Dados da seção do item quando usado com `SectionList`.
 | ---- | -------- |
 | any  | Sim      |
 
-## Usado por
+## Usado por {#used-by}
 
 - [`FlatList`](flatlist)
 - [`SectionList`](sectionlist)

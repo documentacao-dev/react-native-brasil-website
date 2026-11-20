@@ -30,11 +30,11 @@ O [React Native's Codegen](https://github.com/reactwg/react-native-new-architect
 
 Nesta sessão, aproveitamos a oportunidade para integrar novos colaboradores ao Codegen, explicando seu conceito central e descrevendo como funciona. Em seguida, focamos em duas áreas principais:
 
-#### 1. Suporte a **novos tipos** que atualmente não são suportados pelo Codegen. Um dos altamente solicitados foram os [string union types em TypeScript](https://github.com/Titozzz/react-native/tree/codegen-string-union).
+#### 1. Suporte a **novos tipos** que atualmente não são suportados pelo Codegen. Um dos altamente solicitados foram os [string union types em TypeScript](https://github.com/Titozzz/react-native/tree/codegen-string-union). {#1-supporting-new-types-that-are-currently-unsupported-by-codegen-one-of-the-highly-requested-ones-was-the-string-union-types-in-typescript}
 
 Uma equipe de algumas pessoas se mudou para uma sala de reuniões para enfrentar esta tarefa. Eles encontraram e superaram algumas dificuldades ao longo do caminho, como executar testes unitários para Codegen. Eles passaram um bom tempo entendendo o fluxo de execução do código antes de começar a lidar com o código. Após algumas horas de trabalho colaborativo, eles terminaram com o primeiro protótipo que foi capaz de reconhecer string unions. Esta experiência foi extremamente útil para discutir padrões de design e a arquitetura ideal que podemos querer no futuro.
 
-#### 2. Melhorar o **[auto-linking para iOS](https://github.com/facebook/react-native/pull/34580)**, que estava faltando um caso de uso.
+#### 2. Melhorar o **[auto-linking para iOS](https://github.com/facebook/react-native/pull/34580)**, que estava faltando um caso de uso. {#2-improving-auto-linking-for-ios-which-was-missing-a-use-case}
 
 Especificamente, o auto-linking não podia funcionar bem em cenários onde bibliotecas e o aplicativo estavam vivendo juntos em um monorepo. Android já suportava este caso de uso, mas estava faltando para iOS.
 
@@ -74,7 +74,7 @@ Você pode acompanhar o status deste esforço nesta [issue guarda-chuva](https:/
 
 O foco desta sessão foi discutir como melhorar o conjunto de recursos do Metro para funcionar melhor para casos de uso web e com o ecossistema npm e bundler. Duas áreas principais de discussão:
 
-#### 1. Adotar a especificação `"exports"` ([package entry points](https://nodejs.org/api/packages.html#package-entry-points))
+#### 1. Adotar a especificação `"exports"` ([package entry points](https://nodejs.org/api/packages.html#package-entry-points)) {#1-adopting-the-exports-package-entry-points-specification}
 
 Da [documentação do Node.js](https://nodejs.org/api/packages.html#package-entry-points):
 
@@ -91,7 +91,7 @@ Esta discussão resultou em:
 1. Uma [RFC](https://github.com/react-native-community/discussions-and-proposals/pull/534) para Metro sobre como package exports funcionariam com React Native.
 2. Uma [RFC](https://github.com/nodejs/node/pull/45367) para Node.js para incluir "react-native" como uma Community Condition.
 
-#### 2. Web e ecossistema bundler
+#### 2. Web e ecossistema bundler {#2-web-and-bundler-ecosystem}
 
 A equipe do Metro compartilhou o progresso de sua parceria com Expo e a intenção de continuar este modelo de trabalho para o próximo suporte a bundle splitting e tree-shaking. Tocamos novamente no suporte a módulos ES e consideramos recursos futuros potenciais como Yarn PnP e otimização de saída na web. Discutimos como o núcleo do Metro compartilha lógica e estruturas de dados com o Jest e oportunidades para mais reutilização.
 

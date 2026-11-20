@@ -7,14 +7,14 @@ Em algumas circunstâncias, você pode querer ter um Native Module que escuta al
 
 Ambos são bons casos de uso para emitir eventos de um Native Module. Neste guia, você aprenderá como fazer isso.
 
-## Emitindo um Evento quando uma nova chave é adicionada ao storage
+## Emitindo um Evento quando uma nova chave é adicionada ao storage {#emitting-an-event-when-a-new-key-added-to-the-storage}
 
 Neste exemplo, você aprenderá como emitir um evento quando uma nova chave é adicionada ao storage. Mudar o valor da chave não emitirá o evento, mas adicionar uma nova chave sim.
 
 Este guia começa a partir do guia de [Native Module](/docs/next/turbo-native-modules-introduction).
 Certifique-se de estar familiarizado com esse guia antes de mergulhar neste, potencialmente implementando o exemplo no guia.
 
-## Passo 1: Atualizar as Specs do NativeLocalStorage
+## Passo 1: Atualizar as Specs do NativeLocalStorage {#step-1-update-the-specs-of-nativelocalstorage}
 
 O primeiro passo seria atualizar as specs do `NativeLocalStorage` para deixar o React Native ciente de que o módulo pode emitir eventos.
 
@@ -81,7 +81,7 @@ Com a instrução `import type`, você está importando os `CodegenTypes` do `re
 
 Quando o evento é emitido, você espera que ele receba um parâmetro do tipo `KeyValuePair`.
 
-## Passo 2: Gerar o Codegen
+## Passo 2: Gerar o Codegen {#step-2-generate-codegen}
 
 Dado que você atualizou as specs para seu Native Module, agora você precisa executar novamente o Codegen para gerar os artefatos no código nativo.
 
@@ -128,7 +128,7 @@ Framework build type is static library
 </TabItem>
 </Tabs>
 
-## Passo 3: Atualizar o código do App
+## Passo 3: Atualizar o código do App {#step-3-update-the-app-code}
 
 Agora, é hora de atualizar o código do App para lidar com o novo evento.
 
@@ -258,7 +258,7 @@ Existem algumas mudanças relevantes a serem observadas:
 
 O resto das mudanças são mudanças regulares do React para melhorar o App para essa nova funcionalidade.
 
-## Passo 4: Escrever seu Código Nativo
+## Passo 4: Escrever seu Código Nativo {#step-4-write-your-native-code}
 
 Com tudo preparado, vamos começar a escrever o código nativo da plataforma.
 
@@ -367,7 +367,7 @@ No caso de tipos complexos, como o `KeyValuePair` definido nas specs, o Codegen 
 </TabItem>
 </Tabs>
 
-## Passo 5: Executar Seu App
+## Passo 5: Executar Seu App {#step-5-run-your-app}
 
 Se você tentar executar seu app agora, você deve ver este comportamento.
 

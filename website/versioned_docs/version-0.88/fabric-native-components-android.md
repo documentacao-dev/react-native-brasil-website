@@ -14,7 +14,7 @@ Agora é hora de escrever algum código de plataforma Android para poder renderi
 - Escrever o código para o `ReactWebViewPackage`
 - Registrar o `ReactWebViewPackage` na aplicação
 
-### 1. Executar o Codegen através do Gradle
+### 1. Executar o Codegen através do Gradle {#1-run-codegen-through-gradle}
 
 Execute isso uma vez para gerar o código boilerplate que sua IDE de escolha pode usar.
 
@@ -25,7 +25,7 @@ cd android
 
 O Codegen gerará a interface `ViewManager` que você precisa implementar e o delegate `ViewManager` para a web view.
 
-### 2. Escrever o `ReactWebView`
+### 2. Escrever o `ReactWebView` {#2-write-the-reactwebview}
 
 O `ReactWebView` é o componente que envolve a view nativa do Android que o React Native renderizará ao usar nosso Component personalizado.
 
@@ -202,7 +202,7 @@ A última parte do arquivo contém a definição dos tipos de dados que você pr
 - O `OnScriptLoadedEventResult`, com os possíveis resultados do evento `OnScriptLoaded`.
 - O `OnScriptLoadedEvent` real que precisa estender a classe `Event` do React Native.
 
-### 3. Escrever o `WebViewManager`
+### 3. Escrever o `WebViewManager` {#3-write-the-webviewmanager}
 
 O `WebViewManager` é a classe que conecta o runtime do React Native com a view nativa.
 
@@ -340,7 +340,7 @@ Então, o ViewManager precisa definir como todas as props do componente React at
 
 Finalmente, se o componente pode emitir um evento, você precisa mapear o nome do evento sobrescrevendo o `getExportedCustomBubblingEventTypeConstants` para eventos bubbling, ou o `getExportedCustomDirectEventTypeConstants` para eventos diretos.
 
-### 4. Escrever o `ReactWebViewPackage`
+### 4. Escrever o `ReactWebViewPackage` {#4-write-the-reactwebviewpackage}
 
 Assim como você faz com Native Modules, Native Components também precisam implementar a classe `ReactPackage`. Este é um objeto que você pode usar para registrar o componente no runtime do React Native.
 
@@ -447,7 +447,7 @@ O `ReactWebViewPackage` estende o `BaseReactPackage` e implementa todos os méto
 - o método `getModule` retorna o ViewManager adequado dependendo da View que o React Native precisa renderizar.
 - o `getReactModuleInfoProvider` fornece todas as informações necessárias ao registrar o módulo no runtime,
 
-### 5. Registrar o `ReactWebViewPackage` na aplicação
+### 5. Registrar o `ReactWebViewPackage` na aplicação {#5-register-the-reactwebviewpackage-in-the-application}
 
 Finalmente, você precisa registrar o `ReactWebViewPackage` na aplicação. Fazemos isso modificando o arquivo `MainApplication` adicionando o `ReactWebViewPackage` à lista de packages retornados pela função `getPackages`.
 

@@ -10,7 +10,7 @@ O módulo `DevSettings` expõe métodos para personalizar configurações para d
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `addMenuItem()`
 

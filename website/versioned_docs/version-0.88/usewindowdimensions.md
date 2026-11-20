@@ -14,7 +14,7 @@ import {useWindowDimensions} from 'react-native';
 const {height, width} = useWindowDimensions();
 ```
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=useWindowDimensions&supportedPlatforms=ios,android
 import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-## Propriedades
+## Propriedades {#properties}
 
 ### `fontScale`
 

@@ -44,6 +44,6 @@ A reunião mensal do React Native continua forte! Certifique-se de verificar a n
 - Performance Android
   - Substituir o antigo JSCore empacotado no RN por sua versão mais recente (tip do projeto webkitGTK, com configuração JIT customizada) produziu 40% de aumento de performance na thread JS. O próximo passo é compilar uma versão 64bit dele. Este esforço é baseado nos [scripts de build do JSC para Android](https://github.com/SoftwareMansion/jsc-android-buildscripts). Acompanhe seu status atual [aqui](https://github.com/DanielZlotin/jsc-android-buildscripts/tree/tip).
 
-## Próximas sessões
+## Próximas sessões {#next-sessions}
 
 Houve alguma discussão sobre redirecionar esta reunião para discutir um único tópico específico (por exemplo, navegação, mover módulos React Native para repositórios separados, documentação, ...). Dessa forma, sentimos que podemos contribuir melhor para a comunidade React Native. Isso pode ocorrer na próxima sessão da reunião. Sinta-se à vontade para tweetar o que você gostaria de ver coberto como tópico.

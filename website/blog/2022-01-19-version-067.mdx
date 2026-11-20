@@ -7,7 +7,7 @@ tags: [announcement, release]
 
 Feliz ano novo a todos! Hoje estamos anunciando o último lançamento do React Native, 0.67.0, juntamente com algumas atualizações no processo de lançamento em que temos trabalhado nos últimos meses.
 
-### Seções
+### Seções {#sections}
 
 - [Destaques da 0.67](/blog/2022/01/19/version-067#highlights-of-067)
 - [Melhorias no Processo de Lançamento](/blog/2022/01/19/version-067#improvements-to-release-process)
@@ -15,7 +15,7 @@ Feliz ano novo a todos! Hoje estamos anunciando o último lançamento do React N
 
 {/* truncate */}
 
-## Destaques da 0.67
+## Destaques da 0.67 {#highlights-of-067}
 
 Como mencionado nos [planos H2 2021 da Meta](https://reactnative.dev/blog/2021/08/19/h2-2021), o React Native está tentando lançamentos mais frequentes para um tempo de resposta mais curto para novos recursos e correções (como a nova arquitetura) chegarem à comunidade. Naturalmente, muitos lançamentos focarão em correções e melhorias.
 
@@ -29,7 +29,7 @@ Você pode encontrar o [changelog completo aqui](https://github.com/facebook/rea
 
 Você pode participar da conversa sobre o status deste lançamento [nesta discussão](https://github.com/reactwg/react-native-releases/discussions/10) - e, como sempre, para ajudá-lo a atualizar para esta versão, você pode usar o [upgrade helper](https://react-native-community.github.io/upgrade-helper/) ⚛️
 
-### Agradecimentos
+### Agradecimentos {#acknowledgements}
 
 Este lançamento inclui [379 commits com 74 contribuidores](https://github.com/facebook/react-native/compare/0.66-stable...0.67-stable)! Obrigado a todos os nossos contribuidores (antigos e novos)! Você pode encontrar o [changelog completo aqui](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#v0670).
 
@@ -42,26 +42,26 @@ Queríamos também agradecer aos testadores de lançamento que nos ajudaram a ga
 
 Apreciamos também [Rainbow](https://rainbow.me/), [Comm](https://comm.app/) e [Ledger Live](https://www.ledger.com/ledger-live) por também fazerem parte do piloto do programa "Release Tester" (mais detalhes abaixo).
 
-## Melhorias no Processo de Lançamento
+## Melhorias no Processo de Lançamento {#improvements-to-release-process}
 
 Como mencionado, o React Native tem reestruturado o pipeline de lançamento para permitir lançamentos mais frequentes, de modo que novos recursos e correções possam ser lançados mais rapidamente para a comunidade.
 
 Nos últimos meses, abordamos alguns problemas que atrasam os lançamentos.
 
-### Coordenação e Compartilhamento de Conhecimento
+### Coordenação e Compartilhamento de Conhecimento {#coordination-and-knowledge-sharing}
 
 Investimos em nossa documentação de lançamentos para cobrir como executar um lançamento, FAQs, coordenação de issues de lançamento, etc. — tudo isso pode ser encontrado nesta seção da [wiki do react-native](https://github.com/facebook/react-native/wiki/Releases).
 Com a documentação, os lançamentos não ficam mais bloqueados em nenhum indivíduo ou conhecimento tribal.
 
 Além da documentação, também reformulamos a coordenação de lançamentos e movemos a discussão do status de pré-lançamento e patches para um grupo de discussão dedicado: [react-wg/react-native-releases](https://github.com/reactwg/react-native-releases/discussions).
 
-### Clareza de Responsabilidade
+### Clareza de Responsabilidade {#clarity-of-responsibility}
 
 Seguindo mais documentação, o trabalho de lançamento pode escalar de modo que nenhuma pessoa seja crítica para executar um lançamento.
 
 Um lançamento do React Native é suscetível a um amplo espectro de potenciais pontos de falha e tem muitas dependências e acompanhamentos. Considerando que o uso do React Native varia pela comunidade, é essencial ter stakeholders envolvidos nos lançamentos. Definimos um conjunto de [papéis e responsabilidades no suporte a um lançamento](https://github.com/facebook/react-native/wiki/Release-Roles-and-Responsibilities).
 
-### Sinal de Release Candidate
+### Sinal de Release Candidate {#release-candidate-signal}
 
 Outro problema com lançamentos é obter um bom sinal de que um lançamento não sofrerá de regressões de compilação. Isso pode ser resolvido com investimento crescente em teste de variantes de compilação, etc., mas o sinal de adoção continuará sendo útil por algum tempo.
 
@@ -69,7 +69,7 @@ No lançamento 0.67, pilotamos um programa "Release Tester" onde desenvolvedores
 
 Apps React Native open source são particularmente úteis devido à disponibilidade de código-fonte para ajudar a depurar quaisquer regressões. Com este programa em vigor, um testador de lançamento identificou uma regressão na 0.67 e conseguimos resolvê-la sem agitar a comunidade maior com um lançamento defeituoso.
 
-## Interessado em ajudar o React Native a estabilizar novos lançamentos?
+## Interessado em ajudar o React Native a estabilizar novos lançamentos? {#interested-in-helping-react-native-stabilise-new-releases}
 
 Uma ótima maneira de nos ajudar a detectar regressões é integrar a versão de pré-lançamento do React Native [`react-native@next`](https://www.npmjs.com/package/react-native) ou [`react-native@nightly`](https://www.npmjs.com/package/react-native) ao seu CI. Para quaisquer regressões, você pode [abrir uma issue de lançamento](https://github.com/facebook/react-native/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2CType%3A+Upgrade+Issue&template=upgrade-regression-form.yml) e notificar a discussão apropriada.
 

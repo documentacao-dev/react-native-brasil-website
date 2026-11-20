@@ -6,7 +6,7 @@ title: Keyboard
 
 Módulo `Keyboard` para controlar eventos do teclado.
 
-### Uso
+### Uso {#usage}
 
 O módulo Keyboard permite que você escute eventos nativos e reaja a eles, bem como faça alterações no teclado, como descartá-lo.
 
@@ -69,7 +69,7 @@ export default Example;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `addListener()`
 

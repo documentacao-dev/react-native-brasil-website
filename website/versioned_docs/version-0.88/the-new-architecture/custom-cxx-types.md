@@ -1,25 +1,26 @@
+<!-- ia-translated: true -->
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-# Advanced: Custom C++ Types
+# Avançado: Tipos C++ Personalizados
 
 :::note
-This guide assumes that you are familiar with the [**Pure C++ Turbo Native Modules**](pure-cxx-modules.md) guide. This will build on top of that guide.
+Este guia assume que você está familiarizado com o guia [**Pure C++ Turbo Native Modules**](pure-cxx-modules.md). Isso será construído em cima desse guia.
 :::
 
-C++ Turbo Native Modules support [bridging functionality](https://github.com/react/react-native/tree/main/packages/react-native/ReactCommon/react/bridging) for most `std::` standard types. You can use most of those types in your modules without any additional code required.
+C++ Turbo Native Modules suportam [funcionalidade de bridging](https://github.com/react/react-native/tree/main/packages/react-native/ReactCommon/react/bridging) para a maioria dos tipos padrão `std::`. Você pode usar a maioria desses tipos em seus módulos sem qualquer código adicional necessário.
 
-If you want to add support for new and custom types in your app or library, you need to provide the necessary `bridging` header file.
+Se você quiser adicionar suporte para tipos novos e personalizados em seu aplicativo ou biblioteca, você precisa fornecer o arquivo header `bridging` necessário.
 
-## Adding a New Custom: Int64
+## Adicionando um Novo Tipo Personalizado: Int64 {#adding-a-new-custom-int64}
 
-C++ Turbo Native Modules don't support `int64_t` numbers yet - because JavaScript doesn't support numbers greater 2^53. To represent numbers greater than 2^53, we can use a `string` type in JS and automatically convert it to `int64_t` in C++.
+C++ Turbo Native Modules ainda não suportam números `int64_t` - porque JavaScript não suporta números maiores que 2^53. Para representar números maiores que 2^53, podemos usar um tipo `string` em JS e convertê-lo automaticamente para `int64_t` em C++.
 
-### 1. Create the Bridging Header file
+### 1. Crie o Arquivo Header de Bridging {#1-create-the-bridging-header-file}
 
-The first step to support a new custom type is to define the bridging header that takes care of converting the type **from** the JS representation to the C++ representation, and from the C++ representation **to** the JS one.
+O primeiro passo para suportar um novo tipo personalizado é definir o header de bridging que cuida da conversão do tipo **da** representação JS para a representação C++, e da representação C++ **para** a JS.
 
-1. In the `shared` folder, add a new file called `Int64.h`
-2. Add the following code to that file:
+1. Na pasta `shared`, adicione um novo arquivo chamado `Int64.h`
+2. Adicione o seguinte código a esse arquivo:
 
 ```cpp title="Int64.h"
 #pragma once
@@ -54,22 +55,22 @@ struct Bridging<int64_t> {
 }
 ```
 
-The key components for your custom bridging header are:
+Os componentes-chave para seu header de bridging personalizado são:
 
-- Explicit specialization of the `Bridging` struct for your custom type. In this case, the template specify the `int64_t` type.
-- A `fromJs` function to convert from the JS representation to the C++ representation
-- A `toJs` function to convert from the C++ representation to the JS representation
+- Especialização explícita da struct `Bridging` para seu tipo personalizado. Neste caso, o template especifica o tipo `int64_t`.
+- Uma função `fromJs` para converter da representação JS para a representação C++
+- Uma função `toJs` para converter da representação C++ para a representação JS
 
 :::note
-On iOS, remember to add the `Int64.h` file to the Xcode project.
+No iOS, lembre-se de adicionar o arquivo `Int64.h` ao projeto Xcode.
 :::
 
-### 2. Modify the JS Spec
+### 2. Modifique a Spec JS {#2-modify-the-js-spec}
 
-Now, we can modify the JS spec to add a method that uses the new type. As usual, we can use either Flow or TypeScript for our specs.
+Agora, podemos modificar a spec JS para adicionar um método que usa o novo tipo. Como de costume, podemos usar Flow ou TypeScript para nossas specs.
 
-1. Open the `specs/NativeSampleTurbomodule`
-2. Modify the spec as follows:
+1. Abra o `specs/NativeSampleTurbomodule`
+2. Modifique a spec da seguinte forma:
 
 <Tabs groupId="custom-int64" queryString defaultValue={constants.defaultJavaScriptSpecLanguages} values={constants.javaScriptSpecLanguages}>
 <TabItem value="typescript">
@@ -108,13 +109,13 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
 </TabItem>
 </Tabs>
 
-In this files, we are defining the function that needs to be implemented in C++.
+Nestes arquivos, estamos definindo a função que precisa ser implementada em C++.
 
-### 3. Implement the Native Code
+### 3. Implemente o Código Nativo {#3-implement-the-native-code}
 
-Now, we need to implement the function that we declared in the JS specification.
+Agora, precisamos implementar a função que declaramos na especificação JS.
 
-1. Open the `specs/NativeSampleModule.h` file and apply the following changes:
+1. Abra o arquivo `specs/NativeSampleModule.h` e aplique as seguintes mudanças:
 
 ```diff title="NativeSampleModule.h"
 #pragma once
@@ -139,7 +140,7 @@ public:
 
 ```
 
-2. Open the `specs/NativeSampleModule.cpp` file and apply the implement the new function:
+2. Abra o arquivo `specs/NativeSampleModule.cpp` e implemente a nova função:
 
 ```diff title="NativeSampleModule.cpp"
 #include "NativeSampleModule.h"
@@ -161,15 +162,15 @@ std::string NativeSampleModule::reverseString(jsi::Runtime& rt, std::string inpu
 } // namespace facebook::react
 ```
 
-The implementation imports the `<cmath>` C++ library to perform mathematical operations, then it implements the `cubicRoot` function using the `cbrt` primitive from the `<cmath>` module.
+A implementação importa a biblioteca C++ `<cmath>` para realizar operações matemáticas, então implementa a função `cubicRoot` usando a primitiva `cbrt` do módulo `<cmath>`.
 
-### 4. Test your code in Your App
+### 4. Teste seu Código no seu App {#4-test-your-code-in-your-app}
 
-Now, we can test the code in our app.
+Agora, podemos testar o código em nosso aplicativo.
 
-First, we need to update the `App.tsx` file to use the new method from the TurboModule. Then, we can build our apps in Android and iOS.
+Primeiro, precisamos atualizar o arquivo `App.tsx` para usar o novo método do TurboModule. Então, podemos compilar nossos aplicativos no Android e iOS.
 
-1. Open the `App.tsx` code apply the following changes:
+1. Abra o código `App.tsx` e aplique as seguintes mudanças:
 
 ```diff title="App.tsx"
 // ...
@@ -206,14 +207,14 @@ First, we need to update the `App.tsx` file to use the new method from the Turbo
 //...
 ```
 
-2. To test the app on Android, run `yarn android` from the root folder of your project.
-3. To test the app on iOS, run `yarn ios` from the root folder of your project.
+2. Para testar o aplicativo no Android, execute `yarn android` da pasta raiz do seu projeto.
+3. Para testar o aplicativo no iOS, execute `yarn ios` da pasta raiz do seu projeto.
 
-## Adding a New Structured Custom Type: Address
+## Adicionando um Novo Tipo Personalizado Estruturado: Address {#adding-a-new-structured-custom-type-address}
 
-The approach above can be generalized to any kind of type. For structured types, React Native provides some helper functions that make it easier to bridge them from JS to C++ and vice versa.
+A abordagem acima pode ser generalizada para qualquer tipo de tipo. Para tipos estruturados, React Native fornece algumas funções auxiliares que tornam mais fácil fazer o bridge deles de JS para C++ e vice-versa.
 
-Let's assume that we want to bridge a custom `Address` type with the following properties:
+Vamos assumir que queremos fazer o bridge de um tipo `Address` personalizado com as seguintes propriedades:
 
 ```ts
 interface Address {
@@ -223,11 +224,11 @@ interface Address {
 }
 ```
 
-### 1. Define the type in the specs
+### 1. Defina o tipo nas specs {#1-define-the-type-in-the-specs}
 
-For the first step, let's define the new custom type in the JS specs, so that Codegen can output all the supporting code. In this way, we don't have to manually write the code.
+Para o primeiro passo, vamos definir o novo tipo personalizado nas specs JS, para que o Codegen possa gerar todo o código de suporte. Dessa forma, não precisamos escrever o código manualmente.
 
-1. Open the `specs/NativeSampleModule` file and add the following changes.
+1. Abra o arquivo `specs/NativeSampleModule` e adicione as seguintes mudanças.
 
 <Tabs groupId="custom-int64" queryString defaultValue={constants.defaultJavaScriptSpecLanguages} values={constants.javaScriptSpecLanguages}>
 <TabItem value="typescript">
@@ -280,18 +281,18 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
 </TabItem>
 </Tabs>
 
-This code defines the new `Address` type and defines a new `validateAddress` function for the Turbo Native Module. Notice that the `validateFunction` requires an `Address` object as parameter.
+Este código define o novo tipo `Address` e define uma nova função `validateAddress` para o Turbo Native Module. Observe que a `validateFunction` requer um objeto `Address` como parâmetro.
 
-It is also possible to have functions that return custom types.
+Também é possível ter funções que retornam tipos personalizados.
 
-### 2. Define the bridging code
+### 2. Defina o código de bridging {#2-define-the-bridging-code}
 
-From the `Address` type defined in the specs, Codegen will generate two helper types: `NativeSampleModuleAddress` and `NativeSampleModuleAddressBridging`.
+Do tipo `Address` definido nas specs, o Codegen irá gerar dois tipos auxiliares: `NativeSampleModuleAddress` e `NativeSampleModuleAddressBridging`.
 
-The first type is the definition of the `Address`. The second type contains all the infrastructure to bridge the custom type from JS to C++ and vice versa. The only extra step we need to add is to define the `Bridging` structure that extends the `NativeSampleModuleAddressBridging` type.
+O primeiro tipo é a definição do `Address`. O segundo tipo contém toda a infraestrutura para fazer o bridge do tipo personalizado de JS para C++ e vice-versa. O único passo extra que precisamos adicionar é definir a estrutura `Bridging` que estende o tipo `NativeSampleModuleAddressBridging`.
 
-1. Open the `shared/NativeSampleModule.h` file
-2. Add the following code in the file:
+1. Abra o arquivo `shared/NativeSampleModule.h`
+2. Adicione o seguinte código no arquivo:
 
 ```diff title="NativeSampleModule.h (Bridging the Address type)"
 #include "Int64.h"
@@ -308,22 +309,22 @@ namespace facebook::react {
 }
 ```
 
-This code defines an `Address` typealias for the generic type `NativeSampleModuleAddress`. **The order of the generics matters**: the first template argument refers to the first data type of the struct, the second refers to the second, and so forth.
+Este código define um typealias `Address` para o tipo genérico `NativeSampleModuleAddress`. **A ordem dos genéricos importa**: o primeiro argumento do template refere-se ao primeiro tipo de dado da struct, o segundo refere-se ao segundo, e assim por diante.
 
-Then, the code adds the `Bridging` specialization for the new `Address` type, by extending `NativeSampleModuleAddressBridging` that is generated by Codegen.
+Então, o código adiciona a especialização `Bridging` para o novo tipo `Address`, estendendo `NativeSampleModuleAddressBridging` que é gerado pelo Codegen.
 
 :::note
-There is a convention that is followed to generate this types:
+Existe uma convenção que é seguida para gerar esses tipos:
 
-- The first part of the name is always the type of the module. `NativeSampleModule`, in this example.
-- The second part of the name is always the name of the JS type defined in the specs. `Address`, in this example.
+- A primeira parte do nome é sempre o tipo do módulo. `NativeSampleModule`, neste exemplo.
+- A segunda parte do nome é sempre o nome do tipo JS definido nas specs. `Address`, neste exemplo.
   :::
 
-### 3. Implement the Native Code
+### 3. Implemente o Código Nativo {#3-implement-the-native-code}
 
-Now, we need to implement the `validateAddress` function in C++. First, we need to add the function declaration into the `.h` file, and then we can implement it in the `.cpp` file.
+Agora, precisamos implementar a função `validateAddress` em C++. Primeiro, precisamos adicionar a declaração da função no arquivo `.h`, e então podemos implementá-la no arquivo `.cpp`.
 
-1. Open the `shared/NativeSampleModule.h` file and add the function definition
+1. Abra o arquivo `shared/NativeSampleModule.h` e adicione a definição da função
 
 ```diff title="NativeSampleModule.h (validateAddress function prototype)"
   std::string reverseString(jsi::Runtime& rt, std::string input);
@@ -334,7 +335,7 @@ Now, we need to implement the `validateAddress` function in C++. First, we need 
 } // namespace facebook::react
 ```
 
-2. Open the `shared/NativeSampleModule.cpp` file and add the function implementation
+2. Abra o arquivo `shared/NativeSampleModule.cpp` e adicione a implementação da função
 
 ```cpp title="NativeSampleModule.cpp (validateAddress implementation)"
 bool NativeSampleModule::validateAddress(jsi::Runtime &rt, jsi::Object input) {
@@ -345,25 +346,25 @@ bool NativeSampleModule::validateAddress(jsi::Runtime &rt, jsi::Object input) {
 }
 ```
 
-In the implementation, the object that represents the `Address` is a `jsi::Object`. To extract the values from this object, we need to use the accessors provided by `JSI`:
+Na implementação, o objeto que representa o `Address` é um `jsi::Object`. Para extrair os valores deste objeto, precisamos usar os acessadores fornecidos pelo `JSI`:
 
-- `getProperty()` retrieves the property from and object by name.
-- `asString()` converts the property to `jsi::String`.
-- `utf8()` converts the `jsi::String` to a `std::string`.
-- `asNumber()` converts the property to a `double`.
+- `getProperty()` recupera a propriedade de um objeto por nome.
+- `asString()` converte a propriedade para `jsi::String`.
+- `utf8()` converte a `jsi::String` para uma `std::string`.
+- `asNumber()` converte a propriedade para um `double`.
 
-Once we manually parsed the object, we can implement the logic that we need.
+Uma vez que analisamos manualmente o objeto, podemos implementar a lógica que precisamos.
 
 :::note
-If you want to learn more about `JSI` and how it works, have a look at this [great talk](https://youtu.be/oLmGInjKU2U?feature=shared) from App.JS 2024
+Se você quiser aprender mais sobre `JSI` e como funciona, dê uma olhada nesta [ótima palestra](https://youtu.be/oLmGInjKU2U?feature=shared) da App.JS 2024
 :::
 
-### 4. Testing the code in the app
+### 4. Testando o código no aplicativo {#4-testing-the-code-in-the-app}
 
-To test the code in the app, we have to modify the `App.tsx` file.
+Para testar o código no aplicativo, temos que modificar o arquivo `App.tsx`.
 
-1. Open the `App.tsx` file. Remove the content of the `App()` function.
-2. Replace the body of the `App()` function with the following code:
+1. Abra o arquivo `App.tsx`. Remova o conteúdo da função `App()`.
+2. Substitua o corpo da função `App()` com o seguinte código:
 
 ```tsx title="App.tsx (App function body replacement)"
 const [street, setStreet] = useState('');
@@ -417,6 +418,6 @@ return (
 );
 ```
 
-Congratulation! 🎉
+Parabéns! 🎉
 
-You bridged your first types from JS to C++.
+Você fez o bridge dos seus primeiros tipos de JS para C++.

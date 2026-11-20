@@ -1,9 +1,10 @@
 ---
+ia-translated: true
 id: text-style-props
-title: Text Style Props
+title: Props de Estilo de Texto
 ---
 
-### Example
+### Exemplo {#example}
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
@@ -757,13 +758,13 @@ export default App;
 </TabItem>
 </Tabs>
 
-# Reference
+# Referência
 
 ## Props
 
 ### `color`
 
-| Type               |
+| Tipo               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -771,17 +772,17 @@ export default App;
 
 ### `fontFamily`
 
-| Type   |
+| Tipo   |
 | ------ |
 | string |
 
-The generic font families `system-ui`, `ui-sans-serif`, `ui-serif`, `ui-monospace`, and `ui-rounded` are supported on iOS.
+As famílias de fontes genéricas `system-ui`, `ui-sans-serif`, `ui-serif`, `ui-monospace` e `ui-rounded` são suportadas no iOS.
 
 ---
 
 ### `fontSize`
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -789,7 +790,7 @@ The generic font families `system-ui`, `ui-sans-serif`, `ui-serif`, `ui-monospac
 
 ### `fontStyle`
 
-| Type                         |
+| Tipo                         |
 | ---------------------------- |
 | enum(`'normal'`, `'italic'`) |
 
@@ -797,39 +798,39 @@ The generic font families `system-ui`, `ui-sans-serif`, `ui-serif`, `ui-monospac
 
 ### `fontWeight`
 
-Specifies font weight. The values `'normal'` and `'bold'` are supported for most fonts. Not all fonts have a variant for each of the numeric values, in that case the closest one is chosen.
+Especifica o peso da fonte. Os valores `'normal'` e `'bold'` são suportados para a maioria das fontes. Nem todas as fontes possuem uma variante para cada um dos valores numéricos; nesse caso, a mais próxima é escolhida.
 
-| Type                                                                                                                  | Default    |
+| Tipo                                                                                                                  | Padrão     |
 | --------------------------------------------------------------------------------------------------------------------- | ---------- |
-| enum(`'normal'`, `'bold'`, `'100'`, `'200'`, `'300'`, `'400'`, `'500'`, `'600'`, `'700'`, `'800'`, `'900'`) or number | `'normal'` |
+| enum(`'normal'`, `'bold'`, `'100'`, `'200'`, `'300'`, `'400'`, `'500'`, `'600'`, `'700'`, `'800'`, `'900'`) ou number | `'normal'` |
 
 ---
 
 ### `includeFontPadding` <div className="label android">Android</div>
 
-Set to `false` to remove extra font padding intended to make space for certain ascenders / descenders. With some fonts, this padding can make text look slightly misaligned when centered vertically. For best results also set `textAlignVertical` to `center`.
+Defina como `false` para remover o padding extra da fonte destinado a criar espaço para certos ascendentes / descendentes. Com algumas fontes, esse padding pode fazer o texto parecer levemente desalinhado quando centralizado verticalmente. Para melhores resultados, defina também `textAlignVertical` como `center`.
 
-| Type | Default |
-| ---- | ------- |
-| bool | `true`  |
+| Tipo | Padrão |
+| ---- | ------ |
+| bool | `true` |
 
 ---
 
 ### `fontVariant`
 
-Allows you to set all the font variants for a font. Can be set by using an array of enums or a space-separated string e.g. `'small-caps common-ligatures'`.
+Permite que você defina todas as variantes de fonte para uma fonte. Pode ser definido usando um array de enums ou uma string separada por espaços, por exemplo `'small-caps common-ligatures'`.
 
-| Type                                                                                                                 | Default |
-| -------------------------------------------------------------------------------------------------------------------- | ------- |
-| array of enum(`'small-caps'`, `'oldstyle-nums'`, `'lining-nums'`, `'tabular-nums'`, `'proportional-nums'`) or string | `[]`    |
+| Tipo                                                                                                                | Padrão |
+| ------------------------------------------------------------------------------------------------------------------- | ------ |
+| array de enum(`'small-caps'`, `'oldstyle-nums'`, `'lining-nums'`, `'tabular-nums'`, `'proportional-nums'`) ou string | `[]`   |
 
 ---
 
 ### `fontVariationSettings`
 
-Configures variation axes for a variable font. Each axis is identified by a four-character OpenType tag, such as `wght` for weight, `wdth` for width, `opsz` for optical size, or a custom axis supported by the font. Settings can be provided as an object or as a CSS-compatible string.
+Configura os eixos de variação para uma fonte variável. Cada eixo é identificado por uma tag OpenType de quatro caracteres, como `wght` para peso, `wdth` para largura, `opsz` para tamanho óptico, ou um eixo personalizado suportado pela fonte. As configurações podem ser fornecidas como um objeto ou como uma string compatível com CSS.
 
-The object and string forms below are equivalent; both set the wght axis to 500:
+As formas de objeto e de string abaixo são equivalentes; ambas definem o eixo wght como 500:
 
 ```tsx
 <Text
@@ -842,19 +843,19 @@ The object and string forms below are equivalent; both set the wght axis to 500:
 </Text>
 ```
 
-For more information about variation axes and the CSS string syntax, see MDN's font-variation-settings (https://developer.mozilla.org/en-US/docs/Web/CSS/font-variation-settings) documentation.
+Para mais informações sobre eixos de variação e a sintaxe de string do CSS, veja a documentação do MDN sobre [font-variation-settings](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variation-settings).
 
-| Type                                         |
+| Tipo                                         |
 | -------------------------------------------- |
-| string or object: `{[axis: string]: number}` |
+| string ou objeto: `{[axis: string]: number}` |
 
 ---
 
 ### `letterSpacing`
 
-Increase or decrease the spacing between characters. By default there is no extra letter spacing.
+Aumenta ou diminui o espaçamento entre caracteres. Por padrão, não há espaçamento extra entre letras.
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -862,9 +863,9 @@ Increase or decrease the spacing between characters. By default there is no extr
 
 ### `lineHeight`
 
-Numeric value that controls the vertical spacing between lines of text within a text element. It specifies the distance between the baselines of consecutive lines of text.
+Valor numérico que controla o espaçamento vertical entre linhas de texto dentro de um elemento de texto. Especifica a distância entre as linhas de base de linhas consecutivas de texto.
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -872,9 +873,9 @@ Numeric value that controls the vertical spacing between lines of text within a 
 
 ### `textAlign`
 
-Specifies text alignment. On Android, the value 'justify' is only supported on Oreo (8.0) or above (API level >= 26). The value will fallback to `left` on lower Android versions.
+Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado apenas no Oreo (8.0) ou superior (API level >= 26). O valor retornará para `left` em versões mais antigas do Android.
 
-| Type                                                         | Default  |
+| Tipo                                                         | Padrão   |
 | ------------------------------------------------------------ | -------- |
 | enum(`'auto'`, `'left'`, `'right'`, `'center'`, `'justify'`) | `'auto'` |
 
@@ -882,9 +883,9 @@ Specifies text alignment. On Android, the value 'justify' is only supported on O
 
 ### `textAlignVertical` <div className="label android">Android</div>
 
-An alias for `verticalAlign` style prop, if you use both properties, `verticalAlign` will take precedence over `textAlignVertical`
+Um alias para a prop de estilo `verticalAlign`. Se você usar as duas propriedades, `verticalAlign` terá precedência sobre `textAlignVertical`.
 
-| Type                                            | Default  |
+| Tipo                                            | Padrão   |
 | ----------------------------------------------- | -------- |
 | enum(`'auto'`, `'top'`, `'bottom'`, `'center'`) | `'auto'` |
 
@@ -892,7 +893,7 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `textDecorationColor` <div className="label ios">iOS</div>
 
-| Type               |
+| Tipo               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -900,7 +901,7 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `textDecorationLine`
 
-| Type                                                                        | Default  |
+| Tipo                                                                        | Padrão   |
 | --------------------------------------------------------------------------- | -------- |
 | enum(`'none'`, `'underline'`, `'line-through'`, `'underline line-through'`) | `'none'` |
 
@@ -908,7 +909,7 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `textDecorationStyle` <div className="label ios">iOS</div>
 
-| Type                                                | Default   |
+| Tipo                                                | Padrão    |
 | --------------------------------------------------- | --------- |
 | enum(`'solid'`, `'double'`, `'dotted'`, `'dashed'`) | `'solid'` |
 
@@ -916,7 +917,7 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `textShadowColor`
 
-| Type               |
+| Tipo               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -924,7 +925,7 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `textShadowOffset`
 
-| Type                                        |
+| Tipo                                        |
 | ------------------------------------------- |
 | object: `{width?: number, height?: number}` |
 
@@ -932,7 +933,7 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `textShadowRadius`
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -940,7 +941,7 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `textTransform`
 
-| Type                                                         | Default  |
+| Tipo                                                         | Padrão   |
 | ------------------------------------------------------------ | -------- |
 | enum(`'none'`, `'uppercase'`, `'lowercase'`, `'capitalize'`) | `'none'` |
 
@@ -948,7 +949,7 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `verticalAlign` <div className="label android">Android</div>
 
-| Type                                            | Default  |
+| Tipo                                            | Padrão   |
 | ----------------------------------------------- | -------- |
 | enum(`'auto'`, `'top'`, `'bottom'`, `'middle'`) | `'auto'` |
 
@@ -956,7 +957,7 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `writingDirection` <div className="label ios">iOS</div>
 
-| Type                             | Default  |
+| Tipo                             | Padrão   |
 | -------------------------------- | -------- |
 | enum(`'auto'`, `'ltr'`, `'rtl'`) | `'auto'` |
 
@@ -964,8 +965,10 @@ An alias for `verticalAlign` style prop, if you use both properties, `verticalAl
 
 ### `userSelect`
 
-It allows the user to select text and to use the native copy and paste functionality. Has precedence over the `selectable` prop.
+Permite que o usuário selecione texto e use a funcionalidade nativa de copiar e colar. Tem precedência sobre a prop `selectable`.
 
-| Type                                                     | Default |
-| -------------------------------------------------------- | ------- |
-| enum(`'auto'`, `'text'`, `'none'`, `'contain'`, `'all'`) | `none`  |
+| Tipo                                                     | Padrão |
+| -------------------------------------------------------- | ------ |
+| enum(`'auto'`, `'text'`, `'none'`, `'contain'`, `'all'`) | `none` |
+
+---

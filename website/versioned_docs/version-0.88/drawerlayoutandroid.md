@@ -311,7 +311,7 @@ Faz o drawer ocupar a tela inteira e desenhar o fundo da barra de status para pe
 | ------------------ | -------- |
 | [color](colors.md) | No       |
 
-## Métodos
+## Métodos {#methods}
 
 ### `closeDrawer()`
 

@@ -6,7 +6,7 @@ title: Tipo de Objeto LayoutEvent
 
 O objeto `LayoutEvent` é retornado no callback como resultado de uma mudança de layout do componente, por exemplo `onLayout` no componente [View](view).
 
-## Exemplo
+## Exemplo {#example}
 
 ```js
 {
@@ -20,7 +20,7 @@ O objeto `LayoutEvent` é retornado no callback como resultado de uma mudança d
 }
 ```
 
-## Chaves e valores
+## Chaves e valores {#keys-and-values}
 
 ### `height`
 
@@ -62,7 +62,7 @@ O node id do elemento que recebe o LayoutEvent.
 | --------------------------- | -------- |
 | number, `null`, `undefined` | Não      |
 
-## Usado por
+## Usado por {#used-by}
 
 - [`Image`](image)
 - [`Pressable`](pressable)

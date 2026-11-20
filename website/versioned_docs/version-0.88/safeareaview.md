@@ -1,19 +1,20 @@
 ---
 id: safeareaview
 title: '🗑️ SafeAreaView'
+ia-translated: true
 ---
 
-:::warning[Deprecated]
-Use [react-native-safe-area-context](https://github.com/AppAndFlow/react-native-safe-area-context) instead.
+:::warning[Descontinuado]
+Use [react-native-safe-area-context](https://github.com/AppAndFlow/react-native-safe-area-context) em vez disso.
 :::
 
-The purpose of `SafeAreaView` is to render content within the safe area boundaries of a device. It is currently only applicable to iOS devices with iOS version 11 or later.
+O propósito do `SafeAreaView` é renderizar conteúdo dentro dos limites da área segura de um dispositivo. Atualmente, é aplicável apenas para dispositivos iOS com versão iOS 11 ou posterior.
 
-`SafeAreaView` renders nested content and automatically applies padding to reflect the portion of the view that is not covered by navigation bars, tab bars, toolbars, and other ancestor views. Moreover, and most importantly, Safe Area's paddings reflect the physical limitation of the screen, such as rounded corners or camera notches (i.e. the sensor housing area on iPhone 13).
+`SafeAreaView` renderiza conteúdo aninhado e aplica automaticamente padding para refletir a porção da view que não é coberta por barras de navegação, barras de abas, barras de ferramentas e outras views ancestrais. Além disso, e mais importante, os paddings da Safe Area refletem a limitação física da tela, como cantos arredondados ou entalhes da câmera (ou seja, a área de alojamento do sensor no iPhone 13).
 
-## Example
+## Exemplo {#example}
 
-To use, wrap your top level view with a `SafeAreaView` with a `flex: 1` style applied to it. You may also want to use a background color that matches your application's design.
+Para usar, envolva sua view de nível superior com um `SafeAreaView` com um estilo `flex: 1` aplicado a ele. Você também pode querer usar uma cor de fundo que combine com o design da sua aplicação.
 
 ```SnackPlayer name=SafeAreaView&supportedPlatforms=ios
 import {StyleSheet, Text, SafeAreaView} from 'react-native';
@@ -41,14 +42,14 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
 ## Props
 
 ### [View Props](view.md#props)
 
-Inherits [View Props](view.md#props).
+Herda [View Props](view.md#props).
 
 :::note
-As padding is used to implement the behavior of the component, padding rules in styles applied to a `SafeAreaView` will be ignored and can cause different results depending on the platform. See [#22211](https://github.com/react/react-native/issues/22211) for details.
+Como padding é usado para implementar o comportamento do componente, regras de padding em estilos aplicados a um `SafeAreaView` serão ignoradas e podem causar resultados diferentes dependendo da plataforma. Veja [#22211](https://github.com/react/react-native/issues/22211) para detalhes.
 :::

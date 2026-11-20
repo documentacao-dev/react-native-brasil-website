@@ -11,7 +11,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
   <p>A seção a seguir se aplica apenas a projetos com código nativo exposto. Se você está usando o fluxo de trabalho gerenciado do Expo, consulte o guia sobre <a href="https://docs.expo.dev/workflow/prebuild/" target="_blank">prebuild</a> para usar esta API.</p>
 </div>
 
-## Acessando Logs
+## Acessando Logs {#accessing-logs}
 
 Você pode exibir os logs nativos de um aplicativo iOS ou Android usando os seguintes comandos em um terminal enquanto o aplicativo estiver em execução:
 
@@ -65,7 +65,7 @@ Esses logs aparecerão no console do Xcode ao executar o aplicativo.
 
 </details>
 
-## Depuração em uma IDE Nativa
+## Depuração em uma IDE Nativa {#debugging-in-a-native-ide}
 
 Ao trabalhar com código nativo, como ao escrever Native Modules, você pode iniciar o aplicativo a partir do Android Studio ou Xcode e aproveitar os recursos de depuração nativos (configuração de breakpoints, etc.) como você faria ao construir um aplicativo nativo padrão.
 

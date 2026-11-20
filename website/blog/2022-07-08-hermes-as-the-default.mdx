@@ -25,7 +25,7 @@ Medimos três métricas diferentes importantes para desenvolvedores de aplicativ
 - O tamanho do binário foi medido como tamanho do APK no Android e tamanho do IPA no iOS.
 - Os dados de consumo de memória foram coletados usando o aplicativo Mattermost ao longo de alguns minutos. As mesmas ações foram realizadas no aplicativo em ambos os engines.
 
-## Dados de Benchmarking do Android
+## Dados de Benchmarking do Android {#android-benchmarking-data}
 
 Todos os testes do Android foram realizados em um Samsung Galaxy S20.
 
@@ -36,7 +36,7 @@ Todos os testes do Android foram realizados em um Samsung Galaxy S20.
   />
 </figure>
 
-### Vídeo TTI
+### Vídeo TTI {#tti-video}
 
 <figure>
   <img
@@ -45,7 +45,7 @@ Todos os testes do Android foram realizados em um Samsung Galaxy S20.
   />
 </figure>
 
-## Dados de Benchmarking do iOS
+## Dados de Benchmarking do iOS {#ios-benchmarking-data}
 
 Todos os testes do iOS foram realizados em um iPhone 12 Pro.
 
@@ -56,7 +56,7 @@ Todos os testes do iOS foram realizados em um iPhone 12 Pro.
   />
 </figure>
 
-### Vídeo TTI
+### Vídeo TTI {#tti-video}
 
 <figure>
   <img
@@ -65,7 +65,7 @@ Todos os testes do iOS foram realizados em um iPhone 12 Pro.
   />
 </figure>
 
-### Vídeo TTI em Câmera Lenta, para mostrar melhor a diferença no tempo de inicialização.
+### Vídeo TTI em Câmera Lenta, para mostrar melhor a diferença no tempo de inicialização. {#slowed-down-tti-video-to-better-show-the-difference-in-startup-time}
 
 <figure>
   <img
@@ -74,7 +74,7 @@ Todos os testes do iOS foram realizados em um iPhone 12 Pro.
   />
 </figure>
 
-## Integração React Native/Hermes
+## Integração React Native/Hermes {#react-nativehermes-integration}
 
 Abordamos um problema de longa data que tem causado problemas de compatibilidade e é um problema recorrente ao lançar novas versões do React Native: React Native dependia do Hermes através de binários pré-compilados distribuídos via CocoaPods e npm, o que torna possível ter incompatibilidades de API ou [ABI](https://github.com/react-native-community/discussions-and-proposals/issues/257). Para resolver este problema, a partir do React Native 0.69, o Hermes é compilado junto com cada versão do React Native. Isso garante compatibilidade total com cada versão do React Native. Isso também cria uma integração muito mais estreita. Desbloqueia um tempo de iteração mais rápido para desenvolver recursos ou implantar correções de bugs, e nos dará maior confiança para garantir que grandes mudanças no Hermes sejam feitas corretamente. Há informações mais detalhadas sobre a nova mudança de integração [aqui](https://github.com/facebook/react-native-website/pull/3159/files).
 
@@ -84,7 +84,7 @@ Finalizamos a implementação da contraparte iOS para [`Intl`](https://developer
 
 Implementações típicas para `Intl` requerem a importação de grandes tabelas de consulta ou dados como [Unicode CLDR](https://cldr.unicode.org/index). No entanto, isso pode vir com um aumento de tamanho caro de até 6MB, então para evitar inflar o tamanho do binário do Hermes, implementamos `Intl` chamando APIs expostas pelo próprio iOS. Isso significa que podemos aproveitar todos os dados de localização e internacionalização que já vêm com o iOS.
 
-## Trabalho em Andamento
+## Trabalho em Andamento {#ongoing-work}
 
 À medida que continuamos evoluindo o Hermes, queremos dar à comunidade uma noção de nossas prioridades imediatas: melhorar a experiência do desenvolvedor e garantir que ninguém evite usar o Hermes devido à falta de recursos da linguagem JavaScript. Mais especificamente, estamos:
 
@@ -92,6 +92,6 @@ Implementações típicas para `Intl` requerem a importação de grandes tabelas
 - Adicionando suporte para [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), uma solicitação de longa data da comunidade que pode bloquear alguns desenvolvedores de usar o Hermes, pois não pode ser polyfilled.
 - Adicionando suporte para [`WeakRef`](https://github.com/facebook/hermes/issues/658), que exporá novos controles de gerenciamento de memória aos desenvolvedores.
 
-## Conclusão
+## Conclusão {#wrap-up}
 
 O Hermes se tornar o padrão marca o início de uma jornada de longo prazo. Estamos trabalhando em novos recursos que permitirão à comunidade escrever aplicativos eficientes por muitos anos. Também encorajamos a comunidade a entrar em contato em nosso [GitHub Repo](https://github.com/facebook/react-native) para postar quaisquer bugs, perguntas, feedback ou ideias! Criamos uma label `hermes` que pode ser usada para quaisquer posts específicos do Hermes.

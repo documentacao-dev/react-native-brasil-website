@@ -5,7 +5,7 @@ authors: [alexmarlette]
 tags: [announcement]
 ---
 
-## Olá Comunidade React Native,
+## Olá Comunidade React Native, {#hello-react-native-community}
 
 Em maio de 2020, o Facebook foi a primeira empresa a aceitar o [compromisso GAAD](https://diamond.la/GAADPledge/), comprometendo-se a tornar a acessibilidade uma parte central do projeto open source React Native. Desde maio, o Facebook passou esse tempo revisando e documentando cuidadosamente as lacunas de acessibilidade no React Native. Até agora, a análise de lacunas identificou 90 problemas, todos os quais foram convertidos em [issues no GitHub](https://github.com/facebook/react-native/projects/15).
 
@@ -17,7 +17,7 @@ Para reconhecer os contribuidores por seu esforço, quando uma issue de acessibi
 
 Por favor, junte-se a nós para tornar o React Native mais acessível para todos.
 
-### Como você pode ajudar:
+### Como você pode ajudar: {#how-you-can-help}
 
 - Novos contribuidores devem ler o [guia de contribuição](https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md) e navegar pela lista de 46 [good first issues](https://github.com/facebook/react-native/issues?q=is%3Aopen+is%3Aissue+label%3A%22Good+first+issue%22+label%3AAccessibility) no GitHub do React Native.
 

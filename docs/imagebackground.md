@@ -14,7 +14,7 @@ Note que você deve especificar alguns atributos de estilo de largura e altura.
 
 Você pode não querer usar `<ImageBackground>` em alguns casos, já que a implementação é básica. Consulte o [código-fonte](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Image/ImageBackground.js) do `<ImageBackground>` para mais informações e crie seu próprio componente customizado quando necessário.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=ImageBackground
 import {ImageBackground, StyleSheet, Text} from 'react-native';

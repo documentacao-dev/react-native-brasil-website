@@ -13,7 +13,7 @@ Esta seção é um trabalho em andamento e mais material será adicionado no fut
 
 A Visão Geral da Arquitetura tem como objetivo compartilhar uma visão conceitual de como funcionam os componentes internos do React Native. O público-alvo inclui autores de bibliotecas e colaboradores principais. Se você é um desenvolvedor de aplicativos, não é um requisito estar familiarizado com este material para ser eficaz com React Native. Você ainda pode se beneficiar da visão geral, pois ela lhe dará insights sobre como o React Native funciona nos bastidores. Sinta-se livre para compartilhar seu feedback na <a href="https://github.com/reactwg/react-native-new-architecture/discussions/9">discussão dentro do grupo de trabalho</a> para esta seção.
 
-## Índice
+## Índice {#table-of-contents}
 
 - [Sobre a Nova Arquitetura](landing-page)
 - Renderização

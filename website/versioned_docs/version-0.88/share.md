@@ -6,7 +6,7 @@ title: Share
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-## Exemplo
+## Exemplo {#example}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -91,7 +91,7 @@ export default ShareExample;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `share()`
 
@@ -114,7 +114,7 @@ No Android, retorna uma Promise que sempre será resolvida com action sendo `Sha
 
 ---
 
-## Propriedades
+## Propriedades {#properties}
 
 ### `sharedAction`
 

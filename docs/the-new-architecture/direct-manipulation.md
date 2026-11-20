@@ -17,7 +17,7 @@ Direct manipulation não será uma ferramenta que você usará com frequência. 
 Antes de usá-lo, tente resolver seu problema com `setState` e [`shouldComponentUpdate`](https://react.dev/reference/react/Component#shouldcomponentupdate).
 :::
 
-## setNativeProps para editar o valor do TextInput
+## setNativeProps para editar o valor do TextInput {#setnativeprops-to-edit-textinput-value}
 
 Outro caso de uso muito comum de `setNativeProps` é editar o valor do TextInput. A prop `controlled` do TextInput às vezes pode perder caracteres quando o `bufferDelay` é baixo e o usuário digita muito rapidamente. Alguns desenvolvedores preferem pular esta prop inteiramente e, em vez disso, usar `setNativeProps` para manipular diretamente o valor do TextInput quando necessário.
 
@@ -124,6 +124,6 @@ export default App;
 
 Você pode usar o método [`clear`](../textinput#clear) para limpar o `TextInput` que limpa o texto de entrada atual usando a mesma abordagem.
 
-## Evitando conflitos com a função render
+## Evitando conflitos com a função render {#avoiding-conflicts-with-the-render-function}
 
 Se você atualizar uma propriedade que também é gerenciada pela função render, você pode acabar com alguns bugs imprevisíveis e confusos porque sempre que o componente re-renderizar e aquela propriedade mudar, qualquer valor que foi previamente definido por `setNativeProps` será completamente ignorado e substituído.

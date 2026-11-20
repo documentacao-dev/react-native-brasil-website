@@ -1,21 +1,22 @@
 ---
 id: reactnativeversion
 title: ReactNativeVersion
+ia-translated: true
 ---
 
 ```tsx
 import {ReactNativeVersion} from 'react-native';
 ```
 
-The `ReactNativeVersion` API exposes the version of the resolved `react-native` package on JS side. Apps and libraries can use it to check compatibility or enable version-specific behavior.
+A API `ReactNativeVersion` expõe a versão do pacote `react-native` resolvido no lado JS. Apps e bibliotecas podem usá-la para verificar compatibilidade ou habilitar comportamentos específicos de cada versão.
 
 :::note
 
-Also, we have [`Platform.constants.reactNativeVersion`](platform#constants) in our public API already. **However**, this is the per-platform _**native-reported**_ React Native version.
+Além disso, já temos [`Platform.constants.reactNativeVersion`](platform#constants) na nossa API pública. **No entanto**, essa é a versão do React Native _**reportada nativamente**_ por plataforma.
 
 :::
 
-## Example
+## Exemplo {#example}
 
 ```tsx
 import {ReactNativeVersion} from 'react-native';
@@ -30,9 +31,9 @@ prerelease; // null
 
 ---
 
-# Reference
+# Referência {#reference}
 
-## Properties
+## Propriedades {#properties}
 
 ### `major`
 
@@ -40,7 +41,7 @@ prerelease; // null
 static major: number;
 ```
 
-The major version number of the resolved `react-native` package.
+O número da versão major do pacote `react-native` resolvido.
 
 ---
 
@@ -50,7 +51,7 @@ The major version number of the resolved `react-native` package.
 static minor: number;
 ```
 
-The minor version number of the resolved `react-native` package.
+O número da versão minor do pacote `react-native` resolvido.
 
 ---
 
@@ -60,7 +61,7 @@ The minor version number of the resolved `react-native` package.
 static patch: number;
 ```
 
-The patch version number of the resolved `react-native` package.
+O número da versão patch do pacote `react-native` resolvido.
 
 ---
 
@@ -70,9 +71,9 @@ The patch version number of the resolved `react-native` package.
 static prerelease: string | null;
 ```
 
-The prerelease tag for the resolved `react-native` package, or `null` for stable releases.
+A tag de prerelease do pacote `react-native` resolvido, ou `null` para releases estáveis.
 
-## Methods
+## Métodos {#methods}
 
 ### `getVersionString()`
 
@@ -80,4 +81,4 @@ The prerelease tag for the resolved `react-native` package, or `null` for stable
 static getVersionString(): string;
 ```
 
-Returns the full version string in the format `major.minor.patch` or `major.minor.patch-prerelease`.
+Retorna a string de versão completa no formato `major.minor.patch` ou `major.minor.patch-prerelease`.

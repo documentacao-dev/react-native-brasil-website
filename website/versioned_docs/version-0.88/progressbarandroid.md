@@ -1,15 +1,16 @@
 ---
+ia-translated: true
 id: progressbarandroid
 title: '🗑️ ProgressBarAndroid'
 ---
 
-:::warning[Deprecated]
-Use one of the [community packages](https://reactnative.directory/?search=progressbar) instead.
+:::warning[Descontinuado]
+Use um dos [pacotes da comunidade](https://reactnative.directory/?search=progressbar) em vez disso.
 :::
 
-Android-only React component used to indicate that the app is loading or there is some activity in the app.
+Componente React exclusivo para Android usado para indicar que o aplicativo está carregando ou há alguma atividade no aplicativo.
 
-### Example
+### Exemplo {#example}
 
 ```SnackPlayer name=ProgressBarAndroid&supportedPlatforms=android
 import {View, StyleSheet, ProgressBarAndroid, Text} from 'react-native';
@@ -61,74 +62,74 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
 ## Props
 
-Inherits [View Props](view.md#props).
+Herda [View Props](view.md#props).
 
 ### `animating`
 
-Whether to show the ProgressBar (true, the default) or hide it (false).
+Se deve mostrar o ProgressBar (true, o padrão) ou ocultá-lo (false).
 
-| Type | Required |
+| Tipo | Obrigatório |
 | ---- | -------- |
-| bool | No       |
+| bool | Não       |
 
 ---
 
 ### `color`
 
-Color of the progress bar.
+Cor da barra de progresso.
 
-| Type               | Required |
+| Tipo               | Obrigatório |
 | ------------------ | -------- |
-| [color](colors.md) | No       |
+| [color](colors.md) | Não       |
 
 ---
 
 ### `indeterminate`
 
-If the progress bar will show indeterminate progress. Note that this can only be false if styleAttr is Horizontal, and requires a `progress` value.
+Se a barra de progresso mostrará progresso indeterminado. Note que isso só pode ser false se styleAttr for Horizontal, e requer um valor `progress`.
 
-| Type              | Required |
+| Tipo              | Obrigatório |
 | ----------------- | -------- |
-| indeterminateType | No       |
+| indeterminateType | Não       |
 
 ---
 
 ### `progress`
 
-The progress value (between 0 and 1).
+O valor de progresso (entre 0 e 1).
 
-| Type   | Required |
+| Tipo   | Obrigatório |
 | ------ | -------- |
-| number | No       |
+| number | Não       |
 
 ---
 
 ### `styleAttr`
 
-Style of the ProgressBar. One of:
+Estilo do ProgressBar. Um de:
 
 - Horizontal
-- Normal (default)
+- Normal (padrão)
 - Small
 - Large
 - Inverse
 - SmallInverse
 - LargeInverse
 
-| Type                                                                                      | Required |
+| Tipo                                                                                      | Obrigatório |
 | ----------------------------------------------------------------------------------------- | -------- |
-| enum('Horizontal', 'Normal', 'Small', 'Large', 'Inverse', 'SmallInverse', 'LargeInverse') | No       |
+| enum('Horizontal', 'Normal', 'Small', 'Large', 'Inverse', 'SmallInverse', 'LargeInverse') | Não       |
 
 ---
 
 ### `testID`
 
-Used to locate this view in end-to-end tests.
+Usado para localizar esta view em testes end-to-end.
 
-| Type   | Required |
+| Tipo   | Obrigatório |
 | ------ | -------- |
-| string | No       |
+| string | Não       |

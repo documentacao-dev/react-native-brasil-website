@@ -1,13 +1,14 @@
 ---
+ia-translated: true
 id: systrace
 title: Systrace
 ---
 
-`Systrace` is a standard Android marker-based profiling tool (and is installed when you install the Android platform-tools package). Profiled code blocks are surrounded by start/end markers which are then visualized in a colorful chart format. Both the Android SDK and React Native framework provide standard markers that you can visualize.
+`Systrace` é uma ferramenta de profiling padrão do Android baseada em marcadores (e é instalada quando você instala o pacote Android platform-tools). Blocos de código com profiling são cercados por marcadores de início/fim que são então visualizados em um formato de gráfico colorido. Tanto o Android SDK quanto o React Native framework fornecem marcadores padrão que você pode visualizar.
 
-## Example
+## Exemplo {#example}
 
-`Systrace` allows you to mark JavaScript (JS) events with a tag and an integer value. Start profiling with an Android profiling tool such as Perfetto or EasyProfiler, then use these markers to identify the events in the captured trace.
+`Systrace` permite que você marque eventos JavaScript (JS) com uma tag e um valor inteiro. Comece a fazer o profiling com uma ferramenta de profiling do Android, como Perfetto ou EasyProfiler, e depois use esses marcadores para identificar os eventos no trace capturado.
 
 ```SnackPlayer name=Systrace%20Example
 import {Button, Text, View, StyleSheet, Systrace} from 'react-native';
@@ -62,9 +63,9 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
-## Methods
+## Métodos {#methods}
 
 ### `isEnabled()`
 
@@ -80,7 +81,7 @@ static isEnabled(): boolean;
 static beginEvent(eventName: string | (() => string), args?: EventArgs);
 ```
 
-beginEvent/endEvent for starting and then ending a profile within the same call stack frame.
+beginEvent/endEvent para iniciar e depois encerrar um profile dentro do mesmo call stack frame.
 
 ---
 
@@ -101,7 +102,7 @@ static beginAsyncEvent(
 ): number;
 ```
 
-beginAsyncEvent/endAsyncEvent for starting and then ending a profile where the end can either occur on another thread or out of the current stack frame, eg await the returned cookie variable should be used as input into the endAsyncEvent call to end the profile.
+beginAsyncEvent/endAsyncEvent para iniciar e depois encerrar um profile onde o fim pode ocorrer em outra thread ou fora do call stack frame atual, por exemplo, await. A variável cookie retornada deve ser usada como entrada na chamada endAsyncEvent para encerrar o profile.
 
 ---
 
@@ -123,4 +124,4 @@ static endAsyncEvent(
 static counterEvent(eventName: string | (() => string), value: number);
 ```
 
-Register the value to the profileName on the systrace timeline.
+Registra o valor no profileName na timeline do systrace.

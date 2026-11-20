@@ -1,50 +1,51 @@
 ---
 id: release-levels
-title: Release Levels
+title: Níveis de release
+ia-translated: true
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-React Native provides the community with the ability to adopt individual new features as soon as their design and implementation are nearly complete, even before they are included in a stable release. This approach is known as **release levels**.
+O React Native oferece à comunidade a possibilidade de adotar novos recursos individualmente assim que o design e a implementação estiverem quase completos, mesmo antes de eles serem incluídos em uma versão estável. Essa abordagem é conhecida como **níveis de release**.
 
-You can configure the release level of React Native so that your React Native instance will initialize with Feature Flags set to either `EXPERIMENTAL`, `CANARY`, or `STABLE` modes.
+Você pode configurar o nível de release do React Native para que sua instância do React Native inicialize com as Feature Flags definidas nos modos `EXPERIMENTAL`, `CANARY` ou `STABLE`.
 
 :::note
-This approach is similar to [Canary and Experimental releases in React](https://react.dev/blog/2023/05/03/react-canaries), but with a key difference: regardless of the release level, the same version of React JS and React Native code is used.  
-React Native is also not using `@canary` or `@experimental` NPM tags, as release levels are available for both stable and nightly releases of React Native.
+Essa abordagem é semelhante aos [releases Canary e Experimental do React](https://react.dev/blog/2023/05/03/react-canaries), mas com uma diferença importante: independentemente do nível de release, o mesmo código do React JS e do React Native é usado.  
+O React Native também não usa as tags NPM `@canary` ou `@experimental`, já que os níveis de release estão disponíveis tanto para releases estáveis quanto para nightly do React Native.
 :::
 
-Moreover, setting the release level to `EXPERIMENTAL` or `CANARY` will **not** result in consuming `react@nightly` or `react@canary` due to how react-native is consuming the React version ([you can read more about it here](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Renderer/README.md#react--react-native-versions)).
+Além disso, definir o nível de release como `EXPERIMENTAL` ou `CANARY` **não** resulta no consumo de `react@nightly` ou `react@canary`, por causa da forma como o react-native consome a versão do React ([você pode ler mais sobre isso aqui](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Renderer/README.md#react--react-native-versions)).
 
-## When to Use Each Release Level
+## Quando usar cada nível de release {#when-to-use-each-release-level}
 
 - **`STABLE`**:
-  - Use for all production apps and libraries that do not need early access to unreleased features.
-  - This is the default level for stable and nightly releases.
+  - Use para todos os apps e bibliotecas de produção que não precisam de acesso antecipado a recursos ainda não lançados.
+  - Este é o nível padrão para releases estáveis e nightly.
 - **`CANARY`:**
-  - Use if you are a framework author, advanced app developer, or need to test or adopt new features before they are released in stable.
-  - Not recommended for production or user-facing applications.
+  - Use se você é autor de framework, desenvolvedor avançado de apps, ou precisa testar ou adotar novos recursos antes de eles serem lançados na versão estável.
+  - Não recomendado para produção ou apps voltados ao usuário.
 - **`EXPERIMENTAL`:**
-  - Use only for testing and providing feedback for new features in the early stages of development
-  - Not recommended for production or user-facing applications.
+  - Use apenas para testes e para dar feedback sobre novos recursos nos estágios iniciais de desenvolvimento
+  - Não recomendado para produção ou apps voltados ao usuário.
 
-## How to initialize React Native using Canary & Experimental
+## Como inicializar o React Native usando Canary e Experimental {#how-to-initialize-react-native-using-canary--experimental}
 
 ### Android
 
-The `DefaultNewArchitectureEntryPoint` class now has a `releaseLevel` property (default: `STABLE`).  
-The feature flag system uses this property to select the appropriate set of feature flags for the chosen release level.
+A classe `DefaultNewArchitectureEntryPoint` agora tem uma propriedade `releaseLevel` (padrão: `STABLE`).  
+O sistema de feature flags usa essa propriedade para selecionar o conjunto apropriado de feature flags para o nível de release escolhido.
 
-```kotlin title="Example usage"
+```kotlin title="Exemplo de uso"
 DefaultNewArchitectureEntryPoint.releaseLevel = ReleaseLevel.CANARY
 DefaultNewArchitectureEntryPoint.load()
 ```
 
-The build system generates different feature flag override classes for each release level, ensuring the correct features are enabled for each stage.
+O sistema de build gera classes de override de feature flags diferentes para cada nível de release, garantindo que os recursos corretos sejam habilitados em cada estágio.
 
 ### iOS
 
-The `RCTReactNativeFactory` class now has an initializer that accepts a `releaseLevel` parameter. The feature flag setup uses this parameter to select the correct feature flag overrides. Create the factory from your `SceneDelegate` (or `AppDelegate` if you are not using the UIScene lifecycle).
+A classe `RCTReactNativeFactory` agora tem um inicializador que aceita um parâmetro `releaseLevel`. A configuração das feature flags usa esse parâmetro para selecionar os overrides corretos. Crie a factory a partir do seu `SceneDelegate` (ou do `AppDelegate`, se você não usa o ciclo de vida UIScene).
 
 <Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
 <TabItem value="objc">
@@ -64,7 +65,7 @@ reactNativeFactory = RCTReactNativeFactory(delegate: self, releaseLevel: RCTRele
 </Tabs>
 
 <details>
-<summary>Apps without UIScene lifecycle</summary>
+<summary>Apps sem o ciclo de vida UIScene</summary>
 
 <Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
 <TabItem value="objc">
@@ -85,4 +86,4 @@ let factory = RCTReactNativeFactory(delegate: delegate, releaseLevel: RCTRelease
 
 </details>
 
-The system ensures that only one release level is active per app instance, and will crash if multiple factories are created with different release levels.
+O sistema garante que apenas um nível de release esteja ativo por instância do app, e vai dar crash se várias factories forem criadas com níveis de release diferentes.

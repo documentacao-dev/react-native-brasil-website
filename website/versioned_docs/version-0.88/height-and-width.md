@@ -6,7 +6,7 @@ title: Altura e Largura
 
 A altura e largura de um componente determinam seu tamanho na tela.
 
-## Dimensões Fixas
+## Dimensões Fixas {#fixed-dimensions}
 
 A maneira geral de definir as dimensões de um componente é adicionando `width` e `height` fixos ao estilo. Todas as dimensões no React Native são sem unidade e representam pixels independentes de densidade.
 
@@ -50,7 +50,7 @@ Definir dimensões dessa maneira é comum para componentes cujo tamanho deve sem
 Não há mapeamento universal de pontos para unidades físicas de medida. Isso significa que um componente com dimensões fixas pode não ter o mesmo tamanho físico em diferentes dispositivos e tamanhos de tela. No entanto, essa diferença é imperceptível para a maioria dos casos de uso.
 :::
 
-## Dimensões Flex
+## Dimensões Flex {#flex-dimensions}
 
 Use `flex` no estilo de um componente para fazer o componente expandir e encolher dinamicamente com base no espaço disponível. Normalmente você usará `flex: 1`, que diz a um componente para preencher todo o espaço disponível, compartilhado igualmente entre outros componentes com o mesmo pai. Quanto maior o `flex` dado, maior a proporção de espaço que um componente ocupará comparado aos seus irmãos.
 
@@ -79,7 +79,7 @@ export default FlexDimensionsBasics;
 
 Depois que você puder controlar o tamanho de um componente, o próximo passo é [aprender como organizá-lo na tela](flexbox.md).
 
-## Dimensões em Porcentagem
+## Dimensões em Porcentagem {#percentage-dimensions}
 
 Se você quer preencher uma certa porção da tela, mas você _não_ quer usar o layout `flex`, você _pode_ usar **valores de porcentagem** no estilo do componente. Similar a dimensões flex, dimensões em porcentagem exigem um pai com tamanho definido.
 

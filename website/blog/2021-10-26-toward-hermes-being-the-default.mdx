@@ -9,13 +9,13 @@ Desde que [anunciamos o Hermes em 2019](https://engineering.fb.com/2019/07/12/an
 
 {/* truncate */}
 
-## Otimizando para React Native
+## Otimizando para React Native {#optimizing-for-react-native}
 
 O recurso definidor do Hermes é como ele executa o trabalho de compilação ahead-of-time, significando que apps React Native com Hermes habilitado são enviados com bytecode pré-compilado otimizado em vez de código-fonte JavaScript simples. Isso reduz drasticamente a quantidade de trabalho necessário para iniciar seu produto para os usuários. Medições de apps do Facebook e da comunidade sugeriram que habilitar o Hermes frequentemente cortou a métrica TTI (ou [Time-To-Interactive](https://web.dev/interactive/)) de um produto quase pela metade.
 
 Dito isso, temos trabalhado em melhorar o Hermes em muitos outros aspectos para torná-lo ainda melhor como um motor JavaScript especializado para React Native.
 
-### Construindo um Novo Coletor de Lixo para Fabric
+### Construindo um Novo Coletor de Lixo para Fabric {#building-a-new-garbage-collector-for-fabric}
 
 Com o próximo renderer [Fabric](https://github.com/react-native-community/discussions-and-proposals/issues/4) na nova arquitetura do React Native, será possível chamar JavaScript sincronamente na thread de UI. No entanto, isso significa que se a thread JavaScript demorar muito para executar, pode causar quedas perceptíveis de quadros da UI e bloquear entradas do usuário. A [renderização concorrente](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html) habilitada pelo React [Fiber](https://reactjs.org/docs/faq-internals.html#what-is-react-fiber) evitará agendar tarefas JavaScript longas dividindo o trabalho de renderização em pedaços. No entanto, há outra fonte comum de latência da thread JavaScript — quando o motor JavaScript precisa "parar o mundo" para executar uma coleta de lixo (GC).
 
@@ -23,7 +23,7 @@ O coletor de lixo padrão anterior no Hermes, [GenGC](https://hermesengine.dev/d
 
 Para mitigar isso, implementamos um GC totalmente novo _majoritariamente concorrente_ chamado [Hades](https://hermesengine.dev/docs/hades). O Hades coleta sua geração jovem exatamente da mesma forma que o GenGC, mas gerencia sua geração antiga com um coletor mark-sweep estilo snapshot-at-the-beginning, que pode reduzir significativamente o tempo de pausa do GC executando a maior parte de seu trabalho em uma thread em segundo plano sem bloquear a thread principal do motor de executar código JavaScript. **Nossas estatísticas mostram que o Hades pausa apenas 48ms no p99.9 em dispositivos de 64 bits (34x mais rápido que o GenGC!)** e cerca de 88ms no p99.9 em dispositivos de 32 bits (onde opera como um GC _incremental_ single-threaded). Essas melhorias de tempo de pausa podem vir ao custo de throughput geral, devido à necessidade de write barriers mais caras, alocação baseada em freelist mais lenta (em oposição a um bump pointer allocator) e maior fragmentação de heap. Achamos que são as trade-offs certas, e conseguimos alcançar menor consumo de memória geral via coalescing e otimizações de memória adicionais sobre as quais falaremos.
 
-### Atacando Pontos de Dor de Desempenho
+### Atacando Pontos de Dor de Desempenho {#striking-on-performance-pain-points}
 
 O tempo de inicialização de aplicações é crítico para o sucesso de muitos apps, e estamos continuamente empurrando o limite para React Native. Para qualquer novo recurso JavaScript que implementamos no Hermes, monitoramos cuidadosamente seu impacto no desempenho de produção e garantimos que não regridam métricas. No Facebook, estamos atualmente experimentando com um [perfil de transformação Babel dedicado para Hermes no Metro](https://github.com/facebook/react-native/blob/main/packages/react-native-babel-preset/src/configs/main.js#L41) para substituir uma dúzia de transformações Babel pelas implementações ESNext nativas do Hermes. Conseguimos observar **18-25% de melhorias de TTI** em muitas superfícies e **diminuições gerais de tamanho de bytecode** e esperamos ver resultados similares para OSS.
 
@@ -34,7 +34,7 @@ Além do desempenho de inicialização, identificamos a pegada de memória como 
 
 Uma de nossas decisões chave com o Hermes foi não implementar um [compilador just-in-time (JIT)](https://en.wikipedia.org/wiki/Just-in-time_compilation) porque acreditamos que para a maioria dos apps React Native, os custos adicionais de warm-up e pegadas extras em binário e memória não valeriam realmente a pena. Por anos, investimos muito esforço em otimizar o desempenho do interpretador e otimizações do compilador para tornar o throughput do Hermes competitivo com outros motores para cargas de trabalho React Native. Continuamos focados em melhorar o throughput identificando gargalos de desempenho de todos os lugares (loop de dispatch do interpretador, layout de stack, modelo de objeto, GC, etc.). Espere mais números em próximos lançamentos!
 
-### Pioneirismo em Integrações Verticais
+### Pioneirismo em Integrações Verticais {#pioneering-at-vertical-integrations}
 
 No Facebook, preferimos colocar projetos juntos dentro de um grande [monorepo](https://en.wikipedia.org/wiki/Monorepo). Ao ter o motor (Hermes) e o host (React Native) iterando proximamente juntos, abrimos muito espaço para integrações verticais. Para citar alguns:
 
@@ -43,11 +43,11 @@ No Facebook, preferimos colocar projetos juntos dentro de um grande [monorepo](h
 - A nova arquitetura do React Native é fortemente baseada em [JSI (ou JavaScript Interface)](https://github.com/react-native-community/discussions-and-proposals/issues/91), uma API leve e de propósito geral para embutir um motor JavaScript em um programa C++. Ao ter a equipe mantendo o motor JS também mantendo a implementação da API JSI, estamos confiantes em fornecer a melhor integração possível que é confiável, performática e testada em batalha na escala do Facebook.
 - Conseguir primitivas de concorrência JavaScript (ex. [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)) e primitivas de concorrência da plataforma (ex. [microtasks](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide)) tanto semanticamente corretas quanto performáticas são críticas para renderização concorrente do React e o futuro de apps React Native. Historicamente, promises no React Native eram [polyfilled](https://github.com/facebook/react-native/blob/main/Libraries/Core/polyfillPromise.js#L37) usando APIs [`setImmediate`](https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate) não padronizadas. Estamos trabalhando para tornar promises nativas e microtasks de motores JS disponíveis via JSI, e introduzindo [`queueMicrotask`](https://developer.mozilla.org/en-US/docs/Web/API/queueMicrotask), uma adição recente ao padrão web, à plataforma, para melhor suportar código JavaScript assíncrono moderno.
 
-## Trazendo Toda a Comunidade Junto
+## Trazendo Toda a Comunidade Junto {#bringing-along-the-whole-community}
 
 O Hermes tem sido realmente ótimo para nós no Facebook. Mas nosso trabalho não está feito até que nossa comunidade possa usar o Hermes para alimentar experiências em todo o ecossistema, para que todos aproveitem todos os seus recursos e abracem seu potencial completo.
 
-### Expandindo para Novas Plataformas
+### Expandindo para Novas Plataformas {#expanding-to-new-platforms}
 
 O Hermes foi inicialmente open source apenas para React Native no Android. Desde então, ficamos emocionados em ver membros de nossa comunidade expandindo o suporte do Hermes para [muitas outras plataformas que o ecossistema do React Native expandiu](https://reactnative.dev/blog/2021/08/26/many-platform-vision).
 
@@ -57,7 +57,7 @@ A Microsoft tem trazido [Hermes para React Native para Windows e macOS](https://
 
 Por último, mas não menos importante, o Hermes também tem alimentado todas as experiências de realidade virtual construídas com a família de tecnologias React no Oculus, incluindo Oculus Home.
 
-### Apoiando Nossa Comunidade
+### Apoiando Nossa Comunidade {#supporting-our-community}
 
 Reconhecemos que ainda existem bloqueadores que impedem partes da comunidade de adotar o Hermes e estamos comprometidos em construir suporte para esses recursos ausentes. Nosso objetivo é ser completo em recursos para que o Hermes seja a escolha certa para a maioria dos apps React Native. Aqui está como a comunidade já moldou o roadmap do Hermes:
 
@@ -72,13 +72,13 @@ Reconhecemos que ainda existem bloqueadores que impedem partes da comunidade de 
   - As pessoas descobriram que nosso limite padrão de tamanho de heap era muito pequeno e causou [pressão de GC desnecessária](https://github.com/facebook/hermes/issues/295) e [crashes OOM](https://github.com/facebook/hermes/issues/511) para muitos usuários que não estão familiarizados com personalização das configs de GC do Hermes. Então aumentamos de 512MiB para 3GiB para ser mais do que suficiente para a maioria dos usuários por padrão.
   - As pessoas também relataram que nossa implementação especializada de `Function.prototype.toString` [causou queda de desempenho em bibliotecas fazendo detecção de recurso inadequada](https://github.com/facebook/hermes/issues/471#issuecomment-820123463) e [bloqueou usuários de fazer injeção de código-fonte](https://github.com/facebook/hermes/issues/114#issuecomment-887106990). Isso nos ajudou a fortalecer nossa posição de que o Hermes, sempre que possível, não deve atrapalhar os desenvolvedores e respeitar práticas de facto.
 
-## Resumo
+## Resumo {#summary}
 
 Em resumo, nossa visão é tornar o Hermes pronto para ser o motor JavaScript padrão em todas as plataformas React Native. Já começamos a trabalhar nisso, e queremos ouvir de todos vocês sobre esta direção.
 
 É extremamente importante para nós preparar o ecossistema para uma adoção suave. Encorajamos você a experimentar o Hermes, e abrir issues em nosso [repositório GitHub](https://github.com/facebook/hermes) para quaisquer feedbacks, perguntas, solicitações de recursos e incompatibilidades.
 
-## Agradecimentos
+## Agradecimentos {#thanks}
 
 Gostaríamos de agradecer à equipe do Hermes, à equipe do React Native e aos muitos contribuidores da comunidade React Native por seu trabalho para melhorar o Hermes.
 

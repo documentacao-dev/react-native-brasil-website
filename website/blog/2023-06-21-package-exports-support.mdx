@@ -18,7 +18,7 @@ Neste post vamos cobrir como o Package Exports funciona, e o que essas mudanças
 
 {/* truncate */}
 
-## O que é Package Exports?
+## O que é Package Exports? {#what-is-package-exports}
 
 Introduzido no Node.js 12.7.0, Package Exports é a abordagem moderna para pacotes npm especificarem **entry points** — o mapeamento de subpaths de pacotes que podem ser importados externamente e para qual(is) arquivo(s) eles devem resolver.
 
@@ -72,7 +72,7 @@ As capacidades completas para `"exports"` são detalhadas na [especificação No
 Como esses recursos se sobrepõem a conceitos existentes do React Native (como [extensões específicas de plataforma](/docs/platform-specific-code)), e como `"exports"` já estava ativo no ecossistema npm há algum tempo, nós contatamos a comunidade React Native para garantir que nossa implementação atenderia às necessidades dos desenvolvedores ([PR](https://github.com/react-native-community/discussions-and-proposals/pull/534), [RFC final](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0534-metro-package-exports-support.md)).
 :::
 
-## Para desenvolvedores de aplicativos
+## Para desenvolvedores de aplicativos {#for-app-developers}
 
 Package Exports pode ser habilitado hoje, em beta.
 
@@ -83,7 +83,7 @@ Habilitar Package Exports traz algumas [mudanças que quebram compatibilidade em
 
 **Em uma versão futura do React Native, Package Exports será habilitado por padrão**. Em uma situação de ovo e galinha, aplicativos React Native eram anteriormente um obstáculo para alguns pacotes migrarem para `"exports"` — ou usavam nossa válvula de escape do campo raiz `"react-native"`. Suportar esses recursos no Metro permitirá que o ecossistema avance.
 
-### Habilitando Package Exports (beta)
+### Habilitando Package Exports (beta) {#enabling-package-exports-beta}
 
 Package Exports pode ser habilitado no arquivo [**metro.config.js**](https://github.com/facebook/react-native/blob/0.72-stable/packages/react-native/template/metro.config.js) do seu aplicativo via a opção [`resolver.unstable_enablePackageExports`](https://metrobundler.dev/docs/configuration/#unstable_enablepackageexports-experimental).
 
@@ -107,7 +107,7 @@ O Metro expõe duas opções adicionais de resolver que configuram como os condi
 **Se você está usando TypeScript**, o comportamento de resolução pode ser correspondido configurando [`moduleResolution: 'bundler'`](https://www.typescriptlang.org/tsconfig#moduleResolution) e [`resolvePackageJsonImports: false`](https://www.typescriptlang.org/tsconfig#resolvePackageJsonExports) dentro do `tsconfig.json` do seu projeto.
 :::
 
-#### Validando mudanças no seu projeto
+#### Validando mudanças no seu projeto {#validating-changes-in-your-project}
 
 Para projetos existentes, recomendamos que adotantes iniciais sigam estes passos para ver se ocorrem mudanças de resolução após habilitar `unstable_enablePackageExports`. Este é um processo único. É provável que não haverá mudanças nenhuma, mas gostaríamos que os desenvolvedores optassem por isso com certeza.
 
@@ -143,7 +143,7 @@ Se você não está usando Yarn, substitua `yarn` por `npx` (ou a ferramenta rel
 
 </details>
 
-### Mudanças que quebram compatibilidade
+### Mudanças que quebram compatibilidade {#breaking-changes}
 
 Decidimos por uma implementação de Package Exports no Metro que seja compatível com a especificação (necessitando algumas mudanças que quebram compatibilidade), mas compatível com versões anteriores de outra forma (ajudando aplicativos com imports existentes a migrarem gradualmente).
 
@@ -154,7 +154,7 @@ A principal mudança que quebra compatibilidade é que quando `"exports"` é for
 
 Para mais detalhes, por favor veja todas as [**mudanças que quebram compatibilidade**](https://metrobundler.dev/docs/package-exports#summary-of-breaking-changes) na documentação do Metro.
 
-### Encapsulamento de pacote é leniente
+### Encapsulamento de pacote é leniente {#package-encapsulation-is-lenient}
 
 Quando o Metro encontra um subpath que não está listado em `"exports"`, **ele voltará à resolução legada**. Este é um recurso de compatibilidade destinado a reduzir o atrito do usuário para imports anteriormente permitidos em projetos React Native existentes.
 
@@ -170,7 +170,7 @@ maintainer(s) to expose this API.
 Planejamos implementar um modo estrito para encapsulamento de pacote no futuro, para alinhar com o comportamento padrão do Node. Portanto, **recomendamos que todos os desenvolvedores resolvam esses avisos** se levantados pelos usuários.
 :::
 
-## Para mantenedores de pacotes (prévia)
+## Para mantenedores de pacotes (prévia) {#for-package-maintainers-preview}
 
 :::info
 De acordo com nosso [plano de lançamento](#the-future-stable-exports-enabled-by-default), Package Exports será habilitado para a maioria dos projetos na próxima versão do React Native (0.73) ainda este ano.
@@ -180,13 +180,13 @@ De acordo com nosso [plano de lançamento](#the-future-stable-exports-enabled-by
 
 Package Exports fornece a capacidade de restringir acesso aos internos do seu pacote, e capacidades mais previsíveis para bibliotecas direcionarem ao React Native e React Native for Web.
 
-### Se você está usando `"exports"` hoje
+### Se você está usando `"exports"` hoje {#if-you-are-using-exports-today}
 
 Se seu pacote usa `"exports"` junto com o campo raiz `"react-native"` atual, por favor tenha em mente as [mudanças que quebram compatibilidade](#breaking-changes) para usuários acima. Para usuários habilitando esse recurso no Metro, `"exports"` agora será considerado primeiro durante a resolução de módulos.
 
 Na prática, antecipamos que a principal mudança para os usuários será a aplicação (via avisos) de quaisquer subpaths inacessíveis em seus aplicativos, por respeitar o encapsulamento de pacote de `"exports"`.
 
-### Migrando para `"exports"`
+### Migrando para `"exports"` {#migrating-to-exports}
 
 **Adicionar um campo `"exports"` ao seu pacote é totalmente opcional**. Recursos de resolução de pacote existentes se comportarão identicamente para pacotes que não usam `"exports"` — e não temos planos de remover este comportamento.
 
@@ -201,7 +201,7 @@ Se você decidir introduzir `"exports"`, **recomendamos fazer isso como uma muda
 **Por favor, não confie nos comportamentos lenientes da implementação do Metro.** Embora o Metro seja compatível com versões anteriores, os pacotes devem seguir como `"exports"` está documentado na especificação e estritamente implementado por outras ferramentas.
 :::
 
-### A nova condition `"react-native"`
+### A nova condition `"react-native"` {#the-new-react-native-condition}
 
 Introduzimos `"react-native"` como uma community condition (para uso com conditional exports). Isso representa o React Native, o framework, ao lado de outros runtimes reconhecidos como `"node"` e `"deno"` ([RFC](https://github.com/nodejs/node/pull/45367)).
 
@@ -225,7 +225,7 @@ Isso substitui o campo raiz `"react-native"` anterior. A ordem de prioridade de 
 Escolhemos não introduzir conditions `"android"` e `"ios"`, devido à prevalência de outros métodos de seleção de plataforma existentes, e à complexidade de como esse comportamento poderia funcionar através de frameworks. Por favor use a API [`Platform.select()`](/docs/platform#select) em vez disso.
 :::
 
-## O futuro: `"exports"` estável, habilitado por padrão
+## O futuro: `"exports"` estável, habilitado por padrão {#the-future-stable-exports-enabled-by-default}
 
 Na próxima versão do React Native, estamos mirando remover o prefixo `unstable_` para este recurso (tendo abordado trabalho de performance planejado e quaisquer bugs) e habilitaremos a resolução de Package Exports por padrão.
 
@@ -233,7 +233,7 @@ Com `"exports"` habilitado para todos, podemos começar a levar a comunidade Rea
 
 ![Rollout plan for Package Exports support](../static/blog/assets/package-exports-rollout.png)
 
-## Agradecimentos
+## Agradecimentos {#thanks}
 
 Agradecimentos aos membros da comunidade React Native que deram feedback no RFC: [@SimenB](https://github.com/SimenB), [@tido64](https://github.com/tido64), [@byCedric](https://github.com/byCedric), [@thymikee](https://github.com/thymikee).
 

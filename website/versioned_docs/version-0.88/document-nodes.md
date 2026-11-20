@@ -38,9 +38,9 @@ export default function AccessingDocument() {
 
 ---
 
-## Referência
+## Referência {#reference}
 
-### API compatível com a Web
+### API compatível com a Web {#web-compatible-api}
 
 De [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement):
 

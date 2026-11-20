@@ -11,7 +11,7 @@ tags: [announcement, release]
 
 A tão aguardada versão 0.56 do React Native está agora disponível 🎉. Este blog post destaca algumas das [mudanças](https://github.com/react-native-community/react-native-releases/blob/master/CHANGELOG.md#highlights) introduzidas neste novo lançamento. Também queremos aproveitar a oportunidade para explicar o que nos manteve ocupados desde março.
 
-### O dilema das mudanças breaking, ou, "quando lançar?"
+### O dilema das mudanças breaking, ou, "quando lançar?" {#the-breaking-changes-dilemma-or-when-to-release}
 
 O [Guia do Contribuidor](https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md) explica o processo de integração pelo qual todas as mudanças no React Native passam. O projeto é composto por [muitas ferramentas diferentes](https://github.com/facebook/react-native-website/issues/370), requerendo coordenação e suporte constante para manter tudo funcionando adequadamente. Adicione a isso a vibrante comunidade open source que contribui de volta para o projeto, e você terá uma noção da escala alucinante de tudo isso.
 
@@ -25,7 +25,7 @@ Gostaríamos de concluir esta seção agradecendo [todos os 67 contribuidores qu
 
 E agora, sem mais delongas...
 
-## As Grandes Mudanças
+## As Grandes Mudanças {#the-big-changes}
 
 ### Babel 7
 
@@ -33,7 +33,7 @@ Como você pode saber, a ferramenta transpiladora que permite que todos nós use
 
 Se você se encontrar com problemas ao atualizar, consulte a [seção de documentação relacionada a isso](https://new.babeljs.io/docs/en/next/v7-migration.html).
 
-### Modernizando o suporte Android
+### Modernizando o suporte Android {#modernizing-android-support}
 
 No Android, muito do ferramental ao redor mudou. Atualizamos para [Gradle 3.5](https://github.com/facebook/react-native/commit/699e5eebe807d1ced660d2d2f39b5679d26925da), [Android SDK 26](https://github.com/facebook/react-native/commit/065c5b6590de18281a8c592a04240751c655c03c), [Fresco para 1.9.0, e OkHttp para 3.10.0](https://github.com/facebook/react-native/commit/6b07602915157f54c39adbf0f9746ac056ad2d13) e até o [alvo da API NDK para API 16](https://github.com/facebook/react-native/commit/5ae97990418db613cd67b1fb9070ece976d17dc7). Essas mudanças devem ocorrer sem problemas e resultar em builds mais rápidos. Mais importante, isso ajudará os desenvolvedores a cumprir com os [novos requisitos da Play Store](https://android-developers.googleblog.com/2017/12/improving-app-security-and-performance.html) que entrarão em vigor no próximo mês.
 
@@ -41,7 +41,7 @@ Relacionado a isso, gostaríamos de agradecer particularmente [Dulmandakh](https
 
 Existem mais alguns passos que precisam ser dados nesta direção, e você pode acompanhar o planejamento futuro e discussão sobre atualizar o suporte Android na [issue dedicada](https://github.com/facebook/react-native/issues/19297) (e uma lateral para o [JSC](https://github.com/facebook/react-native/issues/19737)).
 
-### Novos Node, Xcode, React e Flow – nossa!
+### Novos Node, Xcode, React e Flow – nossa! {#new-node-xcode-react-and-flow--oh-my}
 
 Node 8 é agora o padrão para React Native. Na verdade já estava sendo testado, mas colocamos os dois pés para frente já que o Node 6 entrou em modo de manutenção. React também foi atualizado para 16.4, que traz uma tonelada de correções com ele.
 
@@ -51,7 +51,7 @@ A toolchain de integração contínua foi atualizada [para usar Xcode 9.4](https
 
 Atualizamos para [Flow 0.75](https://github.com/facebook/react-native/commit/6264b6932a08e1cefd83c4536ff7839d91938730) para usar o novo formato de erro [que muitos desenvolvedores apreciam](https://twitter.com/dan_abramov/status/998610821096857602). Também criamos tipos para muitos mais componentes. Se você ainda não está aplicando tipagem estática em seu projeto, considere usar Flow para identificar problemas conforme você codifica em vez de em runtime.
 
-### E muitas outras coisas...
+### E muitas outras coisas... {#and-a-lot-of-other-things}
 
 Por exemplo, YellowBox foi [substituído](https://github.com/facebook/react-native/commit/d0219a0301e59e8b0ef75dbd786318d4b4619f4c) com uma nova implementação que torna o debugging muito melhor.
 

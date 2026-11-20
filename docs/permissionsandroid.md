@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-### Permissions que requerem prompt ao usuário
+### Permissions que requerem prompt ao usuário {#permissions-that-require-prompting-the-user}
 
 Disponíveis como constantes em `PermissionsAndroid.PERMISSIONS`:
 
@@ -126,7 +126,7 @@ Disponíveis como constantes em `PermissionsAndroid.PERMISSIONS`:
 - `READ_VOICEMAIL`: 'com.android.voicemail.permission.READ_VOICEMAIL',
 - `WRITE_VOICEMAIL`: 'com.android.voicemail.permission.WRITE_VOICEMAIL',
 
-### Strings de resultado para solicitar permissions
+### Strings de resultado para solicitar permissions {#result-strings-for-requesting-permissions}
 
 Disponíveis como constantes em `PermissionsAndroid.RESULTS`:
 

@@ -10,7 +10,7 @@ O módulo `I18nManager` fornece utilitários para gerenciar o suporte a layout d
 
 ## Examples
 
-### Alterar posições e animações baseadas em RTL
+### Alterar posições e animações baseadas em RTL {#change-positions-and-animations-based-on-rtl}
 
 Se você posicionar elementos de forma absoluta para alinhá-los com outros elementos flexbox, eles podem não alinhar em idiomas RTL. Usar `isRTL` pode ser usado para ajustar o alinhamento ou animações.
 
@@ -40,7 +40,7 @@ const App = () => {
 export default App;
 ```
 
-### Durante o Desenvolvimento
+### Durante o Desenvolvimento {#during-development}
 
 ```SnackPlayer name=I18nManager%20During%20Development
 import {useState} from 'react';

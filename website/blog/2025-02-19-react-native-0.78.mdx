@@ -12,7 +12,7 @@ Hoje estamos empolgados em lançar o React Native 0.78!
 
 Este lançamento traz o React 19 para o React Native e alguns outros recursos relevantes como suporte nativo para Android Vector drawables e melhor integração brownfield para iOS.
 
-### Destaques
+### Destaques {#highlights}
 
 - [React 19](/blog/2025/02/19/react-native-0.78#react-19)
 - [Em direção a lançamentos menores e mais rápidos](/blog/2025/02/19/react-native-0.78#towards-smaller-and-faster-releases)
@@ -22,7 +22,7 @@ Este lançamento traz o React 19 para o React Native e alguns outros recursos re
 
 {/* truncate */}
 
-## Destaques
+## Destaques {#highlights}
 
 ### React 19
 
@@ -58,7 +58,7 @@ Se você quiser aprender mais sobre o React Compiler, estes são recursos úteis
 - Documentação do [React Compiler](https://react.dev/learn/react-compiler)
 - [React Compiler Deep Dive](https://www.youtube.com/watch?v=uA_PVyZP7AI)
 
-### Em direção a lançamentos menores e mais rápidos
+### Em direção a lançamentos menores e mais rápidos {#towards-smaller-and-faster-releases}
 
 Estamos atualizando nosso processo de lançamento para entregar lançamentos estáveis do React Native com mais frequência em 2025.
 
@@ -66,7 +66,7 @@ Será mais fácil para você atualizar a versão do React Native porque estaremo
 
 Acreditamos que este novo modelo beneficiará todos os desenvolvedores no ecossistema React Native, já que menos breaking changes significa um framework mais estável no qual todos podem confiar.
 
-### Opt-in para logs JavaScript no Metro
+### Opt-in para logs JavaScript no Metro {#opt-in-for-javascript-logs-in-metro}
 
 Adicionamos um opt-in para restaurar o streaming de logs JavaScript via servidor dev do Metro, [removido anteriormente no 0.77](/blog/2025/01/21/version-0.77#removal-of-consolelog-streaming-in-metro) para usuários do Community CLI. Isso é em resposta ao feedback dos usuários, bem como à revisão de onde estamos com nossas ofertas de substituição hoje.
 
@@ -80,7 +80,7 @@ O streaming de logs no Metro ainda será removido no futuro e permanece desligad
 
 Esta atualização também será disponibilizada no próximo lançamento menor 0.77.1.
 
-### Adicionado suporte para XML drawables do Android
+### Adicionado suporte para XML drawables do Android {#added-support-for-android-xml-drawables}
 
 No React Native 0.78, estamos entregando uma nova maneira de carregar ícones, ilustrações e outros elementos gráficos no Android como [recursos XML](https://developer.android.com/guide/topics/resources/drawable-resource). Isso significa que você pode usar [vector drawables](https://developer.android.com/develop/ui/views/graphics/vector-drawable-resources) para exibir imagens vetoriais em qualquer escala sem perder qualidade, ou [shape drawables](https://developer.android.com/guide/topics/resources/drawable-resource#Shape) para desenhar embelezamentos mais básicos. Tudo isso é suportado pelo mesmo componente `Image` que você conhece e adora. Para usar este recurso hoje, você pode importar recursos XML como qualquer outro [recurso estático](/docs/next/images#static-image-resources) referenciando-os na prop `source`. Além disso, usar recursos XML em vez de bitmaps também ajudará você a reduzir o tamanho da sua aplicação e resultará em melhor renderização em telas com diferentes DPIs.
 
@@ -96,7 +96,7 @@ import MyIcon from './img/my_icon.xml';
 <Image source={MyIcon} style={{width: 40, height: 40}} />;
 ```
 
-#### Performance & Qualidade
+#### Performance & Qualidade {#performance--quality}
 
 [Como todos os outros tipos de imagem](/docs/next/images#off-thread-decoding), os recursos XML do Android são carregados e inflados fora da thread principal para que você não perca nenhum frame. Isso significa que o recurso não tem garantia de exibição instantânea, mas também não impede entrada do usuário enquanto o recurso está carregando. Decodificação off-thread é especialmente importante quando você precisa renderizar muitos ícones ao mesmo tempo. Apps internos perceberam algumas melhorias significativas de performance ao usar vector drawables do Android.
 
@@ -115,7 +115,7 @@ Utilizar tipos de recursos como vector drawables são a maneira perfeita de exib
 Os vector drawables do Android não são uma substituição 1:1 para bibliotecas como `react-native-svg`. Eles são projetados especificamente para Android e não funcionam para iOS. Se você quiser ter os mesmos SVGs em todas as plataformas, você terá que continuar usando `react-native-svg`. Vector drawables meramente oferecem benefícios de performance às custas de customização.
 :::
 
-### ReactNativeFactory no iOS
+### ReactNativeFactory no iOS {#reactnativefactory-on-ios}
 
 Com o React Native 0.78, melhoramos a integração do React Native no iOS.
 
@@ -166,9 +166,9 @@ Este código cria um `RCTReactNativeFactory`, atribui um delegate a ele e pede p
 
 O delegate é definido abaixo, e ele sobrescreve as propriedades `sourceURL` e `bundleURL` para dizer ao React Native onde ele pode encontrar o bundle JS para carregar na view.
 
-## Outras Breaking Changes
+## Outras Breaking Changes {#other-breaking-changes}
 
-### Geral
+### Geral {#general}
 
 - React Native DevTools
   - Removido FuseboxClient CDP domain
@@ -188,7 +188,7 @@ O delegate é definido abaixo, e ele sobrescreve as propriedades `sourceURL` e `
 
 - Mudança no evento load de Image de tamanho lógico para pixel (Isso afeta apenas a Old Architecture)
 
-## Agradecimentos
+## Agradecimentos {#acknowledgements}
 
 O React Native 0.78 contém mais de 509 commits de 87 contribuidores. Obrigado por todo o trabalho árduo!
 
@@ -200,7 +200,7 @@ Agradecimentos a todos os autores adicionais que trabalharam na documentação d
 - [Peter Abbondanzo](https://github.com/Abbondanzo) pelo trabalho no Suporte a XML Drawable do Android
 - [Oskar Kwaśniewski](https://github.com/okwasniewski) pelo trabalho no ReactNativeFactory
 
-## Atualizar para 0.78
+## Atualizar para 0.78 {#upgrade-to-078}
 
 Por favor, use o [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) para visualizar mudanças de código entre versões do React Native para projetos existentes, além da documentação de Atualização.
 

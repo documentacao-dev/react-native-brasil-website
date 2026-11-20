@@ -7,7 +7,7 @@ A entrada de changelog em seu pull request serve como uma espécie de "resumo" d
 
 Fornecer um changelog usando um formato padronizado ajuda os coordenadores de release a escrever as notas de versão. Por favor, inclua um changelog como parte da descrição do seu pull request. A descrição do seu pull request será usada como mensagem de commit caso o pull request seja mesclado.
 
-### Formato
+### Formato {#format}
 
 Uma entrada de changelog tem o seguinte formato
 
@@ -38,7 +38,7 @@ Por fim, o campo "Message" pode responder "o quê e por quê" em nível de funci
 
 Para mais detalhes, veja [How do I make a good changelog?](https://keepachangelog.com/en/1.0.0/#how) e [Why keep a changelog?](https://keepachangelog.com/en/1.0.0/#why)
 
-### Exemplos
+### Exemplos {#examples}
 
 - `[General] [Added] - Add snapToOffsets prop to ScrollView component`
 - `[General] [Fixed] - Fix various issues in snapToInterval on ScrollView component`
@@ -46,19 +46,19 @@ Para mais detalhes, veja [How do I make a good changelog?](https://keepachangelo
 
 ### FAQ
 
-#### E se meu pull request contém mudanças tanto para Android quanto para JavaScript?
+#### E se meu pull request contém mudanças tanto para Android quanto para JavaScript? {#what-if-my-pull-request-contains-changes-to-both-android-and-javascript}
 
 Use a categoria Android.
 
-#### E se meu pull request contém mudanças tanto para Android quanto para iOS?
+#### E se meu pull request contém mudanças tanto para Android quanto para iOS? {#what-if-my-pull-request-contains-changes-to-both-android-and-ios}
 
 Use a categoria General se a mudança for feita em um único pull request.
 
-#### E se meu pull request contém mudanças para Android, iOS e JavaScript?
+#### E se meu pull request contém mudanças para Android, iOS e JavaScript? {#what-if-my-pull-request-contains-changes-to-android-ios-and-javascript}
 
 Use a categoria General se a mudança for feita em um único pull request.
 
-#### E se...?
+#### E se...? {#what-if}
 
 Qualquer entrada de changelog é melhor do que nenhuma. Se você não tem certeza se escolheu a categoria correta, use o campo "message" para descrever sucintamente sua mudança.
 

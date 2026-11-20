@@ -20,7 +20,7 @@ PlatformColor('bogusName', 'linkColor');
 
 Como as cores nativas podem ser sensíveis a temas e/ou alto contraste, essa lógica específica da plataforma também se traduz dentro dos seus componentes.
 
-### Cores suportadas
+### Cores suportadas {#supported-colors}
 
 Para uma lista completa dos tipos de cores de sistema suportadas, consulte:
 
@@ -31,7 +31,7 @@ Para uma lista completa dos tipos de cores de sistema suportadas, consulte:
   - [UIColor Standard Colors](https://developer.apple.com/documentation/uikit/uicolor/standard_colors)
   - [UIColor UI Element Colors](https://developer.apple.com/documentation/uikit/uicolor/ui_element_colors)
 
-#### Notas para desenvolvedores
+#### Notas para desenvolvedores {#developer-notes}
 
 <Tabs groupId="guide" queryString defaultValue="web" values={constants.getDevNotesTabs(["web"])}>
 
@@ -44,7 +44,7 @@ Se você está familiarizado com design systems, outra forma de pensar sobre iss
 </TabItem>
 </Tabs>
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=PlatformColor%20Example&supportedPlatforms=android,ios
 import {Platform, PlatformColor, StyleSheet, Text} from 'react-native';

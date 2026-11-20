@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: appearance
 title: Appearance
 ---
@@ -9,42 +10,42 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 import {Appearance} from 'react-native';
 ```
 
-The `Appearance` module exposes information about the user's appearance preferences, such as their preferred system color scheme (light or dark).
+O módulo `Appearance` expõe informações sobre as preferências de aparência do usuário, como seu esquema de cores preferido do sistema (claro ou escuro).
 
-#### Developer notes
+#### Notas do desenvolvedor {#developer-notes}
 
 <Tabs groupId="guide" queryString defaultValue="web" values={constants.getDevNotesTabs(["android", "ios", "web"])}>
 
 <TabItem value="web">
 
 :::info
-The `Appearance` API is inspired by the [Media Queries draft](https://drafts.csswg.org/mediaqueries-5/) from the W3C. The color scheme preference is modeled after the [`prefers-color-scheme` CSS media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+A API `Appearance` é inspirada no [rascunho de Media Queries](https://drafts.csswg.org/mediaqueries-5/) do W3C. A preferência de esquema de cores é modelada após a [feature CSS `prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
 :::
 
 </TabItem>
 <TabItem value="android">
 
 :::info
-The color scheme preference will map to the user's Light or [Dark theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) preference on Android 10 (API level 29) devices and higher.
+A preferência de esquema de cores mapeará para a preferência de tema Claro ou [Escuro](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) do usuário em dispositivos Android 10 (API level 29) e superiores.
 :::
 
 </TabItem>
 <TabItem value="ios">
 
 :::info
-The color scheme preference will map to the user's Light or [Dark Mode](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/dark-mode/) preference on iOS 13 devices and higher.
+A preferência de esquema de cores mapeará para a preferência de modo Claro ou [Escuro](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/dark-mode/) do usuário em dispositivos iOS 13 e superiores.
 :::
 
 :::note
-When taking a screenshot, by default, the color scheme may flicker between light and dark mode. It happens because the iOS takes snapshots on both color schemes and updating the user interface with color scheme is asynchronous.
+Ao tirar uma captura de tela, por padrão, o esquema de cores pode piscar entre modo claro e escuro. Isso acontece porque o iOS tira capturas em ambos os esquemas de cores e a atualização da interface do usuário com o esquema de cores é assíncrona.
 :::
 
 </TabItem>
 </Tabs>
 
-## Example
+## Exemplo {#example}
 
-You can use the `Appearance` module to determine if the user prefers a dark color scheme:
+Você pode usar o módulo `Appearance` para determinar se o usuário prefere um esquema de cores escuro:
 
 ```tsx
 const colorScheme = Appearance.getColorScheme();
@@ -53,20 +54,20 @@ if (colorScheme === 'dark') {
 }
 ```
 
-Although the color scheme is available immediately, this may change when not overridden via `setColorScheme()` (e.g. scheduled color scheme change at sunrise or sunset). Any rendering logic or styles that depend on the user preferred color scheme should try to call this function on every render, rather than caching the value.
+Embora o esquema de cores esteja disponível imediatamente, isso pode mudar quando não for substituído via `setColorScheme()` (por exemplo, mudança programada de esquema de cores ao nascer ou pôr do sol). Qualquer lógica de renderização ou estilos que dependam do esquema de cores preferido do usuário devem tentar chamar esta função em cada renderização, em vez de armazenar o valor em cache.
 
-**Recommended:** Use the [`useColorScheme`](usecolorscheme) hook.
+**Recomendado:** use o hook [`useColorScheme`](usecolorscheme).
 
-### App-level overriding
+### Substituição no nível do app {#app-level-overriding}
 
-`setColorScheme()` overrides the color scheme at the application level — it does not affect the system setting or other applications. Passing `'auto'` removes any override, restoring the system preference.
+`setColorScheme()` substitui o esquema de cores no nível do aplicativo — ele não afeta a configuração do sistema nem outros aplicativos. Passar `'auto'` remove qualquer substituição, restaurando a preferência do sistema.
 
 ```mermaid
 flowchart TD
     USC["useColorScheme()"] --> GCS["getColorScheme()"]
-    GCS --> DEC{App override?}
-    DEC -- "NO / reset via setColorScheme('auto')" --> SYS["System preference\n'light' or 'dark'"]
-    DEC -- "YES — setColorScheme('light' | 'dark')" --> OVR["'light' or 'dark' (static)"]
+    GCS --> DEC{Substituição no app?}
+    DEC -- "NÃO / reset via setColorScheme('auto')" --> SYS["Preferência do sistema\n'light' ou 'dark'"]
+    DEC -- "SIM — setColorScheme('light' | 'dark')" --> OVR["'light' ou 'dark' (fixo)"]
 
     classDef fn fill:#dce8f8,stroke:#4a90d9,color:#1a1a1a
     classDef out fill:#f0f4f8,stroke:#8faabb,color:#1a1a1a
@@ -76,9 +77,9 @@ flowchart TD
 
 ---
 
-# Reference
+# Referência
 
-## Methods
+## Métodos {#methods}
 
 ### `getColorScheme()`
 
@@ -86,15 +87,15 @@ flowchart TD
 static getColorScheme(): 'light' | 'dark' | null;
 ```
 
-Returns the active color scheme. This value may change at runtime, either at the system level (e.g. scheduled color scheme change at sunrise or sunset) or when overridden at the app level via `setColorScheme()`.
+Retorna o esquema de cores ativo. Este valor pode mudar em tempo de execução, seja no nível do sistema (por exemplo, mudança programada de esquema de cores ao nascer ou pôr do sol) seja quando substituído no nível do app via `setColorScheme()`.
 
-Return values:
+Valores de retorno:
 
-- `'light'`: The light color scheme is applied.
-- `'dark'`: The dark color scheme is applied.
-- `null`: May be returned if the native Appearance module is not available.
+- `'light'`: O esquema de cores claro é aplicado.
+- `'dark'`: O esquema de cores escuro é aplicado.
+- `null`: Pode ser retornado se o módulo Appearance nativo não estiver disponível.
 
-See also: [`useColorScheme`](usecolorscheme) (hook).
+Veja também: hook [`useColorScheme`](usecolorscheme).
 
 ---
 
@@ -104,16 +105,16 @@ See also: [`useColorScheme`](usecolorscheme) (hook).
 static setColorScheme('light' | 'dark' | 'auto' | 'unspecified'): void;
 ```
 
-Forces the application to always adopt a light or dark interface style. The change applies to the application and all native elements within it (Alerts, Pickers, etc.).
+Força o aplicativo a sempre adotar um estilo de interface claro ou escuro. A mudança se aplica ao aplicativo e a todos os elementos nativos dentro dele (Alerts, Pickers etc.).
 
-This is an app-level override — it does not affect the system's selected interface style or any style set in other applications.
+Esta é uma substituição no nível do app: não afeta o estilo de interface selecionado no sistema nem qualquer estilo definido em outros aplicativos.
 
-Supported values:
+Valores suportados:
 
-- `'light'`: Apply light color scheme.
-- `'dark'`: Apply dark color scheme.
-- `'auto'`: Follow the system color scheme (removes any override).
-- `'unspecified'` (**deprecated**): Follow the system color scheme (removes any override).
+- `'light'`: Aplica o esquema de cores claro.
+- `'dark'`: Aplica o esquema de cores escuro.
+- `'auto'`: Segue o esquema de cores do sistema (remove qualquer substituição).
+- `'unspecified'` (**obsoleto**): Segue o esquema de cores do sistema (remove qualquer substituição).
 
 ---
 
@@ -125,4 +126,4 @@ static addChangeListener(
 ): EventSubscription;
 ```
 
-Add an event handler that is fired when appearance preferences change. On iOS and Android, the `colorScheme` value in the callback is always `'light'` or `'dark'`.
+Adiciona um manipulador de evento que é disparado quando as preferências de aparência mudam. No iOS e no Android, o valor `colorScheme` no callback é sempre `'light'` ou `'dark'`.

@@ -6,7 +6,7 @@ title: ActivityIndicator
 
 Exibe um indicador de carregamento circular.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=ActivityIndicator%20Example
 import {ActivityIndicator, StyleSheet} from 'react-native';
