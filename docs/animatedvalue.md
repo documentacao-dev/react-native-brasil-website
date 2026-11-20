@@ -40,8 +40,8 @@ Define um offset que é aplicado em cima de qualquer valor definido, seja via `s
 
 **Parâmetros:**
 
-| Nome   | Tipo   | Obrigatório | Descrição     |
-| ------ | ------ | ----------- | ------------- |
+| Nome   | Tipo   | Obrigatório | Descrição       |
+| ------ | ------ | ----------- | --------------- |
 | offset | number | Sim         | Valor do offset |
 
 ---
@@ -78,8 +78,8 @@ Retorna uma string que serve como identificador para o listener.
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                                                                         |
-| -------- | -------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| Nome     | Tipo     | Obrigatório | Descrição                                                                                     |
+| -------- | -------- | ----------- | --------------------------------------------------------------------------------------------- |
 | callback | function | Sim         | A função de callback que receberá um objeto com uma chave `value` definida para o novo valor. |
 
 ---
@@ -94,8 +94,8 @@ Remove o registro de um listener. O parâmetro `id` deve corresponder ao identif
 
 **Parâmetros:**
 
-| Nome | Tipo   | Obrigatório | Descrição                             |
-| ---- | ------ | ----------- | ------------------------------------- |
+| Nome | Tipo   | Obrigatório | Descrição                      |
+| ---- | ------ | ----------- | ------------------------------ |
 | id   | string | Sim         | Id do listener sendo removido. |
 
 ---
@@ -120,8 +120,8 @@ Para qualquer animação ou rastreamento em execução. `callback` é invocado c
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                  |
-| -------- | -------- | ----------- | ------------------------------------------ |
+| Nome     | Tipo     | Obrigatório | Descrição                              |
+| -------- | -------- | ----------- | -------------------------------------- |
 | callback | function | Não         | Uma função que receberá o valor final. |
 
 ---
@@ -136,8 +136,8 @@ Para qualquer animação e redefine o valor para o original.
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                     |
-| -------- | -------- | ----------- | --------------------------------------------- |
+| Nome     | Tipo     | Obrigatório | Descrição                                 |
+| -------- | -------- | ----------- | ----------------------------------------- |
 | callback | function | Não         | Uma função que receberá o valor original. |
 
 ---
@@ -154,8 +154,8 @@ Veja `AnimatedInterpolation.js`
 
 **Parâmetros:**
 
-| Nome   | Tipo   | Obrigatório | Descrição     |
-| ------ | ------ | ----------- | ------------- |
+| Nome   | Tipo   | Obrigatório | Descrição    |
+| ------ | ------ | ----------- | ------------ |
 | config | object | Sim         | Veja abaixo. |
 
 O objeto `config` é composto pelas seguintes chaves:

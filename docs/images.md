@@ -287,9 +287,9 @@ RCTSetImageCacheLimits(4*1024*1024, 200*1024*1024);
 
 **Parâmetros:**
 
-| Nome           | Tipo   | Requerido | Descrição                         |
-| -------------- | ------ | --------- | --------------------------------- |
+| Nome           | Tipo   | Requerido | Descrição                             |
+| -------------- | ------ | --------- | ------------------------------------- |
 | imageSizeLimit | number | Sim       | Limite de tamanho de cache de imagem. |
-| totalCostLimit | number | Sim       | Limite de custo total de cache.      |
+| totalCostLimit | number | Sim       | Limite de custo total de cache.       |
 
 No exemplo de código acima, o limite de tamanho de imagem é definido para 4 MB e o limite de custo total é definido para 200 MB.

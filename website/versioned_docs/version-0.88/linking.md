@@ -20,11 +20,11 @@ Um scheme de URL personalizado não é a única maneira de abrir seu aplicativo 
 
 Conforme mencionado na introdução, existem alguns schemes de URL para funcionalidades principais que existem em todas as plataformas. A seguir está uma lista não exaustiva, mas que cobre os schemes mais comumente usados.
 
-| Scheme           | Description                                        | iOS | Android |
-| ---------------- | -------------------------------------------------- | --- | ------- |
+| Scheme           | Description                                              | iOS | Android |
+| ---------------- | -------------------------------------------------------- | --- | ------- |
 | `mailto`         | Abre o aplicativo de e-mail, ex: mailto: hello@world.dev | ✅  | ✅      |
-| `tel`            | Abre o aplicativo de telefone, ex: tel:+123456789  | ✅  | ✅      |
-| `sms`            | Abre o aplicativo de SMS, ex: sms:+123456789       | ✅  | ✅      |
+| `tel`            | Abre o aplicativo de telefone, ex: tel:+123456789        | ✅  | ✅      |
+| `sms`            | Abre o aplicativo de SMS, ex: sms:+123456789             | ✅  | ✅      |
 | `https` / `http` | Abre o aplicativo do navegador web, ex: https://expo.dev | ✅  | ✅      |
 
 ### Habilitando deep links {#enabling-deep-links}
@@ -666,9 +666,9 @@ A `Promise` será rejeitada no Android se for impossível verificar se a URL pod
 
 **Parâmetros:**
 
-| Name                                                     | Type   | Description         |
-| -------------------------------------------------------- | ------ | ------------------- |
-| url <div className="label basic required">Required</div> | string | A URL para abrir.   |
+| Name                                                     | Type   | Description       |
+| -------------------------------------------------------- | ------ | ----------------- |
+| url <div className="label basic required">Required</div> | string | A URL para abrir. |
 
 :::note
 Para URLs web, o protocolo (`"http://"`, `"https://"`) deve ser definido de acordo!
@@ -743,9 +743,9 @@ O método retorna um objeto `Promise`. Se o usuário confirmar a caixa de diálo
 
 **Parâmetros:**
 
-| Name                                                     | Type   | Description         |
-| -------------------------------------------------------- | ------ | ------------------- |
-| url <div className="label basic required">Required</div> | string | A URL para abrir.   |
+| Name                                                     | Type   | Description       |
+| -------------------------------------------------------- | ------ | ----------------- |
+| url <div className="label basic required">Required</div> | string | A URL para abrir. |
 
 :::note
 Este método falhará se o sistema não souber como abrir a URL especificada. Se você estiver passando uma URL que não seja http(s), é melhor verificar `canOpenURL()` primeiro. Para URLs web, o protocolo (`"http://"`, `"https://"`) deve ser definido de acordo!

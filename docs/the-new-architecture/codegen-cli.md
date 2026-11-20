@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 # O CLI Codegen
 
 Chamar o Gradle ou chamar manualmente um script pode ser difícil de lembrar e requer muita cerimônia.

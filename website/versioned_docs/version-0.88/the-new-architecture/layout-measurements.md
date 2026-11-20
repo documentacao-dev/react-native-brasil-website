@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 # Medindo o Layout
 
 Às vezes, você precisa medir o layout atual para aplicar algumas mudanças no layout geral ou para tomar decisões e chamar alguma lógica específica.

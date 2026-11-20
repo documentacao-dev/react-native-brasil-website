@@ -28,12 +28,12 @@ Se você precisa ter uma API key ou um secret para acessar algum recurso do seu 
 
 [Async Storage](https://github.com/react-native-async-storage/async-storage) é um módulo mantido pela comunidade para React Native que fornece um armazenamento de chave-valor assíncrono e não criptografado. Async Storage não é compartilhado entre aplicativos: cada aplicativo tem seu próprio ambiente sandbox e não tem acesso a dados de outros aplicativos.
 
-| **Use** async storage quando...              | **Não use** async storage para... |
-| --------------------------------------------- | ---------------------------------- |
-| Persistir dados não sensíveis entre execuções do aplicativo | Armazenamento de token                      |
-| Persistir estado Redux                        | Secrets                            |
-| Persistir estado GraphQL                      |                                    |
-| Armazenar variáveis globais em todo o aplicativo             |                                    |
+| **Use** async storage quando...                             | **Não use** async storage para... |
+| ----------------------------------------------------------- | --------------------------------- |
+| Persistir dados não sensíveis entre execuções do aplicativo | Armazenamento de token            |
+| Persistir estado Redux                                      | Secrets                           |
+| Persistir estado GraphQL                                    |                                   |
+| Armazenar variáveis globais em todo o aplicativo            |                                   |
 
 #### Notas do Desenvolvedor {#developer-notes}
 

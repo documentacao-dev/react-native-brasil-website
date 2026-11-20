@@ -745,16 +745,16 @@ O objeto `TextLayout` é parte do callback [`TextLayoutEvent`](text#textlayoutev
 
 #### Properties
 
-| Name      | Type   | Optional | Description                                                                  |
-| --------- | ------ | -------- | ---------------------------------------------------------------------------- |
-| ascender  | number | No       | A altura do ascendente da linha após as mudanças de layout do texto.        |
-| capHeight | number | No       | Altura da letra maiúscula acima da linha de base.                           |
-| descender | number | No       | A altura do descendente da linha após as mudanças de layout do texto.       |
-| height    | number | No       | Altura da linha após as mudanças de layout do texto.                        |
-| width     | number | No       | Largura da linha após as mudanças de layout do texto.                       |
-| x         | number | No       | Coordenada X da linha dentro do componente Text.                            |
-| xHeight   | number | No       | Distância entre a linha de base e a mediana da linha (tamanho do corpo).    |
-| y         | number | No       | Coordenada Y da linha dentro do componente Text.                            |
+| Name      | Type   | Optional | Description                                                              |
+| --------- | ------ | -------- | ------------------------------------------------------------------------ |
+| ascender  | number | No       | A altura do ascendente da linha após as mudanças de layout do texto.     |
+| capHeight | number | No       | Altura da letra maiúscula acima da linha de base.                        |
+| descender | number | No       | A altura do descendente da linha após as mudanças de layout do texto.    |
+| height    | number | No       | Altura da linha após as mudanças de layout do texto.                     |
+| width     | number | No       | Largura da linha após as mudanças de layout do texto.                    |
+| x         | number | No       | Coordenada X da linha dentro do componente Text.                         |
+| xHeight   | number | No       | Distância entre a linha de base e a mediana da linha (tamanho do corpo). |
+| y         | number | No       | Coordenada Y da linha dentro do componente Text.                         |
 
 ### TextLayoutEvent
 
@@ -775,7 +775,7 @@ O objeto `TextLayoutEvent` é retornado no callback como resultado de uma mudan�
 
 #### Properties {#properties-1}
 
-| Name   | Type                                    | Optional | Description                                                |
-| ------ | --------------------------------------- | -------- | ---------------------------------------------------------- |
-| lines  | array of [TextLayout](text#textlayout)s | No       | Fornece os dados TextLayout para cada linha renderizada.   |
-| target | number                                  | No       | O node id do elemento.                                     |
+| Name   | Type                                    | Optional | Description                                              |
+| ------ | --------------------------------------- | -------- | -------------------------------------------------------- |
+| lines  | array of [TextLayout](text#textlayout)s | No       | Fornece os dados TextLayout para cada linha renderizada. |
+| target | number                                  | No       | O node id do elemento.                                   |

@@ -146,7 +146,7 @@ O método `vibrate()` pode receber um argumento `pattern` com um array de númer
 
 **Parameters:**
 
-| Name    | Type                                                                     | Default | Description                                                                                                                |
-| ------- | ------------------------------------------------------------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Name    | Type                                                                     | Default | Description                                                                                             |
+| ------- | ------------------------------------------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------- |
 | pattern | number <div className="label android">Android</div><hr/>array of numbers | `400`   | Duração da vibração em milissegundos.<hr/>Padrão de vibração como um array de números em milissegundos. |
-| repeat  | boolean                                                                  | `false` | Repetir padrão de vibração até `cancel()`.                                                                                 |
+| repeat  | boolean                                                                  | `false` | Repetir padrão de vibração até `cancel()`.                                                              |

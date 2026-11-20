@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 import ThemedImage from '@theme/ThemedImage';
 
 ## Instalando dependências {#installing-dependencies}

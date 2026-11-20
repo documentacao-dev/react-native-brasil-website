@@ -104,11 +104,11 @@ Agenda uma animação para acontecer no próximo layout.
 
 #### Parameters:
 
-| Name               | Type     | Required | Description                            |
-| ------------------ | -------- | -------- | -------------------------------------- |
-| config             | object   | Yes      | Veja a descrição de config abaixo.     |
-| onAnimationDidEnd  | function | No       | Chamado quando a animação termina.     |
-| onAnimationDidFail | function | No       | Chamado quando a animação falha.       |
+| Name               | Type     | Required | Description                        |
+| ------------------ | -------- | -------- | ---------------------------------- |
+| config             | object   | Yes      | Veja a descrição de config abaixo. |
+| onAnimationDidEnd  | function | No       | Chamado quando a animação termina. |
+| onAnimationDidFail | function | No       | Chamado quando a animação falha.   |
 
 O parâmetro `config` é um objeto com as chaves abaixo. [`create`](layoutanimation.md#create) retorna um objeto válido para `config`, e os objetos [`Presets`](layoutanimation.md#presets) também podem todos ser passados como o `config`.
 

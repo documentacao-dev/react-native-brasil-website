@@ -24,8 +24,8 @@ Aqui está uma lista de props que podem ajudar a melhorar o desempenho do `FlatL
 
 ### `removeClippedSubviews`
 
-| Type    | Default                              |
-| ------- | ------------------------------------ |
+| Type    | Default                                   |
+| ------- | ----------------------------------------- |
 | Boolean | `true` no Android, caso contrário `false` |
 
 Se `true`, views que estão fora do viewport são automaticamente desacopladas da hierarquia de view nativa.

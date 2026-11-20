@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 ## Instalando dependências {#installing-dependencies}
 
 Você precisará do Node, Watchman, a interface de linha de comando do React Native, um JDK e Android Studio.

@@ -195,11 +195,11 @@ Cria um objeto que representa drawable ripple com cor especificada (como uma str
 
 **Parâmetros:**
 
-| Nome         | Tipo    | Obrigatório | Descrição                                         |
-| ------------ | ------- | ----------- | ------------------------------------------------- |
-| color        | string  | Sim         | A cor do ripple                                   |
-| borderless   | boolean | Sim         | Se o ripple pode renderizar fora de seus limites  |
-| rippleRadius | ?number | Não         | controla o raio do efeito ripple                  |
+| Nome         | Tipo    | Obrigatório | Descrição                                        |
+| ------------ | ------- | ----------- | ------------------------------------------------ |
+| color        | string  | Sim         | A cor do ripple                                  |
+| borderless   | boolean | Sim         | Se o ripple pode renderizar fora de seus limites |
+| rippleRadius | ?number | Não         | controla o raio do efeito ripple                 |
 
 ---
 

@@ -127,8 +127,8 @@ Exemplo: `const {height, width} = Dimensions.get('window');`
 
 **Parameters:**
 
-| Name                                                               | Type   | Description                                                                                    |
-| ------------------------------------------------------------------ | ------ | ---------------------------------------------------------------------------------------------- |
+| Name                                                               | Type   | Description                                                                          |
+| ------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------------------ |
 | dim <div className="label basic required two-lines">Required</div> | string | Nome da dimensão conforme definido ao chamar `set`. Retorna o valor para a dimensão. |
 
 :::note

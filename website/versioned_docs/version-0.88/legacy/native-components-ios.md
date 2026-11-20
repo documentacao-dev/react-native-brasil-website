@@ -404,9 +404,9 @@ class MyNativeView extends React.Component {
 
 `callNativeMethod` é nosso método iOS customizado que, por exemplo, muda o `backgroundColor` que é exposto através de `MyNativeView`. Este método usa `UIManager.dispatchViewManagerCommand` que precisa de 3 parâmetros:
 
-- `(nonnull NSNumber \*)reactTag`  -  id da react view.
-- `commandID:(NSInteger)commandID`  -  Id do método nativo que deve ser chamado
-- `commandArgs:(NSArray<id> \*)commandArgs`  -  Args do método nativo que podemos passar de JS para nativo.
+- `(nonnull NSNumber \*)reactTag` - id da react view.
+- `commandID:(NSInteger)commandID` - Id do método nativo que deve ser chamado
+- `commandArgs:(NSArray<id> \*)commandArgs` - Args do método nativo que podemos passar de JS para nativo.
 
 ```objectivec title='RNCMyNativeViewManager.m'
 #import <React/RCTViewManager.h>

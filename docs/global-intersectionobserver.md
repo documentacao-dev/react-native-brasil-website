@@ -39,12 +39,12 @@ Uma função que é chamada quando a porcentagem do elemento alvo visível cruza
 
 Um objeto opcional com as seguintes propriedades:
 
-| Name                 | Type                             | Description                                                                                                                                                                                                                                |
-| -------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `root`               | [Element](element-nodes) \| null | Um elemento que é um ancestral do alvo, cujo retângulo delimitador será considerado a viewport. O padrão é a viewport raiz se não for especificado ou se for `null`.                                                                      |
-| `rootMargin`         | string                           | Uma string que especifica um conjunto de deslocamentos a serem adicionados à caixa delimitadora da raiz ao calcular interseções. O padrão é `"0px 0px 0px 0px"`.                                                                           |
+| Name                 | Type                             | Description                                                                                                                                                                                                                                   |
+| -------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `root`               | [Element](element-nodes) \| null | Um elemento que é um ancestral do alvo, cujo retângulo delimitador será considerado a viewport. O padrão é a viewport raiz se não for especificado ou se for `null`.                                                                          |
+| `rootMargin`         | string                           | Uma string que especifica um conjunto de deslocamentos a serem adicionados à caixa delimitadora da raiz ao calcular interseções. O padrão é `"0px 0px 0px 0px"`.                                                                              |
 | `threshold`          | number \| number[]               | Ou um único número ou um array de números entre 0.0 e 1.0, especificando uma proporção da área de interseção em relação à área total da caixa delimitadora para o alvo observado. O padrão é `[0]` se `rnRootThreshold` não estiver definido. |
-| `rnRootThreshold` ⚠️ | number \| number[]               | **Específico do React Native.** Ou um único número ou um array de números entre 0.0 e 1.0, especificando uma proporção da área de interseção em relação à área total da raiz.                                                             |
+| `rnRootThreshold` ⚠️ | number \| number[]               | **Específico do React Native.** Ou um único número ou um array de números entre 0.0 e 1.0, especificando uma proporção da área de interseção em relação à área total da raiz.                                                                 |
 
 ## Instance properties
 

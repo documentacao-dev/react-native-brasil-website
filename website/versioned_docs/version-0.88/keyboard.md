@@ -86,10 +86,10 @@ Esta função então retorna a referência ao listener.
 
 **Parâmetros:**
 
-| Nome                                                                     | Tipo     | Descrição                                                                              |
-| ------------------------------------------------------------------------ | -------- | -------------------------------------------------------------------------------------- |
-| eventName <div className="label basic two-lines required">Required</div> | string   | A string que identifica o evento que você está escutando. Veja a lista abaixo.        |
-| callback <div className="label basic two-lines required">Required</div>  | function | A função a ser chamada quando o evento é disparado                                    |
+| Nome                                                                     | Tipo     | Descrição                                                                      |
+| ------------------------------------------------------------------------ | -------- | ------------------------------------------------------------------------------ |
+| eventName <div className="label basic two-lines required">Required</div> | string   | A string que identifica o evento que você está escutando. Veja a lista abaixo. |
+| callback <div className="label basic two-lines required">Required</div>  | function | A função a ser chamada quando o evento é disparado                             |
 
 **`eventName`**
 

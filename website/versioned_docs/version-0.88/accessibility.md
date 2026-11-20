@@ -194,13 +194,13 @@ Descreve o estado atual de um componente para o usuário de tecnologia assistiva
 
 `accessibilityState` é um objeto. Ele contém os seguintes campos:
 
-| Name     | Description                                                                                                                                  | Type               | Required |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | -------- |
-| disabled | Indica se o elemento está desabilitado ou não.                                                                                               | boolean            | No       |
-| selected | Indica se um elemento selecionável está atualmente selecionado ou não.                                                                       | boolean            | No       |
-| checked  | Indica o estado de um elemento marcável. Este campo pode receber um booleano ou a string "mixed" para representar checkboxes mistas.        | boolean or 'mixed' | No       |
-| busy     | Indica se um elemento está atualmente ocupado ou não.                                                                                        | boolean            | No       |
-| expanded | Indica se um elemento expansível está atualmente expandido ou recolhido.                                                                     | boolean            | No       |
+| Name     | Description                                                                                                                          | Type               | Required |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------ | -------- |
+| disabled | Indica se o elemento está desabilitado ou não.                                                                                       | boolean            | No       |
+| selected | Indica se um elemento selecionável está atualmente selecionado ou não.                                                               | boolean            | No       |
+| checked  | Indica o estado de um elemento marcável. Este campo pode receber um booleano ou a string "mixed" para representar checkboxes mistas. | boolean or 'mixed' | No       |
+| busy     | Indica se um elemento está atualmente ocupado ou não.                                                                                | boolean            | No       |
+| expanded | Indica se um elemento expansível está atualmente expandido ou recolhido.                                                             | boolean            | No       |
 
 Para usar, defina `accessibilityState` como um objeto com uma definição específica.
 
@@ -210,12 +210,12 @@ Representa o valor atual de um componente. Pode ser uma descrição textual do v
 
 `accessibilityValue` é um objeto. Ele contém os seguintes campos:
 
-| Name | Description                                                                                                          | Type    | Required                  |
-| ---- | -------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------- |
-| min  | O valor mínimo do intervalo deste componente.                                                                        | integer | Required if `now` is set. |
-| max  | O valor máximo do intervalo deste componente.                                                                        | integer | Required if `now` is set. |
-| now  | O valor atual do intervalo deste componente.                                                                         | integer | No                        |
-| text | Uma descrição textual do valor deste componente. Substituirá `min`, `now` e `max` se definido.                      | string  | No                        |
+| Name | Description                                                                                    | Type    | Required                  |
+| ---- | ---------------------------------------------------------------------------------------------- | ------- | ------------------------- |
+| min  | O valor mínimo do intervalo deste componente.                                                  | integer | Required if `now` is set. |
+| max  | O valor máximo do intervalo deste componente.                                                  | integer | Required if `now` is set. |
+| now  | O valor atual do intervalo deste componente.                                                   | integer | No                        |
+| text | Uma descrição textual do valor deste componente. Substituirá `min`, `now` e `max` se definido. | string  | No                        |
 
 ### `accessibilityViewIsModal` <div className="label ios">iOS</div>
 

@@ -469,8 +469,8 @@ As animações são iniciadas chamando start() em sua animação. start() recebe
 
 **Parameters:**
 
-| Name     | Type                                    | Required | Description                                                                                                                                                                    |
-| -------- | --------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Name     | Type                                    | Required | Description                                                                                                                                                      |
+| -------- | --------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | callback | `(result: {finished: boolean}) => void` | No       | Função que será chamada após a animação terminar de executar normalmente ou quando a animação terminar porque stop() foi chamado nela antes que pudesse terminar |
 
 Exemplo de start com callback:

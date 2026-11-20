@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 # Apêndice
 
 ## I. Terminologia {#i-terminology}

@@ -22,7 +22,7 @@ O node id do elemento que recebe o TargetEvent.
 
 | Tipo                        | Opcional |
 | --------------------------- | -------- |
-| number, `null`, `undefined` | Não       |
+| number, `null`, `undefined` | Não      |
 
 ## Usado por {#used-by}
 

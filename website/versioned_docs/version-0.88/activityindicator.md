@@ -53,8 +53,8 @@ Herda as [View Props](view#props).
 Define se o indicador deve ser exibido (`true`) ou ocultado (`false`).
 
 | Tipo | Padrão |
-| ---- | ------- |
-| bool | `true`  |
+| ---- | ------ |
+| bool | `true` |
 
 ---
 
@@ -62,8 +62,8 @@ Define se o indicador deve ser exibido (`true`) ou ocultado (`false`).
 
 A cor do primeiro plano do spinner.
 
-| Tipo            | Padrão                                                                                                                                                                                         |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tipo            | Padrão                                                                                                                                                                                                |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [color](colors) | `null` (cor de destaque padrão do sistema)<div className="label android">Android</div><hr/><ins style={{background: '#999'}} className="color-box" />`'#999999'` <div className="label ios">iOS</div> |
 
 ---
@@ -73,8 +73,8 @@ A cor do primeiro plano do spinner.
 Define se o indicador deve ser ocultado quando não estiver animando.
 
 | Tipo | Padrão |
-| ---- | ------- |
-| bool | `true`  |
+| ---- | ------ |
+| bool | `true` |
 
 ---
 
@@ -88,6 +88,6 @@ Um setter de ref que será atribuído a um [element node](element-nodes) quando 
 
 Tamanho do indicador.
 
-| Tipo                                                                               | Padrão   |
+| Tipo                                                                               | Padrão    |
 | ---------------------------------------------------------------------------------- | --------- |
 | enum(`'small'`, `'large'`)<hr/>number <div className="label android">Android</div> | `'small'` |

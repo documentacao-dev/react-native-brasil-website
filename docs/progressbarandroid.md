@@ -73,8 +73,8 @@ Herda [View Props](view.md#props).
 Se deve mostrar o ProgressBar (true, o padrão) ou ocultá-lo (false).
 
 | Tipo | Obrigatório |
-| ---- | -------- |
-| bool | Não       |
+| ---- | ----------- |
+| bool | Não         |
 
 ---
 
@@ -83,8 +83,8 @@ Se deve mostrar o ProgressBar (true, o padrão) ou ocultá-lo (false).
 Cor da barra de progresso.
 
 | Tipo               | Obrigatório |
-| ------------------ | -------- |
-| [color](colors.md) | Não       |
+| ------------------ | ----------- |
+| [color](colors.md) | Não         |
 
 ---
 
@@ -93,8 +93,8 @@ Cor da barra de progresso.
 Se a barra de progresso mostrará progresso indeterminado. Note que isso só pode ser false se styleAttr for Horizontal, e requer um valor `progress`.
 
 | Tipo              | Obrigatório |
-| ----------------- | -------- |
-| indeterminateType | Não       |
+| ----------------- | ----------- |
+| indeterminateType | Não         |
 
 ---
 
@@ -103,8 +103,8 @@ Se a barra de progresso mostrará progresso indeterminado. Note que isso só pod
 O valor de progresso (entre 0 e 1).
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -121,8 +121,8 @@ Estilo do ProgressBar. Um de:
 - LargeInverse
 
 | Tipo                                                                                      | Obrigatório |
-| ----------------------------------------------------------------------------------------- | -------- |
-| enum('Horizontal', 'Normal', 'Small', 'Large', 'Inverse', 'SmallInverse', 'LargeInverse') | Não       |
+| ----------------------------------------------------------------------------------------- | ----------- |
+| enum('Horizontal', 'Normal', 'Small', 'Large', 'Inverse', 'SmallInverse', 'LargeInverse') | Não         |
 
 ---
 
@@ -131,5 +131,5 @@ Estilo do ProgressBar. Um de:
 Usado para localizar esta view em testes end-to-end.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| string | Não       |
+| ------ | ----------- |
+| string | Não         |

@@ -33,13 +33,13 @@ React Native também permite que você construa seus próprios Native Components
 
 React Native tem muitos Core Components para tudo, desde controles até indicadores de atividade. Você pode encontrar todos eles [documentados na seção de API](components-and-apis). Você trabalhará principalmente com os seguintes Core Components:
 
-| React Native UI Component | Android View   | iOS View         | Web Analog              | Description                                                                                                   |
-| ------------------------- | -------------- | ---------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------- |
+| React Native UI Component | Android View   | iOS View         | Web Analog              | Description                                                                                                  |
+| ------------------------- | -------------- | ---------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `<View>`                  | `<ViewGroup>`  | `<UIView>`       | A non-scrolling `<div>` | Um container que suporta layout com flexbox, estilo, algum tratamento de toque e controles de acessibilidade |
 | `<Text>`                  | `<TextView>`   | `<UITextView>`   | `<p>`                   | Exibe, estiliza e aninha strings de texto e até mesmo lida com eventos de toque                              |
-| `<Image>`                 | `<ImageView>`  | `<UIImageView>`  | `<img>`                 | Exibe diferentes tipos de imagens                                                                             |
-| `<ScrollView>`            | `<ScrollView>` | `<UIScrollView>` | `<div>`                 | Um container de rolagem genérico que pode conter múltiplos componentes e views                                |
-| `<TextInput>`             | `<EditText>`   | `<UITextField>`  | `<input type="text">`   | Permite que o usuário insira texto                                                                            |
+| `<Image>`                 | `<ImageView>`  | `<UIImageView>`  | `<img>`                 | Exibe diferentes tipos de imagens                                                                            |
+| `<ScrollView>`            | `<ScrollView>` | `<UIScrollView>` | `<div>`                 | Um container de rolagem genérico que pode conter múltiplos componentes e views                               |
+| `<TextInput>`             | `<EditText>`   | `<UITextField>`  | `<input type="text">`   | Permite que o usuário insira texto                                                                           |
 
 Na próxima seção, você começará a combinar esses Core Components para aprender sobre como o React funciona. Experimente com eles aqui agora!
 

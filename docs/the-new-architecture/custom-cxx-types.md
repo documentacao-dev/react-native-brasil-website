@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 # Avançado: Tipos C++ Personalizados

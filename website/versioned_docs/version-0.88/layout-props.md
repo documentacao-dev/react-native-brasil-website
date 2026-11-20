@@ -392,8 +392,8 @@ export default App;
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content) para mais detalhes.
 
 | Tipo                                                                                                 | Obrigatório |
-| ---------------------------------------------------------------------------------------------------- | -------- |
-| enum('flex-start', 'flex-end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly') | Não       |
+| ---------------------------------------------------------------------------------------------------- | ----------- |
+| enum('flex-start', 'flex-end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly') | Não         |
 
 ---
 
@@ -404,8 +404,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/align-
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) para mais detalhes.
 
 | Tipo                                                            | Obrigatório |
-| --------------------------------------------------------------- | -------- |
-| enum('flex-start', 'flex-end', 'center', 'stretch', 'baseline') | Não       |
+| --------------------------------------------------------------- | ----------- |
+| enum('flex-start', 'flex-end', 'center', 'stretch', 'baseline') | Não         |
 
 ---
 
@@ -416,8 +416,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/align-
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self) para mais detalhes.
 
 | Tipo                                                                    | Obrigatório |
-| ----------------------------------------------------------------------- | -------- |
-| enum('auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline') | Não       |
+| ----------------------------------------------------------------------- | ----------- |
+| enum('auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline') | Não         |
 
 ---
 
@@ -434,8 +434,8 @@ Aspect ratio controla o tamanho da dimensão indefinida de um nó.
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -446,8 +446,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -456,8 +456,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border
 Quando direction é `ltr`, `borderEndWidth` é equivalente a `borderRightWidth`. Quando direction é `rtl`, `borderEndWidth` é equivalente a `borderLeftWidth`.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -468,8 +468,8 @@ Quando direction é `ltr`, `borderEndWidth` é equivalente a `borderRightWidth`.
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -480,8 +480,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -490,8 +490,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border
 Quando direction é `ltr`, `borderStartWidth` é equivalente a `borderLeftWidth`. Quando direction é `rtl`, `borderStartWidth` é equivalente a `borderRightWidth`.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -502,8 +502,8 @@ Quando direction é `ltr`, `borderStartWidth` é equivalente a `borderLeftWidth`
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -514,8 +514,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -528,8 +528,8 @@ Funciona de forma similar a `bottom` no CSS, mas no React Native você deve usar
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/bottom) para mais detalhes sobre como `bottom` afeta o layout.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -538,8 +538,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/bottom
 `boxSizing` define como as várias props de dimensionamento do elemento (`width`, `height`, `minWidth`, `minHeight`, etc.) são calculadas. Se `boxSizing` for `border-box`, esses tamanhos se aplicam à border box do elemento. Se for `content-box`, eles se aplicam à content box do elemento. O valor padrão é `border-box`. A [documentação web](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing) é uma boa fonte de informação se você deseja aprender mais sobre como essa prop funciona.
 
 | Tipo                              | Obrigatório |
-| --------------------------------- | -------- |
-| enum('border-box', 'content-box') | Não       |
+| --------------------------------- | ----------- |
+| enum('border-box', 'content-box') | Não         |
 
 ---
 
@@ -550,8 +550,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/bottom
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -562,8 +562,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/column
 Veja [MDN CSS Reference](https://www.yogalayout.dev/docs/styling/layout-direction) para mais detalhes.
 
 | Tipo                          | Obrigatório |
-| ----------------------------- | -------- |
-| enum('inherit', 'ltr', 'rtl') | Não       |
+| ----------------------------- | ----------- |
+| enum('inherit', 'ltr', 'rtl') | Não         |
 
 ---
 
@@ -574,8 +574,8 @@ Veja [MDN CSS Reference](https://www.yogalayout.dev/docs/styling/layout-directio
 Funciona de forma similar a `display` no CSS, mas suporta apenas os valores 'flex', 'none' e 'contents'. O padrão é `flex`.
 
 | Tipo                             | Obrigatório |
-| -------------------------------- | -------- |
-| enum('none', 'flex', 'contents') | Não       |
+| -------------------------------- | ----------- |
+| enum('none', 'flex', 'contents') | Não         |
 
 ---
 
@@ -586,8 +586,8 @@ Quando direction é `ltr`, `end` é equivalente a `right`. Quando direction é `
 Este estilo tem precedência sobre os estilos `left` e `right`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -604,8 +604,8 @@ Quando `flex` é `-1`, o componente normalmente é dimensionado de acordo com `w
 `flexGrow`, `flexShrink` e `flexBasis` funcionam da mesma forma que no CSS.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -614,8 +614,8 @@ Quando `flex` é `-1`, o componente normalmente é dimensionado de acordo com `w
 `flexBasis` é uma forma independente de eixo de fornecer o tamanho padrão de um item ao longo do eixo principal. Definir o `flexBasis` de um filho é similar a definir o `width` desse filho se seu pai é um container com `flexDirection: row` ou definir o `height` de um filho se seu pai é um container com `flexDirection: column`. O `flexBasis` de um item é o tamanho padrão desse item, o tamanho do item antes que quaisquer cálculos de `flexGrow` e `flexShrink` sejam realizados.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -626,8 +626,8 @@ Quando `flex` é `-1`, o componente normalmente é dimensionado de acordo com `w
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction) para mais detalhes.
 
 | Tipo                                                   | Obrigatório |
-| ------------------------------------------------------ | -------- |
-| enum('row', 'row-reverse', 'column', 'column-reverse') | Não       |
+| ------------------------------------------------------ | ----------- |
+| enum('row', 'row-reverse', 'column', 'column-reverse') | Não         |
 
 ---
 
@@ -638,8 +638,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-d
 `flexGrow` aceita qualquer valor de ponto flutuante >= 0, sendo 0 o valor padrão. Um container distribuirá qualquer espaço restante entre seus filhos ponderado pelos valores de `flexGrow` dos filhos.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -650,8 +650,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-d
 `flexShrink` aceita qualquer valor de ponto flutuante >= 0, sendo 0 o valor padrão. Um container encolherá seus filhos ponderado pelos valores de `flexShrink` dos filhos.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -664,8 +664,8 @@ Note que não funciona mais com `alignItems: stretch` (o padrão), então você 
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap) para mais detalhes.
 
 | Tipo                                   | Obrigatório |
-| -------------------------------------- | -------- |
-| enum('wrap', 'nowrap', 'wrap-reverse') | Não       |
+| -------------------------------------- | ----------- |
+| enum('wrap', 'nowrap', 'wrap-reverse') | Não         |
 
 ---
 
@@ -676,8 +676,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-w
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -690,8 +690,8 @@ Funciona de forma similar a `height` no CSS, mas no React Native você deve usar
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/height) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -706,8 +706,8 @@ Definir `inset` tem o mesmo efeito de definir cada uma das props `top`, `bottom`
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -722,8 +722,8 @@ Equivalente a [`top`](layout-props#top) e [`bottom`](layout-props#bottom).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-block) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -738,8 +738,8 @@ Equivalente a [`bottom`](layout-props#bottom).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-block-end) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -754,8 +754,8 @@ Equivalente a [`top`](layout-props#top).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-block-start) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -770,8 +770,8 @@ Equivalente a [`right`](layout-props#right) e [`left`](layout-props#left).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-inline) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -786,8 +786,8 @@ Quando direction é `ltr`, `insetInlineEnd` é equivalente a [`right`](layout-pr
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-inline-end) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -802,8 +802,8 @@ Quando direction é `ltr`, `insetInlineStart` é equivalente a [`left`](layout-p
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-inline-start) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -821,8 +821,8 @@ Existem dois valores:
 - `isolate`: Forma um stacking context.
 
 | Tipo                    | Obrigatório |
-| ----------------------- | -------- |
-| enum('auto', 'isolate') | Não       |
+| ----------------------- | ----------- |
+| enum('auto', 'isolate') | Não         |
 
 ---
 
@@ -833,8 +833,8 @@ Existem dois valores:
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content) para mais detalhes.
 
 | Tipo                                                                                      | Obrigatório |
-| ----------------------------------------------------------------------------------------- | -------- |
-| enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly') | Não       |
+| ----------------------------------------------------------------------------------------- | ----------- |
+| enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly') | Não         |
 
 ---
 
@@ -847,8 +847,8 @@ Funciona de forma similar a `left` no CSS, mas no React Native você deve usar p
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/left) para mais detalhes sobre como `left` afeta o layout.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -859,8 +859,8 @@ Definir `margin` tem o mesmo efeito que definir cada um de `marginTop`, `marginL
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -869,8 +869,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin
 `marginBottom` funciona como `margin-bottom` no CSS. Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -881,8 +881,8 @@ Equivalente a [`marginVertical`](layout-props#marginvertical).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-block) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -893,8 +893,8 @@ Equivalente a [`marginBottom`](layout-props#marginbottom).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-block-end) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -905,8 +905,8 @@ Equivalente a [`marginTop`](layout-props#margintop).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-block-start) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -915,8 +915,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Refere
 Quando direction é `ltr`, `marginEnd` é equivalente a `marginRight`. Quando direction é `rtl`, `marginEnd` é equivalente a `marginLeft`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -925,8 +925,8 @@ Quando direction é `ltr`, `marginEnd` é equivalente a `marginRight`. Quando di
 Definir `marginHorizontal` tem o mesmo efeito que definir ambos `marginLeft` e `marginRight`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -937,8 +937,8 @@ Equivalente a [`marginHorizontal`](layout-props#marginhorizontal).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-inline) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -949,8 +949,8 @@ Quando direction é `ltr`, `marginInlineEnd` é equivalente a [`marginEnd`](layo
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-inline-end) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -961,8 +961,8 @@ Quando direction é `ltr`, `marginInlineStart` é equivalente a [`marginStart`](
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-inline-start) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -971,8 +971,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Refere
 `marginLeft` funciona como `margin-left` no CSS. Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -983,8 +983,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Refere
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -993,8 +993,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin
 Quando direction é `ltr`, `marginStart` é equivalente a `marginLeft`. Quando direction é `rtl`, `marginStart` é equivalente a `marginRight`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1005,8 +1005,8 @@ Quando direction é `ltr`, `marginStart` é equivalente a `marginLeft`. Quando d
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1015,8 +1015,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin
 Definir `marginVertical` tem o mesmo efeito que definir ambos `marginTop` e `marginBottom`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1029,8 +1029,8 @@ Funciona de forma similar a `max-height` no CSS, mas no React Native você deve 
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/max-height) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1043,8 +1043,8 @@ Funciona de forma similar a `max-width` no CSS, mas no React Native você deve u
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/max-width) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1057,8 +1057,8 @@ Funciona de forma similar a `min-height` no CSS, mas no React Native você deve 
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/min-height) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1071,8 +1071,8 @@ Funciona de forma similar a `min-width` no CSS, mas no React Native você deve u
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/min-width) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1083,8 +1083,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/min-wi
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) para mais detalhes.
 
 | Tipo                                | Obrigatório |
-| ----------------------------------- | -------- |
-| enum('visible', 'hidden', 'scroll') | Não       |
+| ----------------------------------- | ----------- |
+| enum('visible', 'hidden', 'scroll') | Não         |
 
 ---
 
@@ -1095,8 +1095,8 @@ Definir `padding` tem o mesmo efeito que definir cada um de `paddingTop`, `paddi
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1107,8 +1107,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/paddin
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1119,8 +1119,8 @@ Equivalente a [`paddingVertical`](layout-props#paddingvertical).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-block) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1131,8 +1131,8 @@ Equivalente a [`paddingBottom`](layout-props#paddingbottom).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-block-end) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1143,8 +1143,8 @@ Equivalente a [`paddingTop`](layout-props#paddingtop).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-block-start) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1153,8 +1153,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Refere
 Quando direction é `ltr`, `paddingEnd` é equivalente a `paddingRight`. Quando direction é `rtl`, `paddingEnd` é equivalente a `paddingLeft`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1163,8 +1163,8 @@ Quando direction é `ltr`, `paddingEnd` é equivalente a `paddingRight`. Quando 
 Definir `paddingHorizontal` é como definir ambos `paddingLeft` e `paddingRight`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1175,8 +1175,8 @@ Equivalente a [`paddingHorizontal`](layout-props#paddinghorizontal).
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1187,8 +1187,8 @@ Quando direction é `ltr`, `paddingInlineEnd` é equivalente a [`paddingEnd`](la
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline-end) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1199,8 +1199,8 @@ Quando direction é `ltr`, `paddingInlineStart` é equivalente a [`paddingStart`
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline-start) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1209,8 +1209,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Refere
 `paddingLeft` funciona como `padding-left` no CSS. Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1221,8 +1221,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Refere
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1231,8 +1231,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/paddin
 Quando direction é `ltr`, `paddingStart` é equivalente a `paddingLeft`. Quando direction é `rtl`, `paddingStart` é equivalente a `paddingRight`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1243,8 +1243,8 @@ Quando direction é `ltr`, `paddingStart` é equivalente a `paddingLeft`. Quando
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1253,8 +1253,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/paddin
 Definir `paddingVertical` é como definir ambos `paddingTop` e `paddingBottom`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1272,8 +1272,8 @@ Elementos `static` não formam um containing block para descendentes absolutos.
 Para mais informações, veja os [documentos de Layout com Flexbox](./flexbox.md#position). Além disso, [a documentação do Yoga](https://www.yogalayout.dev/docs/styling/position) tem mais detalhes sobre como `position` difere entre React Native e CSS.
 
 | Tipo                                   | Obrigatório |
-| -------------------------------------- | -------- |
-| enum('absolute', 'relative', 'static') | Não       |
+| -------------------------------------- | ----------- |
+| enum('absolute', 'relative', 'static') | Não         |
 
 ---
 
@@ -1286,8 +1286,8 @@ Funciona de forma similar a `right` no CSS, mas no React Native você deve usar 
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/right) para mais detalhes sobre como `right` afeta o layout.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1298,8 +1298,8 @@ Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/right)
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1310,8 +1310,8 @@ Quando direction é `ltr`, `start` é equivalente a `left`. Quando direction é 
 Este estilo tem precedência sobre os estilos `left`, `right` e `end`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1324,8 +1324,8 @@ Funciona de forma similar a `top` no CSS, mas no React Native você deve usar po
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/top) para mais detalhes sobre como `top` afeta o layout.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1338,8 +1338,8 @@ Funciona de forma similar a `width` no CSS, mas no React Native você deve usar 
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/width) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1354,5 +1354,5 @@ No iOS, `zIndex` pode requerer que `View`s sejam irmãs umas das outras para fun
 Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |

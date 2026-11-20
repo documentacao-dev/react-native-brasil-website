@@ -37,8 +37,12 @@ Isso significa que se você tentar definir `newArchEnabled=false` no Android, ou
 ### Como migrar {#how-to-migrate}
 
 Se você ainda não migrou seu projeto para a New Architecture, recomendamos primeiro migrar seu projeto para React Native 0.81 ou Expo SDK 54. Estas são as últimas versões que permitem usar a Legacy Architecture. Elas contêm avisos e melhorias de desempenho especificamente para ajudar na migração para a New Architecture.
-<br/> Em seguida, habilite a New Architecture na versão 0.81 e verifique se sua aplicação está funcionando corretamente.
-<br/> Uma vez que você esteja usando a New Architecture na versão 0.81, pode atualizar com segurança para React Native 0.82, que impede a habilitação da Legacy Architecture.
+
+<br /> Em seguida, habilite a New Architecture na versão 0.81 e
+verifique se sua aplicação está funcionando corretamente.
+<br /> Uma vez que você esteja usando a New Architecture na versão
+0.81, pode atualizar com segurança para React Native 0.82, que
+impede a habilitação da Legacy Architecture.
 
 Se uma dependência de terceiros incompatível está bloqueando você de migrar para a New Architecture, recomendamos que você entre em contato diretamente com os mantenedores da biblioteca.
 
@@ -145,7 +149,7 @@ Este lançamento do React Native vem com a versão estável mais recente do Reac
 
 Este lançamento do React contém suporte completo para owner stacks para React Native. No React Native 0.80, quando enviamos suporte para 19.1.0, [mencionamos](/blog/2025/06/12/react-native-0.80#react-1910) que owner stacks não eram totalmente suportados se você estivesse usando o plugin Babel [`@babel/plugin-transform-function-name`](https://babeljs.io/docs/babel-plugin-transform-function-name). Este lançamento remove essa restrição e habilita owner stacks para todos os usuários do React Native.
 
-| ANTES                                                                                                            | DEPOIS                                                                                                         |
+| ANTES                                                                                                             | DEPOIS                                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | <center>![Example error thrown without Owner Stacks](../static/blog/assets/0.82-owners-stack-before.png)</center> | <center>![Example error thrown with Owner Stacks](../static/blog/assets/0.82-owners-stack-after.png)</center> |
 

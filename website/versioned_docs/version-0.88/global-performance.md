@@ -34,11 +34,11 @@ get rnStartupTiming(): ReactNativeStartupTiming;
 
 A interface `ReactNativeStartupTiming` fornece os seguintes campos:
 
-| Nome                                     | Tipo           | Descrição                                                               |
-| ---------------------------------------- | -------------- | ----------------------------------------------------------------------- |
-| `startTime`                              | number \| void | Quando a inicialização do runtime do React Native foi iniciada.         |
-| `executeJavaScriptBundleEntryPointStart` | number \| void | Quando a execução do bundle da aplicação foi iniciada.                  |
-| `endTime`                                | number \| void | Quando o runtime do React Native foi totalmente inicializado.           |
+| Nome                                     | Tipo           | Descrição                                                       |
+| ---------------------------------------- | -------------- | --------------------------------------------------------------- |
+| `startTime`                              | number \| void | Quando a inicialização do runtime do React Native foi iniciada. |
+| `executeJavaScriptBundleEntryPointStart` | number \| void | Quando a execução do bundle da aplicação foi iniciada.          |
+| `endTime`                                | number \| void | Quando o runtime do React Native foi totalmente inicializado.   |
 
 ### `timeOrigin`
 

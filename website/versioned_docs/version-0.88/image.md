@@ -487,8 +487,8 @@ Aborta a requisição de prefetch.
 
 **Parâmetros:**
 
-| Name                                                           | Type   | Description                                     |
-| -------------------------------------------------------------- | ------ | ----------------------------------------------- |
+| Name                                                           | Type   | Description                                  |
+| -------------------------------------------------------------- | ------ | -------------------------------------------- |
 | requestId <div className="label basic required">Required</div> | number | ID da requisição retornado por `prefetch()`. |
 
 ---
@@ -505,8 +505,8 @@ Para recuperar as dimensões da imagem, a imagem pode primeiro precisar ser carr
 
 **Parâmetros:**
 
-| <div className="wideColumn">Name</div>                   | Type   | Description                     |
-| -------------------------------------------------------- | ------ | ------------------------------- |
+| <div className="wideColumn">Name</div>                   | Type   | Description              |
+| -------------------------------------------------------- | ------ | ------------------------ |
 | uri <div className="label basic required">Required</div> | string | A localização da imagem. |
 
 ---
@@ -526,9 +526,9 @@ Para recuperar as dimensões da imagem, a imagem pode primeiro precisar ser carr
 
 **Parâmetros:**
 
-| <div className="wideColumn">Name</div>                       | Type   | Description                           |
-| ------------------------------------------------------------ | ------ | ------------------------------------- |
-| uri <div className="label basic required">Required</div>     | string | A localização da imagem.       |
+| <div className="wideColumn">Name</div>                       | Type   | Description                      |
+| ------------------------------------------------------------ | ------ | -------------------------------- |
+| uri <div className="label basic required">Required</div>     | string | A localização da imagem.         |
 | headers <div className="label basic required">Required</div> | object | Os cabeçalhos para a requisição. |
 
 ---
@@ -543,9 +543,9 @@ Faz o prefetch de uma imagem remota para uso posterior baixando-a para o cache d
 
 **Parâmetros:**
 
-| Name                                                     | Type                                                  | Description                                                    |
-| -------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------- |
-| url <div className="label basic required">Required</div> | string                                                | A localização remota da imagem.                         |
+| Name                                                     | Type                                                  | Description                                  |
+| -------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------- |
+| url <div className="label basic required">Required</div> | string                                                | A localização remota da imagem.              |
 | callback                                                 | function <div className="label android">Android</div> | A função que será chamada com o `requestId`. |
 
 ---
@@ -562,8 +562,8 @@ Executa interrogação de cache. Retorna uma promise que resolve para um mapeame
 
 **Parâmetros:**
 
-| Name                                                      | Type  | Description                                              |
-| --------------------------------------------------------- | ----- | -------------------------------------------------------- |
+| Name                                                      | Type  | Description                                      |
+| --------------------------------------------------------- | ----- | ------------------------------------------------ |
 | urls <div className="label basic required">Required</div> | array | Lista de URLs de imagem para verificar no cache. |
 
 ---
@@ -583,8 +583,8 @@ Resolve uma referência de recurso em um objeto que possui as propriedades `uri`
 
 **Parâmetros:**
 
-| <div className="wideColumn">Name</div>                      | Type                                     | Description                                                                                      |
-| ----------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| <div className="wideColumn">Name</div>                      | Type                                     | Description                                                                    |
+| ----------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------ |
 | source <div className="label basic required">Required</div> | [ImageSource](image#imagesource), number | Um número (tipo opaco retornado por `require('./foo.png')`) ou um ImageSource. |
 
 ## Type Definitions
@@ -612,18 +612,18 @@ Objeto retornado no callback `onLoad`.
 
 **Propriedades:**
 
-| Name   | Type   | Description                         |
-| ------ | ------ | ----------------------------------- |
+| Name   | Type   | Description                       |
+| ------ | ------ | --------------------------------- |
 | source | object | O [source object](#source-object) |
 
 #### Source Object
 
 **Propriedades:**
 
-| Name   | Type   | Description                                                         |
-| ------ | ------ | ------------------------------------------------------------------- |
-| width  | number | A largura da imagem carregada.                               |
-| height | number | A altura da imagem carregada.                                |
+| Name   | Type   | Description                                                        |
+| ------ | ------ | ------------------------------------------------------------------ |
+| width  | number | A largura da imagem carregada.                                     |
+| height | number | A altura da imagem carregada.                                      |
 | uri    | string | Uma string representando o identificador de recurso para a imagem. |
 
 ### ImageSource
@@ -634,17 +634,17 @@ Objeto retornado no callback `onLoad`.
 
 **Propriedades (se passando como object ou array de objects):**
 
-| <div className="wideColumn">Name</div>     | Type                                       | Description                                                                                                                                                                                                             |
-| ------------------------------------------ | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| uri                                        | string                                     | Uma string representando o identificador de recurso para a imagem, que pode ser um endereço http, um caminho de arquivo local ou o nome de um recurso de imagem estática.                                              |
-| width                                      | number                                     | Pode ser especificado se conhecido no momento da compilação, caso em que o valor será usado para definir a dimensão padrão do componente `<Image/>`.                                                                   |
-| height                                     | number                                     | Pode ser especificado se conhecido no momento da compilação, caso em que o valor será usado para definir a dimensão padrão do componente `<Image/>`.                                                                   |
-| scale                                      | number                                     | Usado para indicar o fator de escala da imagem. Padrão é `1.0` se não especificado, significando que um pixel da imagem equivale a um ponto de exibição / DIP.                                                         |
-| bundle<div className="label ios">iOS</div> | string                                     | O bundle de recursos iOS no qual a imagem está incluída. O padrão será `[NSBundle mainBundle]` se não definido.                                                                                                        |
-| method                                     | string                                     | O método HTTP a ser usado. Padrão é `'GET'` se não especificado.                                                                                                                                                       |
-| headers                                    | object                                     | Um objeto representando os cabeçalhos HTTP para enviar junto com a requisição para uma imagem remota.                                                                                                                  |
-| body                                       | string                                     | O corpo HTTP para enviar com a requisição. Deve ser uma string UTF-8 válida e será enviado exatamente como especificado, sem codificação adicional (por exemplo, URL-escaping ou base64) aplicada.                     |
-| cache<div className="label ios">iOS</div>  | [ImageCacheEnum](image#imagecacheenum-ios) | Determina como as requisições lidam com respostas potencialmente em cache.                                                                                                                                             |
+| <div className="wideColumn">Name</div>     | Type                                       | Description                                                                                                                                                                                        |
+| ------------------------------------------ | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| uri                                        | string                                     | Uma string representando o identificador de recurso para a imagem, que pode ser um endereço http, um caminho de arquivo local ou o nome de um recurso de imagem estática.                          |
+| width                                      | number                                     | Pode ser especificado se conhecido no momento da compilação, caso em que o valor será usado para definir a dimensão padrão do componente `<Image/>`.                                               |
+| height                                     | number                                     | Pode ser especificado se conhecido no momento da compilação, caso em que o valor será usado para definir a dimensão padrão do componente `<Image/>`.                                               |
+| scale                                      | number                                     | Usado para indicar o fator de escala da imagem. Padrão é `1.0` se não especificado, significando que um pixel da imagem equivale a um ponto de exibição / DIP.                                     |
+| bundle<div className="label ios">iOS</div> | string                                     | O bundle de recursos iOS no qual a imagem está incluída. O padrão será `[NSBundle mainBundle]` se não definido.                                                                                    |
+| method                                     | string                                     | O método HTTP a ser usado. Padrão é `'GET'` se não especificado.                                                                                                                                   |
+| headers                                    | object                                     | Um objeto representando os cabeçalhos HTTP para enviar junto com a requisição para uma imagem remota.                                                                                              |
+| body                                       | string                                     | O corpo HTTP para enviar com a requisição. Deve ser uma string UTF-8 válida e será enviado exatamente como especificado, sem codificação adicional (por exemplo, URL-escaping ou base64) aplicada. |
+| cache<div className="label ios">iOS</div>  | [ImageCacheEnum](image#imagecacheenum-ios) | Determina como as requisições lidam com respostas potencialmente em cache.                                                                                                                         |
 
 **Se passando um number:**
 

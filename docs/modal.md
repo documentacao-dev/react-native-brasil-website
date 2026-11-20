@@ -105,7 +105,6 @@ Herda [View Props](view.md#props).
 
 ---
 
-
 ### `animationType`
 
 A prop `animationType` controla como o modal é animado.
@@ -193,7 +192,6 @@ Um setter de ref que será atribuído a um [element node](element-nodes) quando 
 
 O callback `onRequestClose` é chamado quando o usuário toca no botão voltar do hardware no Android ou no botão de menu na Apple TV. Devido a esta prop obrigatória, esteja ciente de que eventos `BackHandler` não serão emitidos enquanto o modal estiver aberto.
 No iOS, este callback é chamado quando um Modal está sendo dispensado usando um gesto de arrastar quando `presentationStyle` é `pageSheet` ou `formSheet`. Quando `allowSwipeDismissal` está habilitado, este callback será chamado após dispensar o modal.
-
 
 | Type                                                                                                                                                                                           |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

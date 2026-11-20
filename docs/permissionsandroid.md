@@ -150,9 +150,9 @@ Retorna uma promise que resolve para um valor booleano indicando se a permission
 
 **Parameters:**
 
-| Name       | Type   | Required | Description                         |
-| ---------- | ------ | -------- | ----------------------------------- |
-| permission | string | Yes      | A permission a ser verificada.      |
+| Name       | Type   | Required | Description                    |
+| ---------- | ------ | -------- | ------------------------------ |
+| permission | string | Yes      | A permission a ser verificada. |
 
 ---
 
@@ -171,20 +171,20 @@ Se `rationale` for fornecido, esta função verifica com o sistema operacional s
 
 **Parameters:**
 
-| Name       | Type   | Required | Description                      |
-| ---------- | ------ | -------- | -------------------------------- |
-| permission | string | Yes      | A permission a ser solicitada.   |
-| rationale  | object | No       | Veja `rationale` abaixo.         |
+| Name       | Type   | Required | Description                    |
+| ---------- | ------ | -------- | ------------------------------ |
+| permission | string | Yes      | A permission a ser solicitada. |
+| rationale  | object | No       | Veja `rationale` abaixo.       |
 
 **Rationale:**
 
-| Name           | Type   | Required | Description                       |
-| -------------- | ------ | -------- | --------------------------------- |
-| title          | string | Yes      | O título do diálogo.              |
-| message        | string | Yes      | A mensagem do diálogo.            |
-| buttonPositive | string | Yes      | O texto do botão positivo.        |
-| buttonNegative | string | No       | O texto do botão negativo.        |
-| buttonNeutral  | string | No       | O texto do botão neutro.          |
+| Name           | Type   | Required | Description                |
+| -------------- | ------ | -------- | -------------------------- |
+| title          | string | Yes      | O título do diálogo.       |
+| message        | string | Yes      | A mensagem do diálogo.     |
+| buttonPositive | string | Yes      | O texto do botão positivo. |
+| buttonNegative | string | No       | O texto do botão negativo. |
+| buttonNeutral  | string | No       | O texto do botão neutro.   |
 
 ---
 
@@ -200,6 +200,6 @@ Solicita ao usuário que habilite múltiplas permissions no mesmo diálogo e ret
 
 **Parameters:**
 
-| Name        | Type  | Required | Description                            |
-| ----------- | ----- | -------- | -------------------------------------- |
+| Name        | Type  | Required | Description                               |
+| ----------- | ----- | -------- | ----------------------------------------- |
 | permissions | array | Yes      | Array de permissions a serem solicitadas. |

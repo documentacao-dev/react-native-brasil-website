@@ -820,8 +820,8 @@ Defina como `false` para remover o padding extra da fonte destinado a criar espa
 
 Permite que você defina todas as variantes de fonte para uma fonte. Pode ser definido usando um array de enums ou uma string separada por espaços, por exemplo `'small-caps common-ligatures'`.
 
-| Tipo                                                                                                                | Padrão |
-| ------------------------------------------------------------------------------------------------------------------- | ------ |
+| Tipo                                                                                                                 | Padrão |
+| -------------------------------------------------------------------------------------------------------------------- | ------ |
 | array de enum(`'small-caps'`, `'oldstyle-nums'`, `'lining-nums'`, `'tabular-nums'`, `'proportional-nums'`) ou string | `[]`   |
 
 ---

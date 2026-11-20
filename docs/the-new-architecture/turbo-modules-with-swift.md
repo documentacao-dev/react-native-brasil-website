@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 # iOS - Usando Swift nos seus Native Modules
 
 Swift é a linguagem oficial e padrão para desenvolver aplicações nativas no iOS.

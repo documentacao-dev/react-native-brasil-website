@@ -237,7 +237,8 @@ Aqui está uma comparação da arquitetura antiga sem transitions e da nova arqu
       alt="Um vídeo demonstrando um aplicativo renderizando muitas views (tiles) de acordo com uma entrada de slider. As views são renderizadas em lotes à medida que o slider é rapidamente ajustado de 0 a 1000."
     />
     <figcaption>
-      <b>Antes:</b> renderizando tiles sem marcar como uma transição.
+      <b>Antes:</b> renderizando tiles sem marcar como uma
+      transição.
     </figcaption>
   </figure>
   <figure>
@@ -246,8 +247,9 @@ Aqui está uma comparação da arquitetura antiga sem transitions e da nova arqu
       alt="Um vídeo demonstrando um aplicativo renderizando muitas views (tiles) de acordo com uma entrada de slider. As views são renderizadas em lotes à medida que o slider é rapidamente ajustado de 0 a 1000. Há menos renderizações em lote em comparação ao próximo vídeo."
     />
     <figcaption>
-      <b>Depois:</b> renderizando tiles <em>com transitions</em> para
-      interromper renderizações em andamento de estado obsoleto.
+      <b>Depois:</b> renderizando tiles <em>com transitions</em>{' '}
+      para interromper renderizações em andamento de estado
+      obsoleto.
     </figcaption>
   </figure>
 </div>
@@ -267,8 +269,8 @@ Automatic batching permite que o React agrupe mais atualizações de estado ao r
       alt="Um vídeo demonstrando um aplicativo renderizando muitas views de acordo com uma entrada de slider. O valor do slider é ajustado de 0 a 1000 e a UI lentamente alcança a renderização de 1000 views."
     />
     <figcaption>
-      <b>Antes:</b> renderizando atualizações de estado frequentes com
-      renderer legado.
+      <b>Antes:</b> renderizando atualizações de estado frequentes
+      com renderer legado.
     </figcaption>
   </figure>
   <figure>
@@ -277,8 +279,8 @@ Automatic batching permite que o React agrupe mais atualizações de estado ao r
       alt="Um vídeo demonstrando um aplicativo renderizando muitas views de acordo com uma entrada de slider. O valor do slider é ajustado de 0 a 1000 e a UI resolve para 1000 views mais rápido que o exemplo anterior, sem tantos estados intermediários."
     />
     <figcaption>
-      <b>Depois:</b> renderizando atualizações de estado frequentes com{' '}
-      <em>automatic batching</em>.
+      <b>Depois:</b> renderizando atualizações de estado
+      frequentes com <em>automatic batching</em>.
     </figcaption>
   </figure>
 </div>
@@ -333,8 +335,8 @@ Esta mudança permite que você leia informações de layout sincronamente e atu
       alt="Uma view que está se movendo para os cantos do viewport e centro com um tooltip renderizado acima ou abaixo dela. O tooltip é renderizado após um pequeno atraso depois que a view se move"
     />
     <figcaption>
-      Na arquitetura antiga, o layout era lido de forma assíncrona em
-      `onLayout`, causando atraso na posição do tooltip.
+      Na arquitetura antiga, o layout era lido de forma assíncrona
+      em `onLayout`, causando atraso na posição do tooltip.
     </figcaption>
   </figure>
   <figure>
@@ -343,8 +345,9 @@ Esta mudança permite que você leia informações de layout sincronamente e atu
       alt="Uma view que está se movendo para os cantos do viewport e centro com um tooltip renderizado acima ou abaixo dela. A view e o tooltip se movem em uníssono."
     />
     <figcaption>
-      Na New Architecture, o layout pode ser lido em `useLayoutEffect`
-      sincronamente, atualizando a posição do tooltip antes de exibir.
+      Na New Architecture, o layout pode ser lido em
+      `useLayoutEffect` sincronamente, atualizando a posição do
+      tooltip antes de exibir.
     </figcaption>
   </figure>
 </div>
