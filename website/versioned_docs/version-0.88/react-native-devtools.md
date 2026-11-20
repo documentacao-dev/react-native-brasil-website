@@ -51,7 +51,7 @@ Breakpoints são uma ferramenta fundamental em seu kit de debugging!
 
 :::
 
-#### Dicas úteis {#useful-tips}
+#### Dicas úteis {#useful-tips-1}
 
 - Um overlay "Paused in Debugger" aparece quando seu aplicativo está pausado. Toque nele para retomar.
 - Preste atenção aos painéis do lado direito quando em um breakpoint, que permitem inspecionar o escopo atual e call stack, e definir watch expressions.
@@ -100,7 +100,7 @@ Se você estiver inspecionando um grande volume de dados de resposta, saiba que 
 
 </details>
 
-#### Dicas úteis {#useful-tips}
+#### Dicas úteis {#useful-tips-2}
 
 - Use a aba Initiator para ver a call stack do ponto em que uma requisição de rede foi iniciada no seu app.
 - Eventos de rede também aparecem na faixa Network do painel Performance.
@@ -111,7 +111,7 @@ Se você estiver inspecionando um grande volume de dados de resposta, saiba que 
 
 O rastreamento de performance permite gravar uma sessão de performance dentro do seu app, para entender como o seu código JavaScript está sendo executado e quais operações levaram mais tempo. No React Native, mostramos a execução de JavaScript, as faixas de performance do React, eventos de rede e [User Timings](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/User_timing) personalizados, tudo renderizado em uma única linha do tempo de performance.
 
-#### Dicas úteis {#useful-tips}
+#### Dicas úteis {#useful-tips-3}
 
 - Use [Annotations](https://developer.chrome.com/docs/devtools/performance/annotations) (shift + arrastar) para rotular e marcar um trace de performance, o que é útil antes de [baixar e compartilhar](https://developer.chrome.com/docs/devtools/performance/save-trace) o trace com alguém da equipe. As anotações também oferecem uma forma rápida de medir intervalos de tempo em **segundos**.
 - Use a [API `PerformanceObserver`](./global-PerformanceObserver.md) no seu app para observar eventos de performance em tempo de execução, o que é útil se você quiser capturar telemetria de performance.
@@ -130,7 +130,7 @@ O painel Memory permite tirar um heap snapshot e visualizar o uso de memória do
 
 [Record heap snapshots | Chrome DevTools](https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots)
 
-#### Dicas úteis {#useful-tips}
+#### Dicas úteis {#useful-tips-4}
 
 - Use <kbd>Cmd ⌘</kbd>+<kbd>F</kbd> / <kbd>Ctrl</kbd>+<kbd>F</kbd> para filtrar por objetos específicos no heap.
 - Tirar um [allocation timeline report](https://developer.chrome.com/docs/devtools/memory-problems/allocation-profiler) pode ser útil para ver o uso de memória ao longo do tempo como um gráfico, para identificar possíveis memory leaks.
@@ -148,7 +148,7 @@ O painel React Components permite inspecionar e atualizar a árvore de component
 - Passe o mouse ou selecione um elemento no DevTools para destacá-lo no dispositivo.
 - Para localizar um elemento no DevTools, clique no botão "Select element" no canto superior esquerdo, depois toque em qualquer elemento no aplicativo.
 
-#### Dicas úteis {#useful-tips}
+#### Dicas úteis {#useful-tips-5}
 
 - Props e state em um componente podem ser visualizados e modificados em tempo de execução usando o painel do lado direito.
 - Componentes otimizados com [React Compiler](https://react.dev/learn/react-compiler) serão anotados com um badge "Memo ✨".

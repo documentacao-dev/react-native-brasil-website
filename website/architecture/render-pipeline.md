@@ -151,7 +151,7 @@ Quando uma atualização de estado ocorre, o renderizador precisa conceitualment
 
 Vamos explorar cada fase do pipeline de renderização durante uma atualização de estado.
 
-### Fase 1. Render {#phase-1-render}
+### Fase 1. Render {#phase-1-render-1}
 
 ![Phase one: render](/docs/assets/Architecture/renderer-pipeline/phase-one-render.png)
 
@@ -174,7 +174,7 @@ Após essas operações, **Node 1'** representa a raiz da nova _React Element Tr
 
 Observe como **T** e **T'** ambas compartilham **Node 4**. Compartilhamento estrutural melhora desempenho e reduz uso de memória.
 
-### Fase 2. Commit {#phase-2-commit}
+### Fase 2. Commit {#phase-2-commit-1}
 
 ![Phase two: commit](/docs/assets/Architecture/renderer-pipeline/phase-two-commit.png)
 
@@ -183,7 +183,7 @@ Após React criar a nova _React Element Tree_ e _React Shadow Tree_, ele deve co
 - **Layout Calculation:** Similar a Layout Calculation durante [Renderização Inicial](#initial-render). Uma diferença importante é que cálculo de layout pode fazer com que _React Shadow Nodes_ compartilhados sejam clonados. Isso pode acontecer porque se o pai de um _React Shadow Node_ compartilhado incorre em uma mudança de layout, o layout do _React Shadow Node_ compartilhado também pode mudar.
 - **Tree Promotion (Nova Árvore → Próxima Árvore):** Similar a Tree Promotion durante [Renderização Inicial](#initial-render).
 
-### Fase 3. Mount {#phase-3-mount}
+### Fase 3. Mount {#phase-3-mount-1}
 
 ![Phase three: mount](/docs/assets/Architecture/renderer-pipeline/phase-three-mount.png)
 
@@ -211,13 +211,13 @@ Com duas diferenças importantes:
 1. Elas pulam a "fase de renderização" pois React não está envolvido.
 2. As atualizações podem se originar e acontecer em qualquer thread, incluindo a main thread.
 
-### Fase 2. Commit {#phase-2-commit}
+### Fase 2. Commit {#phase-2-commit-2}
 
 ![Phase two: commit](/docs/assets/Architecture/renderer-pipeline/phase-two-commit.png)
 
 Ao realizar uma atualização de _C++ State_, um bloco de código solicita uma atualização de um `ShadowNode` (**N**) para definir _C++ State_ para o valor **S**. O renderizador do React Native tentará repetidamente obter a última versão commitada de **N**, cloná-lo com um novo estado **S**, e commitar **N'** à árvore. Se React, ou outra atualização de _C++ State_, realizou outro commit durante este tempo, o commit de _C++ State_ falhará e o renderizador tentará novamente a atualização de _C++ State_ muitas vezes até que um commit seja bem-sucedido. Isso previne colisões de fonte-da-verdade e condições de corrida.
 
-### Fase 3. Mount {#phase-3-mount}
+### Fase 3. Mount {#phase-3-mount-2}
 
 ![Phase three: mount](/docs/assets/Architecture/renderer-pipeline/phase-three-mount.png)
 

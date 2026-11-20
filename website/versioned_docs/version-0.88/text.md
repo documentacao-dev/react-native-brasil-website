@@ -760,7 +760,7 @@ O objeto `TextLayout` é parte do callback [`TextLayoutEvent`](text#textlayoutev
 
 O objeto `TextLayoutEvent` é retornado no callback como resultado de uma mudança de layout do componente. Ele contém uma chave chamada `lines` com um valor que é um array contendo objetos [`TextLayout`](text#textlayout) correspondentes a cada linha de texto renderizada.
 
-#### Example
+#### Example {#example-1}
 
 ```js
 {
@@ -773,7 +773,7 @@ O objeto `TextLayoutEvent` é retornado no callback como resultado de uma mudan�
 }
 ```
 
-#### Properties
+#### Properties {#properties-1}
 
 | Name   | Type                                    | Optional | Description                                                |
 | ------ | --------------------------------------- | -------- | ---------------------------------------------------------- |

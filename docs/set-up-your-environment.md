@@ -56,7 +56,7 @@ Se você tiver restrições que o impedem de usar um Framework, ou se quiser esc
 </TabItem>
 <TabItem value="windows">
 
-#### Sistema Operacional Alvo {#target-os}
+#### Sistema Operacional Alvo {#target-os-1}
 
 <Tabs groupId="platform" queryString defaultValue={constants.defaultPlatform} values={constants.platforms} className="pill-tabs">
 <TabItem value="android">
@@ -82,7 +82,7 @@ Um Mac é necessário para compilar projetos com código nativo para iOS. Você 
 </TabItem>
 <TabItem value="linux">
 
-#### Sistema Operacional Alvo {#target-os}
+#### Sistema Operacional Alvo {#target-os-2}
 
 <Tabs groupId="platform" queryString defaultValue={constants.defaultPlatform} values={constants.platforms} className="pill-tabs">
 <TabItem value="android">
@@ -96,7 +96,7 @@ Um Mac é necessário para compilar projetos com código nativo para iOS. Você 
 
 [//]: # 'Linux, iOS'
 
-## Não Suportado {#unsupported}
+## Não Suportado {#unsupported-1}
 
 :::info
 Um Mac é necessário para compilar projetos com código nativo para iOS. Você pode usar o [Expo Go](https://expo.dev/go) do [Expo](environment-setup#start-a-new-react-native-project-with-expo) para desenvolver seu aplicativo em seu dispositivo iOS.

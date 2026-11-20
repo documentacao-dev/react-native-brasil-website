@@ -519,7 +519,7 @@ Você pode ler mais sobre a API `Animated.ValueXY` na [página](animatedvaluexy)
 
 ---
 
-### `Interpolation`
+### `Interpolation` {#interpolation-1}
 
 Exportado para usar o tipo Interpolation em flow.
 

@@ -126,13 +126,13 @@ Você construiu um ótimo app usando React Native e agora está ansioso para lan
 
 [//]: # 'Windows, Android'
 
-### 1. Habilite a depuração via USB {#1-enable-debugging-over-usb}
+### 1. Habilite a depuração via USB {#1-enable-debugging-over-usb-1}
 
 A maioria dos dispositivos Android só pode instalar e executar apps baixados da Google Play, por padrão. Você precisará habilitar a depuração USB em seu dispositivo para instalar seu app durante o desenvolvimento.
 
 Para habilitar a depuração USB em seu dispositivo, você primeiro precisará habilitar o menu "Developer options" indo em **Settings** → **About phone** → **Software information** e então tocando na linha `Build number` na parte inferior sete vezes. Você pode então voltar para **Settings** → **Developer options** para habilitar "USB debugging".
 
-### 2. Conecte seu dispositivo via USB {#2-plug-in-your-device-via-usb}
+### 2. Conecte seu dispositivo via USB {#2-plug-in-your-device-via-usb-1}
 
 Agora vamos configurar um dispositivo Android para executar nossos projetos React Native. Vá em frente e conecte seu dispositivo via USB à sua máquina de desenvolvimento.
 
@@ -147,7 +147,7 @@ emulator-5554 offline   # Google emulator
 
 Ver `device` na coluna da direita significa que o dispositivo está conectado. Você deve ter **apenas um dispositivo conectado** por vez.
 
-### 3. Execute seu app {#3-run-your-app}
+### 3. Execute seu app {#3-run-your-app-1}
 
 Na raiz do seu projeto, execute o seguinte no seu prompt de comando para instalar e iniciar seu app no dispositivo:
 
@@ -176,7 +176,7 @@ Você também pode usar o `React Native CLI` para gerar e executar uma compilaç
 
 Você também pode iterar rapidamente em um dispositivo conectando-se ao servidor de desenvolvimento executando em sua máquina de desenvolvimento. Existem várias maneiras de fazer isso, dependendo se você tem acesso a um cabo USB ou uma rede Wi-Fi.
 
-### Method 1: Using adb reverse (recommended)
+### Method 1: Using adb reverse (recommended) {#method-1-using-adb-reverse-recommended-1}
 
 Você pode usar este método se seu dispositivo estiver executando Android 5.0 (Lollipop) ou mais recente, tiver a depuração USB habilitada e estiver conectado via USB à sua máquina de desenvolvimento.
 
@@ -194,7 +194,7 @@ $ adb devices
 
 Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
-### Method 2: Connect via Wi-Fi
+### Method 2: Connect via Wi-Fi {#method-2-connect-via-wi-fi-1}
 
 Você também pode se conectar ao servidor de desenvolvimento via Wi-Fi. Primeiro, você precisará instalar o app em seu dispositivo usando um cabo USB, mas uma vez feito isso, você pode depurar sem fio seguindo estas instruções. Você precisará do endereço IP atual da sua máquina de desenvolvimento antes de prosseguir.
 
@@ -210,7 +210,7 @@ Abra o prompt de comando e digite `ipconfig` para encontrar o endereço IP da su
 
 Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
-## Building your app for production
+## Building your app for production {#building-your-app-for-production-1}
 
 Você construiu um ótimo app usando React Native e agora está ansioso para lançá-lo na Play Store. O processo é o mesmo de qualquer outro app Android nativo, com algumas considerações adicionais a serem levadas em conta. Siga o guia para [gerar um APK assinado](signed-apk-android.md) para saber mais.
 
@@ -219,13 +219,13 @@ Você construiu um ótimo app usando React Native e agora está ansioso para lan
 
 [//]: # 'Linux, Android'
 
-### 1. Habilite a depuração via USB {#1-enable-debugging-over-usb}
+### 1. Habilite a depuração via USB {#1-enable-debugging-over-usb-2}
 
 A maioria dos dispositivos Android só pode instalar e executar apps baixados da Google Play, por padrão. Você precisará habilitar a depuração USB em seu dispositivo para instalar seu app durante o desenvolvimento.
 
 Para habilitar a depuração USB em seu dispositivo, você primeiro precisará habilitar o menu "Developer options" indo em **Settings** → **About phone** → **Software information** e então tocando na linha `Build number` na parte inferior sete vezes. Você pode então voltar para **Settings** → **Developer options** para habilitar "USB debugging".
 
-### 2. Conecte seu dispositivo via USB {#2-plug-in-your-device-via-usb}
+### 2. Conecte seu dispositivo via USB {#2-plug-in-your-device-via-usb-2}
 
 Agora vamos configurar um dispositivo Android para executar nossos projetos React Native. Vá em frente e conecte seu dispositivo via USB à sua máquina de desenvolvimento.
 
@@ -285,7 +285,7 @@ emulator-5554 offline   # Google emulator
 
 Ver `device` na coluna da direita significa que o dispositivo está conectado. Você deve ter **apenas um dispositivo conectado** por vez.
 
-### 3. Execute seu app {#3-run-your-app}
+### 3. Execute seu app {#3-run-your-app-2}
 
 Na raiz do seu projeto, digite o seguinte no seu prompt de comando para instalar e iniciar seu app no dispositivo:
 
@@ -318,7 +318,7 @@ Você também pode usar o `React Native CLI` para gerar e executar uma compilaç
 
 Você também pode iterar rapidamente em um dispositivo conectando-se ao servidor de desenvolvimento executando em sua máquina de desenvolvimento. Existem várias maneiras de fazer isso, dependendo se você tem acesso a um cabo USB ou uma rede Wi-Fi.
 
-### Method 1: Using adb reverse (recommended)
+### Method 1: Using adb reverse (recommended) {#method-1-using-adb-reverse-recommended-2}
 
 Você pode usar este método se seu dispositivo estiver executando Android 5.0 (Lollipop) ou mais recente, tiver a depuração USB habilitada e estiver conectado via USB à sua máquina de desenvolvimento.
 
@@ -336,7 +336,7 @@ $ adb devices
 
 Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
-### Method 2: Connect via Wi-Fi
+### Method 2: Connect via Wi-Fi {#method-2-connect-via-wi-fi-2}
 
 Você também pode se conectar ao servidor de desenvolvimento via Wi-Fi. Primeiro, você precisará instalar o app em seu dispositivo usando um cabo USB, mas uma vez feito isso, você pode depurar sem fio seguindo estas instruções. Você precisará do endereço IP atual da sua máquina de desenvolvimento antes de prosseguir.
 
@@ -352,7 +352,7 @@ Abra um terminal e digite `/sbin/ifconfig` para encontrar o endereço IP da sua 
 
 Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
-## Building your app for production
+## Building your app for production {#building-your-app-for-production-2}
 
 Você construiu um ótimo app usando React Native e agora está ansioso para lançá-lo na Play Store. O processo é o mesmo de qualquer outro app Android nativo, com algumas considerações adicionais a serem levadas em conta. Siga o guia para [gerar um APK assinado](signed-apk-android.md) para saber mais.
 
@@ -364,7 +364,7 @@ Você construiu um ótimo app usando React Native e agora está ansioso para lan
 
 ## Executando seu app em dispositivos iOS {#running-your-app-on-ios-devices}
 
-#### Development OS
+#### Development OS {#development-os-1}
 
 <Tabs groupId="os" queryString defaultValue={constants.defaultOs} values={constants.oses} className="pill-tabs">
 <TabItem value="macos">
@@ -429,7 +429,7 @@ Certifique-se de que o script de build detectou o endereço IP da sua máquina c
 
 Abra a aba **Report navigator**, selecione o último **Build** e procure por `IP=` seguido de um endereço IP. O endereço IP que é incorporado no app deve corresponder ao endereço IP da sua máquina.
 
-## Building your app for production
+## Building your app for production {#building-your-app-for-production-3}
 
 Você construiu um ótimo app usando React Native e agora está ansioso para lançá-lo na App Store. O processo é o mesmo de qualquer outro app iOS nativo, com algumas considerações adicionais a serem levadas em conta. Siga o guia para [publicar na Apple App Store](publishing-to-app-store.md) para saber mais.
 

@@ -737,7 +737,7 @@ public class MyViewManager extends ViewGroupManager<FrameLayout> {
 </TabItem>
 </Tabs>
 
-### 4. Register the `ViewManager`
+### 4. Register the `ViewManager` {#4-register-the-viewmanager-1}
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">

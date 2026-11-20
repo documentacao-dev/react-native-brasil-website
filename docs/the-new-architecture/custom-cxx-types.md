@@ -320,7 +320,7 @@ Existe uma convenção que é seguida para gerar esses tipos:
 - A segunda parte do nome é sempre o nome do tipo JS definido nas specs. `Address`, neste exemplo.
   :::
 
-### 3. Implemente o Código Nativo {#3-implement-the-native-code}
+### 3. Implemente o Código Nativo {#3-implement-the-native-code-1}
 
 Agora, precisamos implementar a função `validateAddress` em C++. Primeiro, precisamos adicionar a declaração da função no arquivo `.h`, e então podemos implementá-la no arquivo `.cpp`.
 

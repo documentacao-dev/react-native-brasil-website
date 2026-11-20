@@ -267,7 +267,7 @@ Componentes sem suporte a ref (`InputAccessoryView`, `TouchableWithoutFeedback`,
 
 ### Remoção dos tipos `*Static` {#removal-of-static-types}
 
-#### Migração {#migration}
+#### Migração {#migration-1}
 
 <Tabs defaultValue="after">
 <TabItem value="before" label="Antes">

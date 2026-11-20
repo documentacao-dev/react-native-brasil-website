@@ -224,7 +224,7 @@ Uma enumeração de tipos de animação a serem usados no método [`create`](lay
 
 ---
 
-### Properties
+### Properties {#properties-1}
 
 Uma enumeração de propriedades de layout a serem animadas a serem usadas no método [`create`](layoutanimation.md#create), ou nos configs `create`/`update`/`delete` para [`configureNext`](layoutanimation.md#configurenext). (exemplo de uso: `LayoutAnimation.Properties.opacity`)
 

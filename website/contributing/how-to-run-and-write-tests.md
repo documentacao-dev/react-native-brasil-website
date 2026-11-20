@@ -69,7 +69,7 @@ Para executar os testes unitários Android, invoque o seguinte script da raiz do
 
 Sempre que você estiver corrigindo um bug ou adicionando nova funcionalidade ao React Native, é uma boa ideia adicionar um teste que cubra isso. Dependendo da mudança que você está fazendo, existem diferentes tipos de testes que podem ser apropriados.
 
-### Testes JavaScript {#javascript-tests}
+### Testes JavaScript {#javascript-tests-1}
 
 Os testes JavaScript podem ser encontrados dentro de diretórios `__test__`, colocados ao lado dos arquivos que estão sendo testados. Veja [`TouchableHighlight-test.js`][js-jest-test] para um exemplo básico. Você também pode seguir o tutorial [Testing React Native Apps][jest-tutorial] do Jest para aprender mais.
 
