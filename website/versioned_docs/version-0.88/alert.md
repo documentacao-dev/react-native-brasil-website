@@ -125,7 +125,7 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Métodos {#methods}
 

@@ -31,10 +31,10 @@ Na 0.80, estamos abordando essas questões depreciando deep imports e introduzin
 A principal mudança que estamos fazendo em nossa API hoje é depreciar o uso de deep imports ([RFC](https://github.com/react-native-community/discussions-and-proposals/pull/894)), com avisos no ESLint e no console JS. Deep imports de valores e tipos devem ser atualizados para o import raiz do `react-native`.
 
 ```js title=""
-// Antes - import de subpath
+// Before - import from subpath
 import {Alert} from 'react-native/Libraries/Alert/Alert';
 
-// Depois - import de `react-native`
+// After - import from `react-native`
 import {Alert} from 'react-native';
 ```
 
@@ -167,10 +167,10 @@ Isso instruirá o TypeScript a resolver os tipos de `react-native` do nosso novo
 Como acima, os tipos sob a Strict TypeScript API agora só podem ser resolvidos a partir do caminho de import principal `'react-native'`, aplicando [encapsulamento de pacote](/blog/2023/06/21/package-exports-support), conforme nossa depreciação acima.
 
 ```tsx
-// Antes - import de subpath
+// Before - import from subpath
 import {Alert} from 'react-native/Libraries/Alert/Alert';
 
-// Depois - DEVE importar de `react-native`
+// After - MUST import from `react-native`
 import {Alert} from 'react-native';
 ```
 
@@ -198,13 +198,13 @@ Como os tipos agora são gerados do código-fonte do React Native, você pode co
 A API `Linking` agora é uma única `interface`, em vez de dois exports. Isso se aplica a várias outras APIs ([veja a documentação](/docs/strict-typescript-api)).
 
 ```tsx
-// Antes
+// Before
 import {Linking, LinkingStatic} from 'react-native';
 
 function foo(linking: LinkingStatic) {}
 foo(Linking);
 
-// Depois
+// After
 import {Linking} from 'react-native';
 
 function foo(linking: Linking) {}
@@ -218,8 +218,8 @@ As definições de tipos manuais anteriores deixavam oportunidade para lacunas d
 ```tsx
 import {Dimensions} from 'react-native';
 
-// Antes - Erro de tipo
-// Depois - number | undefined
+// Before - Type error
+// After - number | undefined
 const {densityDpi} = Dimensions.get();
 ```
 

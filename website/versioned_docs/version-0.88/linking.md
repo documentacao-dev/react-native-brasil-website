@@ -635,7 +635,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-# Referência
+# Referência {#reference}
 
 ## Métodos {#methods}
 
