@@ -27,7 +27,6 @@ Por exemplo, o código a seguir demonstra a edição do input quando você toca 
 <TabItem value="javascript">
 
 ```SnackPlayer name=setNativeProps%20on%20TextInput&ext=js
-import React from 'react';
 import {useCallback, useRef} from 'react';
 import {
   StyleSheet,
@@ -75,7 +74,6 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Clear%20text&ext=tsx
-import React from 'react';
 import {useCallback, useRef} from 'react';
 import {
   StyleSheet,
@@ -85,8 +83,10 @@ import {
   View,
 } from 'react-native';
 
+type TextInputInstance = React.ComponentRef<typeof TextInput>;
+
 const App = () => {
-  const inputRef = useRef<TextInput>(null);
+  const inputRef = useRef<TextInputInstance>(null);
   const editText = useCallback(() => {
     inputRef.current?.setNativeProps({text: 'Edited Text'});
   }, []);

@@ -1,14 +1,13 @@
 ---
-ia-translated: true
 id: virtualizedlist
 title: VirtualizedList
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Implementação base para os componentes mais convenientes [`<FlatList>`](flatlist.md) e [`<SectionList>`](sectionlist.md), que também são melhor documentados. Em geral, isso só deve realmente ser usado se você precisar de mais flexibilidade do que o [`FlatList`](flatlist.md) oferece, por exemplo, para uso com dados imutáveis em vez de arrays simples.
+Base implementation for the more convenient [`<FlatList>`](flatlist.md) and [`<SectionList>`](sectionlist.md) components, which are also better documented. In general, this should only really be used if you need more flexibility than [`FlatList`](flatlist.md) provides, e.g. for use with immutable data instead of plain arrays.
 
-A virtualização melhora massivamente o consumo de memória e o desempenho de listas grandes, mantendo uma janela de renderização finita de itens ativos e substituindo todos os itens fora da janela de renderização por espaço em branco de tamanho apropriado. A janela se adapta ao comportamento de rolagem, e os itens são renderizados incrementalmente com baixa prioridade (depois de quaisquer interações em execução) se estiverem longe da área visível, ou com alta prioridade caso contrário, para minimizar o potencial de ver espaço em branco.
+Virtualization massively improves memory consumption and performance of large lists by maintaining a finite render window of active items and replacing all items outside of the render window with appropriately sized blank space. The window adapts to scrolling behavior, and items are rendered incrementally with low-pri (after any running interactions) if they are far from the visible area, or with hi-pri otherwise to minimize the potential of seeing blank space.
 
 ## Example
 
@@ -16,7 +15,6 @@ A virtualização melhora massivamente o consumo de memória e o desempenho de l
 <TabItem value="javascript">
 
 ```SnackPlayer name=VirtualizedListExample&ext=js
-import React from 'react';
 import {View, VirtualizedList, StyleSheet, Text, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -72,7 +70,6 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=VirtualizedListExample&ext=tsx
-import React from 'react';
 import {View, VirtualizedList, StyleSheet, Text, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -138,12 +135,12 @@ export default App;
 
 ---
 
-Algumas ressalvas:
+Some caveats:
 
-- O estado interno não é preservado quando o conteúdo rola para fora da janela de renderização. Certifique-se de que todos os seus dados sejam capturados nos dados do item ou em armazenamentos externos como Flux, Redux ou Relay.
-- Este é um `PureComponent`, o que significa que ele não será re-renderizado se as `props` forem shallow-equal. Certifique-se de que tudo de que sua função `renderItem` depende seja passado como prop (por exemplo, `extraData`) que não seja `===` após atualizações, caso contrário sua UI pode não atualizar quando houver mudanças. Isso inclui a prop `data` e o estado do componente pai.
-- Para restringir a memória e permitir rolagem suave, o conteúdo é renderizado de forma assíncrona fora da tela. Isso significa que é possível rolar mais rápido do que a taxa de preenchimento e ver momentaneamente conteúdo em branco. Este é um trade-off que pode ser ajustado para atender às necessidades de cada aplicação, e estamos trabalhando para melhorá-lo nos bastidores.
-- Por padrão, a lista procura por uma prop `key` em cada item e a usa para a key do React. Alternativamente, você pode fornecer uma prop `keyExtractor` personalizada.
+- Internal state is not preserved when content scrolls out of the render window. Make sure all your data is captured in the item data or external stores like Flux, Redux, or Relay.
+- This is a `PureComponent` which means that it will not re-render if `props` are shallow-equal. Make sure that everything your `renderItem` function depends on is passed as a prop (e.g. `extraData`) that is not `===` after updates, otherwise your UI may not update on changes. This includes the `data` prop and parent component state.
+- In order to constrain memory and enable smooth scrolling, content is rendered asynchronously offscreen. This means it's possible to scroll faster than the fill rate and momentarily see blank content. This is a tradeoff that can be adjusted to suit the needs of each application, and we are working on improving it behind the scenes.
+- By default, the list looks for a `key` prop on each item and uses that for the React key. Alternatively, you can provide a custom `keyExtractor` prop.
 
 ---
 
@@ -153,13 +150,13 @@ Algumas ressalvas:
 
 ### [ScrollView Props](scrollview.md#props)
 
-Herda as [ScrollView Props](scrollview.md#props).
+Inherits [ScrollView Props](scrollview.md#props).
 
 ---
 
 ### `data`
 
-Tipo de dados opaco passado para `getItem` e `getItemCount` para recuperar itens.
+Opaque data type passed to `getItem` and `getItemCount` to retrieve items.
 
 | Type |
 | ---- |
@@ -173,7 +170,7 @@ Tipo de dados opaco passado para `getItem` e `getItemCount` para recuperar itens
 (data: any, index: number) => any;
 ```
 
-Um accessor genérico para extrair um item de qualquer tipo de blob de dados.
+A generic accessor for extracting an item from any sort of data blob.
 
 | Type     |
 | -------- |
@@ -187,7 +184,7 @@ Um accessor genérico para extrair um item de qualquer tipo de blob de dados.
 (data: any) => number;
 ```
 
-Determina quantos itens existem no blob de dados.
+Determines how many items are in the data blob.
 
 | Type     |
 | -------- |
@@ -201,7 +198,7 @@ Determina quantos itens existem no blob de dados.
 (info: any) => ?React.Element<any>
 ```
 
-Pega um item de `data` e o renderiza na lista
+Takes an item from `data` and renders it into the list
 
 | Type     |
 | -------- |
@@ -211,7 +208,7 @@ Pega um item de `data` e o renderiza na lista
 
 ### `CellRendererComponent`
 
-CellRendererComponent permite personalizar como as células renderizadas por `renderItem`/`ListItemComponent` são envolvidas quando colocadas no ScrollView subjacente. Este componente deve aceitar event handlers que notificam o VirtualizedList sobre mudanças dentro da célula.
+CellRendererComponent allows customizing how cells rendered by `renderItem`/`ListItemComponent` are wrapped when placed into the underlying ScrollView. This component must accept event handlers which notify VirtualizedList of changes within the cell.
 
 | Type                                     |
 | ---------------------------------------- |
@@ -221,7 +218,7 @@ CellRendererComponent permite personalizar como as células renderizadas por `re
 
 ### `ItemSeparatorComponent`
 
-Renderizado entre cada item, mas não no topo ou na base. Por padrão, as props `highlighted` e `leadingItem` são fornecidas. `renderItem` fornece `separators.highlight`/`unhighlight` que atualizará a prop `highlighted`, mas você também pode adicionar props personalizadas com `separators.updateProps`. Pode ser um React Component (por exemplo, `SomeComponent`), ou um elemento React (por exemplo, `<SomeComponent />`).
+Rendered in between each item, but not at the top or bottom. By default, `highlighted` and `leadingItem` props are provided. `renderItem` provides `separators.highlight`/`unhighlight` which will update the `highlighted` prop, but you can also add custom props with `separators.updateProps`. Can be a React Component (e.g. `SomeComponent`), or a React element (e.g. `<SomeComponent />`).
 
 | Type                         |
 | ---------------------------- |
@@ -231,7 +228,7 @@ Renderizado entre cada item, mas não no topo ou na base. Por padrão, as props 
 
 ### `ListEmptyComponent`
 
-Renderizado quando a lista está vazia. Pode ser um React Component (por exemplo, `SomeComponent`), ou um elemento React (por exemplo, `<SomeComponent />`).
+Rendered when the list is empty. Can be a React Component (e.g. `SomeComponent`), or a React element (e.g. `<SomeComponent />`).
 
 | Type               |
 | ------------------ |
@@ -241,7 +238,7 @@ Renderizado quando a lista está vazia. Pode ser um React Component (por exemplo
 
 ### `ListItemComponent`
 
-Cada item de dados é renderizado usando este elemento. Pode ser uma React Component Class, ou uma função de renderização.
+Each data item is rendered using this element. Can be a React Component Class, or a render function.
 
 | Type                |
 | ------------------- |
@@ -251,7 +248,7 @@ Cada item de dados é renderizado usando este elemento. Pode ser uma React Compo
 
 ### `ListFooterComponent`
 
-Renderizado na parte inferior de todos os itens. Pode ser um React Component (por exemplo, `SomeComponent`), ou um elemento React (por exemplo, `<SomeComponent />`).
+Rendered at the bottom of all the items. Can be a React Component (e.g. `SomeComponent`), or a React element (e.g. `<SomeComponent />`).
 
 | Type               |
 | ------------------ |
@@ -261,7 +258,7 @@ Renderizado na parte inferior de todos os itens. Pode ser um React Component (po
 
 ### `ListFooterComponentStyle`
 
-Estilização para o View interno de `ListFooterComponent`.
+Styling for internal View for `ListFooterComponent`.
 
 | Type          | Required |
 | ------------- | -------- |
@@ -271,7 +268,7 @@ Estilização para o View interno de `ListFooterComponent`.
 
 ### `ListHeaderComponent`
 
-Renderizado no topo de todos os itens. Pode ser um React Component (por exemplo, `SomeComponent`), ou um elemento React (por exemplo, `<SomeComponent />`).
+Rendered at the top of all the items. Can be a React Component (e.g. `SomeComponent`), or a React element (e.g. `<SomeComponent />`).
 
 | Type               |
 | ------------------ |
@@ -281,7 +278,7 @@ Renderizado no topo de todos os itens. Pode ser um React Component (por exemplo,
 
 ### `ListHeaderComponentStyle`
 
-Estilização para o View interno de `ListHeaderComponent`.
+Styling for internal View for `ListHeaderComponent`.
 
 | Type                           |
 | ------------------------------ |
@@ -291,7 +288,7 @@ Estilização para o View interno de `ListHeaderComponent`.
 
 ### `debug`
 
-`debug` ativará logging extra e overlays visuais para auxiliar na depuração tanto do uso quanto da implementação, mas com uma perda significativa de desempenho.
+`debug` will turn on extra logging and visual overlays to aid with debugging both usage and implementation, but with a significant perf hit.
 
 | Type    |
 | ------- |
@@ -299,10 +296,10 @@ Estilização para o View interno de `ListHeaderComponent`.
 
 ---
 
-### `disableVirtualization`
+### 🗑️ `disableVirtualization`
 
-:::warning Deprecated
-A virtualização fornece otimizações significativas de desempenho e memória, mas desmonta completamente as instâncias React que estão fora da janela de renderização. Você só deve precisar desabilitar isso para fins de depuração.
+:::warning[Deprecated]
+Virtualization provides significant performance and memory optimizations, but fully unmounts react instances that are outside of the render window. You should only need to disable this for debugging purposes.
 :::
 
 | Type    |
@@ -313,7 +310,7 @@ A virtualização fornece otimizações significativas de desempenho e memória,
 
 ### `extraData`
 
-Uma propriedade marcador para dizer à lista para re-renderizar (já que ela implementa `PureComponent`). Se qualquer uma de suas funções `renderItem`, Header, Footer, etc. depender de qualquer coisa fora da prop `data`, coloque aqui e trate como imutável.
+A marker property for telling the list to re-render (since it implements `PureComponent`). If any of your `renderItem`, Header, Footer, etc. functions depend on anything outside of the `data` prop, stick it here and treat it immutably.
 
 | Type |
 | ---- |
@@ -338,7 +335,7 @@ Uma propriedade marcador para dizer à lista para re-renderizar (já que ela imp
 
 ### `horizontal`
 
-Se `true`, renderiza itens próximos uns dos outros horizontalmente em vez de empilhados verticalmente.
+If `true`, renders items next to each other horizontally instead of stacked vertically.
 
 | Type    |
 | ------- |
@@ -348,7 +345,7 @@ Se `true`, renderiza itens próximos uns dos outros horizontalmente em vez de em
 
 ### `initialNumToRender`
 
-Quantos itens renderizar no lote inicial. Isso deve ser suficiente para preencher a tela, mas não muito mais. Observe que esses itens nunca serão desmontados como parte da renderização em janela, a fim de melhorar o desempenho percebido das ações de rolagem para o topo.
+How many items to render in the initial batch. This should be enough to fill the screen but not much more. Note these items will never be unmounted as part of the windowed rendering in order to improve perceived performance of scroll-to-top actions.
 
 | Type   | Default |
 | ------ | ------- |
@@ -358,7 +355,7 @@ Quantos itens renderizar no lote inicial. Isso deve ser suficiente para preenche
 
 ### `initialScrollIndex`
 
-Em vez de começar no topo com o primeiro item, comece em `initialScrollIndex`. Isso desabilita a otimização "scroll to top" que mantém os primeiros `initialNumToRender` itens sempre renderizados e renderiza imediatamente os itens começando neste índice inicial. Requer que `getItemLayout` seja implementado.
+Instead of starting at the top with the first item, start at `initialScrollIndex`. This disables the "scroll to top" optimization that keeps the first `initialNumToRender` items always rendered and immediately renders the items starting at this initial index. Requires `getItemLayout` to be implemented.
 
 | Type   |
 | ------ |
@@ -368,7 +365,7 @@ Em vez de começar no topo com o primeiro item, comece em `initialScrollIndex`. 
 
 ### `inverted`
 
-Inverte a direção da rolagem. Usa transformações de escala de `-1`.
+Reverses the direction of scroll. Uses scale transforms of `-1`.
 
 | Type    |
 | ------- |
@@ -382,7 +379,7 @@ Inverte a direção da rolagem. Usa transformações de escala de `-1`.
 (item: any, index: number) => string;
 ```
 
-Usado para extrair uma chave única para um determinado item no índice especificado. A key é usada para cache e como a chave React para rastrear a reordenação de itens. O extractor padrão verifica `item.key`, depois `item.id`, e então volta a usar o índice, como o React faz.
+Used to extract a unique key for a given item at the specified index. Key is used for caching and as the react key to track item re-ordering. The default extractor checks `item.key`, then `item.id`, and then falls back to using the index, like React does.
 
 | Type     |
 | -------- |
@@ -392,7 +389,7 @@ Usado para extrair uma chave única para um determinado item no índice especifi
 
 ### `maxToRenderPerBatch`
 
-O número máximo de itens a renderizar em cada lote de renderização incremental. Quanto mais renderizado de uma vez, melhor a taxa de preenchimento, mas a responsividade pode sofrer porque a renderização de conteúdo pode interferir ao responder a toques em botões ou outras interações.
+The maximum number of items to render in each incremental render batch. The more rendered at once, the better the fill rate, but responsiveness may suffer because rendering content may interfere with responding to button taps or other interactions.
 
 | Type   |
 | ------ |
@@ -402,7 +399,7 @@ O número máximo de itens a renderizar em cada lote de renderização increment
 
 ### `onEndReached`
 
-Chamado uma vez quando a posição de rolagem fica a `onEndReachedThreshold` do final lógico da lista.
+Called once when the scroll position gets within `onEndReachedThreshold` from the logical end of the list.
 
 | Type                                        |
 | ------------------------------------------- |
@@ -412,7 +409,7 @@ Chamado uma vez quando a posição de rolagem fica a `onEndReachedThreshold` do 
 
 ### `onEndReachedThreshold`
 
-Quão longe do final (em unidades de comprimento visível da lista) a borda final da lista deve estar do final do conteúdo para disparar o callback `onEndReached`. Assim, um valor de 0.5 disparará `onEndReached` quando o final do conteúdo estiver dentro de metade do comprimento visível da lista.
+How far from the end (in units of visible length of the list) the trailing edge of the list must be from the end of the content to trigger the `onEndReached` callback. Thus, a value of 0.5 will trigger `onEndReached` when the end of the content is within half the visible length of the list.
 
 | Type   | Default |
 | ------ | ------- |
@@ -426,7 +423,7 @@ Quão longe do final (em unidades de comprimento visível da lista) a borda fina
 () => void;
 ```
 
-Se fornecido, um `RefreshControl` padrão será adicionado para a funcionalidade "Pull to Refresh". Certifique-se de também definir a prop `refreshing` corretamente.
+If provided, a standard `RefreshControl` will be added for "Pull to Refresh" functionality. Make sure to also set the `refreshing` prop correctly.
 
 | Type     |
 | -------- |
@@ -444,7 +441,7 @@ Se fornecido, um `RefreshControl` padrão será adicionado para a funcionalidade
 }) => void;
 ```
 
-Usado para lidar com falhas ao rolar para um índice que ainda não foi medido. A ação recomendada é calcular seu próprio offset e fazer `scrollTo` para ele, ou rolar o máximo possível e então tentar novamente depois que mais itens forem renderizados.
+Used to handle failures when scrolling to an index that has not been measured yet. Recommended action is to either compute your own offset and `scrollTo` it, or scroll as far as possible and then try again after more items have been rendered.
 
 | Type     |
 | -------- |
@@ -454,7 +451,7 @@ Usado para lidar com falhas ao rolar para um índice que ainda não foi medido. 
 
 ### `onStartReached`
 
-Chamado uma vez quando a posição de rolagem fica a `onStartReachedThreshold` do início lógico da lista.
+Called once when the scroll position gets within `onStartReachedThreshold` from the logical start of the list.
 
 | Type                                          |
 | --------------------------------------------- |
@@ -464,7 +461,7 @@ Chamado uma vez quando a posição de rolagem fica a `onStartReachedThreshold` d
 
 ### `onStartReachedThreshold`
 
-Quão longe do início (em unidades de comprimento visível da lista) a borda inicial da lista deve estar do início do conteúdo para disparar o callback `onStartReached`. Assim, um valor de 0.5 disparará `onStartReached` quando o início do conteúdo estiver dentro de metade do comprimento visível da lista.
+How far from the start (in units of visible length of the list) the leading edge of the list must be from the start of the content to trigger the `onStartReached` callback. Thus, a value of 0.5 will trigger `onStartReached` when the start of the content is within half the visible length of the list.
 
 | Type   | Default |
 | ------ | ------- |
@@ -474,7 +471,7 @@ Quão longe do início (em unidades de comprimento visível da lista) a borda in
 
 ### `onViewableItemsChanged`
 
-Chamado quando a visibilidade das linhas muda, conforme definido pela prop `viewabilityConfig`.
+Called when the viewability of rows changes, as defined by the `viewabilityConfig` prop.
 
 | Type                                                                                                  |
 | ----------------------------------------------------------------------------------------------------- |
@@ -492,7 +489,7 @@ Chamado quando a visibilidade das linhas muda, conforme definido pela prop `view
 
 ### `progressViewOffset`
 
-Defina isso quando um offset for necessário para o indicador de carregamento mostrar corretamente.
+Set this when offset is needed for the loading indicator to show correctly.
 
 | Type   |
 | ------ |
@@ -502,7 +499,7 @@ Defina isso quando um offset for necessário para o indicador de carregamento mo
 
 ### `refreshControl`
 
-Um elemento de controle de atualização personalizado. Quando definido, ele sobrescreve o componente padrão `<RefreshControl>` construído internamente. As props onRefresh e refreshing também são ignoradas. Funciona apenas para VirtualizedList vertical.
+A custom refresh control element. When set, it overrides the default `<RefreshControl>` component built internally. The onRefresh and refreshing props are also ignored. Only works for vertical VirtualizedList.
 
 | Type    |
 | ------- |
@@ -512,7 +509,7 @@ Um elemento de controle de atualização personalizado. Quando definido, ele sob
 
 ### `refreshing`
 
-Defina isso como true enquanto aguarda novos dados de uma atualização.
+Set this true while waiting for new data from a refresh.
 
 | Type    |
 | ------- |
@@ -523,10 +520,10 @@ Defina isso como true enquanto aguarda novos dados de uma atualização.
 ### `removeClippedSubviews`
 
 :::warning
-Usar esta propriedade pode levar a bugs (conteúdo ausente) em algumas circunstâncias - use por sua própria conta e risco.
+Using this property may lead to bugs (missing content) in some circumstances - use at your own risk.
 :::
 
-Quando `true`, as views filhas fora da tela são removidas de sua superview de apoio nativa quando fora da tela. Isso pode melhorar o desempenho de rolagem para listas grandes. No Android, o valor padrão é `true`.
+When `true`, offscreen child views are removed from their native backing superview when offscreen. This may improve scroll performance for large lists. On Android the default value is `true`.
 
 | Type    |
 | ------- |
@@ -540,7 +537,7 @@ Quando `true`, as views filhas fora da tela são removidas de sua superview de a
 (props: object) => element;
 ```
 
-Renderiza um componente de rolagem personalizado, por exemplo, com um `RefreshControl` estilizado de forma diferente.
+Render a custom scroll component, e.g. with a differently styled `RefreshControl`.
 
 | Type     |
 | -------- |
@@ -550,7 +547,7 @@ Renderiza um componente de rolagem personalizado, por exemplo, com um `RefreshCo
 
 ### `viewabilityConfig`
 
-Veja `ViewabilityHelper.js` para o tipo de flow e documentação adicional.
+See `ViewabilityHelper.js` for flow type and further documentation.
 
 | Type              |
 | ----------------- |
@@ -560,7 +557,7 @@ Veja `ViewabilityHelper.js` para o tipo de flow e documentação adicional.
 
 ### `viewabilityConfigCallbackPairs`
 
-Lista de pares `ViewabilityConfig`/`onViewableItemsChanged`. Um `onViewableItemsChanged` específico será chamado quando as condições de seu `ViewabilityConfig` correspondente forem atendidas. Veja `ViewabilityHelper.js` para o tipo de flow e documentação adicional.
+List of `ViewabilityConfig`/`onViewableItemsChanged` pairs. A specific `onViewableItemsChanged` will be called when its corresponding `ViewabilityConfig`'s conditions are met. See `ViewabilityHelper.js` for flow type and further documentation.
 
 | Type                                   |
 | -------------------------------------- |
@@ -570,7 +567,7 @@ Lista de pares `ViewabilityConfig`/`onViewableItemsChanged`. Um `onViewableItems
 
 ### `updateCellsBatchingPeriod`
 
-Quantidade de tempo entre lotes de renderização de itens de baixa prioridade, por exemplo, para renderizar itens bem fora da tela. Trade-off de taxa de preenchimento/responsividade semelhante ao `maxToRenderPerBatch`.
+Amount of time between low-pri item render batches, e.g. for rendering items quite a ways off screen. Similar fill rate/responsiveness tradeoff as `maxToRenderPerBatch`.
 
 | Type   |
 | ------ |
@@ -580,7 +577,7 @@ Quantidade de tempo entre lotes de renderização de itens de baixa prioridade, 
 
 ### `windowSize`
 
-Determina o número máximo de itens renderizados fora da área visível, em unidades de comprimentos visíveis. Então, se sua lista preenche a tela, então `windowSize={21}` (o padrão) renderizará a área da tela visível mais até 10 telas acima e 10 abaixo da viewport. Reduzir esse número reduzirá o consumo de memória e pode melhorar o desempenho, mas aumentará a chance de que a rolagem rápida possa revelar áreas momentâneas em branco de conteúdo não renderizado.
+Determines the maximum number of items rendered outside of the visible area, in units of visible lengths. So if your list fills the screen, then `windowSize={21}` (the default) will render the visible screen area plus up to 10 screens above and 10 below the viewport. Reducing this number will reduce memory consumption and may improve performance, but will increase the chance that fast scrolling may reveal momentary blank areas of unrendered content.
 
 | Type   |
 | ------ |
@@ -621,7 +618,7 @@ getScrollRef():
 getScrollResponder () => ScrollResponderMixin | null;
 ```
 
-Fornece um handle para o scroll responder subjacente. Observe que `this._scrollRef` pode não ser um `ScrollView`, então precisamos verificar se ele responde a `getScrollResponder` antes de chamá-lo.
+Provides a handle to the underlying scroll responder. Note that `this._scrollRef` might not be a `ScrollView`, so we need to check that it responds to `getScrollResponder` before calling it.
 
 ---
 
@@ -631,7 +628,7 @@ Fornece um handle para o scroll responder subjacente. Observe que `this._scrollR
 scrollToEnd(params?: {animated?: boolean});
 ```
 
-Rola para o final do conteúdo. Pode ser irregular sem a prop `getItemLayout`.
+Scrolls to the end of the content. May be janky without `getItemLayout` prop.
 
 **Parameters:**
 
@@ -639,9 +636,9 @@ Rola para o final do conteúdo. Pode ser irregular sem a prop `getItemLayout`.
 | ------ | ------ |
 | params | object |
 
-Chaves válidas de `params` são:
+Valid `params` keys are:
 
-- `'animated'` (boolean) - Se a lista deve fazer uma animação durante a rolagem. O padrão é `true`.
+- `'animated'` (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
 
 ---
 
@@ -656,7 +653,7 @@ scrollToIndex(params: {
 });
 ```
 
-Os `params` válidos consistem em:
+Valid `params` consist of:
 
 - 'index' (number). Required.
 - 'animated' (boolean). Optional.
@@ -676,7 +673,7 @@ scrollToItem(params: {
 );
 ```
 
-Os `params` válidos consistem em:
+Valid `params` consist of:
 
 - 'item' (Item). Required.
 - 'animated' (boolean). Optional.
@@ -694,8 +691,8 @@ scrollToOffset(params: {
 });
 ```
 
-Rola para um offset de pixel de conteúdo específico na lista.
+Scroll to a specific content pixel offset in the list.
 
-O parâmetro `offset` espera o offset para rolar. No caso de `horizontal` ser true, o offset é o valor x, em qualquer outro caso o offset é o valor y.
+Param `offset` expects the offset to scroll to. In case of `horizontal` is true, the offset is the x-value, in any other case the offset is the y-value.
 
-O parâmetro `animated` (`true` por padrão) define se a lista deve fazer uma animação durante a rolagem.
+Param `animated` (`true` by default) defines whether the list should do an animation while scrolling.

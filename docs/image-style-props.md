@@ -9,7 +9,6 @@ title: Propriedades de Estilo de Image
 ### Modo de Redimensionamento de Image
 
 ```SnackPlayer name=Image%20Resize%20Modes%20Example
-import React from 'react';
 import {View, Image, Text, StyleSheet, ScrollView} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -83,7 +82,6 @@ export default DisplayAnImageWithStyle;
 ### Borda de Image
 
 ```SnackPlayer name=Style%20BorderWidth%20and%20BorderColor%20Example
-import React from 'react';
 import {Image, StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -119,7 +117,6 @@ export default DisplayAnImageWithStyle;
 ### Raio de Borda de Image
 
 ```SnackPlayer name=Style%20Border%20Radius%20Example
-import React from 'react';
 import {View, Image, StyleSheet, Text, ScrollView} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -185,7 +182,6 @@ export default DisplayAnImageWithStyle;
 ### Matiz de Image
 
 ```SnackPlayer name=Style%20tintColor%20Function%20Component
-import React from 'react';
 import {Image, StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 

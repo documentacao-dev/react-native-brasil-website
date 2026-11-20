@@ -1,0 +1,86 @@
+---
+ia-translated: true
+title: Anunciando React Native 0.69
+authors: [fortmarek, cortinico]
+tags: [announcement, release]
+---
+
+# Anunciando 0.69
+
+Estamos empolgados em lançar uma nova versão do React Native, 0.69.0. Esta versão vem com várias melhorias para a New Architecture do React Native e novos recursos: suporte ao React 18 e Hermes integrado. Continue lendo para saber mais!
+
+### Seções
+
+- [React 18](/blog/2022/06/21/version-069#react-18)
+- [Hermes Integrado](/blog/2022/06/21/version-069#bundled-hermes)
+- [Destaques do 0.69](/blog/2022/06/21/version-069#highlights-of-069)
+
+{/* truncate */}
+
+## React 18
+
+Estamos felizes em compartilhar com vocês que React Native 0.69 é o primeiro lançamento a suportar React 18. React 18 trouxe [muitas melhorias](https://reactjs.org/blog/2022/03/29/react-v18.html), como novos hooks como `useId`. Além disso, React 18 inclui novos recursos de concorrência como `useTransition` ou suporte completo a Suspense.
+
+No React Native 0.69, React 18 está habilitado por padrão. No entanto, se você não migrou para a New Architecture, você só poderá aproveitar os recursos que não usam renderização concorrente e recursos concorrentes. A New Architecture foi construída com renderização concorrente em mente, mas não podemos adicionar esse suporte para a arquitetura antiga.
+
+Você pode aprender mais sobre o suporte ao React 18 no React Native [aqui](https://reactnative.dev/docs/0.69/react-18-and-react-native).
+
+## Hermes Integrado
+
+Antes deste lançamento, Hermes e React Native eram lançados separadamente. Isso levou a confusão sobre qual versão do Hermes é compatível com qual versão do React Native. Para remediar este problema, a partir do React Native 0.69 estaremos enviando uma versão compatível do Hermes junto com o React Native. Fazer essa mudança tornará o uso do Hermes no React Native muito mais estável.
+
+Usar a versão apropriada do Hermes é gerenciado pelo React Native, no entanto, certifique-se de seguir as etapas no [upgrade helper](https://react-native-community.github.io/upgrade-helper/?from=0.68.2&to=0.69.0) para garantir que a integração funcione conforme o esperado. Se você ainda não tem o Hermes habilitado, pode seguir as etapas [aqui](/docs/hermes) para fazê-lo. Embora continuemos suportando outros engines JavaScript, recomendamos a todos que migrem para o Hermes para ter a melhor experiência e para garantir que possamos apoiá-lo melhor.
+
+Observe que usuários na New Architecture no Android precisarão **compilar o Hermes a partir do código-fonte**. Para compilar o Hermes a partir do código-fonte, usuários do Windows precisarão seguir adicionalmente [estas etapas](/architecture/bundled-hermes#android-users-on-new-architecture-building-on-windows).
+
+Se você está interessado em aprender mais sobre como o React Native integra o Hermes funciona nos bastidores, pode conferir a documentação de mergulho profundo [aqui](/architecture/bundled-hermes).
+
+## New Architecture
+
+Estamos continuando o rollout da New Architecture tanto para Android quanto para iOS. Se você ainda não migrou seu aplicativo ou biblioteca, siga as etapas [aqui](https://github.com/reactwg/react-native-new-architecture#guides). Você também pode ler a [última atualização](/blog/2022/06/16/resources-migrating-your-react-native-library-to-the-new-architecture) sobre ferramentas e recursos para a New Architecture para saber mais.
+
+## Destaques do 0.69
+
+Como mencionado acima, as melhorias mais importantes neste lançamento estão centradas no suporte ao React 18 e Hermes integrado. No entanto, houve outras mudanças notáveis, incluindo:
+
+- [Depreciando suporte](https://github.com/facebook/react-native/commit/982ca30de079d7e80bd0b50365d58b9048fb628f) para iOS/tvOS SDK 11.0, versão 12.4+ agora é necessária
+- [Melhor suporte](https://github.com/facebook/react-native/commit/c5babd993a2bed2994ecc4710fa9e424b3e6cfc2) para usuários M1 desenvolvendo para Android
+- [Adição](https://github.com/facebook/react-native/commit/0480f56c5b5478b6ebe5ad88e347cad2810bfb17) do novo arquivo de configuração `.xcode.env` para fornecer de forma mais determinística o executável do node
+- [React Native agora usa](https://github.com/facebook/react-native/commit/50c8e973f067d4ef1fc3c2eddd360a0709828968) a API de barra de status mais recente do Android 11
+- [Suporte para C++17](https://github.com/facebook/react-native/commit/c2e4ae39b8a5c6534a3fa4dae4130166eda15169)
+- [Nova](https://github.com/facebook/react-native/commit/1a1a304ed2023d60547aef65b1a7bf56467edf08) opção `hotkeysEnabled` no menu de debug do iOS
+
+### Breaking changes
+
+Também houve algumas breaking changes:
+
+- React Native CLI foi atualizado para uma nova versão major [8.0](https://github.com/react-native-community/cli/releases/tag/v8.0.0):
+  - comandos `link` e `unlink` foram removidos em favor do autolinking
+  - `initCompat` depreciado foi removido, use o comando `init` em vez disso
+  - Propriedades `run-android` depreciadas foram removidas
+  - Comandos `install` e `uninstall` foram removidos
+  - assets e hooks de `react-native.config.js` foram removidos – você precisará remover essas propriedades de sua configuração
+  - `podspecPath` foi removido da configuração de dependência do iOS
+  - Opção `--project-path` foi removida de `run-ios`
+  - Detecção de diretório fonte do iOS mudou de procurar por um projeto Xcode para procurar por um Podfile
+- Suporte para `console.disableYellowBox` [foi removido](https://github.com/facebook/react-native/commit/b633cc130533f0731b2577123282c4530e4f0abe)
+- Prop types já depreciados foram removidos ([cdfddb4dad](https://github.com/facebook/react-native/commit/cdfddb4dad7c69904850d7e5f089a32a1d3445d1), [3e229f27bc](https://github.com/facebook/react-native/commit/3e229f27bc9c7556876ff776abf70147289d544b), [10199b1581](https://github.com/facebook/react-native/commit/10199b158138b8645550b5579df87e654213fe42))
+- `removeListener`, depreciado desde RN 0.65, [foi removido](https://github.com/facebook/react-native/commit/8dfbed786b40082a7a222e00dc0a621c0695697d) do Appearance
+- Se você estava usando `SegmentedComponentIOS`, agora precisará substituí-lo pela biblioteca de terceiros, por exemplo [segmented-control](https://github.com/react-native-segmented-control/segmented-control) ([235f168574](https://github.com/facebook/react-native/commit/235f1685748442553e53f8ec6d904bc0314a8ae6))
+
+### Atualizações
+
+E atualizamos algumas de nossas dependências:
+
+- Atualização [do AGP para 7.1.1](https://github.com/facebook/react-native/commit/200488e87cf4bc355e03c78cd814b97b23452117) - recomendamos manter esta versão em seus aplicativos
+- `boost` para Android foi atualizado para 1.76 [para alinhar com iOS](https://github.com/facebook/react-native/commit/5cd6367f0b86543274a15bb6d0e53a8545fed845)
+- Ruby [foi atualizado para 2.7.5](https://github.com/facebook/react-native/commit/2c87b7466e098c5cd230e02b279fc7bc7a357615)
+- Dependências diretas do metro [foram atualizadas](https://github.com/facebook/react-native/commit/b74e964e705c40834acad7020562e870cdad9db1) para 0.70.1
+
+Você pode conferir a lista completa de mudanças [no changelog](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#0690).
+
+### Agradecimentos
+
+80 colaboradores com seus 629 commits ajudaram a tornar este lançamento possível - obrigado a todos!
+
+Também agradecemos aos testadores de lançamento, apoiadores e todos os outros que deram seu feedback para garantir que este lançamento seja o mais estável possível.

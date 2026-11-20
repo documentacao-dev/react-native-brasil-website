@@ -31,7 +31,6 @@ No React Native, tudo em JavaScript e no mecanismo de layout funciona com númer
 ## Exemplo
 
 ```SnackPlayer name=PixelRatio%20Example
-import React from 'react';
 import {
   Image,
   PixelRatio,

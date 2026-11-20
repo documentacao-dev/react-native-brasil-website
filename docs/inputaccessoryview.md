@@ -1,15 +1,18 @@
 ---
 id: inputaccessoryview
-title: InputAccessoryView
-ia-translated: true
+title: '🗑️ InputAccessoryView'
 ---
 
-Um componente que permite a customização da view de acessório de entrada do teclado no iOS. A view de acessório de entrada é exibida acima do teclado sempre que um `TextInput` tem foco. Este componente pode ser usado para criar toolbars personalizadas.
+:::warning[Deprecated]
+`InputAccessoryView` is deprecated and will be removed in a future release.
+:::
 
-Para usar este componente, envolva sua toolbar personalizada com o componente InputAccessoryView e defina um `nativeID`. Em seguida, passe esse `nativeID` como o `inputAccessoryViewID` de qualquer `TextInput` que você desejar. Um exemplo básico:
+A component which enables customization of the keyboard input accessory view on iOS. The input accessory view is displayed above the keyboard whenever a `TextInput` has focus. This component can be used to create custom toolbars.
+
+To use this component wrap your custom toolbar with the InputAccessoryView component, and set a `nativeID`. Then, pass that `nativeID` as the `inputAccessoryViewID` of whatever `TextInput` you desire. A basic example:
 
 ```SnackPlayer name=InputAccessoryView&supportedPlatforms=ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   Button,
   InputAccessoryView,
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-Este componente também pode ser usado para criar text inputs fixos (text inputs que são ancorados ao topo do teclado). Para fazer isso, envolva um `TextInput` com o componente `InputAccessoryView` e não defina um `nativeID`. Para um exemplo, veja [InputAccessoryViewExample.js](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/InputAccessoryView/InputAccessoryViewExample.js).
+This component can also be used to create sticky text inputs (text inputs which are anchored to the top of the keyboard). To do this, wrap a `TextInput` with the `InputAccessoryView` component, and don't set a `nativeID`. For an example, look at [InputAccessoryViewExample.js](https://github.com/react/react-native/blob/main/packages/rn-tester/js/examples/InputAccessoryView/InputAccessoryViewExample.js).
 
 ---
 
@@ -79,7 +82,7 @@ Este componente também pode ser usado para criar text inputs fixos (text inputs
 
 ### `nativeID`
 
-Um ID que é usado para associar este `InputAccessoryView` a TextInput(s) especificados.
+An ID which is used to associate this `InputAccessoryView` to specified TextInput(s).
 
 | Type   |
 | ------ |
@@ -95,5 +98,5 @@ Um ID que é usado para associar este `InputAccessoryView` a TextInput(s) especi
 
 # Known issues
 
-- [react-native#18997](https://github.com/facebook/react-native/issues/18997): Doesn't support multiline `TextInput`
-- [react-native#20157](https://github.com/facebook/react-native/issues/20157): Can't use with a bottom tab bar
+- [react-native#18997](https://github.com/react/react-native/issues/18997): Doesn't support multiline `TextInput`
+- [react-native#20157](https://github.com/react/react-native/issues/20157): Can't use with a bottom tab bar

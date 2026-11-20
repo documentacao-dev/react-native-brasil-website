@@ -1,12 +1,11 @@
 ---
-ia-translated: true
 id: boxshadowvalue
-title: Tipo de Objeto BoxShadowValue
+title: BoxShadowValue Object Type
 ---
 
-O objeto `BoxShadowValue` é recebido pela propriedade de estilo [`boxShadow`](./view-style-props.md#boxshadow). Ele é composto por 2-4 comprimentos, uma cor opcional e um booleano `inset` opcional. Esses valores definem coletivamente a cor, posição, tamanho e desfoque da sombra da caixa.
+The `BoxShadowValue` object is taken by the [`boxShadow`](./view-style-props.md#boxshadow) style prop. It is comprised of 2-4 lengths, an optional color, and an optional `inset` boolean. These values collectively define the box shadow's color, position, size, and blurriness.
 
-## Exemplo
+## Example
 
 ```js
 {
@@ -19,56 +18,56 @@ O objeto `BoxShadowValue` é recebido pela propriedade de estilo [`boxShadow`](.
 }
 ```
 
-## Chaves e valores
+## Keys and values
 
 ### `offsetX`
 
-O deslocamento no eixo x. Pode ser positivo ou negativo. Um valor positivo indica direita e negativo indica esquerda.
+The offset on the x-axis. This can be positive or negative. A positive value indicates right and negative indicates left.
 
-| Tipo             | Opcional |
+| Type             | Optional |
 | ---------------- | -------- |
-| number \| string | Não      |
+| number \| string | No       |
 
 ### `offsetY`
 
-O deslocamento no eixo y. Pode ser positivo ou negativo. Um valor positivo indica cima e negativo indica baixo.
+The offset on the y-axis. This can be positive or negative. A positive value indicates up and negative indicates down.
 
-| Tipo             | Opcional |
+| Type             | Optional |
 | ---------------- | -------- |
-| number \| string | Não      |
+| number \| string | No       |
 
 ### `blurRadius`
 
-Representa o raio usado no algoritmo de [Guassian blur](https://en.wikipedia.org/wiki/Gaussian_blur). Quanto maior o valor, mais desfocada fica a sombra. Apenas valores não-negativos são válidos. O padrão é 0.
+Represents the radius used in the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) algorithm. The larger the value the blurrier the shadow is. Only non-negative values are valid. The default is 0.
 
-| Tipo            | Opcional |
-| --------------- | -------- |
-| numer \| string | Sim      |
+| Type             | Optional |
+| ---------------- | -------- |
+| number \| string | Yes      |
 
 ### `spreadDistance`
 
-Quanto maior ou menor a sombra cresce ou diminui. Um valor positivo aumentará a sombra, um valor negativo diminuirá a sombra.
+How much larger or smaller the shadow grows or shrinks. A positive value will grow the shadow, a negative value will shrink the shadow.
 
-| Tipo            | Opcional |
-| --------------- | -------- |
-| numer \| string | Sim      |
+| Type             | Optional |
+| ---------------- | -------- |
+| number \| string | Yes      |
 
 ### `color`
 
-A cor da sombra. O padrão é `black`.
+The color of the shadow. The default is `black`.
 
-| Tipo                 | Opcional |
+| Type                 | Optional |
 | -------------------- | -------- |
-| [color](./colors.md) | Sim      |
+| [color](./colors.md) | Yes      |
 
 ### `inset`
 
-Se a sombra é inset ou não. Sombras inset aparecerão ao redor do interior da caixa de borda do elemento, em oposição ao exterior.
+Whether the shadow is inset or not. Inset shadows will appear around the inside of the element's border box as opposed to the outside.
 
-| Tipo    | Opcional |
+| Type    | Optional |
 | ------- | -------- |
-| boolean | Sim      |
+| boolean | Yes      |
 
-## Usado por
+## Used by
 
 - [`boxShadow`](./view-style-props.md#boxshadow)

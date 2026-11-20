@@ -99,7 +99,7 @@ Quanto mais pesados seus componentes forem, mais lenta será a renderização. E
 `React.memo()` cria um componente memoizado que será re-renderizado apenas quando as props passadas para o componente mudarem. Podemos usar esta função para otimizar os componentes no FlatList.
 
 ```tsx
-import React, {memo} from 'react';
+import {memo} from 'react';
 import {View, Text} from 'react-native';
 
 const MyListItem = memo(

@@ -31,7 +31,6 @@ Embora façamos o nosso melhor para não assumir conhecimento prévio de React, 
 Esta introdução permite que você comece imediatamente no seu navegador com exemplos interativos como este:
 
 ```SnackPlayer name=Hello%20World
-import React from 'react';
 import {Text, View} from 'react-native';
 
 const YourApp = () => {

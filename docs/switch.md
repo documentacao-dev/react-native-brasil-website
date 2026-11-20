@@ -1,17 +1,16 @@
 ---
-ia-translated: true
 id: switch
 title: Switch
 ---
 
-Renderiza um input booleano.
+Renders a boolean input.
 
-Este é um componente controlado que requer um callback `onValueChange` que atualiza a prop `value` para que o componente reflita as ações do usuário. Se a prop `value` não for atualizada, o componente continuará a renderizar a prop `value` fornecida ao invés do resultado esperado de quaisquer ações do usuário.
+This is a controlled component that requires an `onValueChange` callback that updates the `value` prop in order for the component to reflect user actions. If the `value` prop is not updated, the component will continue to render the supplied `value` prop instead of the expected result of any user actions.
 
-## Exemplo
+## Example
 
 ```SnackPlayer name=Switch&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Switch, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -47,21 +46,21 @@ export default App;
 
 ---
 
-# Referência
+# Reference
 
 ## Props
 
 ### [View Props](view.md#props)
 
-Herda [View Props](view.md#props).
+Inherits [View Props](view.md#props).
 
 ---
 
 ### `disabled`
 
-Se verdadeiro, o usuário não será capaz de alternar o switch.
+If true the user won't be able to toggle the switch.
 
-| Tipo | Padrão  |
+| Type | Default |
 | ---- | ------- |
 | bool | `false` |
 
@@ -69,9 +68,9 @@ Se verdadeiro, o usuário não será capaz de alternar o switch.
 
 ### `ios_backgroundColor` <div className="label ios">iOS</div>
 
-No iOS, cor customizada para o background. Esta cor de background pode ser vista quando o valor do switch é `false` ou quando o switch está desabilitado (e o switch está translúcido).
+On iOS, custom color for the background. This background color can be seen either when the switch value is `false` or when the switch is disabled (and the switch is translucent).
 
-| Tipo               |
+| Type               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -79,9 +78,9 @@ No iOS, cor customizada para o background. Esta cor de background pode ser vista
 
 ### `onChange`
 
-Invocado quando o usuário tenta alterar o valor do switch. Recebe o evento de mudança como argumento. Se você quer apenas receber o novo valor, use `onValueChange` ao invés disso.
+Invoked when the user tries to change the value of the switch. Receives the change event as an argument. If you want to only receive the new value, use `onValueChange` instead.
 
-| Tipo     |
+| Type     |
 | -------- |
 | function |
 
@@ -89,9 +88,9 @@ Invocado quando o usuário tenta alterar o valor do switch. Recebe o evento de m
 
 ### `onValueChange`
 
-Invocado quando o usuário tenta alterar o valor do switch. Recebe o novo valor como argumento. Se você quer ao invés disso receber um evento, use `onChange`.
+Invoked when the user tries to change the value of the switch. Receives the new value as an argument. If you want to instead receive an event, use `onChange`.
 
-| Tipo     |
+| Type     |
 | -------- |
 | function |
 
@@ -99,15 +98,15 @@ Invocado quando o usuário tenta alterar o valor do switch. Recebe o novo valor 
 
 ### `ref`
 
-Um setter de ref que será atribuído a um [element node](element-nodes) quando montado.
+A ref setter that will be assigned an [element node](element-nodes) when mounted.
 
 ---
 
 ### `thumbColor`
 
-Cor da alça do switch em primeiro plano. Se isto for definido no iOS, a alça do switch perderá sua sombra.
+Color of the foreground switch grip. If this is set on iOS, the switch grip will lose its drop shadow.
 
-| Tipo               |
+| Type               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -115,11 +114,11 @@ Cor da alça do switch em primeiro plano. Se isto for definido no iOS, a alça d
 
 ### `trackColor`
 
-Cores customizadas para a trilha do switch.
+Custom colors for the switch track.
 
-_iOS_: Quando o valor do switch é `false`, a trilha encolhe para dentro da borda. Se você quiser alterar a cor do background exposto pela trilha encolhida, use [`ios_backgroundColor`](switch.md#ios_backgroundColor).
+_iOS_: When the switch value is `false`, the track shrinks into the border. If you want to change the color of the background exposed by the shrunken track, use [`ios_backgroundColor`](switch.md#ios_backgroundcolor-ios).
 
-| Tipo                                                         |
+| Type                                                         |
 | ------------------------------------------------------------ |
 | `md object: {false: [color](colors), true: [color](colors)}` |
 
@@ -127,8 +126,8 @@ _iOS_: Quando o valor do switch é `false`, a trilha encolhe para dentro da bord
 
 ### `value`
 
-O valor do switch. Se verdadeiro, o switch estará ligado. O valor padrão é false.
+The value of the switch. If true the switch will be turned on. Default value is false.
 
-| Tipo |
+| Type |
 | ---- |
 | bool |

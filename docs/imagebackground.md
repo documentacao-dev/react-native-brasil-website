@@ -1,19 +1,21 @@
 ---
-ia-translated: true
 id: imagebackground
-title: ImageBackground
+title: '🗑️ ImageBackground'
 ---
 
-Uma solicitação de recurso comum de desenvolvedores familiarizados com a web é `background-image`. Para lidar com este caso de uso, você pode usar o componente `<ImageBackground>`, que possui os mesmos props que `<Image>`, e adicionar quaisquer children que você desejar para sobrepor em cima dele.
+:::warning[Deprecated]
+Use a [`View`](view.md) with an absolutely positioned [`Image`](image.md) instead.
+:::
 
-Você pode não querer usar `<ImageBackground>` em alguns casos, já que a implementação é básica. Consulte o [código-fonte](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Image/ImageBackground.js) do `<ImageBackground>` para mais informações e crie seu próprio componente customizado quando necessário.
+A common feature request from developers familiar with the web is `background-image`. To handle this use case, you can use the `<ImageBackground>` component, which has the same props as `<Image>`, and add whatever children to it you would like to layer on top of it.
 
-Note que você deve especificar alguns atributos de estilo de largura e altura.
+You might not want to use `<ImageBackground>` in some cases, since the implementation is basic. Refer to `<ImageBackground>`'s [source code](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Image/ImageBackground.js) for more insight, and create your own custom component when needed.
 
-## Exemplo
+Note that you must specify some width and height style attributes.
+
+## Example
 
 ```SnackPlayer name=ImageBackground
-import React from 'react';
 import {ImageBackground, StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -52,19 +54,19 @@ export default App;
 
 ---
 
-# Referência
+# Reference
 
 ## Props
 
 ### [Image Props](image.md#props)
 
-Herda [Image Props](image.md#props).
+Inherits [Image Props](image.md#props).
 
 ---
 
 ### `imageStyle`
 
-| Tipo                                |
+| Type                                |
 | ----------------------------------- |
 | [Image Style](image-style-props.md) |
 
@@ -72,12 +74,12 @@ Herda [Image Props](image.md#props).
 
 ### `imageRef`
 
-Um ref setter que será atribuído ao [element node](element-nodes) do componente `Image` interno quando montado.
+A ref setter that will be assigned the [element node](element-nodes) of the inner `Image` component when mounted.
 
 ---
 
 ### `style`
 
-| Tipo                              |
+| Type                              |
 | --------------------------------- |
 | [View Style](view-style-props.md) |

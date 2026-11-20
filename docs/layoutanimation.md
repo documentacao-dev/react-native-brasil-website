@@ -1,14 +1,14 @@
 ---
-ia-translated: true
 id: layoutanimation
 title: LayoutAnimation
 ---
 
-Anima automaticamente as views para suas novas posições quando o próximo layout acontece.
+Automatically animates views to their new positions when the next layout happens.
 
-Uma maneira comum de usar esta API é chamá-la antes de atualizar o state hook em componentes funcionais e chamar `setState` em componentes de classe.
+A common way to use this API is to call it before updating the state hook in functional components and calling `setState` in class components.
 
-Note que para fazer isso funcionar no **Android** você precisa configurar as seguintes flags via `UIManager`:
+:::note
+On **Android**, when using the **Legacy Architecture**, you need to enable layout animations via `UIManager`. This flag enables layout animations globally and only needs to be called once (for example, in your app's root entry file `index.js` or root component) before triggering any layout animation:
 
 ```js
 if (Platform.OS === 'android') {
@@ -18,10 +18,13 @@ if (Platform.OS === 'android') {
 }
 ```
 
+On the **New Architecture**, layout animations are enabled automatically, and calling `setLayoutAnimationEnabledExperimental` is unnecessary (it is a no-op).
+:::
+
 ## Example
 
 ```SnackPlayer name=LayoutAnimation%20Example&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   LayoutAnimation,
   Platform,
@@ -96,31 +99,31 @@ static configureNext(
 );
 ```
 
-Agenda uma animação para acontecer no próximo layout.
+Schedules an animation to happen on the next layout.
 
 #### Parameters:
 
-| Name               | Type     | Required | Description                            |
-| ------------------ | -------- | -------- | -------------------------------------- |
-| config             | object   | Yes      | Veja a descrição de config abaixo.     |
-| onAnimationDidEnd  | function | No       | Chamado quando a animação termina.     |
-| onAnimationDidFail | function | No       | Chamado quando a animação falha.       |
+| Name               | Type     | Required | Description                         |
+| ------------------ | -------- | -------- | ----------------------------------- |
+| config             | object   | Yes      | See config description below.       |
+| onAnimationDidEnd  | function | No       | Called when the animation finished. |
+| onAnimationDidFail | function | No       | Called when the animation failed.   |
 
-O parâmetro `config` é um objeto com as chaves abaixo. [`create`](layoutanimation.md#create) retorna um objeto válido para `config`, e os objetos [`Presets`](layoutanimation.md#presets) também podem todos ser passados como o `config`.
+The `config` parameter is an object with the keys below. [`create`](layoutanimation.md#create) returns a valid object for `config`, and the [`Presets`](layoutanimation.md#presets) objects can also all be passed as the `config`.
 
-- `duration` em milissegundos
-- `create`, config opcional para animar novas views
-- `update`, config opcional para animar views que foram atualizadas
-- `delete`, config opcional para animar views conforme são removidas
+- `duration` in milliseconds
+- `create`, optional config for animating in new views
+- `update`, optional config for animating views that have been updated
+- `delete`, optional config for animating views as they are removed
 
-O config que é passado para `create`, `update`, ou `delete` tem as seguintes chaves:
+The config that's passed to `create`, `update`, or `delete` has the following keys:
 
-- `type`, o [tipo de animação](layoutanimation.md#types) a ser usado
-- `property`, a [propriedade de layout](layoutanimation.md#properties) a ser animada (opcional, mas recomendado para `create` e `delete`)
-- `springDamping` (number, opcional e apenas para uso com `type: Type.spring`)
-- `initialVelocity` (number, opcional)
-- `delay` (number, opcional)
-- `duration` (number, opcional)
+- `type`, the [animation type](layoutanimation.md#types) to use
+- `property`, the [layout property](layoutanimation.md#properties) to animate (optional, but recommended for `create` and `delete`)
+- `springDamping` (number, optional and only for use with `type: Type.spring`)
+- `initialVelocity` (number, optional)
+- `delay` (number, optional)
+- `duration` (number, optional)
 
 ---
 
@@ -130,12 +133,12 @@ O config que é passado para `create`, `update`, ou `delete` tem as seguintes ch
 static create(duration, type, creationProp)
 ```
 
-Helper que cria um objeto (com campos `create`, `update` e `delete`) para passar para [`configureNext`](layoutanimation.md#configurenext). O parâmetro `type` é um [tipo de animação](layoutanimation.md#types), e o parâmetro `creationProp` é uma [propriedade de layout](layoutanimation.md#properties).
+Helper that creates an object (with `create`, `update`, and `delete` fields) to pass into [`configureNext`](layoutanimation.md#configurenext). The `type` parameter is an [animation type](layoutanimation.md#types), and the `creationProp` parameter is a [layout property](layoutanimation.md#properties).
 
 **Example:**
 
 ```SnackPlayer name=LayoutAnimation&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   View,
   Platform,
@@ -207,7 +210,7 @@ export default App;
 
 ### Types
 
-Uma enumeração de tipos de animação a serem usados no método [`create`](layoutanimation.md#create), ou nos configs `create`/`update`/`delete` para [`configureNext`](layoutanimation.md#configurenext). (exemplo de uso: `LayoutAnimation.Types.easeIn`)
+An enumeration of animation types to be used in the [`create`](layoutanimation.md#create) method, or in the `create`/`update`/`delete` configs for [`configureNext`](layoutanimation.md#configurenext). (example usage: `LayoutAnimation.Types.easeIn`)
 
 | Types         |
 | ------------- |
@@ -222,7 +225,7 @@ Uma enumeração de tipos de animação a serem usados no método [`create`](lay
 
 ### Properties
 
-Uma enumeração de propriedades de layout a serem animadas a serem usadas no método [`create`](layoutanimation.md#create), ou nos configs `create`/`update`/`delete` para [`configureNext`](layoutanimation.md#configurenext). (exemplo de uso: `LayoutAnimation.Properties.opacity`)
+An enumeration of layout properties to be animated to be used in the [`create`](layoutanimation.md#create) method, or in the `create`/`update`/`delete` configs for [`configureNext`](layoutanimation.md#configurenext). (example usage: `LayoutAnimation.Properties.opacity`)
 
 | Properties |
 | ---------- |
@@ -235,7 +238,7 @@ Uma enumeração de propriedades de layout a serem animadas a serem usadas no m�
 
 ### Presets
 
-Um conjunto de configs de animação predefinidos para passar para [`configureNext`](layoutanimation.md#configurenext).
+A set of predefined animation configs to pass into [`configureNext`](layoutanimation.md#configurenext).
 
 | Presets       | Value                                                                                                                                                          |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -247,24 +250,24 @@ Um conjunto de configs de animação predefinidos para passar para [`configureNe
 
 ### `easeInEaseOut`
 
-Chama `configureNext()` com `Presets.easeInEaseOut`.
+Calls `configureNext()` with `Presets.easeInEaseOut`.
 
 ---
 
 ### `linear`
 
-Chama `configureNext()` com `Presets.linear`.
+Calls `configureNext()` with `Presets.linear`.
 
 ---
 
 ### `spring`
 
-Chama `configureNext()` com `Presets.spring`.
+Calls `configureNext()` with `Presets.spring`.
 
 **Example:**
 
 ```SnackPlayer name=LayoutAnimation&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   View,
   Platform,

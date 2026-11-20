@@ -2,7 +2,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 export default {
   docs: {
-    'O Básico': [
+    'The Basics': [
       'getting-started',
       'intro-react-native-components',
       'intro-react',
@@ -13,7 +13,7 @@ export default {
       'platform-specific-code',
       'more-resources',
     ],
-    'Configuração do Ambiente': [
+    'Environment setup': [
       'environment-setup',
       'set-up-your-environment',
       'integration-with-existing-apps',
@@ -21,16 +21,17 @@ export default {
       'building-for-tv',
       'out-of-tree-platforms',
     ],
-    'Fluxo de Trabalho': [
+    Workflow: [
       'running-on-device',
       'fast-refresh',
       'metro',
       'libraries',
       'typescript',
       'strict-typescript-api',
+      'release-levels',
       'upgrading',
     ],
-    'UI e Interação': [
+    'UI & Interaction': [
       'style',
       'height-and-width',
       'flexbox',
@@ -38,7 +39,7 @@ export default {
       'colors',
       {
         type: 'category',
-        label: 'Interação',
+        label: 'Interaction',
         collapsible: false,
         collapsed: false,
         items: [
@@ -50,100 +51,95 @@ export default {
       },
       {
         type: 'category',
-        label: 'Conectividade',
+        label: 'Connectivity',
         collapsible: false,
         collapsed: false,
         items: ['network', 'security'],
       },
       {
         type: 'category',
-        label: 'Inclusão',
+        label: 'Inclusion',
         collapsible: false,
         collapsed: false,
         items: ['accessibility'],
       },
     ],
-    Lançamentos: [
-      'releases/releases',
-      'releases/release-levels',
-      'releases/versioning-policy',
-    ],
-    Depuração: [
+    Debugging: [
       'debugging',
       'react-native-devtools',
       'debugging-native-code',
       'debugging-release-builds',
       'other-debugging-methods',
     ],
-    Testes: ['testing-overview'],
-    Desempenho: [
+    Testing: ['testing-overview'],
+    Performance: [
       'performance',
       'build-speed',
       'optimizing-flatlist-configuration',
       'optimizing-javascript-loading',
       'profiling',
     ],
-    'Runtime JavaScript': ['javascript-environment', 'timers', 'hermes'],
+    'JavaScript Runtime': ['javascript-environment', 'timers', 'hermes'],
     Codegen: [
       'the-new-architecture/what-is-codegen',
       'the-new-architecture/using-codegen',
       'the-new-architecture/codegen-cli',
     ],
-    'Desenvolvimento Nativo': [
-      {type: 'doc', id: 'native-platform', label: 'Introdução'},
+    'Native Development': [
+      {type: 'doc', id: 'native-platform', label: 'Introduction'},
       {
         type: 'category',
-        label: 'Módulos',
+        label: 'Modules',
         collapsible: false,
         collapsed: false,
         items: [
           {
             type: 'doc',
             id: 'turbo-native-modules-introduction',
-            label: 'Android e iOS',
+            label: 'Android and iOS',
           },
           {
             type: 'doc',
             id: 'the-new-architecture/pure-cxx-modules',
-            label: 'Multiplataforma com C++',
+            label: 'Cross-Platform with C++',
           },
           {
             type: 'doc',
             id: 'the-new-architecture/advanced-topics-modules',
-            label: 'Tópicos Avançados',
+            label: 'Advanced Topics',
           },
         ],
       },
       {
         type: 'category',
-        label: 'Componentes',
+        label: 'Components',
         collapsible: false,
         collapsed: false,
         items: [
           {
             type: 'doc',
             id: 'fabric-native-components-introduction',
-            label: 'Android e iOS',
+            label: 'Android & iOS',
           },
           {
             type: 'doc',
             id: 'the-new-architecture/advanced-topics-components',
-            label: 'Tópicos Avançados',
+            label: 'Advanced Topics',
           },
         ],
       },
       {
         type: 'category',
-        label: 'Diversos',
+        label: 'Miscellaneous',
         collapsible: true,
         collapsed: true,
         items: [
-          {type: 'doc', id: 'appendix', label: 'Apêndice'},
+          {type: 'doc', id: 'appendix', label: 'Appendix'},
           {type: 'doc', id: 'the-new-architecture/create-module-library'},
         ],
       },
     ],
-    'Guias Android e iOS': [
+    'Android and iOS guides': [
       {
         type: 'category',
         label: 'Android',
@@ -170,10 +166,10 @@ export default {
         ],
       },
     ],
-    'Arquitetura Legada': [
+    'Legacy Architecture': [
       {
         type: 'category',
-        label: 'Módulos Nativos',
+        label: 'Native Modules',
         collapsible: true,
         collapsed: true,
         items: [
@@ -186,7 +182,7 @@ export default {
       },
       {
         type: 'category',
-        label: 'Componentes Nativos',
+        label: 'Native Components',
         collapsible: true,
         collapsed: true,
         items: [
@@ -211,7 +207,6 @@ export default {
       'dimensions',
       'easing',
       'i18nmanager',
-      'interactionmanager',
       'keyboard',
       'layoutanimation',
       'linking',
@@ -219,6 +214,7 @@ export default {
       'pixelratio',
       'platform',
       'platformcolor',
+      'reactnativeversion',
       'roottag',
       'share',
       'stylesheet',
@@ -227,7 +223,7 @@ export default {
       'vibration',
       {
         type: 'category',
-        label: 'Globais',
+        label: 'Globals',
         collapsed: true,
         items: [
           'global-__DEV__',
@@ -258,6 +254,7 @@ export default {
           'global-PerformanceMeasure',
           'global-PerformanceObserver',
           'global-PerformanceObserverEntryList',
+          'global-PerformanceResourceTiming',
           'global-process',
           'global-queueMicrotask',
           'global-Request',
@@ -281,20 +278,20 @@ export default {
       },
       {
         type: 'category',
-        label: 'APIs Android',
+        label: 'Android APIs',
         collapsed: false,
         items: ['backhandler', 'permissionsandroid', 'toastandroid'],
       },
       {
         type: 'category',
-        label: 'APIs iOS',
+        label: 'iOS APIs',
         collapsed: false,
         items: ['actionsheetios', 'dynamiccolorios', 'settings'],
       },
     ],
   },
   components: {
-    'Componentes Principais': [
+    'Core Components': [
       'components-and-apis',
       'activityindicator',
       'button',
@@ -318,13 +315,13 @@ export default {
       'virtualizedlist',
       {
         type: 'category',
-        label: 'Componentes Android',
+        label: 'Android Components',
         collapsed: false,
         items: ['drawerlayoutandroid', 'touchablenativefeedback'],
       },
       {
         type: 'category',
-        label: 'Componentes iOS',
+        label: 'iOS Components',
         collapsed: false,
         items: ['inputaccessoryview', 'safeareaview'],
       },
@@ -337,7 +334,7 @@ export default {
       'text-style-props',
       'view-style-props',
     ],
-    'Tipos de Objetos': [
+    'Object Types': [
       'boxshadowvalue',
       'dropshadowvalue',
       'layoutevent',

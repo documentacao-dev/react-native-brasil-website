@@ -1,28 +1,27 @@
 ---
-ia-translated: true
 id: animations
-title: Animações
+title: Animations
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Animações são muito importantes para criar uma ótima experiência do usuário. Objetos estacionários devem superar a inércia ao começarem a se mover. Objetos em movimento têm momento e raramente param imediatamente. Animações permitem que você transmita movimento fisicamente crível em sua interface.
+Animations are very important to create a great user experience. Stationary objects must overcome inertia as they start moving. Objects in motion have momentum and rarely come to a stop immediately. Animations allow you to convey physically believable motion in your interface.
 
-React Native fornece dois sistemas de animação complementares: [`Animated`](animations#animated-api) para controle granular e interativo de valores específicos, e [`LayoutAnimation`](animations#layoutanimation-api) para transações de layout global animadas.
+React Native provides two complementary animation systems: [`Animated`](animations#animated-api) for granular and interactive control of specific values, and [`LayoutAnimation`](animations#layoutanimation-api) for animated global layout transactions.
 
-## API `Animated`
+## `Animated` API
 
-A API [`Animated`](animated) foi projetada para expressar de forma concisa uma ampla variedade de padrões interessantes de animação e interação de maneira muito performática. `Animated` foca em relações declarativas entre entradas e saídas, com transformações configuráveis entre elas, e métodos `start`/`stop` para controlar a execução de animação baseada em tempo.
+The [`Animated`](animated) API is designed to concisely express a wide variety of interesting animation and interaction patterns in a very performant way. `Animated` focuses on declarative relationships between inputs and outputs, with configurable transforms in between, and `start`/`stop` methods to control time-based animation execution.
 
-`Animated` exporta seis tipos de componentes animáveis: `View`, `Text`, `Image`, `ScrollView`, `FlatList` e `SectionList`, mas você também pode criar os seus próprios usando `Animated.createAnimatedComponent()`.
+`Animated` exports six animatable component types: `View`, `Text`, `Image`, `ScrollView`, `FlatList` and `SectionList`, but you can also create your own using `Animated.createAnimatedComponent()`.
 
-Por exemplo, uma view container que desvanece ao ser montada pode parecer com isto:
+For example, a container view that fades in when it is mounted may look like this:
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer ext=js
-import React, {useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import {Animated, Text, View} from 'react-native';
 
 const FadeInView = props => {
@@ -75,12 +74,12 @@ export default () => {
 <TabItem value="typescript">
 
 ```SnackPlayer ext=tsx
-import React, {useEffect, useRef, type PropsWithChildren} from 'react';
+import {useEffect, useRef, type PropsWithChildren, type FC} from 'react';
 import {Animated, Text, View, type ViewStyle} from 'react-native';
 
 type FadeInViewProps = PropsWithChildren<{style: ViewStyle}>;
 
-const FadeInView: React.FC<FadeInViewProps> = props => {
+const FadeInView: FC<FadeInViewProps> = props => {
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
 
   useEffect(() => {
@@ -129,21 +128,21 @@ export default () => {
 </TabItem>
 </Tabs>
 
-Vamos detalhar o que está acontecendo aqui. No método render do `FadeInView`, um novo `Animated.Value` chamado `fadeAnim` é inicializado com `useRef`. A propriedade opacity na `View` é mapeada para este valor animado. Nos bastidores, o valor numérico é extraído e usado para definir a opacidade.
+Let's break down what's happening here. In the `FadeInView` render method, a new `Animated.Value` called `fadeAnim` is initialized with `useRef`. The opacity property on the `View` is mapped to this animated value. Behind the scenes, the numeric value is extracted and used to set opacity.
 
-Quando o componente é montado, a opacidade é definida como 0. Então, uma animação easing é iniciada no valor animado `fadeAnim`, que irá atualizar todos os seus mapeamentos dependentes (neste caso, apenas a opacidade) em cada frame conforme o valor é animado para o valor final de 1.
+When the component mounts, the opacity is set to 0. Then, an easing animation is started on the `fadeAnim` animated value, which will update all of its dependent mappings (in this case, only the opacity) on each frame as the value animates to the final value of 1.
 
-Isso é feito de uma maneira otimizada que é mais rápida do que chamar `setState` e re-renderizar. Como toda a configuração é declarativa, poderemos implementar otimizações futuras que serializam a configuração e executam a animação em uma thread de alta prioridade.
+This is done in an optimized way that is faster than calling `setState` and re-rendering. Because the entire configuration is declarative, we will be able to implement further optimizations that serialize the configuration and runs the animation on a high-priority thread.
 
-### Configurando animações
+### Configuring animations
 
-Animações são altamente configuráveis. Funções de easing customizadas e predefinidas, delays, durações, fatores de decaimento, constantes de mola e muito mais podem ser ajustados dependendo do tipo de animação.
+Animations are heavily configurable. Custom and predefined easing functions, delays, durations, decay factors, spring constants, and more can all be tweaked depending on the type of animation.
 
-`Animated` fornece vários tipos de animação, sendo [`Animated.timing()`](animated#timing) o mais comumente usado. Ele suporta animar um valor ao longo do tempo usando uma das várias funções de easing predefinidas, ou você pode usar a sua própria. Funções de easing são tipicamente usadas em animação para transmitir aceleração e desaceleração gradual de objetos.
+`Animated` provides several animation types, the most commonly used one being [`Animated.timing()`](animated#timing). It supports animating a value over time using one of various predefined easing functions, or you can use your own. Easing functions are typically used in animation to convey gradual acceleration and deceleration of objects.
 
-Por padrão, `timing` usará uma curva easeInOut que transmite aceleração gradual até a velocidade máxima e conclui desacelerando gradualmente até parar. Você pode especificar uma função de easing diferente passando um parâmetro `easing`. `duration` customizada ou até mesmo um `delay` antes da animação iniciar também são suportados.
+By default, `timing` will use an easeInOut curve that conveys gradual acceleration to full speed and concludes by gradually decelerating to a stop. You can specify a different easing function by passing an `easing` parameter. Custom `duration` or even a `delay` before the animation starts is also supported.
 
-Por exemplo, se quisermos criar uma animação de 2 segundos de um objeto que recua ligeiramente antes de se mover para sua posição final:
+For example, if we want to create a 2-second long animation of an object that slightly backs up before moving to its final position:
 
 ```tsx
 Animated.timing(this.state.xPosition, {
@@ -154,13 +153,13 @@ Animated.timing(this.state.xPosition, {
 }).start();
 ```
 
-Dê uma olhada na seção [Configuring animations](animated#configuring-animations) da referência da API `Animated` para aprender mais sobre todos os parâmetros de configuração suportados pelas animações integradas.
+Take a look at the [Configuring animations](animated#configuring-animations) section of the `Animated` API reference to learn more about all the config parameters supported by the built-in animations.
 
-### Compondo animações
+### Composing animations
 
-Animações podem ser combinadas e executadas em sequência ou em paralelo. Animações sequenciais podem ser executadas imediatamente após a animação anterior terminar, ou podem iniciar após um delay especificado. A API `Animated` fornece vários métodos, como `sequence()` e `delay()`, cada um dos quais recebe um array de animações para executar e automaticamente chama `start()`/`stop()` conforme necessário.
+Animations can be combined and played in sequence or in parallel. Sequential animations can play immediately after the previous animation has finished, or they can start after a specified delay. The `Animated` API provides several methods, such as `sequence()` and `delay()`, each of which take an array of animations to execute and automatically calls `start()`/`stop()` as needed.
 
-Por exemplo, a seguinte animação desacelera até parar, depois volta como uma mola enquanto gira em paralelo:
+For example, the following animation coasts to a stop, then it springs back while twirling in parallel:
 
 ```tsx
 Animated.sequence([
@@ -186,15 +185,15 @@ Animated.sequence([
 ]).start(); // start the sequence group
 ```
 
-Se uma animação for parada ou interrompida, então todas as outras animações no grupo também são paradas. `Animated.parallel` tem uma opção `stopTogether` que pode ser definida como `false` para desabilitar isso.
+If one animation is stopped or interrupted, then all other animations in the group are also stopped. `Animated.parallel` has a `stopTogether` option that can be set to `false` to disable this.
 
-Você pode encontrar uma lista completa de métodos de composição na seção [Composing animations](animated#composing-animations) da referência da API `Animated`.
+You can find a full list of composition methods in the [Composing animations](animated#composing-animations) section of the `Animated` API reference.
 
-### Combinando valores animados
+### Combining animated values
 
-Você pode [combinar dois valores animados](animated#combining-animated-values) através de adição, multiplicação, divisão ou módulo para criar um novo valor animado.
+You can [combine two animated values](animated#combining-animated-values) via addition, multiplication, division, or modulo to make a new animated value.
 
-Existem alguns casos onde um valor animado precisa inverter outro valor animado para cálculo. Um exemplo é inverter uma escala (2x --> 0.5x):
+There are some cases where an animated value needs to invert another animated value for calculation. An example is inverting a scale (2x --> 0.5x):
 
 ```tsx
 const a = new Animated.Value(1);
@@ -206,11 +205,11 @@ Animated.spring(a, {
 }).start();
 ```
 
-### Interpolação
+### Interpolation
 
-Cada propriedade pode ser executada através de uma interpolação primeiro. Uma interpolação mapeia intervalos de entrada para intervalos de saída, tipicamente usando uma interpolação linear mas também suporta funções de easing. Por padrão, ela irá extrapolar a curva além dos intervalos fornecidos, mas você também pode fazer com que ela limite o valor de saída.
+Each property can be run through an interpolation first. An interpolation maps input ranges to output ranges, typically using a linear interpolation but also supports easing functions. By default, it will extrapolate the curve beyond the ranges given, but you can also have it clamp the output value.
 
-Um mapeamento básico para converter um intervalo de 0-1 para um intervalo de 0-100 seria:
+A basic mapping to convert a 0-1 range to a 0-100 range would be:
 
 ```tsx
 value.interpolate({
@@ -219,7 +218,7 @@ value.interpolate({
 });
 ```
 
-Por exemplo, você pode querer pensar no seu `Animated.Value` como indo de 0 a 1, mas animar a posição de 150px para 0px e a opacidade de 0 para 1. Isso pode ser feito modificando o `style` do exemplo acima assim:
+For example, you may want to think about your `Animated.Value` as going from 0 to 1, but animate the position from 150px to 0px and the opacity from 0 to 1. This can be done by modifying `style` from the example above like so:
 
 ```tsx
   style={{
@@ -233,7 +232,7 @@ Por exemplo, você pode querer pensar no seu `Animated.Value` como indo de 0 a 1
   }}
 ```
 
-[`interpolate()`](animated#interpolate) suporta múltiplos segmentos de intervalo também, o que é útil para definir zonas mortas e outros truques práticos. Por exemplo, para obter uma relação de negação em -300 que vai para 0 em -100, depois volta para 1 em 0, e depois volta para zero em 100 seguido por uma zona morta que permanece em 0 para tudo além disso, você poderia fazer:
+[`interpolate()`](animatedvalue#interpolate) supports multiple range segments as well, which is handy for defining dead zones and other handy tricks. For example, to get a negation relationship at -300 that goes to 0 at -100, then back up to 1 at 0, and then back down to zero at 100 followed by a dead-zone that remains at 0 for everything beyond that, you could do:
 
 ```tsx
 value.interpolate({
@@ -242,7 +241,7 @@ value.interpolate({
 });
 ```
 
-Que seria mapeado assim:
+Which would map like so:
 
 ```
 Input | Output
@@ -259,7 +258,7 @@ Input | Output
    200|      0
 ```
 
-`interpolate()` também suporta mapeamento para strings, permitindo que você anime cores assim como valores com unidades. Por exemplo, se você quisesse animar uma rotação você poderia fazer:
+`interpolate()` also supports mapping to strings, allowing you to animate colors as well as values with units. For example, if you wanted to animate a rotation you could do:
 
 ```tsx
 value.interpolate({
@@ -268,11 +267,11 @@ value.interpolate({
 });
 ```
 
-`interpolate()` também suporta funções de easing arbitrárias, muitas das quais já estão implementadas no módulo [`Easing`](easing). `interpolate()` também tem comportamento configurável para extrapolar o `outputRange`. Você pode definir a extrapolação configurando as opções `extrapolate`, `extrapolateLeft` ou `extrapolateRight`. O valor padrão é `extend` mas você pode usar `clamp` para evitar que o valor de saída exceda `outputRange`.
+`interpolate()` also supports arbitrary easing functions, many of which are already implemented in the [`Easing`](easing) module. `interpolate()` also has configurable behavior for extrapolating the `outputRange`. You can set the extrapolation by setting the `extrapolate`, `extrapolateLeft`, or `extrapolateRight` options. The default value is `extend` but you can use `clamp` to prevent the output value from exceeding `outputRange`.
 
-### Rastreando valores dinâmicos
+### Tracking dynamic values
 
-Valores animados também podem rastrear outros valores definindo o `toValue` de uma animação para outro valor animado em vez de um número simples. Por exemplo, uma animação "Chat Heads" como a usada pelo Messenger no Android poderia ser implementada com um `spring()` fixado em outro valor animado, ou com `timing()` e uma `duration` de 0 para rastreamento rígido. Eles também podem ser compostos com interpolações:
+Animated values can also track other values by setting the `toValue` of an animation to another animated value instead of a plain number. For example, a "Chat Heads" animation like the one used by Messenger on Android could be implemented with a `spring()` pinned on another animated value, or with `timing()` and a `duration` of 0 for rigid tracking. They can also be composed with interpolations:
 
 ```tsx
 Animated.spring(follower, {toValue: leader}).start();
@@ -285,38 +284,37 @@ Animated.timing(opacity, {
 }).start();
 ```
 
-Os valores animados `leader` e `follower` seriam implementados usando `Animated.ValueXY()`. `ValueXY` é uma maneira útil de lidar com interações 2D, como panorâmica ou arrasto. É um wrapper básico que contém duas instâncias de `Animated.Value` e algumas funções auxiliares que chamam através delas, tornando `ValueXY` uma substituição direta para `Value` em muitos casos. Isso nos permite rastrear tanto valores x quanto y no exemplo acima.
+The `leader` and `follower` animated values would be implemented using `Animated.ValueXY()`. `ValueXY` is a handy way to deal with 2D interactions, such as panning or dragging. It is a basic wrapper that contains two `Animated.Value` instances and some helper functions that call through to them, making `ValueXY` a drop-in replacement for `Value` in many cases. It allows us to track both x and y values in the example above.
 
-### Rastreando gestos
+### Tracking gestures
 
-Gestos, como panorâmica ou rolagem, e outros eventos podem mapear diretamente para valores animados usando [`Animated.event`](animated#event). Isso é feito com uma sintaxe de mapa estruturado para que valores possam ser extraídos de objetos de evento complexos. O primeiro nível é um array para permitir mapeamento entre múltiplos argumentos, e esse array contém objetos aninhados.
+Gestures, like panning or scrolling, and other events can map directly to animated values using [`Animated.event`](animated#event). This is done with a structured map syntax so that values can be extracted from complex event objects. The first level is an array to allow mapping across multiple args, and that array contains nested objects.
 
-Por exemplo, ao trabalhar com gestos de rolagem horizontal, você faria o seguinte para mapear `event.nativeEvent.contentOffset.x` para `scrollX` (um `Animated.Value`):
+For example, when working with horizontal scrolling gestures, you would do the following in order to map `event.nativeEvent.contentOffset.x` to `scrollX` (an `Animated.Value`):
 
 ```tsx
- onScroll={Animated.event(
-   // scrollX = e.nativeEvent.contentOffset.x
-   [{nativeEvent: {
-        contentOffset: {
-          x: scrollX
-        }
-      }
-    }]
- )}
+onScroll={Animated.event(
+  // scrollX = e.nativeEvent.contentOffset.x
+  [{
+    nativeEvent: {
+      contentOffset: { x: scrollX }
+    }
+  }],
+  {useNativeDriver: true}
+)}
 ```
 
-O exemplo a seguir implementa um carrossel de rolagem horizontal onde os indicadores de posição de rolagem são animados usando o `Animated.event` usado no `ScrollView`
+The following example implements a horizontal scrolling carousel where the scroll position indicators are animated using the `Animated.event` used in the `ScrollView`
 
-#### Exemplo de ScrollView com Animated Event
+#### ScrollView with Animated Event Example
 
 ```SnackPlayer name=Animated&supportedPlatforms=ios,android
-import React from 'react';
 import {
   ScrollView,
   Text,
   StyleSheet,
   View,
-  ImageBackground,
+  Image,
   Animated,
   useWindowDimensions,
   useAnimatedValue,
@@ -340,28 +338,35 @@ const App = () => {
             horizontal={true}
             pagingEnabled
             showsHorizontalScrollIndicator={false}
-            onScroll={Animated.event([
-              {
-                nativeEvent: {
-                  contentOffset: {
-                    x: scrollX,
+            onScroll={Animated.event(
+              [
+                {
+                  nativeEvent: {
+                    contentOffset: {
+                      x: scrollX,
+                    },
                   },
                 },
-              },
-            ])}
+              ],
+              {useNativeDriver: true},
+            )}
             scrollEventThrottle={1}>
             {images.map((image, imageIndex) => {
               return (
                 <View
                   style={{width: windowWidth, height: 250}}
                   key={imageIndex}>
-                  <ImageBackground source={{uri: image}} style={styles.card}>
+                  <View style={styles.card}>
+                    <Image
+                      source={{uri: image}}
+                      style={StyleSheet.absoluteFill}
+                    />
                     <View style={styles.textContainer}>
                       <Text style={styles.infoText}>
                         {'Image - ' + imageIndex}
                       </Text>
                     </View>
-                  </ImageBackground>
+                  </View>
                 </View>
               );
             })}
@@ -439,7 +444,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-Ao usar `PanResponder`, você poderia usar o seguinte código para extrair as posições x e y de `gestureState.dx` e `gestureState.dy`. Usamos um `null` na primeira posição do array, pois estamos interessados apenas no segundo argumento passado para o handler `PanResponder`, que é o `gestureState`.
+When using `PanResponder`, you could use the following code to extract the x and y positions from `gestureState.dx` and `gestureState.dy`. We use a `null` in the first position of the array, as we are only interested in the second argument passed to the `PanResponder` handler, which is the `gestureState`.
 
 ```tsx
 onPanResponderMove={Animated.event(
@@ -450,10 +455,10 @@ onPanResponderMove={Animated.event(
 ])}
 ```
 
-#### Exemplo de PanResponder com Animated Event
+#### PanResponder with Animated Event Example
 
 ```SnackPlayer name=Animated
-import React, {useRef} from 'react';
+import {useRef} from 'react';
 import {Animated, View, StyleSheet, PanResponder, Text} from 'react-native';
 
 const App = () => {
@@ -461,7 +466,9 @@ const App = () => {
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([null, {dx: pan.x, dy: pan.y}]),
+      onPanResponderMove: Animated.event([null, {dx: pan.x, dy: pan.y}], {
+        useNativeDriver: false,
+      }),
       onPanResponderRelease: () => {
         Animated.spring(pan, {
           toValue: {x: 0, y: 0},
@@ -507,20 +514,20 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-### Respondendo ao valor atual da animação
+### Responding to the current animation value
 
-Você pode notar que não há uma maneira clara de ler o valor atual durante a animação. Isso ocorre porque o valor pode ser conhecido apenas no runtime nativo devido a otimizações. Se você precisar executar JavaScript em resposta ao valor atual, existem duas abordagens:
+You may notice that there is no clear way to read the current value while animating. This is because the value may only be known in the native runtime due to optimizations. If you need to run JavaScript in response to the current value, there are two approaches:
 
-- `spring.stopAnimation(callback)` irá parar a animação e invocar `callback` com o valor final. Isso é útil ao fazer transições de gestos.
-- `spring.addListener(callback)` irá invocar `callback` assincronamente enquanto a animação está em execução, fornecendo um valor recente. Isso é útil para acionar mudanças de estado, por exemplo, encaixar uma bolha em uma nova opção conforme o usuário a arrasta mais perto, porque essas mudanças de estado maiores são menos sensíveis a alguns frames de lag comparado a gestos contínuos como panorâmica que precisam rodar a 60 fps.
+- `spring.stopAnimation(callback)` will stop the animation and invoke `callback` with the final value. This is useful when making gesture transitions.
+- `spring.addListener(callback)` will invoke `callback` asynchronously while the animation is running, providing a recent value. This is useful for triggering state changes, for example snapping a bobble to a new option as the user drags it closer, because these larger state changes are less sensitive to a few frames of lag compared to continuous gestures like panning which need to run at 60 fps.
 
-`Animated` foi projetado para ser totalmente serializável para que animações possam ser executadas de maneira de alto desempenho, independente do loop normal de eventos JavaScript. Isso influencia a API, então tenha isso em mente quando parecer um pouco mais complicado fazer algo comparado a um sistema totalmente síncrono. Confira `Animated.Value.addListener` como uma maneira de contornar algumas dessas limitações, mas use-o com moderação, pois pode ter implicações de desempenho no futuro.
+`Animated` is designed to be fully serializable so that animations can be run in a high performance way, independent of the normal JavaScript event loop. This does influence the API, so keep that in mind when it seems a little trickier to do something compared to a fully synchronous system. Check out `Animated.Value.addListener` as a way to work around some of these limitations, but use it sparingly since it might have performance implications in the future.
 
-### Usando o driver nativo
+### Using the native driver
 
-A API `Animated` foi projetada para ser serializável. Ao usar o [driver nativo](/blog/2017/02/14/using-native-driver-for-animated), enviamos tudo sobre a animação para o nativo antes de iniciar a animação, permitindo que o código nativo execute a animação na thread UI sem ter que passar pela bridge em cada frame. Uma vez que a animação tenha iniciado, a thread JS pode ser bloqueada sem afetar a animação.
+The `Animated` API is designed to be serializable. By using the [native driver](/blog/2017/02/14/using-native-driver-for-animated), we send everything about the animation to native before starting the animation, allowing native code to perform the animation on the UI thread without having to go through the bridge on every frame. Once the animation has started, the JS thread can be blocked without affecting the animation.
 
-Usar o driver nativo para animações normais pode ser feito definindo `useNativeDriver: true` na configuração da animação ao iniciá-la. Animações sem uma propriedade `useNativeDriver` terão padrão false por razões legadas, mas emitirão um aviso (e erro de verificação de tipo em TypeScript).
+Using the native driver for normal animations can be accomplished by setting `useNativeDriver: true` in animation config when starting it. Animations without a `useNativeDriver` property will default to false for legacy reasons, but emit a warning (and typechecking error in TypeScript).
 
 ```tsx
 Animated.timing(this.state.animatedValue, {
@@ -530,9 +537,9 @@ Animated.timing(this.state.animatedValue, {
 }).start();
 ```
 
-Valores animados são compatíveis apenas com um driver, então se você usar o driver nativo ao iniciar uma animação em um valor, certifique-se de que todas as animações nesse valor também usem o driver nativo.
+Animated values are only compatible with one driver so if you use native driver when starting an animation on a value, make sure every animation on that value also uses the native driver.
 
-O driver nativo também funciona com `Animated.event`. Isso é especialmente útil para animações que seguem a posição de rolagem, pois sem o driver nativo, a animação sempre executará um frame atrás do gesto devido à natureza assíncrona do React Native.
+The native driver also works with `Animated.event`. This is especially useful for animations that follow the scroll position as without the native driver, the animation will always run a frame behind the gesture due to the async nature of React Native.
 
 ```tsx
 <Animated.ScrollView // <-- Use the Animated ScrollView wrapper
@@ -550,17 +557,17 @@ O driver nativo também funciona com `Animated.event`. Isso é especialmente út
 </Animated.ScrollView>
 ```
 
-Você pode ver o driver nativo em ação executando o [app RNTester](https://github.com/facebook/react-native/blob/main/packages/rn-tester/), depois carregando o Native Animated Example. Você também pode dar uma olhada no [código-fonte](https://github.com/facebook/react-native/blob/master/packages/rn-tester/js/examples/NativeAnimation/NativeAnimationsExample.js) para aprender como esses exemplos foram produzidos.
+You can see the native driver in action by running the [RNTester app](https://github.com/react/react-native/tree/main/packages/rn-tester), then loading the Native Animated Example. You can also take a look at the [source code](https://github.com/react/react-native/blob/main/packages/rn-tester/js/examples/NativeAnimation/NativeAnimationsExample.js) to learn how these examples were produced.
 
-#### Ressalvas
+#### Caveats
 
-Nem tudo que você pode fazer com `Animated` é atualmente suportado pelo driver nativo. A principal limitação é que você só pode animar propriedades não relacionadas a layout: coisas como `transform` e `opacity` funcionarão, mas propriedades Flexbox e de posição não. Ao usar `Animated.event`, ele funcionará apenas com eventos diretos e não eventos de propagação. Isso significa que ele não funciona com `PanResponder` mas funciona com coisas como `ScrollView#onScroll`.
+Not everything you can do with `Animated` is currently supported by the native driver. The main limitation is that you can only animate non-layout properties: things like `transform` and `opacity` will work, but Flexbox and position properties will not. When using `Animated.event`, it will only work with direct events and not bubbling events. This means it does not work with `PanResponder` but does work with things like `ScrollView#onScroll`.
 
-Quando uma animação está em execução, ela pode impedir componentes `VirtualizedList` de renderizar mais linhas. Se você precisar executar uma animação longa ou em loop enquanto o usuário está rolando por uma lista, você pode usar `isInteraction: false` na configuração da sua animação para evitar este problema.
+When an animation is running, it can prevent `VirtualizedList` components from rendering more rows. If you need to run a long or looping animation while the user is scrolling through a list, you can use `isInteraction: false` in your animation's config to prevent this issue.
 
-### Tenha em mente
+### Bear in mind
 
-Ao usar estilos de transform como `rotateY`, `rotateX` e outros, certifique-se de que o estilo de transform `perspective` esteja no lugar. Neste momento, algumas animações podem não renderizar no Android sem ele. Exemplo abaixo.
+While using transform styles such as `rotateY`, `rotateX`, and others ensure the transform style `perspective` is in place. At this time some animations may not render on Android without it. Example below.
 
 ```tsx
 <Animated.View
@@ -574,27 +581,27 @@ Ao usar estilos de transform como `rotateY`, `rotateX` e outros, certifique-se d
 />
 ```
 
-### Exemplos adicionais
+### Additional examples
 
-O app RNTester tem vários exemplos de `Animated` em uso:
+The RNTester app has various examples of `Animated` in use:
 
-- [AnimatedGratuitousApp](https://github.com/facebook/react-native/tree/main/packages/rn-tester/js/examples/AnimatedGratuitousApp)
-- [NativeAnimationsExample](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/NativeAnimation/NativeAnimationsExample.js)
+- [AnimatedGratuitousApp](https://github.com/react/react-native/tree/main/packages/rn-tester/js/examples/AnimatedGratuitousApp)
+- [NativeAnimationsExample](https://github.com/react/react-native/blob/main/packages/rn-tester/js/examples/NativeAnimation/NativeAnimationsExample.js)
 
-## API `LayoutAnimation`
+## `LayoutAnimation` API
 
-`LayoutAnimation` permite que você configure globalmente animações `create` e `update` que serão usadas para todas as views no próximo ciclo de render/layout. Isso é útil para fazer atualizações de layout Flexbox sem se preocupar em medir ou calcular propriedades específicas para animá-las diretamente, e é especialmente útil quando mudanças de layout podem afetar ancestrais, por exemplo, uma expansão "ver mais" que também aumenta o tamanho do pai e empurra a linha abaixo para baixo, o que de outra forma exigiria coordenação explícita entre os componentes para animá-los todos em sincronia.
+`LayoutAnimation` allows you to globally configure `create` and `update` animations that will be used for all views in the next render/layout cycle. This is useful for doing Flexbox layout updates without bothering to measure or calculate specific properties in order to animate them directly, and is especially useful when layout changes may affect ancestors, for example a "see more" expansion that also increases the size of the parent and pushes down the row below which would otherwise require explicit coordination between the components in order to animate them all in sync.
 
-Note que embora `LayoutAnimation` seja muito poderoso e possa ser bastante útil, ele fornece muito menos controle do que `Animated` e outras bibliotecas de animação, então você pode precisar usar outra abordagem se não conseguir fazer `LayoutAnimation` fazer o que você quer.
+Note that although `LayoutAnimation` is very powerful and can be quite useful, it provides much less control than `Animated` and other animation libraries, so you may need to use another approach if you can't get `LayoutAnimation` to do what you want.
 
-Note que para fazer isso funcionar no **Android** você precisa definir as seguintes flags via `UIManager`:
+Note that in order to get this to work on **Android** you need to set the following flags via `UIManager`:
 
 ```tsx
 UIManager.setLayoutAnimationEnabledExperimental(true);
 ```
 
 ```SnackPlayer name=LayoutAnimations
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   NativeModules,
   LayoutAnimation,
@@ -657,18 +664,18 @@ const styles = StyleSheet.create({
 });
 ```
 
-Este exemplo usa um valor predefinido, você pode customizar as animações conforme necessário, veja [LayoutAnimation.js](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/LayoutAnimation/LayoutAnimation.js) para mais informações.
+This example uses a preset value, you can customize the animations as you need, see [LayoutAnimation.js](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/LayoutAnimation/LayoutAnimation.js) for more information.
 
-## Notas adicionais
+## Additional notes
 
 ### `requestAnimationFrame`
 
-`requestAnimationFrame` é um polyfill do navegador que você pode estar familiarizado. Ele aceita uma função como seu único argumento e chama essa função antes da próxima repintura. É um bloco de construção essencial para animações que sustenta todas as APIs de animação baseadas em JavaScript. Em geral, você não deve precisar chamar isso você mesmo - as APIs de animação irão gerenciar atualizações de frame para você.
+`requestAnimationFrame` is a polyfill from the browser that you might be familiar with. It accepts a function as its only argument and calls that function before the next repaint. It is an essential building block for animations that underlies all of the JavaScript-based animation APIs. In general, you shouldn't need to call this yourself - the animation APIs will manage frame updates for you.
 
 ### `setNativeProps`
 
-Como mencionado [na seção Direct Manipulation](legacy/direct-manipulation), `setNativeProps` nos permite modificar propriedades de componentes com suporte nativo (componentes que são realmente suportados por views nativas, ao contrário de componentes compostos) diretamente, sem ter que usar `setState` e re-renderizar a hierarquia de componentes.
+As mentioned [in the Direct Manipulation section](legacy/direct-manipulation), `setNativeProps` allows us to modify properties of native-backed components (components that are actually backed by native views, unlike composite components) directly, without having to `setState` and re-render the component hierarchy.
 
-Poderíamos usar isso no exemplo Rebound para atualizar a escala - isso pode ser útil se o componente que estamos atualizando estiver profundamente aninhado e não foi otimizado com `shouldComponentUpdate`.
+We could use this in the Rebound example to update the scale - this might be helpful if the component that we are updating is deeply nested and hasn't been optimized with `shouldComponentUpdate`.
 
-Se você encontrar suas animações com perda de frames (executando abaixo de 60 frames por segundo), procure usar `setNativeProps` ou `shouldComponentUpdate` para otimizá-las. Ou você poderia executar as animações na thread UI em vez da thread JavaScript [com a opção useNativeDriver](/blog/2017/02/14/using-native-driver-for-animated). Você também pode querer adiar qualquer trabalho computacionalmente intensivo até que as animações sejam concluídas, usando o [InteractionManager](interactionmanager). Você pode monitorar a taxa de frames usando a ferramenta "FPS Monitor" do menu Dev In-App.
+If you find your animations with dropping frames (performing below 60 frames per second), look into using `setNativeProps` or `shouldComponentUpdate` to optimize them. Or you could run the animations on the UI thread rather than the JavaScript thread [with the useNativeDriver option](/blog/2017/02/14/using-native-driver-for-animated). You may also want to defer any computationally intensive work until the JS thread is idle (for example, with `requestIdleCallback`). You can monitor the frame rate by using the In-App Dev Menu "FPS Monitor" tool.

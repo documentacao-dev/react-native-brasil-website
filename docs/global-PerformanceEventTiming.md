@@ -1,11 +1,10 @@
 ---
-ia-translated: true
 id: global-PerformanceEventTiming
 title: PerformanceEventTiming
 ---
 
-A classe global [`PerformanceEventTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEventTiming), conforme definida nas especificações Web.
+The global [`PerformanceEventTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEventTiming) class, as defined in Web specifications.
 
-:::warning Suporte parcial
-As propriedades `cancelable` e `target` ainda não são suportadas.
+:::warning[Partial support]
+The `cancelable` and `target` properties are not supported yet.
 :::

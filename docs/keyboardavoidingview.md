@@ -9,7 +9,6 @@ Este componente ajustará automaticamente sua altura, posição ou padding infer
 ## Exemplo
 
 ```SnackPlayer name=KeyboardAvoidingView&supportedPlatforms=android,ios
-import React from 'react';
 import {
   View,
   KeyboardAvoidingView,

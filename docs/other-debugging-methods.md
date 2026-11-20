@@ -1,37 +1,36 @@
 ---
-ia-translated: true
 id: other-debugging-methods
-title: Outros Métodos de Depuração
+title: Other Debugging Methods
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Esta página cobre como usar métodos de depuração JavaScript legados. Se você está começando com um novo aplicativo React Native ou Expo, recomendamos usar [React Native DevTools](./react-native-devtools).
+This page covers how to use legacy JavaScript debugging methods. If you are getting started with a new React Native or Expo app, we recommend using [React Native DevTools](./react-native-devtools).
 
-## Safari Developer Tools (depuração direta de JSC)
+## Safari Developer Tools (direct JSC debugging)
 
-Você pode usar o Safari para depurar a versão iOS do seu aplicativo ao usar [JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore) (JSC) como runtime do seu aplicativo.
+You can use Safari to debug the iOS version of your app when using [JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore) (JSC) as your app's runtime.
 
-1. **Apenas dispositivos físicos**: Abra o aplicativo Settings e navegue para Safari > Advanced, e certifique-se de que "Web Inspector" está ativado.
-2. No seu Mac, abra o Safari e habilite o menu Develop. Isso pode ser encontrado em Safari > Settings..., então na aba Advanced, em seguida selecionando "Show features for web developers".
-3. Encontre seu dispositivo no menu Develop e selecione o item "JSContext" do submenu. Isso abrirá o Web Inspector do Safari, que inclui painéis Console e Sources semelhantes ao Chrome DevTools.
+1. **Physical devices only**: Open the Settings app, and navigate to Safari > Advanced, and make sure "Web Inspector" is turned on.
+2. On your Mac, open Safari and enable the Develop menu. This can be found under Safari > Settings..., then the Advanced tab, then selecting "Show features for web developers".
+3. Find your device under the Develop menu, and select the "JSContext" item from the submenu. This will open Safari's Web Inspector, which includes Console and Sources panels similar to Chrome DevTools.
 
 ![Opening Safari Web Inspector](/docs/assets/debugging-safari-developer-tools.jpg)
 
 :::tip
-Embora source maps possam não estar habilitados por padrão, você pode seguir [este guia](https://blog.nparashuram.com/2019/10/debugging-react-native-ios-apps-with.html) ou [vídeo](https://www.youtube.com/watch?v=GrGqIIz51k4) para habilitá-los e definir breakpoints nos lugares certos no código-fonte.
+While source maps may not be enabled by default, you can follow [this guide](https://blog.nparashuram.com/2019/10/debugging-react-native-ios-apps-with.html) or [video](https://www.youtube.com/watch?v=GrGqIIz51k4) to enable them and set break points at the right places in the source code.
 :::
 
 :::tip
-Toda vez que o aplicativo é recarregado, um novo JSContext é criado. Escolher "Automatically Show Web Inspectors for JSContexts" evita que você tenha que selecionar o último JSContext manualmente.
+Every time the app is reloaded, a new JSContext is created. Choosing "Automatically Show Web Inspectors for JSContexts" saves you from having to select the latest JSContext manually.
 :::
 
-## Remote JavaScript Debugging (removido)
+## Remote JavaScript Debugging (removed)
 
-:::warning Importante
-Remote JavaScript Debugging foi removido a partir do React Native 0.79. Veja o [anúncio de descontinuação](https://github.com/react-native-community/discussions-and-proposals/discussions/734) original.
+:::warning[Important]
+Remote JavaScript Debugging has been removed as of React Native 0.79. See the original [deprecation announcement](https://github.com/react-native-community/discussions-and-proposals/discussions/734).
 
-Se você está em uma versão mais antiga do React Native, por favor vá para a documentação [da sua versão](/versions).
+If you are on an older version of React Native, please go to the docs [for your version](/versions).
 :::
 
 ![The remote debugger window in Chrome](/docs/assets/debugging-chrome-remote-debugger.jpg)

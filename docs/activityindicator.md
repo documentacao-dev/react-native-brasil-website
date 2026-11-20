@@ -9,7 +9,6 @@ Exibe um indicador de carregamento circular.
 ## Exemplo
 
 ```SnackPlayer name=ActivityIndicator%20Example
-import React from 'react';
 import {ActivityIndicator, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 

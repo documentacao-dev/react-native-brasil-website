@@ -1,22 +1,21 @@
 ---
-ia-translated: true
 id: element-nodes
 title: Element nodes
 ---
 
-Element nodes representam componentes nativos na árvore de visualização nativa (similar aos nodes [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element) na Web).
+Element nodes represent native components in the native view tree (similar to [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element) nodes on Web).
 
-Eles são fornecidos por todos os componentes nativos, e por muitos componentes integrados, via refs:
+They are provided by all native components, and by many built-in components, via refs:
 
 ```SnackPlayer ext=js&name=Element%20instances%20example
-import * as React from 'react';
-import { View, SafeAreaView, StyleSheet, Text } from 'react-native';
+import {useEffect, useRef, useState} from 'react';
+import {View, SafeAreaView, StyleSheet, Text} from 'react-native';
 
 const ViewWithRefs = () => {
-  const ref = React.useRef(null);
-  const [viewInfo, setViewInfo] = React.useState('');
+  const ref = useRef(null);
+  const [viewInfo, setViewInfo] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     // `element` is an object implementing the interface described here.
     const element = ref.current;
     const rect = JSON.stringify(element.getBoundingClientRect());
@@ -49,7 +48,7 @@ export default ViewWithRefs;
 ```
 
 :::info
-Note que alguns componentes integrados são apenas um container para outros componentes (incluindo componentes nativos). Por exemplo, `ScrollView` renderiza internamente uma scroll view nativa e uma view nativa, que são acessíveis através da ref que ele fornece usando métodos como `getNativeScrollRef()` e `getInnerViewRef()`.
+Note that some built-in components are only a container for other components (including native components). For example, `ScrollView` internally renders a native scroll view and a native view, which are accessible through the ref it provides using methods like `getNativeScrollRef()` and `getInnerViewRef()`.
 :::
 
 ---
@@ -58,7 +57,7 @@ Note que alguns componentes integrados são apenas um container para outros comp
 
 ### Web-compatible API
 
-De [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement):
+From [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement):
 
 - Properties
   - [`offsetHeight`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetHeight)
@@ -69,9 +68,9 @@ De [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)
 - Methods
   - [`blur()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/blur).
   - [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus).
-    - ⚠️ O parâmetro `options` não é suportado.
+    - ⚠️ The `options` parameter is not supported.
 
-De [`Element`](https://developer.mozilla.org/en-US/docs/Web/API/Element):
+From [`Element`](https://developer.mozilla.org/en-US/docs/Web/API/Element):
 
 - Properties
   - [`childElementCount`](https://developer.mozilla.org/en-US/docs/Web/API/Element/childElementCount)
@@ -82,29 +81,29 @@ De [`Element`](https://developer.mozilla.org/en-US/docs/Web/API/Element):
   - [`clientWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth)
   - [`firstElementChild`](https://developer.mozilla.org/en-US/docs/Web/API/Element/firstElementChild)
   - [`id`](https://developer.mozilla.org/en-US/docs/Web/API/Element/id)
-    - ℹ️ Retorna o valor das props `id` ou `nativeID`.
+    - ℹ️ Returns the value of the `id` or `nativeID` props.
   - [`lastElementChild`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lastElementChild)
   - [`nextElementSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Element/nextElementSibling)
-  - [`nodeName`](https://developer.mozilla.org/en-US/docs/Web/API/Element/nodeName)
-  - [`nodeType`](https://developer.mozilla.org/en-US/docs/Web/API/Element/nodeType)
-  - [`nodeValue`](https://developer.mozilla.org/en-US/docs/Web/API/Element/nodeValue)
+  - [`nodeName`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeName)
+  - [`nodeType`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
+  - [`nodeValue`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeValue)
   - [`previousElementSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Element/previousElementSibling)
   - [`scrollHeight`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight)
   - [`scrollLeft`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft)
-    - ⚠️ Para componentes integrados, apenas instâncias de `ScrollView` podem retornar um valor diferente de zero.
+    - ⚠️ For built-in components, only `ScrollView` instances can return a value other than zero.
   - [`scrollTop`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTop)
-    - ⚠️ Para componentes integrados, apenas instâncias de `ScrollView` podem retornar um valor diferente de zero.
+    - ⚠️ For built-in components, only `ScrollView` instances can return a value other than zero.
   - [`scrollWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth)
   - [`tagName`](https://developer.mozilla.org/en-US/docs/Web/API/Element/tagName)
-    - ℹ️ Retorna um nome de componente nativo normalizado prefixado com `RN:`, como `RN:View`.
-  - [`textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Element/textContent)
+    - ℹ️ Returns a normalized native component name prefixed with `RN:`, like `RN:View`.
+  - [`textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
 - Methods
   - [`getBoundingClientRect()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
   - [`hasPointerCapture()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/hasPointerCapture)
   - [`setPointerCapture()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/setPointerCapture)
   - [`releasePointerCapture()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/releasePointerCapture)
 
-De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
+From [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
 
 - Properties
   - [`childNodes`](https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes)
@@ -116,7 +115,7 @@ De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
   - [`nodeType`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
   - [`nodeValue`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeValue)
   - [`ownerDocument`](https://developer.mozilla.org/en-US/docs/Web/API/Node/ownerDocument)
-    - ℹ️ Retornará a [instância de document](/docs/next/document-instances) onde este componente foi renderizado.
+    - ℹ️ Will return the [document node](/docs/next/document-nodes) where this component was rendered.
   - [`parentElement`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentElement)
   - [`parentNode`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode)
   - [`previousSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Node/previousSibling)
@@ -125,7 +124,7 @@ De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
   - [`compareDocumentPosition()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition)
   - [`contains()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/contains)
   - [`getRootNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode)
-    - ℹ️ Retornará uma referência para si mesmo se o componente não estiver montado.
+    - ℹ️ Will return a reference to itself if the component is not mounted.
   - [`hasChildNodes()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes)
 
 ### Legacy API

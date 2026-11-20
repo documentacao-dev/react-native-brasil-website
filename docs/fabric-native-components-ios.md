@@ -62,6 +62,7 @@ Podfile
 ...
 Demo
 ├── AppDelegate.swift
+├── SceneDelegate.swift
 ...
 // highlight-start
 ├── RCTWebView.h

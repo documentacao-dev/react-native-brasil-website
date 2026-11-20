@@ -1,12 +1,11 @@
 ---
-ia-translated: true
 id: dropshadowvalue
-title: Tipo de Objeto DropShadowValue
+title: DropShadowValue Object Type
 ---
 
-O objeto `DropShadowValue` é aceito pela propriedade de estilo [`filter`](./view-style-props.md#filter) para a função `dropShadow`. Ele é composto por 2 ou 3 comprimentos e uma cor opcional. Esses valores definem coletivamente a cor, posição e desfoque da sombra projetada.
+The `DropShadowValue` object is taken by the [`filter`](./view-style-props.md#filter) style prop for the `dropShadow` function. It is comprised of 2 or 3 lengths and an optional color. These values collectively define the drop shadow's color, position, and blurriness.
 
-## Exemplo
+## Example
 
 ```js
 {
@@ -17,40 +16,40 @@ O objeto `DropShadowValue` é aceito pela propriedade de estilo [`filter`](./vie
 }
 ```
 
-## Chaves e valores
+## Keys and values
 
 ### `offsetX`
 
-O deslocamento no eixo x. Pode ser positivo ou negativo. Um valor positivo indica direita e negativo indica esquerda.
+The offset on the x-axis. This can be positive or negative. A positive value indicates right and negative indicates left.
 
-| Tipo             | Opcional |
+| Type             | Optional |
 | ---------------- | -------- |
-| number \| string | Não      |
+| number \| string | No       |
 
 ### `offsetY`
 
-O deslocamento no eixo y. Pode ser positivo ou negativo. Um valor positivo indica para cima e negativo indica para baixo.
+The offset on the y-axis. This can be positive or negative. A positive value indicates up and negative indicates down.
 
-| Tipo             | Opcional |
+| Type             | Optional |
 | ---------------- | -------- |
-| number \| string | Não      |
+| number \| string | No       |
 
 ### `standardDeviation`
 
-Representa o desvio padrão usado no algoritmo de [desfoque gaussiano](https://en.wikipedia.org/wiki/Gaussian_blur). Quanto maior o valor, mais desfocada será a sombra. Apenas valores não negativos são válidos. O padrão é 0.
+Represents the standard deviation used in the [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) algorithm. The larger the value the blurrier the shadow is. Only non-negative values are valid. The default is 0.
 
-| Tipo            | Opcional |
-| --------------- | -------- |
-| numer \| string | Sim      |
+| Type             | Optional |
+| ---------------- | -------- |
+| number \| string | Yes      |
 
 ### `color`
 
-A cor da sombra. O padrão é `black`.
+The color of the shadow. The default is `black`.
 
-| Tipo                 | Opcional |
+| Type                 | Optional |
 | -------------------- | -------- |
-| [color](./colors.md) | Sim      |
+| [color](./colors.md) | Yes      |
 
-## Usado por
+## Used by
 
 - [`filter`](./view-style-props.md#filter)

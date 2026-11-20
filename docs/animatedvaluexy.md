@@ -9,7 +9,7 @@ Value 2D para conduzir animações 2D, como gestos de pan. API quase idêntica a
 ## Exemplo
 
 ```SnackPlayer name=Animated.ValueXY%20Example
-import React, {useRef} from 'react';
+import {useRef} from 'react';
 import {Animated, PanResponder, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -18,13 +18,16 @@ const DraggableView = () => {
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
-    onPanResponderMove: Animated.event([
-      null,
-      {
-        dx: pan.x, // x,y are Animated.Value
-        dy: pan.y,
-      },
-    ]),
+    onPanResponderMove: Animated.event(
+      [
+        null,
+        {
+          dx: pan.x, // x,y are Animated.Value
+          dy: pan.y,
+        },
+      ],
+      {useNativeDriver: false},
+    ),
     onPanResponderRelease: () => {
       Animated.spring(
         pan, // Auto-multiplexed

@@ -1,37 +1,38 @@
 ---
-ia-translated: true
 id: pushnotificationios
 title: '🗑️ PushNotificationIOS'
 ---
 
-:::warning Descontinuado
-Use um dos [pacotes da comunidade](https://reactnative.directory/?search=notification) em vez disso.
+:::warning[Deprecated]
+Use one of the [community packages](https://reactnative.directory/?search=notification) instead.
 :::
 
 <div className="banner-native-code-required">
-  <h3>Apenas Projetos com Código Nativo</h3>
-  <p>A seção a seguir se aplica apenas a projetos com código nativo exposto. Se você está usando o workflow gerenciado do Expo, veja o guia sobre <a href="https://docs.expo.dev/versions/latest/sdk/notifications/">Notifications</a> na documentação do Expo para a alternativa apropriada.</p>
+  <h3>Projects with Native Code Only</h3>
+  <p>The following section only applies to projects with native code exposed. If you are using the managed Expo workflow, see the guide on <a href="https://docs.expo.dev/versions/latest/sdk/notifications/">Notifications</a> in the Expo documentation for the appropriate alternative.</p>
 </div>
 
-Manipule notificações para seu aplicativo, incluindo agendamento e permissões.
+Handle notifications for your app, including scheduling and permissions.
 
 ---
 
-## Começando
+## Getting Started
 
-Para habilitar push notifications, [configure suas notificações com a Apple](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server) e seu sistema server-side.
+To enable push notifications, [configure your notifications with Apple](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server) and your server-side system.
 
-Então, [habilite remote notifications](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app#2980038) em seu projeto. Isso habilitará automaticamente as configurações necessárias.
+Then, [enable remote notifications](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app#2980038) in your project. This will automatically enable the required settings.
 
-### Habilitar suporte para eventos `register`
+Push notification registration and delivery callbacks belong to `UIApplicationDelegate`, so implement them in your `AppDelegate` even when React Native is bootstrapped from `SceneDelegate`.
 
-Em seu `AppDelegate.m`, adicione:
+### Enable support for `register` events
+
+In your `AppDelegate.m`, add:
 
 ```objectivec
 #import <React/RCTPushNotificationManager.h>
 ```
 
-Então implemente o seguinte para manipular eventos de registro de notificação remota:
+Then implement the following in order to handle remote notification registration events:
 
 ```objectivec
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -46,9 +47,9 @@ Então implemente o seguinte para manipular eventos de registro de notificação
 }
 ```
 
-### Manipular notificações
+### Handle notifications
 
-Você precisará implementar `UNUserNotificationCenterDelegate` em seu `AppDelegate`:
+You'll need to implement `UNUserNotificationCenterDelegate` in your `AppDelegate`:
 
 ```objectivec
 #import <UserNotifications/UserNotifications.h>
@@ -57,7 +58,7 @@ Você precisará implementar `UNUserNotificationCenterDelegate` em seu `AppDeleg
 @end
 ```
 
-Defina o delegate na inicialização do aplicativo:
+Set the delegate on app launch:
 
 ```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -70,9 +71,9 @@ Defina o delegate na inicialização do aplicativo:
 }
 ```
 
-#### Notificações em primeiro plano
+#### Foreground notifications
 
-Implemente `userNotificationCenter:willPresentNotification:withCompletionHandler:` para manipular notificações que chegam quando o aplicativo está em primeiro plano. Use o completionHandler para determinar se a notificação será mostrada ao usuário e notifique `RCTPushNotificationManager` de acordo:
+Implement `userNotificationCenter:willPresentNotification:withCompletionHandler:` to handle notifications that arrive when the app is in the foreground. Use the completionHandler to determine if the notification will be shown to the user and notify `RCTPushNotificationManager` accordingly:
 
 ```objectivec
 // Called when a notification is delivered to a foreground app.
@@ -87,11 +88,11 @@ Implemente `userNotificationCenter:willPresentNotification:withCompletionHandler
 }
 ```
 
-#### Notificações em segundo plano
+#### Background notifications
 
-Implemente `userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:` para manipular quando uma notificação é tocada, tipicamente chamado para notificações em segundo plano que o usuário toca para abrir o aplicativo. No entanto, se você configurou notificações em primeiro plano para serem mostradas em `userNotificationCenter:willPresentNotification:withCompletionHandler:`, este método também será invocado em notificações em primeiro plano quando tocadas. Neste caso, você deve notificar `RCTPushNotificationManager` apenas em um desses callbacks.
+Implement `userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:` to handle when a notification is tapped, typically called for background notifications which the user taps to open the app. However, if you had set foreground notifications to be shown in `userNotificationCenter:willPresentNotification:withCompletionHandler:`, this method will also be invoked on foreground notifications when tapped. In this case, you should only notify `RCTPushNotificationManager` in one of these callbacks.
 
-Se a notificação tocada resultou na inicialização do aplicativo, chame `setInitialNotification:`. Se a notificação não foi previamente manipulada por `userNotificationCenter:willPresentNotification:withCompletionHandler:`, chame `didReceiveNotification:` também:
+If the tapped notification resulted in app launch, call `setInitialNotification:`. If the notification was not previously handled by `userNotificationCenter:willPresentNotification:withCompletionHandler:`, call `didReceiveNotification:` as well:
 
 ```objectivec
 - (void)  userNotificationCenter:(UNUserNotificationCenter *)center
@@ -111,7 +112,7 @@ Se a notificação tocada resultou na inicialização do aplicativo, chame `setI
 
 ---
 
-# Referência
+# Reference
 
 ## Methods
 
@@ -121,24 +122,24 @@ Se a notificação tocada resultou na inicialização do aplicativo, chame `setI
 static presentLocalNotification(details: PresentLocalNotificationDetails);
 ```
 
-Agenda uma notificação local para apresentação imediata.
+Schedules a local notification for immediate presentation.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome    | Tipo   | Obrigatório | Descrição |
+| Name    | Type   | Required | Description |
 | ------- | ------ | -------- | ----------- |
-| details | object | Sim      | Veja abaixo.  |
+| details | object | Yes      | See below.  |
 
-`details` é um objeto contendo:
+`details` is an object containing:
 
-- `alertTitle` : O texto exibido como o título do alerta de notificação.
-- `alertBody` : A mensagem exibida no alerta de notificação.
-- `userInfo` : Um objeto contendo dados adicionais de notificação (opcional).
-- `category` : A categoria desta notificação, necessária para notificações acionáveis (opcional). ex. notificações com ações adicionais como Reply ou Like.
-- `applicationIconBadgeNumber` O número a ser exibido como badge do ícone do aplicativo. O valor padrão desta propriedade é 0, o que significa que nenhum badge é exibido (opcional).
-- `isSilent` : Se true, a notificação aparecerá sem som (opcional).
-- `soundName` : O som reproduzido quando a notificação é disparada (opcional).
-- `alertAction` : OBSOLETO. Isso era usado para UILocalNotification legado do iOS.
+- `alertTitle` : The text displayed as the title of the notification alert.
+- `alertBody` : The message displayed in the notification alert.
+- `userInfo` : An object containing additional notification data (optional).
+- `category` : The category of this notification, required for actionable notifications (optional). e.g. notifications with additional actions such as Reply or Like.
+- `applicationIconBadgeNumber` The number to display as the app's icon badge. The default value of this property is 0, which means that no badge is displayed (optional).
+- `isSilent` : If true, the notification will appear without sound (optional).
+- `soundName` : The sound played when the notification is fired (optional).
+- `alertAction` : DEPRECATED. This was used for iOS's legacy UILocalNotification.
 
 ---
 
@@ -148,27 +149,27 @@ Agenda uma notificação local para apresentação imediata.
 static scheduleLocalNotification(details: ScheduleLocalNotificationDetails);
 ```
 
-Agenda uma notificação local para apresentação futura.
+Schedules a local notification for future presentation.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome    | Tipo   | Obrigatório | Descrição |
+| Name    | Type   | Required | Description |
 | ------- | ------ | -------- | ----------- |
-| details | object | Sim      | Veja abaixo.  |
+| details | object | Yes      | See below.  |
 
-`details` é um objeto contendo:
+`details` is an object containing:
 
-- `alertTitle` : O texto exibido como o título do alerta de notificação.
-- `alertBody` : A mensagem exibida no alerta de notificação.
-- `fireDate` : Quando a notificação será disparada. Agende notificações usando `fireDate` ou `fireIntervalSeconds`, com `fireDate` tendo precedência.
-- `fireIntervalSeconds` : Segundos a partir de agora para exibir a notificação.
-- `userInfo` : Um objeto contendo dados adicionais de notificação (opcional).
-- `category` : A categoria desta notificação, necessária para notificações acionáveis (opcional). ex. notificações com ações adicionais como Reply ou Like.
-- `applicationIconBadgeNumber` O número a ser exibido como badge do ícone do aplicativo. O valor padrão desta propriedade é 0, o que significa que nenhum badge é exibido (opcional).
-- `isSilent` : Se true, a notificação aparecerá sem som (opcional).
-- `soundName` : O som reproduzido quando a notificação é disparada (opcional).
-- `alertAction` : OBSOLETO. Isso era usado para UILocalNotification legado do iOS.
-- `repeatInterval` : OBSOLETO. Use `fireDate` ou `fireIntervalSeconds` em vez disso.
+- `alertTitle` : The text displayed as the title of the notification alert.
+- `alertBody` : The message displayed in the notification alert.
+- `fireDate` : When the notification will be fired. Schedule notifications using either `fireDate` or `fireIntervalSeconds`, with `fireDate` taking precedence.
+- `fireIntervalSeconds` : Seconds from now to display the notification.
+- `userInfo` : An object containing additional notification data (optional).
+- `category` : The category of this notification, required for actionable notifications (optional). e.g. notifications with additional actions such as Reply or Like.
+- `applicationIconBadgeNumber` The number to display as the app's icon badge. The default value of this property is 0, which means that no badge is displayed (optional).
+- `isSilent` : If true, the notification will appear without sound (optional).
+- `soundName` : The sound played when the notification is fired (optional).
+- `alertAction` : DEPRECATED. This was used for iOS's legacy UILocalNotification.
+- `repeatInterval` : DEPRECATED. Use `fireDate` or `fireIntervalSeconds` instead.
 
 ---
 
@@ -178,7 +179,7 @@ Agenda uma notificação local para apresentação futura.
 static cancelAllLocalNotifications();
 ```
 
-Cancela todas as notificações locais agendadas.
+Cancels all scheduled local notifications.
 
 ---
 
@@ -188,7 +189,7 @@ Cancela todas as notificações locais agendadas.
 static removeAllDeliveredNotifications();
 ```
 
-Remove todas as notificações entregues do Notification Center.
+Removes all delivered notifications from Notification Center.
 
 ---
 
@@ -198,22 +199,22 @@ Remove todas as notificações entregues do Notification Center.
 static getDeliveredNotifications(callback: (notifications: Object[]) => void);
 ```
 
-Fornece uma lista das notificações do aplicativo que estão atualmente exibidas no Notification Center.
+Provides a list of the app’s notifications that are currently displayed in Notification Center.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                                  |
+| Name     | Type     | Required | Description                                                  |
 | -------- | -------- | -------- | ------------------------------------------------------------ |
-| callback | function | Sim      | Função que recebe um array de notificações entregues. |
+| callback | function | Yes      | Function which receives an array of delivered notifications. |
 
-Uma notificação entregue é um objeto contendo:
+A delivered notification is an object containing:
 
-- `identifier` : O identificador desta notificação.
-- `title` : O título desta notificação.
-- `body` : O corpo desta notificação.
-- `category` : A categoria desta notificação (opcional).
-- `userInfo` : Um objeto contendo dados adicionais de notificação (opcional).
-- `thread-id` : O identificador de thread desta notificação, se tiver um.
+- `identifier` : The identifier of this notification.
+- `title` : The title of this notification.
+- `body` : The body of this notification.
+- `category` : The category of this notification (optional).
+- `userInfo` : An object containing additional notification data (optional).
+- `thread-id` : The thread identifier of this notification, if it has one.
 
 ---
 
@@ -223,13 +224,13 @@ Uma notificação entregue é um objeto contendo:
 static removeDeliveredNotifications(identifiers: string[]);
 ```
 
-Remove as notificações especificadas do Notification Center.
+Removes the specified notifications from Notification Center.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome        | Tipo  | Obrigatório | Descrição                        |
+| Name        | Type  | Required | Description                        |
 | ----------- | ----- | -------- | ---------------------------------- |
-| identifiers | array | Sim      | Array de identificadores de notificação. |
+| identifiers | array | Yes      | Array of notification identifiers. |
 
 ---
 
@@ -239,13 +240,13 @@ Remove as notificações especificadas do Notification Center.
 static setApplicationIconBadgeNumber(num: number);
 ```
 
-Define o número do badge para o ícone do aplicativo na Home Screen.
+Sets the badge number for the app icon on the Home Screen.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome   | Tipo   | Obrigatório | Descrição                    |
+| Name   | Type   | Required | Description                    |
 | ------ | ------ | -------- | ------------------------------ |
-| number | number | Sim      | Número do badge para o ícone do aplicativo. |
+| number | number | Yes      | Badge number for the app icon. |
 
 ---
 
@@ -255,13 +256,13 @@ Define o número do badge para o ícone do aplicativo na Home Screen.
 static getApplicationIconBadgeNumber(callback: (num: number) => void);
 ```
 
-Obtém o número do badge atual para o ícone do aplicativo na Home Screen.
+Gets the current badge number for the app icon on the Home Screen.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                        |
+| Name     | Type     | Required | Description                                        |
 | -------- | -------- | -------- | -------------------------------------------------- |
-| callback | function | Sim      | Função que processa o número do badge atual. |
+| callback | function | Yes      | Function which processes the current badge number. |
 
 ---
 
@@ -271,13 +272,13 @@ Obtém o número do badge atual para o ícone do aplicativo na Home Screen.
 static cancelLocalNotifications(userInfo: Object);
 ```
 
-Cancela quaisquer notificações locais agendadas que correspondam aos campos no `userInfo` fornecido.
+Cancels any scheduled local notifications which match the fields in the provided `userInfo`.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome     | Tipo   | Obrigatório | Descrição |
+| Name     | Type   | Required | Description |
 | -------- | ------ | -------- | ----------- |
-| userInfo | object | Não       |             |
+| userInfo | object | No       |             |
 
 ---
 
@@ -289,13 +290,13 @@ static getScheduledLocalNotifications(
 );
 ```
 
-Obtém a lista de notificações locais que estão atualmente agendadas.
+Gets the list of local notifications that are currently scheduled.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                                                  |
+| Name     | Type     | Required | Description                                                                  |
 | -------- | -------- | -------- | ---------------------------------------------------------------------------- |
-| callback | function | Sim      | Função que processa um array de objetos descrevendo notificações locais. |
+| callback | function | Yes      | Function which processes an array of objects describing local notifications. |
 
 ---
 
@@ -311,21 +312,21 @@ static addEventListener(
 );
 ```
 
-Anexa um listener a eventos de notificação incluindo notificações locais, notificações remotas e resultados de registro de notificação.
+Attaches a listener to notification events including local notifications, remote notifications, and notification registration results.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome    | Tipo     | Obrigatório | Descrição                         |
+| Name    | Type     | Required | Description                         |
 | ------- | -------- | -------- | ----------------------------------- |
-| type    | string   | Sim      | Tipo de evento a ouvir. Veja abaixo. |
-| handler | function | Sim      | Listener.                           |
+| type    | string   | Yes      | Event type to listen to. See below. |
+| handler | function | Yes      | Listener.                           |
 
-Tipos de eventos válidos incluem:
+Valid events types include:
 
-- `notification` : Disparado quando uma notificação remota é recebida. O handler será invocado com uma instância de `PushNotificationIOS`. Isso manipulará notificações que chegam em primeiro plano ou foram tocadas para abrir o aplicativo do segundo plano.
-- `localNotification` : Disparado quando uma notificação local é recebida. O handler será invocado com uma instância de `PushNotificationIOS`. Isso manipulará notificações que chegam em primeiro plano ou foram tocadas para abrir o aplicativo do segundo plano.
-- `register`: Disparado quando o usuário se registra com sucesso para notificações remotas. O handler será invocado com uma string hex representando o deviceToken.
-- `registrationError`: Disparado quando o usuário falha ao se registrar para notificações remotas. Tipicamente ocorre devido a problemas com APNS ou se o dispositivo for um simulador. O handler será invocado com `{message: string, code: number, details: any}`.
+- `notification` : Fired when a remote notification is received. The handler will be invoked with an instance of `PushNotificationIOS`. This will handle notifications that arrive in the foreground or were tapped to open the app from the background.
+- `localNotification` : Fired when a local notification is received. The handler will be invoked with an instance of `PushNotificationIOS`. This will handle notifications that arrive in the foreground or were tapped to open the app from the background.
+- `register`: Fired when the user registers successfully for remote notifications. The handler will be invoked with a hex string representing the deviceToken.
+- `registrationError`: Fired when the user fails to register for remote notifications. Typically occurs due to APNS issues or if the device is a simulator. The handler will be invoked with `{message: string, code: number, details: any}`.
 
 ---
 
@@ -337,13 +338,13 @@ static removeEventListener(
 );
 ```
 
-Remove o event listener. Faça isso em `componentWillUnmount` para prevenir memory leaks.
+Removes the event listener. Do this in `componentWillUnmount` to prevent memory leaks.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome | Tipo   | Obrigatório | Descrição                                       |
+| Name | Type   | Required | Description                                       |
 | ---- | ------ | -------- | ------------------------------------------------- |
-| type | string | Sim      | Tipo de evento. Veja `addEventListener()` para opções. |
+| type | string | Yes      | Event type. See `addEventListener()` for options. |
 
 ---
 
@@ -353,21 +354,21 @@ Remove o event listener. Faça isso em `componentWillUnmount` para prevenir memo
 static requestPermissions(permissions?: PushNotificationPermissions[]);
 ```
 
-Solicita permissões de notificação do iOS, solicitando ao usuário com uma caixa de diálogo. Por padrão, isso solicitará todas as permissões de notificação, mas você pode opcionalmente especificar quais permissões solicitar. As seguintes permissões são suportadas:
+Requests notification permissions from iOS, prompting the user with a dialog box. By default, this will request all notification permissions, but you can optionally specify which permissions to request. The following permissions are supported:
 
 - `alert`
 - `badge`
 - `sound`
 
-Se um mapa for fornecido ao método, apenas as permissões com valores truthy serão solicitadas.
+If a map is provided to the method, only the permissions with truthy values will be requested.
 
-Este método retorna uma promise que será resolvida quando o usuário aceitar ou rejeitar a solicitação, ou se as permissões foram previamente rejeitadas. A promise resolve para o estado das permissões após a solicitação ter sido concluída.
+This method returns a promise that will resolve when the user accepts or rejects the request, or if the permissions were previously rejected. The promise resolves to the state of the permissions after the request has been completed.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome        | Tipo  | Obrigatório | Descrição            |
+| Name        | Type  | Required | Description            |
 | ----------- | ----- | -------- | ---------------------- |
-| permissions | array | Não       | alert, badge, ou sound |
+| permissions | array | No       | alert, badge, or sound |
 
 ---
 
@@ -377,9 +378,9 @@ Este método retorna uma promise que será resolvida quando o usuário aceitar o
 static abandonPermissions();
 ```
 
-Cancele o registro para todas as notificações remotas recebidas via Apple Push Notification service.
+Unregister for all remote notifications received via Apple Push Notification service.
 
-Você deve chamar este método apenas em circunstâncias raras, como quando uma nova versão do aplicativo remove o suporte para todos os tipos de notificações remotas. Os usuários podem temporariamente impedir que os aplicativos recebam notificações remotas através do aplicativo Settings. Aplicativos não registrados através deste método podem sempre se registrar novamente.
+You should call this method in rare circumstances only, such as when a new version of the app removes support for all types of remote notifications. Users can temporarily prevent apps from receiving remote notifications through the Settings app. Apps unregistered through this method can always re-register.
 
 ---
 
@@ -391,15 +392,15 @@ static checkPermissions(
 );
 ```
 
-Verifica quais permissões de push estão atualmente habilitadas.
+Check which push permissions are currently enabled.
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome     | Tipo     | Obrigatório | Descrição |
+| Name     | Type     | Required | Description |
 | -------- | -------- | -------- | ----------- |
-| callback | function | Sim      | Veja abaixo.  |
+| callback | function | Yes      | See below.  |
 
-`callback` será invocado com um objeto `permissions`:
+`callback` will be invoked with a `permissions` object:
 
 - `alert: boolean`
 - `badge: boolean`
@@ -413,7 +414,7 @@ Verifica quais permissões de push estão atualmente habilitadas.
 static getInitialNotification(): Promise<PushNotification | null>;
 ```
 
-Este método retorna uma promise. Se o aplicativo foi iniciado por uma push notification, esta promise resolve para um objeto do tipo `PushNotificationIOS` para a notificação que foi tocada. Caso contrário, resolve para `null`.
+This method returns a promise. If the app was launched by a push notification, this promise resolves to an object of type `PushNotificationIOS` for the notification that was tapped. Otherwise, it resolves to `null`.
 
 ---
 
@@ -423,7 +424,7 @@ Este método retorna uma promise. Se o aplicativo foi iniciado por uma push noti
 static getAuthorizationStatus(): Promise<number>;
 ```
 
-Este método retorna uma promise que resolve para o status de autorização de notificação atual. Veja [UNAuthorizationStatus](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus?language=objc) para valores possíveis.
+This method returns a promise that resolves to the current notification authorization status. See [UNAuthorizationStatus](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus?language=objc) for possible values.
 
 ---
 
@@ -433,9 +434,9 @@ Este método retorna uma promise que resolve para o status de autorização de n
 finish(result: string);
 ```
 
-Este método está disponível para notificações remotas que foram recebidas via [`application:didReceiveRemoteNotification:fetchCompletionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application?language=objc). No entanto, isso é substituído por `UNUserNotificationCenterDelegate` e não será mais invocado se tanto `application:didReceiveRemoteNotification:fetchCompletionHandler:` quanto os handlers mais novos de `UNUserNotificationCenterDelegate` forem implementados.
+This method is available for remote notifications that have been received via [`application:didReceiveRemoteNotification:fetchCompletionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application?language=objc). However, this is superseded by `UNUserNotificationCenterDelegate` and will no longer be invoked if both `application:didReceiveRemoteNotification:fetchCompletionHandler:` and the newer handlers from `UNUserNotificationCenterDelegate` are implemented.
 
-Se por alguma razão você ainda está confiando em `application:didReceiveRemoteNotification:fetchCompletionHandler:`, você precisará configurar a manipulação de eventos no lado iOS:
+If for some reason you're still relying on `application:didReceiveRemoteNotification:fetchCompletionHandler:`, you'll need to set up event handling on the iOS side:
 
 ```objectivec
 - (void)           application:(UIApplication *)application
@@ -446,9 +447,9 @@ Se por alguma razão você ainda está confiando em `application:didReceiveRemot
 }
 ```
 
-Chame `finish()` para executar os completion handlers nativos uma vez que você tenha terminado de manipular a notificação no lado JS. Ao chamar este bloco, passe o valor de fetch result que melhor descreve os resultados de sua operação. Para uma lista de valores possíveis, veja `PushNotificationIOS.FetchResult`.
+Call `finish()` to execute the native completion handlers once you're done handling the notification on the JS side. When calling this block, pass in the fetch result value that best describes the results of your operation. For a list of possible values, see `PushNotificationIOS.FetchResult`.
 
-Se você está usando `application:didReceiveRemoteNotification:fetchCompletionHandler:`, você _deve_ chamar este handler e deve fazê-lo o mais rápido possível. Veja a [documentação oficial](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application?language=objc) para mais detalhes.
+If you're using `application:didReceiveRemoteNotification:fetchCompletionHandler:`, you _must_ call this handler and should do so as soon as possible. See the [official documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application?language=objc) for more details.
 
 ---
 
@@ -458,7 +459,7 @@ Se você está usando `application:didReceiveRemoteNotification:fetchCompletionH
 getMessage(): string | Object;
 ```
 
-Um alias para `getAlert` para obter a mensagem principal da notificação.
+An alias for `getAlert` to get the notification's main message string.
 
 ---
 
@@ -468,7 +469,7 @@ Um alias para `getAlert` para obter a mensagem principal da notificação.
 getSound(): string;
 ```
 
-Obtém a string de som do objeto `aps`. Isso será `null` para notificações locais.
+Gets the sound string from the `aps` object. This will be `null` for local notifications.
 
 ---
 
@@ -478,7 +479,7 @@ Obtém a string de som do objeto `aps`. Isso será `null` para notificações lo
 getCategory(): string;
 ```
 
-Obtém a string de categoria do objeto `aps`.
+Gets the category string from the `aps` object.
 
 ---
 
@@ -488,7 +489,7 @@ Obtém a string de categoria do objeto `aps`.
 getAlert(): string | Object;
 ```
 
-Obtém a mensagem principal da notificação do objeto `aps`. Veja também o alias: `getMessage()`.
+Gets the notification's main message from the `aps` object. Also see the alias: `getMessage()`.
 
 ---
 
@@ -498,7 +499,7 @@ Obtém a mensagem principal da notificação do objeto `aps`. Veja também o ali
 getContentAvailable(): number;
 ```
 
-Obtém o número content-available do objeto `aps`.
+Gets the content-available number from the `aps` object.
 
 ---
 
@@ -508,7 +509,7 @@ Obtém o número content-available do objeto `aps`.
 getBadgeCount(): number;
 ```
 
-Obtém o número de badge count do objeto `aps`.
+Gets the badge count number from the `aps` object.
 
 ---
 
@@ -518,7 +519,7 @@ Obtém o número de badge count do objeto `aps`.
 getData(): Object;
 ```
 
-Obtém o objeto de dados na notificação.
+Gets the data object on the notification.
 
 ---
 
@@ -528,4 +529,4 @@ Obtém o objeto de dados na notificação.
 getThreadID();
 ```
 
-Obtém o thread ID na notificação.
+Gets the thread ID on the notification.

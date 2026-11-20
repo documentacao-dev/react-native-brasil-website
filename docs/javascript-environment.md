@@ -1,28 +1,27 @@
 ---
 id: javascript-environment
-title: Ambiente JavaScript
-ia-translated: true
+title: JavaScript Environment
 ---
 
 import TableRow from '@site/core/TableRowWithCodeBlock';
 
 ## JavaScript Runtime
 
-Ao usar React Native, você estará executando seu código JavaScript em até três ambientes:
+When using React Native, you're going to be running your JavaScript code in up to three environments:
 
-- Na maioria dos casos, React Native usará [Hermes](hermes), um motor JavaScript de código aberto otimizado para React Native.
-- Se Hermes estiver desabilitado, React Native usará [JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore), o motor JavaScript que alimenta o Safari. Note que no iOS, JavaScriptCore não usa JIT devido à ausência de memória executável gravável em aplicativos iOS.
-- Ao usar Chrome debugging, todo código JavaScript é executado dentro do próprio Chrome, comunicando-se com código nativo via WebSockets. Chrome usa [V8](https://v8.dev/) como seu motor JavaScript.
+- In most cases, React Native will use [Hermes](hermes), an open-source JavaScript engine optimized for React Native.
+- If Hermes is disabled, React Native will use [JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore), the JavaScript engine that powers Safari. Note that on iOS, JavaScriptCore does not use JIT due to the absence of writable executable memory in iOS apps.
+- When using Chrome debugging, all JavaScript code runs within Chrome itself, communicating with native code via WebSockets. Chrome uses [V8](https://v8.dev/) as its JavaScript engine.
 
-Embora esses ambientes sejam muito semelhantes, você pode acabar encontrando algumas inconsistências. É melhor evitar depender de especificidades de qualquer runtime.
+While these environments are very similar, you may end up hitting some inconsistencies. It is best to avoid relying on specifics of any runtime.
 
 ## JavaScript Syntax Transformers
 
-Syntax transformers tornam a escrita de código mais agradável, permitindo que você use a nova sintaxe JavaScript sem ter que esperar pelo suporte em todos os interpretadores.
+Syntax transformers make writing code more enjoyable by allowing you to use new JavaScript syntax without having to wait for support on all interpreters.
 
-React Native vem com o [compilador JavaScript Babel](https://babeljs.io). Confira a [documentação do Babel](https://babeljs.io/docs/plugins/#transform-plugins) sobre suas transformações suportadas para mais detalhes.
+React Native ships with the [Babel JavaScript compiler](https://babeljs.io). Check [Babel documentation](https://babeljs.io/docs/plugins/#transform-plugins) on its supported transformations for more details.
 
-Uma lista completa das transformações habilitadas do React Native pode ser encontrada em [@react-native/babel-preset](https://github.com/facebook/react-native/tree/main/packages/react-native-babel-preset).
+A full list of React Native's enabled transformations can be found in [@react-native/babel-preset](https://github.com/react/react-native/tree/main/packages/react-native-babel-preset).
 
 <table>
 <thead>
@@ -42,7 +41,7 @@ Uma lista completa das transformações habilitadas do React Native pode ser enc
   <TableRow name="for…of" code="for (var num of [1, 2, 3]) {...};" url="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" />
   <TableRow name="Function Name" code="let number = x => x;" url="https://babeljs.io/docs/en/babel-plugin-transform-function-name" />
   <TableRow name="Literals" code="const b = 0b11; const o = 0o7; const u = 'Hello\u{000A}\u{0009}!';" url="https://babeljs.io/docs/en/babel-plugin-transform-literals" />
-  <TableRow name="Modules" code="import React, {Component} from 'react';" url="https://babeljs.io/docs/learn-es2015/#modules" />
+  <TableRow name="Modules" code="import {Component} from 'react';" url="https://babeljs.io/docs/learn-es2015/#modules" />
   <TableRow name="Object Concise Method" code="const obj = {method() { return 10; }};" url="https://babeljs.io/docs/learn-es2015/#enhanced-object-literals" />
   <TableRow name="Object Short Notation" code="const name = 'vjeux'; const obj = {name};" url="https://babeljs.io/docs/learn-es2015/#enhanced-object-literals" />
   <TableRow name="Parameters" code="function test(x = 'hello', {a, b}, ...args) {}" url="https://babeljs.io/docs/en/babel-plugin-transform-parameters" />
@@ -81,14 +80,14 @@ Uma lista completa das transformações habilitadas do React Native pode ser enc
 
 ## Polyfills
 
-Muitas funções padrão também estão disponíveis em todos os runtimes JavaScript suportados.
+Many standard functions are also available on all the supported JavaScript runtimes.
 
 #### Browser
 
 - [CommonJS `require`](https://nodejs.org/docs/latest/api/modules.html)
 - `md [console.{log, warn, error, info, debug, trace, table, group, groupCollapsed, groupEnd}](https://developer.chrome.com/devtools/docs/console-api)`
-- [`XMLHttpRequest`, `fetch`](network.md#content)
-- [`{set, clear}{Timeout, Interval, Immediate}, {request, cancel}AnimationFrame`](timers.md#content)
+- [`XMLHttpRequest`, `fetch`](network.md)
+- [`{set, clear}{Timeout, Interval, Immediate}, {request, cancel}AnimationFrame`](timers.md)
 
 #### ECMAScript 2015 (ES6)
 

@@ -1,25 +1,24 @@
 ---
-ia-translated: true
 id: flatlist
 title: FlatList
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Uma interface performática para renderizar listas básicas e planas, com suporte aos recursos mais úteis:
+A performant interface for rendering basic, flat lists, supporting the most handy features:
 
-- Totalmente multiplataforma.
-- Modo horizontal opcional.
-- Callbacks de visibilidade configuráveis.
-- Suporte a cabeçalho.
-- Suporte a rodapé.
-- Suporte a separador.
+- Fully cross-platform.
+- Optional horizontal mode.
+- Configurable viewability callbacks.
+- Header support.
+- Footer support.
+- Separator support.
 - Pull to Refresh.
-- Carregamento ao rolar.
-- Suporte a ScrollToIndex.
-- Suporte a múltiplas colunas.
+- Scroll loading.
+- ScrollToIndex support.
+- Multiple column support.
 
-Se você precisa de suporte a seções, use [`<SectionList>`](sectionlist.md).
+If you need section support, use [`<SectionList>`](sectionlist.md).
 
 ## Example
 
@@ -27,7 +26,6 @@ Se você precisa de suporte a seções, use [`<SectionList>`](sectionlist.md).
 <TabItem value="javascript">
 
 ```SnackPlayer name=Simple%20FlatList%20Example&ext=js
-import React from 'react';
 import {View, FlatList, StyleSheet, Text, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -87,7 +85,6 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Simple%20FlatList%20Example&ext=tsx
-import React from 'react';
 import {View, FlatList, StyleSheet, Text, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -148,18 +145,18 @@ export default App;
 </TabItem>
 </Tabs>
 
-Para renderizar múltiplas colunas, use a prop [`numColumns`](flatlist.md#numcolumns). Usar essa abordagem em vez de um layout `flexWrap` pode evitar conflitos com a lógica de altura dos itens.
+To render multiple columns, use the [`numColumns`](flatlist.md#numcolumns) prop. Using this approach instead of a `flexWrap` layout can prevent conflicts with the item height logic.
 
-Exemplo mais complexo e selecionável abaixo.
+More complex, selectable example below.
 
-- Ao passar `extraData={selectedId}` para `FlatList`, garantimos que o próprio `FlatList` será re-renderizado quando o estado mudar. Sem definir essa prop, `FlatList` não saberia que precisa re-renderizar nenhum item porque é um `PureComponent` e a comparação de props não mostrará nenhuma mudança.
-- `keyExtractor` informa à lista para usar os `id`s como chaves do React em vez da propriedade `key` padrão.
+- Passing `extraData={selectedId}` to `FlatList` ensures that `FlatList` re-renders when `selectedId` changes. Because `FlatList` implements `PureComponent`, it only re-renders if its props change. While `renderItem` in this example is recreated on each render because it is defined inline, passing `extraData` is essential whenever `renderItem` has a stable reference (such as when memoized or defined outside the component) so that `FlatList` knows that an external dependency has updated.
+- `keyExtractor` tells the list to use the `id`s for the react keys instead of the default `key` property.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer name=flatlist-selectable&ext=js
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   FlatList,
   StatusBar,
@@ -243,7 +240,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=flatlist-selectable&ext=tsx
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   FlatList,
   StatusBar,
@@ -338,12 +335,12 @@ export default App;
 </TabItem>
 </Tabs>
 
-Este é um wrapper conveniente em torno de [`<VirtualizedList>`](virtualizedlist.md), e portanto herda suas props (assim como as de [`<ScrollView>`](scrollview.md)) que não estão explicitamente listadas aqui, juntamente com as seguintes ressalvas:
+This is a convenience wrapper around [`<VirtualizedList>`](virtualizedlist.md), and thus inherits its props (as well as those of [`<ScrollView>`](scrollview.md)) that aren't explicitly listed here, along with the following caveats:
 
-- O estado interno não é preservado quando o conteúdo rola para fora da janela de renderização. Certifique-se de que todos os seus dados sejam capturados nos dados do item ou em stores externos como Flux, Redux ou Relay.
-- Este é um `PureComponent`, o que significa que ele não será re-renderizado se as `props` permanecerem superficialmente iguais. Certifique-se de que tudo do que sua função `renderItem` depende seja passado como uma prop (por exemplo, `extraData`) que não seja `===` após atualizações, caso contrário sua UI pode não atualizar nas mudanças. Isso inclui a prop `data` e o estado do componente pai.
-- Para restringir memória e permitir rolagem suave, o conteúdo é renderizado de forma assíncrona fora da tela. Isso significa que é possível rolar mais rápido do que a taxa de preenchimento e ver momentaneamente conteúdo em branco. Este é um compromisso que pode ser ajustado para atender às necessidades de cada aplicação, e estamos trabalhando para melhorá-lo nos bastidores.
-- Por padrão, a lista procura por uma prop `key` em cada item e a usa como chave do React. Alternativamente, você pode fornecer uma prop `keyExtractor` personalizada.
+- Internal state is not preserved when content scrolls out of the render window. Make sure all your data is captured in the item data or external stores like Flux, Redux, or Relay.
+- This is a `PureComponent` which means that it will not re-render if `props` remain shallow-equal. Make sure that everything your `renderItem` function depends on is passed as a prop (e.g. `extraData`) that is not `===` after updates, otherwise your UI may not update on changes. This includes the `data` prop and parent component state.
+- In order to constrain memory and enable smooth scrolling, content is rendered asynchronously offscreen. This means it's possible to scroll faster than the fill rate and momentarily see blank content. This is a tradeoff that can be adjusted to suit the needs of each application, and we are working on improving it behind the scenes.
+- By default, the list looks for a `key` prop on each item and uses that for the React key. Alternatively, you can provide a custom `keyExtractor` prop.
 
 ---
 
@@ -353,7 +350,7 @@ Este é um wrapper conveniente em torno de [`<VirtualizedList>`](virtualizedlist
 
 ### [VirtualizedList Props](virtualizedlist.md#props)
 
-Herda [VirtualizedList Props](virtualizedlist.md#props).
+Inherits [VirtualizedList Props](virtualizedlist.md#props).
 
 ---
 
@@ -371,16 +368,16 @@ renderItem({
 }): JSX.Element;
 ```
 
-Pega um item de `data` e o renderiza na lista.
+Takes an item from `data` and renders it into the list.
 
-Fornece metadados adicionais como `index` se você precisar, assim como uma função `separators.updateProps` mais genérica que permite definir quaisquer props que você queira para alterar a renderização do separador inicial ou final, caso os mais comuns `highlight` e `unhighlight` (que definem a prop `highlighted: boolean`) sejam insuficientes para seu caso de uso.
+Provides additional metadata like `index` if you need it, as well as a more generic `separators.updateProps` function which let you set whatever props you want to change the rendering of either the leading separator or trailing separator in case the more common `highlight` and `unhighlight` (which set the `highlighted: boolean` prop) are insufficient for your use case.
 
 | Type     |
 | -------- |
 | function |
 
-- `item` (Object): O item de `data` sendo renderizado.
-- `index` (number): O índice correspondente a este item no array `data`.
+- `item` (Object): The item from `data` being rendered.
+- `index` (number): The index corresponding to this item in the `data` array.
 - `separators` (Object)
   - `highlight` (Function)
   - `unhighlight` (Function)
@@ -388,7 +385,7 @@ Fornece metadados adicionais como `index` se você precisar, assim como uma fun�
     - `select` (enum('leading', 'trailing'))
     - `newProps` (Object)
 
-Exemplo de uso:
+Example usage:
 
 ```tsx
 <FlatList
@@ -419,7 +416,7 @@ Exemplo de uso:
 
 ### <div className="label required basic">Required</div> **`data`**
 
-Um array (ou lista semelhante a array) de itens para renderizar. Outros tipos de dados podem ser usados direcionando [`VirtualizedList`](virtualizedlist.md) diretamente.
+An array (or array-like list) of items to render. Other data types can be used by targeting [`VirtualizedList`](virtualizedlist.md) directly.
 
 | Type      |
 | --------- |
@@ -429,7 +426,7 @@ Um array (ou lista semelhante a array) de itens para renderizar. Outros tipos de
 
 ### `ItemSeparatorComponent`
 
-Renderizado entre cada item, mas não no topo ou na parte inferior. Por padrão, as props `highlighted` e `leadingItem` são fornecidas. `renderItem` fornece `separators.highlight`/`unhighlight` que atualizarão a prop `highlighted`, mas você também pode adicionar props personalizadas com `separators.updateProps`. Pode ser um React Component (por exemplo, `SomeComponent`), ou um React element (por exemplo, `<SomeComponent />`).
+Rendered in between each item, but not at the top or bottom. By default, `highlighted` and `leadingItem` props are provided. `renderItem` provides `separators.highlight`/`unhighlight` which will update the `highlighted` prop, but you can also add custom props with `separators.updateProps`. Can be a React Component (e.g. `SomeComponent`), or a React element (e.g. `<SomeComponent />`).
 
 | Type                         |
 | ---------------------------- |
@@ -439,7 +436,7 @@ Renderizado entre cada item, mas não no topo ou na parte inferior. Por padrão,
 
 ### `ListEmptyComponent`
 
-Renderizado quando a lista está vazia. Pode ser um React Component (por exemplo, `SomeComponent`), ou um React element (por exemplo, `<SomeComponent />`).
+Rendered when the list is empty. Can be a React Component (e.g. `SomeComponent`), or a React element (e.g. `<SomeComponent />`).
 
 | Type               |
 | ------------------ |
@@ -449,7 +446,7 @@ Renderizado quando a lista está vazia. Pode ser um React Component (por exemplo
 
 ### `ListFooterComponent`
 
-Renderizado na parte inferior de todos os itens. Pode ser um React Component (por exemplo, `SomeComponent`), ou um React element (por exemplo, `<SomeComponent />`).
+Rendered at the bottom of all the items. Can be a React Component (e.g. `SomeComponent`), or a React element (e.g. `<SomeComponent />`).
 
 | Type               |
 | ------------------ |
@@ -459,7 +456,7 @@ Renderizado na parte inferior de todos os itens. Pode ser um React Component (po
 
 ### `ListFooterComponentStyle`
 
-Estilo para a View interna de `ListFooterComponent`.
+Styling for internal View for `ListFooterComponent`.
 
 | Type                           |
 | ------------------------------ |
@@ -469,7 +466,7 @@ Estilo para a View interna de `ListFooterComponent`.
 
 ### `ListHeaderComponent`
 
-Renderizado no topo de todos os itens. Pode ser um React Component (por exemplo, `SomeComponent`), ou um React element (por exemplo, `<SomeComponent />`).
+Rendered at the top of all the items. Can be a React Component (e.g. `SomeComponent`), or a React element (e.g. `<SomeComponent />`).
 
 | Type               |
 | ------------------ |
@@ -479,7 +476,7 @@ Renderizado no topo de todos os itens. Pode ser um React Component (por exemplo,
 
 ### `ListHeaderComponentStyle`
 
-Estilo para a View interna de `ListHeaderComponent`.
+Styling for internal View for `ListHeaderComponent`.
 
 | Type                           |
 | ------------------------------ |
@@ -487,9 +484,19 @@ Estilo para a View interna de `ListHeaderComponent`.
 
 ---
 
+### `ListItemComponent`
+
+Each data item is rendered using this element, as an alternative to `renderItem`. It receives the same props, and takes precedence over `renderItem` when both are provided.
+
+| Type               |
+| ------------------ |
+| component, element |
+
+---
+
 ### `columnWrapperStyle`
 
-Estilo personalizado opcional para linhas de múltiplos itens geradas quando `numColumns > 1`.
+Optional custom style for multi-item rows generated when `numColumns > 1`.
 
 | Type                           |
 | ------------------------------ |
@@ -499,7 +506,7 @@ Estilo personalizado opcional para linhas de múltiplos itens geradas quando `nu
 
 ### `extraData`
 
-Uma propriedade marcadora para informar à lista para re-renderizar (já que implementa `PureComponent`). Se qualquer uma de suas funções `renderItem`, Header, Footer, etc. depender de algo fora da prop `data`, coloque aqui e trate de forma imutável.
+A marker property for telling the list to re-render (since it implements `PureComponent`). If any of your `renderItem`, Header, Footer, etc. functions depend on anything outside of the `data` prop, stick it here and treat it immutably.
 
 | Type |
 | ---- |
@@ -513,7 +520,7 @@ Uma propriedade marcadora para informar à lista para re-renderizar (já que imp
 (data, index) => {length: number, offset: number, index: number}
 ```
 
-`getItemLayout` é uma otimização opcional que permite pular a medição de conteúdo dinâmico se você souber o tamanho (altura ou largura) dos itens com antecedência. `getItemLayout` é eficiente se você tiver itens de tamanho fixo, por exemplo:
+`getItemLayout` is an optional optimization that allows skipping the measurement of dynamic content if you know the size (height or width) of items ahead of time. `getItemLayout` is efficient if you have fixed size items, for example:
 
 ```tsx
   getItemLayout={(data, index) => (
@@ -521,7 +528,7 @@ Uma propriedade marcadora para informar à lista para re-renderizar (já que imp
   )}
 ```
 
-Adicionar `getItemLayout` pode ser um grande aumento de desempenho para listas de várias centenas de itens. Lembre-se de incluir o comprimento do separador (altura ou largura) no seu cálculo de offset se você especificar `ItemSeparatorComponent`.
+Adding `getItemLayout` can be a great performance boost for lists of several hundred items. Remember to include separator length (height or width) in your offset calculation if you specify `ItemSeparatorComponent`.
 
 | Type     |
 | -------- |
@@ -531,7 +538,7 @@ Adicionar `getItemLayout` pode ser um grande aumento de desempenho para listas d
 
 ### `horizontal`
 
-Se `true`, renderiza itens um ao lado do outro horizontalmente em vez de empilhados verticalmente.
+If `true`, renders items next to each other horizontally instead of stacked vertically.
 
 | Type    |
 | ------- |
@@ -541,7 +548,7 @@ Se `true`, renderiza itens um ao lado do outro horizontalmente em vez de empilha
 
 ### `initialNumToRender`
 
-Quantos itens renderizar no lote inicial. Isso deve ser o suficiente para preencher a tela, mas não muito mais. Note que esses itens nunca serão desmontados como parte da renderização em janela para melhorar o desempenho percebido das ações de rolar para o topo.
+How many items to render in the initial batch. This should be enough to fill the screen but not much more. Note these items will never be unmounted as part of the windowed rendering in order to improve perceived performance of scroll-to-top actions.
 
 | Type   | Default |
 | ------ | ------- |
@@ -551,7 +558,7 @@ Quantos itens renderizar no lote inicial. Isso deve ser o suficiente para preenc
 
 ### `initialScrollIndex`
 
-Em vez de começar no topo com o primeiro item, comece em `initialScrollIndex`. Isso desabilita a otimização "rolar para o topo" que mantém os primeiros `initialNumToRender` itens sempre renderizados e imediatamente renderiza os itens começando neste índice inicial. Requer que `getItemLayout` seja implementado.
+Instead of starting at the top with the first item, start at `initialScrollIndex`. This disables the "scroll to top" optimization that keeps the first `initialNumToRender` items always rendered and immediately renders the items starting at this initial index. Requires `getItemLayout` to be implemented.
 
 | Type   |
 | ------ |
@@ -561,7 +568,7 @@ Em vez de começar no topo com o primeiro item, comece em `initialScrollIndex`. 
 
 ### `inverted`
 
-Inverte a direção do scroll. Usa transformações de escala de `-1`.
+Reverses the direction of scroll. Uses scale transforms of `-1`.
 
 | Type    |
 | ------- |
@@ -575,7 +582,7 @@ Inverte a direção do scroll. Usa transformações de escala de `-1`.
 (item: ItemT, index: number) => string;
 ```
 
-Usado para extrair uma chave única para um determinado item no índice especificado. A chave é usada para cache e como chave do React para rastrear a reordenação de itens. O extrator padrão verifica `item.key`, depois `item.id`, e então recorre ao uso do índice, como o React faz.
+Used to extract a unique key for a given item at the specified index. Key is used for caching and as the react key to track item re-ordering. The default extractor checks `item.key`, then `item.id`, and then falls back to using the index, like React does.
 
 | Type     |
 | -------- |
@@ -585,7 +592,7 @@ Usado para extrair uma chave única para um determinado item no índice especifi
 
 ### `numColumns`
 
-Múltiplas colunas só podem ser renderizadas com `horizontal={false}` e farão zigue-zague como um layout `flexWrap`. Os itens devem ter todos a mesma altura - layouts de alvenaria não são suportados.
+Multiple columns can only be rendered with `horizontal={false}` and will zig-zag like a `flexWrap` layout. Items should all be the same height - masonry layouts are not supported.
 
 | Type   |
 | ------ |
@@ -599,7 +606,7 @@ Múltiplas colunas só podem ser renderizadas com `horizontal={false}` e farão 
 () => void;
 ```
 
-Se fornecido, um RefreshControl padrão será adicionado para funcionalidade "Pull to Refresh". Certifique-se de também definir a prop `refreshing` corretamente.
+If provided, a standard RefreshControl will be added for "Pull to Refresh" functionality. Make sure to also set the `refreshing` prop correctly.
 
 | Type     |
 | -------- |
@@ -609,7 +616,7 @@ Se fornecido, um RefreshControl padrão será adicionado para funcionalidade "Pu
 
 ### `onViewableItemsChanged`
 
-Chamado quando a visibilidade das linhas muda, conforme definido pela prop `viewabilityConfig`.
+Called when the viewability of rows changes, as defined by the `viewabilityConfig` prop.
 
 | Type                                                                                                  |
 | ----------------------------------------------------------------------------------------------------- |
@@ -619,7 +626,7 @@ Chamado quando a visibilidade das linhas muda, conforme definido pela prop `view
 
 ### `progressViewOffset`
 
-Defina isso quando o offset for necessário para que o indicador de carregamento seja exibido corretamente.
+Set this when offset is needed for the loading indicator to show correctly.
 
 | Type   |
 | ------ |
@@ -629,7 +636,7 @@ Defina isso quando o offset for necessário para que o indicador de carregamento
 
 ### `refreshing`
 
-Defina isso como true enquanto aguarda novos dados de uma atualização.
+Set this true while waiting for new data from a refresh.
 
 | Type    |
 | ------- |
@@ -640,10 +647,10 @@ Defina isso como true enquanto aguarda novos dados de uma atualização.
 ### `removeClippedSubviews`
 
 :::warning
-O uso desta propriedade pode levar a bugs (conteúdo ausente) em algumas circunstâncias - use por sua conta e risco.
+Using this property may lead to bugs (missing content) in some circumstances - use at your own risk.
 :::
 
-Quando `true`, as views filhas fora da tela são removidas de sua superview nativa de suporte quando fora da tela. Isso pode melhorar o desempenho de scroll para listas grandes. No Android, o valor padrão é `true`.
+When `true`, offscreen child views are removed from their native backing superview when offscreen. This may improve scroll performance for large lists. On Android the default value is `true`.
 
 | Type    |
 | ------- |
@@ -653,13 +660,13 @@ Quando `true`, as views filhas fora da tela são removidas de sua superview nati
 
 ### `viewabilityConfig`
 
-Veja [`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js) para o tipo flow e documentação adicional.
+See [`ViewabilityHelper.js`](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js) for flow type and further documentation.
 
 | Type              |
 | ----------------- |
 | ViewabilityConfig |
 
-`viewabilityConfig` recebe um tipo `ViewabilityConfig`, um objeto com as seguintes propriedades
+`viewabilityConfig` takes a type `ViewabilityConfig` an object with following properties
 
 | Property                         | Type    |
 | -------------------------------- | ------- |
@@ -668,7 +675,7 @@ Veja [`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main
 | itemVisiblePercentThreshold      | number  |
 | waitForInteraction               | boolean |
 
-Pelo menos um de `viewAreaCoveragePercentThreshold` ou `itemVisiblePercentThreshold` é necessário. Isso precisa ser feito no `constructor` para evitar o seguinte erro ([ref](https://github.com/facebook/react-native/issues/17408)):
+At least one of the `viewAreaCoveragePercentThreshold` or `itemVisiblePercentThreshold` is required. This needs to be done in the `constructor` to avoid following error ([ref](https://github.com/react/react-native/issues/17408)):
 
 ```
   Error: Changing viewabilityConfig on the fly is not supported
@@ -693,25 +700,25 @@ constructor (props) {
 
 #### minimumViewTime
 
-Quantidade mínima de tempo (em milissegundos) que um item deve estar fisicamente visível antes que o callback de visibilidade seja disparado. Um número alto significa que rolar pelo conteúdo sem parar não marcará o conteúdo como visível.
+Minimum amount of time (in milliseconds) that an item must be physically viewable before the viewability callback will be fired. A high number means that scrolling through content without stopping will not mark the content as viewable.
 
 #### viewAreaCoveragePercentThreshold
 
-Porcentagem da viewport que deve ser coberta para que um item parcialmente ocluído conte como "visível", 0-100. Itens totalmente visíveis são sempre considerados visíveis. Um valor de 0 significa que um único pixel na viewport torna o item visível, e um valor de 100 significa que um item deve estar totalmente visível ou cobrir toda a viewport para contar como visível.
+Percent of viewport that must be covered for a partially occluded item to count as "viewable", 0-100. Fully visible items are always considered viewable. A value of 0 means that a single pixel in the viewport makes the item viewable, and a value of 100 means that an item must be either entirely visible or cover the entire viewport to count as viewable.
 
 #### itemVisiblePercentThreshold
 
-Semelhante a `viewAreaCoveragePercentThreshold`, mas considera a porcentagem do item que está visível, em vez da fração da área visível que ele cobre.
+Similar to `viewAreaCoveragePercentThreshold`, but considers the percent of the item that is visible, rather than the fraction of the viewable area it covers.
 
 #### waitForInteraction
 
-Nada é considerado visível até que o usuário role ou `recordInteraction` seja chamado após a renderização.
+Nothing is considered viewable until the user scrolls or `recordInteraction` is called after render.
 
 ---
 
 ### `viewabilityConfigCallbackPairs`
 
-Lista de pares `ViewabilityConfig`/`onViewableItemsChanged`. Um `onViewableItemsChanged` específico será chamado quando as condições de seu `ViewabilityConfig` correspondente forem atendidas. Veja `ViewabilityHelper.js` para o tipo flow e documentação adicional.
+List of `ViewabilityConfig`/`onViewableItemsChanged` pairs. A specific `onViewableItemsChanged` will be called when its corresponding `ViewabilityConfig`'s conditions are met. See `ViewabilityHelper.js` for flow type and further documentation.
 
 | Type                                   |
 | -------------------------------------- |
@@ -725,7 +732,7 @@ Lista de pares `ViewabilityConfig`/`onViewableItemsChanged`. Um `onViewableItems
 flashScrollIndicators();
 ```
 
-Exibe os indicadores de scroll momentaneamente.
+Displays the scroll indicators momentarily.
 
 ---
 
@@ -735,7 +742,7 @@ Exibe os indicadores de scroll momentaneamente.
 getNativeScrollRef(): React.ElementRef<typeof ScrollViewComponent>;
 ```
 
-Fornece uma referência ao componente de scroll subjacente
+Provides a reference to the underlying scroll component
 
 ---
 
@@ -745,7 +752,7 @@ Fornece uma referência ao componente de scroll subjacente
 getScrollResponder(): ScrollResponderMixin;
 ```
 
-Fornece um handle para o respondedor de scroll subjacente.
+Provides a handle to the underlying scroll responder.
 
 ---
 
@@ -755,7 +762,7 @@ Fornece um handle para o respondedor de scroll subjacente.
 getScrollableNode(): any;
 ```
 
-Fornece um handle para o nó de scroll subjacente.
+Provides a handle to the underlying scroll node.
 
 ### `scrollToEnd()`
 
@@ -763,7 +770,7 @@ Fornece um handle para o nó de scroll subjacente.
 scrollToEnd(params?: {animated?: boolean});
 ```
 
-Rola até o final do conteúdo. Pode ser instável sem a prop `getItemLayout`.
+Scrolls to the end of the content. May be janky without `getItemLayout` prop.
 
 **Parameters:**
 
@@ -771,9 +778,9 @@ Rola até o final do conteúdo. Pode ser instável sem a prop `getItemLayout`.
 | ------ | ------ |
 | params | object |
 
-Chaves válidas de `params` são:
+Valid `params` keys are:
 
-- 'animated' (boolean) - Se a lista deve fazer uma animação durante o scroll. Padrão é `true`.
+- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
 
 ---
 
@@ -788,10 +795,10 @@ scrollToIndex: (params: {
 });
 ```
 
-Rola para o item no índice especificado de forma que ele seja posicionado na área visível de modo que `viewPosition` 0 o coloca no topo, 1 na parte inferior e 0.5 centralizado no meio.
+Scrolls to the item at the specified index such that it is positioned in the viewable area such that `viewPosition` 0 places it at the top, 1 at the bottom, and 0.5 centered in the middle.
 
 :::note
-Não pode rolar para locais fora da janela de renderização sem especificar a prop `getItemLayout`.
+Cannot scroll to locations outside the render window without specifying the `getItemLayout` prop.
 :::
 
 **Parameters:**
@@ -800,12 +807,12 @@ Não pode rolar para locais fora da janela de renderização sem especificar a p
 | ----------------------------------------------------------- | ------ |
 | params <div className="label basic required">Required</div> | object |
 
-Chaves válidas de `params` são:
+Valid `params` keys are:
 
-- 'animated' (boolean) - Se a lista deve fazer uma animação durante o scroll. Padrão é `true`.
-- 'index' (number) - O índice para rolar. Obrigatório.
-- 'viewOffset' (number) - Um número fixo de pixels para deslocar a posição final do alvo.
-- 'viewPosition' (number) - Um valor de `0` coloca o item especificado por índice no topo, `1` na parte inferior e `0.5` centralizado no meio.
+- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
+- 'index' (number) - The index to scroll to. Required.
+- 'viewOffset' (number) - A fixed number of pixels to offset the final target position.
+- 'viewPosition' (number) - A value of `0` places the item specified by index at the top, `1` at the bottom, and `0.5` centered in the middle.
 
 ---
 
@@ -819,10 +826,10 @@ scrollToItem(params: {
 });
 ```
 
-Requer varredura linear através dos dados - use `scrollToIndex` em vez disso, se possível.
+Requires linear scan through data - use `scrollToIndex` instead if possible.
 
 :::note
-Não pode rolar para locais fora da janela de renderização sem especificar a prop `getItemLayout`.
+Cannot scroll to locations outside the render window without specifying the `getItemLayout` prop.
 :::
 
 **Parameters:**
@@ -831,10 +838,10 @@ Não pode rolar para locais fora da janela de renderização sem especificar a p
 | ----------------------------------------------------------- | ------ |
 | params <div className="label basic required">Required</div> | object |
 
-Chaves válidas de `params` são:
+Valid `params` keys are:
 
-- 'animated' (boolean) - Se a lista deve fazer uma animação durante o scroll. Padrão é `true`.
-- 'item' (object) - O item para rolar. Obrigatório.
+- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
+- 'item' (object) - The item to scroll to. Required.
 - 'viewPosition' (number)
 
 ---
@@ -848,7 +855,7 @@ scrollToOffset(params: {
 });
 ```
 
-Rola para um offset de pixel de conteúdo específico na lista.
+Scroll to a specific content pixel offset in the list.
 
 **Parameters:**
 
@@ -856,7 +863,7 @@ Rola para um offset de pixel de conteúdo específico na lista.
 | ----------------------------------------------------------- | ------ |
 | params <div className="label basic required">Required</div> | object |
 
-Chaves válidas de `params` são:
+Valid `params` keys are:
 
-- 'offset' (number) - O offset para rolar. No caso de `horizontal` ser true, o offset é o valor x, em qualquer outro caso o offset é o valor y. Obrigatório.
-- 'animated' (boolean) - Se a lista deve fazer uma animação durante o scroll. Padrão é `true`.
+- 'offset' (number) - The offset to scroll to. In case of `horizontal` being true, the offset is the x-value, in any other case the offset is the y-value. Required.
+- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.

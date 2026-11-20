@@ -1,0 +1,747 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// ia-translated: true
+
+import type * as PluginContentDocs from '@docusaurus/plugin-content-docs';
+import type * as Preset from '@docusaurus/preset-classic';
+import type {Config} from '@docusaurus/types';
+import path from 'path';
+
+import users from './showcase.json';
+import versions from './versions.json';
+import prismThemeDark from './core/PrismThemeDark';
+import prismThemeLight from './core/PrismThemeLight';
+
+import remarkSnackPlayer from '@react-native-website/remark-snackplayer';
+import remarkCodeblockLanguageTitle from '@react-native-website/remark-codeblock-language-as-title';
+import remarkAvisoNaoTraduzido from './remark/aviso-nao-traduzido';
+
+const isProductionDeployment =
+  (!!process.env.NETLIFY && process.env.CONTEXT === 'production') ||
+  (!!process.env.VERCEL && process.env.VERCEL_ENV === 'production');
+
+const lastVersion = versions[0];
+const copyright = `Copyright © Meta Platforms, Inc.`;
+
+export type EditUrlButton = {
+  label: string;
+  href: string;
+};
+
+const commonDocsOptions: PluginContentDocs.Options = {
+  admonitions: {keywords: ['important'], extendDefaults: true},
+  breadcrumbs: false,
+  showLastUpdateAuthor: false,
+  showLastUpdateTime: true,
+  editUrl: (options => {
+    const baseUrl = 'https://github.com/react/react-native-website/edit/main';
+    const nextReleasePath = `docs/${options.docPath}`;
+    const isNextRelease = options.version === 'current';
+    const buttons: EditUrlButton[] = [
+      {
+        label: isNextRelease
+          ? 'Editar esta página'
+          : 'Editar página para próxima versão',
+        href: `${baseUrl}/${nextReleasePath}`,
+      },
+    ];
+    if (!isNextRelease) {
+      const label =
+        options.version === lastVersion
+          ? 'Editar página para versão atual'
+          : `Editar página para versão ${options.version}`;
+      const thisVersionPath = path.posix.join(
+        'website',
+        options.versionDocsDirPath,
+        options.docPath
+      );
+      buttons.push({
+        label,
+        href: `${baseUrl}/${thisVersionPath}`,
+      });
+    }
+    return JSON.stringify(buttons);
+  }) as PluginContentDocs.EditUrlFunction,
+  remarkPlugins: [
+    remarkSnackPlayer,
+    remarkCodeblockLanguageTitle,
+    // Aviso no topo das páginas sem `ia-translated: true` (só docs; não pega blog nem home).
+    remarkAvisoNaoTraduzido,
+  ],
+};
+
+const isDeployPreview =
+  process.env.PREVIEW_DEPLOY === 'true' ||
+  (!!process.env.VERCEL && process.env.VERCEL_ENV === 'preview');
+
+const config: Config = {
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+  future: {
+    // Turns Docusaurus v4 future flags on to make it easier to upgrade later
+    v4: true,
+    // Make Docusaurus build faster - enabled by default
+    // See https://github.com/facebook/docusaurus/issues/10556
+    // See https://github.com/react/react-native-website/pull/4268
+    // See https://docusaurus.io/blog/releases/3.6
+    faster: (process.env.DOCUSAURUS_FASTER ?? 'true') === 'true',
+  },
+
+  title: 'React Native',
+  tagline:
+    'Um framework para construir apps nativos para Android, iOS e mais usando React',
+  organizationName: 'Meta Platforms, Inc.',
+  projectName: 'react-native',
+  url: 'https://reactnative.dev',
+  baseUrl: '/',
+  clientModules: [
+    './modules/snackPlayerInitializer.ts',
+    './modules/jumpToFragment.ts',
+  ],
+  trailingSlash: false, // because trailing slashes can break some existing relative links
+  // React Native Brasil: sem analytics nem pesquisas do reactnative.dev oficial
+  // (Google Analytics e widget de pesquisa removidos; tool/traducao/verificar.py
+  // barra a volta deles no sync). Os scripts abaixo
+  // são funcionais: foco acessível, Snack e os tweets embutidos.
+  scripts: [
+    {
+      src: 'https://cdn.jsdelivr.net/npm/focus-visible@5.2.0/dist/focus-visible.min.js',
+      defer: true,
+    },
+    {src: 'https://snack.expo.dev/embed.js', defer: true},
+    {src: 'https://platform.twitter.com/widgets.js', async: true},
+  ],
+  favicon: 'favicon.ico',
+  titleDelimiter: '·',
+  customFields: {
+    users,
+  },
+  i18n: {
+    defaultLocale: 'pt-br',
+    locales: ['pt-br'],
+  },
+  onBrokenLinks: 'warn',
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org/',
+        '@type': 'WebPage',
+        '@id': 'https://reactnative.dev/',
+        url: 'https://reactnative.dev/',
+        name: 'React Native · Aprenda uma vez, escreva em qualquer lugar',
+        description:
+          'Um framework para construir apps nativos para Android, iOS e mais usando React',
+        logo: 'https://reactnative.dev/img/pwa/manifest-icon-192.png',
+        inLanguage: 'pt-BR',
+      }),
+    },
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@type': 'WebSite',
+        '@id': 'https://reactnative.dev/',
+        url: 'https://reactnative.dev/',
+        name: 'React Native · Aprenda uma vez, escreva em qualquer lugar',
+        description:
+          'Um framework para construir apps nativos para Android, iOS e mais usando React',
+        publisher: 'Meta Platforms, Inc.',
+        potentialAction: [
+          {
+            '@type': 'SearchAction',
+            target: {
+              '@type': 'EntryPoint',
+              urlTemplate: 'https://reactnative.dev/search?q={query}',
+            },
+            'query-input': {
+              '@type': 'PropertyValueSpecification',
+              valueRequired: true,
+              valueName: 'query',
+            },
+          },
+        ],
+        inLanguage: 'pt-BR',
+      }),
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'apple-touch-icon',
+        href: '/img/pwa/apple-icon-180.png',
+      },
+    },
+  ],
+  presets: [
+    [
+      '@docusaurus/preset-classic',
+      {
+        docs: {
+          path: '../docs',
+          sidebarPath: require.resolve('./sidebars'),
+          editCurrentVersion: true,
+          onlyIncludeVersions: isDeployPreview
+            ? ['current', ...versions.slice(0, 2)]
+            : undefined,
+          versions: {
+            [lastVersion]: {
+              badge: false, // Do not show version badge for last RN version
+            },
+          },
+          ...commonDocsOptions,
+        },
+        blog: {
+          path: 'blog',
+          blogSidebarCount: 'ALL',
+          blogSidebarTitle: 'Todos os Posts do Blog',
+          feedOptions: {
+            type: 'all',
+            copyright,
+          },
+          onInlineAuthors: 'ignore',
+          // Ignore for now due to old posts
+          onUntruncatedBlogPosts: 'ignore',
+        },
+        // Sem Google Analytics: era a conta do reactnative.dev oficial.
+        theme: {
+          customCss: [
+            require.resolve('./src/css/customTheme.scss'),
+            require.resolve('./src/css/index.scss'),
+            require.resolve('./src/css/showcase.scss'),
+            require.resolve('./src/css/versions.scss'),
+            require.resolve('./src/css/docs-secondary-nav.scss'),
+            require.resolve('./src/css/releases.scss'),
+          ],
+        },
+      } satisfies Preset.Options,
+    ],
+  ],
+  plugins: [
+    'docusaurus-plugin-sass',
+    function disableExpensiveBundlerOptimizationPlugin() {
+      return {
+        name: 'disable-expensive-bundler-optimizations',
+        configureWebpack(_config, isServer) {
+          // This optimization is expensive and only reduces by 3% the JS assets size
+          // Let's skip it for local and deploy preview builds
+          // See also https://github.com/facebook/docusaurus/discussions/11199
+          return {
+            optimization: {
+              concatenateModules: isProductionDeployment ? !isServer : false,
+            },
+          };
+        },
+      };
+    },
+    [
+      'content-docs',
+      {
+        id: 'architecture',
+        path: 'architecture',
+        routeBasePath: '/architecture',
+        sidebarPath: require.resolve('./sidebarsArchitecture'),
+        ...commonDocsOptions,
+      } satisfies PluginContentDocs.Options,
+    ],
+    [
+      'content-docs',
+      {
+        id: 'contributing',
+        path: 'contributing',
+        routeBasePath: '/contributing',
+        sidebarPath: require.resolve('./sidebarsContributing'),
+        ...commonDocsOptions,
+      } satisfies PluginContentDocs.Options,
+    ],
+    [
+      'content-docs',
+      {
+        id: 'community',
+        path: 'community',
+        routeBasePath: '/community',
+        sidebarPath: require.resolve('./sidebarsCommunity'),
+        ...commonDocsOptions,
+      } satisfies PluginContentDocs.Options,
+    ],
+    [
+      'content-docs',
+      {
+        id: 'releases',
+        path: 'releases',
+        routeBasePath: '/releases',
+        sidebarPath: require.resolve('./sidebarsReleases'),
+        ...commonDocsOptions,
+      } satisfies PluginContentDocs.Options,
+    ],
+    [
+      '@docusaurus/plugin-pwa',
+      {
+        debug: true,
+        offlineModeActivationStrategies: ['appInstalled', 'queryString'],
+        pwaHead: [
+          {
+            tagName: 'link',
+            rel: 'icon',
+            href: '/img/pwa/manifest-icon-512.png',
+          },
+          {
+            tagName: 'link',
+            rel: 'manifest',
+            href: '/manifest.json',
+          },
+          {
+            tagName: 'meta',
+            name: 'theme-color',
+            content: '#20232a',
+          },
+          {
+            tagName: 'meta',
+            name: 'mobile-web-app-capable',
+            content: 'yes',
+          },
+          {
+            tagName: 'meta',
+            name: 'apple-mobile-web-app-status-bar-style',
+            content: '#20232a',
+          },
+          {
+            tagName: 'link',
+            rel: 'apple-touch-icon',
+            href: '/img/pwa/manifest-icon-512.png',
+          },
+          {
+            tagName: 'link',
+            rel: 'mask-icon',
+            href: '/img/pwa/manifest-icon-512.png',
+            color: '#06bcee',
+          },
+          {
+            tagName: 'meta',
+            name: 'msapplication-TileImage',
+            href: '/img/pwa/manifest-icon-512.png',
+          },
+          {
+            tagName: 'meta',
+            name: 'msapplication-TileColor',
+            content: '#20232a',
+          },
+        ],
+      },
+    ],
+    [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        siteTitle: 'React Native · Learn once, write anywhere',
+        siteDescription:
+          'A framework for building native apps for Android, iOS, and more using React',
+        depth: 3,
+        includeOrder: [
+          '/docs/getting-started',
+          '/docs/environment-setup',
+          '/docs/set-up-your-environment',
+          '/docs/integration-with-existing-apps',
+          '/docs/integration-with-android-fragment',
+          '/docs/intro-react-native-components',
+          '/docs/intro-react',
+          '/docs/handling-text-input',
+          '/docs/using-a-scrollview',
+          '/docs/using-a-listview',
+          '/docs/troubleshooting',
+          '/docs/platform-specific-code',
+          '/docs/building-for-tv',
+          '/docs/out-of-tree-platforms',
+          '/docs/more-resources',
+          '/docs/**',
+          '/architecture/**',
+          '/community/**',
+          '/showcase/**',
+          '/contributing/**',
+          '/versions',
+          '/blog/**',
+        ],
+        content: {
+          includeBlog: true,
+          includePages: true,
+          includeVersionedDocs: false,
+          enableLlmsFullTxt: true,
+          excludeRoutes: [
+            '/blog/201*/**',
+            '/blog/2020/**',
+            '/blog/2021/**',
+            '/blog/2022/**',
+            '/blog/page/**',
+            '/blog/tags/**',
+            '/blog/archive',
+            '/blog/authors',
+            '/releases',
+            '/search',
+          ],
+        },
+      },
+    ],
+  ],
+  themeConfig: {
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
+<<<<<<< pt
+    announcementBar: {
+      id: 'react-conf',
+      content:
+        'Junte-se a nós na React Conf nos dias 7 e 8 de outubro. <a target="_blank" rel="noopener noreferrer" href="https://conf.react.dev">Saiba mais</a>.',
+      backgroundColor: '#20232a',
+      textColor: '#fff',
+      isCloseable: false,
+    },
+||||||| base_en
+    announcementBar: {
+      id: 'react-conf',
+      content:
+        'Join us for React Conf on Oct 7-8. <a target="_blank" rel="noopener noreferrer" href="https://conf.react.dev">Learn more</a>.',
+      backgroundColor: '#20232a',
+      textColor: '#fff',
+      isCloseable: false,
+    },
+=======
+>>>>>>> new_en
+    prism: {
+      defaultLanguage: 'tsx',
+      theme: prismThemeLight,
+      darkTheme: prismThemeDark,
+      additionalLanguages: [
+        'diff',
+        'bash',
+        'json',
+        'java',
+        'kotlin',
+        'objectivec',
+        'swift',
+        'groovy',
+        'ruby',
+        'flow',
+      ],
+      magicComments: [
+        {
+          className: 'theme-code-block-highlighted-line',
+          line: 'highlight-next-line',
+          block: {start: 'highlight-start', end: 'highlight-end'},
+        },
+        {
+          className: 'code-add-line',
+          line: 'highlight-add-next-line',
+          block: {start: 'highlight-add-start', end: 'highlight-add-end'},
+        },
+        {
+          className: 'code-remove-line',
+          line: 'highlight-remove-next-line',
+          block: {
+            start: 'highlight-remove-start',
+            end: 'highlight-remove-end',
+          },
+        },
+      ],
+    },
+    navbar: {
+      title: 'React Native',
+      logo: {
+        src: 'img/header_logo.svg',
+        alt: '',
+      },
+      style: 'dark',
+      items: [
+        {
+<<<<<<< pt
+          label: 'Desenvolvimento',
+||||||| base_en
+          label: 'Development',
+=======
+>>>>>>> new_en
+          type: 'dropdown',
+          label: 'Docs',
+          position: 'right',
+          items: [
+<<<<<<< pt
+            {
+              label: 'Guias',
+              type: 'doc',
+              docId: 'getting-started',
+            },
+            {
+              label: 'Componentes',
+              type: 'doc',
+              docId: 'components-and-apis',
+            },
+            {
+              label: 'APIs',
+              type: 'doc',
+              docId: 'accessibilityinfo',
+            },
+            {
+              label: 'Arquitetura',
+              type: 'doc',
+              docId: 'architecture-overview',
+              docsPluginId: 'architecture',
+            },
+||||||| base_en
+            {
+              label: 'Guides',
+              type: 'doc',
+              docId: 'getting-started',
+            },
+            {
+              label: 'Components',
+              type: 'doc',
+              docId: 'components-and-apis',
+            },
+            {
+              label: 'APIs',
+              type: 'doc',
+              docId: 'accessibilityinfo',
+            },
+            {
+              label: 'Architecture',
+              type: 'doc',
+              docId: 'architecture-overview',
+              docsPluginId: 'architecture',
+            },
+=======
+            {label: 'Guides', to: '/docs/getting-started'},
+            {label: 'Components', to: '/docs/components-and-apis'},
+            {label: 'APIs', to: '/docs/accessibilityinfo'},
+            {label: 'Architecture', to: '/architecture/overview'},
+>>>>>>> new_en
+          ],
+        },
+        {
+          to: '/releases/overview',
+          label: 'Releases',
+          position: 'right',
+          activeBaseRegex: '^/(releases|versions)',
+        },
+        {
+          type: 'doc',
+          docId: 'overview',
+          label: 'Contribuindo',
+          position: 'right',
+          docsPluginId: 'contributing',
+        },
+        {
+          type: 'doc',
+          docId: 'overview',
+          label: 'Comunidade',
+          position: 'right',
+          docsPluginId: 'community',
+        },
+        {
+          to: '/showcase',
+          label: 'Vitrine',
+          position: 'right',
+        },
+        {
+          to: '/blog',
+          label: 'Blog',
+          position: 'right',
+        },
+        {
+<<<<<<< pt
+          type: 'docsVersionDropdown',
+          position: 'left',
+          dropdownActiveClassDisabled: true,
+          dropdownItemsAfter: [
+            {
+              to: '/versions',
+              label: 'Todas as versões',
+            },
+          ],
+        },
+        {
+          href: 'https://github.com/facebook/react-native',
+          'aria-label': 'Repositório no GitHub',
+||||||| base_en
+          type: 'docsVersionDropdown',
+          position: 'left',
+          dropdownActiveClassDisabled: true,
+          dropdownItemsAfter: [
+            {
+              to: '/versions',
+              label: 'All versions',
+            },
+          ],
+        },
+        {
+          href: 'https://github.com/facebook/react-native',
+          'aria-label': 'GitHub repository',
+=======
+          href: 'https://github.com/react/react-native',
+          'aria-label': 'GitHub repository',
+>>>>>>> new_en
+          position: 'right',
+          className: 'navbar-github-link',
+        },
+      ],
+    },
+    image: 'img/logo-share.png',
+    footer: {
+      style: 'dark',
+      links: [
+        {
+          title: 'Desenvolver',
+          items: [
+            {
+              label: 'Guias',
+              to: 'docs/getting-started',
+            },
+            {
+              label: 'Componentes',
+              to: 'docs/components-and-apis',
+            },
+            {
+              label: 'APIs',
+              to: 'docs/accessibilityinfo',
+            },
+            {
+              label: 'Arquitetura',
+              to: 'architecture/overview',
+            },
+          ],
+        },
+        {
+          title: 'Participar',
+          items: [
+            {
+              label: 'Vitrine',
+              to: 'showcase',
+            },
+            {
+              label: 'Contribuindo',
+              to: 'contributing/overview',
+            },
+            {
+              label: 'Comunidade',
+              to: 'community/overview',
+            },
+            {
+<<<<<<< pt
+              label: 'Diretório',
+              href: 'https://reactnative.directory/',
+            },
+            {
+              label: 'Stack Overflow',
+              href: 'https://stackoverflow.com/questions/tagged/react-native',
+||||||| base_en
+              label: 'Directory',
+              href: 'https://reactnative.directory/',
+            },
+            {
+              label: 'Stack Overflow',
+              href: 'https://stackoverflow.com/questions/tagged/react-native',
+=======
+              label: 'Code of Conduct',
+              href: 'https://github.com/react/react-native/blob/main/CODE_OF_CONDUCT.md',
+>>>>>>> new_en
+            },
+          ],
+        },
+        {
+          title: 'Encontre-nos',
+          items: [
+            {
+              label: 'Blog',
+              to: 'blog',
+            },
+            {
+              label: 'X',
+              href: 'https://x.com/reactnative',
+            },
+            {
+              label: 'Bluesky',
+              href: 'https://bsky.app/profile/reactnative.dev',
+            },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/react/react-native',
+            },
+          ],
+        },
+        {
+          title: 'Explorar Mais',
+          items: [
+            {
+              label: 'React',
+              href: 'https://react.dev/',
+            },
+            {
+<<<<<<< pt
+              label: 'Política de Privacidade',
+||||||| base_en
+              label: 'Privacy Policy',
+=======
+              label: 'Packages Directory',
+              href: 'https://reactnative.directory/',
+            },
+            {
+              label: 'Privacy Policy',
+>>>>>>> new_en
+              href: 'https://opensource.fb.com/legal/privacy/',
+            },
+            {
+              label: 'Termos de Serviço',
+              href: 'https://opensource.fb.com/legal/terms/',
+            },
+          ],
+        },
+      ],
+      logo: {
+        alt: 'Meta Open Source Logo',
+        src: 'img/oss_logo.svg',
+        href: 'https://opensource.fb.com/',
+      },
+      copyright,
+    },
+    algolia: {
+      appId: '8TDSE0OHGQ',
+      apiKey: '83cd239c72f9f8b0ed270a04b1185288',
+      indexName: 'react-native-v2',
+      contextualSearch: true,
+    },
+    metadata: [
+      {
+        property: 'og:image',
+        content: 'https://reactnative.dev/img/logo-share.png',
+      },
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {
+        name: 'twitter:image',
+        content: 'https://reactnative.dev/img/logo-share.png',
+      },
+      {name: 'twitter:site', content: '@reactnative'},
+      {name: 'mobile-web-app-capable', content: 'yes'},
+    ],
+    mermaid: {
+      theme: {
+        light: 'neutral',
+        dark: 'dark',
+      },
+      options: {
+        fontFamily:
+          '"Optimistic Display", system-ui, -apple-system, sans-serif',
+      },
+    },
+  } satisfies Preset.ThemeConfig,
+};
+
+export default config;

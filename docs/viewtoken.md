@@ -1,12 +1,11 @@
 ---
 id: viewtoken
 title: ViewToken Object Type
-ia-translated: true
 ---
 
-O objeto `ViewToken` é retornado como uma das propriedades no callback `onViewableItemsChanged` (por exemplo, no componente [FlatList](flatlist)). Ele é exportado pelo [`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js).
+`ViewToken` object is returned as one of the properties in the `onViewableItemsChanged` callback (for example, in the [FlatList](flatlist) component). It is exported by [`ViewabilityHelper.js`](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js).
 
-## Exemplo
+## Example
 
 ```js
 {
@@ -17,49 +16,51 @@ O objeto `ViewToken` é retornado como uma das propriedades no callback `onViewa
 }
 ```
 
-## Chaves e valores
+## Keys and values
 
 ### `index`
 
-Identificador numérico único atribuído ao elemento de dados.
+Unique numeric identifier assigned to the data element.
 
-| Tipo   | Opcional |
+This property may be `null` when the viewable element is not an item from the data array, for example when a section header or section footer becomes viewable in [`SectionList`](sectionlist).
+
+| Type   | Optional |
 | ------ | -------- |
-| number | Sim      |
+| number | Yes      |
 
 ### `isViewable`
 
-Especifica se pelo menos alguma parte do elemento da lista está visível no viewport.
+Specifies if at least some part of list element is visible in the viewport.
 
-| Tipo    | Opcional |
+| Type    | Optional |
 | ------- | -------- |
-| boolean | Não      |
+| boolean | No       |
 
 ### `item`
 
-Dados do item
+Item data
 
-| Tipo | Opcional |
+| Type | Optional |
 | ---- | -------- |
-| any  | Não      |
+| any  | No       |
 
 ### `key`
 
-Identificador de chave atribuído ao elemento de dados extraído para o nível superior.
+Key identifier assigned to the data element extracted to the top level.
 
-| Tipo   | Opcional |
+| Type   | Optional |
 | ------ | -------- |
-| string | Não      |
+| string | No       |
 
 ### `section`
 
-Dados da seção do item quando usado com `SectionList`.
+Item section data when used with `SectionList`.
 
-| Tipo | Opcional |
+| Type | Optional |
 | ---- | -------- |
-| any  | Sim      |
+| any  | Yes      |
 
-## Usado por
+## Used by
 
 - [`FlatList`](flatlist)
 - [`SectionList`](sectionlist)

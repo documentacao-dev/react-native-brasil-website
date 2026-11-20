@@ -1,14 +1,13 @@
 ---
-ia-translated: true
 id: turbo-native-modules-android
 title: 'Turbo Native Modules: Android'
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Agora é hora de escrever algum código da plataforma Android para garantir que `localStorage` sobreviva após o aplicativo ser fechado.
+Now it's time to write some Android platform code to make sure `localStorage` survives after the application is closed.
 
-O primeiro passo é implementar a interface `NativeLocalStorageSpec` gerada:
+The first step is to implement the generated `NativeLocalStorageSpec` interface:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -114,7 +113,7 @@ class NativeLocalStorageModule(reactContext: ReactApplicationContext) : NativeLo
 </TabItem>
 </Tabs>
 
-Em seguida, precisamos criar `NativeLocalStoragePackage`. Ele fornece um objeto para registrar nosso Module no runtime React Native, envolvendo-o como um Base Native Package:
+Next we need to create `NativeLocalStoragePackage`. It provides an object to register our Module in the React Native runtime, by wrapping it as a Base Native Package:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -202,12 +201,12 @@ class NativeLocalStoragePackage : BaseReactPackage() {
 </TabItem>
 </Tabs>
 
-Finalmente, precisamos informar ao React Native em nosso aplicativo principal como encontrar este `Package`. Chamamos isso de "registrar" o package no React Native.
+Finally, we need to tell the React Native in our main application how to find this `Package`. We call this "registering" the package in React Native.
 
-Neste caso, você o adiciona para ser retornado pelo método [getPackages](https://github.com/facebook/react-native/blob/8d8b8c343e62115a5509e1aed62047053c2f6e39/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/ReactNativeHost.java#L233).
+In this case, you add it to be returned by the [getPackages](https://github.com/react/react-native/blob/8d8b8c343e62115a5509e1aed62047053c2f6e39/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/ReactNativeHost.java#L233) method.
 
 :::info
-Mais tarde você aprenderá como distribuir seus Native Modules como [pacotes npm](the-new-architecture/create-module-library.md#publish-the-library-on-npm), que nossas ferramentas de build farão autolink para você.
+Later you’ll learn how to distribute your Native Modules as [npm packages](the-new-architecture/create-module-library.mdx#publish-the-library-on-npm), which our build tooling will autolink for you.
 :::
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
@@ -339,7 +338,7 @@ class MainApplication : Application(), ReactApplication {
 </TabItem>
 </Tabs>
 
-Agora você pode compilar e executar seu código em um emulador:
+You can now build and run your code on an emulator:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">

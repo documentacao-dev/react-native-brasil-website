@@ -1,87 +1,86 @@
 ---
-ia-translated: true
 id: global-performance
 title: performance
 ---
 
-O objeto global [`performance`](https://developer.mozilla.org/en-US/docs/Web/API/Window/performance), conforme definido nas especificações Web.
+The global [`performance`](https://developer.mozilla.org/en-US/docs/Web/API/Window/performance) object, as defined in Web specifications.
 
 ---
 
-# Referência
+# Reference
 
-## Propriedades da instância
+## Instance properties
 
 ### `eventCounts`
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/eventCounts).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/eventCounts).
 
 ### `memory`
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/memory).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/memory).
 
 ### `rnStartupTiming` ⚠️
 
-:::warning Non-standard
-Esta é uma extensão específica do React Native.
+:::warning[Non-standard]
+This is a React Native specific extension.
 :::
 
-Fornece informações sobre o tempo de inicialização da aplicação.
+Provides information about the startup time of the application.
 
 ```ts
 get rnStartupTiming(): ReactNativeStartupTiming;
 ```
 
-A interface `ReactNativeStartupTiming` fornece os seguintes campos:
+The `ReactNativeStartupTiming` interface provides the following fields:
 
-| Nome                                     | Tipo           | Descrição                                                               |
-| ---------------------------------------- | -------------- | ----------------------------------------------------------------------- |
-| `startTime`                              | number \| void | Quando a inicialização do runtime do React Native foi iniciada.         |
-| `executeJavaScriptBundleEntryPointStart` | number \| void | Quando a execução do bundle da aplicação foi iniciada.                  |
-| `endTime`                                | number \| void | Quando o runtime do React Native foi totalmente inicializado.           |
+| Name                                     | Type           | Description                                               |
+| ---------------------------------------- | -------------- | --------------------------------------------------------- |
+| `startTime`                              | number \| void | When the React Native runtime initialization was started. |
+| `executeJavaScriptBundleEntryPointStart` | number \| void | When the execution of the application bundle was started. |
+| `endTime`                                | number \| void | When the React Native runtime was fully initialized.      |
 
 ### `timeOrigin`
 
-:::warning Partial support
-Fornece o número de milissegundos desde a época UNIX até a inicialização do sistema, em vez do número de milissegundos desde a época UNIX até a inicialização da aplicação.
+:::warning[Partial support]
+Provides the number of milliseconds from the UNIX epoch until system boot, instead of the number of milliseconds from the UNIX epoch until app startup.
 :::
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/timeOrigin).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/timeOrigin).
 
-## Métodos da instância
+## Instance methods
 
 ### `clearMarks()`
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/clearMarks).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/clearMarks).
 
 ### `clearMeasures()`
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/clearMeasures).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/clearMeasures).
 
 ### `getEntries()`
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntries).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntries).
 
 ### `getEntriesByName()`
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByName).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByName).
 
 ### `getEntriesByType()`
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType).
 
 ### `mark()`
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
 
 ### `measure()`
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/measure).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/measure).
 
 ### `now()`
 
-:::warning Partial support
-Fornece o número de milissegundos desde a inicialização do sistema, em vez do número de milissegundos desde a inicialização da aplicação.
+:::warning[Partial support]
+Provides the number of milliseconds from system boot, instead of the number of milliseconds from app startup.
 :::
 
-Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now).
+See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now).

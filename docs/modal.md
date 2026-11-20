@@ -1,15 +1,14 @@
 ---
 id: modal
 title: Modal
-ia-translated: true
 ---
 
-O componente Modal é uma forma básica de apresentar conteúdo acima de uma view envolvente.
+The Modal component is a basic way to present content above an enclosing view.
 
 ## Example
 
 ```SnackPlayer name=Modal&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -101,27 +100,19 @@ export default App;
 
 ### [View Props](view.md#props)
 
-Herda [View Props](view.md#props).
-
----
-
-### `animated`
-
-:::warning Deprecated
-Use a prop [`animationType`](modal.md#animationtype) em vez disso.
-:::
+Inherits [View Props](view.md#props).
 
 ---
 
 ### `animationType`
 
-A prop `animationType` controla como o modal é animado.
+The `animationType` prop controls how the modal animates.
 
-Valores possíveis:
+Possible values:
 
-- `slide` desliza a partir da parte inferior
-- `fade` aparece gradualmente
-- `none` aparece sem animação
+- `slide` slides in from the bottom
+- `fade` fades into view
+- `none` appears without an animation
 
 | Type                                | Default |
 | ----------------------------------- | ------- |
@@ -131,7 +122,7 @@ Valores possíveis:
 
 ### `backdropColor`
 
-O `backdropColor` do modal (ou cor de fundo do container do modal.) O padrão é `white` se não fornecido e transparent for `false`. Ignorado se `transparent` for `true`.
+The `backdropColor` of the modal (or background color of the modal's container.) Defaults to `white` if not provided and transparent is `false`. Ignored if `transparent` is `true`.
 
 | Type            | Default |
 | --------------- | ------- |
@@ -141,7 +132,7 @@ O `backdropColor` do modal (ou cor de fundo do container do modal.) O padrão é
 
 ### `hardwareAccelerated` <div className="label android">Android</div>
 
-A prop `hardwareAccelerated` controla se deve forçar aceleração de hardware para a janela subjacente.
+The `hardwareAccelerated` prop controls whether to force hardware acceleration for the underlying window.
 
 | Type | Default |
 | ---- | ------- |
@@ -151,7 +142,7 @@ A prop `hardwareAccelerated` controla se deve forçar aceleração de hardware p
 
 ### `navigationBarTranslucent` <div className="label android">Android</div>
 
-A prop `navigationBarTranslucent` determina se o seu modal deve ficar sob a barra de navegação do sistema. No entanto, `statusBarTranslucent` também precisa ser definido como `true` para tornar a barra de navegação translúcida.
+The `navigationBarTranslucent` prop determines whether your modal should go under the system navigation bar. However, `statusBarTranslucent` also needs to be set to `true` to make navigation bar translucent.
 
 | Type | Default |
 | ---- | ------- |
@@ -161,7 +152,7 @@ A prop `navigationBarTranslucent` determina se o seu modal deve ficar sob a barr
 
 ### `onDismiss` <div className="label ios">iOS</div>
 
-A prop `onDismiss` permite passar uma função que será chamada assim que o modal for dispensado.
+The `onDismiss` prop allows passing a function that will be called once the modal has been dismissed.
 
 | Type     |
 | -------- |
@@ -171,7 +162,7 @@ A prop `onDismiss` permite passar uma função que será chamada assim que o mod
 
 ### `onOrientationChange` <div className="label ios">iOS</div>
 
-O callback `onOrientationChange` é chamado quando a orientação muda enquanto o modal está sendo exibido. A orientação fornecida é apenas 'portrait' ou 'landscape'. Este callback também é chamado na renderização inicial, independentemente da orientação atual.
+The `onOrientationChange` callback is called when the orientation changes while the modal is being displayed. The orientation provided is only 'portrait' or 'landscape'. This callback is also called on initial render, regardless of the current orientation.
 
 | Type     |
 | -------- |
@@ -181,8 +172,8 @@ O callback `onOrientationChange` é chamado quando a orientação muda enquanto 
 
 ### `allowSwipeDismissal` <div className="label ios">iOS</div>
 
-Controla se o modal pode ser dispensado deslizando para baixo no iOS.
-Isso requer que você implemente a prop `onRequestClose` para lidar com a dispensa.
+Controls whether the modal can be dismissed by swiping down on iOS.
+This requires you to implement the `onRequestClose` prop to handle the dismissal.
 
 | Type | Default |
 | ---- | ------- |
@@ -192,14 +183,14 @@ Isso requer que você implemente a prop `onRequestClose` para lidar com a dispen
 
 ### `ref`
 
-Um setter de ref que será atribuído a um [element node](element-nodes) quando montado.
+A ref setter that will be assigned an [element node](element-nodes) when mounted.
 
 ---
 
 ### `onRequestClose`
 
-O callback `onRequestClose` é chamado quando o usuário toca no botão voltar do hardware no Android ou no botão de menu na Apple TV. Devido a esta prop obrigatória, esteja ciente de que eventos `BackHandler` não serão emitidos enquanto o modal estiver aberto.
-No iOS, este callback é chamado quando um Modal está sendo dispensado usando um gesto de arrastar quando `presentationStyle` é `pageSheet` ou `formSheet`. Quando `allowSwipeDismissal` está habilitado, este callback será chamado após dispensar o modal.
+The `onRequestClose` callback is called when the user taps the hardware back button on Android or the menu button on Apple TV. Because of this required prop, be aware that `BackHandler` events will not be emitted as long as the modal is open.
+On iOS, this callback is called when a Modal is being dismissed using a drag gesture when `presentationStyle` is `pageSheet` or `formSheet`. When `allowSwipeDismissal` is enabled this callback will be called after dismissing the modal.
 
 | Type                                                                                                                                                                                           |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -209,7 +200,7 @@ No iOS, este callback é chamado quando um Modal está sendo dispensado usando u
 
 ### `onShow`
 
-A prop `onShow` permite passar uma função que será chamada assim que o modal for exibido.
+The `onShow` prop allows passing a function that will be called once the modal has been shown.
 
 | Type     |
 | -------- |
@@ -219,14 +210,14 @@ A prop `onShow` permite passar uma função que será chamada assim que o modal 
 
 ### `presentationStyle` <div className="label ios">iOS</div>
 
-A prop `presentationStyle` controla como o modal aparece (geralmente em dispositivos maiores como iPad ou iPhones Plus). Veja https://developer.apple.com/reference/uikit/uimodalpresentationstyle para detalhes.
+The `presentationStyle` prop controls how the modal appears (generally on larger devices such as iPad or plus-sized iPhones). See https://developer.apple.com/reference/uikit/uimodalpresentationstyle for details.
 
-Valores possíveis:
+Possible values:
 
-- `fullScreen` cobre a tela completamente
-- `pageSheet` cobre a visualização de largura retrato centralizada (apenas em dispositivos maiores)
-- `formSheet` cobre a visualização de largura estreita centralizada (apenas em dispositivos maiores)
-- `overFullScreen` cobre a tela completamente, mas permite transparência
+- `fullScreen` covers the screen completely
+- `pageSheet` covers portrait-width view centered (only on larger devices)
+- `formSheet` covers narrow-width view centered (only on larger devices)
+- `overFullScreen` covers the screen completely, but allows transparency
 
 | Type                                                                   | Default                                                                             |
 | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -236,7 +227,7 @@ Valores possíveis:
 
 ### `statusBarTranslucent` <div className="label android">Android</div>
 
-A prop `statusBarTranslucent` determina se o seu modal deve ficar sob a barra de status do sistema.
+The `statusBarTranslucent` prop determines whether your modal should go under the system statusbar.
 
 | Type | Default |
 | ---- | ------- |
@@ -246,10 +237,10 @@ A prop `statusBarTranslucent` determina se o seu modal deve ficar sob a barra de
 
 ### `supportedOrientations` <div className="label ios">iOS</div>
 
-A prop `supportedOrientations` permite que o modal seja rotacionado para qualquer uma das orientações especificadas. No iOS, o modal ainda é restrito pelo que está especificado no campo UISupportedInterfaceOrientations do Info.plist do seu aplicativo.
+The `supportedOrientations` prop allows the modal to be rotated to any of the specified orientations. On iOS, the modal is still restricted by what's specified in your app's Info.plist's UISupportedInterfaceOrientations field.
 
 :::note
-Ao usar `presentationStyle` de `pageSheet` ou `formSheet`, esta propriedade será ignorada no iOS.
+When using `presentationStyle` of `pageSheet` or `formSheet`, this property will be ignored on iOS.
 :::
 
 | Type                                                                                                           | Default        |
@@ -260,7 +251,7 @@ Ao usar `presentationStyle` de `pageSheet` ou `formSheet`, esta propriedade ser�
 
 ### `transparent`
 
-A prop `transparent` determina se o seu modal preencherá toda a view. Definir isso como `true` renderizará o modal sobre um fundo transparente.
+The `transparent` prop determines whether your modal will fill the entire view. Setting this to `true` will render the modal over a transparent background.
 
 | Type | Default |
 | ---- | ------- |
@@ -270,7 +261,7 @@ A prop `transparent` determina se o seu modal preencherá toda a view. Definir i
 
 ### `visible`
 
-A prop `visible` determina se o seu modal está visível.
+The `visible` prop determines whether your modal is visible.
 
 | Type | Default |
 | ---- | ------- |

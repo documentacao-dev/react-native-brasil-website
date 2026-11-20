@@ -307,7 +307,7 @@ export default function MyCustomView(props: {
     [props.onChangeMessage],
   );
 
-  return <RCTMyCustomView {...props} onChange={props.onChange} />;
+  return <RCTMyCustomView {...props} onChange={onChange} />;
 }
 ```
 
@@ -832,7 +832,7 @@ export const MyViewManager =
 II. Em seguida implemente a custom View chamando o método `create`:
 
 ```tsx title="MyView.tsx"
-import React, {useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import {
   PixelRatio,
   UIManager,

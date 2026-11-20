@@ -51,7 +51,7 @@ adb logcat "*:S" ReactNative:V ReactNativeJS:V YourModuleName:D
 
 Em seu módulo nativo, use `NSLog` para logs personalizados:
 
-```objective-c
+```objectivec
 NSLog(@"YourModuleName: %@", message);
 ```
 

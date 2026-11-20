@@ -1,20 +1,19 @@
 ---
-ia-translated: true
 id: text-nodes
 title: Text nodes
 ---
 
-Text nodes representam conteúdo de texto bruto na árvore (similar aos nodes [`Text`](https://developer.mozilla.org/en-US/docs/Web/API/Text) na Web). Eles não são diretamente acessíveis via `refs`, mas podem ser acessados usando métodos como [`childNodes`](https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes) em refs de elementos.
+Text nodes represent raw text content on the tree (similar to [`Text`](https://developer.mozilla.org/en-US/docs/Web/API/Text) nodes on Web). They are not directly accessible via `refs`, but can be accessed using methods like [`childNodes`](https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes) on element refs.
 
 ```SnackPlayer ext=js&name=Text%20instances%20example
-import * as React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import {useEffect, useRef, useState} from 'react';
+import {SafeAreaView, StyleSheet, Text} from 'react-native';
 
 const TextWithRefs = () => {
-  const ref = React.useRef(null);
-  const [viewInfo, setViewInfo] = React.useState('');
+  const ref = useRef(null);
+  const [viewInfo, setViewInfo] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     // `textElement` is an object implementing the interface described here.
     const textElement = ref.current;
     const textNode = textElement.childNodes[0];
@@ -52,7 +51,7 @@ export default TextWithRefs;
 
 ### Web-compatible API
 
-De [`CharacterData`](https://developer.mozilla.org/en-US/docs/Web/API/CharacterData):
+From [`CharacterData`](https://developer.mozilla.org/en-US/docs/Web/API/CharacterData):
 
 - Properties
   - [`data`](https://developer.mozilla.org/en-US/docs/Web/API/CharacterData/data)
@@ -62,7 +61,7 @@ De [`CharacterData`](https://developer.mozilla.org/en-US/docs/Web/API/CharacterD
 - Methods
   - [`substringData()`](https://developer.mozilla.org/en-US/docs/Web/API/CharacterData/substringData)
 
-De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
+From [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
 
 - Properties
   - [`childNodes`](https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes)
@@ -74,7 +73,7 @@ De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
   - [`nodeType`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
   - [`nodeValue`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeValue)
   - [`ownerDocument`](https://developer.mozilla.org/en-US/docs/Web/API/Node/ownerDocument)
-    - ℹ️ Retornará a [instância de document](/docs/next/document-instances) onde este componente foi renderizado.
+    - ℹ️ Will return the [document node](/docs/next/document-nodes) where this component was rendered.
   - [`parentElement`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentElement)
   - [`parentNode`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode)
   - [`previousSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Node/previousSibling)
@@ -83,5 +82,5 @@ De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
   - [`compareDocumentPosition()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition)
   - [`contains()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/contains)
   - [`getRootNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode)
-    - ℹ️ Retornará uma referência a si mesmo se o componente não estiver montado.
+    - ℹ️ Will return a reference to itself if the component is not mounted.
   - [`hasChildNodes()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes)

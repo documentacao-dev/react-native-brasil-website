@@ -23,7 +23,7 @@ To get started, open up the Android project within your React Native application
   <figcaption>Image of where you can find your Android project</figcaption>
 </figure>
 
-We recommend using Android Studio to write your native code. Android studio is an IDE built for Android development and using it will help you resolve minor issues like code syntax errors quickly.
+We recommend using Android Studio to write your native code. Android Studio is an IDE built for Android development and using it will help you resolve minor issues like code syntax errors quickly.
 
 We also recommend enabling [Gradle Daemon](https://docs.gradle.org/2.9/userguide/gradle_daemon.html) to speed up builds as you iterate on Java/Kotlin code.
 
@@ -311,7 +311,6 @@ At this point, you have set up the basic scaffolding for your native module in A
 Find a place in your application where you would like to add a call to the native module’s `createCalendarEvent()` method. Below is an example of a component, `NewModuleButton` you can add in your app. You can invoke the native module inside `NewModuleButton`'s `onPress()` function.
 
 ```tsx
-import React from 'react';
 import {NativeModules, Button} from 'react-native';
 
 const NewModuleButton = () => {

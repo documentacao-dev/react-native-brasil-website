@@ -1,29 +1,28 @@
 ---
 id: libraries
-title: Usando Bibliotecas
+title: Using Libraries
 author: Brent Vatne
-authorURL: 'https://twitter.com/notbrent'
-description: Este guia apresenta aos desenvolvedores React Native a busca, instalação e uso de bibliotecas de terceiros em seus aplicativos.
-ia-translated: true
+authorURL: 'https://x.com/notbrent'
+description: This guide introduces React Native developers to finding, installing, and using third-party libraries in their apps.
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-React Native fornece um conjunto de [Componentes Core e APIs](./components-and-apis) embutidos prontos para uso em seu aplicativo. Você não está limitado aos componentes e APIs que vêm com React Native. React Native tem uma comunidade de milhares de desenvolvedores. Se os Componentes Core e APIs não tiverem o que você está procurando, você pode encontrar e instalar uma biblioteca da comunidade para adicionar a funcionalidade ao seu aplicativo.
+React Native provides a set of built-in [Core Components and APIs](./components-and-apis) ready to use in your app. You're not limited to the components and APIs bundled with React Native. React Native has a community of thousands of developers. If the Core Components and APIs don't have what you are looking for, you may be able to find and install a library from the community to add the functionality to your app.
 
-## Selecionando um Package Manager
+## Selecting a Package Manager
 
-Bibliotecas React Native são tipicamente instaladas do [registro npm](https://www.npmjs.com/) usando um gerenciador de pacotes Node.js como [npm CLI](https://docs.npmjs.com/cli/npm) ou [Yarn Classic](https://classic.yarnpkg.com/en/).
+React Native libraries are typically installed from the [npm registry](https://www.npmjs.com/) using a Node.js package manager such as [npm CLI](https://docs.npmjs.com/cli/npm) or [Yarn Classic](https://classic.yarnpkg.com/en/).
 
-Se você tem Node.js instalado em seu computador, então você já tem o npm CLI instalado. Alguns desenvolvedores preferem usar Yarn Classic para tempos de instalação ligeiramente mais rápidos e recursos avançados adicionais como Workspaces. Ambas as ferramentas funcionam muito bem com React Native. Assumiremos npm para o restante deste guia para simplicidade de explicação.
+If you have Node.js installed on your computer then you already have the npm CLI installed. Some developers prefer to use Yarn Classic for slightly faster install times and additional advanced features like Workspaces. Both tools work great with React Native. We will assume npm for the rest of this guide for simplicity of explanation.
 
 :::note
-Os termos "library" e "package" são usados de forma intercambiável na comunidade JavaScript.
+The terms "library" and "package" are used interchangeably in the JavaScript community.
 :::
 
-## Instalando uma Biblioteca
+## Installing a Library
 
-Para instalar uma biblioteca em seu projeto, navegue até o diretório do seu projeto no seu terminal e execute o comando de instalação. Vamos tentar isso com `react-native-webview`:
+To install a library in your project, navigate to your project directory in your terminal and run the installation command. Let's try this with `react-native-webview`:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -42,19 +41,19 @@ yarn add react-native-webview
 </TabItem>
 </Tabs>
 
-A biblioteca que instalamos inclui código nativo, e precisamos vincular ao nosso aplicativo antes de usá-la.
+The library that we installed includes native code, and we need to link to our app before we use it.
 
-## Linking Native Code no iOS
+## Linking Native Code on iOS
 
-React Native usa CocoaPods para gerenciar dependências de projeto iOS e a maioria das bibliotecas React Native segue essa mesma convenção. Se uma biblioteca que você está usando não segue, então consulte o README delas para instruções adicionais. Na maioria dos casos, as seguintes instruções se aplicarão.
+React Native uses CocoaPods to manage iOS project dependencies and most React Native libraries follow this same convention. If a library you are using does not, then please refer to their README for additional instruction. In most cases, the following instructions will apply.
 
-Execute `pod install` no nosso diretório `ios` para vinculá-la ao nosso projeto nativo iOS. Um atalho para fazer isso sem mudar para o diretório `ios` é executar `npx pod-install`.
+Run `pod install` in our `ios` directory in order to link it to our native iOS project. A shortcut for doing this without switching to the `ios` directory is to run `npx pod-install`.
 
 ```bash
 npx pod-install
 ```
 
-Uma vez concluído, reconstrua o binário do aplicativo para começar a usar sua nova biblioteca:
+Once this is complete, re-build the app binary to start using your new library:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -73,9 +72,9 @@ yarn ios
 </TabItem>
 </Tabs>
 
-## Linking Native Code no Android
+## Linking Native Code on Android
 
-React Native usa Gradle para gerenciar dependências de projeto Android. Depois de instalar uma biblioteca com dependências nativas, você precisará reconstruir o binário do aplicativo para usar sua nova biblioteca:
+React Native uses Gradle to manage Android project dependencies. After you install a library with native dependencies, you will need to re-build the app binary to use your new library:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -94,28 +93,28 @@ yarn android
 </TabItem>
 </Tabs>
 
-## Encontrando Bibliotecas
+## Finding Libraries
 
-[React Native Directory](https://reactnative.directory) é um banco de dados pesquisável de bibliotecas construídas especificamente para React Native. Este é o primeiro lugar para procurar uma biblioteca para seu aplicativo React Native.
+[React Native Directory](https://reactnative.directory) is a searchable database of libraries built specifically for React Native. This is the first place to look for a library for your React Native app.
 
-Muitas das bibliotecas que você encontrará no diretório são de [React Native Community](https://github.com/react-native-community/) ou [Expo](https://docs.expo.dev/versions/latest/).
+Many of the libraries you will find on the directory are from [React Native Community](https://github.com/react-native-community/) or [Expo](https://docs.expo.dev/versions/latest/).
 
-Bibliotecas construídas pela React Native Community são impulsionadas por voluntários e indivíduos em empresas que dependem do React Native. Elas geralmente suportam iOS, tvOS, Android, Windows, mas isso varia entre os projetos. Muitas das bibliotecas nesta organização já foram Componentes Core e APIs do React Native.
+Libraries built by the React Native Community are driven by volunteers and individuals at companies that depend on React Native. They often support iOS, tvOS, Android, Windows, but this varies across projects. Many of the libraries in this organization were once React Native Core Components and APIs.
 
-Bibliotecas construídas pelo Expo são todas escritas em TypeScript e suportam iOS, Android e `react-native-web` sempre que possível.
+Libraries built by Expo are all written in TypeScript and support iOS, Android, and `react-native-web` wherever possible.
 
-Depois do React Native Directory, o [registro npm](https://www.npmjs.com/) é o próximo melhor lugar se você não conseguir encontrar uma biblioteca especificamente para React Native no diretório. O registro npm é a fonte definitiva para bibliotecas JavaScript, mas as bibliotecas que ele lista podem não ser todas compatíveis com React Native. React Native é um dos muitos ambientes de programação JavaScript, incluindo Node.js, navegadores web, Electron e mais, e npm inclui bibliotecas que funcionam para todos esses ambientes.
+After React Native Directory, the [npm registry](https://www.npmjs.com/) is the next best place if you can't find a library specifically for React Native on the directory. The npm registry is the definitive source for JavaScript libraries, but the libraries that it lists may not all be compatible with React Native. React Native is one of many JavaScript programming environments, including Node.js, web browsers, Electron, and more, and npm includes libraries that work for all of these environments.
 
-## Determinando Compatibilidade de Biblioteca
+## Determining Library Compatibility
 
-### Funciona com React Native?
+### Does it work with React Native?
 
-Geralmente, bibliotecas construídas _especificamente para outras plataformas_ não funcionarão com React Native. Exemplos incluem `react-select` que é construído para a web e especificamente direciona `react-dom`, e `rimraf` que é construído para Node.js e interage com o sistema de arquivos do seu computador. Outras bibliotecas como `lodash` usam apenas recursos da linguagem JavaScript e funcionam em qualquer ambiente. Você ganhará um senso para isso com o tempo, mas até lá a maneira mais fácil de descobrir é tentar você mesmo. Você pode remover pacotes usando `npm uninstall` se descobrir que ele não funciona no React Native.
+Usually libraries built _specifically for other platforms_ will not work with React Native. Examples include `react-select` which is built for the web and specifically targets `react-dom`, and `rimraf` which is built for Node.js and interacts with your computer file system. Other libraries like `lodash` use only JavaScript language features and work in any environment. You will gain a sense for this over time, but until then the easiest way to find out is to try it yourself. You can remove packages using `npm uninstall` if it turns out that it does not work in React Native.
 
-### Funciona para as plataformas que meu aplicativo suporta?
+### Does it work for the platforms that my app supports?
 
-[React Native Directory](https://reactnative.directory) permite que você filtre por compatibilidade de plataforma, como iOS, Android, Web e Windows. Se a biblioteca que você gostaria de usar não está listada lá atualmente, consulte o README da biblioteca para saber mais.
+[React Native Directory](https://reactnative.directory) allows you to filter by platform compatibility, such as iOS, Android, Web, and Windows. If the library you would like to use is not currently listed there, refer to the README for the library to learn more.
 
-### Funciona com a versão do meu aplicativo do React Native?
+### Does it work with my app version of React Native?
 
-A versão mais recente de uma biblioteca é tipicamente compatível com a versão mais recente do React Native. Se você está usando uma versão mais antiga, deve consultar o README para saber qual versão da biblioteca você deve instalar. Você pode instalar uma versão específica da biblioteca executando `npm install <library-name>@<version-number>`, por exemplo: `npm install @react-native-community/netinfo@^2.0.0`.
+The latest version of a library is typically compatible with the latest version of React Native. If you are using an older version, you should refer to the README to know which version of the library you should install. You can install a particular version of the library by running `npm install <library-name>@<version-number>`, for example: `npm install @react-native-community/netinfo@^2.0.0`.

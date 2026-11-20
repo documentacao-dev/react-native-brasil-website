@@ -1,21 +1,20 @@
 ---
-ia-translated: true
 id: platform-specific-code
-title: Código Específico de Plataforma
+title: Platform-Specific Code
 ---
 
-Ao construir um aplicativo multiplataforma, você vai querer reutilizar o máximo de código possível. Podem surgir cenários onde faz sentido que o código seja diferente, por exemplo, você pode querer implementar componentes visuais separados para Android e iOS.
+When building a cross-platform app, you'll want to re-use as much code as possible. Scenarios may arise where it makes sense for the code to be different, for example you may want to implement separate visual components for Android and iOS.
 
-O React Native oferece duas maneiras de organizar seu código e separá-lo por plataforma:
+React Native provides two ways to organize your code and separate it by platform:
 
-- Usando o [módulo `Platform`](platform-specific-code.md#platform-module).
-- Usando [extensões de arquivo específicas de plataforma](platform-specific-code.md#platform-specific-extensions).
+- Using the [`Platform` module](platform-specific-code.md#platform-module).
+- Using [platform-specific file extensions](platform-specific-code.md#platform-specific-extensions).
 
-Certos componentes podem ter propriedades que funcionam em apenas uma plataforma. Todas essas props são anotadas com `@platform` e têm um pequeno badge ao lado delas no site.
+Certain components may have properties that work on one platform only. All of these props are annotated with `@platform` and have a small badge next to them on the website.
 
-## Módulo Platform
+## Platform module
 
-O React Native fornece um módulo que detecta a plataforma na qual o aplicativo está sendo executado. Você pode usar a lógica de detecção para implementar código específico de plataforma. Use esta opção quando apenas pequenas partes de um component forem específicas de plataforma.
+React Native provides a module that detects the platform in which the app is running. You can use the detection logic to implement platform-specific code. Use this option when only small parts of a component are platform-specific.
 
 ```tsx
 import {Platform, StyleSheet} from 'react-native';
@@ -25,9 +24,9 @@ const styles = StyleSheet.create({
 });
 ```
 
-`Platform.OS` será `ios` quando executado no iOS e `android` quando executado no Android.
+`Platform.OS` will be `ios` when running on iOS and `android` when running on Android.
 
-Há também um método `Platform.select` disponível que, dado um objeto onde as chaves podem ser uma de `'ios' | 'android' | 'native' | 'default'`, retorna o valor mais adequado para a plataforma na qual você está executando. Ou seja, se você está executando em um telefone, as chaves `ios` e `android` terão preferência. Se essas não forem especificadas, a chave `native` será usada e depois a chave `default`.
+There is also a `Platform.select` method available that, given an object where keys can be one of `'ios' | 'android' | 'native' | 'default'`, returns the most fitting value for the platform you are currently running on. That is, if you're running on a phone, `ios` and `android` keys will take preference. If those are not specified, `native` key will be used and then the `default` key.
 
 ```tsx
 import {Platform, StyleSheet} from 'react-native';
@@ -51,9 +50,9 @@ const styles = StyleSheet.create({
 });
 ```
 
-Isso resultará em um container tendo `flex: 1` em todas as plataformas, uma cor de fundo vermelha no iOS, uma cor de fundo verde no Android e uma cor de fundo azul em outras plataformas.
+This will result in a container having `flex: 1` on all platforms, a red background color on iOS, a green background color on Android, and a blue background color on other platforms.
 
-Como ele aceita qualquer valor (`any`), você também pode usá-lo para retornar components específicos de plataforma, como abaixo:
+Since it accepts `any` value, you can also use it to return platform-specific components, like below:
 
 ```tsx
 const Component = Platform.select({
@@ -73,9 +72,9 @@ const Component = Platform.select({
 <Component />;
 ```
 
-### Detectando a versão do Android <div className="label android" title="This section is related to Android platform">Android</div>
+### Detecting the Android version <div className="label android">Android</div>
 
-No Android, o módulo `Platform` também pode ser usado para detectar a versão da Plataforma Android na qual o aplicativo está sendo executado:
+On Android, the `Platform` module can also be used to detect the version of the Android Platform in which the app is running:
 
 ```tsx
 import {Platform} from 'react-native';
@@ -85,11 +84,11 @@ if (Platform.Version === 25) {
 }
 ```
 
-**Nota**: `Version` é definido para a versão da API Android, não para a versão do sistema operacional Android. Para encontrar um mapeamento, consulte [Android Version History](https://en.wikipedia.org/wiki/Android_version_history#Overview).
+**Note**: `Version` is set to the Android API version not the Android OS version. To find a mapping please refer to [Android Version History](https://en.wikipedia.org/wiki/Android_version_history#Overview).
 
-### Detectando a versão do iOS <div className="label ios" title="This section is related to iOS platform">iOS</div>
+### Detecting the iOS version <div className="label ios">iOS</div>
 
-No iOS, o `Version` é resultado de `-[UIDevice systemVersion]`, que é uma string com a versão atual do sistema operacional. Um exemplo da versão do sistema é "10.3". Por exemplo, para detectar o número da versão principal no iOS:
+On iOS, the `Version` is a result of `-[UIDevice systemVersion]`, which is a string with the current version of the operating system. An example of the system version is "10.3". For example, to detect the major version number on iOS:
 
 ```tsx
 import {Platform} from 'react-native';
@@ -100,40 +99,40 @@ if (majorVersionIOS <= 9) {
 }
 ```
 
-## Extensões específicas de plataforma
+## Platform-specific extensions
 
-Quando seu código específico de plataforma é mais complexo, você deve considerar dividir o código em arquivos separados. O React Native detectará quando um arquivo tem uma extensão `.ios.` ou `.android.` e carregará o arquivo de plataforma relevante quando necessário a partir de outros components.
+When your platform-specific code is more complex, you should consider splitting the code out into separate files. React Native will detect when a file has a `.ios.` or `.android.` extension and load the relevant platform file when required from other components.
 
-Por exemplo, digamos que você tenha os seguintes arquivos em seu projeto:
+For example, say you have the following files in your project:
 
 ```shell
 BigButton.ios.js
 BigButton.android.js
 ```
 
-Você pode então importar o component da seguinte forma:
+You can then import the component as follows:
 
 ```tsx
 import BigButton from './BigButton';
 ```
 
-O React Native selecionará automaticamente o arquivo correto com base na plataforma em execução.
+React Native will automatically pick up the right file based on the running platform.
 
-## Extensões específicas de Native (ou seja, compartilhando código com NodeJS e Web)
+## Native-specific extensions (i.e. sharing code with NodeJS and Web)
 
-Você também pode usar a extensão `.native.js` quando um módulo precisa ser compartilhado entre NodeJS/Web e React Native, mas não tem diferenças entre Android/iOS. Isso é especialmente útil para projetos que têm código comum compartilhado entre React Native e ReactJS.
+You can also use the `.native.js` extension when a module needs to be shared between NodeJS/Web and React Native but it has no Android/iOS differences. This is especially useful for projects that have common code shared among React Native and ReactJS.
 
-Por exemplo, digamos que você tenha os seguintes arquivos em seu projeto:
+For example, say you have the following files in your project:
 
 ```shell
 Container.js # picked up by webpack, Rollup or any other Web bundler
 Container.native.js # picked up by the React Native bundler for both Android and iOS (Metro)
 ```
 
-Você ainda pode importá-lo sem a extensão `.native`, da seguinte forma:
+You can still import it without the `.native` extension, as follows:
 
 ```tsx
 import Container from './Container';
 ```
 
-**Dica:** Configure seu bundler Web para ignorar extensões `.native.js` a fim de evitar ter código não utilizado em seu bundle de produção, reduzindo assim o tamanho final do bundle.
+**Pro tip:** Configure your Web bundler to ignore `.native.js` extensions in order to avoid having unused code in your production bundle, thus reducing the final bundle size.

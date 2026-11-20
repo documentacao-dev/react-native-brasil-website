@@ -1,26 +1,25 @@
 ---
-ia-translated: true
 id: colors
-title: Referência de Cores
+title: Color Reference
 ---
 
-Componentes no React Native são [estilizados usando JavaScript](style). Propriedades de cores geralmente funcionam da mesma forma que [CSS funciona na web](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value). Guias gerais sobre o uso de cores em cada plataforma podem ser encontrados abaixo:
+Components in React Native are [styled using JavaScript](style). Color properties usually match how [CSS works on the web](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value). General guides on the color usage on each platform could be found below:
 
 - [Android](https://material.io/design/color/color-usage.html)
 - [iOS](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/)
 
-## APIs de Cores
+## Color APIs
 
-React Native possui várias APIs de cores projetadas para permitir que você aproveite ao máximo o sistema de design e preferências do usuário da sua plataforma.
+React Native has several color APIs designed to allow you to take full advantage of your platform's design and user preferences.
 
-- [PlatformColor](platformcolor) permite que você referencie o sistema de cores da plataforma.
-- [DynamicColorIOS](dynamiccolorios) é específico para iOS e permite que você especifique quais cores devem ser usadas no modo claro ou escuro (Dark Mode).
+- [PlatformColor](platformcolor) lets you reference the platform's color system.
+- [DynamicColorIOS](dynamiccolorios) is iOS specific and allows you to specify which colors should be used in light or Dark Mode.
 
-## Representações de cores
+## Color representations
 
 ### Red Green Blue (RGB)
 
-React Native suporta `rgb()` e `rgba()` tanto em notação hexadecimal quanto funcional:
+React Native supports `rgb()` and `rgba()` in both hexadecimal and functional notation:
 
 - `'#f0f'` (#rgb)
 - `'#ff00ff'` (#rrggbb)
@@ -33,7 +32,7 @@ React Native suporta `rgb()` e `rgba()` tanto em notação hexadecimal quanto fu
 
 ### Hue Saturation Lightness (HSL)
 
-React Native suporta `hsl()` e `hsla()` em notação funcional:
+React Native supports `hsl()` and `hsla()` in functional notation:
 
 - `'hsl(360, 100%, 100%)'`
 - `'hsl(360 100% 100%)'`
@@ -42,38 +41,38 @@ React Native suporta `hsl()` e `hsla()` em notação funcional:
 
 ### Hue Whiteness Blackness (HWB)
 
-React Native suporta `hwb()` em notação funcional:
+React Native supports `hwb()` in functional notation:
 
 - `'hwb(0, 0%, 100%)'`
 - `'hwb(360, 100%, 100%)'`
 - `'hwb(0 0% 0%)'`
 - `'hwb(70 50% 0%)'`
 
-### Inteiros de cores
+### Color ints
 
-React Native também suporta cores como valores `int` (no modo de cor RGB):
+React Native also supports colors as an `int` values (in RGB color mode):
 
 - `0xff00ff00` (0xrrggbbaa)
 
 :::caution
-Isso pode parecer similar à representação de [Color](https://developer.android.com/reference/android/graphics/Color) ints do Android, mas no Android os valores são armazenados no modo de cor SRGB (0xaarrggbb).
+This might appear similar to the Android [Color](https://developer.android.com/reference/android/graphics/Color) ints representation but on Android values are stored in SRGB color mode (0xaarrggbb).
 :::
 
-### Cores nomeadas
+### Named colors
 
-No React Native você também pode usar strings de nomes de cores como valores.
+In React Native you can also use color name strings as values.
 
 :::info
-React Native suporta apenas nomes de cores em minúsculas. Nomes de cores em maiúsculas não são suportados.
+React Native only supports lowercase color names. Uppercase color names are not supported.
 :::
 
 #### `transparent`
 
-Este é um atalho para `rgba(0,0,0,0)`, igual ao [CSS3](https://www.w3.org/TR/css-color-3/#transparent).
+This is a shortcut for `rgba(0,0,0,0)`, same as in [CSS3](https://www.w3.org/TR/css-color-3/#transparent).
 
-#### Palavras-chave de cores
+#### Color keywords
 
-A implementação de cores nomeadas segue a [especificação CSS3/SVG](https://www.w3.org/TR/css-color-3/#svg-color):
+Named colors implementation follows the [CSS3/SVG specification](https://www.w3.org/TR/css-color-3/#svg-color):
 
 - <ins style={{background: '#f0f8ff'}} className="color-box" /> aliceblue (<code>#f0f8ff</code>)
 - <ins style={{background: '#faebd7'}} className="color-box" /> antiquewhite (<code>#faebd7</code>)

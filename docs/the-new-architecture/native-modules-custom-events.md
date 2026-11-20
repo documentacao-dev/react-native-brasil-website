@@ -135,7 +135,6 @@ Agora, é hora de atualizar o código do App para lidar com o novo evento.
 Abra o arquivo `App.tsx` e modifique-o da seguinte forma:
 
 ```diff title="App.tsx"
-import React from 'react';
 import {
 + Alert,
 + EventSubscription,

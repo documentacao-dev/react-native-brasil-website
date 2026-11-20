@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// ia-translated: true
-
 import React from 'react';
 import GitHubButton from 'react-github-btn';
 import {useColorMode} from '@docusaurus/theme-common';
@@ -25,18 +23,18 @@ function Hero() {
       <div className={styles.socialLinks}>
         <a
           className="twitter-follow-button"
-          href={`https://twitter.com/reactnative?ref_src=twsrc%5Etfw`}
+          href="https://x.com/reactnative"
           data-show-count="false"
           data-size="large">
-          Siga @reactnative
+          Follow @reactnative
         </a>
         <GitHubButton
-          href="https://github.com/facebook/react-native"
+          href="https://github.com/react/react-native"
           data-icon="octicon-star"
           data-size="large"
           data-color-scheme={colorMode}
-          aria-label="Marque facebook/react-native como favorito no GitHub">
-          Favoritar
+          aria-label="Star react/react-native on GitHub">
+          Star
         </GitHubButton>
       </div>
       <div className={styles.backgroundContainer}>
@@ -53,13 +51,13 @@ function Hero() {
       <div className={styles.content}>
         <Logo />
         <h1 className={styles.title}>React Native</h1>
-        <h2 className={styles.subtitle}>Aprenda uma vez, escreva em qualquer lugar.</h2>
+        <h2 className={styles.subtitle}>Learn once, write anywhere.</h2>
         <div className={styles.buttonContainer}>
           <a href="/docs/environment-setup" className={styles.primaryButton}>
-            Começar
+            Get Started
           </a>
           <a href="/docs/getting-started" className={styles.secondaryButton}>
-            Aprenda o Básico
+            Learn the Basics
           </a>
         </div>
       </div>

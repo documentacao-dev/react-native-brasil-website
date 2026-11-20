@@ -1,17 +1,15 @@
 ---
-ia-translated: true
 id: style
 title: Style
 ---
 
-Com React Native, você estiliza sua aplicação usando JavaScript. Todos os componentes principais aceitam uma prop chamada `style`. Os nomes de estilo e [valores](colors.md) geralmente correspondem a como o CSS funciona na web, exceto que os nomes são escritos usando camel casing, por exemplo, `backgroundColor` em vez de `background-color`.
+With React Native, you style your application using JavaScript. All of the core components accept a prop named `style`. The style names and [values](colors.md) usually match how CSS works on the web, except names are written using camel casing, e.g. `backgroundColor` rather than `background-color`.
 
-A prop `style` pode ser um objeto JavaScript simples. Isso é o que geralmente usamos para código de exemplo. Você também pode passar um array de estilos - o último estilo no array tem precedência, então você pode usar isso para herdar estilos.
+The `style` prop can be a plain old JavaScript object. That's what we usually use for example code. You can also pass an array of styles - the last style in the array has precedence, so you can use this to inherit styles.
 
-À medida que um componente cresce em complexidade, muitas vezes é mais limpo usar `StyleSheet.create` para definir vários estilos em um só lugar. Aqui está um exemplo:
+As a component grows in complexity, it is often cleaner to use `StyleSheet.create` to define several styles in one place. Here's an example:
 
 ```SnackPlayer name=Style
-import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 const LotsOfStyles = () => {
@@ -42,12 +40,12 @@ const styles = StyleSheet.create({
 export default LotsOfStyles;
 ```
 
-Um padrão comum é fazer seu componente aceitar uma prop `style` que, por sua vez, é usada para estilizar subcomponentes. Você pode usar isso para fazer estilos "cascata" da mesma forma que fazem em CSS.
+One common pattern is to make your component accept a `style` prop which in turn is used to style subcomponents. You can use this to make styles "cascade" the way they do in CSS.
 
-Existem muitas outras maneiras de personalizar o estilo do texto. Confira a [referência do componente Text](text.md) para uma lista completa.
+There are a lot more ways to customize the text style. Check out the [Text component reference](text.md) for a complete list.
 
-Agora você pode tornar seu texto bonito. O próximo passo para se tornar um especialista em estilo é [aprender como controlar o tamanho do componente](height-and-width.md).
+Now you can make your text beautiful. The next step in becoming a style expert is to [learn how to control component size](height-and-width.md).
 
 ## Known issues
 
-- [react-native#29308](https://github.com/facebook/react-native/issues/29308#issuecomment-792864162): Em alguns casos, o React Native não corresponde a como o CSS funciona na web, por exemplo, a área de toque nunca se estende além dos limites da view pai e no Android margem negativa não é suportada.
+- [react-native#29308](https://github.com/react/react-native/issues/29308#issuecomment-792864162): In some cases React Native does not match how CSS works on the web, for example the touch area never extends past the parent view bounds and on Android negative margin is not supported.

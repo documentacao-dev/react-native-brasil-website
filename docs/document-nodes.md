@@ -7,7 +7,7 @@ title: Nós de documento
 Nós de documento representam uma árvore completa de views nativas. Aplicativos que usam navegação nativa forneceriam um nó de documento separado para cada tela. Aplicativos que não usam navegação nativa geralmente forneceriam um único documento para todo o aplicativo (similar aos aplicativos de página única na Web).
 
 ```SnackPlayer ext=js&name=Document%20instance%20example
-import * as React from 'react';
+import {useEffect, useRef} from 'react';
 import {Text, TextInput, View} from 'react-native';
 
 function MyComponent(props) {
@@ -20,9 +20,9 @@ function MyComponent(props) {
 }
 
 export default function AccessingDocument() {
-  const ref = React.useRef(null);
+  const ref = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Get the main text input in the screen and focus it after initial load.
     const element = ref.current;
     const doc = element.ownerDocument;

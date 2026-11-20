@@ -18,7 +18,6 @@ Se um usuário desativou anteriormente uma permission que você solicita, o sist
 ### Example
 
 ```SnackPlayer name=PermissionsAndroid%20Example&supportedPlatforms=android
-import React from 'react';
 import {
   Button,
   PermissionsAndroid,

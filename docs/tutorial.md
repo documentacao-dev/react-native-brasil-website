@@ -15,7 +15,6 @@ Vamos fazer isso.
 De acordo com as antigas tradições do nosso povo, primeiro devemos construir um app que não faz nada além de dizer "Hello, world!". Aqui está:
 
 ```SnackPlayer name=Hello%20World
-import React from 'react';
 import {Text, View} from 'react-native';
 
 const HelloWorldApp = () => {
@@ -68,7 +67,6 @@ Seus próprios componentes também podem usar `props`. Isso permite que você fa
 <TabItem value="javascript">
 
 ```SnackPlayer name=Hello%20Props&ext=js
-import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -102,7 +100,6 @@ export default LotsOfGreetings;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Hello%20Props&ext=tsx
-import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -158,9 +155,9 @@ Em um componente React, as props são as variáveis que passamos de um component
 <div className="two-columns">
 
 ```tsx
-// ReactJS Counter Example using Hooks!
+// React Counter Example using Hooks!
 
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 
 
@@ -191,7 +188,7 @@ const App = () => {
 ```tsx
 // React Native Counter Example using Hooks!
 
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 
 const App = () => {
@@ -225,7 +222,7 @@ Como mostrado acima, não há diferença no tratamento do `state` entre [React](
 No exemplo a seguir, mostraremos o mesmo exemplo de contador acima usando classes.
 
 ```SnackPlayer name=Hello%20Classes
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 
 class App extends Component {

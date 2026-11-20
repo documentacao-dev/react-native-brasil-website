@@ -1,15 +1,13 @@
 ---
-ia-translated: true
 id: transforms
-title: Transformações
+title: Transforms
 ---
 
-Transformações são propriedades de estilo que ajudam você a modificar a aparência e a posição de seus components usando transformações 2D ou 3D. No entanto, uma vez que você aplica transformações, os layouts permanecem os mesmos ao redor do component transformado, o que pode fazer com que ele se sobreponha aos components próximos. Você pode aplicar margem ao component transformado, aos components próximos ou padding ao container para evitar tais sobreposições.
+Transforms are style properties that will help you modify the appearance and position of your components using 2D or 3D transformations. However, once you apply transforms, the layouts remain the same around the transformed component hence it might overlap with the nearby components. You can apply margin to the transformed component, the nearby components or padding to the container to prevent such overlaps.
 
 ## Example
 
 ```SnackPlayer name=Transforms%20Example
-import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -130,6 +128,20 @@ const App = () => (
           ]}>
           <Text style={styles.text}>TranslateY by 50 </Text>
         </View>
+
+        <View
+          style={[
+            styles.box,
+            {
+              transform: [
+                {
+                  matrix: [1, 0.5, 0, 0, 0.5, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+                },
+              ],
+            },
+          ]}>
+          <Text style={styles.text}>Matrix Transform</Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   </SafeAreaProvider>
@@ -170,9 +182,9 @@ export default App;
 
 ## Transform
 
-`transform` aceita um array de objetos de transformação ou valores em string separados por espaços. Cada objeto especifica a propriedade que será transformada como a chave, e o valor a ser usado na transformação. Os objetos não devem ser combinados. Use um único par chave/valor por objeto.
+`transform` accepts an array of transformation objects or space-separated string values. Each object specifies the property that will be transformed as the key, and the value to use in the transformation. Objects should not be combined. Use a single key/value pair per object.
 
-As transformações de rotação requerem uma string para que a transformação possa ser expressa em graus (deg) ou radianos (rad). Por exemplo:
+The rotate transformations require a string so that the transform may be expressed in degrees (deg) or radians (rad). For example:
 
 ```js
 {
@@ -180,7 +192,7 @@ As transformações de rotação requerem uma string para que a transformação 
 }
 ```
 
-O mesmo também pode ser alcançado usando uma string separada por espaços:
+The same could also be achieved using a space-separated string:
 
 ```js
 {
@@ -188,7 +200,7 @@ O mesmo também pode ser alcançado usando uma string separada por espaços:
 }
 ```
 
-As transformações de inclinação requerem uma string para que a transformação possa ser expressa em graus (deg). Por exemplo:
+The skew transformations require a string so that the transform may be expressed in degrees (deg). For example:
 
 ```js
 {
@@ -196,26 +208,85 @@ As transformações de inclinação requerem uma string para que a transformaç�
 }
 ```
 
-| Type                                                                                                                                                                                                                                                                                                          | Required |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| array of objects: `{matrix: number[]}`, `{perspective: number}`, `{rotate: string}`, `{rotateX: string}`, `{rotateY: string}`, `{rotateZ: string}`, `{scale: number}`, `{scaleX: number}`, `{scaleY: number}`, `{translateX: number}`, `{translateY: number}`, `{skewX: string}`, `{skewY: string}` or string | No       |
+The translate transformations (`translateX` and `translateY`) accept numbers (points) or percentage strings (e.g. `'50%'`, `'100%'`). When using percentages, the offset is relative to the element's width (for `translateX`) or height (for `translateY`). Percentage translation is supported on the [New Architecture](/architecture/landing-page). For example:
+
+```js
+{
+  transform: [{translateX: '50%'}, {translateY: 100}],
+}
+```
+
+### Matrix Transform
+
+The `matrix` transform accepts a 4x4 transformation matrix as an array of 16 numbers. This allows you to apply complex transformations that combine translation, rotation, scaling, and skewing in a single operation.
+
+The matrix is specified in column-major order:
+
+```js
+{
+  transform: [
+    {
+      matrix: [
+        scaleX,
+        skewY,
+        0,
+        0,
+        skewX,
+        scaleY,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        translateX,
+        translateY,
+        0,
+        1,
+      ],
+    },
+  ];
+}
+```
+
+For example, to apply a combination of scale and skew:
+
+```js
+{
+  transform: [
+    {
+      matrix: [
+        1, 0.5, 0, 0, 0.5, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1,
+      ],
+    },
+  ];
+}
+```
+
+:::note
+Matrix transforms are useful when you need to apply pre-calculated transformation matrices, such as those from animation libraries or when building UI editor applications. For basic transformations, it's recommended to use the individual transform properties (scale, rotate, translate, etc.) as they are more readable.
+:::
+
+| Type                                                                                                                                                                                                                                                                                                                              | Required |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| array of objects: `{matrix: number[]}`, `{perspective: number}`, `{rotate: string}`, `{rotateX: string}`, `{rotateY: string}`, `{rotateZ: string}`, `{scale: number}`, `{scaleX: number}`, `{scaleY: number}`, `{translateX: number \| string}`, `{translateY: number \| string}`, `{skewX: string}`, `{skewY: string}` or string | No       |
 
 ---
 
-### `decomposedMatrix`, `rotation`, `scaleX`, `scaleY`, `transformMatrix`, `translateX`, `translateY`
+### 🗑️ `decomposedMatrix`, `rotation`, `scaleX`, `scaleY`, `transformMatrix`, `translateX`, `translateY`
 
-:::warning Deprecated
-Use a prop [`transform`](transforms#transform) no lugar.
+:::warning[Deprecated]
+Use the [`transform`](transforms#transform) prop instead.
 :::
 
 ## Transform Origin
 
-A propriedade `transformOrigin` define a origem para as transformações de uma view. A origem da transformação é o ponto ao redor do qual uma transformação é aplicada. Por padrão, a origem de uma transformação é `center`.
+The `transformOrigin` property sets the origin for a view's transformations. The transform origin is the point around which a transformation is applied. By default, the origin of a transform is `center`.
 
 # Example
 
 ```SnackPlayer name=TransformOrigin%20Example
-import React, {useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import {Animated, View, StyleSheet, Easing} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -279,13 +350,13 @@ export default App;
 
 ### Values
 
-Transform origin suporta valores em `px`, `percentage` e as palavras-chave `top`, `left`, `right`, `bottom`, `center`.
+Transform origin supports `px`, `percentage` and keywords `top`, `left`, `right`, `bottom`, `center` values.
 
-A propriedade `transformOrigin` pode ser especificada usando um, dois ou três valores, onde cada valor representa um deslocamento.
+The `transformOrigin` property may be specified using one, two, or three values, where each value represents an offset.
 
 #### One-value syntax:
 
-- O valor deve ser um `px`, uma `percentage`, ou uma das palavras-chave `left`, `center`, `right`, `top` e `bottom`.
+- The value must be a `px`, a `percentage`, or one of the keywords `left`, `center`, `right`, `top`, and `bottom`.
 
 ```js
 {
@@ -296,8 +367,8 @@ A propriedade `transformOrigin` pode ser especificada usando um, dois ou três v
 
 #### Two-value syntax:
 
-- O primeiro valor (x-offset) deve ser um `px`, uma `percentage`, ou uma das palavras-chave `left`, `center` e `right`.
-- O segundo valor (y-offset) deve ser um `px`, uma `percentage`, ou uma das palavras-chave `top`, `center` e `bottom`.
+- First value (x-offset) must be a `px`, a `percentage`, or one of the keywords `left`, `center`, and `right`.
+- The second value (y-offset) must be a `px`, a `percentage`, or one of the keywords `top`, `center`, and `bottom`.
 
 ```js
 {
@@ -309,8 +380,8 @@ A propriedade `transformOrigin` pode ser especificada usando um, dois ou três v
 
 #### Three-value syntax:
 
-- Os primeiros dois valores são os mesmos que para a sintaxe de dois valores.
-- O terceiro valor (z-offset) deve ser um `px`. Ele sempre representa o deslocamento Z.
+- The first two values are the same as for the two-value syntax.
+- The third value (z-offset) must be a `px`. It always represents the Z offset.
 
 ```js
 {
@@ -321,7 +392,7 @@ A propriedade `transformOrigin` pode ser especificada usando um, dois ou três v
 
 #### Array syntax
 
-`transformOrigin` também suporta uma sintaxe de array. Isso torna conveniente usá-la com APIs Animated. Também evita análise de strings, então deve ser mais eficiente.
+`transformOrigin` also supports an array syntax. It makes it convenient to use it with Animated APIs. It also avoids string parsing, so should be more efficient.
 
 ```js
 {
@@ -332,4 +403,4 @@ A propriedade `transformOrigin` pode ser especificada usando um, dois ou três v
 }
 ```
 
-Você pode consultar o guia do MDN sobre [Transform origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) para informações adicionais.
+You may refer to MDN's guide on [Transform origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) for additional information.

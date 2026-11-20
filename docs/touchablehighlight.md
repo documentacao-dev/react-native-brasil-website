@@ -1,18 +1,17 @@
 ---
-ia-translated: true
 id: touchablehighlight
 title: TouchableHighlight
 ---
 
 :::tip
-Se você está procurando uma forma mais extensiva e à prova de futuro para lidar com entrada baseada em toque, confira a API [Pressable](pressable.md).
+If you're looking for a more extensive and future-proof way to handle touch-based input, check out the [Pressable](pressable.md) API.
 :::
 
-Um wrapper para fazer views responderem apropriadamente aos toques. Ao pressionar, a opacidade da view envolvida é diminuída, o que permite que a cor do underlay apareça, escurecendo ou tingindo a view.
+A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, which allows the underlay color to show through, darkening or tinting the view.
 
-O underlay vem do envolvimento do filho em uma nova View, o que pode afetar o layout e, às vezes, causar artefatos visuais indesejados se não for usado corretamente, por exemplo, se o backgroundColor da view envolvida não estiver explicitamente definido para uma cor opaca.
+The underlay comes from wrapping the child in a new View, which can affect layout, and sometimes cause unwanted visual artifacts if not used correctly, for example if the backgroundColor of the wrapped view isn't explicitly set to an opaque color.
 
-TouchableHighlight deve ter um filho (não zero ou mais de um). Se você deseja ter vários componentes filhos, envolva-os em uma View.
+TouchableHighlight must have one child (not zero or more than one). If you wish to have several child components, wrap them in a View.
 
 ```tsx
 function MyComponent(props: MyComponentProps) {
@@ -31,10 +30,10 @@ function MyComponent(props: MyComponentProps) {
 </TouchableHighlight>;
 ```
 
-## Exemplo
+## Example
 
 ```SnackPlayer name=TouchableHighlight%20Example
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -83,19 +82,19 @@ export default TouchableHighlightExample;
 
 ---
 
-# Referência
+# Reference
 
 ## Props
 
 ### [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props)
 
-Herda [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props).
+Inherits [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props).
 
 ---
 
 ### `activeOpacity`
 
-Determina qual deve ser a opacidade da view envolvida quando o toque está ativo. O valor deve estar entre 0 e 1. O padrão é 0.85. Requer que `underlayColor` esteja definido.
+Determines what the opacity of the wrapped view should be when touch is active. The value should be between 0 and 1. Defaults to 0.85. Requires `underlayColor` to be set.
 
 | Type   |
 | ------ |
@@ -105,7 +104,7 @@ Determina qual deve ser a opacidade da view envolvida quando o toque está ativo
 
 ### `onHideUnderlay`
 
-Chamado imediatamente após o underlay ser ocultado.
+Called immediately after the underlay is hidden.
 
 | Type     |
 | -------- |
@@ -115,7 +114,7 @@ Chamado imediatamente após o underlay ser ocultado.
 
 ### `onShowUnderlay`
 
-Chamado imediatamente após o underlay ser mostrado.
+Called immediately after the underlay is shown.
 
 | Type     |
 | -------- |
@@ -125,7 +124,7 @@ Chamado imediatamente após o underlay ser mostrado.
 
 ### `ref`
 
-Um ref setter que será atribuído a um [element node](element-nodes) quando montado.
+A ref setter that will be assigned an [element node](element-nodes) when mounted.
 
 ---
 
@@ -139,7 +138,7 @@ Um ref setter que será atribuído a um [element node](element-nodes) quando mon
 
 ### `underlayColor`
 
-A cor do underlay que aparecerá quando o toque estiver ativo.
+The color of the underlay that will show through when the touch is active.
 
 | Type               |
 | ------------------ |
@@ -147,19 +146,9 @@ A cor do underlay que aparecerá quando o toque estiver ativo.
 
 ---
 
-### `hasTVPreferredFocus` <div className="label ios">iOS</div>
-
-_(Apenas Apple TV)_ TV preferred focus (veja a documentação para o componente View).
-
-| Type |
-| ---- |
-| bool |
-
----
-
 ### `nextFocusDown` <div className="label android">Android</div>
 
-TV next focus down (veja a documentação para o componente View).
+TV next focus down (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -169,7 +158,7 @@ TV next focus down (veja a documentação para o componente View).
 
 ### `nextFocusForward` <div className="label android">Android</div>
 
-TV next focus forward (veja a documentação para o componente View).
+TV next focus forward (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -179,7 +168,7 @@ TV next focus forward (veja a documentação para o componente View).
 
 ### `nextFocusLeft` <div className="label android">Android</div>
 
-TV next focus left (veja a documentação para o componente View).
+TV next focus left (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -189,7 +178,7 @@ TV next focus left (veja a documentação para o componente View).
 
 ### `nextFocusRight` <div className="label android">Android</div>
 
-TV next focus right (veja a documentação para o componente View).
+TV next focus right (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -199,7 +188,7 @@ TV next focus right (veja a documentação para o componente View).
 
 ### `nextFocusUp` <div className="label android">Android</div>
 
-TV next focus up (veja a documentação para o componente View).
+TV next focus up (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -209,7 +198,7 @@ TV next focus up (veja a documentação para o componente View).
 
 ### `testOnly_pressed`
 
-Útil para testes de snapshot.
+Handy for snapshot tests.
 
 | Type |
 | ---- |

@@ -9,7 +9,6 @@ O [ScrollView](scrollview.md) é um container genérico de rolagem que pode cont
 Este exemplo cria um `ScrollView` vertical com imagens e texto misturados.
 
 ```SnackPlayer name=Using%20ScrollView
-import React from 'react';
 import {Image, ScrollView, Text} from 'react-native';
 
 const logo = {

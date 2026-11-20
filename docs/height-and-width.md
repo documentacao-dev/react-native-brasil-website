@@ -11,7 +11,6 @@ A altura e largura de um componente determinam seu tamanho na tela.
 A maneira geral de definir as dimensões de um componente é adicionando `width` e `height` fixos ao estilo. Todas as dimensões no React Native são sem unidade e representam pixels independentes de densidade.
 
 ```SnackPlayer name=Height%20and%20Width
-import React from 'react';
 import {View} from 'react-native';
 
 const FixedDimensionsBasics = () => {
@@ -60,7 +59,6 @@ Um componente só pode se expandir para preencher o espaço disponível se seu p
 :::
 
 ```SnackPlayer name=Flex%20Dimensions
-import React from 'react';
 import {View} from 'react-native';
 
 const FlexDimensionsBasics = () => {
@@ -86,7 +84,6 @@ Depois que você puder controlar o tamanho de um componente, o próximo passo é
 Se você quer preencher uma certa porção da tela, mas você _não_ quer usar o layout `flex`, você _pode_ usar **valores de porcentagem** no estilo do componente. Similar a dimensões flex, dimensões em porcentagem exigem um pai com tamanho definido.
 
 ```SnackPlayer name=Percentage%20Dimensions
-import React from 'react';
 import {View} from 'react-native';
 
 const PercentageDimensionsBasics = () => {

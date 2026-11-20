@@ -1,24 +1,23 @@
-<!-- ia-translated: true -->
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-# Invocando funções nativas no seu componente nativo
+# Invoking native functions on your native component
 
-No [guia base](/docs/fabric-native-components-introduction) para escrever um novo Native Component, você explorou como criar um novo componente, como passar propriedades do lado JS para o lado nativo, e como emitir eventos do lado nativo para o JS.
+In the [base guide](/docs/fabric-native-components-introduction) to write a new Native Component, you have explored how to create a new component, how to pass properties from the JS side to the native side, and how to emit events from native side to JS.
 
-Componentes customizados também podem chamar algumas das funções implementadas no código nativo de forma imperativa, para alcançar funcionalidades mais avançadas, como recarregar programaticamente uma página web.
+Custom components can also call some of the functions implemented in the native code imperatively, to achieve some more advanced functionalities, such as programmatically reload a web page.
 
-Neste guia você aprenderá como alcançar isso, usando um novo conceito: Native Commands.
+In this guide you'll learn how to achieve this, by using a new concept: Native Commands.
 
-Este guia parte do guia de [Native Components](/docs/fabric-native-components-introduction) e assume que você está familiarizado com ele e que você está familiarizado com [Codegen](/docs/next/the-new-architecture/what-is-codegen).
+This guide starts from the [Native Components](/docs/fabric-native-components-introduction) guide and assumes that you are familiar with it and that you are familiar with [Codegen](/docs/next/the-new-architecture/what-is-codegen).
 
-## 1. Atualize os specs do seu componente
+## 1. Update your component specs
 
-O primeiro passo é atualizar o spec do componente para declarar o `NativeCommand`.
+The first step is to update the component spec to declare the `NativeCommand`.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultJavaScriptSpecLanguage} values={constants.javaScriptSpecLanguages}>
 <TabItem value="typescript">
 
-Atualize o `WebViewNativeComponent.ts` como a seguir:
+Update the `WebViewNativeComponent.ts` as it follows:
 
 ```diff title="Demo/specs/WebViewNativeComponent.ts"
 import type {HostComponent, ViewProps} from 'react-native';
@@ -51,7 +50,7 @@ export default codegenNativeComponent<NativeProps>(
 </TabItem>
 <TabItem value="flow">
 
-Atualize o `WebViewNativeComponent.js` como a seguir:
+Update the `WebViewNativeComponent.js` as it follows:
 
 ```diff title="Demo/specs/WebViewNativeComponent.js"
 // @flow strict-local
@@ -88,27 +87,26 @@ export default (codegenNativeComponent<NativeProps>(
 </TabItem>
 </Tabs>
 
-Essas mudanças requerem que você:
+These changes requires you to:
 
-1. Importe a função `codegenNativeCommands` de `react-native`. Isso instrui o codegen que ele tem que gerar o código para `NativeCommands`
-2. Defina uma interface que contém os métodos que queremos invocar no nativo. Todos os Native Commands devem ter um primeiro parâmetro do tipo `React.ElementRef`.
-3. Exporte a variável `Commands` que é o resultado da invocação de `codegenNativeCommands`, passando uma lista dos comandos suportados.
+1. Import the `codegenNativeCommands` function from `react-native`. This instruct codegen that it has to generate the code for `NativeCommands`
+2. Define an interface that contains the methods we want to invoke in native. All the Native Commands must have a first parameter of type `React.ElementRef`.
+3. Export the `Commands` variable that is the result of the invocation of `codegenNativeCommands`, passing a list of the supported commands.
 
 :::warning
-No TypeScript, o `React.ElementRef` está deprecated. O tipo correto a usar é na verdade `React.ComponentRef`. No entanto, devido a um bug no Codegen, usar `ComponentRef` fará o app quebrar. Já temos a correção, mas precisamos lançar uma nova versão do React Native para aplicá-la.
+In TypeScript, the `React.ElementRef` is deprecated. The correct type to use is actually `React.ComponentRef`. However, due to a bug in Codegen, using `ComponentRef` will crash the app. We have the fix already, but we need to release a new version of React Native to apply it.
 :::
 
-## 2. Atualize o código do App para usar o novo comando
+## 2. Update the App code to use the new command
 
-Agora você pode usar o comando no app.
+Now you can use the command in the app.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultJavaScriptSpecLanguage} values={constants.javaScriptSpecLanguages}>
 <TabItem value="typescript">
 
-Abra o arquivo `App.tsx` e modifique-o como a seguir:
+Open the `App.tsx` file and modify it as it follows:
 
 ```diff title="App.tsx"
-import React from 'react';
 -import {Alert, StyleSheet, View} from 'react-native';
 -import WebView from '../specs/WebViewNativeComponent';
 +import {Alert, StyleSheet, Pressable, Text, View} from 'react-native';
@@ -184,10 +182,9 @@ export default App;
 </TabItem>
 <TabItem value="flow">
 
-Abra o arquivo `App.tsx` e modifique-o como a seguir:
+Open the `App.tsx` file and modify it as it follows:
 
 ```diff title="App.jsx"
-import React from 'react';
 -import {Alert, StyleSheet, View} from 'react-native';
 -import WebView from '../specs/WebViewNativeComponent';
 +import {Alert, StyleSheet, Pressable, Text, View} from 'react-native';
@@ -263,22 +260,22 @@ export default App;
 </TabItem>
 </Tabs>
 
-As mudanças relevantes aqui são as seguintes:
+The relevant changes here are the following:
 
-1. Importe a const `Commands` do arquivo de spec. O Command é um objeto que nos permite chamar os métodos que temos no nativo.
-2. Declare uma ref para o componente nativo customizado `WebView` usando `useRef`. Você precisa passar essa ref para o comando nativo.
-3. Implemente a função `refresh`. Essa função verifica se a ref do WebView não é null e se não for, ela chama o comando.
-4. Adicione um pressable para chamar o comando quando o usuário tocar no botão.
+1. Import the `Commands` const from the spec file. The Command is an object that let us call the methods we have in native.
+2. Declare a ref to the `WebView` custom native component using `useRef`. You need to pass this ref to the native command.
+3. Implement the `refresh` function. This function checks that the WebView's ref is not null and if not, it calls the command.
+4. Add a pressable to call the command when the user taps on the button.
 
-As mudanças restantes são mudanças normais do React para adicionar um `Pressable` e estilizar a view para que fique mais bonita.
+The remaining changes are regular React changes to add a `Pressable` and to style the view so it looks nicer.
 
-## 3. Execute novamente o Codegen
+## 3. Rerun Codegen
 
-Agora que os specs estão atualizados e o código está pronto para usar o comando, é hora de implementar o código nativo. No entanto, antes de mergulhar na escrita do código nativo, você tem que executar novamente o codegen, para deixá-lo gerar os novos tipos que são necessários pelo código nativo.
+Now that the specs are updated and the code is ready to use the command, it is time to implement the Native code. However, before diving into writing native code, you have to rerun codegen, to let it generate the new types that are needed by the Native code.
 
 <Tabs groupId="platforms" queryString defaultValue={constants.defaultPlatform}>
 <TabItem value="android" label="Android">
-Codegen é executado através da task Gradle `generateCodegenArtifactsFromSchema`:
+Codegen is executed through the `generateCodegenArtifactsFromSchema` Gradle task:
 
 ```bash
 cd android
@@ -288,10 +285,10 @@ BUILD SUCCESSFUL in 837ms
 14 actionable tasks: 3 executed, 11 up-to-date
 ```
 
-Isso é executado automaticamente quando você compila sua aplicação Android.
+This is automatically run when you build your Android application.
 </TabItem>
 <TabItem value="ios" label="iOS">
-Codegen é executado como parte das script phases que são automaticamente adicionadas ao projeto gerado pelo CocoaPods.
+Codegen is run as part of the script phases that's automatically added to the project generated by CocoaPods.
 
 ```bash
 cd ios
@@ -299,7 +296,7 @@ bundle install
 bundle exec pod install
 ```
 
-A saída ficará assim:
+The output will look like this:
 
 ```shell
 ...
@@ -317,17 +314,17 @@ Framework build type is static library
 </TabItem>
 </Tabs>
 
-## 4. Implemente o código nativo
+## 4. Implement the Native Code
 
-Agora é hora de implementar as mudanças nativas que permitirão que seu JS invoque diretamente métodos na sua view nativa.
+Now it's time to implement the native changes that will enable your JS to directly invoke methods on your native view.
 
 <Tabs groupId="platforms" queryString defaultValue={constants.defaultPlatform}>
 <TabItem value="android" label="Android">
 
-Para deixar sua view responder ao Native Command, você só tem que modificar o ReactWebViewManager.
+To let your view respond to the Native Command, you only have to modify the ReactWebViewManager.
 
-Se você tentar compilar agora, a compilação falhará, porque o `ReactWebViewManager` atual não implementa o novo método `reload`.
-Para corrigir o erro de compilação, vamos modificar o `ReactWebViewManager` para implementá-lo.
+If you try to build right now, the build will fail, because the current `ReactWebViewManager` does not implement the new `reload` method.
+To fix the build error, let's modify the `ReactWebViewManager` to implement it.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -379,14 +376,14 @@ Para corrigir o erro de compilação, vamos modificar o `ReactWebViewManager` pa
 </TabItem>
 </Tabs>
 
-Neste caso, é suficiente chamar diretamente o método `view.reload()` porque nosso ReactWebView herda do `WebView` do Android e ele tem um método reload diretamente disponível. Se você está implementando uma função customizada, que não está disponível na sua view customizada, você também pode ter que implementar o método requerido na View do Android que é gerenciada pelo `ViewManager` do React Native.
+In this case, it's enough to call directly the `view.reload()` method because our ReactWebView inherits from the Android's `WebView` and it has a reload method directly available. If you are implementing a custom function, that is not available in your custom view, you might also have to implement the required method in the Android's View that is managed by the React Native's `ViewManager`.
 
 </TabItem>
 <TabItem value="ios" label="iOS">
 
-Para deixar sua view responder ao Native Command, precisamos implementar alguns métodos no iOS.
+To let your view respond to the Native Command, we need to implement a couple of methods on iOS.
 
-Vamos abrir o arquivo `RCTWebView.mm` e vamos modificá-lo como a seguir:
+Let's open the `RCTWebView.mm` file and let's modify it as it follows:
 
 ```diff title="RCTWebView.mm"
   // Event emitter convenience method
@@ -411,17 +408,17 @@ Vamos abrir o arquivo `RCTWebView.mm` e vamos modificá-lo como a seguir:
   }
 ```
 
-Para fazer sua view responder aos Native Commands, você precisa aplicar as seguintes mudanças:
+To make your view respond to the Native Commands, you need to apply the following changes:
 
-1. Adicione uma função `handleCommand:args`. Essa função é invocada pela infraestrutura de componentes para lidar com os comandos. A implementação da função é similar para todo componente: você precisa chamar uma função `RCT<componentNameInJS>HandleCommand` que é gerada pelo Codegen para você. A `RCT<componentNameInJS>HandleCommand` realiza várias validações, verificando que o comando que precisamos invocar está entre os suportados e que os parâmetros passados correspondem aos esperados. Se todas as verificações passarem, a `RCT<componentNameInJS>HandleCommand` então invocará o método nativo apropriado.
-2. Implemente o método `reload`. Neste exemplo, o método `reload` chama a função `reloadFromOrigin` do WebView do WebKit.
+1. Add a `handleCommand:args` function. This function is invoked by the components infrastructure to handle the commands. The function implementation is similar for every component: you need to call an `RCT<componentNameInJS>HandleCommand` function that is generated by Codegen for you. The `RCT<componentNameInJS>HandleCommand` perform a bunch of validation, verifying that the command that we need to invoke is among the supported ones and that the parameters passed matches the one expected. If all the checks pass, the `RCT<componentNameInJS>HandleCommand` will then invoke the proper native method.
+2. Implement the `reload` method. In this example, the `reload` method calls the `reloadFromOrigin` function of the WebKit's WebView.
 
 </TabItem>
 </Tabs>
 
-## 5. Execute seu app
+## 5. Run your app
 
-Finalmente, você pode executar seu app com os comandos usuais. Uma vez que o app esteja rodando, você pode tocar no botão de refresh para ver a página sendo recarregada.
+Finally, you can run your app with the usual commands. Once the app is running, you can tap on the refresh button to see the page getting reloaded.
 
 | <center>Android</center>                                                                         | <center>iOS</center>                                                                         |
 | ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |

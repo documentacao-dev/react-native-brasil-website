@@ -1,28 +1,22 @@
 ---
-ia-translated: true
 id: systrace
 title: Systrace
 ---
 
-`Systrace` é uma ferramenta de profiling padrão do Android baseada em marcadores (e é instalada quando você instala o pacote Android platform-tools). Blocos de código com profiling são cercados por marcadores de início/fim que são então visualizados em um formato de gráfico colorido. Tanto o Android SDK quanto o React Native framework fornecem marcadores padrão que você pode visualizar.
+`Systrace` is a standard Android marker-based profiling tool (and is installed when you install the Android platform-tools package). Profiled code blocks are surrounded by start/end markers which are then visualized in a colorful chart format. Both the Android SDK and React Native framework provide standard markers that you can visualize.
 
-## Exemplo
+## Example
 
-`Systrace` permite que você marque eventos JavaScript (JS) com uma tag e um valor inteiro. Capture os eventos JS não-cronometrados no EasyProfiler.
+`Systrace` allows you to mark JavaScript (JS) events with a tag and an integer value. Start profiling with an Android profiling tool such as Perfetto or EasyProfiler, then use these markers to identify the events in the captured trace.
 
 ```SnackPlayer name=Systrace%20Example
-import React from 'react';
 import {Button, Text, View, StyleSheet, Systrace} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
-  const enableProfiling = () => {
-    Systrace.setEnabled(true); // Call setEnabled to turn on the profiling.
+  const markEvent = () => {
     Systrace.beginEvent('event_label');
     Systrace.counterEvent('event_label', 10);
-  };
-
-  const stopProfiling = () => {
     Systrace.endEvent();
   };
 
@@ -33,15 +27,7 @@ const App = () => {
           React Native Systrace API
         </Text>
         <View style={styles.buttonsColumn}>
-          <Button
-            title="Capture the non-Timed JS events in EasyProfiler"
-            onPress={() => enableProfiling()}
-          />
-          <Button
-            title="Stop capturing"
-            onPress={() => stopProfiling()}
-            color="#FF0000"
-          />
+          <Button title="Mark event" onPress={markEvent} />
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -76,9 +62,9 @@ export default App;
 
 ---
 
-# Referência
+# Reference
 
-## Métodos
+## Methods
 
 ### `isEnabled()`
 
@@ -94,7 +80,7 @@ static isEnabled(): boolean;
 static beginEvent(eventName: string | (() => string), args?: EventArgs);
 ```
 
-beginEvent/endEvent para iniciar e depois encerrar um profile dentro do mesmo call stack frame.
+beginEvent/endEvent for starting and then ending a profile within the same call stack frame.
 
 ---
 
@@ -115,7 +101,7 @@ static beginAsyncEvent(
 ): number;
 ```
 
-beginAsyncEvent/endAsyncEvent para iniciar e depois encerrar um profile onde o fim pode ocorrer em outra thread ou fora do call stack frame atual, por exemplo, await. A variável cookie retornada deve ser usada como entrada na chamada endAsyncEvent para encerrar o profile.
+beginAsyncEvent/endAsyncEvent for starting and then ending a profile where the end can either occur on another thread or out of the current stack frame, eg await the returned cookie variable should be used as input into the endAsyncEvent call to end the profile.
 
 ---
 
@@ -137,4 +123,4 @@ static endAsyncEvent(
 static counterEvent(eventName: string | (() => string), value: number);
 ```
 
-Registra o valor no profileName na timeline do systrace.
+Register the value to the profileName on the systrace timeline.

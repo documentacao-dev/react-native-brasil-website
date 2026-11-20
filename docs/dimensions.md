@@ -1,18 +1,17 @@
 ---
-ia-translated: true
 id: dimensions
 title: Dimensions
 ---
 
 :::info
-[`useWindowDimensions`](usewindowdimensions) é a API preferida para componentes React. Diferentemente de `Dimensions`, ela atualiza conforme as dimensões da janela mudam. Isso funciona bem com o paradigma React.
+[`useWindowDimensions`](usewindowdimensions) is the preferred API for React components. Unlike `Dimensions`, it updates as the window's dimensions update. This works nicely with the React paradigm.
 :::
 
 ```tsx
 import {Dimensions} from 'react-native';
 ```
 
-Você pode obter a largura e altura da janela do aplicativo usando o seguinte código:
+You can get the application window's width and height using the following code:
 
 ```tsx
 const windowWidth = Dimensions.get('window').width;
@@ -20,16 +19,21 @@ const windowHeight = Dimensions.get('window').height;
 ```
 
 :::note
-Embora as dimensões estejam disponíveis imediatamente, elas podem mudar (por exemplo, devido à rotação do dispositivo, dispositivos dobráveis etc), portanto qualquer lógica de renderização ou estilos que dependam dessas constantes devem tentar chamar esta função a cada renderização, ao invés de armazenar o valor em cache (por exemplo, usando estilos inline ao invés de definir um valor em um `StyleSheet`).
+Although dimensions are available immediately, they may change (e.g due to device rotation, foldable devices etc) so any rendering logic or styles that depend on these constants should try to call this function on every render, rather than caching the value (for example, using inline styles rather than setting a value in a `StyleSheet`).
 :::
 
-Se você está mirando dispositivos dobráveis ou dispositivos que podem mudar o tamanho da tela ou o tamanho da janela do aplicativo, você pode usar o event listener disponível no módulo Dimensions conforme mostrado no exemplo abaixo.
+If you are targeting foldable devices or devices which can change the screen size or app window size, you can use the event listener available in the Dimensions module as shown in the below example.
 
 ## Example
 
-```SnackPlayer name=Dimensions%20Example
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, Dimensions} from 'react-native';
+```SnackPlayer name=Dimensions%20Example&ext=tsx
+import {useState, useEffect} from 'react';
+import {
+  StyleSheet,
+  Text,
+  Dimensions,
+  type DimensionsPayload,
+} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const windowDimensions = Dimensions.get('window');
@@ -44,8 +48,10 @@ const App = () => {
   useEffect(() => {
     const subscription = Dimensions.addEventListener(
       'change',
-      ({window, screen}) => {
-        setDimensions({window, screen});
+      ({window, screen}: DimensionsPayload) => {
+        if (window && screen) {
+          setDimensions({window, screen});
+        }
       },
     );
     return () => subscription?.remove();
@@ -98,48 +104,50 @@ static addEventListener(
   handler: ({
     window,
     screen,
-  }: DimensionsValue) => void,
-): EmitterSubscription;
+  }: DimensionsPayload) => void,
+): EventSubscription;
 ```
 
-Adiciona um event handler. Eventos suportados:
+Add an event handler. Supported events:
 
-- `change`: Dispara quando uma propriedade dentro do objeto `Dimensions` muda. O argumento para o event handler é um objeto do tipo [`DimensionsValue`](#dimensionsvalue).
+- `change`: Fires when a property within the `Dimensions` object changes. The argument to the event handler is a [`DimensionsPayload`](#dimensionspayload) object.
 
 ---
 
 ### `get()`
 
 ```tsx
-static get(dim: 'window' | 'screen'): ScaledSize;
+static get(dim: string): DisplayMetrics | DisplayMetricsAndroid;
 ```
 
-As dimensões iniciais são definidas antes de `runApplication` ser chamado, então elas devem estar disponíveis antes de qualquer outro require ser executado, mas podem ser atualizadas posteriormente.
+Initial dimensions are set before `runApplication` is called so they should be available before any other require's are run, but may be updated later.
 
-Exemplo: `const {height, width} = Dimensions.get('window');`
+Example: `const {height, width} = Dimensions.get('window');`
 
 **Parameters:**
 
-| Name                                                               | Type   | Description                                                                                    |
-| ------------------------------------------------------------------ | ------ | ---------------------------------------------------------------------------------------------- |
-| dim <div className="label basic required two-lines">Required</div> | string | Nome da dimensão conforme definido ao chamar `set`. Retorna o valor para a dimensão. |
+| Name                                                               | Type   | Description                                                                       |
+| ------------------------------------------------------------------ | ------ | --------------------------------------------------------------------------------- |
+| dim <div className="label basic required two-lines">Required</div> | string | Name of dimension as defined when calling `set`. Returns value for the dimension. |
 
 :::note
-No Android, a dimensão `window` será reduzida pelo tamanho da barra de status (se não for translúcida) e pela barra de navegação inferior.
+For Android the `window` dimension will be reduced by the size of status bar (if not translucent) and bottom navigation bar.
 :::
 
 ## Type Definitions
 
-### DimensionsValue
+### DimensionsPayload
 
 **Properties:**
 
-| Name   | Type                                | Description                                  |
-| ------ | ----------------------------------- | -------------------------------------------- |
-| window | [ScaledSize](dimensions#scaledsize) | Tamanho da janela do Application visível. |
-| screen | [ScaledSize](dimensions#scaledsize) | Tamanho da tela do dispositivo.            |
+| Name                 | Type                                                      | Description                             |
+| -------------------- | --------------------------------------------------------- | --------------------------------------- |
+| window               | [DisplayMetrics](dimensions#displaymetrics)               | Size of the visible application window. |
+| screen               | [DisplayMetrics](dimensions#displaymetrics)               | Size of the device's screen.            |
+| windowPhysicalPixels | [DisplayMetricsAndroid](dimensions#displaymetricsandroid) | Physical pixels for the Android window. |
+| screenPhysicalPixels | [DisplayMetricsAndroid](dimensions#displaymetricsandroid) | Physical pixels for the Android screen. |
 
-### ScaledSize
+### DisplayMetrics
 
 | Type   |
 | ------ |
@@ -153,3 +161,11 @@ No Android, a dimensão `window` será reduzida pelo tamanho da barra de status 
 | height    | number |
 | scale     | number |
 | fontScale | number |
+
+### DisplayMetricsAndroid
+
+`DisplayMetricsAndroid` includes all [`DisplayMetrics`](dimensions#displaymetrics) properties and the following property:
+
+| Name       | Type   |
+| ---------- | ------ |
+| densityDpi | number |

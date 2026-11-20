@@ -1,21 +1,20 @@
 ---
-ia-translated: true
 id: touchableopacity
 title: TouchableOpacity
 ---
 
 :::tip
-Se você está procurando uma maneira mais abrangente e à prova de futuro para lidar com entrada baseada em toque, confira a API [Pressable](pressable.md).
+If you're looking for a more extensive and future-proof way to handle touch-based input, check out the [Pressable](pressable.md) API.
 :::
 
-Um wrapper para fazer views responderem adequadamente a toques. Ao pressionar, a opacidade da view envolvida é diminuída, escurecendo-a.
+A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, dimming it.
 
-A opacidade é controlada envolvendo os children em um `Animated.View`, que é adicionado à hierarquia de view. Esteja ciente de que isso pode afetar o layout.
+Opacity is controlled by wrapping the children in an `Animated.View`, which is added to the view hierarchy. Be aware that this can affect layout.
 
-## Exemplo
+## Example
 
 ```SnackPlayer name=TouchableOpacity%20Example
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -59,13 +58,13 @@ export default App;
 
 ---
 
-# Referência
+# Reference
 
 ## Props
 
-### [Props do TouchableWithoutFeedback](touchablewithoutfeedback.md#props)
+### [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props)
 
-Herda as [Props do TouchableWithoutFeedback](touchablewithoutfeedback.md#props).
+Inherits [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props).
 
 ---
 
@@ -79,7 +78,7 @@ Herda as [Props do TouchableWithoutFeedback](touchablewithoutfeedback.md#props).
 
 ### `activeOpacity`
 
-Determina qual deve ser a opacidade da view envolvida quando o toque está ativo. O padrão é `0.2`.
+Determines what the opacity of the wrapped view should be when touch is active. Defaults to `0.2`.
 
 | Type   |
 | ------ |
@@ -87,19 +86,9 @@ Determina qual deve ser a opacidade da view envolvida quando o toque está ativo
 
 ---
 
-### `hasTVPreferredFocus` <div className="label ios">iOS</div>
-
-_(Somente Apple TV)_ Foco preferido de TV (veja a documentação do componente View).
-
-| Type |
-| ---- |
-| bool |
-
----
-
 ### `nextFocusDown` <div className="label android">Android</div>
 
-Próximo foco de TV para baixo (veja a documentação do componente View).
+TV next focus down (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -109,7 +98,7 @@ Próximo foco de TV para baixo (veja a documentação do componente View).
 
 ### `nextFocusForward` <div className="label android">Android</div>
 
-Próximo foco de TV para frente (veja a documentação do componente View).
+TV next focus forward (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -119,7 +108,7 @@ Próximo foco de TV para frente (veja a documentação do componente View).
 
 ### `nextFocusLeft` <div className="label android">Android</div>
 
-Próximo foco de TV para a esquerda (veja a documentação do componente View).
+TV next focus left (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -129,7 +118,7 @@ Próximo foco de TV para a esquerda (veja a documentação do componente View).
 
 ### `nextFocusRight` <div className="label android">Android</div>
 
-Próximo foco de TV para a direita (veja a documentação do componente View).
+TV next focus right (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -139,7 +128,7 @@ Próximo foco de TV para a direita (veja a documentação do componente View).
 
 ### `nextFocusUp` <div className="label android">Android</div>
 
-Próximo foco de TV para cima (veja a documentação do componente View).
+TV next focus up (see documentation for the View component).
 
 | Type   |
 | ------ |
@@ -149,4 +138,4 @@ Próximo foco de TV para cima (veja a documentação do componente View).
 
 ### `ref`
 
-Um setter de ref que será atribuído a um [nó de elemento](element-nodes) quando montado.
+A ref setter that will be assigned an [element node](element-nodes) when mounted.

@@ -1,10 +1,9 @@
 ---
-ia-translated: true
 id: text-style-props
-title: Props de Estilo de Texto
+title: Text Style Props
 ---
 
-### Exemplo
+### Example
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
@@ -12,7 +11,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 <TabItem value="javascript">
 
 ```SnackPlayer name=TextStyleProps&supportedPlatforms=ios,android&ext=js&dependencies=@react-native-community/slider
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   FlatList,
   Platform,
@@ -28,7 +27,6 @@ import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const fontStyles = ['normal', 'italic'];
 const fontVariants = [
-  undefined,
   'small-caps',
   'oldstyle-nums',
   'lining-nums',
@@ -373,7 +371,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=TextStyleProps&supportedPlatforms=ios,android&ext=tsx&dependencies=@react-native-community/slider
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   FlatList,
   Platform,
@@ -629,7 +627,7 @@ const CustomSlider = ({
 
 type CustomPickerProps = {
   label: string;
-  data?: ArrayLike<any> | null;
+  data?: ArrayLike<string> | undefined;
   currentIndex: number;
   onSelected: (index: number) => void;
 };
@@ -677,7 +675,6 @@ const CustomPicker = ({
 
 const fontStyles = ['normal', 'italic'];
 const fontVariants = [
-  undefined,
   'small-caps',
   'oldstyle-nums',
   'lining-nums',
@@ -760,13 +757,13 @@ export default App;
 </TabItem>
 </Tabs>
 
-# Referência
+# Reference
 
 ## Props
 
 ### `color`
 
-| Tipo               |
+| Type               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -774,17 +771,17 @@ export default App;
 
 ### `fontFamily`
 
-| Tipo   |
+| Type   |
 | ------ |
 | string |
 
-As famílias de fontes genéricas `system-ui`, `ui-sans-serif`, `ui-serif`, `ui-monospace` e `ui-rounded` são suportadas no iOS.
+The generic font families `system-ui`, `ui-sans-serif`, `ui-serif`, `ui-monospace`, and `ui-rounded` are supported on iOS.
 
 ---
 
 ### `fontSize`
 
-| Tipo   |
+| Type   |
 | ------ |
 | number |
 
@@ -792,7 +789,7 @@ As famílias de fontes genéricas `system-ui`, `ui-sans-serif`, `ui-serif`, `ui-
 
 ### `fontStyle`
 
-| Tipo                         |
+| Type                         |
 | ---------------------------- |
 | enum(`'normal'`, `'italic'`) |
 
@@ -800,39 +797,64 @@ As famílias de fontes genéricas `system-ui`, `ui-sans-serif`, `ui-serif`, `ui-
 
 ### `fontWeight`
 
-Especifica o peso da fonte. Os valores `'normal'` e `'bold'` são suportados para a maioria das fontes. Nem todas as fontes possuem uma variante para cada um dos valores numéricos; nesse caso, a mais próxima é escolhida.
+Specifies font weight. The values `'normal'` and `'bold'` are supported for most fonts. Not all fonts have a variant for each of the numeric values, in that case the closest one is chosen.
 
-| Tipo                                                                                                                  | Padrão     |
+| Type                                                                                                                  | Default    |
 | --------------------------------------------------------------------------------------------------------------------- | ---------- |
-| enum(`'normal'`, `'bold'`, `'100'`, `'200'`, `'300'`, `'400'`, `'500'`, `'600'`, `'700'`, `'800'`, `'900'`) ou number | `'normal'` |
+| enum(`'normal'`, `'bold'`, `'100'`, `'200'`, `'300'`, `'400'`, `'500'`, `'600'`, `'700'`, `'800'`, `'900'`) or number | `'normal'` |
 
 ---
 
 ### `includeFontPadding` <div className="label android">Android</div>
 
-Defina como `false` para remover o padding extra da fonte destinado a criar espaço para certos ascendentes / descendentes. Com algumas fontes, esse padding pode fazer o texto parecer levemente desalinhado quando centralizado verticalmente. Para melhores resultados, defina também `textAlignVertical` como `center`.
+Set to `false` to remove extra font padding intended to make space for certain ascenders / descenders. With some fonts, this padding can make text look slightly misaligned when centered vertically. For best results also set `textAlignVertical` to `center`.
 
-| Tipo | Padrão |
-| ---- | ------ |
-| bool | `true` |
+| Type | Default |
+| ---- | ------- |
+| bool | `true`  |
 
 ---
 
 ### `fontVariant`
 
-Permite que você defina todas as variantes de fonte para uma fonte. Pode ser definido usando um array de enums ou uma string separada por espaços, por exemplo `'small-caps common-ligatures'`.
+Allows you to set all the font variants for a font. Can be set by using an array of enums or a space-separated string e.g. `'small-caps common-ligatures'`.
 
-| Tipo                                                                                                                | Padrão |
-| ------------------------------------------------------------------------------------------------------------------- | ------ |
-| array de enum(`'small-caps'`, `'oldstyle-nums'`, `'lining-nums'`, `'tabular-nums'`, `'proportional-nums'`) ou string | `[]`   |
+| Type                                                                                                                 | Default |
+| -------------------------------------------------------------------------------------------------------------------- | ------- |
+| array of enum(`'small-caps'`, `'oldstyle-nums'`, `'lining-nums'`, `'tabular-nums'`, `'proportional-nums'`) or string | `[]`    |
+
+---
+
+### `fontVariationSettings`
+
+Configures variation axes for a variable font. Each axis is identified by a four-character OpenType tag, such as `wght` for weight, `wdth` for width, `opsz` for optical size, or a custom axis supported by the font. Settings can be provided as an object or as a CSS-compatible string.
+
+The object and string forms below are equivalent; both set the wght axis to 500:
+
+```tsx
+<Text
+  style={{
+    fontVariationSettings: {wght: 500},
+    // Equivalent CSS-compatible string:
+    fontVariationSettings: "'wght' 500",
+  }}>
+  Variable font
+</Text>
+```
+
+For more information about variation axes and the CSS string syntax, see MDN's font-variation-settings (https://developer.mozilla.org/en-US/docs/Web/CSS/font-variation-settings) documentation.
+
+| Type                                         |
+| -------------------------------------------- |
+| string or object: `{[axis: string]: number}` |
 
 ---
 
 ### `letterSpacing`
 
-Aumenta ou diminui o espaçamento entre caracteres. Por padrão, não há espaçamento extra entre letras.
+Increase or decrease the spacing between characters. By default there is no extra letter spacing.
 
-| Tipo   |
+| Type   |
 | ------ |
 | number |
 
@@ -840,9 +862,9 @@ Aumenta ou diminui o espaçamento entre caracteres. Por padrão, não há espaç
 
 ### `lineHeight`
 
-Valor numérico que controla o espaçamento vertical entre linhas de texto dentro de um elemento de texto. Especifica a distância entre as linhas de base de linhas consecutivas de texto.
+Numeric value that controls the vertical spacing between lines of text within a text element. It specifies the distance between the baselines of consecutive lines of text.
 
-| Tipo   |
+| Type   |
 | ------ |
 | number |
 
@@ -850,9 +872,9 @@ Valor numérico que controla o espaçamento vertical entre linhas de texto dentr
 
 ### `textAlign`
 
-Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado apenas no Oreo (8.0) ou superior (API level >= 26). O valor retornará para `left` em versões mais antigas do Android.
+Specifies text alignment. On Android, the value 'justify' is only supported on Oreo (8.0) or above (API level >= 26). The value will fallback to `left` on lower Android versions.
 
-| Tipo                                                         | Padrão   |
+| Type                                                         | Default  |
 | ------------------------------------------------------------ | -------- |
 | enum(`'auto'`, `'left'`, `'right'`, `'center'`, `'justify'`) | `'auto'` |
 
@@ -860,7 +882,9 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `textAlignVertical` <div className="label android">Android</div>
 
-| Tipo                                            | Padrão   |
+An alias for `verticalAlign` style prop, if you use both properties, `verticalAlign` will take precedence over `textAlignVertical`
+
+| Type                                            | Default  |
 | ----------------------------------------------- | -------- |
 | enum(`'auto'`, `'top'`, `'bottom'`, `'center'`) | `'auto'` |
 
@@ -868,7 +892,7 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `textDecorationColor` <div className="label ios">iOS</div>
 
-| Tipo               |
+| Type               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -876,7 +900,7 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `textDecorationLine`
 
-| Tipo                                                                        | Padrão   |
+| Type                                                                        | Default  |
 | --------------------------------------------------------------------------- | -------- |
 | enum(`'none'`, `'underline'`, `'line-through'`, `'underline line-through'`) | `'none'` |
 
@@ -884,7 +908,7 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `textDecorationStyle` <div className="label ios">iOS</div>
 
-| Tipo                                                | Padrão    |
+| Type                                                | Default   |
 | --------------------------------------------------- | --------- |
 | enum(`'solid'`, `'double'`, `'dotted'`, `'dashed'`) | `'solid'` |
 
@@ -892,7 +916,7 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `textShadowColor`
 
-| Tipo               |
+| Type               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -900,7 +924,7 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `textShadowOffset`
 
-| Tipo                                        |
+| Type                                        |
 | ------------------------------------------- |
 | object: `{width?: number, height?: number}` |
 
@@ -908,7 +932,7 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `textShadowRadius`
 
-| Tipo   |
+| Type   |
 | ------ |
 | number |
 
@@ -916,7 +940,7 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `textTransform`
 
-| Tipo                                                         | Padrão   |
+| Type                                                         | Default  |
 | ------------------------------------------------------------ | -------- |
 | enum(`'none'`, `'uppercase'`, `'lowercase'`, `'capitalize'`) | `'none'` |
 
@@ -924,7 +948,7 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `verticalAlign` <div className="label android">Android</div>
 
-| Tipo                                            | Padrão   |
+| Type                                            | Default  |
 | ----------------------------------------------- | -------- |
 | enum(`'auto'`, `'top'`, `'bottom'`, `'middle'`) | `'auto'` |
 
@@ -932,7 +956,7 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `writingDirection` <div className="label ios">iOS</div>
 
-| Tipo                             | Padrão   |
+| Type                             | Default  |
 | -------------------------------- | -------- |
 | enum(`'auto'`, `'ltr'`, `'rtl'`) | `'auto'` |
 
@@ -940,10 +964,8 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 
 ### `userSelect`
 
-Permite que o usuário selecione texto e use a funcionalidade nativa de copiar e colar. Tem precedência sobre a prop `selectable`.
+It allows the user to select text and to use the native copy and paste functionality. Has precedence over the `selectable` prop.
 
-| Tipo                                                     | Padrão |
-| -------------------------------------------------------- | ------ |
-| enum(`'auto'`, `'text'`, `'none'`, `'contain'`, `'all'`) | `none` |
-
----
+| Type                                                     | Default |
+| -------------------------------------------------------- | ------- |
+| enum(`'auto'`, `'text'`, `'none'`, `'contain'`, `'all'`) | `none`  |

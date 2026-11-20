@@ -1,24 +1,23 @@
 ---
 id: integration-with-android-fragment
-title: Integração com um Android Fragment
-ia-translated: true
+title: Integration with an Android Fragment
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-O guia de [Integração com Aplicações Existentes](/docs/integration-with-existing-apps) detalha como integrar um aplicativo React Native em tela cheia em um aplicativo Android existente como uma **Activity**.
+The guide for [Integration with Existing Apps](/docs/integration-with-existing-apps) details how to integrate a full-screen React Native app into an existing Android app as an **Activity**.
 
-Para usar componentes React Native dentro de **Fragments** em um aplicativo existente requer algumas configurações adicionais.
+To use React Native components within **Fragments** in an existing app requires some additional setup.
 
-### 1. Adicione React Native ao seu aplicativo
+### 1. Add React Native to your app
 
-Siga o guia de [Integração com Aplicações Existentes](/docs/integration-with-existing-apps) até o final para garantir que você possa executar com segurança seu aplicativo React Native em uma Activity em tela cheia.
+Follow the guide for [Integration with Existing Apps](/docs/integration-with-existing-apps) until the end to make sure you can safely run your React Native app in a full screen Activity.
 
-### 2. Adicione um FrameLayout para o React Native Fragment
+### 2. Add a FrameLayout for the React Native Fragment
 
-Neste exemplo, vamos usar um `FrameLayout` para adicionar um React Native Fragment a uma Activity. Esta abordagem é flexível o suficiente e pode ser adaptada para usar React Native em outros layouts, como Bottom Sheets ou Tab Layouts.
+In this example, we're going to use a `FrameLayout` to add a React Native Fragment to an Activity. This approach is flexible enough and can be adapted to use React Native in other layouts such as Bottom Sheets or Tab Layouts.
 
-Primeiro, adicione um `<FrameLayout>` com um id, largura e altura ao layout da sua Activity (por exemplo, `main_activity.xml` na pasta `res/layouts`). Este é o layout que você encontrará para renderizar seu React Native Fragment.
+First add a `<FrameLayout>` with an id, width and height to your Activity's layout (e.g. `main_activity.xml` in the `res/layouts` folder). This is the layout you will find to render your React Native Fragment.
 
 ```xml
 <FrameLayout
@@ -27,15 +26,15 @@ Primeiro, adicione um `<FrameLayout>` com um id, largura e altura ao layout da s
     android:layout_height="match_parent" />
 ```
 
-### 3. Faça sua host Activity implementar `DefaultHardwareBackBtnHandler`
+### 3. Make your host Activity implement `DefaultHardwareBackBtnHandler`
 
-Como sua host activity não é uma `ReactActivity`, você precisa implementar a interface `DefaultHardwareBackBtnHandler` para lidar com o evento de pressionar o botão voltar.
-Isso é necessário pelo React Native para lidar com o evento de pressionar o botão voltar.
+As your host activity is not a `ReactActivity`, you need to implement the `DefaultHardwareBackBtnHandler` interface to handle the back button press event.
+This is required by React Native to handle the back button press event.
 
-Vá para sua host activity e certifique-se de que ela implementa a interface `DefaultHardwareBackBtnHandler`:
+Go into your host activity and make sure it implements the `DefaultHardwareBackBtnHandler` interface:
 
-:::warning Deprecated
-`Activity.onBackPressed()` foi [descontinuado](<https://developer.android.com/reference/android/app/Activity#onBackPressed()>) desde o API level 33. Dispositivos Android 16 com aplicativos direcionados ao API level 36 [não chamarão mais](https://developer.android.com/about/versions/16/behavior-changes-16#predictive-back) e [OnBackPressedDispatcher](https://developer.android.com/reference/androidx/activity/OnBackPressedDispatcher) deve ser usado em vez disso.
+:::warning[Deprecated]
+`Activity.onBackPressed()` has been [deprecated](<https://developer.android.com/reference/android/app/Activity#onBackPressed()>) since API level 33. Android 16 devices with apps targeting API level 36 this will [no longer be called](https://developer.android.com/about/versions/16/behavior-changes-16#predictive-back) and [OnBackPressedDispatcher](https://developer.android.com/reference/androidx/activity/OnBackPressedDispatcher) should be used instead.
 :::
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
@@ -99,12 +98,12 @@ import androidx.appcompat.app.AppCompatActivity;
 </TabItem>
 </Tabs>
 
-### 4. Adicione um React Native Fragment ao FrameLayout
+### 4. Add a React Native Fragment to the FrameLayout
 
-Finalmente, podemos atualizar a Activity para adicionar um React Native Fragment ao FrameLayout.
-Neste exemplo específico, vamos assumir que sua Activity tem um botão com id `sample_button` que quando clicado renderizará um React Native Fragment no FrameLayout.
+Finally, we can update the Activity to add a React Native Fragment to the FrameLayout.
+In this specific example, we're going to assume that your Activity has a button with id `sample_button` that when clicked will render a React Native Fragment into the FrameLayout.
 
-Atualize o método `onCreate` da sua Activity como segue:
+Update your Activity's `onCreate` method as follows:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">
@@ -184,19 +183,19 @@ public class MainActivity extends AppCompatActivity implements DefaultHardwareBa
 </TabItem>
 </Tabs>
 
-Vamos olhar o código acima.
+Let's look at the code above.
 
-O `ReactFragment.Builder()` é usado para criar um novo `ReactFragment` e então usamos o `supportFragmentManager` para adicionar esse Fragment ao `FrameLayout`.
+The `ReactFragment.Builder()` is used to create a new `ReactFragment` and then we use the `supportFragmentManager` to add that Fragment to the `FrameLayout`.
 
-Dentro do builder você pode personalizar como o fragment é criado:
+Inside the builder you can customize how the fragment is created:
 
-- `setComponentName` é o nome do componente que você deseja renderizar. É a mesma string especificada no seu `index.js` dentro do método `registerComponent`.
-- `setLaunchOptions` é um método opcional para passar props iniciais para o seu componente. Isso é opcional e você pode removê-lo se não usá-lo.
+- `setComponentName` is the name of the component you want to render. It's the same string specified in your `index.js` inside the `registerComponent` method.
+- `setLaunchOptions` is an optional method to pass initial props to your component. This is optional and you can remove it if you don't use it.
 
-### 5. Teste sua integração
+### 5. Test your integration
 
-Certifique-se de executar `yarn start` para rodar o bundler e então execute seu aplicativo Android no Android Studio. O aplicativo deve carregar o código JavaScript/TypeScript do servidor de desenvolvimento e exibi-lo no seu React Native Fragment na Activity.
+Make sure you run `yarn start` to run the bundler and then run your android app in Android Studio. The app should load the JavaScript/TypeScript code from the development server and display it in your React Native Fragment in the Activity.
 
-Seu aplicativo deve se parecer com este:
+Your app should look like this one:
 
 ![Screenshot](/docs/assets/EmbeddedAppAndroidFragmentVideo.gif)

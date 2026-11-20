@@ -1,13 +1,11 @@
 ---
-ia-translated: true
 id: platform
 title: Platform
 ---
 
-## Exemplo
+## Example
 
 ```SnackPlayer name=Platform%20API%20Example&supportedPlatforms=ios,android
-import React from 'react';
 import {Platform, StyleSheet, Text, ScrollView} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -59,9 +57,9 @@ export default App;
 
 ---
 
-# Referência
+# Reference
 
-## Propriedades
+## Properties
 
 ### `constants`
 
@@ -69,27 +67,42 @@ export default App;
 static constants: PlatformConstants;
 ```
 
-Retorna um objeto que contém todas as constantes comuns e específicas disponíveis relacionadas à plataforma.
+Returns an object which contains all available common and specific constants related to the platform.
 
-**Propriedades:**
+**Properties:**
 
-| <div className="widerColumn">Name</div>                   | Type    | Optional | Description                                                                                                                                                                                                         |
-| --------------------------------------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| isTesting                                                 | boolean | No       |                                                                                                                                                                                                                     |
-| reactNativeVersion                                        | object  | No       | Informações sobre a versão do React Native. As chaves são `major`, `minor`, `patch` com `prerelease` opcional e os valores são `number`s.                                                                          |
-| Version <div className="label android">Android</div>      | number  | No       | Constante de versão do SO específica para Android.                                                                                                                                                                 |
-| Release <div className="label android">Android</div>      | string  | No       |                                                                                                                                                                                                                     |
-| Serial <div className="label android">Android</div>       | string  | No       | Número de série do hardware de um dispositivo Android.                                                                                                                                                             |
-| Fingerprint <div className="label android">Android</div>  | string  | No       | Uma string que identifica exclusivamente a build.                                                                                                                                                                  |
-| Model <div className="label android">Android</div>        | string  | No       | O nome visível ao usuário final para o dispositivo Android.                                                                                                                                                        |
-| Brand <div className="label android">Android</div>        | string  | No       | A marca visível ao consumidor com a qual o produto/hardware será associado.                                                                                                                                        |
-| Manufacturer <div className="label android">Android</div> | string  | No       | O fabricante do dispositivo Android.                                                                                                                                                                               |
-| ServerHost <div className="label android">Android</div>   | string  | Yes      |                                                                                                                                                                                                                     |
-| uiMode <div className="label android">Android</div>       | string  | No       | Os valores possíveis são: `'car'`, `'desk'`, `'normal'`,`'tv'`, `'watch'` e `'unknown'`. Leia mais sobre [Android ModeType](https://developer.android.com/reference/android/app/UiModeManager.html).              |
-| forceTouchAvailable <div className="label ios">iOS</div>  | boolean | No       | Indica a disponibilidade do 3D Touch em um dispositivo.                                                                                                                                                            |
-| interfaceIdiom <div className="label ios">iOS</div>       | string  | No       | O tipo de interface para o dispositivo. Leia mais sobre [UIUserInterfaceIdiom](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom).                                                              |
-| osVersion <div className="label ios">iOS</div>            | string  | No       | Constante de versão do SO específica para iOS.                                                                                                                                                                     |
-| systemName <div className="label ios">iOS</div>           | string  | No       | Constante de nome do SO específica para iOS.                                                                                                                                                                       |
+| <div className="widerColumn">Name</div>                   | Type    | Optional | Description                                                                                                                                                                                       |
+| --------------------------------------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| isDisableAnimations                                       | boolean | Yes      | Whether animations should be disabled. When not set, defaults to the value of `isTesting`.                                                                                                        |
+| isTesting                                                 | boolean | No       |                                                                                                                                                                                                   |
+| reactNativeVersion                                        | object  | No       | Information about React Native version. Keys are `major`, `minor`, `patch` with optional `prerelease` and values are `number`s.                                                                   |
+| Version <div className="label android">Android</div>      | number  | No       | OS version constant specific to Android.                                                                                                                                                          |
+| Release <div className="label android">Android</div>      | string  | No       |                                                                                                                                                                                                   |
+| Serial <div className="label android">Android</div>       | string  | No       | Hardware serial number of an Android device.                                                                                                                                                      |
+| Fingerprint <div className="label android">Android</div>  | string  | No       | A string that uniquely identifies the build.                                                                                                                                                      |
+| Model <div className="label android">Android</div>        | string  | No       | The end-user-visible name for the Android device.                                                                                                                                                 |
+| Brand <div className="label android">Android</div>        | string  | No       | The consumer-visible brand with which the product/hardware will be associated.                                                                                                                    |
+| Manufacturer <div className="label android">Android</div> | string  | No       | The manufacturer of the Android device.                                                                                                                                                           |
+| ServerHost <div className="label android">Android</div>   | string  | Yes      |                                                                                                                                                                                                   |
+| uiMode <div className="label android">Android</div>       | string  | No       | Possible values are: `'car'`, `'desk'`, `'normal'`,`'tv'`, `'watch'` and `'unknown'`. Read more about [Android ModeType](https://developer.android.com/reference/android/app/UiModeManager.html). |
+| forceTouchAvailable <div className="label ios">iOS</div>  | boolean | No       | Indicate the availability of 3D Touch on a device.                                                                                                                                                |
+| interfaceIdiom <div className="label ios">iOS</div>       | string  | No       | The interface type for the device. Read more about [UIUserInterfaceIdiom](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom).                                                  |
+| osVersion <div className="label ios">iOS</div>            | string  | No       | OS version constant specific to iOS.                                                                                                                                                              |
+| systemName <div className="label ios">iOS</div>           | string  | No       | OS name constant specific to iOS.                                                                                                                                                                 |
+
+---
+
+### `isDisableAnimations`
+
+```tsx
+static isDisableAnimations: boolean;
+```
+
+Returns `true` when animations are turned off, usually during automated tests. Falls back to [`isTesting`](#istesting) if not set. On Android, it can be set with the `IS_DISABLE_ANIMATIONS` system property.
+
+| Type    |
+| ------- |
+| boolean |
 
 ---
 
@@ -99,7 +112,7 @@ Retorna um objeto que contém todas as constantes comuns e específicas disponí
 static isPad: boolean;
 ```
 
-Retorna um booleano que define se o dispositivo é um iPad.
+Returns a boolean which defines if device is an iPad.
 
 | Type    |
 | ------- |
@@ -113,7 +126,7 @@ Retorna um booleano que define se o dispositivo é um iPad.
 static isTV: boolean;
 ```
 
-Retorna um booleano que define se o dispositivo é uma TV.
+Returns a boolean which defines if device is a TV.
 
 | Type    |
 | ------- |
@@ -127,7 +140,7 @@ Retorna um booleano que define se o dispositivo é uma TV.
 static isVision: boolean;
 ```
 
-Retorna um booleano que define se o dispositivo é um Apple Vision. _Se você estiver usando [Apple Vision Pro (Designed for iPad)](https://developer.apple.com/documentation/visionos/determining-whether-to-bring-your-app-to-visionos), `isVision` será `false`, mas `isPad` será `true`_
+Returns a boolean which defines if device is an Apple Vision. _If you are using [Apple Vision Pro (Designed for iPad)](https://developer.apple.com/documentation/visionos/determining-whether-to-bring-your-app-to-visionos) `isVision` will be `false` but `isPad` will be `true`_
 
 | Type    |
 | ------- |
@@ -141,7 +154,7 @@ Retorna um booleano que define se o dispositivo é um Apple Vision. _Se você es
 static isTesting: boolean;
 ```
 
-Retorna um booleano que define se a aplicação está sendo executada no Developer Mode com a flag de testes ativada.
+Returns a boolean which defines if application is running in Developer Mode with testing flag set.
 
 | Type    |
 | ------- |
@@ -155,7 +168,7 @@ Retorna um booleano que define se a aplicação está sendo executada no Develop
 static OS: 'android' | 'ios';
 ```
 
-Retorna um valor string representando o SO atual.
+Returns string value representing the current OS.
 
 | Type                       |
 | -------------------------- |
@@ -169,13 +182,13 @@ Retorna um valor string representando o SO atual.
 static Version: 'number' | 'string';
 ```
 
-Retorna a versão do SO.
+Returns the version of the OS.
 
 | Type                                                                                                 |
 | ---------------------------------------------------------------------------------------------------- |
 | number <div className="label android">Android</div><hr />string <div className="label ios">iOS</div> |
 
-## Métodos
+## Methods
 
 ### `select()`
 
@@ -183,24 +196,24 @@ Retorna a versão do SO.
 static select(config: Record<string, T>): T;
 ```
 
-Retorna o valor mais adequado para a plataforma na qual você está executando atualmente.
+Returns the most fitting value for the platform you are currently running on.
 
-#### Parâmetros:
+#### Parameters:
 
-| Name   | Type   | Required | Description                           |
-| ------ | ------ | -------- | ------------------------------------- |
-| config | object | Yes      | Veja a descrição de config abaixo.    |
+| Name   | Type   | Required | Description                   |
+| ------ | ------ | -------- | ----------------------------- |
+| config | object | Yes      | See config description below. |
 
-O método select retorna o valor mais adequado para a plataforma na qual você está executando atualmente. Ou seja, se você estiver executando em um telefone, as chaves `android` e `ios` terão preferência. Se essas não forem especificadas, a chave `native` será usada e depois a chave `default`.
+Select method returns the most fitting value for the platform you are currently running on. That is, if you're running on a phone, `android` and `ios` keys will take preference. If those are not specified, `native` key will be used and then the `default` key.
 
-O parâmetro `config` é um objeto com as seguintes chaves:
+The `config` parameter is an object with the following keys:
 
 - `android` (any)
 - `ios` (any)
 - `native` (any)
 - `default` (any)
 
-**Exemplo de uso:**
+**Example usage:**
 
 ```tsx
 import {Platform, StyleSheet} from 'react-native';
@@ -224,9 +237,9 @@ const styles = StyleSheet.create({
 });
 ```
 
-Isso resultará em um container com `flex: 1` em todas as plataformas, uma cor de fundo verde no Android, uma cor de fundo vermelha no iOS e uma cor de fundo azul em outras plataformas.
+This will result in a container having `flex: 1` on all platforms, a green background color on Android, a red background color on iOS, and a blue background color on other platforms.
 
-Como o valor da chave da plataforma correspondente pode ser do tipo `any`, o método [`select`](platform.md#select) também pode ser usado para retornar componentes específicos de plataforma, como abaixo:
+Since the value of the corresponding platform key can be of type `any`, [`select`](platform.md#select) method can also be used to return platform-specific components, like below:
 
 ```tsx
 const Component = Platform.select({

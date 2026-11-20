@@ -133,11 +133,11 @@ Modifique o `package.json` da seguinte forma:
      "test": "jest"
    },
    "codegenConfig": {
-     "name": "AppSpecs",
+     "name": "NativeLocalStorageSpec",
      "type": "modules",
      "jsSrcsDir": "specs",
      "android": {
-       "javaPackageName": "com.sampleapp.specs"
+       "javaPackageName": "com.nativelocalstorage"
      },
      // highlight-add-start
      "ios": {
@@ -156,7 +156,7 @@ Neste ponto, você precisa reinstalar os pods para garantir que o codegen execut
 ```bash
 # from the ios folder
 bundle exec pod install
-open SampleApp.xcworkspace
+open TurboModuleExample.xcworkspace
 ```
 
 Se você agora compilar seu aplicativo a partir do Xcode, você deve conseguir compilar com sucesso.

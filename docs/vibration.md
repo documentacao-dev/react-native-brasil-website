@@ -9,7 +9,6 @@ Vibra o dispositivo.
 ## Example
 
 ```SnackPlayer name=Vibration%20Example&supportedPlatforms=ios,android
-import React from 'react';
 import {
   Button,
   Platform,

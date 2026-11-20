@@ -1,19 +1,17 @@
 ---
-ia-translated: true
 id: progressbarandroid
 title: '🗑️ ProgressBarAndroid'
 ---
 
-:::warning Descontinuado
-Use um dos [pacotes da comunidade](https://reactnative.directory/?search=progressbar) em vez disso.
+:::warning[Deprecated]
+Use one of the [community packages](https://reactnative.directory/?search=progressbar) instead.
 :::
 
-Componente React exclusivo para Android usado para indicar que o aplicativo está carregando ou há alguma atividade no aplicativo.
+Android-only React component used to indicate that the app is loading or there is some activity in the app.
 
-### Exemplo
+### Example
 
 ```SnackPlayer name=ProgressBarAndroid&supportedPlatforms=android
-import React from 'react';
 import {View, StyleSheet, ProgressBarAndroid, Text} from 'react-native';
 
 const App = () => {
@@ -21,15 +19,19 @@ const App = () => {
     <View style={styles.container}>
       <View style={styles.example}>
         <Text>Circle Progress Indicator</Text>
-        <ProgressBarAndroid />
+        <ProgressBarAndroid indeterminate styleAttr="Normal" />
       </View>
       <View style={styles.example}>
         <Text>Horizontal Progress Indicator</Text>
-        <ProgressBarAndroid styleAttr="Horizontal" />
+        <ProgressBarAndroid indeterminate styleAttr="Horizontal" />
       </View>
       <View style={styles.example}>
         <Text>Colored Progress Indicator</Text>
-        <ProgressBarAndroid styleAttr="Horizontal" color="#2196F3" />
+        <ProgressBarAndroid
+          indeterminate
+          styleAttr="Horizontal"
+          color="#2196F3"
+        />
       </View>
       <View style={styles.example}>
         <Text>Fixed Progress Value</Text>
@@ -59,74 +61,74 @@ export default App;
 
 ---
 
-# Referência
+# Reference
 
 ## Props
 
-Herda [View Props](view.md#props).
+Inherits [View Props](view.md#props).
 
 ### `animating`
 
-Se deve mostrar o ProgressBar (true, o padrão) ou ocultá-lo (false).
+Whether to show the ProgressBar (true, the default) or hide it (false).
 
-| Tipo | Obrigatório |
+| Type | Required |
 | ---- | -------- |
-| bool | Não       |
+| bool | No       |
 
 ---
 
 ### `color`
 
-Cor da barra de progresso.
+Color of the progress bar.
 
-| Tipo               | Obrigatório |
+| Type               | Required |
 | ------------------ | -------- |
-| [color](colors.md) | Não       |
+| [color](colors.md) | No       |
 
 ---
 
 ### `indeterminate`
 
-Se a barra de progresso mostrará progresso indeterminado. Note que isso só pode ser false se styleAttr for Horizontal, e requer um valor `progress`.
+If the progress bar will show indeterminate progress. Note that this can only be false if styleAttr is Horizontal, and requires a `progress` value.
 
-| Tipo              | Obrigatório |
+| Type              | Required |
 | ----------------- | -------- |
-| indeterminateType | Não       |
+| indeterminateType | No       |
 
 ---
 
 ### `progress`
 
-O valor de progresso (entre 0 e 1).
+The progress value (between 0 and 1).
 
-| Tipo   | Obrigatório |
+| Type   | Required |
 | ------ | -------- |
-| number | Não       |
+| number | No       |
 
 ---
 
 ### `styleAttr`
 
-Estilo do ProgressBar. Um de:
+Style of the ProgressBar. One of:
 
 - Horizontal
-- Normal (padrão)
+- Normal (default)
 - Small
 - Large
 - Inverse
 - SmallInverse
 - LargeInverse
 
-| Tipo                                                                                      | Obrigatório |
+| Type                                                                                      | Required |
 | ----------------------------------------------------------------------------------------- | -------- |
-| enum('Horizontal', 'Normal', 'Small', 'Large', 'Inverse', 'SmallInverse', 'LargeInverse') | Não       |
+| enum('Horizontal', 'Normal', 'Small', 'Large', 'Inverse', 'SmallInverse', 'LargeInverse') | No       |
 
 ---
 
 ### `testID`
 
-Usado para localizar esta view em testes end-to-end.
+Used to locate this view in end-to-end tests.
 
-| Tipo   | Obrigatório |
+| Type   | Required |
 | ------ | -------- |
-| string | Não       |
+| string | No       |
