@@ -60,65 +60,65 @@ Breakpoints são uma ferramenta fundamental em seu kit de debugging!
 
 ### Network <div className="label primary">Since 0.83</div>
 
-![A network request in the React Native DevTools Network panel](/docs/assets/debugging-rndt-network.jpg)
+![Uma requisição de rede no painel Network do React Native DevTools](/docs/assets/debugging-rndt-network.jpg)
 
-The Network panel allows you to view and inspect the network requests made by your app. Logged requests provide detailed metadata such as timings and headers sent/received, as well as response previews.
+O painel Network permite visualizar e inspecionar as requisições de rede feitas pelo seu app. As requisições registradas trazem metadados detalhados, como tempos e headers enviados e recebidos, além de prévias das respostas.
 
-Network requests are recorded automatically when DevTools is open. We support most features from Chrome, with some exceptions. See more below.
+As requisições são registradas automaticamente enquanto o DevTools está aberto. Oferecemos suporte à maioria dos recursos do Chrome, com algumas exceções. Veja mais abaixo.
 
 <details>
-<summary><strong>💡 Network event coverage, Expo support</strong></summary>
+<summary><strong>💡 Cobertura de eventos de rede, suporte ao Expo</strong></summary>
 
-**Which network events are captured?**
+**Quais eventos de rede são capturados?**
 
-Today, we record all network calls through `fetch()`, `XMLHttpRequest`, and `<Image>` — with support for custom networking libraries, such as Expo Fetch, coming later.
+Hoje, registramos todas as chamadas de rede feitas por `fetch()`, `XMLHttpRequest` e `<Image>`, com suporte a bibliotecas de rede customizadas, como o Expo Fetch, previsto para depois.
 
-**Expo Network differences**
+**Diferenças do Expo Network**
 
-Because of this, apps using Expo will continue to see the "Expo Network" panel — a separate implementation by the Expo framework which will log these additional request sources but has slightly reduced features.
+Por causa disso, apps que usam Expo continuarão vendo o painel "Expo Network", uma implementação separada do framework Expo que registra essas fontes de requisição adicionais, mas com alguns recursos ligeiramente reduzidos.
 
-- Coverage for Expo-specific network events.
-- No request initiator support.
-- No Performance panel integration.
+- Cobertura para eventos de rede específicos do Expo.
+- Sem suporte a initiator de requisições.
+- Sem integração com o painel Performance.
 
-We're working with Expo to integrate Expo Fetch and third party networking libraries with our new Network inspection pipeline in future releases.
+Estamos trabalhando com o Expo para integrar o Expo Fetch e bibliotecas de rede de terceiros ao nosso novo pipeline de inspeção de rede em versões futuras.
 
-**Unimplemented features**
+**Recursos não implementados**
 
-At launch, these are the features we don't yet support in React Native:
+No lançamento, estes são os recursos de rede que ainda não são suportados no React Native:
 
-- WebSocket events
-- Network response mocking
-- Simulated network throttling
+- Eventos de WebSocket
+- Mock de respostas de rede
+- Simulação de throttling de rede
 
 </details>
 
 <details>
-<summary><strong>💡 Response previews buffer size</strong></summary>
+<summary><strong>💡 Tamanho do buffer de prévias de respostas</strong></summary>
 
-If you are inspecting a large volume of response data, please note that response previews are cached in an on-device buffer with a maximum size of 100MB. This means we may evict response previews (but not metadata) if the cache becomes too large, oldest request first.
+Se você estiver inspecionando um grande volume de dados de resposta, saiba que as prévias de respostas são armazenadas em cache em um buffer no dispositivo, com tamanho máximo de 100MB. Isso significa que podemos descartar prévias de respostas (mas não os metadados) se o cache ficar grande demais, começando pela requisição mais antiga.
 
 </details>
 
-#### Useful tips
+#### Dicas úteis {#useful-tips}
 
-- Use the Initiator tab to see the call stack of where a network request was initiated in your app.
-- Network events will also be shown in the Network track in the Performance panel.
+- Use a aba Initiator para ver a call stack do ponto em que uma requisição de rede foi iniciada no seu app.
+- Eventos de rede também aparecem na faixa Network do painel Performance.
 
 ### Performance <div className="label primary">Since 0.83</div>
 
-![A performance trace in the React Native DevTools Performance panel](/docs/assets/debugging-rndt-performance.jpg)
+![Um trace de performance no painel Performance do React Native DevTools](/docs/assets/debugging-rndt-performance.jpg)
 
-Performance tracing allows you to record a performance session within your app to understand how your JavaScript code is running and what operations took the most time. In React Native, we show JavaScript execution, React Performance tracks, Network events, and custom [User Timings](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/User_timing), rendered in a single performance timeline.
+O rastreamento de performance permite gravar uma sessão de performance dentro do seu app, para entender como o seu código JavaScript está sendo executado e quais operações levaram mais tempo. No React Native, mostramos a execução de JavaScript, as faixas de performance do React, eventos de rede e [User Timings](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/User_timing) personalizados, tudo renderizado em uma única linha do tempo de performance.
 
-#### Useful tips
+#### Dicas úteis {#useful-tips}
 
-- Use [Annotations](https://developer.chrome.com/docs/devtools/performance/annotations) (shift-drag) to label and mark up a performance trace — useful before [downloading and sharing](https://developer.chrome.com/docs/devtools/performance/save-trace) a trace with a teammate. Annotations also provide a quick way to gauge time spans in **seconds**.
-- Use the [`PerformanceObserver` API](./global-PerformanceObserver.md) in your app to observe performance events at runtime — useful if you want to capture performance telemetry.
+- Use [Annotations](https://developer.chrome.com/docs/devtools/performance/annotations) (shift + arrastar) para rotular e marcar um trace de performance, o que é útil antes de [baixar e compartilhar](https://developer.chrome.com/docs/devtools/performance/save-trace) o trace com alguém da equipe. As anotações também oferecem uma forma rápida de medir intervalos de tempo em **segundos**.
+- Use a [API `PerformanceObserver`](./global-PerformanceObserver.md) no seu app para observar eventos de performance em tempo de execução, o que é útil se você quiser capturar telemetria de performance.
 
-#### Learn more
+#### Saiba mais {#learn-more}
 
-- [React Performance tracks](https://react.dev/reference/dev-tools/react-performance-tracks)
+- [Faixas de performance do React](https://react.dev/reference/dev-tools/react-performance-tracks)
 - [Performance APIs > User Timings | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/User_timing)
 - ["Debug Like a Senior — React Native Performance Panel" | Software Mansion](https://blog.swmansion.com/react-native-debugging-new-performance-panel-in-react-native-0-83-21ca90871f6d)
 

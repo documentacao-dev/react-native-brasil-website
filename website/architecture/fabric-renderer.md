@@ -8,7 +8,7 @@ Fabric é o novo sistema de renderização do React Native, uma evolução conce
 
 Esta documentação fornece uma visão geral do [novo renderizador](architecture-glossary.md#fabric-renderer) e seus conceitos. Ela evita especificidades de plataforma e não contém trechos de código ou ponteiros. Esta documentação cobre conceitos-chave, motivação, benefícios e uma visão geral do pipeline de renderização em diferentes cenários.
 
-## Motivações e Benefícios do novo renderizador
+## Motivações e Benefícios do novo renderizador {#motivations-and-benefits-of-the-new-renderer}
 
 A arquitetura de renderização foi criada para desbloquear melhores experiências de usuário que não eram possíveis com a arquitetura legada. Alguns exemplos incluem:
 
