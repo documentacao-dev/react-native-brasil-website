@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: button
 title: Button
 ---
 
-A basic button component that should render nicely on any platform. Supports a minimal level of customization.
+Um componente básico de botão que deve renderizar bem em qualquer plataforma. Suporta um nível mínimo de customização.
 
-If this button doesn't look right for your app, you can build your own button using [Pressable](pressable). For inspiration, look at the [source code for the Button component](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Components/Button.js).
+Se este botão não parecer adequado para seu aplicativo, você pode criar seu próprio botão usando [Pressable](pressable). Para inspiração, veja o [código-fonte do componente Button](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Components/Button.js).
 
 ```tsx
 <Button
@@ -16,7 +17,7 @@ If this button doesn't look right for your app, you can build your own button us
 />
 ```
 
-## Example
+## Exemplo {#example}
 
 ```SnackPlayer name=Button%20Example&ext=js
 import {StyleSheet, Button, View, Text, Alert, Platform} from 'react-native';
@@ -115,13 +116,13 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
 ## Props
 
 ### <div className="label required basic">Required</div>**`onPress`**
 
-Handler to be called when the user taps the button.
+Handler a ser chamado quando o usuário toca no botão.
 
 | Type                                           |
 | ---------------------------------------------- |
@@ -131,7 +132,7 @@ Handler to be called when the user taps the button.
 
 ### <div className="label required basic">Required</div>**`title`**
 
-Text to display inside the button. On Android the given title will be converted to the uppercased form.
+Texto a ser exibido dentro do botão. No Android, o título fornecido será convertido para maiúsculas.
 
 | Type   |
 | ------ |
@@ -141,7 +142,7 @@ Text to display inside the button. On Android the given title will be converted 
 
 ### `accessibilityLabel`
 
-Text to display for blindness accessibility features.
+Texto a ser exibido para recursos de acessibilidade para cegueira.
 
 | Type   |
 | ------ |
@@ -151,9 +152,9 @@ Text to display for blindness accessibility features.
 
 ### `accessibilityLanguage` <div className="label ios">iOS</div>
 
-A value indicating which language should be used by the screen reader when the user interacts with the element. It should follow the [BCP 47 specification](https://www.rfc-editor.org/info/bcp47/).
+Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interage com o elemento. Deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47/).
 
-See the [iOS `accessibilityLanguage` doc](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage) for more information.
+Veja a [documentação do `accessibilityLanguage` do iOS](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage) para mais informações.
 
 | Type   |
 | ------ |
@@ -163,9 +164,9 @@ See the [iOS `accessibilityLanguage` doc](https://developer.apple.com/documentat
 
 ### `accessibilityActions`
 
-Accessibility actions allow an assistive technology to programmatically invoke the actions of a component. The `accessibilityActions` property should contain a list of action objects. Each action object should contain the field name and label.
+As ações de acessibilidade permitem que uma tecnologia assistiva invoque programaticamente as ações de um componente. A propriedade `accessibilityActions` deve conter uma lista de objetos de ação. Cada objeto de ação deve conter os campos name e label.
 
-See the [Accessibility guide](accessibility.md#accessibility-actions) for more information.
+Veja o [guia de Acessibilidade](accessibility.md#accessibility-actions) para mais informações.
 
 | Type  | Required |
 | ----- | -------- |
@@ -175,9 +176,9 @@ See the [Accessibility guide](accessibility.md#accessibility-actions) for more i
 
 ### `onAccessibilityAction`
 
-Invoked when the user performs the accessibility actions. The only argument to this function is an event containing the name of the action to perform.
+Invocado quando o usuário executa as ações de acessibilidade. O único argumento desta função é um evento contendo o nome da ação a ser executada.
 
-See the [Accessibility guide](accessibility.md#accessibility-actions) for more information.
+Veja o [guia de Acessibilidade](accessibility.md#accessibility-actions) para mais informações.
 
 | Type     | Required |
 | -------- | -------- |
@@ -187,7 +188,7 @@ See the [Accessibility guide](accessibility.md#accessibility-actions) for more i
 
 ### `color`
 
-Color of the text (iOS), or background color of the button (Android).
+Cor do texto (iOS), ou cor de fundo do botão (Android).
 
 ```mdx-code-block
 export function ColorDefaults() {
@@ -211,7 +212,7 @@ export function ColorDefaults() {
 
 ### `disabled`
 
-If `true`, disable all interactions for this component.
+Se `true`, desabilita todas as interações para este componente.
 
 | Type | Default |
 | ---- | ------- |
@@ -221,7 +222,7 @@ If `true`, disable all interactions for this component.
 
 ### `nextFocusDown` <div className="label android">Android</div><div className="label tv">TV</div>
 
-Designates the next view to receive focus when the user navigates down. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusDown).
+Designa a próxima view a receber o foco quando o usuário navega para baixo. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusDown).
 
 | Type   |
 | ------ |
@@ -231,7 +232,7 @@ Designates the next view to receive focus when the user navigates down. See the 
 
 ### `nextFocusForward` <div className="label android">Android</div><div className="label tv">TV</div>
 
-Designates the next view to receive focus when the user navigates forward. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusForward).
+Designa a próxima view a receber o foco quando o usuário navega para frente. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusForward).
 
 | Type   |
 | ------ |
@@ -241,7 +242,7 @@ Designates the next view to receive focus when the user navigates forward. See t
 
 ### `nextFocusLeft` <div className="label android">Android</div><div className="label tv">TV</div>
 
-Designates the next view to receive focus when the user navigates left. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusLeft).
+Designa a próxima view a receber o foco quando o usuário navega para a esquerda. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusLeft).
 
 | Type   |
 | ------ |
@@ -251,7 +252,7 @@ Designates the next view to receive focus when the user navigates left. See the 
 
 ### `nextFocusRight` <div className="label android">Android</div><div className="label tv">TV</div>
 
-Designates the next view to receive focus when the user navigates right. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusRight).
+Designa a próxima view a receber o foco quando o usuário navega para a direita. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusRight).
 
 | Type   |
 | ------ |
@@ -261,7 +262,7 @@ Designates the next view to receive focus when the user navigates right. See the
 
 ### `nextFocusUp` <div className="label android">Android</div><div className="label tv">TV</div>
 
-Designates the next view to receive focus when the user navigates up. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusUp).
+Designa a próxima view a receber o foco quando o usuário navega para cima. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusUp).
 
 | Type   |
 | ------ |
@@ -271,7 +272,7 @@ Designates the next view to receive focus when the user navigates up. See the [A
 
 ### `testID`
 
-Used to locate this view in end-to-end tests.
+Usado para localizar esta view em testes end-to-end.
 
 | Type   |
 | ------ |
@@ -281,7 +282,7 @@ Used to locate this view in end-to-end tests.
 
 ### `touchSoundDisabled` <div className="label android">Android</div>
 
-If `true`, doesn't play system sound on touch.
+Se `true`, não reproduz o som do sistema ao tocar.
 
 | Type    | Default |
 | ------- | ------- |

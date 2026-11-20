@@ -1,9 +1,5 @@
-<<<<<<< pt
 <!-- ia-translated: true -->
-||||||| base_en
-=======
 import {getCoreBranchNameForCurrentVersion} from '@site/src/getCoreBranchNameForCurrentVersion';
->>>>>>> new_en
 import {getCurrentVersion} from '@site/src/getCurrentVersion';
 import CodeBlock from '@theme/CodeBlock';
 
@@ -21,13 +17,7 @@ Neste guia, vamos percorrer a criação de um módulo Turbo Native Module C++ pu
 4. Registrar o módulo na aplicação Android e iOS
 5. Testar suas alterações em JS
 
-<<<<<<< pt
 O restante deste guia assume que você criou sua aplicação executando o comando:
-||||||| base_en
-The rest of this guide assume that you have created your application running the command:
-=======
-The rest of this guide assumes that you have created your application running the command:
->>>>>>> new_en
 
 <CodeBlock language="bash" title="shell">
 {`npx @react-native-community/cli@latest init SampleApp --version "${getCurrentVersion()}"`}
@@ -83,13 +73,7 @@ export default TurboModuleRegistry.getEnforcing<Spec>(
 
 ## 2. Configurar o Codegen
 
-<<<<<<< pt
-O próximo passo é configurar o [Codegen](what-is-codegen.md) no seu `package.json`. Atualize o arquivo para incluir:
-||||||| base_en
-The next step is to configure [Codegen](what-is-codegen.md) in your `package.json`. Update the file to include:
-=======
-The next step is to configure [Codegen](what-is-codegen.mdx) in your `package.json`. Update the file to include:
->>>>>>> new_en
+O próximo passo é configurar o [Codegen](what-is-codegen.mdx) no seu `package.json`. Atualize o arquivo para incluir:
 
 ```json title="package.json"
      "start": "react-native start",
@@ -112,13 +96,7 @@ Esta configuração diz ao Codegen para procurar arquivos spec na pasta `specs`.
 
 ## 3. Escrever o Código Nativo
 
-<<<<<<< pt
 Escrever um módulo Turbo Native Module C++ permite que você compartilhe o código entre Android e iOS. Portanto, vamos escrever o código uma vez e veremos quais mudanças precisamos aplicar às plataformas para que o código C++ possa ser utilizado.
-||||||| base_en
-Writing a C++ Turbo Native Module allows you to share the code between Android an iOS. Therefore we will be writing the code once, and we will look into what changes we need to apply to the platforms so that the C++ code can be picked up.
-=======
-Writing a C++ Turbo Native Module allows you to share the code between Android and iOS. Therefore we will be writing the code once, and we will look into what changes we need to apply to the platforms so that the C++ code can be picked up.
->>>>>>> new_en
 
 1. Crie uma pasta chamada `shared` no mesmo nível das pastas `android` e `ios`.
 2. Dentro da pasta `shared`, crie um novo arquivo chamado `NativeSampleModule.h`.
@@ -218,16 +196,8 @@ O arquivo CMake faz as seguintes coisas:
 
 Gradle é a ferramenta que orquestra a compilação do Android. Precisamos dizer a ele onde pode encontrar os arquivos `CMake` para compilar o Turbo Native Module.
 
-<<<<<<< pt
 1. Abra o arquivo `SampleApp/android/app/build.gradle`.
 2. Adicione o seguinte bloco ao arquivo Gradle, dentro do bloco `android` existente:
-||||||| base_en
-1. Open the `SampleApp/android/app/build.gradle` file.
-2. Add the following block into the Gradle file, within the existent `android` block:
-=======
-1. Open the `SampleApp/android/app/build.gradle` file.
-2. Add the following block into the Gradle file, within the existing `android` block:
->>>>>>> new_en
 
 ```diff title="android/app/build.gradle"
     buildTypes {
@@ -362,28 +332,12 @@ O ModuleProvider é um Objective-C++ que cola o módulo C++ puro com o resto do 
 
 ##### 3.1 Criar o ModuleProvider
 
-<<<<<<< pt
 1. Do Xcode, selecione o projeto `SampleApp` e pressione <kbd>⌘</kbd> + <kbd>N</kbd> para criar um novo arquivo.
 2. Selecione o template `Cocoa Touch Class`
-3. Adicione o nome `SampleNativeModuleProvider` (mantenha os outros campos como `Subclass of: NSObject` e `Language: Objective-C`)
+3. Adicione o nome `NativeSampleModuleProvider` (mantenha os outros campos como `Subclass of: NSObject` e `Language: Objective-C`)
 4. Clique em Next para gerar os arquivos.
-5. Renomeie o `SampleNativeModuleProvider.m` para `SampleNativeModuleProvider.mm`. A extensão `mm` denota um arquivo Objective-C++.
-6. Implemente o conteúdo do `SampleNativeModuleProvider.h` com o seguinte:
-||||||| base_en
-1. From Xcode, select the `SampleApp` project and press <kbd>⌘</kbd> + <kbd>N</kbd> to create a new file.
-2. Select the `Cocoa Touch Class` template
-3. Add the name `SampleNativeModuleProvider` (keep the other field as `Subclass of: NSObject` and `Language: Objective-C`)
-4. Click Next to generate the files.
-5. Rename the `SampleNativeModuleProvider.m` to `SampleNativeModuleProvider.mm`. The `mm` extension denotes an Objective-C++ file.
-6. Implement the content of the `SampleNativeModuleProvider.h` with the following:
-=======
-1. From Xcode, select the `SampleApp` project and press <kbd>⌘</kbd> + <kbd>N</kbd> to create a new file.
-2. Select the `Cocoa Touch Class` template
-3. Add the name `NativeSampleModuleProvider` (keep the other field as `Subclass of: NSObject` and `Language: Objective-C`)
-4. Click Next to generate the files.
-5. Rename the `NativeSampleModuleProvider.m` to `NativeSampleModuleProvider.mm`. The `mm` extension denotes an Objective-C++ file.
-6. Implement the content of the `NativeSampleModuleProvider.h` with the following:
->>>>>>> new_en
+5. Renomeie o `NativeSampleModuleProvider.m` para `NativeSampleModuleProvider.mm`. A extensão `mm` denota um arquivo Objective-C++.
+6. Implemente o conteúdo do `NativeSampleModuleProvider.h` com o seguinte:
 
 ```objc title="NativeSampleModuleProvider.h"
 
@@ -401,13 +355,7 @@ NS_ASSUME_NONNULL_END
 
 Isso declara um objeto `NativeSampleModuleProvider` que está em conformidade com o protocolo `RCTModuleProvider`.
 
-<<<<<<< pt
-7. Implemente o conteúdo do `SampleNativeModuleProvider.mm` com o seguinte:
-||||||| base_en
-7. Implement the content of the `SampleNativeModuleProvider.mm` with the following:
-=======
-7. Implement the content of the `NativeSampleModuleProvider.mm` with the following:
->>>>>>> new_en
+7. Implemente o conteúdo do `NativeSampleModuleProvider.mm` com o seguinte:
 
 ```objc title="NativeSampleModuleProvider.mm"
 
@@ -431,13 +379,7 @@ Este código implementa o protocolo `RCTModuleProvider` criando o `NativeSampleM
 
 ##### 3.2 Atualizar o package.json
 
-<<<<<<< pt
 O último passo consiste em atualizar o `package.json` para dizer ao React Native sobre o link entre as specs JS do Native Module e a implementação concreta dessas specs no código nativo.
-||||||| base_en
-The last step consist in updating the `package.json` to tell React Native about the link between the JS specs of the Native Module and the concrete implementation of those spec in native code.
-=======
-The last step consists in updating the `package.json` to tell React Native about the link between the JS specs of the Native Module and the concrete implementation of those spec in native code.
->>>>>>> new_en
 
 Modifique o `package.json` da seguinte forma:
 

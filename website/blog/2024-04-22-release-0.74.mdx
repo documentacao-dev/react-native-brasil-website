@@ -1,50 +1,51 @@
 ---
-title: 'React Native 0.74 - Yoga 3.0, Bridgeless New Architecture, and more'
+ia-translated: true
+title: 'React Native 0.74 - Yoga 3.0, Bridgeless New Architecture e mais'
 authors: [hurali, alanjhughes, alfonsocj, huntie, cortinico]
 tags: [announcement, release, yoga]
 date: 2024-04-22
 ---
 
-Today we're releasing React Native 0.74! This release adds Yoga 3.0, Bridgeless by default under the New Architecture, batched `onLayout` updates (New Architecture), and Yarn 3 as the default package manager for new projects.
+Hoje estamos lançando o React Native 0.74! Esta versão adiciona Yoga 3.0, Bridgeless por padrão na New Architecture, atualizações de `onLayout` em lote (New Architecture) e Yarn 3 como gerenciador de pacotes padrão para novos projetos.
 
-We are also removing deprecated APIs, with the removal of `PropTypes` and breaking changes to `PushNotificationIOS`. On Android, SDK 23 (Android 6.0) is now the minimum supported version.
+Também estamos removendo APIs descontinuadas, com a remoção de `PropTypes` e mudanças incompatíveis no `PushNotificationIOS`. No Android, SDK 23 (Android 6.0) é agora a versão mínima suportada.
 
-### Highlights
+### Destaques
 
 - [Yoga 3.0](/blog/2024/04/22/release-0.74#yoga-30)
-- [New Architecture: Bridgeless by Default](/blog/2024/04/22/release-0.74#new-architecture-bridgeless-by-default)
-- [New Architecture: Batched `onLayout` Updates](/blog/2024/04/22/release-0.74#new-architecture-batched-onlayout-updates)
-- [Yarn 3 for New Projects](/blog/2024/04/22/release-0.74#yarn-3-for-new-projects)
+- [New Architecture: Bridgeless por Padrão](/blog/2024/04/22/release-0.74#new-architecture-bridgeless-by-default)
+- [New Architecture: Atualizações de `onLayout` em Lote](/blog/2024/04/22/release-0.74#new-architecture-batched-onlayout-updates)
+- [Yarn 3 para Novos Projetos](/blog/2024/04/22/release-0.74#yarn-3-for-new-projects)
 
-### Breaking Changes
+### Mudanças Incompatíveis
 
-- [Android Minimum SDK Bump (Android 6.0)](/blog/2024/04/22/release-0.74#android-minimum-sdk-bump-android-60)
-- [API Changes to PushNotificationIOS (Deprecated)](/blog/2024/04/22/release-0.74#api-changes-to-pushnotificationios-deprecated)
-- [Removal of Deprecated `PropTypes`](/blog/2024/04/22/release-0.74#removal-of-deprecated-proptypes)
-- [Removal of Flipper React Native Plugin](/blog/2024/04/22/release-0.74#removal-of-flipper-react-native-plugin)
-- [Other Breaking Changes](/blog/2024/04/22/release-0.74#other-breaking-changes)
+- [Aumento do SDK Mínimo do Android (Android 6.0)](/blog/2024/04/22/release-0.74#android-minimum-sdk-bump-android-60)
+- [Mudanças na API do PushNotificationIOS (Descontinuado)](/blog/2024/04/22/release-0.74#api-changes-to-pushnotificationios-deprecated)
+- [Remoção de `PropTypes` Descontinuados](/blog/2024/04/22/release-0.74#removal-of-deprecated-proptypes)
+- [Remoção do Plugin React Native do Flipper](/blog/2024/04/22/release-0.74#removal-of-flipper-react-native-plugin)
+- [Outras Mudanças Incompatíveis](/blog/2024/04/22/release-0.74#other-breaking-changes)
 
 {/* truncate */}
 
-## Highlights
+## Destaques
 
 ### Yoga 3.0
 
-#### New Layout Behaviors
+#### Novos Comportamentos de Layout
 
-React Native 0.74 includes [Yoga 3.0](https://yogalayout.dev/blog/announcing-yoga-3.0), the newest version of our layout engine. Yoga 3.0 improves layout by making styling more predictable, and supports rendering components written for the web.
+O React Native 0.74 inclui [Yoga 3.0](https://yogalayout.dev/blog/announcing-yoga-3.0), a versão mais recente do nosso mecanismo de layout. O Yoga 3.0 melhora o layout tornando a estilização mais previsível e suporta a renderização de componentes escritos para a web.
 
-React Native continues to intentionally preserve some incorrect layout behaviors, where fixing them was found to effect a significant number of real-world components. Layout conformance will be able to be configured more granularly in future versions of React Native.
+O React Native continua a preservar intencionalmente alguns comportamentos incorretos de layout, onde corrigi-los afetaria um número significativo de componentes do mundo real. A conformidade de layout poderá ser configurada de forma mais granular em versões futuras do React Native.
 
 :::warning
 
-React Native [previously flipped](https://yogalayout.dev/blog/announcing-yoga-3.0#correct-handling-of-logical-edges-in-row-reverse-containers) `left`/`right` (and `start`/`end`) edges when dealing with `margin`, `padding`, or `border`, set on a `row-reverse` container. Now, behavior of these properties lines up with web. Code which previously relied on edges being inverted may need to be updated to continue rendering correctly.
+O React Native [anteriormente invertia](https://yogalayout.dev/blog/announcing-yoga-3.0#correct-handling-of-logical-edges-in-row-reverse-containers) as bordas `left`/`right` (e `start`/`end`) ao lidar com `margin`, `padding` ou `border`, definidos em um container `row-reverse`. Agora, o comportamento dessas propriedades se alinha com a web. Código que anteriormente dependia de bordas invertidas pode precisar ser atualizado para continuar renderizando corretamente.
 
 <table>
 <tr>
   <th>Style</th>
-  <th>Before</th>
-  <th>After</th>
+  <th>Antes</th>
+  <th>Depois</th>
 </tr>
 <tr>
 <td width="350">
@@ -93,31 +94,31 @@ React Native [previously flipped](https://yogalayout.dev/blog/announcing-yoga-3.
 
 :::
 
-#### Support for `align-content: 'space-evenly'`
+#### Suporte para `align-content: 'space-evenly'`
 
-Yoga 3.0 brings support for [`alignContent: 'space-evenly'`](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content#space-evenly). `space-evenly` distributes the lines in a multi-line flex container using evenly spaced gaps, placed between line and container edges.
+O Yoga 3.0 traz suporte para [`alignContent: 'space-evenly'`](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content#space-evenly). `space-evenly` distribui as linhas em um container flex multi-linha usando espaçamentos uniformes, colocados entre a linha e as bordas do container.
 
 <figure>
   <img
-    alt="Visual reference for alignContent behaviors"
+    alt="Referência visual para comportamentos de alignContent"
     src="/blog/assets/0.74-align-content.png"
     width="360"
   />
   <figcaption>
     <small>
-      Source: [World Wide Web
+      Fonte: [World Wide Web
       Consortium](https://www.w3.org/TR/css-align-3/#distribution-values)
     </small>
   </figcaption>
 </figure>
 
-#### Support for `position: 'static'`
+#### Suporte para `position: 'static'`
 
 :::info
-`position: 'static'` is supported only in the New Architecture.
+`position: 'static'` é suportado apenas na New Architecture.
 :::
 
-Elements marked as [`position: 'static'`](https://developer.mozilla.org/en-US/docs/Web/CSS/position#static) may not be offset, and are not considered when determining the [containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block) of an absolutely positioned element. This allows positioning an element relative to an ancestor which is not its direct parent.
+Elementos marcados como [`position: 'static'`](https://developer.mozilla.org/en-US/docs/Web/CSS/position#static) não podem ser deslocados e não são considerados ao determinar o [bloco contêiner](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block) de um elemento posicionado absolutamente. Isso permite posicionar um elemento relativo a um ancestral que não é seu pai direto.
 
 <table>
 <tr>
@@ -161,21 +162,21 @@ Elements marked as [`position: 'static'`](https://developer.mozilla.org/en-US/do
 </tr>
 </table>
 
-Notice how the green `<View>` declares `left` and `top` and it is positioned relative to the blue `<View>`, not its parent.
+Observe como o `<View>` verde declara `left` e `top` e é posicionado em relação ao `<View>` azul, não ao seu pai.
 
-React Native continues to default to `position: 'relative'` when no `position` is set.
+O React Native continua a usar `position: 'relative'` por padrão quando nenhuma `position` é definida.
 
-### New Architecture: Bridgeless by Default
+### New Architecture: Bridgeless por Padrão
 
-In this release, we are making Bridgeless Mode the default when the New Architecture is enabled. You can learn more about our switch to Bridgeless as the default in [this post](https://github.com/reactwg/react-native-new-architecture/discussions/174). To make the transition smoother we enhanced the interop layers to cover Bridgeless and worked with several libraries to make sure they will work in Bridgeless from day one.
+Nesta versão, estamos tornando o Bridgeless Mode o padrão quando a New Architecture está habilitada. Você pode aprender mais sobre nossa mudança para Bridgeless como padrão em [este post](https://github.com/reactwg/react-native-new-architecture/discussions/174). Para tornar a transição mais suave, aprimoramos as camadas de interoperabilidade para cobrir Bridgeless e trabalhamos com várias bibliotecas para garantir que funcionarão em Bridgeless desde o primeiro dia.
 
-Bridgeless is not the only interop layer we worked on: we improved the New Renderer Interop layers too. The most exciting bit is that it is now enabled by default: you don't need to specify the components that have to go through it! You can read more about them [here](https://github.com/reactwg/react-native-new-architecture/discussions/175).
+Bridgeless não é a única camada de interoperabilidade em que trabalhamos: melhoramos as camadas de interoperabilidade do New Renderer também. A parte mais empolgante é que agora está habilitada por padrão: você não precisa especificar os componentes que devem passar por ela! Você pode ler mais sobre elas [aqui](https://github.com/reactwg/react-native-new-architecture/discussions/175).
 
-Finally, if you want to learn more about the New Architecture, you can find documentation in the [react-native-new-architecture](https://github.com/reactwg/react-native-new-architecture/tree/main/docs) repo. When the New Architecture becomes the default, this information will be incorporated into [reactnative.dev](https://reactnative.dev).
+Finalmente, se você quiser aprender mais sobre a New Architecture, pode encontrar documentação no repositório [react-native-new-architecture](https://github.com/reactwg/react-native-new-architecture/tree/main/docs). Quando a New Architecture se tornar o padrão, essas informações serão incorporadas ao [reactnative.dev](https://reactnative.dev).
 
-### New Architecture: Batched `onLayout` updates
+### New Architecture: Atualizações de `onLayout` em Lote
 
-State updates in `onLayout` callbacks are now batched. Previously, each state update in the `onLayout` event would result in a new render commit.
+Atualizações de state em callbacks `onLayout` agora são processadas em lote. Anteriormente, cada atualização de state no evento `onLayout` resultaria em um novo commit de renderização.
 
 ```jsx
 function MyComponent(props) {
@@ -199,17 +200,17 @@ function MyComponent(props) {
 }
 ```
 
-In 0.74, `setState1` and `setState2` updates are batched together. This change is [expected behavior in React](https://react.dev/learn/queueing-a-series-of-state-updates#react-batches-state-updates) and allows for less re-renders.
+Na versão 0.74, as atualizações de `setState1` e `setState2` são processadas em lote juntas. Esta mudança é o [comportamento esperado no React](https://react.dev/learn/queueing-a-series-of-state-updates#react-batches-state-updates) e permite menos re-renderizações.
 
 :::danger
-This change **may break code** that has relied on un-batched state updates. You'll need to refactor this code to use [updater functions](https://react.dev/learn/queueing-a-series-of-state-updates#updating-the-same-state-multiple-times-before-the-next-render) or equivalent.
+Esta mudança **pode quebrar código** que dependia de atualizações de state não processadas em lote. Você precisará refatorar este código para usar [funções atualizadoras](https://react.dev/learn/queueing-a-series-of-state-updates#updating-the-same-state-multiple-times-before-the-next-render) ou equivalente.
 :::
 
-### Yarn 3 for New Projects
+### Yarn 3 para Novos Projetos
 
-[Yarn 3](https://yarnpkg.com/blog/release/3.0) is now the default JavaScript package manager for new projects initialized with React Native Community CLI.
+[Yarn 3](https://yarnpkg.com/blog/release/3.0) agora é o gerenciador de pacotes JavaScript padrão para novos projetos inicializados com React Native Community CLI.
 
-Yarn 3.x will be used with `nodeLinker: node-modules`, a mode providing compatibility with React Native libraries. This replaces Yarn Classic (1.x, deprecated) as the previous default. To upgrade Yarn version inside your existing app you can follow this [guide](https://yarnpkg.com/migration/guide).
+O Yarn 3.x será usado com `nodeLinker: node-modules`, um modo que fornece compatibilidade com bibliotecas React Native. Isso substitui o Yarn Classic (1.x, descontinuado) como padrão anterior. Para atualizar a versão do Yarn dentro do seu aplicativo existente, você pode seguir este [guia](https://yarnpkg.com/migration/guide).
 
 ```sh
 $ yarn --help
@@ -218,54 +219,54 @@ $ yarn --help
   $ yarn <command>
 ```
 
-The Community CLI also supports initializing projects with other package managers via the `--pm` flag ([read more](https://github.com/react-native-community/cli/blob/main/docs/init.md)).
+O Community CLI também suporta a inicialização de projetos com outros gerenciadores de pacotes via flag `--pm` ([leia mais](https://github.com/react-native-community/cli/blob/main/docs/init.md)).
 
-## Breaking Changes
+## Mudanças Incompatíveis
 
-### Android Minimum SDK Bump (Android 6.0)
+### Aumento do SDK Mínimo do Android (Android 6.0)
 
-React Native 0.74 has a minimum Android SDK version requirement of 23 (Android 6.0). Previously, this was Android 5.0 (API 21). See our context for this change [here](https://github.com/react-native-community/discussions-and-proposals/discussions/740).
+O React Native 0.74 tem um requisito de versão mínima do Android SDK de 23 (Android 6.0). Anteriormente, era Android 5.0 (API 21). Veja nosso contexto para esta mudança [aqui](https://github.com/react-native-community/discussions-and-proposals/discussions/740).
 
-#### Bonus: Android app size reduction
+#### Bônus: Redução do tamanho do aplicativo Android
 
-The minimum SDK bump, together with several improvements at our native build, allowed us to greatly reduce the app size on user devices.
+O aumento do SDK mínimo, juntamente com várias melhorias em nossa build nativa, nos permitiu reduzir bastante o tamanho do aplicativo nos dispositivos dos usuários.
 
-For example a newly created app with React Native 0.74 occupies ~13% less space on user device, resulting in ~4MB saved on device.
+Por exemplo, um aplicativo recém-criado com React Native 0.74 ocupa ~13% menos espaço no dispositivo do usuário, resultando em ~4MB economizados no dispositivo.
 
-![Side-by-side comparison of a new React Native app in the Android system storage view](/blog/assets/0.74-android-app-size.jpg)
+![Comparação lado a lado de um novo aplicativo React Native na visualização de armazenamento do sistema Android](/blog/assets/0.74-android-app-size.jpg)
 
-### Removal of Deprecated `PropTypes`
+### Remoção de `PropTypes` Descontinuados
 
-Before 0.74, React Native continued to ship with `PropTypes`, an API that has been deprecated since React 15.5 in 2017! We are now removing all built-in `PropTypes` from React Native, reducing app size (26.4kB in a minified bundle) and memory overhead.
+Antes da versão 0.74, o React Native continuava a incluir `PropTypes`, uma API que foi descontinuada desde o React 15.5 em 2017! Agora estamos removendo todos os `PropTypes` integrados do React Native, reduzindo o tamanho do aplicativo (26.4kB em um bundle minificado) e a sobrecarga de memória.
 
-The following `PropTypes` properties are removed: `Image.propTypes`, `Text.propTypes`, `TextInput.propTypes`, `ColorPropType`, `EdgeInsetsPropType`, `PointPropType`, `ViewPropTypes` (see [commit](https://github.com/facebook/react-native/commit/228cb80af9ded20107f3c7a30ffe00e24471bfeb)).
+As seguintes propriedades `PropTypes` foram removidas: `Image.propTypes`, `Text.propTypes`, `TextInput.propTypes`, `ColorPropType`, `EdgeInsetsPropType`, `PointPropType`, `ViewPropTypes` (veja [commit](https://github.com/facebook/react-native/commit/228cb80af9ded20107f3c7a30ffe00e24471bfeb)).
 
-If your app or library relies on `PropTypes`, we highly recommend migrating to a type system like TypeScript.
+Se seu aplicativo ou biblioteca depende de `PropTypes`, recomendamos fortemente migrar para um sistema de tipos como TypeScript.
 
-### API Changes to PushNotificationIOS (Deprecated)
+### Mudanças na API do PushNotificationIOS (Descontinuado)
 
-In React Native 0.74, we are making steps to remove the deprecated [PushNotificationIOS](https://reactnative.dev/docs/pushnotificationios) library. The changes in this release are focused on removing references to older iOS APIs. PushNotificationIOS has been migrated onto Apple’s [User Notifications](https://developer.apple.com/documentation/usernotifications?language=objc) framework and exposes new APIs for scheduling and handling notifications.
+No React Native 0.74, estamos tomando medidas para remover a biblioteca descontinuada [PushNotificationIOS](https://reactnative.dev/docs/pushnotificationios). As mudanças nesta versão estão focadas em remover referências a APIs antigas do iOS. O PushNotificationIOS foi migrado para o framework [User Notifications](https://developer.apple.com/documentation/usernotifications?language=objc) da Apple e expõe novas APIs para agendar e lidar com notificações.
 
-In the next release (0.75), we are planning to **remove this library**, relocating it out of React Native core and into the community package, [@react-native-community/push-notification-ios](https://github.com/react-native-push-notification/ios). If you are still relying on PushNotificationIOS, you’ll need to migrate over before the next release.
+Na próxima versão (0.75), estamos planejando **remover esta biblioteca**, realocando-a para fora do core do React Native e para o pacote da comunidade, [@react-native-community/push-notification-ios](https://github.com/react-native-push-notification/ios). Se você ainda depende do PushNotificationIOS, precisará migrar antes da próxima versão.
 
-#### API Changes
+#### Mudanças na API
 
-The `didRegisterUserNotificationSettings:` callback on `RCTPushNotificationManager` was a no-op and has been deleted.
+O callback `didRegisterUserNotificationSettings:` no `RCTPushNotificationManager` era um no-op e foi excluído.
 
-The following callbacks on `RCTPushNotificationManager` have been deprecated and will be removed in 0.75:
+Os seguintes callbacks no `RCTPushNotificationManager` foram descontinuados e serão removidos na versão 0.75:
 
 ```objectivec
 + (void)didReceiveLocalNotification:(UILocalNotification *)notification;
 + (void)didReceiveRemoteNotification:(NSDictionary *)notification;
 ```
 
-In order to retrieve the notification which launched the app using `getInitialNotification()`, you’ll now need to explicitly set the `initialNotification` on `RCTPushNotificationManager`:
+Para recuperar a notificação que iniciou o aplicativo usando `getInitialNotification()`, agora você precisará definir explicitamente a `initialNotification` no `RCTPushNotificationManager`:
 
 ```objectivec
 [RCTPushNotificationManager setInitialNotification:response.notification];
 ```
 
-On the JS side, properties on `Notification` have changed. `alertAction` and `repeatInterval` are now deprecated and will be removed in 0.75:
+No lado JS, as propriedades em `Notification` foram alteradas. `alertAction` e `repeatInterval` agora estão descontinuados e serão removidos na versão 0.75:
 
 ```js
 type Notification = {
@@ -286,14 +287,14 @@ type Notification = {
 };
 ```
 
-Finally, the `handler` parameter on `PushNotificationIOS.removeEventListener` is unused and has been removed.
+Finalmente, o parâmetro `handler` no `PushNotificationIOS.removeEventListener` não é usado e foi removido.
 
 <details>
-<summary>**💡 How to Migrate**</summary>
+<summary>**💡 Como Migrar**</summary>
 
 #### iOS
 
-Your `AppDelegate` will need to implement `UNUserNotificationCenterDelegate`. This should be done on app startup in `application:willFinishLaunchingWithOptions:` or `application:didFinishLaunchingWithOptions:` (see [Apple Docs](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate?language=objc) for more details).
+Seu `AppDelegate` precisará implementar `UNUserNotificationCenterDelegate`. Isso deve ser feito na inicialização do aplicativo em `application:willFinishLaunchingWithOptions:` ou `application:didFinishLaunchingWithOptions:` (veja [Apple Docs](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate?language=objc) para mais detalhes).
 
 ```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -306,7 +307,7 @@ Your `AppDelegate` will need to implement `UNUserNotificationCenterDelegate`. Th
 }
 ```
 
-Implement <code>[userNotificationCenter:willPresentNotification:withCompletionHandler:](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/1649518-usernotificationcenter?language=objc)</code>, which is called when a notification arrives and the app is in the <em>foreground</em>. Use the <code>completionHandler</code> to determine if the notification will be shown to the user and notify <code>RCTPushNotificationManager</code> accordingly:
+Implemente <code>[userNotificationCenter:willPresentNotification:withCompletionHandler:](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/1649518-usernotificationcenter?language=objc)</code>, que é chamado quando uma notificação chega e o aplicativo está em <em>primeiro plano</em>. Use o <code>completionHandler</code> para determinar se a notificação será mostrada ao usuário e notifique o <code>RCTPushNotificationManager</code> adequadamente:
 
 ```objectivec
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
@@ -320,9 +321,9 @@ Implement <code>[userNotificationCenter:willPresentNotification:withCompletionHa
 }
 ```
 
-To handle when a notification is tapped, implement <code>[userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/1649501-usernotificationcenter?language=objc)</code>. Note that if you set foreground notifications to be shown in <code>userNotificationCenter:willPresentNotification:withCompletionHandler:</code>, you should only notify <code>RCTPushNotificationManager</code> in one of these callbacks.
+Para lidar quando uma notificação é tocada, implemente <code>[userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/1649501-usernotificationcenter?language=objc)</code>. Observe que se você configurar notificações em primeiro plano para serem mostradas em <code>userNotificationCenter:willPresentNotification:withCompletionHandler:</code>, você deve notificar o <code>RCTPushNotificationManager</code> em apenas um desses callbacks.
 
-If the tapped notification resulted in app launch, call `setInitialNotification:`. If the notification was not previously handled by `userNotificationCenter:willPresentNotification:withCompletionHandler:`, call `didReceiveNotification:` as well:
+Se a notificação tocada resultou no lançamento do aplicativo, chame `setInitialNotification:`. Se a notificação não foi previamente tratada por `userNotificationCenter:willPresentNotification:withCompletionHandler:`, chame `didReceiveNotification:` também:
 
 ```objectivec
 - (void)  userNotificationCenter:(UNUserNotificationCenter *)center
@@ -340,7 +341,7 @@ If the tapped notification resulted in app launch, call `setInitialNotification:
 }
 ```
 
-Finally, delete the following methods and adapt the logic into the callbacks above which will be called instead:
+Finalmente, exclua os seguintes métodos e adapte a lógica nos callbacks acima que serão chamados em seu lugar:
 
 1. <code>
      [application:didReceiveLocalNotification:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622930-application?language=objc)
@@ -353,103 +354,103 @@ Finally, delete the following methods and adapt the logic into the callbacks abo
 3. <code>
      [application:didReceiveRemoteNotification:fetchCompletionHandler:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application?language=objc)
    </code>
-   [not deprecated, but is superseded by the
-   <code>UNUserNotificationCenterDelegate</code> methods]
+   [não descontinuado, mas é substituído pelos métodos
+   <code>UNUserNotificationCenterDelegate</code>]
 
-Delete any usages of <code>[application:didRegisterUserNotificationSettings:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623022-application?language=objc)</code> and <code>RCTPushNotificationManager</code>’s corresponding <code>didRegisterUserNotificationSettings:</code> as well.
+Exclua quaisquer usos de <code>[application:didRegisterUserNotificationSettings:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623022-application?language=objc)</code> e o correspondente <code>didRegisterUserNotificationSettings:</code> do <code>RCTPushNotificationManager</code> também.
 
-**Example:** See the RNTester <code>[AppDelegate.mm](https://github.com/facebook/react-native/blob/main/packages/rn-tester/RNTester/AppDelegate.mm)</code>.
+**Exemplo:** Veja o <code>[AppDelegate.mm](https://github.com/facebook/react-native/blob/main/packages/rn-tester/RNTester/AppDelegate.mm)</code> do RNTester.
 
 #### JS
 
-1. Remove any references to `alertAction`.
-2. Remove the `handler` argument on any calls to `removeEventListener`.
-3. Replace any usages of `repeatInterval` by firing multiple notifications using `fireDate` or `fireIntervalSeconds` instead.
-4. Note that `soundName` will be null when it is accessed on a `Notification` returned from `getScheduledLocalNotifications()` and `getDeliveredNotifications()`.
+1. Remova quaisquer referências a `alertAction`.
+2. Remova o argumento `handler` de quaisquer chamadas para `removeEventListener`.
+3. Substitua quaisquer usos de `repeatInterval` disparando múltiplas notificações usando `fireDate` ou `fireIntervalSeconds` em vez disso.
+4. Observe que `soundName` será null quando for acessado em uma `Notification` retornada de `getScheduledLocalNotifications()` e `getDeliveredNotifications()`.
 
 </details>
 
-### Removal of Flipper React Native Plugin
+### Remoção do Plugin React Native do Flipper
 
-Use of [Flipper](https://fbflipper.com/) for inspecting React Native layouts, network requests, and [other React Native plugin features](https://fbflipper.com/docs/features/react-native/), is now unsupported. In 0.74, we have removed the native Flipper libraries and setup code from new React Native projects. This means fewer dependencies and quicker local setup (see [original RFC](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0641-decoupling-flipper-from-react-native-core.md)).
+O uso de [Flipper](https://fbflipper.com/) para inspecionar layouts do React Native, requisições de rede e [outros recursos de plugin do React Native](https://fbflipper.com/docs/features/react-native/), agora não é mais suportado. Na versão 0.74, removemos as bibliotecas nativas do Flipper e o código de configuração de novos projetos React Native. Isso significa menos dependências e configuração local mais rápida (veja [RFC original](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0641-decoupling-flipper-from-react-native-core.md)).
 
-The diff for removing Flipper in your app can be seen in the [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/). If you want to preserve Flipper in an existing app, ignore the relevant diff lines.
+O diff para remover o Flipper do seu aplicativo pode ser visto no [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/). Se você quiser preservar o Flipper em um aplicativo existente, ignore as linhas de diff relevantes.
 
 <details>
-<summary>**💡 To re-integrate Flipper**</summary>
+<summary>**💡 Para reintegrar o Flipper**</summary>
 
-Flipper can still be used as a standalone tool for debugging an Android or iOS app, and can be manually integrated by following the Flipper docs ([Android guide](https://fbflipper.com/docs/getting-started/android-native/), [iOS guide](https://fbflipper.com/docs/getting-started/ios-native/)).
+O Flipper ainda pode ser usado como uma ferramenta autônoma para depurar um aplicativo Android ou iOS, e pode ser integrado manualmente seguindo a documentação do Flipper ([guia Android](https://fbflipper.com/docs/getting-started/android-native/), [guia iOS](https://fbflipper.com/docs/getting-started/ios-native/)).
 
-We recommend that teams invest in switching to native debugging tooling in Android Studio and Xcode.
+Recomendamos que as equipes invistam em migrar para ferramentas de depuração nativas no Android Studio e Xcode.
 
 </details>
 
 :::tip
 
-#### Replacing Flipper
+#### Substituindo o Flipper
 
-There are a number of dedicated debugging tools which replace Flipper features. For more information, we recommend reading the excellent [_Why you don't need Flipper in your React Native app_](https://shift.infinite.red/why-you-dont-need-flipper-in-your-react-native-app-and-how-to-get-by-without-it-3af461955109) article by Jamon Holmgren.
+Existem várias ferramentas de depuração dedicadas que substituem os recursos do Flipper. Para mais informações, recomendamos ler o excelente artigo [_Why you don't need Flipper in your React Native app_](https://shift.infinite.red/why-you-dont-need-flipper-in-your-react-native-app-and-how-to-get-by-without-it-3af461955109) de Jamon Holmgren.
 
 :::
 
 #### JavaScript debugging
 
-Using the [Hermes Debugger](https://reactnative.dev/docs/debugging?js-debugger=hermes#opening-the-debugger) remains our recommended debugging option for 0.74. You can also try the [Experimental New Debugger](https://reactnative.dev/docs/debugging?js-debugger=new-debugger#opening-the-debugger), which is also the default in Expo. This continues to be an early preview — known issues and updates can be followed [here](https://github.com/react-native-community/discussions-and-proposals/discussions/733).
+Usar o [Hermes Debugger](https://reactnative.dev/docs/debugging?js-debugger=hermes#opening-the-debugger) continua sendo nossa opção de depuração recomendada para 0.74. Você também pode experimentar o [Experimental New Debugger](https://reactnative.dev/docs/debugging?js-debugger=new-debugger#opening-the-debugger), que também é o padrão no Expo. Isso continua sendo uma prévia inicial — problemas conhecidos e atualizações podem ser acompanhados [aqui](https://github.com/react-native-community/discussions-and-proposals/discussions/733).
 
-### Other Breaking Changes
+### Outras Mudanças Incompatíveis
 
-**General**
+**Geral**
 
-- Make `start`/`end` in styles always refer to writing direction ([#42251](https://github.com/facebook/react-native/pull/42251)).
+- Fazer `start`/`end` em estilos sempre se referirem à direção de escrita ([#42251](https://github.com/facebook/react-native/pull/42251)).
 
 **Android**
 
-- Remove of `JSIModule*` from `FabricUIManagerProvider` ([#42059](https://github.com/facebook/react-native/pull/42059)).
-  - This API was unused in open source — use [TurboModules](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/turbo-modules.md) instead.
-- Deprecate `UIManagerModule.showPopupMenu` and `UIManagerModule.dismissPopupMenu` ([#42441](https://github.com/facebook/react-native/pull/42441))
-  - This API has been moved to the [`@react-native/popup-menu-android`](https://www.npmjs.com/package/@react-native/popup-menu-android) npm package and will be removed in 0.75.
+- Remoção de `JSIModule*` de `FabricUIManagerProvider` ([#42059](https://github.com/facebook/react-native/pull/42059)).
+  - Esta API não estava sendo usada em código aberto — use [TurboModules](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/turbo-modules.md) em vez disso.
+- Descontinuar `UIManagerModule.showPopupMenu` e `UIManagerModule.dismissPopupMenu` ([#42441](https://github.com/facebook/react-native/pull/42441))
+  - Esta API foi movida para o pacote npm [`@react-native/popup-menu-android`](https://www.npmjs.com/package/@react-native/popup-menu-android) e será removida na versão 0.75.
 
 **iOS**
 
-- Delete `configFilename` and `configKey` arguments from iOS codegen CLI ([#41533](https://github.com/facebook/react-native/pull/41533)).
-- Change how [`bundleURL`](https://github.com/facebook/react-native/blob/0.74-stable/packages/react-native/template/ios/HelloWorld/AppDelegate.mm#L22-L29) is handled ([#43994](https://github.com/facebook/react-native/pull/43994)).
-  - Before, `bundleURL` was set when React Native was started in an instance variable and it was not possible to update it.
-  - Now, [`bundleUrl` is a function](https://github.com/facebook/react-native/blob/0.74-stable/packages/react-native/template/ios/HelloWorld/AppDelegate.mm#L22-L29) which is re-evaluated when needed, enabling the use of a different URL across refreshes.
-  - This change will affect your app only if you were changing the `bundleURL` variable after the app is started. In this case, move the logic that updates the variable to the [`bundleURL` function](https://github.com/facebook/react-native/blob/0.74-stable/packages/react-native/template/ios/HelloWorld/AppDelegate.mm#L22-L29) in `AppDelegate`.
+- Excluir argumentos `configFilename` e `configKey` da CLI de codegen do iOS ([#41533](https://github.com/facebook/react-native/pull/41533)).
+- Mudar como [`bundleURL`](https://github.com/facebook/react-native/blob/0.74-stable/packages/react-native/template/ios/HelloWorld/AppDelegate.mm#L22-L29) é tratado ([#43994](https://github.com/facebook/react-native/pull/43994)).
+  - Antes, `bundleURL` era definido quando o React Native era iniciado em uma variável de instância e não era possível atualizá-lo.
+  - Agora, [`bundleUrl` é uma função](https://github.com/facebook/react-native/blob/0.74-stable/packages/react-native/template/ios/HelloWorld/AppDelegate.mm#L22-L29) que é reavaliada quando necessário, permitindo o uso de uma URL diferente entre atualizações.
+  - Esta mudança afetará seu aplicativo apenas se você estava alterando a variável `bundleURL` após o aplicativo ser iniciado. Neste caso, mova a lógica que atualiza a variável para a [função `bundleURL`](https://github.com/facebook/react-native/blob/0.74-stable/packages/react-native/template/ios/HelloWorld/AppDelegate.mm#L22-L29) no `AppDelegate`.
 
-Please see the [full changelog](https://github.com/facebook/react-native/blob/main/CHANGELOG.md) for a complete list of breaking changes.
+Por favor, veja o [changelog completo](https://github.com/facebook/react-native/blob/main/CHANGELOG.md) para uma lista completa de mudanças incompatíveis.
 
-## Known Issues
+## Problemas Conhecidos
 
 **iOS**
 
-- Edge case when using multiple windows: When the main window is inactive and the system tries to present a dialog, the dialog is not presented in the right position on the screen. A fix is incoming in [#44167](https://github.com/facebook/react-native/pull/44167) and will ship in 0.74.1.
+- Caso extremo ao usar múltiplas janelas: Quando a janela principal está inativa e o sistema tenta apresentar um diálogo, o diálogo não é apresentado na posição correta na tela. Uma correção está a caminho em [#44167](https://github.com/facebook/react-native/pull/44167) e será lançada na versão 0.74.1.
 
-## Acknowledgements
+## Agradecimentos
 
-React Native 0.74 contains over [1673 commits](https://github.com/facebook/react-native/compare/v0.73.6...v0.74.0) from 57 contributors. Thanks for all your hard work!
+O React Native 0.74 contém mais de [1673 commits](https://github.com/facebook/react-native/compare/v0.73.6...v0.74.0) de 57 contribuidores. Obrigado por todo o trabalho árduo!
 
-Thanks to all the additional authors that worked on documenting features in this release post:
+Agradecimentos a todos os autores adicionais que trabalharam na documentação dos recursos neste post de lançamento:
 
-- [Nick Gerleman](https://github.com/NickGerleman) for _Yoga 3.0_
-- [Joe Vilches](https://github.com/joevilches) for _Yoga 3.0_
-- [Riccardo Cipolleschi](https://twitter.com/CipolleschiR) for _New Architecture: Bridgeless by Default_
-- [Samuel Susla](https://twitter.com/SamuelSusla) for _New Architecture: Batched `onLayout` updates_
-- [Tim Yung](https://twitter.com/yungsters) for _Removal of Deprecated `PropTypes`_
-- [Ingrid Wang](https://github.com/ingridwang) for _API Changes to PushNotificationIOS (Deprecated)_
+- [Nick Gerleman](https://github.com/NickGerleman) por _Yoga 3.0_
+- [Joe Vilches](https://github.com/joevilches) por _Yoga 3.0_
+- [Riccardo Cipolleschi](https://twitter.com/CipolleschiR) por _New Architecture: Bridgeless por Padrão_
+- [Samuel Susla](https://twitter.com/SamuelSusla) por _New Architecture: Atualizações de `onLayout` em Lote_
+- [Tim Yung](https://twitter.com/yungsters) por _Remoção de `PropTypes` Descontinuados_
+- [Ingrid Wang](https://github.com/ingridwang) por _Mudanças na API do PushNotificationIOS (Descontinuado)_
 
-## Upgrade to 0.74
+## Atualize para 0.74
 
-Please use the [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) to view code changes between React Native versions for existing projects, in addition to the [Upgrading docs](/docs/upgrading).
+Por favor, use o [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) para visualizar as mudanças de código entre versões do React Native para projetos existentes, além da [documentação de Atualização](/docs/upgrading).
 
-To create a new project:
+Para criar um novo projeto:
 
 ```sh
 npx react-native@latest init MyProject
 ```
 
-If you use Expo, React Native 0.74 will be supported in Expo SDK 51.
+Se você usa Expo, o React Native 0.74 será suportado no Expo SDK 51.
 
 :::info
-0.74 is now the latest stable version of React Native and **0.71.x moves to unsupported**. For more information see [React Native's support policy](https://github.com/reactwg/react-native-releases#releases-support-policy). We aim to publish a final end-of-life update of 0.71 at the beginning of May.
+0.74 é agora a versão estável mais recente do React Native e **0.71.x passa a não ter suporte**. Para mais informações, veja [política de suporte do React Native](https://github.com/reactwg/react-native-releases#releases-support-policy). Nosso objetivo é publicar uma atualização final de fim de vida da versão 0.71 no início de maio.
 :::

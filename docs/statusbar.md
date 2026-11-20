@@ -1,15 +1,16 @@
 ---
+ia-translated: true
 id: statusbar
 title: StatusBar
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Component to control the app's status bar. The status bar is the zone, typically at the top of the screen, that displays the current time, Wi-Fi and cellular network information, battery level and/or other status icons.
+Componente para controlar a status bar do aplicativo. A status bar é a zona, tipicamente no topo da tela, que exibe a hora atual, informações de rede Wi-Fi e celular, nível de bateria e/ou outros ícones de status.
 
-### Usage with Navigator
+### Uso com Navigator {#usage-with-navigator}
 
-It is possible to have multiple `StatusBar` components mounted at the same time. The props will be merged in the order the `StatusBar` components were mounted.
+É possível ter múltiplos componentes `StatusBar` montados ao mesmo tempo. As props serão mescladas na ordem em que os componentes `StatusBar` foram montados.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -231,19 +232,19 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Imperative API
+### API Imperativa {#imperative-api}
 
-For cases where using a component is not ideal, there is also an imperative API exposed as static functions on the component. It is however not recommended to use the static API and the component for the same prop because any value set by the static API will get overridden by the one set by the component in the next render.
+Para casos onde usar um componente não é ideal, também existe uma API imperativa exposta como funções estáticas no componente. No entanto, não é recomendado usar a API estática e o componente para a mesma prop porque qualquer valor definido pela API estática será sobrescrito pelo definido pelo componente na próxima renderização.
 
 ---
 
-# Reference
+# Referência
 
 ## Constants
 
 ### `currentHeight` <div className="label android">Android</div>
 
-The height of the status bar, which includes the notch height, if present.
+A altura da status bar, que inclui a altura do notch, se presente.
 
 ---
 
@@ -251,41 +252,41 @@ The height of the status bar, which includes the notch height, if present.
 
 ### `animated`
 
-If the transition between status bar property changes should be animated. Supported for `barStyle` and `hidden` properties.
+Se a transição entre as mudanças de propriedades da status bar deve ser animada. Suportado para as propriedades `barStyle` e `hidden`.
 
-| Type    | Required | Default |
-| ------- | -------- | ------- |
-| boolean | No       | `false` |
+| Tipo    | Obrigatório | Padrão  |
+| ------- | ----------- | ------- |
+| boolean | Não         | `false` |
 
 ---
 
 ### `barStyle`
 
-Sets the color of the status bar text.
+Define a cor do texto da status bar.
 
-On Android, this will only have an impact on API versions 23 and above.
+No Android, isso só terá impacto nas versões de API 23 e superiores.
 
-| Type                                       | Required | Default     |
-| ------------------------------------------ | -------- | ----------- |
-| [StatusBarStyle](statusbar#statusbarstyle) | No       | `'default'` |
+| Tipo                                       | Obrigatório | Padrão      |
+| ------------------------------------------ | ----------- | ----------- |
+| [StatusBarStyle](statusbar#statusbarstyle) | Não         | `'default'` |
 
 ---
 
 ### `hidden`
 
-If the status bar is hidden.
+Se a status bar está oculta.
 
-| Type    | Required | Default |
-| ------- | -------- | ------- |
-| boolean | No       | `false` |
+| Tipo    | Obrigatório | Padrão  |
+| ------- | ----------- | ------- |
+| boolean | Não         | `false` |
 
 ---
 
 ### `showHideTransition` <div className="label ios">iOS</div>
 
-The transition effect when showing and hiding the status bar using the `hidden` prop.
+O efeito de transição ao mostrar e ocultar a status bar usando a prop `hidden`.
 
-| Type                                               | Default  |
+| Tipo                                               | Padrão   |
 | -------------------------------------------------- | -------- |
 | [StatusBarAnimation](statusbar#statusbaranimation) | `'fade'` |
 
@@ -297,13 +298,13 @@ The transition effect when showing and hiding the status bar using the `hidden` 
 static popStackEntry(entry: StatusBarProps);
 ```
 
-Get and remove the last StatusBar entry from the stack.
+Obtém e remove a última entrada de StatusBar da pilha.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name                                                       | Type | Description                           |
-| ---------------------------------------------------------- | ---- | ------------------------------------- |
-| entry <div className="label basic required">Required</div> | any  | Entry returned from `pushStackEntry`. |
+| Nome                                                       | Tipo | Descrição                                 |
+| ---------------------------------------------------------- | ---- | ----------------------------------------- |
+| entry <div className="label basic required">Required</div> | any  | Entrada retornada de `pushStackEntry`.    |
 
 ---
 
@@ -313,13 +314,13 @@ Get and remove the last StatusBar entry from the stack.
 static pushStackEntry(props: StatusBarProps): StatusBarProps;
 ```
 
-Push a StatusBar entry onto the stack. The return value should be passed to `popStackEntry` when complete.
+Adiciona uma entrada de StatusBar na pilha. O valor de retorno deve ser passado para `popStackEntry` quando concluído.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name                                                       | Type | Description                                                      |
-| ---------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
-| props <div className="label basic required">Required</div> | any  | Object containing the StatusBar props to use in the stack entry. |
+| Nome                                                       | Tipo | Descrição                                                                  |
+| ---------------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
+| props <div className="label basic required">Required</div> | any  | Objeto contendo as props de StatusBar para usar na entrada da pilha.      |
 
 ---
 
@@ -332,14 +333,14 @@ static replaceStackEntry(
 ): StatusBarProps;
 ```
 
-Replace an existing StatusBar stack entry with new props.
+Substitui uma entrada de pilha de StatusBar existente por novas props.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name                                                       | Type | Description                                                                  |
-| ---------------------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| entry <div className="label basic required">Required</div> | any  | Entry returned from `pushStackEntry` to replace.                             |
-| props <div className="label basic required">Required</div> | any  | Object containing the StatusBar props to use in the replacement stack entry. |
+| Nome                                                       | Tipo | Descrição                                                                                |
+| ---------------------------------------------------------- | ---- | ---------------------------------------------------------------------------------------- |
+| entry <div className="label basic required">Required</div> | any  | Entrada retornada de `pushStackEntry` para substituir.                                   |
+| props <div className="label basic required">Required</div> | any  | Objeto contendo as props de StatusBar para usar na entrada de pilha de substituição.    |
 
 ---
 
@@ -349,14 +350,14 @@ Replace an existing StatusBar stack entry with new props.
 static setBarStyle(style: StatusBarStyle, animated?: boolean);
 ```
 
-Set the status bar style.
+Define o estilo da status bar.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name                                                       | Type                                       | Description               |
-| ---------------------------------------------------------- | ------------------------------------------ | ------------------------- |
-| style <div className="label basic required">Required</div> | [StatusBarStyle](statusbar#statusbarstyle) | Status bar style to set.  |
-| animated                                                   | boolean                                    | Animate the style change. |
+| Nome                                                       | Tipo                                       | Descrição                       |
+| ---------------------------------------------------------- | ------------------------------------------ | ------------------------------- |
+| style <div className="label basic required">Required</div> | [StatusBarStyle](statusbar#statusbarstyle) | Estilo de status bar a definir. |
+| animated                                                   | boolean                                    | Animar a mudança de estilo.     |
 
 ---
 
@@ -366,14 +367,14 @@ Set the status bar style.
 static setHidden(hidden: boolean, animation?: StatusBarAnimation);
 ```
 
-Show or hide the status bar.
+Mostra ou oculta a status bar.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name                                                        | Type                                               | Description                                             |
-| ----------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------- |
-| hidden <div className="label basic required">Required</div> | boolean                                            | Hide the status bar.                                    |
-| animation <div className="label ios">iOS</div>              | [StatusBarAnimation](statusbar#statusbaranimation) | Animation when changing the status bar hidden property. |
+| Nome                                                        | Tipo                                               | Descrição                                                      |
+| ----------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------- |
+| hidden <div className="label basic required">Required</div> | boolean                                            | Ocultar a status bar.                                          |
+| animation <div className="label ios">iOS</div>              | [StatusBarAnimation](statusbar#statusbaranimation) | Animação ao mudar a propriedade hidden da status bar.          |
 
 ---
 
@@ -381,35 +382,35 @@ Show or hide the status bar.
 
 ### StatusBarAnimation
 
-Status bar animation type for transitions on the iOS.
+Tipo de animação de status bar para transições no iOS.
 
-| Type |
+| Tipo |
 | ---- |
 | enum |
 
 **Constants:**
 
-| Value     | Type   | Description     |
+| Valor     | Tipo   | Descrição       |
 | --------- | ------ | --------------- |
-| `'fade'`  | string | Fade animation  |
-| `'slide'` | string | Slide animation |
-| `'none'`  | string | No animation    |
+| `'fade'`  | string | Animação fade   |
+| `'slide'` | string | Animação slide  |
+| `'none'`  | string | Sem animação    |
 
 ---
 
 ### StatusBarStyle
 
-Status bar style type.
+Tipo de estilo de status bar.
 
-| Type |
+| Tipo |
 | ---- |
 | enum |
 
 **Constants:**
 
-| Value             | Type   | Description                                                                                                                         |
-| ----------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `'default'`       | string | Default status bar style (light for Android, dark for iOS)                                                                          |
-| `'auto'`          | string | Automatically picks `light-content` or `dark-content` based on the current color scheme. Updates whenever the color scheme changes. |
-| `'light-content'` | string | White texts and icons                                                                                                               |
-| `'dark-content'`  | string | Dark texts and icons (requires API>=23 on Android)                                                                                  |
+| Valor             | Tipo   | Descrição                                                                                                                  |
+| ----------------- | ------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `'default'`       | string | Estilo de status bar padrão (claro para Android, escuro para iOS)                                                          |
+| `'auto'`          | string | Escolhe automaticamente `light-content` ou `dark-content` conforme o esquema de cores atual. Atualiza sempre que o esquema de cores muda. |
+| `'light-content'` | string | Textos e ícones brancos                                                                                                    |
+| `'dark-content'`  | string | Textos e ícones escuros (requer API>=23 no Android)                                                                        |
