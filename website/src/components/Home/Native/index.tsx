@@ -24,10 +24,11 @@ function Native() {
         description={
           <>
             React Native permite que você crie aplicativos verdadeiramente
-            nativos e não compromete a experiência dos seus usuários. Ele fornece um conjunto
-            central de componentes nativos agnósticos de plataforma como <code>View</code>,{' '}
-            <code>Text</code> e <code>Image</code> que mapeiam diretamente para os
-            blocos de construção de UI nativos da plataforma.
+            nativos e não compromete a experiência dos seus usuários. Ele
+            fornece um conjunto central de componentes nativos agnósticos de
+            plataforma como <code>View</code>, <code>Text</code> e{' '}
+            <code>Image</code> que mapeiam diretamente para os blocos de
+            construção de UI nativos da plataforma.
           </>
         }
       />

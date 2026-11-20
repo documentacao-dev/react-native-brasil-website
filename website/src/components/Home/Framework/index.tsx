@@ -24,10 +24,10 @@ function Framework() {
         title="Comece com vantagem com um framework"
         description={
           <>
-            React Native traz o paradigma de programação React para plataformas como
-            Android e iOS. Ele não prescreve como fazer roteamento, ou como
-            acessar cada uma das inúmeras APIs de plataforma. Para construir um novo aplicativo com
-            React Native, recomendamos um framework como{' '}
+            React Native traz o paradigma de programação React para plataformas
+            como Android e iOS. Ele não prescreve como fazer roteamento, ou como
+            acessar cada uma das inúmeras APIs de plataforma. Para construir um
+            novo aplicativo com React Native, recomendamos um framework como{' '}
             <a href="https://expo.dev">Expo</a>.
           </>
         }
@@ -45,8 +45,8 @@ function Framework() {
           <div className={styles.cardContent}>
             <h4 className={styles.cardTitle}>Roteamento baseado em arquivos</h4>
             <p className={styles.cardDescription}>
-              Crie telas em pilha, modal, gaveta e abas com o mínimo
-              de código boilerplate usando seu sistema de arquivos.
+              Crie telas em pilha, modal, gaveta e abas com o mínimo de código
+              boilerplate usando seu sistema de arquivos.
             </p>
           </div>
         </div>
@@ -64,8 +64,8 @@ function Framework() {
               Use qualquer biblioteca, SDK ou código nativo
             </h4>
             <p className={styles.cardDescription}>
-              Gere alterações nativas ou escreva seu próprio código nativo. Use mais de 50
-              módulos para criar seu aplicativo.
+              Gere alterações nativas ou escreva seu próprio código nativo. Use
+              mais de 50 módulos para criar seu aplicativo.
             </p>
           </div>
         </div>
@@ -82,8 +82,8 @@ function Framework() {
             <h4 className={styles.cardTitle}>Ferramentas de desenvolvedor</h4>
             <p className={styles.cardDescription}>
               Comece rapidamente com Expo Go, depois continue com
-              expo-dev-client: um módulo que adiciona as ferramentas do Expo a aplicativos que
-              requerem alterações nativas.
+              expo-dev-client: um módulo que adiciona as ferramentas do Expo a
+              aplicativos que requerem alterações nativas.
             </p>
           </div>
         </div>

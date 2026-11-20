@@ -5,6 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {readdirSync, readFileSync} from 'node:fs';
+import path from 'node:path';
+
 import {defineConfig, globalIgnores} from 'eslint/config';
 import globals from 'globals';
 
@@ -18,7 +21,29 @@ import eslintPluginYml from 'eslint-plugin-yml';
 import eslintTs from 'typescript-eslint';
 import eslintPluginAlex from 'eslint-plugin-alex';
 
+// React Native Brasil: títulos traduzidos levam `{#id}` (âncoras do inglês).
+// O Docusaurus aceita isso (`markdown.mdx1Compat.headingIds`), mas o parser MDX
+// do ESLint não, então esses `.mdx` ficam fora do lint.
+const mdxComIdNoTitulo = [];
+(function varrer(dir) {
+  for (const e of readdirSync(dir, {withFileTypes: true})) {
+    if (['node_modules', '.git', '.docusaurus', 'build'].includes(e.name)) {
+      continue;
+    }
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) {
+      varrer(p);
+    } else if (
+      p.endsWith('.mdx') &&
+      /^#{1,6} .*\{#[^}]+\}\s*$/m.test(readFileSync(p, 'utf8'))
+    ) {
+      mdxComIdNoTitulo.push(path.relative('.', p));
+    }
+  }
+})('.');
+
 export default defineConfig([
+  globalIgnores(mdxComIdNoTitulo),
   globalIgnores([
     '**/.yarn',
     '**/node_modules',

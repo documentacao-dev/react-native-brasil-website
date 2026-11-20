@@ -118,9 +118,10 @@ const Showcase = () => {
             Quem está usando <span>React Native</span>?
           </h1>
           <p>
-            Milhares de apps estão usando React Native, desde empresas estabelecidas da Fortune
-            500 até startups promissoras. Se você está curioso para ver o que
-            pode ser realizado com React Native, confira esses apps!
+            Milhares de apps estão usando React Native, desde empresas
+            estabelecidas da Fortune 500 até startups promissoras. Se você está
+            curioso para ver o que pode ser realizado com React Native, confira
+            esses apps!
           </p>
         </div>
       </Section>
@@ -138,8 +139,8 @@ const Showcase = () => {
           </h2>
           <p className="showcaseSectionDescription">
             React Native está moldando experiências mobile, web e desktop dentro
-            do ecossistema de produtos da Meta, do Facebook Marketplace, Messenger
-            Desktop, Ads Manager ao app Meta Quest e muitos outros.
+            do ecossistema de produtos da Meta, do Facebook Marketplace,
+            Messenger Desktop, Ads Manager ao app Meta Quest e muitos outros.
           </p>
           <div className="logos">
             {meta.map((app, i) => (
@@ -159,11 +160,12 @@ const Showcase = () => {
             />
           </h2>
           <p className="showcaseSectionDescription">
-            A Microsoft aproveita o poder do React Native para entregar excelentes
-            experiências ao cliente em alguns de seus apps mais conhecidos.
-            <br />
-            A Microsoft não para apenas nas plataformas mobile -- a Microsoft
-            aproveita React Native para atingir desktop também! Saiba mais no{' '}
+            A Microsoft aproveita o poder do React Native para entregar
+            excelentes experiências ao cliente em alguns de seus apps mais
+            conhecidos.
+            <br />A Microsoft não para apenas nas plataformas mobile -- a
+            Microsoft aproveita React Native para atingir desktop também! Saiba
+            mais no{' '}
             <a
               href="https://microsoft.github.io/react-native-windows/resources-showcase"
               target="_blank">
@@ -189,10 +191,11 @@ const Showcase = () => {
             />
           </h2>
           <p className="showcaseSectionDescription">
-            A Amazon usou React Native para entregar rapidamente novos recursos voltados ao cliente
-            em alguns de seus aplicativos mobile mais populares desde
-            2016. A Amazon também usa React Native para dar suporte a dispositivos favoritos dos clientes
-            como os leitores digitais Kindle.
+            A Amazon usou React Native para entregar rapidamente novos recursos
+            voltados ao cliente em alguns de seus aplicativos mobile mais
+            populares desde 2016. A Amazon também usa React Native para dar
+            suporte a dispositivos favoritos dos clientes como os leitores
+            digitais Kindle.
           </p>
           <div className="logos">
             {amazon.map((app, i) => (
@@ -212,10 +215,10 @@ const Showcase = () => {
             />
           </h2>
           <p className="showcaseSectionDescription">
-            Com uma das maiores bases de código React Native do mundo, a Wix
-            tem um longo histórico com a comunidade de desenvolvimento e mantém uma
-            variedade de projetos de código aberto. A Wix é uma das primeiras a adotar React
-            Native e o usa para todo seu conjunto de aplicações.
+            Com uma das maiores bases de código React Native do mundo, a Wix tem
+            um longo histórico com a comunidade de desenvolvimento e mantém uma
+            variedade de projetos de código aberto. A Wix é uma das primeiras a
+            adotar React Native e o usa para todo seu conjunto de aplicações.
           </p>
           <div className="logos">
             {wix.map((app, i) => (

@@ -34,9 +34,8 @@ function Watch() {
             React Native.
             <br />
             Acompanhe as novidades no{' '}
-            <a href="https://bsky.app/profile/reactnative.dev">
-              Bluesky
-            </a> e no <a href="https://x.com/reactnative">X</a>.
+            <a href="https://bsky.app/profile/reactnative.dev">Bluesky</a> e no{' '}
+            <a href="https://x.com/reactnative">X</a>.
           </>
         }
       />

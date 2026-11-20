@@ -93,7 +93,9 @@ const Versions = () => {
             <p>
               Antes de cada versão estável, o React Native publica uma série de
               release candidates. Saiba mais sobre os{' '}
-              <a href="/releases/overview#release-channels">canais de release</a>
+              <a href="/releases/overview#release-channels">
+                canais de release
+              </a>
               .
             </p>
             <div className="table-wrapper">
