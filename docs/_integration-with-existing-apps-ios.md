@@ -8,7 +8,7 @@ import CodeBlock from '@theme/CodeBlock';
 import RNTemplateRepoLink from '@site/core/RNTemplateRepoLink';
 import {getTemplateBranchNameForCurrentVersion} from '@site/src/getTemplateBranchNameForCurrentVersion';
 
-## Conceitos Chave
+## Conceitos Chave {#key-concepts}
 
 As chaves para integrar componentes React Native em sua aplicação iOS são:
 
@@ -19,20 +19,20 @@ As chaves para integrar componentes React Native em sua aplicação iOS são:
 5. Integrar React Native com seu código iOS usando um `RCTRootView`.
 6. Testar sua integração executando o bundler e vendo sua aplicação em ação.
 
-## Usando o Template da Comunidade
+## Usando o Template da Comunidade {#using-the-community-template}
 
 Enquanto você segue este guia, sugerimos que use o [React Native Community Template](https://github.com/react-native-community/template/) como referência. O template contém uma **aplicação iOS mínima** e ajudará você a entender como integrar React Native em uma aplicação iOS existente.
 
-## Pré-requisitos
+## Pré-requisitos {#prerequisites}
 
 Siga o guia sobre [configurar seu ambiente de desenvolvimento](set-up-your-environment) e usar [React Native sem um framework](getting-started-without-a-framework) para configurar seu ambiente de desenvolvimento para construir aplicações React Native para iOS.
 Este guia também assume que você está familiarizado com os conceitos básicos de desenvolvimento iOS, como criar um `UIViewController` e editar o arquivo `Podfile`.
 
-### 1. Configurar a estrutura de diretórios
+### 1. Configurar a estrutura de diretórios {#1-set-up-directory-structure}
 
 Para garantir uma experiência suave, crie uma nova pasta para seu projeto React Native integrado e então **mova seu projeto iOS existente** para a subpasta `/ios`.
 
-## 2. Instalar dependências NPM
+## 2. Instalar dependências NPM {#2-install-npm-dependencies}
 
 Vá para o diretório raiz e execute o seguinte comando:
 
@@ -65,9 +65,9 @@ O processo de instalação criou uma nova pasta `node_modules`. Esta pasta armaz
 
 Adicione `node_modules/` ao seu arquivo `.gitignore` (aqui está o <RNTemplateRepoLink href="template/_gitignore">padrão da Comunidade</RNTemplateRepoLink>).
 
-### 3. Instalar ferramentas de desenvolvimento
+### 3. Instalar ferramentas de desenvolvimento {#3-install-development-tools}
 
-### Command Line Tools para Xcode
+### Command Line Tools para Xcode {#command-line-tools-for-xcode}
 
 Instale o Command Line Tools. Escolha **Settings... (ou Preferences...)** no menu do Xcode. Vá para o painel Locations e instale as ferramentas selecionando a versão mais recente no dropdown Command Line Tools.
 
@@ -89,9 +89,9 @@ Recomendamos instalar CocoaPods usando [Homebrew](https://brew.sh/):
 brew install cocoapods
 ```
 
-## 4. Adicionando React Native à sua aplicação
+## 4. Adicionando React Native à sua aplicação {#4-adding-react-native-to-your-app}
 
-### Configurando CocoaPods
+### Configurando CocoaPods {#configuring-cocoapods}
 
 Para configurar CocoaPods, precisamos de dois arquivos:
 
@@ -142,13 +142,13 @@ bundle exec pod install
 
 O primeiro comando instalará as dependências Ruby e o segundo comando irá realmente integrar o código React Native em sua aplicação para que seus arquivos iOS possam importar os headers React Native.
 
-## 5. Escrevendo o código TypeScript
+## 5. Escrevendo o código TypeScript {#5-writing-the-typescript-code}
 
 Agora vamos realmente modificar a aplicação iOS nativa para integrar React Native.
 
 O primeiro pedaço de código que escreveremos é o código React Native real para a nova tela que será integrada em nossa aplicação.
 
-### Criar um arquivo `index.js`
+### Criar um arquivo `index.js` {#create-a-indexjs-file}
 
 Primeiro, crie um arquivo `index.js` vazio na raiz do seu projeto React Native.
 
@@ -163,7 +163,7 @@ import App from './App';
 AppRegistry.registerComponent('HelloWorld', () => App);
 ```
 
-### Criar um arquivo `App.tsx`
+### Criar um arquivo `App.tsx` {#create-a-apptsx-file}
 
 Vamos criar um arquivo `App.tsx`. Este é um arquivo [TypeScript](https://www.typescriptlang.org/) que pode ter expressões [JSX](<https://en.wikipedia.org/wiki/JSX_(JavaScript)>). Ele contém o componente React Native raiz que integraremos em nossa aplicação iOS (<RNTemplateRepoLink href="template/App.tsx">link</RNTemplateRepoLink>):
 
@@ -240,11 +240,11 @@ export default App;
 
 Aqui está o <RNTemplateRepoLink href="template/App.tsx">arquivo do template da Comunidade como referência</RNTemplateRepoLink>.
 
-## 5. Integrando com seu código iOS
+## 5. Integrando com seu código iOS {#5-integrating-with-your-ios-code}
 
 Agora precisamos adicionar algum código nativo para iniciar o runtime React Native e dizer a ele para renderizar nossos componentes React.
 
-### Requisitos
+### Requisitos {#requirements}
 
 A inicialização do React Native agora não está vinculada a nenhuma parte específica de uma aplicação iOS.
 
@@ -261,7 +261,7 @@ Depois que a classe é inicializada, você pode:
 
 No exemplo a seguir, criaremos um ViewController que pode carregar uma view React Native como sua `view`.
 
-#### Criar o ReactViewController
+#### Criar o ReactViewController {#create-the-reactviewcontroller}
 
 Crie um novo arquivo a partir do template (<kbd>⌘</kbd>+<kbd>N</kbd>) e escolha o template Cocoa Touch Class.
 
@@ -368,7 +368,7 @@ class ReactViewController: UIViewController {
 </TabItem>
 </Tabs>
 
-#### Apresentando uma view React Native em um rootViewController
+#### Apresentando uma view React Native em um rootViewController {#presenting-a-react-native-view-in-a-rootviewcontroller}
 
 Finalmente, podemos apresentar nossa view React Native. Para fazer isso, precisamos de um novo View Controller que possa hospedar uma view na qual podemos carregar o conteúdo JS.
 Já temos o `ViewController` inicial, e podemos fazê-lo apresentar o `ReactViewController`. Existem várias maneiras de fazer isso, dependendo da sua aplicação. Para este exemplo, assumimos que você tem um botão que apresenta React Native modalmente.
@@ -733,7 +733,7 @@ Uma vez que você alcançar sua Activity com React dentro da aplicação, ela de
 
 <center><img src="/docs/assets/EmbeddedAppIOS078.gif" width="300" /></center>
 
-### Criando um build de release no Xcode
+### Criando um build de release no Xcode {#creating-a-release-build-in-xcode}
 
 Você também pode usar Xcode para criar seus builds de release! O único passo adicional é adicionar um script que é executado quando a aplicação é construída para empacotar seu JS e imagens na aplicação iOS.
 
@@ -762,7 +762,7 @@ Em alguns casos, você gostaria de passar algumas informações da aplicação n
 
 Isso é possível usando o parâmetro `initialProperties` da sobrecarga `view(withModuleName:initialProperty)` da classe `RCTReactNativeFactory`. Os passos a seguir mostram como fazer isso.
 
-### Atualizar o arquivo App.tsx para ler as propriedades iniciais.
+### Atualizar o arquivo App.tsx para ler as propriedades iniciais. {#update-the-apptsx-file-to-read-the-initial-properties}
 
 Abra o arquivo `App.tsx` e adicione o seguinte código:
 
@@ -832,9 +832,9 @@ export default App;
 
 Essas alterações dirão ao React Native que seu componente App agora está aceitando algumas propriedades. O `RCTreactNativeFactory` cuidará de passá-las para o componente quando ele for renderizado.
 
-### Atualizar o código nativo para passar as propriedades iniciais para JavaScript.
+### Atualizar o código nativo para passar as propriedades iniciais para JavaScript. {#update-the-native-code-to-pass-the-initial-properties-to-javascript}
 
-#### Inicialização com SceneDelegate
+#### Inicialização com SceneDelegate {#scenedelegate-bootstrap}
 
 <Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
 <TabItem value="objc">
@@ -871,7 +871,7 @@ Modifique o `SceneDelegate.swift` para passar as propriedades iniciais ao inicia
 </TabItem>
 </Tabs>
 
-#### View controller embutido
+#### View controller embutido {#embedded-view-controller}
 
 <Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
 <TabItem value="objc">
@@ -924,6 +924,6 @@ Modifique o `ReactViewController.swift` para passar as propriedades iniciais par
   <img src="/docs/assets/brownfield-with-initial-props.png" width="30%" height="30%"/>
 </center>
 
-## E agora?
+## E agora? {#now-what}
 
 Neste ponto você pode continuar desenvolvendo sua aplicação normalmente. Consulte nossa documentação sobre [debugging](debugging) e [deployment](running-on-device) para aprender mais sobre trabalhar com React Native.
