@@ -236,7 +236,7 @@ Consulta se um leitor de tela está ativado no momento. Retorna uma promise que 
 static isHighTextContrastEnabled(): Promise<boolean>
 ```
 
-Query whether high text contrast is currently enabled. Returns a promise which resolves to a boolean. The result is `true` when high text contrast is enabled and `false` otherwise.
+Consulta se o alto contraste de texto está ativado no momento. Retorna uma promise que resolve para um boolean. O resultado é `true` quando o alto contraste de texto está ativado e `false` caso contrário.
 
 ---
 
@@ -246,7 +246,7 @@ Query whether high text contrast is currently enabled. Returns a promise which r
 static isDarkerSystemColorsEnabled(): Promise<boolean>
 ```
 
-Query whether dark system colors is currently enabled. Returns a promise which resolves to a boolean. The result is `true` when dark system colors is enabled and `false` otherwise.
+Consulta se as cores escuras do sistema estão ativadas no momento. Retorna uma promise que resolve para um boolean. O resultado é `true` quando as cores escuras do sistema estão ativadas e `false` caso contrário.
 
 ---
 
@@ -286,13 +286,13 @@ Certifique-se de que qualquer `View` que você deseja que receba o foco de acess
 static sendAccessibilityEvent(host: HostInstance, eventType: AccessibilityEventTypes);
 ```
 
-Imperatively trigger an accessibility event on a React component, like changing the focused element for a screen reader.
+Dispara imperativamente um evento de acessibilidade em um componente React, como trocar o elemento em foco para um leitor de tela.
 
 :::note
-Make sure that any `View` you want to receive the accessibility focus has `accessible={true}`.
+Certifique-se de que qualquer `View` que você deseja que receba o foco de acessibilidade tenha `accessible={true}`.
 :::
 
-| Name                                                           | Type                    | Description                                                                                                            |
+| Nome                                                           | Tipo                    | Descrição                                                                                                            |
 | -------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| host <div className="label basic required">Required</div>      | HostInstance            | The component ref to send the event to.                                                                                |
-| eventType <div className="label basic required">Required</div> | AccessibilityEventTypes | One of `'click'` (Android only), `'focus'`, `'viewHoverEnter'` (Android only), or `'windowStateChange'` (Android only) |
+| host <div className="label basic required">Required</div>      | HostInstance            | A ref do componente para o qual o evento será enviado.                                                                                |
+| eventType <div className="label basic required">Required</div> | AccessibilityEventTypes | Um de `'click'` (somente Android), `'focus'`, `'viewHoverEnter'` (somente Android) ou `'windowStateChange'` (somente Android) |

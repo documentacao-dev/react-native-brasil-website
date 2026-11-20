@@ -4,7 +4,7 @@ id: platform
 title: Platform
 ---
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=Platform%20API%20Example&supportedPlatforms=ios,android
 import {Platform, StyleSheet, Text, ScrollView} from 'react-native';
@@ -60,7 +60,7 @@ export default App;
 
 # Referência
 
-## Propriedades
+## Propriedades {#properties}
 
 ### `constants`
 
@@ -190,7 +190,7 @@ Retorna a versão do SO.
 | ---------------------------------------------------------------------------------------------------- |
 | number <div className="label android">Android</div><hr />string <div className="label ios">iOS</div> |
 
-## Métodos
+## Métodos {#methods}
 
 ### `select()`
 
@@ -200,7 +200,7 @@ static select(config: Record<string, T>): T;
 
 Retorna o valor mais adequado para a plataforma na qual você está executando atualmente.
 
-#### Parâmetros:
+#### Parâmetros: {#parameters}
 
 | Name   | Type   | Required | Description                           |
 | ------ | ------ | -------- | ------------------------------------- |

@@ -10,14 +10,14 @@ Hoje estamos empolgados em lançar o React Native 0.76!
 
 Este é um marco importante para o React Native, pois estamos habilitando a New Architecture por padrão, e estamos introduzindo o React Native DevTools. Esta é a culminação de 6 anos de trabalho árduo da nossa equipe, juntamente com o suporte da nossa incrível comunidade de desenvolvedores.
 
-### Destaques
+### Destaques {#highlights}
 
 - [React Native New Architecture por padrão](/blog/2024/10/23/release-0.76-new-architecture#react-native-new-architecture-by-default)
 - [React Native DevTools](/blog/2024/10/23/release-0.76-new-architecture#react-native-devtools)
 - [Resolução mais rápida do Metro](#faster-metro-resolution)
 - [Props de estilo Box Shadow e Filter](/blog/2024/10/23/release-0.76-new-architecture#box-shadow-and-filter-style-props)
 
-### Mudanças Incompatíveis
+### Mudanças Incompatíveis {#breaking-changes}
 
 - [Removida a dependência no react-native-community/cli](/blog/2024/10/23/release-0.76-new-architecture#removed-the-dependency-on-the-react-native-communitycli)
 - [Aplicativos Android são ~3.8Mb menores graças à mesclagem de bibliotecas nativas](/blog/2024/10/23/release-0.76-new-architecture#android-apps-are-38mb-smaller-thanks-to-native-library-merging)
@@ -25,9 +25,9 @@ Este é um marco importante para o React Native, pois estamos habilitando a New 
 
 {/* truncate */}
 
-## Destaques
+## Destaques {#highlights}
 
-### React Native New Architecture por padrão
+### React Native New Architecture por padrão {#react-native-new-architecture-by-default}
 
 A partir do React Native 0.76, a New Architecture está habilitada por padrão em seus projetos. A New Architecture é uma reescrita dos componentes internos do React Native para permitir que desenvolvedores de aplicativos desenvolvam aplicações nativas de alta qualidade usando React.
 
@@ -51,7 +51,7 @@ Queremos que as ferramentas que você usa para depurar React em todas as platafo
 
 React Native DevTools é fundamentalmente diferente das nossas opções de depuração anteriores, incluindo ser diferente da experiência do Experimental Debugger lançada pela primeira vez na versão 0.73. Ele muda para uma nova pilha de backend de depuração que reconstruímos ao longo do último ano. Isso significa que a compatibilidade com ferramentas anteriores [mudou][compatibility], e você também deve esperar uma experiência muito mais confiável de ponta a ponta. Pretendemos construir sobre essa nova pilha para nos permitir implementar de forma confiável mais recursos no futuro, como os painéis Performance e Network.
 
-#### Eliminação gradual de logs no Metro
+#### Eliminação gradual de logs no Metro {#phasing-out-logs-in-metro}
 
 Em nosso próximo lançamento, estamos removendo logs encaminhados no Metro para alinhar com ferramentas modernas de navegador e remover integrações de depuração antigas. Em vez disso, use o painel Console completo do React Native DevTools para registro. Veja mais em nossas [FAQs][FAQs].
 
@@ -61,7 +61,7 @@ Em nosso próximo lançamento, estamos removendo logs encaminhados no Metro para
 - [Palestra de anúncio na React Universe Conf][announcement-talk]
 - [Thread de feedback e FAQs][feedback-thread]
 
-### Resolução mais rápida do Metro
+### Resolução mais rápida do Metro {#faster-metro-resolution}
 
 Enviamos várias melhorias de desempenho para o resolver do Metro, o componente responsável por encontrar um módulo a partir de um caminho de importação, tornando-o cerca de [15x mais rápido][metro-speed]. Isso melhora o desempenho geral do Metro, particularmente para builds quentes, que vimos cerca de 4x mais rápidos.
 
@@ -75,7 +75,7 @@ Enviamos várias melhorias de desempenho para o resolver do Metro, o componente 
     src="data:text/html;charset=utf-8,%3Cblockquote%20class%3D%22twitter-tweet%22%3E%3Cp%20lang%3D%22en%22%20dir%3D%22ltr%22%3EFaster%20resolution%2C%20faster%20builds%3Cbr%3E%3Cbr%3EYesterday%26%2339%3Bs%20Metro%20release%20included%20a%20bunch%20of%20performance%20improvements%20to%20our%20resolver%2C%20making%20it%20around%2015x%20faster.%20That%26%2339%3Bs%20especially%20good%20news%20for%20warm%20builds.%20%3Ca%20href%3D%22https%3A//t.co/huPD5CW5bu%22%3Epic.twitter.com/huPD5CW5bu%3C/a%3E%3C/p%3E%26mdash%3B%20Metro%20%28@MetroBundler%29%20%3Ca%20href%3D%22https%3A//twitter.com/MetroBundler/status/1831709057670861260%3Fref_src%3Dtwsrc%255Etfw%22%3ESeptember%205%2C%202024%3C/a%3E%3C/blockquote%3E%0A%3Cscript%20async%20src%3D%22https%3A//platform.twitter.com/widgets.js%22%20charset%3D%22utf-8%22%3E%3C/script%3E%0A%0A"></iframe>
 </div>
 
-### Props de estilo Box Shadow e Filter
+### Props de estilo Box Shadow e Filter {#box-shadow-and-filter-style-props}
 
 Adicionamos duas props de estilo exclusivas da New Architecture na versão 0.76 - `boxShadow` e `filter`. Ambas essas props existem na web, e a equipe segue as especificações quando possível para que essas props sejam previsíveis, familiares e, em última análise, mais fáceis de adotar (veja as seções de limitações e desvios de especificação para as exceções).
 Como resultado, você pode consultar a documentação web para entender completamente como elas funcionam, mas há algumas diferenças importantes que são observadas abaixo.
@@ -96,7 +96,7 @@ A [funcionalidade de sombra anterior][shadow-props] tinha algumas deficiências 
 - Não funciona em `View`s se não houver cor de fundo
 - É uma prop separada, portanto não pode compartilhar a mesma sintaxe web
 
-#### Limitações e Desvios de Especificação
+#### Limitações e Desvios de Especificação {#limitations--spec-deviations}
 
 - A cor de sombra padrão é preta, não a cor do pai
 - Sombras normais do Android são suportadas no **Android 9+**
@@ -120,16 +120,16 @@ A [funcionalidade de sombra anterior][shadow-props] tinha algumas deficiências 
 Como `boxShadow`, `filter` pode receber uma string, que imita a sintaxe CSS, ou um array de objetos JS que podem incorporar variáveis. Por exemplo, a string `'saturate(0.5) grayscale(0.25)'` e o array `[{saturate: 0.5}, {grayscale: 0.25}]` produziriam o mesmo filtro.
 `filter` tem um valor `dropShadow` que varia ligeiramente de `boxShadow`. A maior diferença é que `dropShadow` é uma máscara alfa - então a sombra só será projetada por um pixel se ele tiver um componente alfa diferente de zero. `boxShadow`, por outro lado, projetará ao redor da caixa de borda do elemento, mesmo que não haja nada dentro dele. Além disso, dropShadow não tem um parâmetro de distância de spread e não pode ser inset (sombra projetada dentro do elemento).
 
-#### Limitações e Desvios de Especificação
+#### Limitações e Desvios de Especificação {#limitations-and-spec-deviations}
 
 - `filter` do iOS suporta apenas brightness e opacity
 - `filter` do iOS não se aplicará a sombras, contornos ou quaisquer outros elementos gráficos fora dos limites do elemento
 - `blur` e `drop-shadow` do Android são suportados apenas no **Android 12+**
 - `filter` implica `overflow: hidden`, portanto, filhos de um elemento com um `filter` serão cortados se estiverem posicionados fora dos limites dos pais.
 
-## Mudanças Incompatíveis
+## Mudanças Incompatíveis {#breaking-changes}
 
-### Removida a dependência no @react-native-community/cli
+### Removida a dependência no @react-native-community/cli {#removed-the-dependency-on-the-react-native-communitycli}
 
 Como compartilhado anteriormente na versão 0.75, nossa visão é que o React Native seja [agnóstico de framework][framework-agnostic]. Portanto, concluímos o trabalho para remover @react-native-community/cli como uma dependência direta do React Native.
 
@@ -147,7 +147,7 @@ Se você está contando com o CLI em seu fluxo de trabalho diário, certifique-s
   },
 ```
 
-### Aplicativos Android são ~3.8Mb menores graças à mesclagem de bibliotecas nativas
+### Aplicativos Android são ~3.8Mb menores graças à mesclagem de bibliotecas nativas {#android-apps-are-38mb-smaller-thanks-to-native-library-merging}
 
 React Native 0.76 será enviado com um número reduzido de bibliotecas nativas, pois mesclamos muito do nosso código nativo em uma única biblioteca chamada `libreactnative.so`.
 
@@ -177,7 +177,7 @@ Autores de bibliotecas não serão afetados por esta mudança, a menos que você
 
 Para uma análise técnica aprofundada desta mudança e sugestões para autores de bibliotecas, você pode ler mais sobre isso [no post dedicado][native-library-merging].
 
-### Atualizações nos requisitos mínimos de SDK do iOS e Android
+### Atualizações nos requisitos mínimos de SDK do iOS e Android {#updates-to-minimum-ios-and-android-sdk-requirements}
 
 Atualizamos nossas versões mínimas de plataforma e SDK:
 
@@ -186,7 +186,7 @@ Atualizamos nossas versões mínimas de plataforma e SDK:
 
 Esta mudança foi anunciada anteriormente este ano quando a versão 0.75 [foi lançada][release-0-75]. Para mais contexto, por favor veja os posts dedicados para [Android][android-minsdk] e [iOS][ios-minversion].
 
-### Outras Mudanças Incompatíveis
+### Outras Mudanças Incompatíveis {#other-breaking-changes}
 
 - **Animation**
   - Parar de enviar atualizações de state para React em animação em loop. Isso estava causando re-renderização desnecessária com animações em loop.
@@ -205,7 +205,7 @@ Esta mudança foi anunciada anteriormente este ano quando a versão 0.75 [foi la
 - **turbomodule**
   - Removida a Macro `RCT_EXPORT_CXX_MODULE_EXPERIMENTAL` para autolinking de módulo Cxx puro.
 
-## Agradecimentos
+## Agradecimentos {#acknowledgements}
 
 React Native 0.76 contém mais de [1070 commits][commits] de 156 contribuidores. Obrigado por todo o seu trabalho árduo!
 
@@ -215,7 +215,7 @@ Obrigado a todos os autores adicionais que trabalharam na documentação de recu
 - [Alex Hunt][huntie] React Native DevTools.
 - [Nicola Corti][cortinico] Android shipping as a single library.
 
-## Atualizar para 0.76
+## Atualizar para 0.76 {#upgrade-to-076}
 
 Por favor, use o [React Native Upgrade Helper][upgrade-helper-2] para visualizar mudanças de código entre versões do React Native para projetos existentes, além dos documentos de Upgrading.
 

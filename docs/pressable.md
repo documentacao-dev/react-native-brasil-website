@@ -12,7 +12,7 @@ Pressable é um wrapper de Core Component que pode detectar vários estágios de
 </Pressable>
 ```
 
-## Como funciona
+## Como funciona {#how-it-works}
 
 Em um elemento envolvido por `Pressable`:
 
@@ -46,7 +46,7 @@ A área de toque nunca se estende além dos limites da view pai e o Z-index de v
 
 :::
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=Pressable
 import {useState} from 'react';
