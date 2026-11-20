@@ -1,14 +1,14 @@
 ---
 ia-translated: true
 id: typescript
-title: Using TypeScript
+title: Usando TypeScript
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 [TypeScript][ts] é uma linguagem que estende JavaScript adicionando definições de tipo. Novos projetos React Native têm TypeScript como padrão, mas também suportam JavaScript e Flow.
 
-## Getting Started with TypeScript
+## Primeiros passos com TypeScript {#getting-started-with-typescript}
 
 Novos projetos criados pela [React Native CLI](getting-started-without-a-framework#step-1-creating-a-new-application) ou templates populares como [Ignite][ignite] usarão TypeScript por padrão.
 
@@ -18,7 +18,7 @@ TypeScript também pode ser usado com [Expo][expo], que mantém templates TypeSc
 npx create-expo-app --template
 ```
 
-## Adding TypeScript to an Existing Project
+## Adicionando TypeScript a um projeto existente {#adding-typescript-to-an-existing-project}
 
 1. Adicione TypeScript, types e plugins ESLint ao seu projeto.
 
@@ -76,15 +76,15 @@ yarn tsc
 </TabItem>
 </Tabs>
 
-## Using JavaScript Instead of TypeScript
+## Usando JavaScript em vez de TypeScript {#using-javascript-instead-of-typescript}
 
 React Native define novos aplicativos para TypeScript por padrão, mas JavaScript ainda pode ser usado. Arquivos com extensão `.jsx` são tratados como JavaScript em vez de TypeScript, e não terão verificação de tipo. Módulos JavaScript ainda podem ser importados por módulos TypeScript, junto com o inverso.
 
-## How TypeScript and React Native works
+## Como TypeScript e React Native funcionam {#how-typescript-and-react-native-works}
 
 Por padrão, fontes TypeScript são transformadas pelo [Babel][babel] durante o bundling. Recomendamos que você use o compilador TypeScript apenas para verificação de tipo. Este é o comportamento padrão do `tsc` para aplicativos recém-criados. Se você tiver código TypeScript existente sendo portado para React Native, há [uma ou duas ressalvas][babel-7-caveats] ao usar Babel em vez de TypeScript.
 
-## What does React Native + TypeScript look like
+## Como é React Native + TypeScript na prática {#what-does-react-native--typescript-look-like}
 
 Você pode fornecer uma interface para as [Props](props) e [State](state) de um React Component via `React.Component<Props, State>` que fornecerá verificação de tipo e auto-completar do editor ao trabalhar com esse componente em JSX.
 
@@ -154,13 +154,13 @@ export default Hello;
 
 Você pode explorar a sintaxe mais no [TypeScript playground][tsplay].
 
-## Where to Find Useful Advice
+## Onde encontrar dicas úteis {#where-to-find-useful-advice}
 
-- [TypeScript Handbook][ts-handbook]
-- [React's documentation on TypeScript][react-ts]
+- [Manual do TypeScript][ts-handbook]
+- [Documentação do React sobre TypeScript][react-ts]
 - [React + TypeScript Cheatsheets][cheat] tem uma boa visão geral sobre como usar React com TypeScript
 
-## Using Custom Path Aliases with TypeScript
+## Usando aliases de caminho personalizados com TypeScript {#using-custom-path-aliases-with-typescript}
 
 Para usar aliases de caminho customizados com TypeScript, você precisa configurar os aliases de caminho para funcionar tanto do Babel quanto do TypeScript. Veja como:
 

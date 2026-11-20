@@ -16,7 +16,7 @@ Como ao usar o scheme mailto, é possível criar links para outros aplicativos u
 
 Um scheme de URL personalizado não é a única maneira de abrir seu aplicativo em dispositivos móveis. Por exemplo, se você quiser enviar um link por e-mail para alguém abrir no celular, usar um scheme de URL personalizado não é ideal porque o usuário pode abrir o e-mail em um desktop, onde o link não funcionaria. Em vez disso, você deve usar links `https` padrão, como `https://www.myapp.io/records/1234546`. Em dispositivos móveis, esses links podem ser configurados para abrir seu aplicativo. No Android, esse recurso é chamado de **Deep Links**, enquanto no iOS é conhecido como **Universal Links**.
 
-### Built-in URL Schemes
+### Esquemas de URL nativos
 
 Conforme mencionado na introdução, existem alguns schemes de URL para funcionalidades principais que existem em todas as plataformas. A seguir está uma lista não exaustiva, mas que cobre os schemes mais comumente usados.
 
@@ -27,11 +27,11 @@ Conforme mencionado na introdução, existem alguns schemes de URL para funciona
 | `sms`            | Abre o aplicativo de SMS, ex: sms:+123456789       | ✅  | ✅      |
 | `https` / `http` | Abre o aplicativo do navegador web, ex: https://expo.dev | ✅  | ✅      |
 
-### Enabling Deep Links
+### Habilitando deep links
 
 <div className="banner-native-code-required">
-  <h3>Projects with Native Code Only</h3>
-  <p>The following section only applies to projects with native code exposed. If you are using the managed Expo workflow, see the guide on <a href="https://docs.expo.dev/guides/linking/">Linking</a> in the Expo documentation for the appropriate alternative.</p>
+  <h3>Projetos somente com código nativo</h3>
+  <p>A seção a seguir se aplica apenas a projetos com código nativo exposto. Se você estiver usando o fluxo gerenciado do Expo, veja o guia sobre <a href="https://docs.expo.dev/guides/linking/">Linking</a> na documentação do Expo para a alternativa adequada.</p>
 </div>
 
 Se você deseja habilitar deep links no seu aplicativo, leia o guia abaixo:
@@ -203,23 +203,23 @@ func application(
 
 ---
 
-### Handling Deep Links
+### Lidando com deep links
 
 Existem duas maneiras de manipular URLs que abrem seu aplicativo.
 
-#### 1. If the app is already open, the app is foregrounded and a Linking 'url' event is fired
+#### 1. Se o app já estiver aberto, ele vai para o primeiro plano e um evento 'url' de Linking é disparado
 
 Você pode manipular esses eventos com `Linking.addEventListener('url', callback)` - ele chama `callback({url})` com a URL vinculada
 
-#### 2. If the app is not already open, it is opened and the url is passed in as the initialURL
+#### 2. Se o app não estiver aberto, ele é iniciado e a url é passada como initialURL
 
 Você pode manipular esses eventos com `Linking.getInitialURL()` - ele retorna uma Promise que resolve para a URL, se houver uma.
 
 ---
 
-## Example
+## Exemplo
 
-### Open Links and Deep Links (Universal Links)
+### Abrir links e deep links (Universal Links)
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -325,7 +325,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Open Custom Settings
+### Abrir configurações personalizadas
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -404,7 +404,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Get the Deep Link
+### Obter o deep link
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -517,7 +517,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Send Intents (Android)
+### Enviar intents (Android)
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -635,9 +635,9 @@ export default App;
 </TabItem>
 </Tabs>
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `addEventListener()`
 
@@ -664,7 +664,7 @@ O método retorna um objeto `Promise`. Quando é determinado se a URL fornecida 
 
 A `Promise` será rejeitada no Android se for impossível verificar se a URL pode ser aberta ou quando estiver visando o Android 11 (SDK 30) se você não especificou as consultas de intent relevantes no `AndroidManifest.xml`. Da mesma forma, no iOS, a promise será rejeitada se você não adicionou o scheme específico na chave `LSApplicationQueriesSchemes` dentro do `Info.plist` (veja abaixo).
 
-**Parameters:**
+**Parâmetros:**
 
 | Name                                                     | Type   | Description         |
 | -------------------------------------------------------- | ------ | ------------------- |
@@ -741,7 +741,7 @@ Você pode usar outras URLs, como uma localização (por exemplo, "geo:37.484847
 
 O método retorna um objeto `Promise`. Se o usuário confirmar a caixa de diálogo de abertura ou a URL abrir automaticamente, a promise é resolvida. Se o usuário cancelar a caixa de diálogo de abertura ou não houver aplicativos registrados para a URL, a promise é rejeitada.
 
-**Parameters:**
+**Parâmetros:**
 
 | Name                                                     | Type   | Description         |
 | -------------------------------------------------------- | ------ | ------------------- |
@@ -768,7 +768,7 @@ static sendIntent(
 
 Inicia um intent do Android com extras.
 
-**Parameters:**
+**Parâmetros:**
 
 | Name                                                        | Type                                                       |
 | ----------------------------------------------------------- | ---------------------------------------------------------- |

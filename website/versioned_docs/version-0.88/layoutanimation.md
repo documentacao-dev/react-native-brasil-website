@@ -19,7 +19,7 @@ if (Platform.OS === 'android') {
 }
 ```
 
-On the **New Architecture**, layout animations are enabled automatically, and calling `setLayoutAnimationEnabledExperimental` is unnecessary (it is a no-op).
+Na **New Architecture**, as animações de layout são habilitadas automaticamente, e chamar `setLayoutAnimationEnabledExperimental` é desnecessário (é um no-op).
 :::
 
 ## Example

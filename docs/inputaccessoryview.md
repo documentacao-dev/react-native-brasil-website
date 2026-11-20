@@ -69,7 +69,7 @@ Este componente também pode ser usado para criar text inputs fixos (text inputs
 
 ---
 
-# Reference
+# Referência {#reference}
 
 ## Props
 
@@ -97,7 +97,7 @@ Um ID que é usado para associar este `InputAccessoryView` a TextInput(s) especi
 | --------------------------------- |
 | [View Style](view-style-props.md) |
 
-# Known issues
+# Problemas conhecidos {#known-issues}
 
-- [react-native#18997](https://github.com/react/react-native/issues/18997): Doesn't support multiline `TextInput`
-- [react-native#20157](https://github.com/react/react-native/issues/20157): Can't use with a bottom tab bar
+- [react-native#18997](https://github.com/react/react-native/issues/18997): Não funciona com `TextInput` multilinha
+- [react-native#20157](https://github.com/react/react-native/issues/20157): Não pode ser usado com uma tab bar inferior

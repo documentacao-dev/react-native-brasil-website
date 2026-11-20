@@ -31,9 +31,9 @@ Fazer lazy-loading de componentes pode alterar o comportamento do seu aplicativo
 ```tsx title="SideEffects.tsx"
 import Logger from './utils/Logger';
 
-//  🚩 🚩 🚩 Efeito colateral! Isso deve ser executado antes que React possa até começar a
-// renderizar o componente SplashScreen, e pode quebrar inesperadamente código em outro lugar
-// no seu app se você decidir mais tarde fazer lazy-load do SplashScreen.
+//  🚩 🚩 🚩 Side effect! This must be executed before React can even begin to
+// render the SplashScreen component, and can unexpectedly break code elsewhere
+// in your app if you later decide to lazy-load SplashScreen.
 global.logger = new Logger();
 
 export function SplashScreen() {

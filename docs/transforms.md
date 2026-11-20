@@ -179,7 +179,7 @@ export default App;
 
 ---
 
-# Reference
+# Referência {#reference}
 
 ## Transform
 
@@ -284,7 +284,7 @@ Use a prop [`transform`](transforms#transform) no lugar.
 
 A propriedade `transformOrigin` define a origem para as transformações de uma view. A origem da transformação é o ponto ao redor do qual uma transformação é aplicada. Por padrão, a origem de uma transformação é `center`.
 
-# Example
+# Exemplo {#example-1}
 
 ```SnackPlayer name=TransformOrigin%20Example
 import {useEffect, useRef} from 'react';

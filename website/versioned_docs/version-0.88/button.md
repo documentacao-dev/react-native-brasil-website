@@ -222,7 +222,7 @@ Se `true`, desabilita todas as interações para este componente.
 
 ### `hasTVPreferredFocus` <div className="label tv">TV</div>
 
-TV preferred focus.
+Foco preferencial de TV.
 
 | Type | Default |
 | ---- | ------- |

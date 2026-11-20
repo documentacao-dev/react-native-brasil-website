@@ -10,7 +10,7 @@ Opcionalmente forneça uma lista de botões. Tocar em qualquer botão disparará
 
 Esta é uma API que funciona tanto no Android quanto no iOS e pode mostrar alertas estáticos. Alertas que solicitam ao usuário inserir algumas informações estão disponíveis apenas no iOS.
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=Alert%20Example&supportedPlatforms=ios,android
 import {StyleSheet, Button, Alert} from 'react-native';
@@ -78,7 +78,7 @@ Alertas no Android podem ser dispensados tocando fora da caixa de alerta. Isso �
 
 O evento de cancelamento pode ser tratado fornecendo uma propriedade de callback `onDismiss` dentro do parâmetro `options`.
 
-### Example <div className="label android">Android</div>
+### Exemplo <div className="label android">Android</div>
 
 ```SnackPlayer name=Alert%20Android%20Dissmissable%20Example&supportedPlatforms=android
 import {StyleSheet, Button, Alert} from 'react-native';
@@ -125,9 +125,9 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `alert()`
 
@@ -140,7 +140,7 @@ static alert (
 );
 ```
 
-**Parameters:**
+**Parâmetros:**
 
 | Name                                                       | Type                               | Description                                                                     |
 | ---------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------- |
@@ -166,7 +166,7 @@ static prompt: (
 
 Cria e exibe um prompt para inserir algum texto na forma de Alert.
 
-**Parameters:**
+**Parâmetros:**
 
 | Name                                                       | Type                                            | Description                                                                                                                                                                                                                        |
 | ---------------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -181,7 +181,7 @@ Cria e exibe um prompt para inserir algum texto na forma de Alert.
 
 ---
 
-## Type Definitions
+## Definições de tipos
 
 ### AlertButtonStyle <div className="label ios">iOS</div>
 
@@ -191,7 +191,7 @@ Um estilo de botão de Alert do iOS.
 | ---- |
 | enum |
 
-**Constants:**
+**Constantes:**
 
 | Value           | Description                 |
 | --------------- | --------------------------- |
@@ -209,7 +209,7 @@ Um tipo de Alert do iOS.
 | ---- |
 | enum |
 
-**Constants:**
+**Constantes:**
 
 | Value              | Description                         |
 | ------------------ | ----------------------------------- |
@@ -245,7 +245,7 @@ Um objeto descrevendo a configuração de um botão no alerta.
 | ------ |
 | object |
 
-**Properties:**
+**Propriedades:**
 
 | Name                                                    | Type     | Description                                                                                                                                   |
 | ------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |

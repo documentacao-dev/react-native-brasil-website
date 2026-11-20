@@ -65,9 +65,9 @@ Embora o esquema de cores esteja disponível imediatamente, isso pode mudar quan
 ```mermaid
 flowchart TD
     USC["useColorScheme()"] --> GCS["getColorScheme()"]
-    GCS --> DEC{Substituição no app?}
-    DEC -- "NÃO / reset via setColorScheme('auto')" --> SYS["Preferência do sistema\n'light' ou 'dark'"]
-    DEC -- "SIM — setColorScheme('light' | 'dark')" --> OVR["'light' ou 'dark' (fixo)"]
+    GCS --> DEC{App override?}
+    DEC -- "NO / reset via setColorScheme('auto')" --> SYS["System preference\n'light' or 'dark'"]
+    DEC -- "YES — setColorScheme('light' | 'dark')" --> OVR["'light' or 'dark' (static)"]
 
     classDef fn fill:#dce8f8,stroke:#4a90d9,color:#1a1a1a
     classDef out fill:#f0f4f8,stroke:#8faabb,color:#1a1a1a

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import constants from '@site/core/TabsConstants';
 import {FabricNativeComponentsAndroid,FabricNativeComponentsIOS} from './\_fabric-native-components';
 
-# Native Components
+# Componentes Nativos {#native-components}
 
 Se você quer construir _novos_ Componentes React Native que envolvem um [Host Component](https://reactnative.dev/architecture/glossary#host-view-tree-and-host-view) como um tipo único de [CheckBox](https://developer.android.com/reference/androidx/appcompat/widget/AppCompatCheckBox) no Android, ou um [UIButton](https://developer.apple.com/documentation/uikit/uibutton?language=objc) no iOS, você deve usar um Fabric Native Component.
 
