@@ -13,11 +13,11 @@ Siga as [instruções de instalação para sua distribuição Linux](https://nod
 
 O React Native atualmente recomenda a versão 17 do Java SE Development Kit (JDK). Você pode encontrar problemas ao usar versões superiores do JDK. Você pode baixar e instalar o [OpenJDK](https://openjdk.java.net) do [AdoptOpenJDK](https://adoptopenjdk.net/) ou do gerenciador de pacotes do seu sistema.
 
-<h3>Android development environment</h3>
+<h3>Ambiente de desenvolvimento Android</h3>
 
 Configurar seu ambiente de desenvolvimento pode ser um pouco tedioso se você é novo no desenvolvimento Android. Se você já está familiarizado com o desenvolvimento Android, existem algumas coisas que você pode precisar configurar. Em ambos os casos, certifique-se de seguir cuidadosamente os próximos passos.
 
-<h4 id="android-studio">1. Install Android Studio</h4>
+<h4 id="android-studio">1. Instale o Android Studio</h4>
 
 [Baixe e instale o Android Studio](https://developer.android.com/studio). Durante o assistente de instalação do Android Studio, certifique-se de que as caixas ao lado de todos os itens a seguir estejam marcadas:
 
@@ -33,7 +33,7 @@ Se as caixas de seleção estiverem acinzentadas, você terá a oportunidade de 
 
 Assim que a configuração for finalizada e você for apresentado à tela de boas-vindas, prossiga para o próximo passo.
 
-<h4 id="android-sdk">2. Install the Android SDK</h4>
+<h4 id="android-sdk">2. Instale o Android SDK</h4>
 
 O Android Studio instala o Android SDK mais recente por padrão. Compilar um app React Native com código nativo, no entanto, requer o SDK `Android 15 (VanillaIceCream)` em particular. SDKs Android adicionais podem ser instalados através do SDK Manager no Android Studio.
 
@@ -52,7 +52,7 @@ Em seguida, selecione a aba "SDK Tools" e marque a caixa ao lado de "Show Packag
 
 Por fim, clique em "Apply" para baixar e instalar o Android SDK e as ferramentas de compilação relacionadas.
 
-<h4>3. Configure the ANDROID_HOME environment variable</h4>
+<h4>3. Configure a variável de ambiente ANDROID_HOME</h4>
 
 As ferramentas do React Native requerem que algumas variáveis de ambiente sejam configuradas para compilar apps com código nativo.
 
@@ -82,17 +82,17 @@ Siga o [guia de instalação do Watchman](https://facebook.github.io/watchman/do
 [Watchman](https://facebook.github.io/watchman/docs/install) é uma ferramenta do Facebook para observar mudanças no sistema de arquivos. É altamente recomendável que você o instale para obter melhor desempenho e maior compatibilidade em certos casos extremos (traduzindo: você pode conseguir prosseguir sem instalar isso, mas os resultados podem variar; instalar isso agora pode poupá-lo de uma dor de cabeça mais tarde).
 :::
 
-<h2>Preparing the Android device</h2>
+<h2>Preparando o dispositivo Android</h2>
 
 Você precisará de um dispositivo Android para executar seu app React Native Android. Pode ser um dispositivo Android físico ou, mais comumente, você pode usar um Android Virtual Device, que permite emular um dispositivo Android no seu computador.
 
 De qualquer forma, você precisará preparar o dispositivo para executar apps Android para desenvolvimento.
 
-<h3>Using a physical device</h3>
+<h3>Usando um dispositivo físico</h3>
 
 Se você tiver um dispositivo Android físico, pode usá-lo para desenvolvimento no lugar de um AVD conectando-o ao seu computador usando um cabo USB e seguindo as instruções [aqui](running-on-device.md).
 
-<h3>Using a virtual device</h3>
+<h3>Usando um dispositivo virtual</h3>
 
 Se você usar o Android Studio para abrir `./AwesomeProject/android`, poderá ver a lista de Android Virtual Devices (AVDs) disponíveis abrindo o "AVD Manager" dentro do Android Studio. Procure por um ícone que se parece com este:
 
@@ -106,13 +106,13 @@ Recomendamos configurar [aceleração de VM](https://developer.android.com/studi
 
 Clique em "Next" e depois em "Finish" para criar seu AVD. Neste ponto, você deve conseguir clicar no botão de triângulo verde ao lado do seu AVD para iniciá-lo.
 
-<h3>That's it!</h3>
+<h3>É isso!</h3>
 
 Parabéns! Você configurou com sucesso seu ambiente de desenvolvimento.
 
 <center><img src="/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
 
-<h2>Now what?</h2>
+<h2>E agora?</h2>
 
 - Se você quiser adicionar este novo código React Native a um aplicativo existente, confira o [guia de Integração](integration-with-existing-apps.md).
 - Se você está curioso para aprender mais sobre React Native, confira a [Introdução ao React Native](getting-started).

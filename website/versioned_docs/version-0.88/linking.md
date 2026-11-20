@@ -16,7 +16,7 @@ Como ao usar o scheme mailto, é possível criar links para outros aplicativos u
 
 Um scheme de URL personalizado não é a única maneira de abrir seu aplicativo em dispositivos móveis. Por exemplo, se você quiser enviar um link por e-mail para alguém abrir no celular, usar um scheme de URL personalizado não é ideal porque o usuário pode abrir o e-mail em um desktop, onde o link não funcionaria. Em vez disso, você deve usar links `https` padrão, como `https://www.myapp.io/records/1234546`. Em dispositivos móveis, esses links podem ser configurados para abrir seu aplicativo. No Android, esse recurso é chamado de **Deep Links**, enquanto no iOS é conhecido como **Universal Links**.
 
-### Esquemas de URL nativos
+### Esquemas de URL nativos {#built-in-url-schemes}
 
 Conforme mencionado na introdução, existem alguns schemes de URL para funcionalidades principais que existem em todas as plataformas. A seguir está uma lista não exaustiva, mas que cobre os schemes mais comumente usados.
 
@@ -27,7 +27,7 @@ Conforme mencionado na introdução, existem alguns schemes de URL para funciona
 | `sms`            | Abre o aplicativo de SMS, ex: sms:+123456789       | ✅  | ✅      |
 | `https` / `http` | Abre o aplicativo do navegador web, ex: https://expo.dev | ✅  | ✅      |
 
-### Habilitando deep links
+### Habilitando deep links {#enabling-deep-links}
 
 <div className="banner-native-code-required">
   <h3>Projetos somente com código nativo</h3>
@@ -203,23 +203,23 @@ func application(
 
 ---
 
-### Lidando com deep links
+### Lidando com deep links {#handling-deep-links}
 
 Existem duas maneiras de manipular URLs que abrem seu aplicativo.
 
-#### 1. Se o app já estiver aberto, ele vai para o primeiro plano e um evento 'url' de Linking é disparado
+#### 1. Se o app já estiver aberto, ele vai para o primeiro plano e um evento 'url' de Linking é disparado {#1-if-the-app-is-already-open-the-app-is-foregrounded-and-a-linking-url-event-is-fired}
 
 Você pode manipular esses eventos com `Linking.addEventListener('url', callback)` - ele chama `callback({url})` com a URL vinculada
 
-#### 2. Se o app não estiver aberto, ele é iniciado e a url é passada como initialURL
+#### 2. Se o app não estiver aberto, ele é iniciado e a url é passada como initialURL {#2-if-the-app-is-not-already-open-it-is-opened-and-the-url-is-passed-in-as-the-initialurl}
 
 Você pode manipular esses eventos com `Linking.getInitialURL()` - ele retorna uma Promise que resolve para a URL, se houver uma.
 
 ---
 
-## Exemplo
+## Exemplo {#example}
 
-### Abrir links e deep links (Universal Links)
+### Abrir links e deep links (Universal Links) {#open-links-and-deep-links-universal-links}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -325,7 +325,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Abrir configurações personalizadas
+### Abrir configurações personalizadas {#open-custom-settings}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -404,7 +404,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Obter o deep link
+### Obter o deep link {#get-the-deep-link}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -517,7 +517,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Enviar intents (Android)
+### Enviar intents (Android) {#send-intents-android}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -637,7 +637,7 @@ export default App;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `addEventListener()`
 

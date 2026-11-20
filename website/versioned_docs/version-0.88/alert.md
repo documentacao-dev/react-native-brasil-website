@@ -10,7 +10,7 @@ Opcionalmente forneça uma lista de botões. Tocar em qualquer botão disparará
 
 Esta é uma API que funciona tanto no Android quanto no iOS e pode mostrar alertas estáticos. Alertas que solicitam ao usuário inserir algumas informações estão disponíveis apenas no iOS.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=Alert%20Example&supportedPlatforms=ios,android
 import {StyleSheet, Button, Alert} from 'react-native';
@@ -78,7 +78,7 @@ Alertas no Android podem ser dispensados tocando fora da caixa de alerta. Isso �
 
 O evento de cancelamento pode ser tratado fornecendo uma propriedade de callback `onDismiss` dentro do parâmetro `options`.
 
-### Exemplo <div className="label android">Android</div>
+### Exemplo <div className="label android">Android</div> {#example-android}
 
 ```SnackPlayer name=Alert%20Android%20Dissmissable%20Example&supportedPlatforms=android
 import {StyleSheet, Button, Alert} from 'react-native';
@@ -127,7 +127,7 @@ export default App;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `alert()`
 
@@ -181,7 +181,7 @@ Cria e exibe um prompt para inserir algum texto na forma de Alert.
 
 ---
 
-## Definições de tipos
+## Definições de tipos {#type-definitions}
 
 ### AlertButtonStyle <div className="label ios">iOS</div>
 
