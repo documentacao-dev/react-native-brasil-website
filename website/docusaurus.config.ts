@@ -82,6 +82,11 @@ const isDeployPreview =
 const config: Config = {
   markdown: {
     mermaid: true,
+    // O v4 desliga o suporte a `{#id}` nos títulos; as traduções dependem dele
+    // para manter as âncoras do inglês (tool/traducao/ancorar_titulos.py).
+    mdx1Compat: {
+      headingIds: true,
+    },
   },
   themes: ['@docusaurus/theme-mermaid'],
   future: {
