@@ -10,7 +10,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 Recursos de depuração, como o Dev Menu, LogBox e React Native DevTools são desabilitados em builds de release (produção).
 :::
 
-## Abrindo o Dev Menu
+## Abrindo o Dev Menu {#opening-the-dev-menu}
 
 React Native fornece um menu de desenvolvedor no aplicativo que fornece acesso a recursos de depuração. Você pode acessar o Dev Menu balançando seu dispositivo ou através de atalhos de teclado:
 
@@ -21,7 +21,7 @@ Alternativa (Android): `adb shell input keyevent 82`.
 
 ![The React Native Dev Menu](/docs/assets/debugging-dev-menu-083.jpg)
 
-## Abrindo o DevTools
+## Abrindo o DevTools {#opening-devtools}
 
 [React Native DevTools](./react-native-devtools) é nosso debugger integrado para React Native. Ele permite que você inspecione e entenda como seu código JavaScript está sendo executado, semelhante a um navegador web.
 
@@ -42,11 +42,11 @@ LogBox é uma ferramenta no aplicativo que é exibida quando avisos ou erros sã
 
 ![A LogBox warning and an expanded LogBox syntax error](/docs/assets/debugging-logbox-076.jpg)
 
-### Erros Fatais
+### Erros Fatais {#fatal-errors}
 
 Quando ocorre um erro irrecuperável, como um erro de sintaxe JavaScript, LogBox abrirá com a localização do erro. Neste estado, LogBox não pode ser descartado, pois seu código não pode ser executado. LogBox será descartado automaticamente assim que o erro de sintaxe for corrigido — seja via Fast Refresh ou após um reload manual.
 
-### Erros e Avisos do Console
+### Erros e Avisos do Console {#console-errors-and-warnings}
 
 Erros e avisos do console são exibidos como notificações na tela com um badge vermelho ou amarelo.
 
@@ -64,7 +64,7 @@ LogBox pode ser configurado via a API `LogBox`.
 import {LogBox} from 'react-native';
 ```
 
-#### Ignorar todos os logs
+#### Ignorar todos os logs {#ignore-all-logs}
 
 Notificações do LogBox podem ser desabilitadas usando `LogBox.ignoreAllLogs()`. Isso pode ser útil em situações como demonstrações de produtos.
 
@@ -72,7 +72,7 @@ Notificações do LogBox podem ser desabilitadas usando `LogBox.ignoreAllLogs()`
 LogBox.ignoreAllLogs();
 ```
 
-#### Ignorar logs específicos
+#### Ignorar logs específicos {#ignore-specific-logs}
 
 Notificações podem ser desabilitadas em uma base por log via `LogBox.ignoreLogs()`. Isso pode ser útil para avisos barulhentos ou aqueles que não podem ser corrigidos, por exemplo, em uma dependência de terceiros.
 
