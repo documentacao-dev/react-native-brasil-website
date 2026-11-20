@@ -6,7 +6,7 @@ authorTitle: Mantenedor Principal & Desenvolvedor React Native
 authorURL: 'https://twitter.com/turnrye'
 authorImageURL: 'https://avatars0.githubusercontent.com/u/701035?s=460&v=4'
 authorTwitter: turnrye
-tags: [anúncio, lançamento]
+tags: [announcement, release]
 ---
 
 Bem-vindo ao lançamento 0.59 do React Native! Este é mais um grande lançamento com 644 commits de 88 contribuidores. As contribuições também vêm de outras formas, então _obrigado_ por manter issues, fomentar comunidades e ensinar as pessoas sobre React Native. Este mês traz uma série de mudanças muito aguardadas, e esperamos que você as aproveite.

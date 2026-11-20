@@ -230,10 +230,14 @@ def checar_arquivo(caminho, ref, sync):
     fm, corpo = frontmatter(texto)
     pasta = (ROOT / caminho).parent
 
-    if CONFLITO.search(texto):
-        erros.append(('conflito', 'marcadores de merge no arquivo'))
-
     en = git('show', f'{ref}:{caminho}')
+
+    # Marcadores de merge que o próprio inglês traz (ex.: um trecho de código
+    # de um conflito de exemplo) não são conflito: só conta o que sobrou a mais.
+    if CONFLITO.search(texto):
+        sobra = len(CONFLITO.findall(texto)) - len(CONFLITO.findall(en or ''))
+        if sobra > 0:
+            erros.append(('conflito', 'marcadores de merge no arquivo'))
 
     if fm is not None:
         erros += checar_frontmatter(fm, frontmatter(en or '')[0])

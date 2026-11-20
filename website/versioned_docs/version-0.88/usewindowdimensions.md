@@ -75,7 +75,7 @@ useWindowDimensions().fontScale;
 A escala da fonte atualmente usada. Alguns sistemas operacionais permitem que os usuários aumentem ou diminuam suas fontes para maior conforto de leitura. Esta propriedade informará o que está em vigor.
 
 :::note
-Changing the font size percentage can be leveraged to dynamically adjust the sizes of UI elements, such as padding, margins, and container heights, to ensure a consistent and accessible user experience. By using the fontScale property, developers can make their applications more adaptable to users' preferences for larger or smaller text, enhancing readability and usability.
+Mudar a porcentagem do tamanho da fonte pode ser usado para ajustar dinamicamente o tamanho de elementos da interface, como padding, margens e alturas de contêineres, garantindo uma experiência consistente e acessível. Usando a propriedade `fontScale`, desenvolvedores podem tornar suas aplicações mais adaptáveis às preferências dos usuários por textos maiores ou menores, melhorando a legibilidade e a usabilidade.
 :::
 
 ---
