@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import type {PropSidebar} from '@docusaurus/plugin-content-docs';
 
 import {DocsSidebarProvider} from '@docusaurus/plugin-content-docs/client';
@@ -37,13 +39,13 @@ const VersionItem = ({
     archivedDocumentationUrl ??
       `/docs/${isCurrentVersion ? '' : version + '/'}getting-started`
   );
-  const documentationLink = <a href={documentationUrl}>Documentation</a>;
+  const documentationLink = <a href={documentationUrl}>Documentação</a>;
 
   let releaseNotesURL = 'https://github.com/react/react-native/releases';
   let releaseNotesTitle = 'Changelog';
   if (isNext) {
     releaseNotesURL = `https://github.com/react/react-native/compare/${latestMajorVersion}-stable...main`;
-    releaseNotesTitle = 'Commits since ' + latestMajorVersion;
+    releaseNotesTitle = 'Commits desde ' + latestMajorVersion;
   } else if (!isRC) {
     releaseNotesURL = `https://github.com/react/react-native/releases/tag/v${version}.0`;
   }
@@ -69,7 +71,7 @@ const releasesSidebar: PropSidebar = [
     href: '/releases/versioning-policy',
     label: 'Versioning Policy',
   },
-  {type: 'link', href: '/versions', label: 'Docs Versions'},
+  {type: 'link', href: '/versions', label: 'Versões da documentação'},
 ];
 
 const Versions = () => {
@@ -82,16 +84,16 @@ const Versions = () => {
   );
 
   return (
-    <Layout title="Versions">
+    <Layout title="Versões">
       <DocsSidebarProvider name="releases" items={releasesSidebar}>
         <DocRootLayout>
           <div className="versions-page">
-            <h1>Docs Versions</h1>
-            <h2>Next version (Unreleased)</h2>
+            <h1>Versões da documentação</h1>
+            <h2>Próxima versão (não lançada)</h2>
             <p>
-              Ahead of each stable release, React Native publishes a series of
-              release candidates. Learn more about the{' '}
-              <a href="/releases/overview#release-channels">release channels</a>
+              Antes de cada versão estável, o React Native publica uma série de
+              release candidates. Saiba mais sobre os{' '}
+              <a href="/releases/overview#release-channels">canais de release</a>
               .
             </p>
             <div className="table-wrapper">
@@ -107,7 +109,7 @@ const Versions = () => {
                 </tbody>
               </table>
             </div>
-            <h2>Latest version</h2>
+            <h2>Última versão</h2>
             <div className="table-wrapper">
               <table className="versions">
                 <tbody>
@@ -119,7 +121,7 @@ const Versions = () => {
                 </tbody>
               </table>
             </div>
-            <h2>Previous versions</h2>
+            <h2>Versões anteriores</h2>
             <div className="table-wrapper">
               <table className="versions">
                 <tbody>
@@ -133,10 +135,10 @@ const Versions = () => {
                 </tbody>
               </table>
             </div>
-            <h3>Archived versions</h3>
+            <h3>Versões arquivadas</h3>
             <p>
-              The documentation for unmaintained versions can be found on
-              website archive snapshots, hosted as separate sites.
+              A documentação das versões sem manutenção está em snapshots
+              arquivados do site, hospedados como sites separados.
             </p>
             <div className="table-wrapper">
               <table className="versions">
@@ -155,8 +157,8 @@ const Versions = () => {
               </table>
             </div>
             <p>
-              The documentation for versions below <code>0.60</code> can be
-              found on the separate website called{' '}
+              A documentação das versões anteriores à <code>0.60</code> está no
+              site separado chamado{' '}
               <a href="https://archive.reactnative.dev/versions">
                 React Native Archive
               </a>

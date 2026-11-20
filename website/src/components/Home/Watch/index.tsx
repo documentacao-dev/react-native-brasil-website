@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import {useState} from 'react';
 
 import Section from '../Section';
@@ -25,23 +27,23 @@ function Watch() {
   return (
     <Section>
       <SectionTitle
-        title="Watch and learn"
+        title="Assista e aprenda"
         description={
           <>
-            Watch talks by the React team and learn how to get the most out of
+            Assista a palestras da equipe React e aprenda a tirar o máximo do
             React Native.
             <br />
-            Find the latest on{' '}
+            Acompanhe as novidades no{' '}
             <a href="https://bsky.app/profile/reactnative.dev">
               Bluesky
-            </a> and <a href="https://x.com/reactnative">X</a>.
+            </a> e no <a href="https://x.com/reactnative">X</a>.
           </>
         }
       />
       <div className={styles.videos}>
         <div
           role="button"
-          aria-label="Play: Why React Native?"
+          aria-label="Reproduzir: Por que React Native?"
           className={[
             styles.videoContainer,
             playingId === VideoId.Why
@@ -52,7 +54,7 @@ function Watch() {
           {playingId === VideoId.Why ? (
             <iframe
               src={`https://www.youtube.com/embed/${VideoId.Why}?autoplay=1`}
-              title="Explain Like I'm 5: React Native"
+              title="Explique Como Se Eu Tivesse 5 Anos: React Native"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className={styles.video}
@@ -60,18 +62,18 @@ function Watch() {
           ) : (
             <img
               src={`https://img.youtube.com/vi/${VideoId.Why}/maxresdefault.jpg`}
-              alt="Explain Like I'm 5: React Native"
+              alt="Explique Como Se Eu Tivesse 5 Anos: React Native"
               className={styles.video}
             />
           )}
           <div className={styles.videoInfo}>
-            <h4>Why React Native?</h4>
+            <h4>Por que React Native?</h4>
             <p>1:42</p>
           </div>
         </div>
         <div
           role="button"
-          aria-label="Play: React Conf 2025 React Native Keynote"
+          aria-label="Reproduzir: Keynote do React Native na React Conf 2025"
           className={[
             styles.videoContainer,
             playingId === VideoId.Keynote2025
@@ -98,14 +100,14 @@ function Watch() {
             <h4>
               React Conf 2025
               <br />
-              React Native Keynote
+              Keynote do React Native
             </h4>
             <p>55:13</p>
           </div>
         </div>
         <div
           role="button"
-          aria-label="Play: React Conf 2024 React Native Keynote"
+          aria-label="Reproduzir: Keynote do React Native na React Conf 2024"
           className={[
             styles.videoContainer,
             playingId === VideoId.Keynote2024
@@ -132,14 +134,14 @@ function Watch() {
             <h4>
               React Conf 2024
               <br />
-              React Native Keynote
+              Keynote do React Native
             </h4>
             <p>55:14</p>
           </div>
         </div>
         <div
           role="button"
-          aria-label="Play: FB 2019: Mobile innovation with React Native"
+          aria-label="Reproduzir: FB 2019: Inovação mobile com React Native"
           className={[
             styles.videoContainer,
             playingId === VideoId.FB2019
@@ -150,7 +152,7 @@ function Watch() {
           {playingId === VideoId.FB2019 ? (
             <iframe
               src={`https://www.youtube.com/embed/${VideoId.FB2019}?autoplay=1`}
-              title="Mobile Innovation with React Native, ComponentKit, and Litho"
+              title="Inovação Mobile com React Native, ComponentKit e Litho"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className={styles.video}
@@ -158,7 +160,7 @@ function Watch() {
           ) : (
             <img
               src={`https://img.youtube.com/vi/${VideoId.FB2019}/maxresdefault.jpg`}
-              alt="Mobile Innovation with React Native, ComponentKit, and Litho"
+              alt="Inovação Mobile com React Native, ComponentKit e Litho"
               className={styles.video}
             />
           )}
@@ -166,7 +168,7 @@ function Watch() {
             <h4>
               FB 2019
               <br />
-              Mobile innovation with React Native
+              Inovação mobile com React Native
             </h4>
             <p>45:29</p>
           </div>

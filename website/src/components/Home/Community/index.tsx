@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {ShowcaseData} from '@site/src/types';
@@ -24,12 +26,12 @@ function Community() {
   return (
     <Section>
       <SectionTitle
-        title="Meta supported. Community driven."
+        title="Apoiado pela Meta. Impulsionado pela comunidade."
         description={
           <>
-            React Native is being used in thousands of apps, but it's likely
+            O React Native é usado em milhares de apps, e é provável que
             <br />
-            you've already used it in one of these apps.
+            você já tenha usado um deles.
           </>
         }
       />
@@ -57,20 +59,19 @@ function Community() {
         </ul>
       </div>
       <a href={useBaseUrl(`showcase`)} className={styles.secondaryButton}>
-        See all featured apps
+        Veja todos os apps em destaque
       </a>
       <div className={styles.communityNote}>
         <p>
-          Meta released React Native in 2015 and has been maintaining it ever
-          since.
+          A Meta lançou o React Native em 2015 e o mantém desde então.
           <br />
-          Today, React Native is supported by contributions from individuals and
-          companies around the world including:
+          Hoje, o React Native é apoiado por contribuições de indivíduos e
+          empresas do mundo todo, incluindo:
         </p>
         <PartnersShowcase />
         <p>
-          Additionally, our community is always shipping exciting new projects
-          and expanding beyond Android and iOS with initiatives like{' '}
+          Além disso, nossa comunidade está sempre lançando projetos novos e
+          empolgantes e indo além de Android e iOS com iniciativas como{' '}
           <a
             href="https://microsoft.github.io/react-native-windows/"
             target="_blank"
@@ -84,7 +85,7 @@ function Community() {
             rel="noopener noreferrer">
             React Native macOS
           </a>{' '}
-          and{' '}
+          e{' '}
           <a
             href="https://necolas.github.io/react-native-web/"
             target="_blank"
@@ -98,7 +99,7 @@ function Community() {
         target="_blank"
         rel="noopener noreferrer"
         className={styles.secondaryButton}>
-        Learn more about the Ecosystem
+        Saiba mais sobre o ecossistema
       </a>
     </Section>
   );

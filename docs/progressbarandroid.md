@@ -10,7 +10,7 @@ Use um dos [pacotes da comunidade](https://reactnative.directory/?search=progres
 
 Componente React exclusivo para Android usado para indicar que o aplicativo está carregando ou há alguma atividade no aplicativo.
 
-### Exemplo
+### Exemplo {#example}
 
 ```SnackPlayer name=ProgressBarAndroid&supportedPlatforms=android
 import {View, StyleSheet, ProgressBarAndroid, Text} from 'react-native';

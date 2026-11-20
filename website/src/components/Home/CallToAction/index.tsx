@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import React from 'react';
 
 import Logo from '../Logo';
@@ -17,9 +19,9 @@ function CallToAction() {
       <div className={styles.background} />
       <div className={styles.container}>
         <Logo />
-        <h2 className={styles.title}>Welcome to the React Native community</h2>
+        <h2 className={styles.title}>Bem-vindo à comunidade React Native</h2>
         <a href="/docs/environment-setup" className={styles.primaryButton}>
-          Get Started
+          Começar
         </a>
       </div>
     </div>

@@ -8,11 +8,11 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 Estes são alguns problemas comuns que você pode encontrar ao configurar o React Native. Se você encontrar algo que não está listado aqui, tente [pesquisar o problema no GitHub](https://github.com/react/react-native/issues/).
 
-### Porta já em uso
+### Porta já em uso {#port-already-in-use}
 
 O [Metro bundler][metro] executa na porta 8081. Se outro processo já estiver usando essa porta, você pode encerrar esse processo ou alterar a porta que o bundler usa.
 
-#### Encerrando um processo na porta 8081
+#### Encerrando um processo na porta 8081 {#terminating-a-process-on-port-8081}
 
 Execute o seguinte comando para encontrar o id do processo que está escutando na porta 8081:
 
@@ -28,7 +28,7 @@ kill -9 <PID>
 
 No Windows, você pode encontrar o processo usando a porta 8081 usando o [Resource Monitor](https://stackoverflow.com/questions/48198/how-can-you-find-out-which-process-is-listening-on-a-port-on-windows) e pará-lo usando o Task Manager.
 
-#### Usando uma porta diferente de 8081
+#### Usando uma porta diferente de 8081 {#using-a-port-other-than-8081}
 
 Você pode configurar o bundler para usar uma porta diferente de 8081 usando o parâmetro `port`, a partir da raiz do seu projeto execute:
 
@@ -51,7 +51,7 @@ yarn start --port 8088
 
 Você também precisará atualizar suas aplicações para carregar o bundle JavaScript da nova porta. Se estiver executando no dispositivo a partir do Xcode, você pode fazer isso atualizando as ocorrências de `8081` para a porta escolhida no arquivo `ios/__App_Name__.xcodeproj/project.pbxproj`.
 
-### Erro de bloqueio do NPM
+### Erro de bloqueio do NPM {#npm-locking-error}
 
 Se você encontrar um erro como `npm WARN locking Error: EACCES` ao usar o React Native CLI, tente executar o seguinte:
 
@@ -60,7 +60,7 @@ sudo chown -R $USER ~/.npm
 sudo chown -R $USER /usr/local/lib/node_modules
 ```
 
-### Bibliotecas ausentes para o React
+### Bibliotecas ausentes para o React {#missing-libraries-for-react}
 
 Se você adicionou o React Native manualmente ao seu projeto, certifique-se de ter incluído todas as dependências relevantes que você está usando, como `RCTText.xcodeproj`, `RCTImage.xcodeproj`. Em seguida, os binários construídos por essas dependências precisam ser vinculados ao binário do seu app. Use a seção `Linked Frameworks and Binaries` nas configurações do projeto Xcode. Etapas mais detalhadas estão aqui: [Linking Libraries](linking-libraries-ios.md).
 
@@ -77,7 +77,7 @@ pod 'React', :path => '../node_modules/react-native', :subspecs => [
 
 Em seguida, certifique-se de ter executado `pod install` e que um diretório `Pods/` foi criado no seu projeto com o React instalado. O CocoaPods irá instruí-lo a usar o arquivo `.xcworkspace` gerado daqui em diante para poder usar essas dependências instaladas.
 
-#### React Native não compila quando usado como CocoaPod
+#### React Native não compila quando usado como CocoaPod {#react-native-does-not-compile-when-being-used-as-a-cocoapod}
 
 Existe um plugin do CocoaPods chamado [cocoapods-fix-react-native](https://github.com/orta/cocoapods-fix-react-native) que lida com qualquer possível correção pós-instalação do código-fonte devido a diferenças ao usar um gerenciador de dependências.
 

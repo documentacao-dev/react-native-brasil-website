@@ -8,7 +8,7 @@ Renderiza um input booleano.
 
 Este é um componente controlado que requer um callback `onValueChange` que atualiza a prop `value` para que o componente reflita as ações do usuário. Se a prop `value` não for atualizada, o componente continuará a renderizar a prop `value` fornecida ao invés do resultado esperado de quaisquer ações do usuário.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=Switch&supportedPlatforms=android,ios
 import {useState} from 'react';

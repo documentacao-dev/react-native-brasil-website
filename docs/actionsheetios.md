@@ -6,7 +6,7 @@ title: ActionSheetIOS
 
 Exibe o componente nativo do iOS [Action Sheet](https://developer.apple.com/design/human-interface-guidelines/action-sheets).
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=ActionSheetIOS%20Example&supportedPlatforms=ios
 import {useState} from 'react';
@@ -61,7 +61,7 @@ export default App;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `showActionSheetWithOptions()`
 
