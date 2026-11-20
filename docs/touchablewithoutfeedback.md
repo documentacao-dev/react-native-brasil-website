@@ -530,5 +530,3 @@ Se true, não reproduz um som do sistema no toque.
 | Type    |
 | ------- |
 | Boolean |
-
----

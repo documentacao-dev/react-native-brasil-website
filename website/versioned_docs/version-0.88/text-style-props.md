@@ -970,5 +970,3 @@ Permite que o usuário selecione texto e use a funcionalidade nativa de copiar e
 | Tipo                                                     | Padrão |
 | -------------------------------------------------------- | ------ |
 | enum(`'auto'`, `'text'`, `'none'`, `'contain'`, `'all'`) | `none` |
-
----
