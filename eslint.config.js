@@ -7,6 +7,7 @@
 
 import {readdirSync, readFileSync} from 'node:fs';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 import {defineConfig, globalIgnores} from 'eslint/config';
 import globals from 'globals';
@@ -24,6 +25,7 @@ import eslintPluginAlex from 'eslint-plugin-alex';
 // React Native Brasil: títulos traduzidos levam `{#id}` (âncoras do inglês).
 // O Docusaurus aceita isso (`markdown.mdx1Compat.headingIds`), mas o parser MDX
 // do ESLint não, então esses `.mdx` ficam fora do lint.
+const raiz = path.dirname(fileURLToPath(import.meta.url));
 const mdxComIdNoTitulo = [];
 (function varrer(dir) {
   for (const e of readdirSync(dir, {withFileTypes: true})) {
@@ -37,13 +39,13 @@ const mdxComIdNoTitulo = [];
       p.endsWith('.mdx') &&
       /^#{1,6} .*\{#[^}]+\}\s*$/m.test(readFileSync(p, 'utf8'))
     ) {
-      mdxComIdNoTitulo.push(path.relative('.', p));
+      mdxComIdNoTitulo.push(path.relative(raiz, p));
     }
   }
-})('.');
+})(raiz);
 
 export default defineConfig([
-  globalIgnores(mdxComIdNoTitulo),
+  ...(mdxComIdNoTitulo.length ? [globalIgnores(mdxComIdNoTitulo)] : []),
   globalIgnores([
     '**/.yarn',
     '**/node_modules',
