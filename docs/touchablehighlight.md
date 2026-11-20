@@ -149,7 +149,7 @@ A cor do underlay que aparecerá quando o toque estiver ativo.
 
 ### `nextFocusDown` <div className="label android">Android</div>
 
-TV next focus down (veja a documentação para o componente View).
+Próximo foco de TV para baixo (veja a documentação para o componente View).
 
 | Type   |
 | ------ |
@@ -159,7 +159,7 @@ TV next focus down (veja a documentação para o componente View).
 
 ### `nextFocusForward` <div className="label android">Android</div>
 
-TV next focus forward (veja a documentação para o componente View).
+Próximo foco de TV para frente (veja a documentação para o componente View).
 
 | Type   |
 | ------ |
@@ -169,7 +169,7 @@ TV next focus forward (veja a documentação para o componente View).
 
 ### `nextFocusLeft` <div className="label android">Android</div>
 
-TV next focus left (veja a documentação para o componente View).
+Próximo foco de TV para esquerda (veja a documentação para o componente View).
 
 | Type   |
 | ------ |
@@ -179,7 +179,7 @@ TV next focus left (veja a documentação para o componente View).
 
 ### `nextFocusRight` <div className="label android">Android</div>
 
-TV next focus right (veja a documentação para o componente View).
+Próximo foco de TV para direita (veja a documentação para o componente View).
 
 | Type   |
 | ------ |
@@ -189,7 +189,7 @@ TV next focus right (veja a documentação para o componente View).
 
 ### `nextFocusUp` <div className="label android">Android</div>
 
-TV next focus up (veja a documentação para o componente View).
+Próximo foco de TV para cima (veja a documentação para o componente View).
 
 | Type   |
 | ------ |
