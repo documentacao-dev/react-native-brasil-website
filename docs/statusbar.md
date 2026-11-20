@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 Componente para controlar a status bar do aplicativo. A status bar é a zona, tipicamente no topo da tela, que exibe a hora atual, informações de rede Wi-Fi e celular, nível de bateria e/ou outros ícones de status.
 
-### Uso com Navigator
+### Uso com Navigator {#usage-with-navigator}
 
 É possível ter múltiplos componentes `StatusBar` montados ao mesmo tempo. As props serão mescladas na ordem em que os componentes `StatusBar` foram montados.
 
@@ -16,7 +16,7 @@ Componente para controlar a status bar do aplicativo. A status bar é a zona, ti
 <TabItem value="javascript">
 
 ```SnackPlayer name=StatusBar%20Component%20Example&supportedPlatforms=android,ios&ext=js
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   Button,
   Platform,
@@ -27,7 +27,7 @@ import {
 } from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
-const STYLES = ['default', 'dark-content', 'light-content'];
+const STYLES = ['default', 'auto', 'dark-content', 'light-content'];
 const TRANSITIONS = ['fade', 'slide', 'none'];
 
 const App = () => {
@@ -62,7 +62,6 @@ const App = () => {
       <SafeAreaView style={styles.container}>
         <StatusBar
           animated={true}
-          backgroundColor="#61dafb"
           barStyle={statusBarStyle}
           showHideTransition={statusBarTransition}
           hidden={hidden}
@@ -124,7 +123,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=StatusBar%20Component%20Example&supportedPlatforms=android,ios&ext=tsx
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   Button,
   Platform,
@@ -136,7 +135,7 @@ import {
 } from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
-const STYLES = ['default', 'dark-content', 'light-content'] as const;
+const STYLES = ['default', 'auto', 'dark-content', 'light-content'] as const;
 const TRANSITIONS = ['fade', 'slide', 'none'] as const;
 
 const App = () => {
@@ -173,7 +172,6 @@ const App = () => {
       <SafeAreaView style={styles.container}>
         <StatusBar
           animated={true}
-          backgroundColor="#61dafb"
           barStyle={statusBarStyle}
           showHideTransition={statusBarTransition}
           hidden={hidden}
@@ -234,7 +232,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-### API Imperativa
+### API Imperativa {#imperative-api}
 
 Para casos onde usar um componente não é ideal, também existe uma API imperativa exposta como funções estáticas no componente. No entanto, não é recomendado usar a API estática e o componente para a mesma prop porque qualquer valor definido pela API estática será sobrescrito pelo definido pelo componente na próxima renderização.
 
@@ -254,25 +252,11 @@ A altura da status bar, que inclui a altura do notch, se presente.
 
 ### `animated`
 
-Se a transição entre as mudanças de propriedades da status bar deve ser animada. Suportado para as propriedades `backgroundColor`, `barStyle` e `hidden`.
+Se a transição entre as mudanças de propriedades da status bar deve ser animada. Suportado para as propriedades `barStyle` e `hidden`.
 
 | Tipo    | Obrigatório | Padrão  |
 | ------- | ----------- | ------- |
 | boolean | Não         | `false` |
-
----
-
-### `backgroundColor` <div className="label android">Android</div>
-
-A cor de fundo da status bar.
-
-:::warning
-Devido à imposição de edge-to-edge introduzida no Android 15, definir a cor de fundo da status bar está obsoleto no nível de API 35 e defini-la não terá efeito. Você pode ler mais sobre nossas [recomendações de edge-to-edge aqui](https://github.com/react-native-community/discussions-and-proposals/discussions/827).
-:::
-
-| Tipo            | Obrigatório | Padrão                                                                          |
-| --------------- | ----------- | ------------------------------------------------------------------------------- |
-| [color](colors) | Não         | cor de fundo padrão do sistema para StatusBar, ou `'black'` se não for definida |
 
 ---
 
@@ -298,16 +282,6 @@ Se a status bar está oculta.
 
 ---
 
-### `networkActivityIndicatorVisible` <div className="label ios">iOS</div>
-
-Se o indicador de atividade de rede deve ser visível.
-
-| Tipo    | Padrão  |
-| ------- | ------- |
-| boolean | `false` |
-
----
-
 ### `showHideTransition` <div className="label ios">iOS</div>
 
 O efeito de transição ao mostrar e ocultar a status bar usando a prop `hidden`.
@@ -315,20 +289,6 @@ O efeito de transição ao mostrar e ocultar a status bar usando a prop `hidden`
 | Tipo                                               | Padrão   |
 | -------------------------------------------------- | -------- |
 | [StatusBarAnimation](statusbar#statusbaranimation) | `'fade'` |
-
----
-
-### `translucent` <div className="label android">Android</div>
-
-Se a status bar é translúcida. Quando translucent é definido como `true`, o aplicativo desenhará sob a status bar. Isso é útil ao usar uma cor de status bar semi-transparente.
-
-:::warning
-Devido à imposição de edge-to-edge introduzida no Android 15, definir a status bar como translúcida está obsoleto no nível de API 35 e defini-la não terá efeito. Você pode ler mais sobre nossas [recomendações de edge-to-edge aqui](https://github.com/react-native-community/discussions-and-proposals/discussions/827).
-:::
-
-| Tipo    | Padrão  |
-| ------- | ------- |
-| boolean | `false` |
 
 ## Methods
 
@@ -342,9 +302,9 @@ Obtém e remove a última entrada de StatusBar da pilha.
 
 **Parâmetros:**
 
-| Nome                                                       | Tipo | Descrição                                 |
-| ---------------------------------------------------------- | ---- | ----------------------------------------- |
-| entry <div className="label basic required">Required</div> | any  | Entrada retornada de `pushStackEntry`.    |
+| Nome                                                       | Tipo | Descrição                              |
+| ---------------------------------------------------------- | ---- | -------------------------------------- |
+| entry <div className="label basic required">Required</div> | any  | Entrada retornada de `pushStackEntry`. |
 
 ---
 
@@ -358,9 +318,9 @@ Adiciona uma entrada de StatusBar na pilha. O valor de retorno deve ser passado 
 
 **Parâmetros:**
 
-| Nome                                                       | Tipo | Descrição                                                                  |
-| ---------------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
-| props <div className="label basic required">Required</div> | any  | Objeto contendo as props de StatusBar para usar na entrada da pilha.      |
+| Nome                                                       | Tipo | Descrição                                                            |
+| ---------------------------------------------------------- | ---- | -------------------------------------------------------------------- |
+| props <div className="label basic required">Required</div> | any  | Objeto contendo as props de StatusBar para usar na entrada da pilha. |
 
 ---
 
@@ -377,31 +337,10 @@ Substitui uma entrada de pilha de StatusBar existente por novas props.
 
 **Parâmetros:**
 
-| Nome                                                       | Tipo | Descrição                                                                                |
-| ---------------------------------------------------------- | ---- | ---------------------------------------------------------------------------------------- |
-| entry <div className="label basic required">Required</div> | any  | Entrada retornada de `pushStackEntry` para substituir.                                   |
-| props <div className="label basic required">Required</div> | any  | Objeto contendo as props de StatusBar para usar na entrada de pilha de substituição.    |
-
----
-
-### `setBackgroundColor()` <div className="label android">Android</div>
-
-```tsx
-static setBackgroundColor(color: ColorValue, animated?: boolean);
-```
-
-Define a cor de fundo para a status bar.
-
-:::warning
-Devido à imposição de edge-to-edge introduzida no Android 15, definir a cor de fundo da status bar está obsoleto no nível de API 35 e defini-la não terá efeito. Você pode ler mais sobre nossas [recomendações de edge-to-edge aqui](https://github.com/react-native-community/discussions-and-proposals/discussions/827).
-:::
-
-**Parâmetros:**
-
-| Nome                                                       | Tipo    | Descrição                       |
-| ---------------------------------------------------------- | ------- | ------------------------------- |
-| color <div className="label basic required">Required</div> | string  | Cor de fundo.                   |
-| animated                                                   | boolean | Animar a mudança de estilo.     |
+| Nome                                                       | Tipo | Descrição                                                                            |
+| ---------------------------------------------------------- | ---- | ------------------------------------------------------------------------------------ |
+| entry <div className="label basic required">Required</div> | any  | Entrada retornada de `pushStackEntry` para substituir.                               |
+| props <div className="label basic required">Required</div> | any  | Objeto contendo as props de StatusBar para usar na entrada de pilha de substituição. |
 
 ---
 
@@ -432,46 +371,12 @@ Mostra ou oculta a status bar.
 
 **Parâmetros:**
 
-| Nome                                                        | Tipo                                               | Descrição                                                      |
-| ----------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------- |
-| hidden <div className="label basic required">Required</div> | boolean                                            | Ocultar a status bar.                                          |
-| animation <div className="label ios">iOS</div>              | [StatusBarAnimation](statusbar#statusbaranimation) | Animação ao mudar a propriedade hidden da status bar.          |
+| Nome                                                        | Tipo                                               | Descrição                                             |
+| ----------------------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------- |
+| hidden <div className="label basic required">Required</div> | boolean                                            | Ocultar a status bar.                                 |
+| animation <div className="label ios">iOS</div>              | [StatusBarAnimation](statusbar#statusbaranimation) | Animação ao mudar a propriedade hidden da status bar. |
 
 ---
-
-### `setNetworkActivityIndicatorVisible()` <div className="label ios">iOS</div>
-
-```tsx
-static setNetworkActivityIndicatorVisible(visible: boolean);
-```
-
-Controla a visibilidade do indicador de atividade de rede.
-
-**Parâmetros:**
-
-| Nome                                                         | Tipo    | Descrição           |
-| ------------------------------------------------------------ | ------- | ------------------- |
-| visible <div className="label basic required">Required</div> | boolean | Mostra o indicador. |
-
----
-
-### `setTranslucent()` <div className="label android">Android</div>
-
-```tsx
-static setTranslucent(translucent: boolean);
-```
-
-Controla a translucidez da status bar.
-
-:::warning
-Devido à imposição de edge-to-edge introduzida no Android 15, definir a status bar como translúcida está obsoleto no nível de API 35 e defini-la não terá efeito. Você pode ler mais sobre nossas [recomendações de edge-to-edge aqui](https://github.com/react-native-community/discussions-and-proposals/discussions/827).
-:::
-
-**Parâmetros:**
-
-| Nome                                                             | Tipo    | Descrição              |
-| ---------------------------------------------------------------- | ------- | ---------------------- |
-| translucent <div className="label basic required">Required</div> | boolean | Definir como translúcida. |
 
 ## Type Definitions
 
@@ -485,11 +390,11 @@ Tipo de animação de status bar para transições no iOS.
 
 **Constants:**
 
-| Valor     | Tipo   | Descrição       |
-| --------- | ------ | --------------- |
-| `'fade'`  | string | Animação fade   |
-| `'slide'` | string | Animação slide  |
-| `'none'`  | string | Sem animação    |
+| Valor     | Tipo   | Descrição      |
+| --------- | ------ | -------------- |
+| `'fade'`  | string | Animação fade  |
+| `'slide'` | string | Animação slide |
+| `'none'`  | string | Sem animação   |
 
 ---
 
@@ -503,8 +408,9 @@ Tipo de estilo de status bar.
 
 **Constants:**
 
-| Valor             | Tipo   | Descrição                                                     |
-| ----------------- | ------ | ------------------------------------------------------------- |
-| `'default'`       | string | Estilo de status bar padrão (escuro para iOS, claro para Android) |
-| `'light-content'` | string | Textos e ícones brancos                                       |
-| `'dark-content'`  | string | Textos e ícones escuros (requer API>=23 no Android)           |
+| Valor             | Tipo   | Descrição                                                                                                                                 |
+| ----------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `'default'`       | string | Estilo de status bar padrão (claro para Android, escuro para iOS)                                                                         |
+| `'auto'`          | string | Escolhe automaticamente `light-content` ou `dark-content` conforme o esquema de cores atual. Atualiza sempre que o esquema de cores muda. |
+| `'light-content'` | string | Textos e ícones brancos                                                                                                                   |
+| `'dark-content'`  | string | Textos e ícones escuros (requer API>=23 no Android)                                                                                       |

@@ -21,7 +21,7 @@ Para testar em batalha o suporte RTL em produção, a versão mais recente do ap
 <img src="/blog/assets/rtl-ama-android-hebrew.png" width={280} style={{ margin: 10 }} />
 </>
 
-## Visão Geral das Mudanças no RN para suporte RTL
+## Visão Geral das Mudanças no RN para suporte RTL {#overview-changes-in-rn-for-rtl-support}
 
 [css-layout](https://github.com/facebook/css-layout) já tem um conceito de `start` e `end` para o layout. No layout da Esquerda para a Direita (LTR), `start` significa `left`, e `end` significa `right`. Mas em RTL, `start` significa `right`, e `end` significa `left`. Isso significa que podemos fazer o RN depender do cálculo de `start` e `end` para calcular o layout correto, que inclui `position`, `padding` e `margin`.
 
@@ -43,7 +43,7 @@ Com esta atualização, quando você permite layout RTL para seu aplicativo:
 - alguns gestos e animações automaticamente terão layout RTL, se você estiver usando componentes OSS prontos para RTL
 - esforço adicional mínimo pode ser necessário para tornar seu aplicativo totalmente pronto para RTL
 
-## Tornando um Aplicativo Pronto para RTL
+## Tornando um Aplicativo Pronto para RTL {#making-an-app-rtl-ready}
 
 1. Para suportar RTL, você deve primeiro adicionar os bundles de idioma RTL ao seu aplicativo.
    - Veja os guias gerais do [iOS](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/LocalizingYourApp/LocalizingYourApp.html#//apple_ref/doc/uid/10000171i-CH5-SW1) e [Android](https://developer.android.com/training/basics/supporting-devices/languages.html).
@@ -69,7 +69,7 @@ Com esta atualização, quando você permite layout RTL para seu aplicativo:
 
 Agora, quando você recompilar seu aplicativo e mudar o idioma do dispositivo para um idioma RTL (por exemplo, árabe ou hebraico), o layout do seu aplicativo deve mudar para RTL automaticamente.
 
-## Escrevendo Componentes Prontos para RTL
+## Escrevendo Componentes Prontos para RTL {#writing-rtl-ready-components}
 
 Em geral, a maioria dos componentes já está pronta para RTL, por exemplo:
 
@@ -83,7 +83,7 @@ Em geral, a maioria dos componentes já está pronta para RTL, por exemplo:
 
 No entanto, existem vários casos a serem observados, para os quais você precisará do [`I18nManager`](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js). No [`I18nManager`](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js), existe uma constante `isRTL` para informar se o layout do aplicativo é RTL ou não, para que você possa fazer as mudanças necessárias de acordo com o layout.
 
-#### Ícones com Significado Direcional
+#### Ícones com Significado Direcional {#icons-with-directional-meaning}
 
 Se seu componente tem ícones ou imagens, eles serão exibidos da mesma forma no layout LTR e RTL, porque o RN não irá inverter sua imagem de origem. Portanto, você deve invertê-los de acordo com o estilo de layout.
 
@@ -116,7 +116,7 @@ Aqui estão duas maneiras de inverter o ícone de acordo com a direção:
   return <Image source={imageSource} />;
   ```
 
-#### Gestos e Animações
+#### Gestos e Animações {#gestures-and-animations}
 
 No desenvolvimento Android e iOS, quando você muda para layout RTL, os gestos e animações são o oposto do layout LTR. Atualmente, no RN, gestos e animações não são suportados no nível de código core do RN, mas no nível de componentes. A boa notícia é que alguns desses componentes já suportam RTL hoje, como [`SwipeableRow`](https://github.com/facebook/react-native/blob/38a6eec0db85a5204e85a9a92b4dee2db9641671/Libraries/Experimental/SwipeableRow/SwipeableRow.js) e [`NavigationExperimental`](https://github.com/facebook/react-native/tree/master/Libraries/NavigationExperimental). No entanto, outros componentes com gestos precisarão suportar RTL manualmente.
 
@@ -127,7 +127,7 @@ Um bom exemplo para ilustrar o suporte RTL de gestos é [`SwipeableRow`](https:/
   <img src="/blog/assets/rtl-demo-swipe-rtl.png" width={280} style={{margin: 10}} />
 </p>
 
-##### Exemplo de Gestos
+##### Exemplo de Gestos {#gestures-example}
 
 ```js
 // SwipeableRow.js
@@ -141,7 +141,7 @@ _isSwipingExcessivelyRightFromClosedPosition(gestureState: Object): boolean {
 },
 ```
 
-##### Exemplo de Animação
+##### Exemplo de Animação {#animation-example}
 
 ```js
 // SwipeableRow.js
@@ -158,7 +158,7 @@ _animateBounceBack(duration: number): void {
 },
 ```
 
-## Mantendo Seu Aplicativo Pronto para RTL
+## Mantendo Seu Aplicativo Pronto para RTL {#maintaining-your-rtl-ready-app}
 
 Mesmo após o lançamento inicial do aplicativo compatível com RTL, você provavelmente precisará iterar em novos recursos. Para melhorar a eficiência de desenvolvimento, [`I18nManager`](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js) fornece a função `forceRTL()` para testes RTL mais rápidos sem mudar o idioma do dispositivo de teste. Você pode querer fornecer um switch simples para isso em seu aplicativo. Aqui está um exemplo do exemplo RTL no RNTester:
 
@@ -194,7 +194,7 @@ _onDirectionChange = () => {
 
 Ao trabalhar em um novo recurso, você pode facilmente alternar este botão e recarregar o aplicativo para ver o layout RTL. O benefício é que você não precisará mudar a configuração de idioma para testar, no entanto, algum alinhamento de texto não mudará, como explicado na próxima seção. Portanto, é sempre uma boa ideia testar seu aplicativo no idioma RTL antes de lançar.
 
-## Limitações e Plano Futuro
+## Limitações e Plano Futuro {#limitations-and-future-plan}
 
 O suporte RTL deve cobrir a maior parte da UX em seu aplicativo; no entanto, existem algumas limitações por enquanto:
 
@@ -210,7 +210,7 @@ O suporte RTL deve cobrir a maior parte da UX em seu aplicativo; no entanto, exi
 
   Atualmente, ainda há algum esforço de programação necessário para tornar gestos e animações compatíveis com RTL. No futuro, seria ideal encontrar uma maneira de tornar o suporte RTL de gestos e animações mais amigável para desenvolvedores.
 
-## Experimente!
+## Experimente! {#try-it-out}
 
 Confira o [`RTLExample`](https://github.com/facebook/react-native/blob/master/packages/rn-tester/js/examples/RTL/RTLExample.js) no `RNTester` para entender mais sobre o suporte RTL, e nos avise como funciona para você!
 

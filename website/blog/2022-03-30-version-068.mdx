@@ -1,0 +1,77 @@
+---
+ia-translated: true
+title: Anunciando React Native 0.68
+authors: [kelset, shikaSD]
+tags: [announcement, release]
+---
+
+Olá a todos! Hoje estamos anunciando o lançamento 0.68.0 do React Native, com opt-in para a New React Native Architecture, correções de bugs e muito mais.
+
+### Seções {#sections}
+
+- [Destaques do 0.68](/blog/2022/03/30/version-068#highlights-of-068)
+- [Opt-in para a New Architecture](/blog/2022/03/30/version-068#opting-in-to-the-new-architecture)
+- [Atualizações do website](/blog/2022/03/30/version-068#website-updates)
+- [Interessado em ajudar o React Native a estabilizar novos lançamentos?](/blog/2022/03/30/version-068#interested-in-helping-react-native-stabilize-new-releases)
+
+{/* truncate */}
+
+## Destaques do 0.68 {#highlights-of-068}
+
+[Andrei Calazans](https://twitter.com/Andrei_Calazans) nos ajudou a selecionar as mudanças mais relevantes que o 0.68 traz:
+
+### Breaking changes e atualizações de versão {#breaking-changes-and-version-bumps}
+
+Esta versão traz algumas breaking changes:
+
+- React Native foi atualizado para Node 16, o último LTS. Como no CI testamos para LTS e o LTS anterior, essa mudança significa que os usuários agora precisam usar uma versão do Node >= 14.
+- Android Gradle Plugin foi atualizado para 7.0.1, forçando o JDK 11 para builds Android, então certifique-se de atualizar suas configurações (recomendamos que você use o JDK flavor `zulu11` tanto para Macs Intel quanto M1)
+- Removido `fallbackResource` da API `RCTBundleURLProvider` no iOS. Este parâmetro pode ser removido com segurança da chamada do método sem substituição.
+
+As ferramentas também foram atualizadas - aqui estão as principais atualizações:
+
+- @react-native-community/cli para 7.0.3
+- Metro para 0.67
+- dependência react-devtools-core para 4.23.0
+- Flipper para 0.125.0
+- react-native-codegen para 0.0.9
+- Kotlin para 1.6.10
+- Soloader para 0.10.3
+- Gradle para 7.3
+- Android compile e target SDK para 31
+
+Além disso, graças a [este commit](https://github.com/facebook/react-native/commit/bd7caa64f5d6ee5ea9484e92c3629c9ce711f73c) de [Nicola Corti](https://github.com/cortinico), o Android Gradle Plugin baixará a versão padrão do NDK por si só, então você não precisa mais especificá-lo e instalá-lo separadamente.
+
+### Outras melhorias {#other-improvements}
+
+Há muitas outras mudanças e correções que chegaram neste lançamento, mas aqui está uma pequena seleção que pode interessar você:
+
+- [Gijs Weterings](https://github.com/GijsWeterings) [corrigiu o encaminhamento de testID para RCTModalHostView](https://github.com/facebook/react-native/commit/5050e7eaa17cb417baf7c20eb5c4406cce6790a5) para facilitar a segmentação E2E de Modals.
+- [Liam Jones](https://github.com/liamjones) [corrigiu um problema](https://github.com/facebook/react-native/commit/9d2df5b8ae9) em que chamar `console.error` fazia a RedBox aparecer junto com a LogBox.
+- [Sam Kline](https://github.com/samkline) [corrigiu a tela em branco vazia](https://github.com/facebook/react-native/commit/c8d823b9bd9619dfa1f5851af003cc24ba2e8830) após uma falha do BundleDownloader no modo dev no Android.
+- [Jeffrey Hyer](https://github.com/JeffreyHyer) [corrigiu um problema](https://github.com/facebook/react-native/commit/9c5e177a79c) em que o KeyboardAvoidingView não funcionava como esperado com a prop `onLayout`.
+
+Se você está interessado na lista completa de mudanças, pode lê-la no changelog [neste link](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#0680).
+
+### Agradecimentos {#acknowledgements}
+
+Este lançamento inclui 614 commits de 68 colaboradores! Obrigado a todos!
+
+Também queremos agradecer aos testadores e apoiadores do lançamento que nos ajudaram a capturar regressões antes do lançamento estável 0.68.0: vocês são incrivelmente valiosos para o sucesso deste lançamento!
+
+Se você, seu aplicativo ou sua empresa estiver interessado em participar do programa "Release Tester", você pode [se inscrever aqui](https://forms.gle/fPuPE1MZRDGWNqpd6).
+
+## Opt-in para a New Architecture {#opting-in-to-the-new-architecture}
+
+Como mencionado brevemente acima, React Native 0.68 é a primeira versão com suporte opt-in para o Fabric Renderer e o sistema TurboModule. Isso marca um marco crucial para o rollout da New React Native Architecture. Para ajudá-lo a se atualizar com as mudanças, adicionamos [a seção Architecture](/architecture/overview) ao website, onde você pode encontrar vários guias aprofundados sobre os internals dos novos sistemas.
+
+Ao mesmo tempo, adicionamos o [guia de migração](https://github.com/reactwg/react-native-new-architecture#guides) à documentação e lançamos [um working group](https://github.com/reactwg/react-native-new-architecture) dedicado à New Architecture. Você pode encontrar mais informações, incluindo como fazer opt-in, [no post anterior do blog](/blog/2022/03/15/an-update-on-the-new-architecture-rollout).
+
+Observe que a New Architecture ainda precisa de alguns ajustes finos. Algumas das bibliotecas de terceiros das quais você depende podem ainda não ter sido migradas, e você pode encontrar problemas que ainda não descobrimos. Se isso acontecer, por favor, reporte-os ao nosso [New Architecture Working Group](https://github.com/reactwg/react-native-new-architecture).
+
+**Sobre React 18:** O novo engine de renderização do React 18 não é suportado pelo React Native 0.68, isso acontecerá em uma versão futura. Isso ocorre porque o React 18 depende da New Architecture para se beneficiar dos novos recursos apresentados no [post de anúncio do React 18](https://reactjs.org/blog/2022/03/29/react-v18.html). Para mais informações, veja a [keynote do React Conf aqui](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
+
+## Atualizações do website {#website-updates}
+
+Junto com melhorias na base de código principal, com a ajuda de [Simek](https://github.com/Simek), [Megatron4537](https://github.com/Megatron4537) e [slorber](https://github.com/slorber), também houve algumas melhorias chegando ao website! Em particular, agora você poderá aprender como contribuir para o React Native através da nova seção na barra de ferramentas superior.
+Além disso, a seção "Contributing" e a nova seção "Architecture" agora não têm versão - agora há apenas uma cópia dessas seções, em vez de uma para cada versão do React Native.

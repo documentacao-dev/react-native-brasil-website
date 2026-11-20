@@ -18,7 +18,6 @@ Se um usuário desativou anteriormente uma permission que você solicita, o sist
 ### Example
 
 ```SnackPlayer name=PermissionsAndroid%20Example&supportedPlatforms=android
-import React from 'react';
 import {
   Button,
   PermissionsAndroid,
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-### Permissions que requerem prompt ao usuário
+### Permissions que requerem prompt ao usuário {#permissions-that-require-prompting-the-user}
 
 Disponíveis como constantes em `PermissionsAndroid.PERMISSIONS`:
 
@@ -127,7 +126,7 @@ Disponíveis como constantes em `PermissionsAndroid.PERMISSIONS`:
 - `READ_VOICEMAIL`: 'com.android.voicemail.permission.READ_VOICEMAIL',
 - `WRITE_VOICEMAIL`: 'com.android.voicemail.permission.WRITE_VOICEMAIL',
 
-### Strings de resultado para solicitar permissions
+### Strings de resultado para solicitar permissions {#result-strings-for-requesting-permissions}
 
 Disponíveis como constantes em `PermissionsAndroid.RESULTS`:
 
@@ -151,9 +150,9 @@ Retorna uma promise que resolve para um valor booleano indicando se a permission
 
 **Parameters:**
 
-| Name       | Type   | Required | Description                         |
-| ---------- | ------ | -------- | ----------------------------------- |
-| permission | string | Yes      | A permission a ser verificada.      |
+| Name       | Type   | Required | Description                    |
+| ---------- | ------ | -------- | ------------------------------ |
+| permission | string | Yes      | A permission a ser verificada. |
 
 ---
 
@@ -172,20 +171,20 @@ Se `rationale` for fornecido, esta função verifica com o sistema operacional s
 
 **Parameters:**
 
-| Name       | Type   | Required | Description                      |
-| ---------- | ------ | -------- | -------------------------------- |
-| permission | string | Yes      | A permission a ser solicitada.   |
-| rationale  | object | No       | Veja `rationale` abaixo.         |
+| Name       | Type   | Required | Description                    |
+| ---------- | ------ | -------- | ------------------------------ |
+| permission | string | Yes      | A permission a ser solicitada. |
+| rationale  | object | No       | Veja `rationale` abaixo.       |
 
 **Rationale:**
 
-| Name           | Type   | Required | Description                       |
-| -------------- | ------ | -------- | --------------------------------- |
-| title          | string | Yes      | O título do diálogo.              |
-| message        | string | Yes      | A mensagem do diálogo.            |
-| buttonPositive | string | Yes      | O texto do botão positivo.        |
-| buttonNegative | string | No       | O texto do botão negativo.        |
-| buttonNeutral  | string | No       | O texto do botão neutro.          |
+| Name           | Type   | Required | Description                |
+| -------------- | ------ | -------- | -------------------------- |
+| title          | string | Yes      | O título do diálogo.       |
+| message        | string | Yes      | A mensagem do diálogo.     |
+| buttonPositive | string | Yes      | O texto do botão positivo. |
+| buttonNegative | string | No       | O texto do botão negativo. |
+| buttonNeutral  | string | No       | O texto do botão neutro.   |
 
 ---
 
@@ -201,6 +200,6 @@ Solicita ao usuário que habilite múltiplas permissions no mesmo diálogo e ret
 
 **Parameters:**
 
-| Name        | Type  | Required | Description                            |
-| ----------- | ----- | -------- | -------------------------------------- |
+| Name        | Type  | Required | Description                               |
+| ----------- | ----- | -------- | ----------------------------------------- |
 | permissions | array | Yes      | Array de permissions a serem solicitadas. |

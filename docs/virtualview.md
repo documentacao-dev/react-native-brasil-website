@@ -119,12 +119,12 @@ Argumento fornecido para [`onModeChange`](#onmodechange).
 
 **Properties:**
 
-| Name          | Type                                | Description                                                                                                |
-| ------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| mode          | [VirtualViewMode](#virtualviewmode) | Novo modo do `VirtualView`.                                                                                |
-| target        | element                             | `VirtualView` emitindo este evento.                                                                        |
-| targetRect    | [Rect](rect)                        | Layout de `target` relativo ao ancestral `ScrollView` mais próximo.                                        |
-| thresholdRect | [Rect](rect)                        | Layout do threshold que disparou este evento, relativo ao ancestral `ScrollView` mais próximo.             |
+| Name          | Type                                | Description                                                                                    |
+| ------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------- |
+| mode          | [VirtualViewMode](#virtualviewmode) | Novo modo do `VirtualView`.                                                                    |
+| target        | element                             | `VirtualView` emitindo este evento.                                                            |
+| targetRect    | [Rect](rect)                        | Layout de `target` relativo ao ancestral `ScrollView` mais próximo.                            |
+| thresholdRect | [Rect](rect)                        | Layout do threshold que disparou este evento, relativo ao ancestral `ScrollView` mais próximo. |
 
 :::note
 Por exemplo, se um `VirtualView` entrar na região visível de um [`ScrollView`](scrollview)...
@@ -139,11 +139,11 @@ Por exemplo, se um `VirtualView` entrar na região visível de um [`ScrollView`]
 
 Modos possíveis de um `VirtualView`.
 
-| Name      | Value | Description                                       |
-| --------- | ----- | ------------------------------------------------- |
-| Visible   | `0`   | View alvo está visível.                           |
+| Name      | Value | Description                                          |
+| --------- | ----- | ---------------------------------------------------- |
+| Visible   | `0`   | View alvo está visível.                              |
 | Prerender | `1`   | View alvo está oculta, mas pode ser pré-renderizada. |
-| Hidden    | `2`   | View alvo está oculta.                            |
+| Hidden    | `2`   | View alvo está oculta.                               |
 
 ---
 
@@ -171,6 +171,6 @@ const HiddenVirtualView = createHiddenVirtualView(100);
 
 **Parameters:**
 
-| Name                                                        | Type   | Description                                                   |
-| ----------------------------------------------------------- | ------ | ------------------------------------------------------------- |
-| height <div className="label basic required">Required</div> | number | Altura estimada da renderização inicial de `VirtualView`.    |
+| Name                                                        | Type   | Description                                               |
+| ----------------------------------------------------------- | ------ | --------------------------------------------------------- |
+| height <div className="label basic required">Required</div> | number | Altura estimada da renderização inicial de `VirtualView`. |

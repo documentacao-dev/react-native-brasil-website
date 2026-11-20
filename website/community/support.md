@@ -8,11 +8,11 @@ Se você precisa de ajuda com seu aplicativo React Native, o lugar certo para ir
 
 ### Repository
 
-O núcleo do **React Native** é trabalhado em tempo integral pela equipe React Native da Meta. Mas há muito mais pessoas na comunidade que fazem contribuições importantes e corrigem coisas. Se o problema que você está enfrentando é relacionado a código, você deve verificar os issues abertos no [repositório principal](https://github.com/facebook/react-native/issues).
+O núcleo do **React Native** é trabalhado em tempo integral pela equipe React Native da Meta. Mas há muito mais pessoas na comunidade que fazem contribuições importantes e corrigem coisas. Se o problema que você está enfrentando é relacionado a código, você deve verificar os issues abertos no [repositório principal](https://github.com/react/react-native/issues).
 
 Se você não conseguir encontrar um issue existente, por favor consulte [Como reportar um bug](/contributing/how-to-report-a-bug).
 
-### Suporte para upgrade
+### Suporte para upgrade {#upgrade-support}
 
 Muitas vezes, ao fazer upgrade de seus aplicativos e bibliotecas de uma versão do React Native para uma mais recente, você pode precisar de alguma ajuda; a comunidade se uniu para criar alguns recursos importantes:
 

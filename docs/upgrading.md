@@ -1,7 +1,7 @@
 ---
 ia-translated: true
 id: upgrading
-title: Upgrading to new versions
+title: Atualizando para novas versões
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';

@@ -22,7 +22,7 @@ Syntax transformers tornam a escrita de código mais agradável, permitindo que 
 
 React Native vem com o [compilador JavaScript Babel](https://babeljs.io). Confira a [documentação do Babel](https://babeljs.io/docs/plugins/#transform-plugins) sobre suas transformações suportadas para mais detalhes.
 
-Uma lista completa das transformações habilitadas do React Native pode ser encontrada em [@react-native/babel-preset](https://github.com/facebook/react-native/tree/main/packages/react-native-babel-preset).
+Uma lista completa das transformações habilitadas do React Native pode ser encontrada em [@react-native/babel-preset](https://github.com/react/react-native/tree/main/packages/react-native-babel-preset).
 
 <table>
 <thead>
@@ -42,7 +42,7 @@ Uma lista completa das transformações habilitadas do React Native pode ser enc
   <TableRow name="for…of" code="for (var num of [1, 2, 3]) {...};" url="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" />
   <TableRow name="Function Name" code="let number = x => x;" url="https://babeljs.io/docs/en/babel-plugin-transform-function-name" />
   <TableRow name="Literals" code="const b = 0b11; const o = 0o7; const u = 'Hello\u{000A}\u{0009}!';" url="https://babeljs.io/docs/en/babel-plugin-transform-literals" />
-  <TableRow name="Modules" code="import React, {Component} from 'react';" url="https://babeljs.io/docs/learn-es2015/#modules" />
+  <TableRow name="Modules" code="import {Component} from 'react';" url="https://babeljs.io/docs/learn-es2015/#modules" />
   <TableRow name="Object Concise Method" code="const obj = {method() { return 10; }};" url="https://babeljs.io/docs/learn-es2015/#enhanced-object-literals" />
   <TableRow name="Object Short Notation" code="const name = 'vjeux'; const obj = {name};" url="https://babeljs.io/docs/learn-es2015/#enhanced-object-literals" />
   <TableRow name="Parameters" code="function test(x = 'hello', {a, b}, ...args) {}" url="https://babeljs.io/docs/en/babel-plugin-transform-parameters" />
@@ -87,8 +87,8 @@ Muitas funções padrão também estão disponíveis em todos os runtimes JavaSc
 
 - [CommonJS `require`](https://nodejs.org/docs/latest/api/modules.html)
 - `md [console.{log, warn, error, info, debug, trace, table, group, groupCollapsed, groupEnd}](https://developer.chrome.com/devtools/docs/console-api)`
-- [`XMLHttpRequest`, `fetch`](network.md#content)
-- [`{set, clear}{Timeout, Interval, Immediate}, {request, cancel}AnimationFrame`](timers.md#content)
+- [`XMLHttpRequest`, `fetch`](network.md)
+- [`{set, clear}{Timeout, Interval, Immediate}, {request, cancel}AnimationFrame`](timers.md)
 
 #### ECMAScript 2015 (ES6)
 

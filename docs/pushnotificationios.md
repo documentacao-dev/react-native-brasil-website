@@ -4,7 +4,7 @@ id: pushnotificationios
 title: '🗑️ PushNotificationIOS'
 ---
 
-:::warning Descontinuado
+:::warning[Descontinuado]
 Use um dos [pacotes da comunidade](https://reactnative.directory/?search=notification) em vez disso.
 :::
 
@@ -17,13 +17,15 @@ Manipule notificações para seu aplicativo, incluindo agendamento e permissões
 
 ---
 
-## Começando
+## Começando {#getting-started}
 
 Para habilitar push notifications, [configure suas notificações com a Apple](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server) e seu sistema server-side.
 
 Então, [habilite remote notifications](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app#2980038) em seu projeto. Isso habilitará automaticamente as configurações necessárias.
 
-### Habilitar suporte para eventos `register`
+Os callbacks de registro e entrega de push notifications pertencem ao `UIApplicationDelegate`, então implemente-os no seu `AppDelegate`, mesmo quando o React Native for iniciado a partir do `SceneDelegate`.
+
+### Habilitar suporte para eventos `register` {#enable-support-for-register-events}
 
 Em seu `AppDelegate.m`, adicione:
 
@@ -46,7 +48,7 @@ Então implemente o seguinte para manipular eventos de registro de notificação
 }
 ```
 
-### Manipular notificações
+### Manipular notificações {#handle-notifications}
 
 Você precisará implementar `UNUserNotificationCenterDelegate` em seu `AppDelegate`:
 
@@ -70,7 +72,7 @@ Defina o delegate na inicialização do aplicativo:
 }
 ```
 
-#### Notificações em primeiro plano
+#### Notificações em primeiro plano {#foreground-notifications}
 
 Implemente `userNotificationCenter:willPresentNotification:withCompletionHandler:` para manipular notificações que chegam quando o aplicativo está em primeiro plano. Use o completionHandler para determinar se a notificação será mostrada ao usuário e notifique `RCTPushNotificationManager` de acordo:
 
@@ -87,7 +89,7 @@ Implemente `userNotificationCenter:willPresentNotification:withCompletionHandler
 }
 ```
 
-#### Notificações em segundo plano
+#### Notificações em segundo plano {#background-notifications}
 
 Implemente `userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:` para manipular quando uma notificação é tocada, tipicamente chamado para notificações em segundo plano que o usuário toca para abrir o aplicativo. No entanto, se você configurou notificações em primeiro plano para serem mostradas em `userNotificationCenter:willPresentNotification:withCompletionHandler:`, este método também será invocado em notificações em primeiro plano quando tocadas. Neste caso, você deve notificar `RCTPushNotificationManager` apenas em um desses callbacks.
 
@@ -125,9 +127,9 @@ Agenda uma notificação local para apresentação imediata.
 
 **Parâmetros:**
 
-| Nome    | Tipo   | Obrigatório | Descrição |
-| ------- | ------ | -------- | ----------- |
-| details | object | Sim      | Veja abaixo.  |
+| Nome    | Tipo   | Obrigatório | Descrição    |
+| ------- | ------ | ----------- | ------------ |
+| details | object | Sim         | Veja abaixo. |
 
 `details` é um objeto contendo:
 
@@ -152,9 +154,9 @@ Agenda uma notificação local para apresentação futura.
 
 **Parâmetros:**
 
-| Nome    | Tipo   | Obrigatório | Descrição |
-| ------- | ------ | -------- | ----------- |
-| details | object | Sim      | Veja abaixo.  |
+| Nome    | Tipo   | Obrigatório | Descrição    |
+| ------- | ------ | ----------- | ------------ |
+| details | object | Sim         | Veja abaixo. |
 
 `details` é um objeto contendo:
 
@@ -202,9 +204,9 @@ Fornece uma lista das notificações do aplicativo que estão atualmente exibida
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                                  |
-| -------- | -------- | -------- | ------------------------------------------------------------ |
-| callback | function | Sim      | Função que recebe um array de notificações entregues. |
+| Nome     | Tipo     | Obrigatório | Descrição                                             |
+| -------- | -------- | ----------- | ----------------------------------------------------- |
+| callback | function | Sim         | Função que recebe um array de notificações entregues. |
 
 Uma notificação entregue é um objeto contendo:
 
@@ -227,9 +229,9 @@ Remove as notificações especificadas do Notification Center.
 
 **Parâmetros:**
 
-| Nome        | Tipo  | Obrigatório | Descrição                        |
-| ----------- | ----- | -------- | ---------------------------------- |
-| identifiers | array | Sim      | Array de identificadores de notificação. |
+| Nome        | Tipo  | Obrigatório | Descrição                                |
+| ----------- | ----- | ----------- | ---------------------------------------- |
+| identifiers | array | Sim         | Array de identificadores de notificação. |
 
 ---
 
@@ -243,9 +245,9 @@ Define o número do badge para o ícone do aplicativo na Home Screen.
 
 **Parâmetros:**
 
-| Nome   | Tipo   | Obrigatório | Descrição                    |
-| ------ | ------ | -------- | ------------------------------ |
-| number | number | Sim      | Número do badge para o ícone do aplicativo. |
+| Nome   | Tipo   | Obrigatório | Descrição                                   |
+| ------ | ------ | ----------- | ------------------------------------------- |
+| number | number | Sim         | Número do badge para o ícone do aplicativo. |
 
 ---
 
@@ -259,9 +261,9 @@ Obtém o número do badge atual para o ícone do aplicativo na Home Screen.
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                        |
-| -------- | -------- | -------- | -------------------------------------------------- |
-| callback | function | Sim      | Função que processa o número do badge atual. |
+| Nome     | Tipo     | Obrigatório | Descrição                                    |
+| -------- | -------- | ----------- | -------------------------------------------- |
+| callback | function | Sim         | Função que processa o número do badge atual. |
 
 ---
 
@@ -276,8 +278,8 @@ Cancela quaisquer notificações locais agendadas que correspondam aos campos no
 **Parâmetros:**
 
 | Nome     | Tipo   | Obrigatório | Descrição |
-| -------- | ------ | -------- | ----------- |
-| userInfo | object | Não       |             |
+| -------- | ------ | ----------- | --------- |
+| userInfo | object | Não         |           |
 
 ---
 
@@ -293,9 +295,9 @@ Obtém a lista de notificações locais que estão atualmente agendadas.
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                                                  |
-| -------- | -------- | -------- | ---------------------------------------------------------------------------- |
-| callback | function | Sim      | Função que processa um array de objetos descrevendo notificações locais. |
+| Nome     | Tipo     | Obrigatório | Descrição                                                                |
+| -------- | -------- | ----------- | ------------------------------------------------------------------------ |
+| callback | function | Sim         | Função que processa um array de objetos descrevendo notificações locais. |
 
 ---
 
@@ -315,10 +317,10 @@ Anexa um listener a eventos de notificação incluindo notificações locais, no
 
 **Parâmetros:**
 
-| Nome    | Tipo     | Obrigatório | Descrição                         |
-| ------- | -------- | -------- | ----------------------------------- |
-| type    | string   | Sim      | Tipo de evento a ouvir. Veja abaixo. |
-| handler | function | Sim      | Listener.                           |
+| Nome    | Tipo     | Obrigatório | Descrição                            |
+| ------- | -------- | ----------- | ------------------------------------ |
+| type    | string   | Sim         | Tipo de evento a ouvir. Veja abaixo. |
+| handler | function | Sim         | Listener.                            |
 
 Tipos de eventos válidos incluem:
 
@@ -341,9 +343,9 @@ Remove o event listener. Faça isso em `componentWillUnmount` para prevenir memo
 
 **Parâmetros:**
 
-| Nome | Tipo   | Obrigatório | Descrição                                       |
-| ---- | ------ | -------- | ------------------------------------------------- |
-| type | string | Sim      | Tipo de evento. Veja `addEventListener()` para opções. |
+| Nome | Tipo   | Obrigatório | Descrição                                              |
+| ---- | ------ | ----------- | ------------------------------------------------------ |
+| type | string | Sim         | Tipo de evento. Veja `addEventListener()` para opções. |
 
 ---
 
@@ -365,9 +367,9 @@ Este método retorna uma promise que será resolvida quando o usuário aceitar o
 
 **Parâmetros:**
 
-| Nome        | Tipo  | Obrigatório | Descrição            |
-| ----------- | ----- | -------- | ---------------------- |
-| permissions | array | Não       | alert, badge, ou sound |
+| Nome        | Tipo  | Obrigatório | Descrição              |
+| ----------- | ----- | ----------- | ---------------------- |
+| permissions | array | Não         | alert, badge, ou sound |
 
 ---
 
@@ -395,9 +397,9 @@ Verifica quais permissões de push estão atualmente habilitadas.
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição |
-| -------- | -------- | -------- | ----------- |
-| callback | function | Sim      | Veja abaixo.  |
+| Nome     | Tipo     | Obrigatório | Descrição    |
+| -------- | -------- | ----------- | ------------ |
+| callback | function | Sim         | Veja abaixo. |
 
 `callback` será invocado com um objeto `permissions`:
 

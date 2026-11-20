@@ -4,12 +4,12 @@ id: actionsheetios
 title: ActionSheetIOS
 ---
 
-Exibe o componente nativo do iOS [Action Sheet](https://developer.apple.com/design/human-interface-guidelines/ios/views/action-sheets/).
+Exibe o componente nativo do iOS [Action Sheet](https://developer.apple.com/design/human-interface-guidelines/action-sheets).
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=ActionSheetIOS%20Example&supportedPlatforms=ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {ActionSheetIOS, Button, StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -61,7 +61,7 @@ export default App;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `showActionSheetWithOptions()`
 

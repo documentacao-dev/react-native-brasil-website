@@ -29,7 +29,7 @@ No primeiro milestone, [pedimos à comunidade ajuda no projeto Lean Core](https:
 
 O que mais nos anima é que os mantenedores se envolveram corrigindo problemas antigos, adicionando testes e suportando recursos há muito solicitados. Esses módulos estão recebendo mais suporte do que nunca tiveram dentro do React Native, mostrando que este é um ótimo passo para a comunidade. Exemplos de tais projetos são o [WebView](https://github.com/react-native-community/react-native-webview) que [recebeu muitos pull requests](https://twitter.com/titozzz/status/1101283928026034176) desde sua extração, e a CLI que agora é [mantida por membros da comunidade](https://blog.callstack.io/the-react-native-cli-has-a-new-home-79b63838f0e6) e recebeu melhorias e correções muito necessárias.
 
-### Principais Problemas dos Usuários
+### Principais Problemas dos Usuários {#leading-user-problems}
 
 Em dezembro, perguntamos à comunidade o que eles [não gostavam sobre o React Native](https://github.com/react-native-community/discussions-and-proposals/issues/64). Agregamos as respostas e [respondemos a cada um dos problemas](https://github.com/react-native-community/discussions-and-proposals/issues/104). Felizmente, muitos dos problemas que nossa comunidade enfrenta também são problemas no Facebook. Em nosso próximo milestone, planejamos abordar alguns dos principais problemas.
 
@@ -38,7 +38,7 @@ Um dos problemas mais votados foi a experiência do desenvolvedor ao atualizar p
 - [Michał Pierzchała](https://github.com/thymikee) da Callstack [melhorou o react-native upgrade](https://github.com/react-native-community/react-native-cli/pull/176/files) usando [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge) internamente. Também atualizamos o site para remover instruções de upgrade desatualizadas.
 - [Planejamos recomendar CocoaPods por padrão para projetos iOS](https://github.com/facebook/react-native/pull/23563), o que reduzirá mudanças nos arquivos do projeto ao atualizar o React Native. Isso facilitará a instalação e vinculação de módulos de terceiros, o que é ainda mais importante no contexto do Lean Core, pois esperamos que os projetos vinculem mais módulos por padrão.
 
-### Release 0.59
+### Release 0.59 {#059-release}
 
 Sem a ajuda da comunidade React Native, especialmente [Mike Grabowski](https://github.com/grabbou) e [Lorenzo Sciandra](https://github.com/kelset), não seríamos capazes de publicar releases. Queremos melhorar o processo de gestão de releases e planejamos nos envolver mais a partir de agora:
 
@@ -48,7 +48,7 @@ Sem a ajuda da comunidade React Native, especialmente [Mike Grabowski](https://g
 
 Muitos desses planos serão incorporados no próximo [release do React Native 0.59](https://github.com/facebook/react-native/releases/tag/v0.59.0-rc.3). A versão 0.59 será lançada com React Hooks, uma nova versão 64-bit do JavaScriptCore para Android, e muitas melhorias de desempenho e funcionalidade. Atualmente está publicada como release candidate e espera-se que esteja estável nas próximas duas semanas.
 
-### Próximos Passos
+### Próximos Passos {#next-steps}
 
 Nos próximos dois meses, continuaremos gerenciando pull requests [para nos mantermos no caminho certo](https://k03lwm00zo.codesandbox.io/) enquanto também começamos a reduzir o número de issues pendentes no GitHub. Continuaremos reduzindo a área de superfície do React Native através do projeto Lean Core. Planejamos abordar 5 dos principais problemas da comunidade. À medida que finalizarmos as diretrizes da comunidade, voltaremos nossa atenção para nosso site e documentação.
 

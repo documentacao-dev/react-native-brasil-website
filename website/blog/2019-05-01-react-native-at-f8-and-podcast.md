@@ -16,18 +16,18 @@ Confira o vídeo no [site de desenvolvedores do Facebook](https://developers.fac
   />
 </a>
 
-#### Destaques da palestra:
+#### Destaques da palestra: {#highlights-from-the-talk}
 
 - Passamos 2017 e 2018 focados no maior produto do React Native, o Marketplace do Facebook. Colaboramos com o time do Marketplace para melhorar a qualidade e adicionar recursos ao produto. Neste momento, o Marketplace é um dos produtos de mais alta qualidade no aplicativo do Facebook, tanto no Android quanto no iOS.
 - A performance do Marketplace foi um grande desafio também, especialmente em dispositivos Android intermediários. Reduzimos o tempo de inicialização em mais de 50% no último ano, com mais melhorias a caminho! As maiores melhorias estão sendo incorporadas ao React Native e chegarão à comunidade ainda este ano.
 - Temos a confiança de que podemos construir aplicativos de alta qualidade e performance que o Facebook precisa com React Native. Essa confiança nos permitiu investir em apostas maiores, como [repensar o núcleo do React Native](https://www.youtube.com/watch?v=UcqRXTriUVI&app=desktop).
 - A Microsoft apoia e usa React Native para Windows, permitindo que as pessoas usem sua expertise e base de código para renderizar na Universal Windows Platform da Microsoft. Confira o Microsoft Build na próxima semana para [ouvi-los falar mais sobre isso](https://mybuild.techcommunity.microsoft.com/sessions/77321).
 
-### Podcast React Radio sobre Open Source
+### Podcast React Radio sobre Open Source {#react-radio-podcast-about-open-source}
 
 A palestra do Eli conclui falando sobre nosso recente trabalho open source. Demos [uma atualização sobre nosso progresso em março](/blog/2019/03/01/react-native-open-source-update) e recentemente [Nader Dabit](https://twitter.com/dabit3) e [Gant Laborde](https://twitter.com/GantLaborde) convidaram Christoph para uma conversa em seu podcast, [React Native Radio](https://devchat.tv/react-native-radio/react-native-open-source-the-react-native-community-feat-christoph-nakazawa/), para conversar sobre React Native em open source.
 
-#### Destaques do podcast:
+#### Destaques do podcast: {#highlights-from-the-podcast}
 
 - Conversamos sobre como o time do React Native no Facebook pensa sobre open source e como estamos construindo uma comunidade sustentável que escala para um projeto do [tamanho](https://octoverse.github.com/projects#repositories) do React Native.
 - Estamos no caminho certo para remover múltiplos módulos como parte do esforço [Lean Core](https://github.com/facebook/react-native/issues/23313). Muitos módulos como WebView e o React Native CLI receberam mais de 100 Pull Requests desde que foram extraídos.

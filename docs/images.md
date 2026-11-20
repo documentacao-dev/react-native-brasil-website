@@ -4,7 +4,7 @@ id: images
 title: Imagens
 ---
 
-## Recursos de Imagem Estática
+## Recursos de Imagem Estática {#static-image-resources}
 
 React Native fornece uma maneira unificada de gerenciar imagens e outros recursos de mídia em seus apps Android e iOS. Para adicionar uma imagem estática ao seu app, coloque-a em algum lugar na sua árvore de código-fonte e referencie-a assim:
 
@@ -66,15 +66,30 @@ const icon = this.props.active
 
 Note que fontes de imagem requeridas dessa forma incluem informações de tamanho (width, height) para o Image. Se você precisar escalar a imagem dinamicamente (ou seja, via flex), você pode precisar definir manualmente `{width: undefined, height: undefined}` no atributo de estilo.
 
-## Recursos Estáticos Não-Imagem
+### Empacotando imagens em um catálogo de assets (iOS) {#bundling-images-in-an-asset-catalog-ios}
 
-A sintaxe `require` descrita acima pode ser usada para incluir estaticamente arquivos de áudio, vídeo ou documento em seu projeto também. A maioria dos tipos de arquivo comuns são suportados incluindo `.mp3`, `.wav`, `.mp4`, `.mov`, `.html` e `.pdf`. Veja [padrões do bundler](https://github.com/facebook/metro/blob/master/packages/metro-config/src/defaults/defaults.js#L14-L44) para a lista completa.
+Por padrão, o bundler copia cada imagem requerida, junto com todas as variantes `@2x` e `@3x`, para o seu app iOS como um arquivo solto ao lado do bundle JavaScript. No iOS, você pode, em vez disso, compilá-las em um [catálogo de assets](https://developer.apple.com/documentation/xcode/managing-assets-with-asset-catalogs), para que o sistema envie apenas a escala de que o dispositivo precisa.
+
+Para ativar essa opção, defina a chave `RCTUseAssetCatalog` como `true` no `Info.plist` do seu app:
+
+```xml
+<key>RCTUseAssetCatalog</key>
+<true/>
+```
+
+Com isso habilitado, o script de build do iOS compila suas imagens empacotadas em um catálogo de assets `RNAssets.bundle` durante o build. Suas chamadas `require('./my-icon.png')` continuam exatamente iguais, e não é preciso alterar seu projeto do Xcode.
+
+Depois de alterar essa configuração, faça um build limpo.
+
+## Recursos Estáticos Não-Imagem {#static-non-image-resources}
+
+A sintaxe `require` descrita acima pode ser usada para incluir estaticamente arquivos de áudio, vídeo ou documento em seu projeto também. A maioria dos tipos de arquivo comuns são suportados incluindo `.mp3`, `.wav`, `.mp4`, `.mov`, `.html`, `.pdf` e outros. Veja [padrões do bundler](https://github.com/facebook/metro/blob/main/packages/metro-config/src/defaults/defaults.js#L16-L51) para a lista completa.
 
 Você pode adicionar suporte para outros tipos adicionando uma opção de resolver [`assetExts`](https://metrobundler.dev/docs/configuration#resolver-options) em sua [configuração do Metro](https://metrobundler.dev/docs/configuration).
 
 Uma ressalva é que vídeos devem usar posicionamento absoluto em vez de `flexGrow`, já que informações de tamanho não são atualmente passadas para recursos não-imagem. Esta limitação não ocorre para vídeos que são linkados diretamente no Xcode ou na pasta Assets para Android.
 
-## Imagens de Recursos de App Híbrido
+## Imagens de Recursos de App Híbrido {#images-from-hybrid-apps-resources}
 
 Se você está construindo um app híbrido (algumas UIs em React Native, algumas UIs em código de plataforma) você ainda pode usar imagens que já estão empacotadas no app.
 
@@ -98,9 +113,9 @@ Para imagens na pasta assets do Android, use o esquema `asset:/`:
 
 Essas abordagens não fornecem verificações de segurança. Cabe a você garantir que essas imagens estejam disponíveis na aplicação. Além disso, você deve especificar as dimensões da imagem manualmente.
 
-## Imagens de Rede
+## Imagens de Rede {#network-images}
 
-Muitas das imagens que você exibirá em seu app não estarão disponíveis em tempo de compilação, ou você vai querer carregar algumas dinamicamente para manter o tamanho binário baixo. Diferentemente de recursos estáticos, _você precisará especificar manualmente as dimensões de sua imagem_. É altamente recomendado que você use https também para satisfazer os requisitos de [App Transport Security](publishing-to-app-store.md#1-enable-app-transport-security) no iOS.
+Muitas das imagens que você exibirá em seu app não estarão disponíveis em tempo de compilação, ou você vai querer carregar algumas dinamicamente para manter o tamanho binário baixo. Diferentemente de recursos estáticos, _você precisará especificar manualmente as dimensões de sua imagem_. É altamente recomendado que você use https também para satisfazer os requisitos de [App Transport Security](https://developer.apple.com/documentation/security/preventing_insecure_network_connections) no iOS.
 
 ```tsx
 // GOOD
@@ -111,7 +126,7 @@ Muitas das imagens que você exibirá em seu app não estarão disponíveis em t
 <Image source={{uri: 'https://reactjs.org/logo-og.png'}} />
 ```
 
-### Requisições de Rede para Imagens
+### Requisições de Rede para Imagens {#network-requests-for-images}
 
 Se você quiser definir coisas como HTTP-Verb, Headers ou um Body junto com a requisição de imagem, você pode fazer isso definindo essas propriedades no objeto source:
 
@@ -129,7 +144,7 @@ Se você quiser definir coisas como HTTP-Verb, Headers ou um Body junto com a re
 />
 ```
 
-## Imagens URI Data
+## Imagens URI Data {#uri-data-images}
 
 Às vezes, você pode estar obtendo dados de imagem codificados de uma chamada de API REST. Você pode usar o esquema URI `'data:'` para usar essas imagens. Assim como para recursos de rede, _você precisará especificar manualmente as dimensões de sua imagem_.
 
@@ -151,7 +166,7 @@ Isso é recomendado apenas para imagens muito pequenas e dinâmicas, como ícone
 />
 ```
 
-### Controle de Cache
+### Controle de Cache {#cache-control}
 
 Em alguns casos você pode querer exibir uma imagem apenas se ela já estiver no cache local, ou seja, um placeholder de baixa resolução até que uma resolução maior esteja disponível. Em outros casos você não se importa se a imagem está desatualizada e está disposto a exibir uma imagem desatualizada para economizar largura de banda. A propriedade `cache` da source dá a você controle sobre como a camada de rede interage com o cache.
 
@@ -170,11 +185,11 @@ Em alguns casos você pode querer exibir uma imagem apenas se ela já estiver no
 />
 ```
 
-## Imagens do Sistema de Arquivos Local
+## Imagens do Sistema de Arquivos Local {#local-filesystem-images}
 
 Veja [CameraRoll](https://github.com/react-native-community/react-native-cameraroll) para um exemplo de uso de recursos locais que estão fora de `Images.xcassets`.
 
-### Recursos Drawable
+### Recursos Drawable {#drawable-resources}
 
 Android suporta carregar [recursos drawable](https://developer.android.com/guide/topics/resources/drawable-resource) via o tipo de arquivo `xml`. Isso significa que você pode usar [vector drawables](https://developer.android.com/develop/ui/views/graphics/vector-drawable-resources) para renderizar ícones ou [shape drawables](https://developer.android.com/guide/topics/resources/drawable-resource#Shape) para, bem, desenhar formas! Você pode importar e usar esses tipos de recurso da mesma forma que qualquer outro [recurso estático](#static-image-resources) ou [recurso híbrido](#images-from-hybrid-apps-resources). Você tem que especificar as dimensões da imagem manualmente.
 
@@ -198,7 +213,7 @@ Para drawables incluídos na pasta drawable do Android (ou seja, `res/drawable`)
 
 A única diferença chave entre recursos drawable e outros tipos de imagem é que o asset deve ser referenciado em tempo de compilação da aplicação Android, pois o Android precisa executar o [Android Asset Packaging Tool (AAPT)](https://developer.android.com/tools/aapt2) para empacotar o asset. XML binário, o formato de arquivo que AAPT cria, não pode ser carregado pela rede pelo Metro. Se você alterar o diretório ou nome de um asset, você precisará recompilar a aplicação Android cada vez.
 
-#### Criando recursos drawable XML
+#### Criando recursos drawable XML {#creating-xml-drawable-resources}
 
 Android fornece documentação abrangente sobre cada um dos tipos de recurso drawable suportados em seu guia [Recursos Drawable](https://developer.android.com/guide/topics/resources/drawable-resource), junto com exemplos de arquivos XML brutos. Você pode utilizar ferramentas do Android Studio como o [Vector Asset Studio](https://developer.android.com/studio/write/vector-asset-studio) para criar vector drawables a partir de arquivos Scalable Vector Graphic (SVG) e Adobe Photoshop Document (PSD).
 
@@ -206,11 +221,11 @@ Android fornece documentação abrangente sobre cada um dos tipos de recurso dra
 Você deve tentar evitar referenciar outros recursos no arquivo XML que você cria se quiser tratar seu arquivo XML como um recurso de imagem estática (ou seja, com uma declaração `import` ou `require`). Se você deseja utilizar referências a outros drawables ou atributos, como [listas de estado de cor](https://developer.android.com/guide/topics/resources/color-list-resource) ou [recursos de dimensão](https://developer.android.com/guide/topics/resources/more-resources#Dimension), você deve incluir seu drawable como um [recurso híbrido](#images-from-hybrid-apps-resources) e importá-lo por nome.
 :::
 
-### Melhor Imagem do Camera Roll
+### Melhor Imagem do Camera Roll {#best-camera-roll-image}
 
 iOS salva múltiplos tamanhos para a mesma imagem no seu Camera Roll, é muito importante escolher a que está o mais próxima possível por razões de performance. Você não gostaria de usar a imagem de qualidade total 3264x2448 como source ao exibir uma miniatura 200x200. Se houver uma correspondência exata, React Native a escolherá, caso contrário, usará a primeira que for pelo menos 50% maior para evitar desfoque ao redimensionar de um tamanho próximo. Tudo isso é feito por padrão, então você não precisa se preocupar em escrever o código tedioso (e propenso a erros) para fazê-lo você mesmo.
 
-## Por Que Não Dimensionar Tudo Automaticamente?
+## Por Que Não Dimensionar Tudo Automaticamente? {#why-not-automatically-size-everything}
 
 _No navegador_ se você não der um tamanho a uma imagem, o navegador vai renderizar um elemento 0x0, baixar a imagem e então renderizar a imagem com o tamanho correto. O grande problema com esse comportamento é que sua UI vai pular por todo lado à medida que as imagens carregam, isso faz uma experiência de usuário muito ruim. Isso é chamado de [Cumulative Layout Shift](https://web.dev/cls/).
 
@@ -222,7 +237,7 @@ Por exemplo, o resultado de `require('./my-icon.png')` pode ser:
 {"__packager_asset":true,"uri":"my-icon.png","width":591,"height":573}
 ```
 
-## Source como um objeto
+## Source como um objeto {#source-as-an-object}
 
 No React Native, uma decisão interessante é que o atributo `src` é nomeado `source` e não recebe uma string mas um objeto com um atributo `uri`.
 
@@ -234,23 +249,22 @@ Do lado da infraestrutura, a razão é que isso nos permite anexar metadados a e
 
 Do lado do usuário, isso permite que você anote o objeto com atributos úteis como a dimensão da imagem para calcular o tamanho em que ela vai ser exibida. Sinta-se livre para usá-lo como sua estrutura de dados para armazenar mais informações sobre sua imagem.
 
-## Imagem de Fundo via Aninhamento
+## Imagem de Fundo via Aninhamento {#background-image-via-nesting}
 
-Uma solicitação de funcionalidade comum de desenvolvedores familiarizados com a web é `background-image`. Para lidar com este caso de uso, você pode usar o componente `<ImageBackground>`, que tem as mesmas props que `<Image>`, e adicionar quaisquer filhos que você gostaria de sobrepor em cima dele.
-
-Você pode não querer usar `<ImageBackground>` em alguns casos, já que a implementação é básica. Consulte a [documentação](imagebackground.md) de `<ImageBackground>` para mais informações e crie seu próprio componente customizado quando necessário.
+Para sobrepor conteúdo a uma imagem, renderize uma [`Image`](image.md) com posicionamento absoluto dentro de uma [`View`](view.md), seguida do conteúdo que deve aparecer por cima.
 
 ```tsx
 return (
-  <ImageBackground source={...} style={{width: '100%', height: '100%'}}>
+  <View style={{width: '100%', height: '100%'}}>
+    <Image source={...} style={StyleSheet.absoluteFill} />
     <Text>Inside</Text>
-  </ImageBackground>
+  </View>
 );
 ```
 
-Note que você deve especificar alguns atributos de estilo width e height.
+Observe que você deve especificar alguns atributos de estilo de width e height na `View` que a envolve.
 
-## Estilos de Border Radius do iOS
+## Estilos de Border Radius do iOS {#ios-border-radius-styles}
 
 Por favor, note que as seguintes propriedades de estilo de border radius específicas de canto podem ser ignoradas pelo componente de imagem do iOS:
 
@@ -259,13 +273,13 @@ Por favor, note que as seguintes propriedades de estilo de border radius especí
 - `borderBottomLeftRadius`
 - `borderBottomRightRadius`
 
-## Decodificação Off-thread
+## Decodificação Off-thread {#off-thread-decoding}
 
 A decodificação de imagem pode levar mais do que o tempo de um frame. Esta é uma das principais fontes de quedas de frame na web porque a decodificação é feita na thread principal. No React Native, a decodificação de imagem é feita em uma thread diferente. Na prática, você já precisa lidar com o caso quando a imagem não foi baixada ainda, então exibir o placeholder por alguns frames a mais enquanto ela está sendo decodificada não requer nenhuma mudança de código.
 
-## Configurando Limites de Cache de Imagem do iOS
+## Configurando Limites de Cache de Imagem do iOS {#configuring-ios-image-cache-limits}
 
-No iOS, expomos uma API para sobrescrever os limites de cache de imagem padrão do React Native. Isso deve ser chamado de dentro do seu código nativo AppDelegate (por exemplo, dentro de `didFinishLaunchingWithOptions`).
+No iOS, expomos uma API para sobrescrever os limites de cache de imagem padrão do React Native. Chame isso logo no início da inicialização do app, a partir do seu `SceneDelegate` (em `scene:willConnectToSession:options:`) ou do `AppDelegate` se você não estiver usando o ciclo de vida UIScene (por exemplo, dentro de `application:didFinishLaunchingWithOptions:`).
 
 ```objectivec
 RCTSetImageCacheLimits(4*1024*1024, 200*1024*1024);
@@ -273,9 +287,9 @@ RCTSetImageCacheLimits(4*1024*1024, 200*1024*1024);
 
 **Parâmetros:**
 
-| Nome           | Tipo   | Requerido | Descrição                         |
-| -------------- | ------ | --------- | --------------------------------- |
+| Nome           | Tipo   | Requerido | Descrição                             |
+| -------------- | ------ | --------- | ------------------------------------- |
 | imageSizeLimit | number | Sim       | Limite de tamanho de cache de imagem. |
-| totalCostLimit | number | Sim       | Limite de custo total de cache.      |
+| totalCostLimit | number | Sim       | Limite de custo total de cache.       |
 
 No exemplo de código acima, o limite de tamanho de imagem é definido para 4 MB e o limite de custo total é definido para 200 MB.

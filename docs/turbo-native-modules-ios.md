@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 Agora é hora de escrever algum código da plataforma iOS para garantir que `localStorage` sobreviva após o aplicativo ser fechado.
 
-## Prepare seu projeto Xcode
+## Prepare seu projeto Xcode {#prepare-your-xcode-project}
 
 Precisamos preparar seu projeto iOS usando o Xcode. Após completar estes **6 passos**, você terá `RCTNativeLocalStorage` que implementa a interface `NativeLocalStorageSpec` gerada.
 
@@ -41,7 +41,7 @@ open TurboModuleExample.xcworkspace
 
 <img className="half-size" alt="Convert to and Objective-C++ file" src="/docs/assets/turbo-native-modules/xcode/6.webp" />
 
-## Implemente localStorage com NSUserDefaults
+## Implemente localStorage com NSUserDefaults {#implement-localstorage-with-nsuserdefaults}
 
 Comece atualizando `RCTNativeLocalStorage.h`:
 
@@ -122,7 +122,7 @@ Coisas importantes a observar:
 
 - Você pode usar o Xcode para pular para o Codegen `@protocol NativeLocalStorageSpec`. Você também pode usar o Xcode para gerar stubs para você.
 
-## Registre o Native Module em seu app
+## Registre o Native Module em seu app {#register-the-native-module-in-your-app}
 
 O último passo consiste em atualizar o `package.json` para informar ao React Native sobre o link entre as specs JS do Native Module e a implementação concreta dessas specs em código nativo.
 
@@ -133,11 +133,11 @@ Modifique o `package.json` da seguinte forma:
      "test": "jest"
    },
    "codegenConfig": {
-     "name": "AppSpecs",
+     "name": "NativeLocalStorageSpec",
      "type": "modules",
      "jsSrcsDir": "specs",
      "android": {
-       "javaPackageName": "com.sampleapp.specs"
+       "javaPackageName": "com.nativelocalstorage"
      },
      // highlight-add-start
      "ios": {
@@ -156,12 +156,12 @@ Neste ponto, você precisa reinstalar os pods para garantir que o codegen execut
 ```bash
 # from the ios folder
 bundle exec pod install
-open SampleApp.xcworkspace
+open TurboModuleExample.xcworkspace
 ```
 
 Se você agora compilar seu aplicativo a partir do Xcode, você deve conseguir compilar com sucesso.
 
-## Compile e execute seu código em um Simulator
+## Compile e execute seu código em um Simulator {#build-and-run-your-code-on-a-simulator}
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">

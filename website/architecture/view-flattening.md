@@ -8,7 +8,7 @@ import FabricWarning from './\_fabric-warning.mdx';
 
 <FabricWarning />
 
-#### View Flattening é uma otimização pelo renderizador do React Native para evitar árvores de layout profundas.
+#### View Flattening é uma otimização pelo renderizador do React Native para evitar árvores de layout profundas. {#view-flattening-is-an-optimization-by-the-react-native-renderer-to-avoid-deep-layout-trees}
 
 A API React é projetada para ser declarativa e reutilizável através de composição. Isso fornece um ótimo modelo para desenvolvimento intuitivo. No entanto, na implementação, essas qualidades da API levam à criação de [React Element Trees](architecture-glossary.md#react-element-tree-and-react-element) profundas, onde uma grande maioria de React Element Nodes apenas afeta o layout de uma View e não renderiza nada na tela. Chamamos esses tipos de nós de nós **"Layout-Only"**.
 

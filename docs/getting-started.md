@@ -29,7 +29,7 @@ Se seu aplicativo tem restrições incomuns que não são bem atendidas por um F
 
 </details>
 
-## Inicie um novo projeto React Native com Expo
+## Inicie um novo projeto React Native com Expo {#start-a-new-react-native-project-with-expo}
 
 <PlatformSupport platforms={['android', 'ios', 'tv', 'web']} />
 

@@ -14,10 +14,10 @@ No momento, ele suporta apenas ter uma única instância de View como nó filho,
 
 O drawable de fundo do touchable de feedback nativo pode ser personalizado com a propriedade `background`.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=TouchableNativeFeedback%20Android%20Component%20Example&supportedPlatforms=android
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Text, View, StyleSheet, TouchableNativeFeedback} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -107,16 +107,6 @@ Verifique primeiro TouchableNativeFeedback.canUseNativeForeground(), pois isso s
 
 ---
 
-### `hasTVPreferredFocus` <div className="label android">Android</div>
-
-Foco preferencial de TV (veja a documentação para o componente View).
-
-| Tipo |
-| ---- |
-| bool |
-
----
-
 ### `nextFocusDown` <div className="label android">Android</div>
 
 Próximo foco de TV para baixo (veja a documentação para o componente View).
@@ -165,7 +155,7 @@ Próximo foco de TV para cima (veja a documentação para o componente View).
 | ------ |
 | number |
 
-## Métodos
+## Métodos {#methods}
 
 ### `SelectableBackground()`
 
@@ -205,11 +195,11 @@ Cria um objeto que representa drawable ripple com cor especificada (como uma str
 
 **Parâmetros:**
 
-| Nome         | Tipo    | Obrigatório | Descrição                                         |
-| ------------ | ------- | ----------- | ------------------------------------------------- |
-| color        | string  | Sim         | A cor do ripple                                   |
-| borderless   | boolean | Sim         | Se o ripple pode renderizar fora de seus limites  |
-| rippleRadius | ?number | Não         | controla o raio do efeito ripple                  |
+| Nome         | Tipo    | Obrigatório | Descrição                                        |
+| ------------ | ------- | ----------- | ------------------------------------------------ |
+| color        | string  | Sim         | A cor do ripple                                  |
+| borderless   | boolean | Sim         | Se o ripple pode renderizar fora de seus limites |
+| rippleRadius | ?number | Não         | controla o raio do efeito ripple                 |
 
 ---
 

@@ -9,7 +9,7 @@ authorTwitter: peterargany
 tags: [engineering]
 ---
 
-## Motivação
+## Motivação {#motivation}
 
 Três anos atrás, uma issue no GitHub foi aberta para suportar input accessory view do React Native.
 
@@ -41,7 +41,7 @@ Aqui, a entrada de texto é na verdade parte do próprio input accessory view. I
 
 Quem possui o `<InputAccessoryView>` neste exemplo? Pode ser o `UITextView` ou `UITextField` novamente? A entrada de texto está _dentro_ do input accessory view, isso parece uma dependência circular. Resolver este problema sozinho é [outro blog post](https://derpturkey.com/uitextfield-docked-like-ios-messenger/) por si só. Spoilers: o proprietário é uma subclasse genérica `UIView` que manualmente dizemos para [becomeFirstResponder](https://developer.apple.com/documentation/uikit/uiresponder/1621113-becomefirstresponder?language=objc).
 
-## Design da API
+## Design da API {#api-design}
 
 Agora sabemos o que é um `<InputAccessoryView>`, e como queremos usá-lo. O próximo passo é projetar uma API que faça sentido para ambos os casos de uso, e funcione bem com componentes React Native existentes como `<TextInput>`.
 
@@ -60,7 +60,7 @@ e canalizar todas as subviews para uma nova hierarquia UIView. Para #2, configur
 
 Suportar sticky text inputs (cenário 2) adiciona mais algumas restrições. Para este design, o input accessory view tem uma entrada de texto como filho, então vincular via nativeID não é uma opção. Em vez disso, definimos o `.inputAccessoryView` de uma `UIView` genérica fora da tela para nossa hierarquia nativa `<InputAccessoryView>`. Ao manualmente dizer a esta `UIView` genérica para se tornar first responder, a hierarquia é montada pela infraestrutura de responder. Este conceito é explicado minuciosamente no blog post mencionado anteriormente.
 
-## Armadilhas
+## Armadilhas {#pitfalls}
 
 É claro que nem tudo foi tranquilo ao construir esta API. Aqui estão algumas armadilhas que encontramos, junto com como as corrigimos.
 
@@ -80,7 +80,7 @@ O input accessory view evita com sucesso a home pill, mas agora o conteúdo atr�
 
 <hr style={{clear: 'both', marginBottom: 20}} />
 
-## Exemplo de Uso
+## Exemplo de Uso {#example-usage}
 
 Aqui está um exemplo que constrói um botão de barra de ferramentas do teclado para resetar o state do `<TextInput>`.
 
@@ -122,7 +122,7 @@ class TextInputAccessoryViewExample extends React.Component<
 
 Outro exemplo para [Sticky Text Inputs pode ser encontrado no repositório](https://github.com/facebook/react-native/blob/84ef7bc372ad870127b3e1fb8c13399fe09ecd4d/RNTester/js/InputAccessoryViewExample.js).
 
-## Quando poderei usar isso?
+## Quando poderei usar isso? {#when-will-i-be-able-to-use-this}
 
 O commit completo para esta implementação de recurso está [aqui](https://github.com/facebook/react-native/commit/38197c8230657d567170cdaf8ff4bbb4aee732b8). [`<InputAccessoryView>`](/docs/next/inputaccessoryview) estará disponível no próximo lançamento v0.55.0.
 

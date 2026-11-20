@@ -13,7 +13,7 @@ Tanto o Android quanto o iOS fornecem APIs para integrar apps com tecnologias as
 Android e iOS diferem ligeiramente em suas abordagens, e portanto as implementações do React Native podem variar por plataforma.
 :::
 
-## Propriedades de acessibilidade
+## Propriedades de acessibilidade {#accessibility-properties}
 
 ### `accessible`
 
@@ -88,7 +88,7 @@ Forneça à propriedade `accessibilityHint` uma string personalizada em sua View
 
 <div className="label ios basic">iOS</div>
 
-No exemplo acima, o VoiceOver lerá a dica após o label, se o usuário tiver dicas habilitadas nas configurações do VoiceOver do dispositivo. Leia mais sobre diretrizes para `accessibilityHint` nos [iOS Developer Docs](https://developer.apple.com/documentation/objectivec/nsobject/1615093-accessibilityhint)
+No exemplo acima, o VoiceOver lerá a dica após o label, se o usuário tiver dicas habilitadas nas configurações do VoiceOver do dispositivo. Leia mais sobre diretrizes para `accessibilityHint` nos [iOS Developer Docs](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityhint)
 
 <div className="label android basic">Android</div>
 
@@ -96,7 +96,7 @@ No exemplo acima, o TalkBack lerá a dica após o label. Neste momento, dicas n�
 
 ### `accessibilityLanguage` <div className="label ios">iOS</div>
 
-Ao usar a propriedade `accessibilityLanguage`, o leitor de tela entenderá qual idioma usar ao ler o **label**, **value** e **hint** do elemento. O valor de string fornecido deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47).
+Ao usar a propriedade `accessibilityLanguage`, o leitor de tela entenderá qual idioma usar ao ler o **label**, **value** e **hint** do elemento. O valor de string fornecido deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47/).
 
 ```tsx
 <View
@@ -147,7 +147,7 @@ No exemplo acima, o método `addOne` muda a variável de estado `count`. Quando 
 - **image** Usado quando o elemento deve ser tratado como uma imagem. Pode ser combinado com um botão ou link.
 - **imagebutton** Usado quando o elemento deve ser tratado como um botão e também é uma imagem.
 - **keyboardkey** Usado quando o elemento atua como uma tecla de teclado.
-- **link** Usado quando o elemento deve ser tratado como um link.
+- **link** Usado quando o elemento deve ser tratado como um link, especificamente para elementos interativos que abrem uma URL externa ou página web no navegador. Para navegação de telas ou ações dentro do app, use `button`.
 - **menu** Usado quando o componente é um menu de opções.
 - **menubar** Usado quando um componente é um contêiner de múltiplos menus.
 - **menuitem** Usado para representar um item dentro de um menu.
@@ -194,13 +194,13 @@ Descreve o estado atual de um componente para o usuário de tecnologia assistiva
 
 `accessibilityState` é um objeto. Ele contém os seguintes campos:
 
-| Name     | Description                                                                                                                                  | Type               | Required |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | -------- |
-| disabled | Indica se o elemento está desabilitado ou não.                                                                                               | boolean            | No       |
-| selected | Indica se um elemento selecionável está atualmente selecionado ou não.                                                                       | boolean            | No       |
-| checked  | Indica o estado de um elemento marcável. Este campo pode receber um booleano ou a string "mixed" para representar checkboxes mistas.        | boolean or 'mixed' | No       |
-| busy     | Indica se um elemento está atualmente ocupado ou não.                                                                                        | boolean            | No       |
-| expanded | Indica se um elemento expansível está atualmente expandido ou recolhido.                                                                     | boolean            | No       |
+| Name     | Description                                                                                                                          | Type               | Required |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------ | -------- |
+| disabled | Indica se o elemento está desabilitado ou não.                                                                                       | boolean            | No       |
+| selected | Indica se um elemento selecionável está atualmente selecionado ou não.                                                               | boolean            | No       |
+| checked  | Indica o estado de um elemento marcável. Este campo pode receber um booleano ou a string "mixed" para representar checkboxes mistas. | boolean or 'mixed' | No       |
+| busy     | Indica se um elemento está atualmente ocupado ou não.                                                                                | boolean            | No       |
+| expanded | Indica se um elemento expansível está atualmente expandido ou recolhido.                                                             | boolean            | No       |
 
 Para usar, defina `accessibilityState` como um objeto com uma definição específica.
 
@@ -210,12 +210,12 @@ Representa o valor atual de um componente. Pode ser uma descrição textual do v
 
 `accessibilityValue` é um objeto. Ele contém os seguintes campos:
 
-| Name | Description                                                                                                          | Type    | Required                  |
-| ---- | -------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------- |
-| min  | O valor mínimo do intervalo deste componente.                                                                        | integer | Required if `now` is set. |
-| max  | O valor máximo do intervalo deste componente.                                                                        | integer | Required if `now` is set. |
-| now  | O valor atual do intervalo deste componente.                                                                         | integer | No                        |
-| text | Uma descrição textual do valor deste componente. Substituirá `min`, `now` e `max` se definido.                      | string  | No                        |
+| Name | Description                                                                                    | Type    | Required                  |
+| ---- | ---------------------------------------------------------------------------------------------- | ------- | ------------------------- |
+| min  | O valor mínimo do intervalo deste componente.                                                  | integer | Required if `now` is set. |
+| max  | O valor máximo do intervalo deste componente.                                                  | integer | Required if `now` is set. |
+| now  | O valor atual do intervalo deste componente.                                                   | integer | No                        |
+| text | Uma descrição textual do valor deste componente. Substituirá `min`, `now` e `max` se definido. | string  | No                        |
 
 ### `accessibilityViewIsModal` <div className="label ios">iOS</div>
 
@@ -479,7 +479,7 @@ Atribua esta propriedade a uma função personalizada que será chamada quando a
 - **grid** Usado com ScrollView, VirtualizedList, FlatList ou SectionList para representar uma grade. Adiciona os anúncios de entrada/saída de grade ao GridView do Android.
 - **heading** Usado quando um elemento atua como cabeçalho para uma seção de conteúdo (por exemplo, o título de uma barra de navegação).
 - **img** Usado quando o elemento deve ser tratado como uma imagem. Pode ser combinado com um botão ou link, por exemplo.
-- **link** Usado quando o elemento deve ser tratado como um link.
+- **link** Usado quando o elemento deve ser tratado como um link, especificamente para elementos interativos que abrem uma URL externa ou página web no navegador. Para navegação de telas ou ações dentro do app, use `button`.
 - **list** Usado para identificar uma lista de itens.
 - **listitem** Usado para identificar um item em uma lista.
 - **menu** Usado quando o componente é um menu de opções.
@@ -501,7 +501,7 @@ Atribua esta propriedade a uma função personalizada que será chamada quando a
 - **timer** Usado para representar um timer.
 - **toolbar** Usado para representar uma barra de ferramentas (um contêiner de botões de ação ou componentes).
 
-## Ações de Acessibilidade
+## Ações de Acessibilidade {#accessibility-actions}
 
 Ações de acessibilidade permitem que a tecnologia assistiva invoque programaticamente a(s) ação(ões) de um componente. Para suportar ações de acessibilidade, um componente deve fazer duas coisas:
 
@@ -522,13 +522,13 @@ Ao adicionar suporte para ações padrão, `name` deve ser um dos seguintes:
 - `'magicTap'` - Apenas iOS - Enquanto o foco do VoiceOver está no ou dentro do componente, o usuário tocou duas vezes com dois dedos.
 - `'escape'` - Apenas iOS - Enquanto o foco do VoiceOver está no ou dentro do componente, o usuário executou um gesto de esfregar com dois dedos (esquerda, direita, esquerda).
 - `'activate'` - Ativar o componente. Isso deve executar a mesma ação com ou sem tecnologia assistiva. Acionado quando um usuário de leitor de tela toca duas vezes no componente.
-- `'increment'` - Incrementar um componente ajustável. No iOS, o VoiceOver gera esta ação quando o componente tem uma função de `'adjustable'` e o usuário coloca o foco nele e desliza para cima. No Android, o TalkBack gera esta ação quando o usuário coloca o foco de acessibilidade no componente e pressiona o botão de aumentar volume.
-- `'decrement'` - Decrementar um componente ajustável. No iOS, o VoiceOver gera esta ação quando o componente tem uma função de `'adjustable'` e o usuário coloca o foco nele e desliza para baixo. No Android, o TalkBack gera esta ação quando o usuário coloca o foco de acessibilidade no componente e pressiona o botão de diminuir volume.
+- `'increment'` - Incrementar um componente ajustável. No iOS, o VoiceOver gera esta ação quando o componente tem uma função de `'adjustable'` e o usuário coloca o foco nele e desliza para cima. No Android, nas versões 8.1 e anteriores do TalkBack, esta ação é gerada quando o usuário foca o componente e pressiona o botão de aumentar volume. No TalkBack 9.1 e posteriores, isso foi substituído pelo gesto "Ajustar controle de leitura" (deslizar para cima sobre o controle focado).
+- `'decrement'` - Decrementar um componente ajustável. No iOS, o VoiceOver gera esta ação quando o componente tem uma função de `'adjustable'` e o usuário coloca o foco nele e desliza para baixo. No Android, nas versões 8.2 e anteriores do TalkBack, esta ação é gerada quando o usuário foca o componente e pressiona o botão de diminuir volume. No TalkBack 9.2 e posteriores, isso foi substituído pelo gesto "Ajustar controle de leitura" (deslizar para baixo sobre o controle focado).
 - `'longpress'` - Apenas Android - Esta ação é gerada quando o usuário coloca o foco de acessibilidade no componente, depois toca duas vezes e segura um dedo na tela. Isso deve executar a mesma ação com ou sem tecnologia assistiva.
 - `'expand'` - Apenas Android - Esta ação "expande" o componente de modo que o TalkBack anunciará uma dica "expandido".
 - `'collapse'` - Apenas Android - Esta ação "recolhe" o componente de modo que o TalkBack anunciará uma dica "recolhido".
 
-O campo `label` é opcional para ações padrão e geralmente não é usado por tecnologias assistivas. Para ações personalizadas, é uma string localizada contendo uma descrição da ação a ser apresentada ao usuário.
+O campo `label` é opcional para ações padrão e é usado por tecnologias assistivas para descrever o resultado específico de uma ação. Por exemplo, o TalkBack usa este campo para substituir o anúncio padrão "Toque duas vezes para ativar" por uma descrição personalizada como "Toque duas vezes para abrir o chat." Para ações personalizadas, o `label` é uma string localizada contendo uma descrição da ação a ser apresentada ao usuário.
 
 Para tratar solicitações de ação, um componente deve implementar uma função `onAccessibilityAction`. O único argumento para esta função é um evento contendo o nome da ação a ser executada. O exemplo abaixo do RNTester mostra como criar um componente que define e trata várias ações personalizadas.
 
@@ -556,11 +556,11 @@ Para tratar solicitações de ação, um componente deve implementar uma funçã
 />
 ```
 
-## Verificando se um Leitor de Tela está Habilitado
+## Verificando se um Leitor de Tela está Habilitado {#checking-if-a-screen-reader-is-enabled}
 
 A API `AccessibilityInfo` permite determinar se um leitor de tela está atualmente ativo ou não. Veja a [documentação do AccessibilityInfo](accessibilityinfo) para detalhes.
 
-## Enviando Eventos de Acessibilidade <div className="label android">Android</div>
+## Enviando Eventos de Acessibilidade <div className="label android">Android</div> {#sending-accessibility-events-android}
 
 Às vezes é útil acionar um evento de acessibilidade em um componente de UI (ou seja, quando uma view personalizada aparece em uma tela ou definir o foco de acessibilidade em uma view). O módulo UIManager nativo expõe um método 'sendAccessibilityEvent' para este propósito. Ele aceita dois argumentos: uma tag de view e um tipo de evento. Os tipos de evento suportados são `typeWindowStateChanged`, `typeViewFocused` e `typeViewClicked`.
 
@@ -575,7 +575,7 @@ if (Platform.OS === 'android') {
 }
 ```
 
-## Testando Suporte do TalkBack <div className="label android">Android</div>
+## Testando Suporte do TalkBack <div className="label android">Android</div> {#testing-talkback-support-android}
 
 Para habilitar o TalkBack, vá para o app Configurações no seu dispositivo ou emulador Android. Toque em Acessibilidade, depois TalkBack. Alterne o switch "Usar serviço" para habilitar ou desabilitar.
 
@@ -595,7 +595,7 @@ adb shell settings put secure enabled_accessibility_services com.android.talkbac
 adb shell settings put secure enabled_accessibility_services com.google.android.marvin.talkback/com.google.android.marvin.talkback.TalkBackService
 ```
 
-## Testando Suporte do VoiceOver <div className="label ios">iOS</div>
+## Testando Suporte do VoiceOver <div className="label ios">iOS</div> {#testing-voiceover-support-ios}
 
 Para habilitar o VoiceOver no seu dispositivo iOS ou iPadOS, vá para o app Configurações, toque em Geral, depois Acessibilidade. Lá você encontrará muitas ferramentas disponíveis para as pessoas habilitarem seus dispositivos a serem mais utilizáveis, incluindo VoiceOver. Para habilitar o VoiceOver, toque em VoiceOver em "Visão" e alterne o switch que aparece no topo.
 
@@ -603,6 +603,6 @@ Na parte inferior das configurações de Acessibilidade, há um "Atalho de Acess
 
 O VoiceOver não está disponível através do simulador, mas você pode usar o Accessibility Inspector do Xcode para usar o VoiceOver do macOS através de um aplicativo. Note que é sempre melhor testar com um dispositivo, pois o VoiceOver do macOS pode resultar em experiências variadas.
 
-## Recursos Adicionais
+## Recursos Adicionais {#additional-resources}
 
-- [Making React Native Apps Accessible](https://engineering.fb.com/ios/making-react-native-apps-accessible/)
+- [Making React Native Apps Accessible](https://engineering.fb.com/2015/11/23/android/making-react-native-apps-accessible/)

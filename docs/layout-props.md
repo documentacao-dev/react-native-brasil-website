@@ -10,7 +10,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 Exemplos mais detalhados sobre essas propriedades podem ser encontrados na página [Layout with Flexbox](flexbox).
 :::
 
-### Exemplo
+### Exemplo {#example}
 
 O exemplo a seguir mostra como diferentes propriedades podem afetar ou moldar um layout React Native. Você pode tentar, por exemplo, adicionar ou remover quadrados da UI enquanto altera os valores da propriedade `flexWrap`.
 
@@ -18,7 +18,7 @@ O exemplo a seguir mostra como diferentes propriedades podem afetar ou moldar um
 <TabItem value="javascript">
 
 ```SnackPlayer name=LayoutProps%20Example&ext=js
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Button, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -191,15 +191,14 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=LayoutProps%20Example&ext=tsx
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   Button,
   ScrollView,
   StyleSheet,
   Text,
   View,
-  FlexAlignType,
-  FlexStyle,
+  ViewStyle,
 } from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -218,7 +217,7 @@ const App = () => {
     alignItems: alignItemsArr[alignItems],
     direction: directions[direction],
     flexWrap: wraps[wrap],
-  } as FlexStyle;
+  };
 
   const changeSetting = (
     value: number,
@@ -308,29 +307,29 @@ const App = () => {
   );
 };
 
-const flexDirections = [
+const flexDirections: ViewStyle['flexDirection'][] = [
   'row',
   'row-reverse',
   'column',
   'column-reverse',
-] as FlexStyle['flexDirection'][];
-const justifyContents = [
+];
+const justifyContents: ViewStyle['justifyContent'][] = [
   'flex-start',
   'flex-end',
   'center',
   'space-between',
   'space-around',
   'space-evenly',
-] as FlexStyle['justifyContent'][];
-const alignItemsArr = [
+];
+const alignItemsArr: ViewStyle['alignItems'][] = [
   'flex-start',
   'flex-end',
   'center',
   'stretch',
   'baseline',
-] as FlexAlignType[];
-const wraps = ['nowrap', 'wrap', 'wrap-reverse'];
-const directions = ['inherit', 'ltr', 'rtl'];
+];
+const wraps: ViewStyle['flexWrap'][] = ['nowrap', 'wrap', 'wrap-reverse'];
+const directions: ViewStyle['direction'][] = ['inherit', 'ltr', 'rtl'];
 
 const styles = StyleSheet.create({
   container: {
@@ -388,37 +387,43 @@ export default App;
 
 ### `alignContent`
 
-`alignContent` controla como as linhas se alinham na direção transversal, substituindo o `alignContent` do pai. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/align-content para mais detalhes.
+`alignContent` controla como as linhas se alinham na direção transversal, substituindo o `alignContent` do pai.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content) para mais detalhes.
 
 | Tipo                                                                                                 | Obrigatório |
-| ---------------------------------------------------------------------------------------------------- | -------- |
-| enum('flex-start', 'flex-end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly') | Não       |
+| ---------------------------------------------------------------------------------------------------- | ----------- |
+| enum('flex-start', 'flex-end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly') | Não         |
 
 ---
 
 ### `alignItems`
 
-`alignItems` alinha os filhos na direção transversal. Por exemplo, se os filhos estão fluindo verticalmente, `alignItems` controla como eles se alinham horizontalmente. Funciona como `align-items` no CSS (padrão: stretch). Veja https://developer.mozilla.org/en-US/docs/Web/CSS/align-items para mais detalhes.
+`alignItems` alinha os filhos na direção transversal. Por exemplo, se os filhos estão fluindo verticalmente, `alignItems` controla como eles se alinham horizontalmente. Funciona como `align-items` no CSS (padrão: stretch).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) para mais detalhes.
 
 | Tipo                                                            | Obrigatório |
-| --------------------------------------------------------------- | -------- |
-| enum('flex-start', 'flex-end', 'center', 'stretch', 'baseline') | Não       |
+| --------------------------------------------------------------- | ----------- |
+| enum('flex-start', 'flex-end', 'center', 'stretch', 'baseline') | Não         |
 
 ---
 
 ### `alignSelf`
 
-`alignSelf` controla como um filho se alinha na direção transversal, substituindo o `alignItems` do pai. Funciona como `align-self` no CSS (padrão: auto). Veja https://developer.mozilla.org/en-US/docs/Web/CSS/align-self para mais detalhes.
+`alignSelf` controla como um filho se alinha na direção transversal, substituindo o `alignItems` do pai. Funciona como `align-self` no CSS (padrão: auto).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self) para mais detalhes.
 
 | Tipo                                                                    | Obrigatório |
-| ----------------------------------------------------------------------- | -------- |
-| enum('auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline') | Não       |
+| ----------------------------------------------------------------------- | ----------- |
+| enum('auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline') | Não         |
 
 ---
 
 ### `aspectRatio`
 
-Aspect ratio controla o tamanho da dimensão indefinida de um nó. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio para mais detalhes.
+Aspect ratio controla o tamanho da dimensão indefinida de um nó.
 
 - Em um nó com width/height definida, aspect ratio controla o tamanho da dimensão não definida
 - Em um nó com flex basis definida, aspect ratio controla o tamanho do nó no eixo transversal se não estiver definido
@@ -426,19 +431,23 @@ Aspect ratio controla o tamanho da dimensão indefinida de um nó. Veja https://
 - Em um nó com flex grow/shrink, aspect ratio controla o tamanho do nó no eixo transversal se não estiver definido
 - Aspect ratio leva em conta as dimensões min/max
 
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) para mais detalhes.
+
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `borderBottomWidth`
 
-`borderBottomWidth` funciona como `border-bottom-width` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width para mais detalhes.
+`borderBottomWidth` funciona como `border-bottom-width` no CSS.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -447,28 +456,32 @@ Aspect ratio controla o tamanho da dimensão indefinida de um nó. Veja https://
 Quando direction é `ltr`, `borderEndWidth` é equivalente a `borderRightWidth`. Quando direction é `rtl`, `borderEndWidth` é equivalente a `borderLeftWidth`.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
 ### `borderLeftWidth`
 
-`borderLeftWidth` funciona como `border-left-width` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width para mais detalhes.
+`borderLeftWidth` funciona como `border-left-width` no CSS.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
 ### `borderRightWidth`
 
-`borderRightWidth` funciona como `border-right-width` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width para mais detalhes.
+`borderRightWidth` funciona como `border-right-width` no CSS.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -477,28 +490,32 @@ Quando direction é `ltr`, `borderEndWidth` é equivalente a `borderRightWidth`.
 Quando direction é `ltr`, `borderStartWidth` é equivalente a `borderLeftWidth`. Quando direction é `rtl`, `borderStartWidth` é equivalente a `borderRightWidth`.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
 ### `borderTopWidth`
 
-`borderTopWidth` funciona como `border-top-width` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width para mais detalhes.
+`borderTopWidth` funciona como `border-top-width` no CSS.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
 ### `borderWidth`
 
-`borderWidth` funciona como `border-width` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/border-width para mais detalhes.
+`borderWidth` funciona como `border-width` no CSS.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width) para mais detalhes.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -508,11 +525,11 @@ Quando direction é `ltr`, `borderStartWidth` é equivalente a `borderLeftWidth`
 
 Funciona de forma similar a `bottom` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
 
-Veja https://developer.mozilla.org/en-US/docs/Web/CSS/bottom para mais detalhes sobre como `bottom` afeta o layout.
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/bottom) para mais detalhes sobre como `bottom` afeta o layout.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -521,28 +538,32 @@ Veja https://developer.mozilla.org/en-US/docs/Web/CSS/bottom para mais detalhes 
 `boxSizing` define como as várias props de dimensionamento do elemento (`width`, `height`, `minWidth`, `minHeight`, etc.) são calculadas. Se `boxSizing` for `border-box`, esses tamanhos se aplicam à border box do elemento. Se for `content-box`, eles se aplicam à content box do elemento. O valor padrão é `border-box`. A [documentação web](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing) é uma boa fonte de informação se você deseja aprender mais sobre como essa prop funciona.
 
 | Tipo                              | Obrigatório |
-| --------------------------------- | -------- |
-| enum('border-box', 'content-box') | Não       |
+| --------------------------------- | ----------- |
+| enum('border-box', 'content-box') | Não         |
 
 ---
 
 ### `columnGap`
 
-`columnGap` funciona como `column-gap` no CSS. Apenas unidades de pixel são suportadas no React Native. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap para mais detalhes.
+`columnGap` funciona como `column-gap` no CSS. Aceita números (em pontos) ou strings de porcentagem (ex.: `'10%'`). Valores em porcentagem são suportados na [New Architecture](/architecture/landing-page).
 
-| Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `direction`
 
-`direction` especifica o fluxo direcional da interface do usuário. O padrão é `inherit`, exceto para o nó raiz que terá valor baseado no locale atual. Veja https://www.yogalayout.dev/docs/styling/layout-direction para mais detalhes.
+`direction` especifica o fluxo direcional da interface do usuário. O padrão é `inherit`, exceto para o nó raiz que terá valor baseado no locale atual.
 
-| Tipo                          | Obrigatório | Plataforma |
-| ----------------------------- | -------- | -------- |
-| enum('inherit', 'ltr', 'rtl') | Não       | iOS      |
+Veja [MDN CSS Reference](https://www.yogalayout.dev/docs/styling/layout-direction) para mais detalhes.
+
+| Tipo                          | Obrigatório |
+| ----------------------------- | ----------- |
+| enum('inherit', 'ltr', 'rtl') | Não         |
 
 ---
 
@@ -553,8 +574,8 @@ Veja https://developer.mozilla.org/en-US/docs/Web/CSS/bottom para mais detalhes 
 Funciona de forma similar a `display` no CSS, mas suporta apenas os valores 'flex', 'none' e 'contents'. O padrão é `flex`.
 
 | Tipo                             | Obrigatório |
-| -------------------------------- | -------- |
-| enum('none', 'flex', 'contents') | Não       |
+| -------------------------------- | ----------- |
+| enum('none', 'flex', 'contents') | Não         |
 
 ---
 
@@ -565,8 +586,8 @@ Quando direction é `ltr`, `end` é equivalente a `right`. Quando direction é `
 Este estilo tem precedência sobre os estilos `left` e `right`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -574,17 +595,17 @@ Este estilo tem precedência sobre os estilos `left` e `right`.
 
 No React Native, `flex` não funciona da mesma forma que funciona no CSS. `flex` é um número ao invés de uma string, e funciona de acordo com o layout engine [Yoga](https://github.com/facebook/yoga).
 
-Quando `flex` é um número positivo, ele torna o componente flexível, e ele será dimensionado proporcionalmente ao seu valor flex. Assim, um componente com `flex` definido como 2 ocupará o dobro do espaço de um componente com `flex` definido como 1. `flex: <positive number>` equivale a `flexGrow: <positive number>, flexShrink: 1, flexBasis: 0`.
+Quando `flex` é um número positivo, ele torna o componente flexível, e ele será dimensionado proporcionalmente ao seu valor flex. Assim, um componente com `flex` definido como `2` ocupará o dobro do espaço de um componente com `flex` definido como 1. `flex: <positive number>` equivale a `flexGrow: <positive number>, flexShrink: 1, flexBasis: 0`.
 
-Quando `flex` é 0, o componente é dimensionado de acordo com `width` e `height`, e é inflexível.
+Quando `flex` é `0`, o componente é dimensionado de acordo com `width` e `height`, e é inflexível.
 
-Quando `flex` é -1, o componente normalmente é dimensionado de acordo com `width` e `height`. No entanto, se não houver espaço suficiente, o componente encolherá para seu `minWidth` e `minHeight`.
+Quando `flex` é `-1`, o componente normalmente é dimensionado de acordo com `width` e `height`. No entanto, se não houver espaço suficiente, o componente encolherá para seu `minWidth` e `minHeight`.
 
 `flexGrow`, `flexShrink` e `flexBasis` funcionam da mesma forma que no CSS.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -593,18 +614,20 @@ Quando `flex` é -1, o componente normalmente é dimensionado de acordo com `wid
 `flexBasis` é uma forma independente de eixo de fornecer o tamanho padrão de um item ao longo do eixo principal. Definir o `flexBasis` de um filho é similar a definir o `width` desse filho se seu pai é um container com `flexDirection: row` ou definir o `height` de um filho se seu pai é um container com `flexDirection: column`. O `flexBasis` de um item é o tamanho padrão desse item, o tamanho do item antes que quaisquer cálculos de `flexGrow` e `flexShrink` sejam realizados.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `flexDirection`
 
-`flexDirection` controla em quais direções os filhos de um container vão. `row` vai da esquerda para a direita, `column` vai de cima para baixo, e você pode conseguir adivinhar o que os outros dois fazem. Funciona como `flex-direction` no CSS, exceto que o padrão é `column`. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction para mais detalhes.
+`flexDirection` controla em quais direções os filhos de um container vão. `row` vai da esquerda para a direita, `column` vai de cima para baixo, e você pode conseguir adivinhar o que os outros dois fazem. Funciona como `flex-direction` no CSS, exceto que o padrão é `column`.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction) para mais detalhes.
 
 | Tipo                                                   | Obrigatório |
-| ------------------------------------------------------ | -------- |
-| enum('row', 'row-reverse', 'column', 'column-reverse') | Não       |
+| ------------------------------------------------------ | ----------- |
+| enum('row', 'row-reverse', 'column', 'column-reverse') | Não         |
 
 ---
 
@@ -615,8 +638,8 @@ Quando `flex` é -1, o componente normalmente é dimensionado de acordo com `wid
 `flexGrow` aceita qualquer valor de ponto flutuante >= 0, sendo 0 o valor padrão. Um container distribuirá qualquer espaço restante entre seus filhos ponderado pelos valores de `flexGrow` dos filhos.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -627,28 +650,34 @@ Quando `flex` é -1, o componente normalmente é dimensionado de acordo com `wid
 `flexShrink` aceita qualquer valor de ponto flutuante >= 0, sendo 0 o valor padrão. Um container encolherá seus filhos ponderado pelos valores de `flexShrink` dos filhos.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
 ### `flexWrap`
 
-`flexWrap` controla se os filhos podem envolver depois de atingir o fim de um flex container. Funciona como `flex-wrap` no CSS (padrão: nowrap). Veja https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap para mais detalhes. Note que não funciona mais com `alignItems: stretch` (o padrão), então você pode querer usar `alignItems: flex-start` por exemplo (detalhes da mudança: https://github.com/facebook/react-native/releases/tag/v0.28.0).
+`flexWrap` controla se os filhos podem envolver depois de atingir o fim de um flex container. Funciona como `flex-wrap` no CSS (padrão: nowrap).
+
+Note que não funciona mais com `alignItems: stretch` (o padrão), então você pode querer usar `alignItems: flex-start` por exemplo (detalhes da mudança: https://github.com/react/react-native/releases/tag/v0.28.0).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap) para mais detalhes.
 
 | Tipo                                   | Obrigatório |
-| -------------------------------------- | -------- |
-| enum('wrap', 'nowrap', 'wrap-reverse') | Não       |
+| -------------------------------------- | ----------- |
+| enum('wrap', 'nowrap', 'wrap-reverse') | Não         |
 
 ---
 
 ### `gap`
 
-`gap` funciona como `gap` no CSS. Apenas unidades de pixel são suportadas no React Native. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/gap para mais detalhes.
+`gap` funciona como `gap` no CSS. É uma forma abreviada de `rowGap` e `columnGap`. Aceita números (em pontos) ou strings de porcentagem (ex.: `'10%'`). Valores em porcentagem são suportados na [New Architecture](/architecture/landing-page).
 
-| Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -656,17 +685,135 @@ Quando `flex` é -1, o componente normalmente é dimensionado de acordo com `wid
 
 `height` define a altura deste componente.
 
-Funciona de forma similar a `height` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/height para mais detalhes.
+Funciona de forma similar a `height` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/height) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `inset`
+
+:::note
+`inset` está disponível apenas na [New Architecture](/architecture/landing-page)
+:::
+
+Definir `inset` tem o mesmo efeito de definir cada uma das props `top`, `bottom`, `right` e `left`.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `insetBlock`
+
+:::note
+`insetBlock` está disponível apenas na [New Architecture](/architecture/landing-page)
+:::
+
+Equivalente a [`top`](layout-props#top) e [`bottom`](layout-props#bottom).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-block) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `insetBlockEnd`
+
+:::note
+`insetBlockEnd` está disponível apenas na [New Architecture](/architecture/landing-page)
+:::
+
+Equivalente a [`bottom`](layout-props#bottom).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-block-end) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `insetBlockStart`
+
+:::note
+`insetBlockStart` está disponível apenas na [New Architecture](/architecture/landing-page)
+:::
+
+Equivalente a [`top`](layout-props#top).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-block-start) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `insetInline`
+
+:::note
+`insetInline` está disponível apenas na [New Architecture](/architecture/landing-page)
+:::
+
+Equivalente a [`right`](layout-props#right) e [`left`](layout-props#left).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-inline) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `insetInlineEnd`
+
+:::note
+`insetInlineEnd` está disponível apenas na [New Architecture](/architecture/landing-page)
+:::
+
+Quando direction é `ltr`, `insetInlineEnd` é equivalente a [`right`](layout-props#right). Quando direction é `rtl`, `insetInlineEnd` é equivalente a [`left`](layout-props#left).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-inline-end) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `insetInlineStart`
+
+:::note
+`insetInlineStart` está disponível apenas na [New Architecture](/architecture/landing-page)
+:::
+
+Quando direction é `ltr`, `insetInlineStart` é equivalente a [`left`](layout-props#left). Quando direction é `rtl`, `insetInlineStart` é equivalente a [`right`](layout-props#right).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/inset-inline-start) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `isolation`
 
-`isolation` permite formar um [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Stacking_context). Esta prop está disponível apenas na [Nova Arquitetura](/architecture/landing-page).
+:::note
+`isolation` está disponível apenas na [New Architecture](/architecture/landing-page)
+:::
+
+`isolation` permite formar um [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Stacking_context).
 
 Existem dois valores:
 
@@ -674,18 +821,20 @@ Existem dois valores:
 - `isolate`: Forma um stacking context.
 
 | Tipo                    | Obrigatório |
-| ----------------------- | -------- |
-| enum('auto', 'isolate') | Não       |
+| ----------------------- | ----------- |
+| enum('auto', 'isolate') | Não         |
 
 ---
 
 ### `justifyContent`
 
-`justifyContent` alinha os filhos na direção principal. Por exemplo, se os filhos estão fluindo verticalmente, `justifyContent` controla como eles se alinham verticalmente. Funciona como `justify-content` no CSS (padrão: flex-start). Veja https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content para mais detalhes.
+`justifyContent` alinha os filhos na direção principal. Por exemplo, se os filhos estão fluindo verticalmente, `justifyContent` controla como eles se alinham verticalmente. Funciona como `justify-content` no CSS (padrão: flex-start).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content) para mais detalhes.
 
 | Tipo                                                                                      | Obrigatório |
-| ----------------------------------------------------------------------------------------- | -------- |
-| enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly') | Não       |
+| ----------------------------------------------------------------------------------------- | ----------- |
+| enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly') | Não         |
 
 ---
 
@@ -695,31 +844,69 @@ Existem dois valores:
 
 Funciona de forma similar a `left` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
 
-Veja https://developer.mozilla.org/en-US/docs/Web/CSS/left para mais detalhes sobre como `left` afeta o layout.
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/left) para mais detalhes sobre como `left` afeta o layout.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `margin`
 
-Definir `margin` tem o mesmo efeito que definir cada um de `marginTop`, `marginLeft`, `marginBottom` e `marginRight`. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/margin para mais detalhes.
+Definir `margin` tem o mesmo efeito que definir cada um de `marginTop`, `marginLeft`, `marginBottom` e `marginRight`.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `marginBottom`
 
-`marginBottom` funciona como `margin-bottom` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom para mais detalhes.
+`marginBottom` funciona como `margin-bottom` no CSS. Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `marginBlock`
+
+Equivalente a [`marginVertical`](layout-props#marginvertical).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-block) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `marginBlockEnd`
+
+Equivalente a [`marginBottom`](layout-props#marginbottom).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-block-end) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `marginBlockStart`
+
+Equivalente a [`marginTop`](layout-props#margintop).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-block-start) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -728,8 +915,8 @@ Definir `margin` tem o mesmo efeito que definir cada um de `marginTop`, `marginL
 Quando direction é `ltr`, `marginEnd` é equivalente a `marginRight`. Quando direction é `rtl`, `marginEnd` é equivalente a `marginLeft`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -738,28 +925,66 @@ Quando direction é `ltr`, `marginEnd` é equivalente a `marginRight`. Quando di
 Definir `marginHorizontal` tem o mesmo efeito que definir ambos `marginLeft` e `marginRight`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `marginInline`
+
+Equivalente a [`marginHorizontal`](layout-props#marginhorizontal).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-inline) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `marginInlineEnd`
+
+Quando direction é `ltr`, `marginInlineEnd` é equivalente a [`marginEnd`](layout-props#marginend) (ou seja, `marginRight`). Quando direction é `rtl`, `marginInlineEnd` é equivalente a [`marginEnd`](layout-props#marginend) (ou seja, `marginLeft`).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-inline-end) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `marginInlineStart`
+
+Quando direction é `ltr`, `marginInlineStart` é equivalente a [`marginStart`](layout-props#marginstart) (ou seja, `marginLeft`). Quando direction é `rtl`, `marginInlineStart` é equivalente a [`marginStart`](layout-props#marginstart) (ou seja, `marginRight`).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-inline-start) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `marginLeft`
 
-`marginLeft` funciona como `margin-left` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left para mais detalhes.
+`marginLeft` funciona como `margin-left` no CSS. Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `marginRight`
 
-`marginRight` funciona como `margin-right` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right para mais detalhes.
+`marginRight` funciona como `margin-right` no CSS.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -768,18 +993,20 @@ Definir `marginHorizontal` tem o mesmo efeito que definir ambos `marginLeft` e `
 Quando direction é `ltr`, `marginStart` é equivalente a `marginLeft`. Quando direction é `rtl`, `marginStart` é equivalente a `marginRight`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `marginTop`
 
-`marginTop` funciona como `margin-top` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top para mais detalhes.
+`marginTop` funciona como `margin-top` no CSS.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -788,8 +1015,8 @@ Quando direction é `ltr`, `marginStart` é equivalente a `marginLeft`. Quando d
 Definir `marginVertical` tem o mesmo efeito que definir ambos `marginTop` e `marginBottom`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -799,11 +1026,11 @@ Definir `marginVertical` tem o mesmo efeito que definir ambos `marginTop` e `mar
 
 Funciona de forma similar a `max-height` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
 
-Veja https://developer.mozilla.org/en-US/docs/Web/CSS/max-height para mais detalhes.
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/max-height) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -813,11 +1040,11 @@ Veja https://developer.mozilla.org/en-US/docs/Web/CSS/max-height para mais detal
 
 Funciona de forma similar a `max-width` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
 
-Veja https://developer.mozilla.org/en-US/docs/Web/CSS/max-width para mais detalhes.
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/max-width) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -827,11 +1054,11 @@ Veja https://developer.mozilla.org/en-US/docs/Web/CSS/max-width para mais detalh
 
 Funciona de forma similar a `min-height` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
 
-Veja https://developer.mozilla.org/en-US/docs/Web/CSS/min-height para mais detalhes.
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/min-height) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -841,41 +1068,83 @@ Veja https://developer.mozilla.org/en-US/docs/Web/CSS/min-height para mais detal
 
 Funciona de forma similar a `min-width` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
 
-Veja https://developer.mozilla.org/en-US/docs/Web/CSS/min-width para mais detalhes.
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/min-width) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `overflow`
 
-`overflow` controla como os filhos são medidos e exibidos. `overflow: hidden` faz com que as views sejam cortadas enquanto `overflow: scroll` faz com que as views sejam medidas independentemente do eixo principal de seus pais. Funciona como `overflow` no CSS (padrão: visible). Veja https://developer.mozilla.org/en/docs/Web/CSS/overflow para mais detalhes.
+`overflow` controla como os filhos são medidos e exibidos. `overflow: hidden` faz com que as views sejam cortadas enquanto `overflow: scroll` faz com que as views sejam medidas independentemente do eixo principal de seus pais. Funciona como `overflow` no CSS (padrão: visible).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) para mais detalhes.
 
 | Tipo                                | Obrigatório |
-| ----------------------------------- | -------- |
-| enum('visible', 'hidden', 'scroll') | Não       |
+| ----------------------------------- | ----------- |
+| enum('visible', 'hidden', 'scroll') | Não         |
 
 ---
 
 ### `padding`
 
-Definir `padding` tem o mesmo efeito que definir cada um de `paddingTop`, `paddingBottom`, `paddingLeft` e `paddingRight`. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/padding para mais detalhes.
+Definir `padding` tem o mesmo efeito que definir cada um de `paddingTop`, `paddingBottom`, `paddingLeft` e `paddingRight`.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `paddingBottom`
 
-`paddingBottom` funciona como `padding-bottom` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom para mais detalhes.
+`paddingBottom` funciona como `padding-bottom` no CSS.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `paddingBlock`
+
+Equivalente a [`paddingVertical`](layout-props#paddingvertical).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-block) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `paddingBlockEnd`
+
+Equivalente a [`paddingBottom`](layout-props#paddingbottom).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-block-end) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `paddingBlockStart`
+
+Equivalente a [`paddingTop`](layout-props#paddingtop).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-block-start) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -884,8 +1153,8 @@ Definir `padding` tem o mesmo efeito que definir cada um de `paddingTop`, `paddi
 Quando direction é `ltr`, `paddingEnd` é equivalente a `paddingRight`. Quando direction é `rtl`, `paddingEnd` é equivalente a `paddingLeft`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -894,28 +1163,66 @@ Quando direction é `ltr`, `paddingEnd` é equivalente a `paddingRight`. Quando 
 Definir `paddingHorizontal` é como definir ambos `paddingLeft` e `paddingRight`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `paddingInline`
+
+Equivalente a [`paddingHorizontal`](layout-props#paddinghorizontal).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `paddingInlineEnd`
+
+Quando direction é `ltr`, `paddingInlineEnd` é equivalente a [`paddingEnd`](layout-props#paddingend) (ou seja, `paddingRight`). Quando direction é `rtl`, `paddingInlineEnd` é equivalente a [`paddingEnd`](layout-props#paddingend) (ou seja, `paddingLeft`).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline-end) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
+
+---
+
+### `paddingInlineStart`
+
+Quando direction é `ltr`, `paddingInlineStart` é equivalente a [`paddingStart`](layout-props#paddingstart) (ou seja, `paddingLeft`). Quando direction é `rtl`, `paddingInlineStart` é equivalente a [`paddingStart`](layout-props#paddingstart) (ou seja, `paddingRight`).
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline-start) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `paddingLeft`
 
-`paddingLeft` funciona como `padding-left` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left para mais detalhes.
+`paddingLeft` funciona como `padding-left` no CSS. Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `paddingRight`
 
-`paddingRight` funciona como `padding-right` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right para mais detalhes.
+`paddingRight` funciona como `padding-right` no CSS.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -924,18 +1231,20 @@ Definir `paddingHorizontal` é como definir ambos `paddingLeft` e `paddingRight`
 Quando direction é `ltr`, `paddingStart` é equivalente a `paddingLeft`. Quando direction é `rtl`, `paddingStart` é equivalente a `paddingRight`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `paddingTop`
 
-`paddingTop` funciona como `padding-top` no CSS. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top para mais detalhes.
+`paddingTop` funciona como `padding-top` no CSS.
 
-| Tipo            | Obrigatório |
-| --------------- | -------- |
-| number, ,string | Não       |
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -944,8 +1253,8 @@ Quando direction é `ltr`, `paddingStart` é equivalente a `paddingLeft`. Quando
 Definir `paddingVertical` é como definir ambos `paddingTop` e `paddingBottom`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -963,8 +1272,8 @@ Elementos `static` não formam um containing block para descendentes absolutos.
 Para mais informações, veja os [documentos de Layout com Flexbox](./flexbox.md#position). Além disso, [a documentação do Yoga](https://www.yogalayout.dev/docs/styling/position) tem mais detalhes sobre como `position` difere entre React Native e CSS.
 
 | Tipo                                   | Obrigatório |
-| -------------------------------------- | -------- |
-| enum('absolute', 'relative', 'static') | Não       |
+| -------------------------------------- | ----------- |
+| enum('absolute', 'relative', 'static') | Não         |
 
 ---
 
@@ -974,21 +1283,23 @@ Para mais informações, veja os [documentos de Layout com Flexbox](./flexbox.md
 
 Funciona de forma similar a `right` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
 
-Veja https://developer.mozilla.org/en-US/docs/Web/CSS/right para mais detalhes sobre como `right` afeta o layout.
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/right) para mais detalhes sobre como `right` afeta o layout.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
 ### `rowGap`
 
-`rowGap` funciona como `row-gap` no CSS. Apenas unidades de pixel são suportadas no React Native. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap para mais detalhes.
+`rowGap` funciona como `row-gap` no CSS. Aceita números (em pontos) ou strings de porcentagem (ex.: `'10%'`). Valores em porcentagem são suportados na [New Architecture](/architecture/landing-page).
 
-| Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap) para mais detalhes.
+
+| Tipo           | Obrigatório |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -999,8 +1310,8 @@ Quando direction é `ltr`, `start` é equivalente a `left`. Quando direction é 
 Este estilo tem precedência sobre os estilos `left`, `right` e `end`.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1010,11 +1321,11 @@ Este estilo tem precedência sobre os estilos `left`, `right` e `end`.
 
 Funciona de forma similar a `top` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
 
-Veja https://developer.mozilla.org/en-US/docs/Web/CSS/top para mais detalhes sobre como `top` afeta o layout.
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/top) para mais detalhes sobre como `top` afeta o layout.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1022,11 +1333,13 @@ Veja https://developer.mozilla.org/en-US/docs/Web/CSS/top para mais detalhes sob
 
 `width` define a largura deste componente.
 
-Funciona de forma similar a `width` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/width para mais detalhes.
+Funciona de forma similar a `width` no CSS, mas no React Native você deve usar pontos ou porcentagens. Ems e outras unidades não são suportadas.
+
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/width) para mais detalhes.
 
 | Tipo           | Obrigatório |
-| -------------- | -------- |
-| number, string | Não       |
+| -------------- | ----------- |
+| number, string | Não         |
 
 ---
 
@@ -1034,12 +1347,12 @@ Funciona de forma similar a `width` no CSS, mas no React Native você deve usar 
 
 `zIndex` controla quais componentes são exibidos em cima de outros. Normalmente, você não usa `zIndex`. Componentes renderizam de acordo com sua ordem na árvore do documento, então componentes posteriores são desenhados sobre os anteriores. `zIndex` pode ser útil se você tiver animações ou interfaces modais customizadas onde você não deseja esse comportamento.
 
-Funciona como a propriedade CSS `z-index` - componentes com um `zIndex` maior renderizarão em cima. Pense na direção z como se estivesse apontando do telefone para seu olho. Veja https://developer.mozilla.org/en-US/docs/Web/CSS/z-index para mais detalhes.
+Funciona como a propriedade CSS `z-index` - componentes com um `zIndex` maior renderizarão em cima. Pense na direção z como se estivesse apontando do telefone para seu olho.
 
 No iOS, `zIndex` pode requerer que `View`s sejam irmãs umas das outras para funcionar como esperado.
 
-| Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+Veja [MDN CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index) para mais detalhes.
 
----
+| Tipo   | Obrigatório |
+| ------ | ----------- |
+| number | Não         |

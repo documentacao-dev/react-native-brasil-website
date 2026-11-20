@@ -44,7 +44,7 @@ Um valor Boolean que é `true` se o elemento alvo se intersecta com a raiz do in
 
 ### `rnRootIntersectionRatio` ⚠️
 
-:::warning Non-standard
+:::warning[Não padrão]
 Esta é uma extensão específica do React Native.
 :::
 

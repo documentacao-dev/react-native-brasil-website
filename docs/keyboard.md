@@ -6,12 +6,12 @@ title: Keyboard
 
 Módulo `Keyboard` para controlar eventos do teclado.
 
-### Uso
+### Uso {#usage}
 
 O módulo Keyboard permite que você escute eventos nativos e reaja a eles, bem como faça alterações no teclado, como descartá-lo.
 
 ```SnackPlayer name=Keyboard%20Example&supportedPlatforms=ios,android
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {Keyboard, Text, TextInput, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -69,7 +69,7 @@ export default Example;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `addListener()`
 
@@ -77,7 +77,7 @@ export default Example;
 static addListener: (
   eventType: KeyboardEventName,
   listener: KeyboardEventListener,
-) => EmitterSubscription;
+) => EventSubscription;
 ```
 
 A função `addListener` conecta uma função JavaScript a um evento identificado de notificação nativa do teclado.
@@ -86,10 +86,10 @@ Esta função então retorna a referência ao listener.
 
 **Parâmetros:**
 
-| Nome                                                                     | Tipo     | Descrição                                                                              |
-| ------------------------------------------------------------------------ | -------- | -------------------------------------------------------------------------------------- |
-| eventName <div className="label basic two-lines required">Required</div> | string   | A string que identifica o evento que você está escutando. Veja a lista abaixo.        |
-| callback <div className="label basic two-lines required">Required</div>  | function | A função a ser chamada quando o evento é disparado                                    |
+| Nome                                                                     | Tipo     | Descrição                                                                      |
+| ------------------------------------------------------------------------ | -------- | ------------------------------------------------------------------------------ |
+| eventName <div className="label basic two-lines required">Required</div> | string   | A string que identifica o evento que você está escutando. Veja a lista abaixo. |
+| callback <div className="label basic two-lines required">Required</div>  | function | A função a ser chamada quando o evento é disparado                             |
 
 **`eventName`**
 

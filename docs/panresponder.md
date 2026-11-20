@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 `PanResponder` reconcilia vários toques em um único gesto. Ele torna gestos de toque único resilientes a toques extras e pode ser usado para reconhecer gestos básicos de multi-toque.
 
-Por padrão, `PanResponder` mantém um handle do `InteractionManager` para bloquear eventos JS de longa duração de interromper gestos ativos.
+Por padrão, `PanResponder` mantém um handle de interação para bloquear eventos JS de longa duração de interromper gestos ativos.
 
 Ele fornece um wrapper previsível dos handlers responder fornecidos pelo [sistema responder de gestos](gesture-responder-system.md). Para cada handler, ele fornece um novo objeto `gestureState` junto com o objeto de evento nativo:
 
@@ -35,7 +35,7 @@ Um objeto `gestureState` tem o seguinte:
 
 ```tsx
 const ExampleComponent = () => {
-  const panResponder = React.useRef(
+  const panResponder = useRef(
     PanResponder.create({
       // Ask to be the responder:
       onStartShouldSetPanResponder: (evt, gestureState) => true,
@@ -82,7 +82,7 @@ const ExampleComponent = () => {
 `PanResponder` funciona com a API `Animated` para ajudar a construir gestos complexos na UI. O exemplo a seguir contém um componente `View` animado que pode ser arrastado livremente pela tela
 
 ```SnackPlayer name=PanResponder
-import React, {useRef} from 'react';
+import {useRef} from 'react';
 import {Animated, View, StyleSheet, PanResponder, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -92,7 +92,9 @@ const App = () => {
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([null, {dx: pan.x, dy: pan.y}]),
+      onPanResponderMove: Animated.event([null, {dx: pan.x, dy: pan.y}], {
+        useNativeDriver: false,
+      }),
       onPanResponderRelease: () => {
         pan.extractOffset();
       },
@@ -137,7 +139,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-Experimente o [exemplo de PanResponder no RNTester](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/PanResponder/PanResponderExample.js).
+Experimente o [exemplo de PanResponder no RNTester](https://github.com/react/react-native/blob/main/packages/rn-tester/js/examples/PanResponder/PanResponderExample.js).
 
 ---
 

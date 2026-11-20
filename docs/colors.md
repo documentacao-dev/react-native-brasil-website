@@ -9,14 +9,14 @@ Componentes no React Native são [estilizados usando JavaScript](style). Proprie
 - [Android](https://material.io/design/color/color-usage.html)
 - [iOS](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/)
 
-## APIs de Cores
+## APIs de Cores {#color-apis}
 
 React Native possui várias APIs de cores projetadas para permitir que você aproveite ao máximo o sistema de design e preferências do usuário da sua plataforma.
 
 - [PlatformColor](platformcolor) permite que você referencie o sistema de cores da plataforma.
 - [DynamicColorIOS](dynamiccolorios) é específico para iOS e permite que você especifique quais cores devem ser usadas no modo claro ou escuro (Dark Mode).
 
-## Representações de cores
+## Representações de cores {#color-representations}
 
 ### Red Green Blue (RGB)
 
@@ -49,7 +49,7 @@ React Native suporta `hwb()` em notação funcional:
 - `'hwb(0 0% 0%)'`
 - `'hwb(70 50% 0%)'`
 
-### Inteiros de cores
+### Inteiros de cores {#color-ints}
 
 React Native também suporta cores como valores `int` (no modo de cor RGB):
 
@@ -59,7 +59,7 @@ React Native também suporta cores como valores `int` (no modo de cor RGB):
 Isso pode parecer similar à representação de [Color](https://developer.android.com/reference/android/graphics/Color) ints do Android, mas no Android os valores são armazenados no modo de cor SRGB (0xaarrggbb).
 :::
 
-### Cores nomeadas
+### Cores nomeadas {#named-colors}
 
 No React Native você também pode usar strings de nomes de cores como valores.
 
@@ -71,7 +71,7 @@ React Native suporta apenas nomes de cores em minúsculas. Nomes de cores em mai
 
 Este é um atalho para `rgba(0,0,0,0)`, igual ao [CSS3](https://www.w3.org/TR/css-color-3/#transparent).
 
-#### Palavras-chave de cores
+#### Palavras-chave de cores {#color-keywords}
 
 A implementação de cores nomeadas segue a [especificação CSS3/SVG](https://www.w3.org/TR/css-color-3/#svg-color):
 

@@ -16,7 +16,6 @@ A virtualização melhora massivamente o consumo de memória e o desempenho de l
 <TabItem value="javascript">
 
 ```SnackPlayer name=VirtualizedListExample&ext=js
-import React from 'react';
 import {View, VirtualizedList, StyleSheet, Text, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -72,7 +71,6 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=VirtualizedListExample&ext=tsx
-import React from 'react';
 import {View, VirtualizedList, StyleSheet, Text, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -299,9 +297,9 @@ Estilização para o View interno de `ListHeaderComponent`.
 
 ---
 
-### `disableVirtualization`
+### 🗑️ `disableVirtualization`
 
-:::warning Deprecated
+:::warning[Deprecated]
 A virtualização fornece otimizações significativas de desempenho e memória, mas desmonta completamente as instâncias React que estão fora da janela de renderização. Você só deve precisar desabilitar isso para fins de depuração.
 :::
 

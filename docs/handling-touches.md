@@ -6,7 +6,7 @@ title: Manipulando Toques
 
 Os usuários interagem com apps mobile principalmente através do toque. Eles podem usar uma combinação de gestos, como tocar em um botão, rolar uma lista ou dar zoom em um mapa. React Native fornece componentes para manipular todos os tipos de gestos comuns, bem como um [sistema gesture responder](gesture-responder-system.md) abrangente para permitir um reconhecimento de gestos mais avançado, mas o componente que você provavelmente estará mais interessado é o Button básico.
 
-## Exibindo um botão básico
+## Exibindo um botão básico {#displaying-a-basic-button}
 
 [Button](button.md) fornece um componente de botão básico que é renderizado bem em todas as plataformas. O exemplo mínimo para exibir um botão se parece com isso:
 
@@ -26,7 +26,6 @@ Isso renderizará um label azul no iOS e um retângulo arredondado azul com text
 Vá em frente e brinque com o componente `Button` usando o exemplo abaixo. Você pode selecionar em qual plataforma seu app é visualizado clicando no toggle no canto inferior direito e então clicando em "Tap to Play" para visualizar o app.
 
 ```SnackPlayer name=Button%20Basics
-import React from 'react';
 import {Alert, Button, StyleSheet, View} from 'react-native';
 
 const ButtonBasics = () => {
@@ -87,7 +86,6 @@ Em alguns casos, você pode querer detectar quando um usuário pressiona e segur
 Vamos ver todos eles em ação:
 
 ```SnackPlayer name=Touchables
-import React from 'react';
 import {
   Alert,
   Platform,
@@ -173,10 +171,10 @@ const styles = StyleSheet.create({
 export default Touchables;
 ```
 
-## Rolagem e deslizamento
+## Rolagem e deslizamento {#scrolling-and-swiping}
 
 Gestos comumente usados em dispositivos com telas tocáveis incluem swipes e pans. Esses permitem que o usuário role através de uma lista de itens ou deslize através de páginas de conteúdo. Para estes, confira o [ScrollView](scrollview.md) Core Component.
 
-## Problemas conhecidos
+## Problemas conhecidos {#known-issues}
 
-- [react-native#29308](https://github.com/facebook/react-native/issues/29308#issuecomment-792864162): A área de toque nunca se estende além dos limites da view pai e no Android margem negativa não é suportada.
+- [react-native#29308](https://github.com/react/react-native/issues/29308#issuecomment-792864162): A área de toque nunca se estende além dos limites da view pai e no Android margem negativa não é suportada.

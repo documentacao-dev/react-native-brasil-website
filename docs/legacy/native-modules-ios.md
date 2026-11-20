@@ -11,7 +11,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 Bem-vindo aos Módulos Nativos para iOS. Comece lendo a [Introdução aos Módulos Nativos](native-modules-intro) para entender o que são módulos nativos.
 
-## Criar um Módulo Nativo de Calendário
+## Criar um Módulo Nativo de Calendário {#create-a-calendar-native-module}
 
 No guia a seguir, você criará um módulo nativo chamado `CalendarModule`, que permitirá acessar as APIs de calendário da Apple a partir do JavaScript. Ao final, você poderá chamar `CalendarModule.createCalendarEvent('Dinner Party', 'My House');` do JavaScript, invocando um método nativo que cria um evento de calendário.
 
@@ -20,13 +20,13 @@ No guia a seguir, você criará um módulo nativo chamado `CalendarModule`, que 
 Para começar, abra o projeto iOS dentro da sua aplicação React Native no Xcode. Você pode encontrar seu projeto iOS aqui dentro de um app React Native:
 
 <figure>
-  <img src="/docs/assets/native-modules-ios-open-project.png" width="500" alt="Image of opening up an iOS project within a React Native app inside of xCode." />
+  <img src="/docs/assets/native-modules-ios-open-project.png" width="500" alt="Image of opening up an iOS project within a React Native app inside of Xcode." />
   <figcaption>Imagem de onde você pode encontrar seu projeto iOS</figcaption>
 </figure>
 
 Recomendamos usar o Xcode para escrever seu código nativo. O Xcode é construído para desenvolvimento iOS, e usá-lo ajudará você a resolver rapidamente erros menores como sintaxe de código.
 
-### Criar Arquivos de Módulo Nativo Customizados
+### Criar Arquivos de Módulo Nativo Customizados {#create-custom-native-module-files}
 
 O primeiro passo é criar nossos principais arquivos de header e implementação do módulo nativo customizado. Crie um novo arquivo chamado `RCTCalendarModule.h`
 
@@ -64,7 +64,7 @@ RCT_EXPORT_MODULE();
 
 ```
 
-### Nome do Módulo
+### Nome do Módulo {#module-name}
 
 Por enquanto, seu módulo nativo `RCTCalendarModule.m` inclui apenas uma macro `RCT_EXPORT_MODULE`, que exporta e registra a classe do módulo nativo com o React Native. A macro `RCT_EXPORT_MODULE` também aceita um argumento opcional que especifica o nome pelo qual o módulo será acessível no seu código JavaScript.
 
@@ -86,7 +86,7 @@ Se você não especificar um nome, o nome do módulo JavaScript corresponderá a
 Vamos seguir o exemplo abaixo e chamar `RCT_EXPORT_MODULE` sem nenhum argumento. Como resultado, o módulo será exposto ao React Native usando o nome `CalendarModule`, já que esse é o nome da classe Objective-C, com RCT removido.
 
 ```objectivec
-// Without passing in a name this will export the native module name as the Objective-C class name with "RCT" removed
+// Without passing in a name this will export the native module name as the Objective-C class name with “RCT” removed
 RCT_EXPORT_MODULE();
 ```
 
@@ -96,7 +96,7 @@ O módulo nativo pode então ser acessado em JS assim:
 const {CalendarModule} = ReactNative.NativeModules;
 ```
 
-### Exportar um Método Nativo para JavaScript
+### Exportar um Método Nativo para JavaScript {#export-a-native-method-to-javascript}
 
 O React Native não exporá nenhum método em um módulo nativo para JavaScript a menos que seja explicitamente instruído. Isso pode ser feito usando a macro `RCT_EXPORT_METHOD`. Métodos escritos na macro `RCT_EXPORT_METHOD` são assíncronos e o tipo de retorno é portanto sempre void. Para passar um resultado de um método `RCT_EXPORT_METHOD` para JavaScript, você pode usar callbacks ou emitir eventos (cobertos abaixo). Vamos em frente e configurar um método nativo para nosso módulo nativo `CalendarModule` usando a macro `RCT_EXPORT_METHOD`. Chame-o de `createCalendarEvent()` e por enquanto faça-o receber argumentos de nome e localização como strings. As opções de tipo de argumento serão cobertas em breve.
 
@@ -120,7 +120,7 @@ RCT_EXPORT_METHOD(createCalendarEvent:(NSString *)name location:(NSString *)loca
 }
 ```
 
-### Métodos Síncronos
+### Métodos Síncronos {#synchronous-methods}
 
 Você pode usar `RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD` para criar um método nativo síncrono.
 
@@ -135,14 +135,13 @@ O tipo de retorno deste método deve ser do tipo object (id) e deve ser serializ
 
 No momento, não recomendamos usar métodos síncronos, pois chamar métodos de forma síncrona pode ter fortes penalidades de performance e introduzir bugs relacionados a threading nos seus módulos nativos. Além disso, observe que se você optar por usar `RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD`, seu app não poderá mais usar o depurador do Google Chrome. Isso porque métodos síncronos exigem que a VM JS compartilhe memória com o app. Para o depurador do Google Chrome, o React Native roda dentro da VM JS no Google Chrome e se comunica de forma assíncrona com os dispositivos móveis via WebSockets.
 
-### Testar o que Você Construiu
+### Testar o que Você Construiu {#test-what-you-have-built}
 
 Neste ponto, você configurou a estrutura básica para seu módulo nativo no iOS. Teste isso acessando o módulo nativo e invocando seu método exportado em JavaScript.
 
 Encontre um lugar em sua aplicação onde você gostaria de adicionar uma chamada ao método `createCalendarEvent()` do módulo nativo. Abaixo está um exemplo de um componente, `NewModuleButton`, que você pode adicionar no seu app. Você pode invocar o módulo nativo dentro da função `onPress()` do `NewModuleButton`.
 
 ```tsx
-import React from 'react';
 import {Button} from 'react-native';
 
 const NewModuleButton = () => {
@@ -201,11 +200,11 @@ yarn ios
 </TabItem>
 </Tabs>
 
-### Compilando Conforme Você Itera
+### Compilando Conforme Você Itera {#building-as-you-iterate}
 
 Conforme você trabalha através desses guias e itera em seu módulo nativo, você precisará fazer uma reconstrução nativa da sua aplicação para acessar suas mudanças mais recentes a partir do JavaScript. Isso porque o código que você está escrevendo fica dentro da parte nativa da sua aplicação. Embora o metro bundler do React Native possa observar mudanças no JavaScript e reconstruir o bundle JS em tempo real para você, ele não fará isso para código nativo. Então, se você quiser testar suas mudanças nativas mais recentes, você precisa reconstruir usando o comando acima.
 
-### Resumo✨
+### Resumo✨ {#recap}
 
 Agora você deve ser capaz de invocar seu método `createCalendarEvent()` no seu módulo nativo em JavaScript. Como você está usando `RCTLog` na função, pode confirmar que seu método nativo está sendo invocado [habilitando o modo debug no seu app](https://reactnative.dev/docs/debugging#chrome-developer-tools) e olhando para o console JS no Chrome ou o depurador de app mobile Flipper. Você deve ver sua mensagem `RCTLogInfo(@"Pretending to create an event %@ at %@", name, location);` cada vez que invocar o método do módulo nativo.
 
@@ -216,9 +215,9 @@ Agora você deve ser capaz de invocar seu método `createCalendarEvent()` no seu
 
 Neste ponto, você criou um módulo nativo iOS e invocou um método nele a partir do JavaScript na sua aplicação React Native. Você pode continuar lendo para aprender mais sobre coisas como quais tipos de argumentos seu método de módulo nativo aceita e como configurar callbacks e promises dentro do seu módulo nativo.
 
-## Além de um Módulo Nativo de Calendário
+## Além de um Módulo Nativo de Calendário {#beyond-a-calendar-native-module}
 
-### Melhor Exportação de Módulo Nativo
+### Melhor Exportação de Módulo Nativo {#better-native-module-export}
 
 Importar seu módulo nativo extraindo-o de `NativeModules` como acima é um pouco desajeitado.
 
@@ -266,7 +265,7 @@ NativeCalendarModule.createCalendarEvent('foo', 'bar');
 Isso assume que o lugar onde você está importando `CalendarModule` está na mesma hierarquia que `NativeCalendarModule.js`. Atualize o import relativo conforme necessário.
 :::
 
-### Tipos de Argumentos
+### Tipos de Argumentos {#argument-types}
 
 Quando um método de módulo nativo é invocado no JavaScript, o React Native converte os argumentos de objetos JS para seus análogos de objetos Objective-C/Swift. Então, por exemplo, se seu método de Módulo Nativo Objective-C aceita um NSNumber, em JS você precisa chamar o método com um number. O React Native lidará com a conversão para você. Abaixo está uma lista dos tipos de argumentos suportados para métodos de módulos nativos e os equivalentes JavaScript para os quais eles mapeiam.
 
@@ -291,9 +290,9 @@ Os seguintes tipos são atualmente suportados, mas não serão suportados em Tur
 - Number -> float
   :::
 
-Para iOS, você também pode escrever métodos de módulos nativos com qualquer tipo de argumento que seja suportado pela classe `RCTConvert` (veja [RCTConvert](https://github.com/facebook/react-native/blob/main/packages/react-native/React/Base/RCTConvert.h) para detalhes sobre o que é suportado). As funções helper RCTConvert todas aceitam um valor JSON como entrada e o mapeiam para um tipo ou classe nativa Objective-C.
+Para iOS, você também pode escrever métodos de módulos nativos com qualquer tipo de argumento que seja suportado pela classe `RCTConvert` (veja [RCTConvert](https://github.com/react/react-native/blob/main/packages/react-native/React/Base/RCTConvert.h) para detalhes sobre o que é suportado). As funções helper RCTConvert todas aceitam um valor JSON como entrada e o mapeiam para um tipo ou classe nativa Objective-C.
 
-### Exportando Constantes
+### Exportando Constantes {#exporting-constants}
 
 Um módulo nativo pode exportar constantes substituindo o método nativo `constantsToExport()`. Abaixo `constantsToExport()` é substituído e retorna um Dictionary que contém uma propriedade de nome de evento padrão que você pode acessar em JavaScript assim:
 
@@ -363,7 +362,7 @@ const onSubmit = () => {
 };
 ```
 
-Um módulo nativo deve invocar seu callback apenas uma vez. Ele pode, no entanto, armazenar o callback e invocá-lo mais tarde. Esse padrão é frequentemente usado para envolver APIs iOS que requerem delegates - veja [`RCTAlertManager`](https://github.com/facebook/react-native/blob/main/packages/react-native/React/CoreModules/RCTAlertManager.mm) como exemplo. Se o callback nunca for invocado, alguma memória vazará.
+Um módulo nativo deve invocar seu callback apenas uma vez. Ele pode, no entanto, armazenar o callback e invocá-lo mais tarde. Esse padrão é frequentemente usado para envolver APIs iOS que requerem delegates - veja [`RCTAlertManager`](https://github.com/react/react-native/blob/main/packages/react-native/React/CoreModules/RCTAlertManager.mm) como exemplo. Se o callback nunca for invocado, alguma memória vazará.
 
 Existem duas abordagens para o tratamento de erros com callbacks. A primeira é seguir a convenção do Node e tratar o primeiro argumento passado para o array de callback como um objeto de erro.
 
@@ -428,7 +427,7 @@ const onPress = () => {
 };
 ```
 
-Se você quiser passar objetos semelhantes a erros para JavaScript, use `RCTMakeError` de [`RCTUtils.h.`](https://github.com/facebook/react-native/blob/main/packages/react-native/React/Base/RCTUtils.h) Atualmente isso apenas passa um Dictionary em forma de Error para JavaScript, mas o React Native pretende gerar automaticamente objetos Error JavaScript reais no futuro. Você também pode fornecer um argumento `RCTResponseErrorBlock`, que é usado para callbacks de erro e aceita um objeto `NSError \*`. Observe que este tipo de argumento não será suportado com TurboModules.
+Se você quiser passar objetos semelhantes a erros para JavaScript, use `RCTMakeError` de [`RCTUtils.h.`](https://github.com/react/react-native/blob/main/packages/react-native/React/Base/RCTUtils.h) Atualmente isso apenas passa um Dictionary em forma de Error para JavaScript, mas o React Native pretende gerar automaticamente objetos Error JavaScript reais no futuro. Você também pode fornecer um argumento `RCTResponseErrorBlock`, que é usado para callbacks de erro e aceita um objeto `NSError \*`. Observe que este tipo de argumento não será suportado com TurboModules.
 
 ### Promises
 
@@ -468,7 +467,7 @@ const onSubmit = async () => {
 };
 ```
 
-### Enviando Eventos para JavaScript
+### Enviando Eventos para JavaScript {#sending-events-to-javascript}
 
 Módulos nativos podem sinalizar eventos para JavaScript sem serem invocados diretamente. Por exemplo, você pode querer sinalizar para o JavaScript um lembrete de que um evento de calendário do aplicativo de calendário nativo do iOS ocorrerá em breve. A maneira preferida de fazer isso é criar uma subclasse de `RCTEventEmitter`, implementar `supportedEvents` e chamar self `sendEventWithName`:
 
@@ -552,11 +551,11 @@ RCT_EXPORT_METHOD(doSomethingExpensive:(NSString *)param callback:(RCTResponseSe
 
 ```
 
-:::info Compartilhando filas de dispatch entre módulos
+:::info[Compartilhando filas de dispatch entre módulos]
 O método `methodQueue` será chamado uma vez quando o módulo for inicializado e então retido pelo React Native, portanto não há necessidade de manter uma referência à fila você mesmo, a menos que deseje usá-la dentro do seu módulo. No entanto, se você deseja compartilhar a mesma fila entre vários módulos, precisará garantir que você retenha e retorne a mesma instância de fila para cada um deles.
 :::
 
-### Injeção de Dependência
+### Injeção de Dependência {#dependency-injection}
 
 O React Native criará e inicializará automaticamente qualquer módulo nativo registrado. No entanto, você pode querer criar e inicializar suas próprias instâncias de módulos para, por exemplo, injetar dependências.
 
@@ -573,7 +572,7 @@ RCTRootView *rootView = [[RCTRootView alloc]
                      initialProperties:nil];
 ```
 
-### Exportando Swift
+### Exportando Swift {#exporting-swift}
 
 Swift não tem suporte para macros, então expor módulos nativos e seus métodos para JavaScript dentro do React Native requer um pouco mais de configuração. No entanto, funciona de forma relativamente semelhante. Digamos que você tenha o mesmo `CalendarModule` mas como uma classe Swift:
 
@@ -620,14 +619,14 @@ Para aqueles que são novos em Swift e Objective-C, sempre que você [mistura as
 #import <React/RCTBridgeModule.h>
 ```
 
-Você também pode usar `RCT_EXTERN_REMAP_MODULE` e `_RCT_EXTERN_REMAP_METHOD` para alterar o nome JavaScript do módulo ou métodos que você está exportando. Para mais informações veja [`RCTBridgeModule`](https://github.com/facebook/react-native/blob/main/packages/react-native/React/Base/RCTBridgeModule.h).
+Você também pode usar `RCT_EXTERN_REMAP_MODULE` e `_RCT_EXTERN_REMAP_METHOD` para alterar o nome JavaScript do módulo ou métodos que você está exportando. Para mais informações veja [`RCTBridgeModule`](https://github.com/react/react-native/blob/main/packages/react-native/React/Base/RCTBridgeModule.h).
 
 :::note
 Importante ao fazer módulos de terceiros: Bibliotecas estáticas com Swift são suportadas apenas no Xcode 9 e posterior. Para que o projeto Xcode compile quando você usa Swift na biblioteca estática iOS que você inclui no módulo, seu projeto de app principal deve conter código Swift e um bridging header próprio. Se seu projeto de app não contiver nenhum código Swift, uma solução alternativa pode ser um único arquivo .swift vazio e um bridging header vazio.
 :::
 
-### Nomes de Métodos Reservados
+### Nomes de Métodos Reservados {#reserved-method-names}
 
 #### invalidate()
 
-Módulos nativos podem estar em conformidade com o protocolo [RCTInvalidating](https://github.com/facebook/react-native/blob/main/packages/react-native/React/Base/RCTInvalidating.h) no iOS implementando o método `invalidate()`. Este método [pode ser invocado](https://github.com/facebook/react-native/blob/0.62-stable/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm#L456) quando a bridge nativa é invalidada (ou seja: no reload do modo dev). Use este mecanismo conforme necessário para fazer a limpeza necessária para seu módulo nativo.
+Módulos nativos podem estar em conformidade com o protocolo [RCTInvalidating](https://github.com/react/react-native/blob/main/packages/react-native/React/Base/RCTInvalidating.h) no iOS implementando o método `invalidate()`. Este método [pode ser invocado](https://github.com/react/react-native/blob/0.62-stable/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm#L456) quando a bridge nativa é invalidada (ou seja: no reload do modo dev). Use este mecanismo conforme necessário para fazer a limpeza necessária para seu módulo nativo.

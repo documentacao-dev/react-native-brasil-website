@@ -6,23 +6,18 @@ title: Systrace
 
 `Systrace` é uma ferramenta de profiling padrão do Android baseada em marcadores (e é instalada quando você instala o pacote Android platform-tools). Blocos de código com profiling são cercados por marcadores de início/fim que são então visualizados em um formato de gráfico colorido. Tanto o Android SDK quanto o React Native framework fornecem marcadores padrão que você pode visualizar.
 
-## Exemplo
+## Exemplo {#example}
 
-`Systrace` permite que você marque eventos JavaScript (JS) com uma tag e um valor inteiro. Capture os eventos JS não-cronometrados no EasyProfiler.
+`Systrace` permite que você marque eventos JavaScript (JS) com uma tag e um valor inteiro. Comece a fazer o profiling com uma ferramenta de profiling do Android, como Perfetto ou EasyProfiler, e depois use esses marcadores para identificar os eventos no trace capturado.
 
 ```SnackPlayer name=Systrace%20Example
-import React from 'react';
 import {Button, Text, View, StyleSheet, Systrace} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
-  const enableProfiling = () => {
-    Systrace.setEnabled(true); // Call setEnabled to turn on the profiling.
+  const markEvent = () => {
     Systrace.beginEvent('event_label');
     Systrace.counterEvent('event_label', 10);
-  };
-
-  const stopProfiling = () => {
     Systrace.endEvent();
   };
 
@@ -33,15 +28,7 @@ const App = () => {
           React Native Systrace API
         </Text>
         <View style={styles.buttonsColumn}>
-          <Button
-            title="Capture the non-Timed JS events in EasyProfiler"
-            onPress={() => enableProfiling()}
-          />
-          <Button
-            title="Stop capturing"
-            onPress={() => stopProfiling()}
-            color="#FF0000"
-          />
+          <Button title="Mark event" onPress={markEvent} />
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -78,7 +65,7 @@ export default App;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `isEnabled()`
 

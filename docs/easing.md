@@ -10,7 +10,7 @@ O módulo `Easing` implementa funções de easing comuns. Este módulo é usado 
 
 Você pode encontrar uma visualização de algumas funções de easing comuns em https://easings.net/
 
-### Animações predefinidas
+### Animações predefinidas {#predefined-animations}
 
 O módulo `Easing` fornece várias animações predefinidas através dos seguintes métodos:
 
@@ -19,7 +19,7 @@ O módulo `Easing` fornece várias animações predefinidas através dos seguint
 - [`ease`](easing.md#ease) fornece uma animação inercial básica
 - [`elastic`](easing.md#elastic) fornece uma interação de mola básica
 
-### Funções padrão
+### Funções padrão {#standard-functions}
 
 Três funções de easing padrão são fornecidas:
 
@@ -29,7 +29,7 @@ Três funções de easing padrão são fornecidas:
 
 A função [`poly`](easing.md#poly) pode ser usada para implementar funções quárticas, quínticas e outras funções de potência superior.
 
-### Funções adicionais
+### Funções adicionais {#additional-functions}
 
 Funções matemáticas adicionais são fornecidas pelos seguintes métodos:
 
@@ -44,13 +44,13 @@ Os seguintes auxiliares são usados para modificar outras funções de easing.
 - [`inOut`](easing.md#inout) torna qualquer função de easing simétrica
 - [`out`](easing.md#out) executa uma função de easing para trás
 
-## Exemplo
+## Exemplo {#example}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer name=Easing%20Demo&ext=js
-import React, {useRef} from 'react';
+import {useRef} from 'react';
 import {
   Animated,
   Easing,
@@ -210,7 +210,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Easing%20Demo&ext=tsx
-import React, {useRef} from 'react';
+import {useRef} from 'react';
 import {
   Animated,
   Easing,
@@ -374,7 +374,7 @@ export default App;
 
 # Referência
 
-## Métodos
+## Métodos {#methods}
 
 ### `step0()`
 

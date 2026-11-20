@@ -11,11 +11,11 @@ As subscrições de eventos são chamadas em ordem reversa (ou seja, a última s
 - **Se uma subscrição retornar true,** então as subscrições registradas anteriormente não serão chamadas.
 - **Se nenhuma subscrição retornar true ou nenhuma estiver registrada,** ela invoca programaticamente a funcionalidade padrão do botão de voltar para sair da aplicação.
 
-:::warning Aviso para usuários de modal
+:::warning[Aviso para usuários de modal]
 Se sua aplicação mostrar um `Modal` aberto, o `BackHandler` não publicará nenhum evento ([consulte a documentação do `Modal`](modal#onrequestclose)).
 :::
 
-## Pattern
+## Padrão {#pattern}
 
 ```tsx
 const subscription = BackHandler.addEventListener(
@@ -48,12 +48,12 @@ const subscription = BackHandler.addEventListener(
 subscription.remove();
 ```
 
-## Example
+## Exemplo {#example}
 
 O exemplo a seguir implementa um cenário onde você confirma se o usuário quer sair da aplicação:
 
 ```SnackPlayer name=BackHandler&supportedPlatforms=android
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {Text, StyleSheet, BackHandler, Alert} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -103,21 +103,21 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-`BackHandler.addEventListener` cria um event listener e retorna um objeto `NativeEventSubscription` que deve ser limpo usando o método `NativeEventSubscription.remove`.
+`BackHandler.addEventListener` cria um event listener e retorna um objeto `EventSubscription` que deve ser limpo usando o método `EventSubscription.remove`.
 
-## Usage with React Navigation
+## Uso com React Navigation {#usage-with-react-navigation}
 
 Se você está usando React Navigation para navegar entre diferentes telas, você pode seguir o guia deles sobre [Custom Android back button behaviour](https://reactnavigation.org/docs/custom-android-back-button-handling/)
 
-## Backhandler hook
+## Hook Backhandler {#backhandler-hook}
 
 [React Native Hooks](https://github.com/react-native-community/hooks#usebackhandler) tem um hook `useBackHandler` muito útil que vai simplificar o processo de configurar event listeners.
 
 ---
 
-# Reference
+# Referência {#reference}
 
-## Methods
+## Métodos {#methods}
 
 ### `addEventListener()`
 
@@ -125,7 +125,7 @@ Se você está usando React Navigation para navegar entre diferentes telas, voc�
 static addEventListener(
   eventName: BackPressEventName,
   handler: () => boolean | null | undefined,
-): NativeEventSubscription;
+): EventSubscription;
 ```
 
 ---

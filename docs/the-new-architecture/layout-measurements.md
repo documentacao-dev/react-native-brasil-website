@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 # Medindo o Layout
 
 Às vezes, você precisa medir o layout atual para aplicar algumas mudanças no layout geral ou para tomar decisões e chamar alguma lógica específica.
@@ -11,7 +12,7 @@ Um código típico será assim:
 
 ```tsx
 function AComponent(children) {
-  const targetRef = React.useRef(null)
+  const targetRef = useRef(null)
 
   useLayoutEffect(() => {
     targetRef.current?.measure((x, y, width, height, pageX, pageY) => {

@@ -11,11 +11,11 @@ tags: [engineering]
 
 Na [Shoutem](https://shoutem.github.io/), tivemos a sorte de trabalhar com React Native desde seus primórdios. Decidimos que queríamos fazer parte da incrível comunidade desde o primeiro dia. Logo percebemos que é quase impossível acompanhar o ritmo com que a comunidade estava crescendo e melhorando. Por isso decidimos organizar uma reunião mensal onde todos os principais contribuidores do React Native possam apresentar brevemente quais são seus esforços e planos.
 
-## Reuniões mensais
+## Reuniões mensais {#monthly-meetings}
 
 Tivemos nossa primeira sessão da reunião mensal em 14 de junho de 2017. A missão do React Native Monthly é simples e direta: **melhorar a comunidade React Native**. Apresentar os esforços das equipes facilita a colaboração entre equipes feita offline.
 
-## Equipes
+## Equipes {#teams}
 
 Na primeira reunião, tivemos 8 equipes se juntando a nós:
 
@@ -30,7 +30,7 @@ Na primeira reunião, tivemos 8 equipes se juntando a nós:
 
 Esperamos ter mais contribuidores principais nas próximas sessões!
 
-## Notas
+## Notas {#notes}
 
 Como os planos das equipes podem ser de interesse para um público mais amplo, estaremos compartilhando-os aqui, no blog do React Native. Então, aqui estão eles:
 
@@ -90,6 +90,6 @@ Como os planos das equipes podem ser de interesse para um público mais amplo, e
 - Trabalhando com um contribuidor da KPN no Detox para Android e suportando dispositivos reais.
 - Pensando em "Detox como plataforma" para permitir construir outras ferramentas que precisam automatizar o simulador/dispositivo. Um exemplo é [Storybook](https://github.com/storybooks/react-native-storybook) para React Native ou a ideia de Ram para testes de integração.
 
-## Próxima sessão
+## Próxima sessão {#next-session}
 
 As reuniões serão realizadas a cada quatro semanas. A próxima sessão está agendada para 12 de julho de 2017. Como acabamos de começar com esta reunião, gostaríamos de saber como essas notas beneficiam a comunidade React Native. Sinta-se à vontade para me contatar [no Twitter](https://twitter.com/TomislavTenodi) se você tiver alguma sugestão sobre o que devemos cobrir nas próximas sessões ou como devemos melhorar o resultado da reunião.

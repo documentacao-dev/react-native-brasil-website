@@ -17,7 +17,7 @@ Também estamos usando React Native para muitas novas partes do app. Se você as
 
 Naturalmente, também usamos muitas outras tecnologias para construir nossos apps. [Litho](https://fblitho.com/) e [ComponentKit](https://componentkit.org/) são duas bibliotecas que usamos extensivamente em nossos apps; ambas fornecem uma API de componentes semelhante ao React para construir telas nativas. Nunca foi um objetivo do React Native substituir todas as outras tecnologias – estamos focados em tornar o próprio React Native melhor, mas adoramos ver outras equipes pegarem ideias emprestadas do React Native, como trazer [instant reload](https://instagram-engineering.com/instant-feedback-in-ios-engineering-workflows-c3f6508c76c8) para código não-JavaScript também.
 
-## Arquitetura
+## Arquitetura {#architecture}
 
 Quando começamos o projeto React Native em 2013, projetamos para ter uma única "bridge" entre JavaScript e nativo que é assíncrona, serializável e em lote. Assim como React DOM transforma atualizações de state do React em chamadas imperativas e mutativas para APIs DOM como `document.createElement(attrs)` e `.appendChild()`, React Native foi projetado para retornar uma única mensagem JSON que lista mutações a serem executadas, como `[["createView", attrs], ["manageChildren", ...]]`. Projetamos todo o sistema para nunca depender de obter uma resposta síncrona de volta e para garantir que tudo nessa lista pudesse ser totalmente serializado para JSON e vice-versa. Fizemos isso pela flexibilidade que isso nos deu: em cima desta arquitetura, conseguimos construir ferramentas como [debugging no Chrome](/docs/debugging#chrome-developer-tools), que executa todo o código JavaScript de forma assíncrona sobre uma conexão WebSocket.
 
@@ -31,7 +31,7 @@ Uma vez que essas mudanças sejam concluídas, integrações mais próximas ser�
 
 Lançaremos mais detalhes sobre este trabalho ainda este ano à medida que se aproxima da conclusão.
 
-## Comunidade
+## Comunidade {#community}
 
 Ao lado da comunidade dentro do Facebook, estamos felizes em ter uma população próspera de usuários e colaboradores React Native fora do Facebook. Gostaríamos de apoiar mais a comunidade React Native, tanto servindo melhor os usuários React Native quanto tornando o projeto mais fácil de contribuir.
 

@@ -6,9 +6,9 @@ title: Fabric
 
 Fabric é o novo sistema de renderização do React Native, uma evolução conceitual do sistema de renderização legado. Os princípios fundamentais são unificar mais lógica de renderização em C++, melhorar a interoperabilidade com [plataformas host](architecture-glossary.md#host-platform) e desbloquear novas capacidades para o React Native. O desenvolvimento começou em 2018 e em 2021, o React Native no aplicativo do Facebook é sustentado pelo novo renderizador.
 
-Esta documentação fornece uma visão geral do [novo renderizador](architecture-glossary.md#fabric-render) e seus conceitos. Ela evita especificidades de plataforma e não contém trechos de código ou ponteiros. Esta documentação cobre conceitos-chave, motivação, benefícios e uma visão geral do pipeline de renderização em diferentes cenários.
+Esta documentação fornece uma visão geral do [novo renderizador](architecture-glossary.md#fabric-renderer) e seus conceitos. Ela evita especificidades de plataforma e não contém trechos de código ou ponteiros. Esta documentação cobre conceitos-chave, motivação, benefícios e uma visão geral do pipeline de renderização em diferentes cenários.
 
-## Motivações e Benefícios do novo renderizador
+## Motivações e Benefícios do novo renderizador {#motivations-and-benefits-of-the-new-renderer}
 
 A arquitetura de renderização foi criada para desbloquear melhores experiências de usuário que não eram possíveis com a arquitetura legada. Alguns exemplos incluem:
 

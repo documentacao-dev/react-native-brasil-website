@@ -10,13 +10,13 @@ O termo _Nova Arquitetura_ refere-se tanto à nova arquitetura do framework quan
 
 A Nova Arquitetura está disponível para opt-in experimental desde o [React Native 0.68](/blog/2022/03/30/version-068#opting-in-to-the-new-architecture) com melhorias contínuas em cada lançamento subsequente. A equipe está agora trabalhando para tornar essa a experiência padrão para o ecossistema de código aberto do React Native.
 
-## Por que uma Nova Arquitetura?
+## Por que uma Nova Arquitetura? {#why-a-new-architecture}
 
 Após muitos anos construindo com React Native, a equipe identificou um conjunto de limitações que impediam desenvolvedores de criar certas experiências com alto nível de refinamento. Essas limitações eram fundamentais ao design existente do framework, então a Nova Arquitetura começou como um investimento no futuro do React Native.
 
 A Nova Arquitetura desbloqueia capacidades e melhorias que eram impossíveis na arquitetura legada.
 
-### Layout e Effects Síncronos
+### Layout e Effects Síncronos {#synchronous-layout-and-effects}
 
 Construir experiências de UI adaptativas frequentemente requer medir o tamanho e posição das suas views e ajustar o layout.
 
@@ -35,11 +35,11 @@ Na arquitetura atual, usamos `onLayout` para obter as medições da view e entã
 function ViewWithTooltip() {
   // ...
 
-  // We get the layout information and pass to ToolTip to position itself
+  // We get the layout information and pass to Tooltip to position itself
   const onLayout = React.useCallback(event => {
     targetRef.current?.measureInWindow((x, y, width, height) => {
       // This state update is not guaranteed to run in the same commit
-      // This results in a visual "jump" as the ToolTip repositions itself
+      // This results in a visual "jump" as the Tooltip repositions itself
       setTargetRect({x, y, width, height});
     });
   }, []);
@@ -63,7 +63,7 @@ function ViewWithTooltip() {
 
   useLayoutEffect(() => {
     // The measurement and state update for `targetRect` happens in a single commit
-    // allowing ToolTip to position itself without intermediate paints
+    // allowing Tooltip to position itself without intermediate paints
     targetRef.current?.measureInWindow((x, y, width, height) => {
       setTargetRect({x, y, width, height});
     });
@@ -83,17 +83,17 @@ function ViewWithTooltip() {
 <div className="TwoColumns TwoFigures">
  <figure>
   <img src="/img/new-architecture/async-on-layout.gif" alt="A view that is moving to the corners of the viewport and center with a tooltip rendered either above or below it. The tooltip is rendered after a short delay after the view moves" />
-  <figcaption>Medição e renderização assíncrona do ToolTip. [Ver código](https://gist.github.com/lunaleaps/eabd653d9864082ac1d3772dac217ab9).</figcaption>
+  <figcaption>Medição e renderização assíncrona do Tooltip. [Ver código](https://gist.github.com/lunaleaps/eabd653d9864082ac1d3772dac217ab9).</figcaption>
 </figure>
 <figure>
   <img src="/img/new-architecture/sync-use-layout-effect.gif" alt="A view that is moving to the corners of the viewport and center with a tooltip rendered either above or below it. The view and tooltip move in unison." />
-  <figcaption>Medição e renderização síncrona do ToolTip. [Ver código](https://gist.github.com/lunaleaps/148756563999c83220887757f2e549a3).</figcaption>
+  <figcaption>Medição e renderização síncrona do Tooltip. [Ver código](https://gist.github.com/lunaleaps/148756563999c83220887757f2e549a3).</figcaption>
 </figure>
 </div>
 
 </details>
 
-### Suporte para Concurrent Renderer e Recursos
+### Suporte para Concurrent Renderer e Recursos {#support-for-concurrent-renderer-and-features}
 
 A Nova Arquitetura suporta renderização concorrente e recursos que foram lançados no [React 18](https://react.dev/blog/2022/03/29/react-v18) e além. Agora você pode usar recursos como Suspense para busca de dados, Transitions e outras novas APIs do React no seu código React Native, alinhando ainda mais as bases de código e conceitos entre desenvolvimento React web e nativo.
 
@@ -182,7 +182,7 @@ Você notará que com as atualizações frequentes em uma transition, o React re
 </div>
 </details>
 
-### Interface JavaScript/Nativa Rápida
+### Interface JavaScript/Nativa Rápida {#fast-javascriptnative-interfacing}
 
 A Nova Arquitetura remove a [bridge assíncrona](https://reactnative.dev/blog/2018/06/14/state-of-react-native-2018#architecture) entre JavaScript e nativo e a substitui por JavaScript Interface (JSI). JSI é uma interface que permite ao JavaScript manter uma referência a um objeto C++ e vice-versa. Com uma referência de memória, você pode invocar métodos diretamente sem custos de serialização.
 
@@ -190,7 +190,7 @@ JSI permite ao [VisionCamera](https://github.com/mrousavy/react-native-vision-ca
 
 A adoção do JSI na Nova Arquitetura remove essa classe de trabalho de serialização de toda interoperabilidade nativa-JavaScript. Isso inclui inicializar e re-renderizar componentes nativos principais como `View` e `Text`. Você pode ler mais sobre nossa [investigação em desempenho de renderização](https://github.com/reactwg/react-native-new-architecture/discussions/123) na Nova Arquitetura e os benchmarks melhorados que medimos.
 
-## O que posso esperar ao habilitar a Nova Arquitetura?
+## O que posso esperar ao habilitar a Nova Arquitetura? {#what-can-i-expect-from-enabling-the-new-architecture}
 
 Embora a Nova Arquitetura habilite esses recursos e melhorias, habilitar a Nova Arquitetura para seu aplicativo ou biblioteca pode não melhorar imediatamente o desempenho ou experiência do usuário.
 
@@ -206,11 +206,11 @@ A equipe está pesquisando e desenvolvendo ativamente novos recursos que a Nova 
 
 Você pode acompanhar e contribuir em nosso repositório dedicado de [discussões e propostas](https://github.com/react-native-community/discussions-and-proposals/discussions/651).
 
-## Devo usar a Nova Arquitetura hoje?
+## Devo usar a Nova Arquitetura hoje? {#should-i-use-the-new-architecture-today}
 
 Com 0.76, a Nova Arquitetura está habilitada por padrão em todos os projetos React Native.
 
-Se você encontrar algo que não esteja funcionando bem, por favor abra um issue usando [este template](https://github.com/facebook/react-native/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2CType%3A+New+Architecture&projects=&template=new_architecture_bug_report.yml).
+Se você encontrar algo que não esteja funcionando bem, por favor abra um issue usando [este template](https://github.com/react/react-native/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2CType%3A+New+Architecture&projects=&template=new_architecture_bug_report.yml).
 
 Se, por qualquer motivo, você não puder usar a Nova Arquitetura, ainda pode optar por não usá-la:
 

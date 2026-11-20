@@ -12,7 +12,7 @@ Agora é hora de escrever algum código de plataforma iOS para poder renderizar 
 - Escrever o código para o `RCTWebView`
 - Registrar o `RCTWebView` na aplicação
 
-### 1. Executar o Codegen
+### 1. Executar o Codegen {#1-run-codegen}
 
 Você pode [executar manualmente](the-new-architecture/codegen-cli) o Codegen, no entanto, é mais simples usar a aplicação em que você vai demonstrar o componente para fazer isso por você.
 
@@ -28,7 +28,7 @@ bundle exec pod install
 Você deve ter cuidado ao fazer commit de código gerado em seu repositório. Código gerado é específico para cada versão do React Native. Use [peerDependencies](https://nodejs.org/en/blog/npm/peer-dependencies) do npm para restringir a compatibilidade com a versão do React Native.
 :::
 
-### 3. Escrever o `RCTWebView`
+### 3. Escrever o `RCTWebView` {#3-write-the-rctwebview}
 
 Precisamos preparar seu projeto iOS usando o Xcode completando estes **5 passos**:
 
@@ -62,6 +62,7 @@ Podfile
 ...
 Demo
 ├── AppDelegate.swift
+├── SceneDelegate.swift
 ...
 // highlight-start
 ├── RCTWebView.h
@@ -198,7 +199,7 @@ Este código é escrito em Objective-C++ e contém vários detalhes:
 - o método `eventEmitter` que é um utilitário para recuperar uma instância `eventEmitter` fortemente tipada
 - o `componentDescriptorProvider` que retorna o `ComponentDescriptor` gerado pelo Codegen;
 
-#### Adicionar framework WebKit
+#### Adicionar framework WebKit {#add-webkit-framework}
 
 :::note
 Este passo é necessário apenas porque estamos criando uma Web view. Componentes web no iOS precisam ser vinculados ao framework WebKit fornecido pela Apple. Se seu componente não precisa acessar recursos específicos da web, você pode pular este passo.

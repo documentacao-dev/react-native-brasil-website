@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 # Invocando funções nativas no seu componente nativo
@@ -11,7 +12,7 @@ Neste guia você aprenderá como alcançar isso, usando um novo conceito: Native
 
 Este guia parte do guia de [Native Components](/docs/fabric-native-components-introduction) e assume que você está familiarizado com ele e que você está familiarizado com [Codegen](/docs/next/the-new-architecture/what-is-codegen).
 
-## 1. Atualize os specs do seu componente
+## 1. Atualize os specs do seu componente {#1-update-your-component-specs}
 
 O primeiro passo é atualizar o spec do componente para declarar o `NativeCommand`.
 
@@ -98,7 +99,7 @@ Essas mudanças requerem que você:
 No TypeScript, o `React.ElementRef` está deprecated. O tipo correto a usar é na verdade `React.ComponentRef`. No entanto, devido a um bug no Codegen, usar `ComponentRef` fará o app quebrar. Já temos a correção, mas precisamos lançar uma nova versão do React Native para aplicá-la.
 :::
 
-## 2. Atualize o código do App para usar o novo comando
+## 2. Atualize o código do App para usar o novo comando {#2-update-the-app-code-to-use-the-new-command}
 
 Agora você pode usar o comando no app.
 
@@ -108,7 +109,6 @@ Agora você pode usar o comando no app.
 Abra o arquivo `App.tsx` e modifique-o como a seguir:
 
 ```diff title="App.tsx"
-import React from 'react';
 -import {Alert, StyleSheet, View} from 'react-native';
 -import WebView from '../specs/WebViewNativeComponent';
 +import {Alert, StyleSheet, Pressable, Text, View} from 'react-native';
@@ -187,7 +187,6 @@ export default App;
 Abra o arquivo `App.tsx` e modifique-o como a seguir:
 
 ```diff title="App.jsx"
-import React from 'react';
 -import {Alert, StyleSheet, View} from 'react-native';
 -import WebView from '../specs/WebViewNativeComponent';
 +import {Alert, StyleSheet, Pressable, Text, View} from 'react-native';
@@ -272,7 +271,7 @@ As mudanças relevantes aqui são as seguintes:
 
 As mudanças restantes são mudanças normais do React para adicionar um `Pressable` e estilizar a view para que fique mais bonita.
 
-## 3. Execute novamente o Codegen
+## 3. Execute novamente o Codegen {#3-rerun-codegen}
 
 Agora que os specs estão atualizados e o código está pronto para usar o comando, é hora de implementar o código nativo. No entanto, antes de mergulhar na escrita do código nativo, você tem que executar novamente o codegen, para deixá-lo gerar os novos tipos que são necessários pelo código nativo.
 
@@ -317,7 +316,7 @@ Framework build type is static library
 </TabItem>
 </Tabs>
 
-## 4. Implemente o código nativo
+## 4. Implemente o código nativo {#4-implement-the-native-code}
 
 Agora é hora de implementar as mudanças nativas que permitirão que seu JS invoque diretamente métodos na sua view nativa.
 
@@ -419,7 +418,7 @@ Para fazer sua view responder aos Native Commands, você precisa aplicar as segu
 </TabItem>
 </Tabs>
 
-## 5. Execute seu app
+## 5. Execute seu app {#5-run-your-app}
 
 Finalmente, você pode executar seu app com os comandos usuais. Uma vez que o app esteja rodando, você pode tocar no botão de refresh para ver a página sendo recarregada.
 

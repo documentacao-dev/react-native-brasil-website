@@ -10,7 +10,7 @@ O objeto global [`performance`](https://developer.mozilla.org/en-US/docs/Web/API
 
 # Referência
 
-## Propriedades da instância
+## Propriedades da instância {#instance-properties}
 
 ### `eventCounts`
 
@@ -22,7 +22,7 @@ Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/
 
 ### `rnStartupTiming` ⚠️
 
-:::warning Non-standard
+:::warning[Non-standard]
 Esta é uma extensão específica do React Native.
 :::
 
@@ -34,21 +34,21 @@ get rnStartupTiming(): ReactNativeStartupTiming;
 
 A interface `ReactNativeStartupTiming` fornece os seguintes campos:
 
-| Nome                                     | Tipo           | Descrição                                                               |
-| ---------------------------------------- | -------------- | ----------------------------------------------------------------------- |
-| `startTime`                              | number \| void | Quando a inicialização do runtime do React Native foi iniciada.         |
-| `executeJavaScriptBundleEntryPointStart` | number \| void | Quando a execução do bundle da aplicação foi iniciada.                  |
-| `endTime`                                | number \| void | Quando o runtime do React Native foi totalmente inicializado.           |
+| Nome                                     | Tipo           | Descrição                                                       |
+| ---------------------------------------- | -------------- | --------------------------------------------------------------- |
+| `startTime`                              | number \| void | Quando a inicialização do runtime do React Native foi iniciada. |
+| `executeJavaScriptBundleEntryPointStart` | number \| void | Quando a execução do bundle da aplicação foi iniciada.          |
+| `endTime`                                | number \| void | Quando o runtime do React Native foi totalmente inicializado.   |
 
 ### `timeOrigin`
 
-:::warning Partial support
+:::warning[Partial support]
 Fornece o número de milissegundos desde a época UNIX até a inicialização do sistema, em vez do número de milissegundos desde a época UNIX até a inicialização da aplicação.
 :::
 
 Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/Performance/timeOrigin).
 
-## Métodos da instância
+## Métodos da instância {#instance-methods}
 
 ### `clearMarks()`
 
@@ -80,7 +80,7 @@ Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/
 
 ### `now()`
 
-:::warning Partial support
+:::warning[Partial support]
 Fornece o número de milissegundos desde a inicialização do sistema, em vez do número de milissegundos desde a inicialização da aplicação.
 :::
 

@@ -9,7 +9,7 @@ O componente Modal é uma forma básica de apresentar conteúdo acima de uma vie
 ## Example
 
 ```SnackPlayer name=Modal&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -102,14 +102,6 @@ export default App;
 ### [View Props](view.md#props)
 
 Herda [View Props](view.md#props).
-
----
-
-### `animated`
-
-:::warning Deprecated
-Use a prop [`animationType`](modal.md#animationtype) em vez disso.
-:::
 
 ---
 

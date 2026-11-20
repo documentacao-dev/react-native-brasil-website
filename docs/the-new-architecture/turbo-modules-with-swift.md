@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 # iOS - Usando Swift nos seus Native Modules
 
 Swift é a linguagem oficial e padrão para desenvolver aplicações nativas no iOS.
@@ -14,7 +15,7 @@ Portanto, o módulo que você vai escrever neste guia não será uma implementa�
 Este guia começa a partir da implementação iOS do guia de [Native Module](/docs/next/turbo-native-modules-introduction).
 Certifique-se de estar familiarizado com aquele guia antes de mergulhar neste, potencialmente implementando o exemplo do guia.
 
-## O padrão Adapter
+## O padrão Adapter {#the-adapter-pattern}
 
 O objetivo é implementar toda a nossa lógica de negócio usando um módulo Swift e ter uma camada de ligação fina em Objective-C++ que seja capaz de conectar o app com a implementação Swift.
 
@@ -22,7 +23,7 @@ Você pode conseguir isso aproveitando o padrão de design [Adapter](https://en.
 
 O objeto Objective-C++ é criado pelo React Native e ele mantém uma referência ao módulo Swift, gerenciando seu ciclo de vida. O objeto Objective-C++ encaminha todas as invocações de métodos para o Swift.
 
-### Criando o módulo Swift
+### Criando o módulo Swift {#creating-the-swift-module}
 
 O primeiro passo é mover a implementação da camada Objective-C++ para a camada Swift.
 
@@ -59,7 +60,7 @@ import Foundation
 Note que você tem que declarar todos os métodos que você precisa chamar do Objective-C como `public` e com a anotação `@objc`.
 Lembre-se também de fazer sua classe herdar de `NSObject`, caso contrário não seria possível usá-la do Objective-C.
 
-### Atualize o arquivo `RCTNativeLocalStorage`
+### Atualize o arquivo `RCTNativeLocalStorage` {#update-the-rctnativelocalstorage-file}
 
 Então, você precisa atualizar a implementação do `RCTNativeLocalStorage` para ser capaz de criar o módulo Swift e chamar seus métodos.
 
@@ -137,7 +138,7 @@ Note também que a macro `RCT_EXPORT_MODULE` não é mais necessária, porque os
 
 Esta abordagem introduz um pouco de duplicação de código nas interfaces, mas permite que você reutilize o código Swift que você já pode ter na sua base de código, com pouco esforço extra.
 
-### Implementando o Bridging Header
+### Implementando o Bridging Header {#implementing-the-bridging-header}
 
 :::note
 Se você é um autor de biblioteca, desenvolvendo um Native Module que será distribuído como uma biblioteca separada, este passo não é necessário.
@@ -168,6 +169,6 @@ Você pode já ter um bridging header na sua base de código, mas caso não tenh
 
 ![Bridging Header](/docs/assets/BridgingHeader.png)
 
-## Compile e Execute seu App
+## Compile e Execute seu App {#build-and-run-your-app}
 
 Agora você pode seguir o último passo do [guia de Native Module](/docs/turbo-native-modules-introduction#build-and-run-your-code-on-a-simulator) e você deve ver seu app executando com um Native Module escrito em Swift.

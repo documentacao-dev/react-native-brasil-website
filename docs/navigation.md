@@ -64,8 +64,7 @@ Agora você está pronto para compilar e executar seu aplicativo no dispositivo/
 
 Agora você pode criar um aplicativo com uma tela inicial e uma tela de perfil:
 
-```tsx
-import * as React from 'react';
+```tsx title="App.tsx"
 import {createStaticNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -94,10 +93,10 @@ Você pode especificar opções como o título da tela para cada tela na proprie
 
 Dentro de cada componente de tela, você pode usar o hook `useNavigation` para obter o objeto `navigation`, que tem vários métodos para vincular a outras telas. Por exemplo, você pode usar `navigation.navigate` para ir para a tela `Profile`:
 
-```tsx
+```tsx title="HomeScreen.tsx"
 import {useNavigation} from '@react-navigation/native';
 
-function HomeScreen() {
+export default function HomeScreen() {
   const navigation = useNavigation();
 
   return (
@@ -109,8 +108,10 @@ function HomeScreen() {
     />
   );
 }
+```
 
-function ProfileScreen({route}) {
+```tsx title="ProfileScreen.tsx"
+export default function ProfileScreen({route}) {
   return <Text>This is {route.params.name}'s profile</Text>;
 }
 ```

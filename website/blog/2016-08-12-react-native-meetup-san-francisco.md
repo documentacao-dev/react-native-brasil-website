@@ -24,11 +24,11 @@ Mas primeiro, o evento começou com uma rápida introdução e um breve resumo d
 
 Se [um desses meetups](https://www.meetup.com/find/?allMeetups=false&keywords=react+native&radius=Infinity&userFreeform=San+Francisco%2C+CA&mcId=z94105&mcName=San+Francisco%2C+CA&sort=recommended&eventFilter=mysugg) for realizado perto de você, eu recomendo muito participar!
 
-## Prototipagem Rápida em React na Zynga
+## Prototipagem Rápida em React na Zynga {#rapid-prototyping-in-react-at-zynga}
 
 A primeira rodada de notícias foi seguida por uma rápida introdução pela Zynga, nossos anfitriões da noite. Abhishek Chadha falou sobre como eles usam React para prototipar rapidamente novas experiências em mobile, demonstrando um protótipo rápido de um aplicativo tipo Draw Something. Eles usam uma abordagem semelhante ao React Native, fornecendo acesso a APIs nativas através de uma bridge. Isso foi demonstrado quando Abhishek usou a câmera do dispositivo para tirar uma foto da audiência e depois desenhou um chapéu na cabeça de alguém.
 
-## Projetando APIs para React Native na Netflix
+## Projetando APIs para React Native na Netflix {#designing-apis-for-react-native-at-netflix}
 
 Em seguida, a primeira palestra em destaque da noite. [Clarence Leung](https://twitter.com/clarler), Senior Software Engineer na Netflix, apresentou sua palestra sobre Projetando APIs para React Native. Primeiro ele observou os dois principais tipos de bibliotecas em que se pode trabalhar: componentes como barras de abas e seletores de data, e bibliotecas que fornecem acesso a serviços nativos como a galeria de fotos ou pagamentos in-app. Existem duas maneiras que se pode abordar ao construir uma biblioteca para uso no React Native:
 
@@ -51,7 +51,7 @@ Independentemente da abordagem que você escolher, é uma boa ideia minimizar a 
 
 Houve uma breve sessão de perguntas e respostas no final da palestra de Clarence. Uma das informações interessantes que surgiram foi que cerca de 80% do código React Native escrito para essas bibliotecas na Netflix é compartilhado entre Android e iOS.
 
-## Preenchendo a Lacuna, Usando React Native em Bases de Código Existentes
+## Preenchendo a Lacuna, Usando React Native em Bases de Código Existentes {#bridging-the-gap-using-react-native-in-existing-codebases}
 
 A palestra final da noite foi de [Leland Richardson](https://twitter.com/intelligibabble) do Airbnb. A palestra focou no uso de React Native em bases de código existentes. Eu já sei como é fácil escrever um novo aplicativo do zero usando React Native, então eu estava muito interessado em ouvir sobre a experiência do Airbnb adotando React Native em seus aplicativos nativos existentes.
 
@@ -69,7 +69,7 @@ Isso resolveu a maioria dos problemas que eles tinham com a abordagem de repo di
 
 ![](/blog/assets/rnmsf-august-2016-airbnb.jpg)
 
-### O Problema da Navegação
+### O Problema da Navegação {#the-navigation-problem}
 
 A segunda metade da palestra de Leland focou em um tópico que é caro para mim: o problema da Navegação no React Native. Ele falou sobre a abundância de bibliotecas de navegação no React Native, tanto de primeira parte quanto de terceiros. NavigationExperimental foi mencionado como algo que parecia promissor, mas acabou não sendo adequado para o caso de uso deles.
 
@@ -96,7 +96,7 @@ Também há algumas considerações a ter em mente:
 
 A palestra de Leland também foi seguida por uma sessão de perguntas e respostas. No geral, o Airbnb está satisfeito com React Native. Eles estão interessados em usar Code Push para corrigir quaisquer problemas sem passar pela App Store, e seus engenheiros adoram Live Reload, pois não precisam esperar que o aplicativo nativo seja reconstruído após cada pequena mudança.
 
-## Observações Finais
+## Observações Finais {#closing-remarks}
 
 O evento terminou com algumas notícias adicionais sobre React Native:
 

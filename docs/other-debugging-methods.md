@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 Esta página cobre como usar métodos de depuração JavaScript legados. Se você está começando com um novo aplicativo React Native ou Expo, recomendamos usar [React Native DevTools](./react-native-devtools).
 
-## Safari Developer Tools (depuração direta de JSC)
+## Safari Developer Tools (depuração direta de JSC) {#safari-developer-tools-direct-jsc-debugging}
 
 Você pode usar o Safari para depurar a versão iOS do seu aplicativo ao usar [JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore) (JSC) como runtime do seu aplicativo.
 
@@ -26,9 +26,9 @@ Embora source maps possam não estar habilitados por padrão, você pode seguir 
 Toda vez que o aplicativo é recarregado, um novo JSContext é criado. Escolher "Automatically Show Web Inspectors for JSContexts" evita que você tenha que selecionar o último JSContext manualmente.
 :::
 
-## Remote JavaScript Debugging (removido)
+## Remote JavaScript Debugging (removido) {#remote-javascript-debugging-removed}
 
-:::warning Importante
+:::warning[Importante]
 Remote JavaScript Debugging foi removido a partir do React Native 0.79. Veja o [anúncio de descontinuação](https://github.com/react-native-community/discussions-and-proposals/discussions/734) original.
 
 Se você está em uma versão mais antiga do React Native, por favor vá para a documentação [da sua versão](/versions).

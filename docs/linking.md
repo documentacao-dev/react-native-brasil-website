@@ -16,22 +16,22 @@ Como ao usar o scheme mailto, é possível criar links para outros aplicativos u
 
 Um scheme de URL personalizado não é a única maneira de abrir seu aplicativo em dispositivos móveis. Por exemplo, se você quiser enviar um link por e-mail para alguém abrir no celular, usar um scheme de URL personalizado não é ideal porque o usuário pode abrir o e-mail em um desktop, onde o link não funcionaria. Em vez disso, você deve usar links `https` padrão, como `https://www.myapp.io/records/1234546`. Em dispositivos móveis, esses links podem ser configurados para abrir seu aplicativo. No Android, esse recurso é chamado de **Deep Links**, enquanto no iOS é conhecido como **Universal Links**.
 
-### Built-in URL Schemes
+### Esquemas de URL nativos {#built-in-url-schemes}
 
 Conforme mencionado na introdução, existem alguns schemes de URL para funcionalidades principais que existem em todas as plataformas. A seguir está uma lista não exaustiva, mas que cobre os schemes mais comumente usados.
 
-| Scheme           | Description                                        | iOS | Android |
-| ---------------- | -------------------------------------------------- | --- | ------- |
+| Scheme           | Description                                              | iOS | Android |
+| ---------------- | -------------------------------------------------------- | --- | ------- |
 | `mailto`         | Abre o aplicativo de e-mail, ex: mailto: hello@world.dev | ✅  | ✅      |
-| `tel`            | Abre o aplicativo de telefone, ex: tel:+123456789  | ✅  | ✅      |
-| `sms`            | Abre o aplicativo de SMS, ex: sms:+123456789       | ✅  | ✅      |
+| `tel`            | Abre o aplicativo de telefone, ex: tel:+123456789        | ✅  | ✅      |
+| `sms`            | Abre o aplicativo de SMS, ex: sms:+123456789             | ✅  | ✅      |
 | `https` / `http` | Abre o aplicativo do navegador web, ex: https://expo.dev | ✅  | ✅      |
 
-### Enabling Deep Links
+### Habilitando deep links {#enabling-deep-links}
 
 <div className="banner-native-code-required">
-  <h3>Projects with Native Code Only</h3>
-  <p>The following section only applies to projects with native code exposed. If you are using the managed Expo workflow, see the guide on <a href="https://docs.expo.dev/guides/linking/">Linking</a> in the Expo documentation for the appropriate alternative.</p>
+  <h3>Projetos somente com código nativo</h3>
+  <p>A seção a seguir se aplica apenas a projetos com código nativo exposto. Se você estiver usando o fluxo gerenciado do Expo, veja o guia sobre <a href="https://docs.expo.dev/guides/linking/">Linking</a> na documentação do Expo para a alternativa adequada.</p>
 </div>
 
 Se você deseja habilitar deep links no seu aplicativo, leia o guia abaixo:
@@ -40,7 +40,7 @@ Se você deseja habilitar deep links no seu aplicativo, leia o guia abaixo:
 <TabItem value="android">
 
 :::info
-Para obter instruções sobre como adicionar suporte para deep linking no Android, consulte [Enabling Deep Links for App Content - Add Intent Filters for Your Deep Links](https://developer.android.com/training/app-indexing/deep-linking.html#adding-filters).
+Para obter instruções sobre como adicionar suporte para deep linking no Android, consulte [Create Deep Links to App Content - Add intent filters for incoming links](https://developer.android.com/training/app-links/create-deeplinks#adding-filters).
 :::
 
 Se você deseja receber o intent em uma instância existente da MainActivity, pode definir o `launchMode` da MainActivity como `singleTask` no `AndroidManifest.xml`. Consulte a documentação de [`<activity>`](https://developer.android.com/guide/topics/manifest/activity-element.html) para mais informações.
@@ -54,8 +54,93 @@ Se você deseja receber o intent em uma instância existente da MainActivity, po
 </TabItem>
 <TabItem value="ios">
 
-:::note
-No iOS, você precisará adicionar a pasta `LinkingIOS` aos seus caminhos de pesquisa de cabeçalho, conforme descrito na etapa 3 [aqui](linking-libraries-ios#step-3). Se você também quiser ouvir links de aplicativos recebidos durante a execução do seu aplicativo, precisará adicionar as seguintes linhas ao seu `*AppDelegate.m`:
+No iOS, você precisará adicionar a pasta `LinkingIOS` aos seus caminhos de pesquisa de cabeçalho, conforme descrito na etapa 3 [aqui](linking-libraries-ios#step-3). Se você também quiser ouvir links de aplicativos recebidos durante a execução do seu aplicativo, encaminhe os deep links a partir do seu `SceneDelegate`. Se o seu aplicativo declara `UIApplicationSceneManifest` no `Info.plist`, o `RCTLinkingManager` ignora os métodos de linking do `AppDelegate` abaixo - você deve encaminhar os links a partir do `SceneDelegate`.
+
+<Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
+<TabItem value="objc">
+
+```objc title="SceneDelegate.m"
+#import <React/RCTLinkingManager.h>
+
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts
+{
+  [RCTLinkingManager scene:scene openURLContexts:URLContexts];
+}
+```
+
+Se seu aplicativo estiver usando [Universal Links](https://developer.apple.com/ios/universal-links/), adicione também o seguinte:
+
+```objc title="SceneDelegate.m"
+- (void)scene:(UIScene *)scene continueUserActivity:(NSUserActivity *)userActivity
+{
+  [RCTLinkingManager scene:scene continueUserActivity:userActivity];
+}
+```
+
+</TabItem>
+<TabItem value="swift">
+
+```swift title="SceneDelegate.swift"
+func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+  RCTLinkingManager.scene(scene, openURLContexts: URLContexts)
+}
+```
+
+Se seu aplicativo estiver usando [Universal Links](https://developer.apple.com/ios/universal-links/), adicione também o seguinte:
+
+```swift title="SceneDelegate.swift"
+func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+  RCTLinkingManager.scene(scene, continue: userActivity)
+}
+```
+
+</TabItem>
+</Tabs>
+
+Esses callbacks cobrem apenas os links que chegam enquanto a scene está conectada. Para tratar links em um cold start (o aplicativo sendo aberto por um scheme de URL personalizado ou por um Universal Link), você também precisa passar o `UIScene.ConnectionOptions` da scene para o React Native ao inicializá-lo; caso contrário, [`getInitialURL()`](#getinitialurl) resolve para `null`:
+
+<Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
+<TabItem value="objc">
+
+```objc title="SceneDelegate.m"
+- (void)scene:(UIScene *)scene
+    willConnectToSession:(UISceneSession *)session
+                 options:(UISceneConnectionOptions *)connectionOptions
+{
+  // ...
+  [self.reactNativeFactory startReactNativeWithModuleName:@"HelloWorld"
+                                                 inWindow:self.window
+                                        connectionOptions:connectionOptions];
+}
+```
+
+</TabItem>
+<TabItem value="swift">
+
+```swift title="SceneDelegate.swift"
+func scene(
+  _ scene: UIScene,
+  willConnectTo session: UISceneSession,
+  options connectionOptions: UIScene.ConnectionOptions
+) {
+  // ...
+  reactNativeFactory?.startReactNative(
+    withModuleName: "HelloWorld",
+    in: window,
+    connectionOptions: connectionOptions
+  )
+}
+```
+
+</TabItem>
+</Tabs>
+
+Veja [Inicialização com SceneDelegate](integration-with-existing-apps#6-bootstrapping-with-scenedelegate) para a configuração completa do `SceneDelegate`.
+
+<details>
+<summary>Apps sem o ciclo de vida UIScene</summary>
+
+Se seu aplicativo não usa `SceneDelegate`, adicione as seguintes linhas ao `AppDelegate`:
 
 <Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
 <TabItem value="objc">
@@ -88,7 +173,7 @@ Se seu aplicativo estiver usando [Universal Links](https://developer.apple.com/i
 <TabItem value="swift">
 
 ```swift title="AppDelegate.swift"
-override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
   return RCTLinkingManager.application(app, open: url, options: options)
 }
 ```
@@ -96,7 +181,7 @@ override func application(_ app: UIApplication, open url: URL, options: [UIAppli
 Se seu aplicativo estiver usando [Universal Links](https://developer.apple.com/ios/universal-links/), você precisará adicionar o seguinte código também:
 
 ```swift title="AppDelegate.swift"
-override func application(
+func application(
   _ application: UIApplication,
   continue userActivity: NSUserActivity,
   restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
@@ -111,34 +196,36 @@ override func application(
 </TabItem>
 </Tabs>
 
-:::
+</details>
 
 </TabItem>
 </Tabs>
 
-### Handling Deep Links
+---
+
+### Lidando com deep links {#handling-deep-links}
 
 Existem duas maneiras de manipular URLs que abrem seu aplicativo.
 
-#### 1. If the app is already open, the app is foregrounded and a Linking 'url' event is fired
+#### 1. Se o app já estiver aberto, ele vai para o primeiro plano e um evento 'url' de Linking é disparado {#1-if-the-app-is-already-open-the-app-is-foregrounded-and-a-linking-url-event-is-fired}
 
 Você pode manipular esses eventos com `Linking.addEventListener('url', callback)` - ele chama `callback({url})` com a URL vinculada
 
-#### 2. If the app is not already open, it is opened and the url is passed in as the initialURL
+#### 2. Se o app não estiver aberto, ele é iniciado e a url é passada como initialURL {#2-if-the-app-is-not-already-open-it-is-opened-and-the-url-is-passed-in-as-the-initialurl}
 
 Você pode manipular esses eventos com `Linking.getInitialURL()` - ele retorna uma Promise que resolve para a URL, se houver uma.
 
 ---
 
-## Example
+## Exemplo {#example}
 
-### Open Links and Deep Links (Universal Links)
+### Abrir links e deep links (Universal Links) {#open-links-and-deep-links-universal-links}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer name=Linking%20Example&supportedPlatforms=ios,android&ext=js
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import {Alert, Button, Linking, StyleSheet, View} from 'react-native';
 
 const supportedURL = 'https://google.com';
@@ -186,7 +273,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Linking%20Example&supportedPlatforms=ios,android&ext=tsx
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import {Alert, Button, Linking, StyleSheet, View} from 'react-native';
 
 const supportedURL = 'https://google.com';
@@ -238,13 +325,13 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Open Custom Settings
+### Abrir configurações personalizadas {#open-custom-settings}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer name=Linking%20Example&supportedPlatforms=ios,android&ext=js
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import {Button, Linking, StyleSheet, View} from 'react-native';
 
 const OpenSettingsButton = ({children}) => {
@@ -279,7 +366,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Linking%20Example&supportedPlatforms=ios,android&ext=tsx
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import {Button, Linking, StyleSheet, View} from 'react-native';
 
 type OpenSettingsButtonProps = {
@@ -317,13 +404,13 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Get the Deep Link
+### Obter o deep link {#get-the-deep-link}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer name=Linking%20Example&supportedPlatforms=ios,android&ext=js
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {Linking, StyleSheet, Text, View} from 'react-native';
 
 const useInitialURL = () => {
@@ -337,7 +424,7 @@ const useInitialURL = () => {
 
       // The setTimeout is just for testing purpose
       setTimeout(() => {
-        setUrl(initialUrl);
+        setUrl(initialUrl ?? null);
         setProcessing(false);
       }, 1000);
     };
@@ -377,7 +464,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Linking%20Example&supportedPlatforms=ios,android&ext=tsx
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {Linking, StyleSheet, Text, View} from 'react-native';
 
 const useInitialURL = () => {
@@ -391,7 +478,7 @@ const useInitialURL = () => {
 
       // The setTimeout is just for testing purpose
       setTimeout(() => {
-        setUrl(initialUrl);
+        setUrl(initialUrl ?? null);
         setProcessing(false);
       }, 1000);
     };
@@ -430,13 +517,13 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Send Intents (Android)
+### Enviar intents (Android) {#send-intents-android}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer name=Linking%20Example&supportedPlatforms=android&ext=js
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import {Alert, Button, Linking, StyleSheet, View} from 'react-native';
 
 const SendIntentButton = ({action, extras, children}) => {
@@ -486,7 +573,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Linking%20Example&ext=tsx
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import {Alert, Button, Linking, StyleSheet, View} from 'react-native';
 
 type SendIntentButtonProps = {
@@ -548,9 +635,9 @@ export default App;
 </TabItem>
 </Tabs>
 
-# Reference
+# Referência {#reference}
 
-## Methods
+## Métodos {#methods}
 
 ### `addEventListener()`
 
@@ -558,7 +645,7 @@ export default App;
 static addEventListener(
   type: 'url',
   handler: (event: {url: string}) => void,
-): EmitterSubscription;
+): EventSubscription;
 ```
 
 Adiciona um manipulador para mudanças de Linking ouvindo o tipo de evento `url` e fornecendo o manipulador.
@@ -577,11 +664,11 @@ O método retorna um objeto `Promise`. Quando é determinado se a URL fornecida 
 
 A `Promise` será rejeitada no Android se for impossível verificar se a URL pode ser aberta ou quando estiver visando o Android 11 (SDK 30) se você não especificou as consultas de intent relevantes no `AndroidManifest.xml`. Da mesma forma, no iOS, a promise será rejeitada se você não adicionou o scheme específico na chave `LSApplicationQueriesSchemes` dentro do `Info.plist` (veja abaixo).
 
-**Parameters:**
+**Parâmetros:**
 
-| Name                                                     | Type   | Description         |
-| -------------------------------------------------------- | ------ | ------------------- |
-| url <div className="label basic required">Required</div> | string | A URL para abrir.   |
+| Name                                                     | Type   | Description       |
+| -------------------------------------------------------- | ------ | ----------------- |
+| url <div className="label basic required">Required</div> | string | A URL para abrir. |
 
 :::note
 Para URLs web, o protocolo (`"http://"`, `"https://"`) deve ser definido de acordo!
@@ -623,7 +710,7 @@ static getInitialURL(): Promise<string | null>;
 Se o lançamento do aplicativo foi acionado por um link de aplicativo, ele fornecerá a URL do link, caso contrário, fornecerá `null`.
 
 :::info
-Para dar suporte a deep linking no Android, consulte https://developer.android.com/training/app-indexing/deep-linking.html#handling-intents.
+Para dar suporte a deep linking no Android, consulte [Create Deep Links to App Content - Read data from incoming intents](https://developer.android.com/training/app-links/create-deeplinks#handling-intents).
 :::
 
 :::tip
@@ -654,11 +741,11 @@ Você pode usar outras URLs, como uma localização (por exemplo, "geo:37.484847
 
 O método retorna um objeto `Promise`. Se o usuário confirmar a caixa de diálogo de abertura ou a URL abrir automaticamente, a promise é resolvida. Se o usuário cancelar a caixa de diálogo de abertura ou não houver aplicativos registrados para a URL, a promise é rejeitada.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name                                                     | Type   | Description         |
-| -------------------------------------------------------- | ------ | ------------------- |
-| url <div className="label basic required">Required</div> | string | A URL para abrir.   |
+| Name                                                     | Type   | Description       |
+| -------------------------------------------------------- | ------ | ----------------- |
+| url <div className="label basic required">Required</div> | string | A URL para abrir. |
 
 :::note
 Este método falhará se o sistema não souber como abrir a URL especificada. Se você estiver passando uma URL que não seja http(s), é melhor verificar `canOpenURL()` primeiro. Para URLs web, o protocolo (`"http://"`, `"https://"`) deve ser definido de acordo!
@@ -681,7 +768,7 @@ static sendIntent(
 
 Inicia um intent do Android com extras.
 
-**Parameters:**
+**Parâmetros:**
 
 | Name                                                        | Type                                                       |
 | ----------------------------------------------------------- | ---------------------------------------------------------- |

@@ -16,14 +16,20 @@ Não modifique o valor animado diretamente. Você pode usar o [`useRef` Hook](ht
 
 O exemplo a seguir contém uma `View` que irá aparecer e desaparecer gradualmente com base no valor animado `fadeAnim`
 
-```SnackPlayer name=Animated%20Example
-import React, {useRef} from 'react';
+```SnackPlayer name=Animated%20Example&supportedPlatforms=ios,android
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
-import {Animated, Text, View, StyleSheet, Button} from 'react-native';
+import {
+  Animated,
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  useAnimatedValue,
+} from 'react-native';
 
 const App = () => {
   // fadeAnim will be used as the value for opacity. Initial Value: 0
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnim = useAnimatedValue(0);
 
   const fadeIn = () => {
     // Will change fadeAnim value to 1 in 5 seconds
@@ -187,7 +193,8 @@ Por exemplo, ao trabalhar com gestos de rolagem horizontal, você faria o seguin
           x: scrollX
         }
       }
-    }]
+    }],
+    {useNativeEvent: true}
  )}
 ```
 
@@ -211,7 +218,7 @@ Config é um objeto que pode ter as seguintes opções:
 
 - `velocity`: Velocidade inicial. Obrigatório.
 - `deceleration`: Taxa de decaimento. Padrão 0.997.
-- `isInteraction`: Se esta animação cria ou não um "interaction handle" no `InteractionManager`. Padrão true.
+- `isInteraction`: Se esta animação cria ou não um "interaction handle". Padrão true.
 - `useNativeDriver`: Usa o native driver quando true. Obrigatório.
 
 ---
@@ -229,7 +236,7 @@ Config é um objeto que pode ter as seguintes opções:
 - `duration`: Duração da animação (milissegundos). Padrão 500.
 - `easing`: Função de easing para definir a curva. Padrão é `Easing.inOut(Easing.ease)`.
 - `delay`: Iniciar a animação após o atraso (milissegundos). Padrão 0.
-- `isInteraction`: Se esta animação cria ou não um "interaction handle" no `InteractionManager`. Padrão true.
+- `isInteraction`: Se esta animação cria ou não um "interaction handle". Padrão true.
 - `useNativeDriver`: Usa o native driver quando true. Obrigatório.
 
 ---
@@ -246,7 +253,7 @@ Config é um objeto que pode ter as seguintes opções.
 
 Observe que você pode definir apenas uma das opções bounciness/speed, tension/friction, ou stiffness/damping/mass, mas não mais de uma:
 
-As opções friction/tension ou bounciness/speed correspondem ao modelo de mola em [`Facebook Pop`](https://github.com/facebook/pop), [Rebound](https://github.com/facebookarchive/rebound), e [Origami](https://origami.design/).
+As opções friction/tension ou bounciness/speed correspondem ao modelo de mola em [`Facebook Pop`](https://github.com/facebookarchive/pop), [Rebound](https://github.com/facebookarchive/rebound), e [Origami](https://origami.design/).
 
 - `friction`: Controla "bounciness"/overshoot. Padrão 7.
 - `tension`: Controla velocidade. Padrão 40.
@@ -266,7 +273,7 @@ Outras opções de configuração são as seguintes:
 - `restDisplacementThreshold`: O limiar de deslocamento do repouso abaixo do qual a mola deve ser considerada em repouso. Padrão 0.001.
 - `restSpeedThreshold`: A velocidade na qual a mola deve ser considerada em repouso em pixels por segundo. Padrão 0.001.
 - `delay`: Iniciar a animação após o atraso (milissegundos). Padrão 0.
-- `isInteraction`: Se esta animação cria ou não um "interaction handle" no `InteractionManager`. Padrão true.
+- `isInteraction`: Se esta animação cria ou não um "interaction handle". Padrão true.
 - `useNativeDriver`: Usa o native driver quando true. Obrigatório.
 
 ---
@@ -462,8 +469,8 @@ As animações são iniciadas chamando start() em sua animação. start() recebe
 
 **Parameters:**
 
-| Name     | Type                                    | Required | Description                                                                                                                                                                    |
-| -------- | --------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Name     | Type                                    | Required | Description                                                                                                                                                      |
+| -------- | --------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | callback | `(result: {finished: boolean}) => void` | No       | Função que será chamada após a animação terminar de executar normalmente ou quando a animação terminar porque stop() foi chamado nela antes que pudesse terminar |
 
 Exemplo de start com callback:
@@ -512,7 +519,7 @@ Você pode ler mais sobre a API `Animated.ValueXY` na [página](animatedvaluexy)
 
 ---
 
-### `Interpolation`
+### `Interpolation` {#interpolation-1}
 
 Exportado para usar o tipo Interpolation em flow.
 

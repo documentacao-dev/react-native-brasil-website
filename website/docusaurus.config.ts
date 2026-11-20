@@ -14,15 +14,16 @@ import path from 'path';
 
 import users from './showcase.json';
 import versions from './versions.json';
-import prismTheme from './core/PrismTheme';
+import prismThemeDark from './core/PrismThemeDark';
+import prismThemeLight from './core/PrismThemeLight';
 
 import remarkSnackPlayer from '@react-native-website/remark-snackplayer';
 import remarkCodeblockLanguageTitle from '@react-native-website/remark-codeblock-language-as-title';
 import remarkAvisoNaoTraduzido from './remark/aviso-nao-traduzido';
 
-// See https://docs.netlify.com/configure-builds/environment-variables/
 const isProductionDeployment =
-  !!process.env.NETLIFY && process.env.CONTEXT === 'production';
+  (!!process.env.NETLIFY && process.env.CONTEXT === 'production') ||
+  (!!process.env.VERCEL && process.env.VERCEL_ENV === 'production');
 
 const lastVersion = versions[0];
 const copyright = `Copyright © ${new Date().getFullYear()} Meta Platforms, Inc.`;
@@ -33,12 +34,12 @@ export type EditUrlButton = {
 };
 
 const commonDocsOptions: PluginContentDocs.Options = {
+  admonitions: {keywords: ['important'], extendDefaults: true},
   breadcrumbs: false,
   showLastUpdateAuthor: false,
   showLastUpdateTime: true,
   editUrl: (options => {
-    const baseUrl =
-      'https://github.com/facebook/react-native-website/edit/main';
+    const baseUrl = 'https://github.com/react/react-native-website/edit/main';
     const nextReleasePath = `docs/${options.docPath}`;
     const isNextRelease = options.version === 'current';
     const buttons: EditUrlButton[] = [
@@ -74,17 +75,30 @@ const commonDocsOptions: PluginContentDocs.Options = {
   ],
 };
 
-const isDeployPreview = process.env.PREVIEW_DEPLOY === 'true';
+const isDeployPreview =
+  process.env.PREVIEW_DEPLOY === 'true' ||
+  (!!process.env.VERCEL && process.env.VERCEL_ENV === 'preview');
 
 const config: Config = {
+  markdown: {
+    mermaid: true,
+    // O v4 desliga o suporte a `{#id}` nos títulos e a comentários `<!-- -->`;
+    // as traduções dependem dos dois: âncoras do inglês
+    // (tool/traducao/ancorar_titulos.py) e a marcação `<!-- ia-translated: true -->`.
+    mdx1Compat: {
+      comments: true,
+      headingIds: true,
+    },
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   future: {
     // Turns Docusaurus v4 future flags on to make it easier to upgrade later
     v4: true,
     // Make Docusaurus build faster - enabled by default
     // See https://github.com/facebook/docusaurus/issues/10556
-    // See https://github.com/facebook/react-native-website/pull/4268
+    // See https://github.com/react/react-native-website/pull/4268
     // See https://docusaurus.io/blog/releases/3.6
-    experimental_faster: (process.env.DOCUSAURUS_FASTER ?? 'true') === 'true',
+    faster: (process.env.DOCUSAURUS_FASTER ?? 'true') === 'true',
   },
 
   title: 'React Native',
@@ -99,10 +113,6 @@ const config: Config = {
     './modules/jumpToFragment.ts',
   ],
   trailingSlash: false, // because trailing slashes can break some existing relative links
-  // React Native Brasil: sem analytics nem pesquisas do reactnative.dev oficial
-  // (Google Analytics e widget de pesquisa removidos; tool/traducao/verificar.py
-  // barra a volta deles no sync). Os scripts abaixo
-  // são funcionais: foco acessível, Snack e os tweets embutidos.
   scripts: [
     {
       src: 'https://cdn.jsdelivr.net/npm/focus-visible@5.2.0/dist/focus-visible.min.js',
@@ -207,15 +217,17 @@ const config: Config = {
           // Ignore for now due to old posts
           onUntruncatedBlogPosts: 'ignore',
         },
-        // Sem Google Analytics: era a conta do reactnative.dev oficial.
         theme: {
           customCss: [
             require.resolve('./src/css/customTheme.scss'),
             require.resolve('./src/css/index.scss'),
             require.resolve('./src/css/showcase.scss'),
             require.resolve('./src/css/versions.scss'),
+            require.resolve('./src/css/docs-secondary-nav.scss'),
+            require.resolve('./src/css/releases.scss'),
           ],
         },
+        // Sem Google Analytics: era a conta do reactnative.dev oficial.
       } satisfies Preset.Options,
     ],
   ],
@@ -267,6 +279,16 @@ const config: Config = {
       } satisfies PluginContentDocs.Options,
     ],
     [
+      'content-docs',
+      {
+        id: 'releases',
+        path: 'releases',
+        routeBasePath: '/releases',
+        sidebarPath: require.resolve('./sidebarsReleases'),
+        ...commonDocsOptions,
+      } satisfies PluginContentDocs.Options,
+    ],
+    [
       '@docusaurus/plugin-pwa',
       {
         debug: true,
@@ -289,7 +311,7 @@ const config: Config = {
           },
           {
             tagName: 'meta',
-            name: 'apple-mobile-web-app-capable',
+            name: 'mobile-web-app-capable',
             content: 'yes',
           },
           {
@@ -321,6 +343,57 @@ const config: Config = {
         ],
       },
     ],
+    [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        siteTitle: 'React Native · Aprenda uma vez, escreva em qualquer lugar',
+        siteDescription:
+          'Um framework para construir apps nativos para Android, iOS e mais usando React',
+        depth: 3,
+        includeOrder: [
+          '/docs/getting-started',
+          '/docs/environment-setup',
+          '/docs/set-up-your-environment',
+          '/docs/integration-with-existing-apps',
+          '/docs/integration-with-android-fragment',
+          '/docs/intro-react-native-components',
+          '/docs/intro-react',
+          '/docs/handling-text-input',
+          '/docs/using-a-scrollview',
+          '/docs/using-a-listview',
+          '/docs/troubleshooting',
+          '/docs/platform-specific-code',
+          '/docs/building-for-tv',
+          '/docs/out-of-tree-platforms',
+          '/docs/more-resources',
+          '/docs/**',
+          '/architecture/**',
+          '/community/**',
+          '/showcase/**',
+          '/contributing/**',
+          '/versions',
+          '/blog/**',
+        ],
+        content: {
+          includeBlog: true,
+          includePages: true,
+          includeVersionedDocs: false,
+          enableLlmsFullTxt: true,
+          excludeRoutes: [
+            '/blog/201*/**',
+            '/blog/2020/**',
+            '/blog/2021/**',
+            '/blog/2022/**',
+            '/blog/page/**',
+            '/blog/tags/**',
+            '/blog/archive',
+            '/blog/authors',
+            '/releases',
+            '/search',
+          ],
+        },
+      },
+    ],
   ],
   themeConfig: {
     colorMode: {
@@ -328,17 +401,10 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
-    announcementBar: {
-      id: 'react-conf',
-      content:
-        'Junte-se a nós na React Conf nos dias 7 e 8 de outubro. <a target="_blank" rel="noopener noreferrer" href="https://conf.react.dev">Saiba mais</a>.',
-      backgroundColor: '#20232a',
-      textColor: '#fff',
-      isCloseable: false,
-    },
     prism: {
       defaultLanguage: 'tsx',
-      theme: prismTheme,
+      theme: prismThemeLight,
+      darkTheme: prismThemeDark,
       additionalLanguages: [
         'diff',
         'bash',
@@ -376,37 +442,26 @@ const config: Config = {
       title: 'React Native',
       logo: {
         src: 'img/header_logo.svg',
-        alt: 'React Native',
+        alt: '',
       },
       style: 'dark',
       items: [
         {
-          label: 'Desenvolvimento',
           type: 'dropdown',
+          label: 'Desenvolvimento',
           position: 'right',
           items: [
-            {
-              label: 'Guias',
-              type: 'doc',
-              docId: 'getting-started',
-            },
-            {
-              label: 'Componentes',
-              type: 'doc',
-              docId: 'components-and-apis',
-            },
-            {
-              label: 'APIs',
-              type: 'doc',
-              docId: 'accessibilityinfo',
-            },
-            {
-              label: 'Arquitetura',
-              type: 'doc',
-              docId: 'architecture-overview',
-              docsPluginId: 'architecture',
-            },
+            {label: 'Guias', to: '/docs/getting-started'},
+            {label: 'Componentes', to: '/docs/components-and-apis'},
+            {label: 'APIs', to: '/docs/accessibilityinfo'},
+            {label: 'Arquitetura', to: '/architecture/overview'},
           ],
+        },
+        {
+          to: '/releases/overview',
+          label: 'Releases',
+          position: 'right',
+          activeBaseRegex: '^/(releases|versions)',
         },
         {
           type: 'doc',
@@ -433,18 +488,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          type: 'docsVersionDropdown',
-          position: 'left',
-          dropdownActiveClassDisabled: true,
-          dropdownItemsAfter: [
-            {
-              to: '/versions',
-              label: 'Todas as versões',
-            },
-          ],
-        },
-        {
-          href: 'https://github.com/facebook/react-native',
+          href: 'https://github.com/react/react-native',
           'aria-label': 'Repositório no GitHub',
           position: 'right',
           className: 'navbar-github-link',
@@ -492,12 +536,8 @@ const config: Config = {
               to: 'community/overview',
             },
             {
-              label: 'Diretório',
-              href: 'https://reactnative.directory/',
-            },
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/react-native',
+              label: 'Código de Conduta',
+              href: 'https://github.com/react/react-native/blob/main/CODE_OF_CONDUCT.md',
             },
           ],
         },
@@ -518,7 +558,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/react-native',
+              href: 'https://github.com/react/react-native',
             },
           ],
         },
@@ -528,6 +568,10 @@ const config: Config = {
             {
               label: 'ReactJS',
               href: 'https://react.dev/',
+            },
+            {
+              label: 'Diretório de Pacotes',
+              href: 'https://reactnative.directory/',
             },
             {
               label: 'Política de Privacidade',
@@ -564,8 +608,18 @@ const config: Config = {
         content: 'https://reactnative.dev/img/logo-share.png',
       },
       {name: 'twitter:site', content: '@reactnative'},
-      {name: 'apple-mobile-web-app-capable', content: 'yes'},
+      {name: 'mobile-web-app-capable', content: 'yes'},
     ],
+    mermaid: {
+      theme: {
+        light: 'neutral',
+        dark: 'dark',
+      },
+      options: {
+        fontFamily:
+          '"Optimistic Display", system-ui, -apple-system, sans-serif',
+      },
+    },
   } satisfies Preset.ThemeConfig,
 };
 

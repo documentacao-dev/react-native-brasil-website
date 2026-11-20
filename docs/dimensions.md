@@ -27,9 +27,14 @@ Se você está mirando dispositivos dobráveis ou dispositivos que podem mudar o
 
 ## Example
 
-```SnackPlayer name=Dimensions%20Example
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, Dimensions} from 'react-native';
+```SnackPlayer name=Dimensions%20Example&ext=tsx
+import {useState, useEffect} from 'react';
+import {
+  StyleSheet,
+  Text,
+  Dimensions,
+  type DimensionsPayload,
+} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const windowDimensions = Dimensions.get('window');
@@ -44,8 +49,10 @@ const App = () => {
   useEffect(() => {
     const subscription = Dimensions.addEventListener(
       'change',
-      ({window, screen}) => {
-        setDimensions({window, screen});
+      ({window, screen}: DimensionsPayload) => {
+        if (window && screen) {
+          setDimensions({window, screen});
+        }
       },
     );
     return () => subscription?.remove();
@@ -98,20 +105,20 @@ static addEventListener(
   handler: ({
     window,
     screen,
-  }: DimensionsValue) => void,
-): EmitterSubscription;
+  }: DimensionsPayload) => void,
+): EventSubscription;
 ```
 
 Adiciona um event handler. Eventos suportados:
 
-- `change`: Dispara quando uma propriedade dentro do objeto `Dimensions` muda. O argumento para o event handler é um objeto do tipo [`DimensionsValue`](#dimensionsvalue).
+- `change`: Dispara quando uma propriedade dentro do objeto `Dimensions` muda. O argumento para o event handler é um objeto do tipo [`DimensionsPayload`](#dimensionspayload).
 
 ---
 
 ### `get()`
 
 ```tsx
-static get(dim: 'window' | 'screen'): ScaledSize;
+static get(dim: string): DisplayMetrics | DisplayMetricsAndroid;
 ```
 
 As dimensões iniciais são definidas antes de `runApplication` ser chamado, então elas devem estar disponíveis antes de qualquer outro require ser executado, mas podem ser atualizadas posteriormente.
@@ -120,8 +127,8 @@ Exemplo: `const {height, width} = Dimensions.get('window');`
 
 **Parameters:**
 
-| Name                                                               | Type   | Description                                                                                    |
-| ------------------------------------------------------------------ | ------ | ---------------------------------------------------------------------------------------------- |
+| Name                                                               | Type   | Description                                                                          |
+| ------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------------------ |
 | dim <div className="label basic required two-lines">Required</div> | string | Nome da dimensão conforme definido ao chamar `set`. Retorna o valor para a dimensão. |
 
 :::note
@@ -130,16 +137,18 @@ No Android, a dimensão `window` será reduzida pelo tamanho da barra de status 
 
 ## Type Definitions
 
-### DimensionsValue
+### DimensionsPayload
 
 **Properties:**
 
-| Name   | Type                                | Description                                  |
-| ------ | ----------------------------------- | -------------------------------------------- |
-| window | [ScaledSize](dimensions#scaledsize) | Tamanho da janela do Application visível. |
-| screen | [ScaledSize](dimensions#scaledsize) | Tamanho da tela do dispositivo.            |
+| Name                 | Type                                                      | Description                              |
+| -------------------- | --------------------------------------------------------- | ---------------------------------------- |
+| window               | [DisplayMetrics](dimensions#displaymetrics)               | Tamanho da janela visível do aplicativo. |
+| screen               | [DisplayMetrics](dimensions#displaymetrics)               | Tamanho da tela do dispositivo.          |
+| windowPhysicalPixels | [DisplayMetricsAndroid](dimensions#displaymetricsandroid) | Pixels físicos da janela no Android.     |
+| screenPhysicalPixels | [DisplayMetricsAndroid](dimensions#displaymetricsandroid) | Pixels físicos da tela no Android.       |
 
-### ScaledSize
+### DisplayMetrics
 
 | Type   |
 | ------ |
@@ -153,3 +162,11 @@ No Android, a dimensão `window` será reduzida pelo tamanho da barra de status 
 | height    | number |
 | scale     | number |
 | fontScale | number |
+
+### DisplayMetricsAndroid
+
+`DisplayMetricsAndroid` includes all [`DisplayMetrics`](dimensions#displaymetrics) properties and the following property:
+
+| Name       | Type   |
+| ---------- | ------ |
+| densityDpi | number |

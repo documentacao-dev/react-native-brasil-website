@@ -20,7 +20,7 @@ PlatformColor('bogusName', 'linkColor');
 
 Como as cores nativas podem ser sensíveis a temas e/ou alto contraste, essa lógica específica da plataforma também se traduz dentro dos seus componentes.
 
-### Cores suportadas
+### Cores suportadas {#supported-colors}
 
 Para uma lista completa dos tipos de cores de sistema suportadas, consulte:
 
@@ -31,7 +31,7 @@ Para uma lista completa dos tipos de cores de sistema suportadas, consulte:
   - [UIColor Standard Colors](https://developer.apple.com/documentation/uikit/uicolor/standard_colors)
   - [UIColor UI Element Colors](https://developer.apple.com/documentation/uikit/uicolor/ui_element_colors)
 
-#### Notas para desenvolvedores
+#### Notas para desenvolvedores {#developer-notes}
 
 <Tabs groupId="guide" queryString defaultValue="web" values={constants.getDevNotesTabs(["web"])}>
 
@@ -44,10 +44,9 @@ Se você está familiarizado com design systems, outra forma de pensar sobre iss
 </TabItem>
 </Tabs>
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=PlatformColor%20Example&supportedPlatforms=android,ios
-import React from 'react';
 import {Platform, PlatformColor, StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -88,5 +87,5 @@ export default App;
 O valor de string fornecido para a função `PlatformColor` deve corresponder à string como ela existe na plataforma nativa onde o app está sendo executado. Para evitar erros em tempo de execução, a função deve ser envolvida em uma verificação de plataforma, seja através de um `Platform.OS === 'platform'` ou um `Platform.select()`, como mostrado no exemplo acima.
 
 :::note
-Você pode encontrar um exemplo completo que demonstra o uso adequado e intencional do `PlatformColor` em [PlatformColorExample.js](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/PlatformColor/PlatformColorExample.js).
+Você pode encontrar um exemplo completo que demonstra o uso adequado e intencional do `PlatformColor` em [PlatformColorExample.js](https://github.com/react/react-native/blob/main/packages/rn-tester/js/examples/PlatformColor/PlatformColorExample.js).
 :::

@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 # Ciclo de Vida dos Native Modules
@@ -13,17 +14,17 @@ Neste guia, você explorará como inicializar e invalidar um Native Module adequ
 
 ## Android
 
-Quando se trata de Android, todos os Native Modules já implementam uma interface [TurboModule](https://github.com/facebook/react-native/blob/main/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/turbomodule/core/interfaces/TurboModule.kt) que define dois métodos: `initialize()` e `invalidate()`.
+Quando se trata de Android, todos os Native Modules já implementam uma interface [TurboModule](https://github.com/react/react-native/blob/main/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/turbomodule/core/interfaces/TurboModule.kt) que define dois métodos: `initialize()` e `invalidate()`.
 
-O método `initialize()` é chamado pela infraestrutura de Native Module quando o Native Module é criado. Este é o melhor lugar para colocar todo o código de inicialização que precisa acessar o ReactApplicationContext, por exemplo. Estes são alguns Native Modules do core que implementam o método `initialize()`: [BlobModule](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/blob/BlobModule.java#L155-L157), [NetworkingModule](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/network/NetworkingModule.java#L193-L197).
+O método `initialize()` é chamado pela infraestrutura de Native Module quando o Native Module é criado. Este é o melhor lugar para colocar todo o código de inicialização que precisa acessar o ReactApplicationContext, por exemplo. Estes são alguns Native Modules do core que implementam o método `initialize()`: [BlobModule](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/blob/BlobModule.java#L155-L157), [NetworkingModule](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/network/NetworkingModule.java#L193-L197).
 
-O método `invalidate()` é chamado pela infraestrutura de Native Module quando o Native Module é destruído. Este é o melhor lugar para colocar todo o código de limpeza, resetando o estado do Native Module e liberando recursos que não são mais necessários, como memória e arquivos. Estes são alguns Native Modules do core que implementam o método `invalidate()`: [DeviceInfoModule](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/deviceinfo/DeviceInfoModule.kt#L72-L76), [NetworkModule](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/network/NetworkingModule.java#L200-L212)
+O método `invalidate()` é chamado pela infraestrutura de Native Module quando o Native Module é destruído. Este é o melhor lugar para colocar todo o código de limpeza, resetando o estado do Native Module e liberando recursos que não são mais necessários, como memória e arquivos. Estes são alguns Native Modules do core que implementam o método `invalidate()`: [DeviceInfoModule](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/deviceinfo/DeviceInfoModule.kt#L72-L76), [NetworkModule](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/network/NetworkingModule.java#L200-L212)
 
 ## iOS
 
-No iOS, os Native Modules estão em conformidade com o protocolo [`RCTTurboModule`](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.h#L196-L200). No entanto, este protocolo não expõe os métodos `initialize` e `invalidate` que são expostos pela classe `TurboModule` do Android.
+No iOS, os Native Modules estão em conformidade com o protocolo [`RCTTurboModule`](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.h#L196-L200). No entanto, este protocolo não expõe os métodos `initialize` e `invalidate` que são expostos pela classe `TurboModule` do Android.
 
-Em vez disso, no iOS, existem dois protocolos adicionais: [`RCTInitializing`](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/Base/RCTInitializing.h) e [`RCTInvalidating`](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/Base/RCTInvalidating.h). Estes protocolos são usados para definir os métodos `initialize` e `invalidate`, respectivamente.
+Em vez disso, no iOS, existem dois protocolos adicionais: [`RCTInitializing`](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/Base/RCTInitializing.h) e [`RCTInvalidating`](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/Base/RCTInvalidating.h). Estes protocolos são usados para definir os métodos `initialize` e `invalidate`, respectivamente.
 
 Se o seu módulo precisa executar algum código de inicialização, então você pode estar em conformidade com o protocolo `RCTInitializing` e implementar o método `initialize`. Para fazer isso, você precisa:
 
@@ -54,7 +55,7 @@ Se o seu módulo precisa executar algum código de inicialização, então você
 @end
 ```
 
-Estes são alguns Native Modules do core que implementam o método `initialize`: [RCTBlobManager](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/Libraries/Blob/RCTBlobManager.mm#L58-L68), [RCTTiming](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/CoreModules/RCTTiming.mm#L121-L124).
+Estes são alguns Native Modules do core que implementam o método `initialize`: [RCTBlobManager](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/Libraries/Blob/RCTBlobManager.mm#L58-L68), [RCTTiming](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/CoreModules/RCTTiming.mm#L121-L124).
 
 Se o seu módulo precisa executar algum código de limpeza, então você pode estar em conformidade com o protocolo `RCTInvalidating` e implementar o método `invalidate`. Para fazer isso, você precisa:
 
@@ -88,4 +89,4 @@ Se o seu módulo precisa executar algum código de limpeza, então você pode es
 @end
 ```
 
-Estes são alguns Native Modules do core que implementam o método `invalidate`: [RCTAppearance](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/CoreModules/RCTAppearance.mm#L151-L155), [RCTDeviceInfo](https://github.com/facebook/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/CoreModules/RCTDeviceInfo.mm#L127-L133).
+Estes são alguns Native Modules do core que implementam o método `invalidate`: [RCTAppearance](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/CoreModules/RCTAppearance.mm#L151-L155), [RCTDeviceInfo](https://github.com/react/react-native/blob/0617accecdcb11159ba15c34885f294bc206aa89/packages/react-native/React/CoreModules/RCTDeviceInfo.mm#L127-L133).

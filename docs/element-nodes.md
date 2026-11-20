@@ -9,14 +9,14 @@ Element nodes representam componentes nativos na árvore de visualização nativ
 Eles são fornecidos por todos os componentes nativos, e por muitos componentes integrados, via refs:
 
 ```SnackPlayer ext=js&name=Element%20instances%20example
-import * as React from 'react';
-import { View, SafeAreaView, StyleSheet, Text } from 'react-native';
+import {useEffect, useRef, useState} from 'react';
+import {View, SafeAreaView, StyleSheet, Text} from 'react-native';
 
 const ViewWithRefs = () => {
-  const ref = React.useRef(null);
-  const [viewInfo, setViewInfo] = React.useState('');
+  const ref = useRef(null);
+  const [viewInfo, setViewInfo] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     // `element` is an object implementing the interface described here.
     const element = ref.current;
     const rect = JSON.stringify(element.getBoundingClientRect());
@@ -85,9 +85,9 @@ De [`Element`](https://developer.mozilla.org/en-US/docs/Web/API/Element):
     - ℹ️ Retorna o valor das props `id` ou `nativeID`.
   - [`lastElementChild`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lastElementChild)
   - [`nextElementSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Element/nextElementSibling)
-  - [`nodeName`](https://developer.mozilla.org/en-US/docs/Web/API/Element/nodeName)
-  - [`nodeType`](https://developer.mozilla.org/en-US/docs/Web/API/Element/nodeType)
-  - [`nodeValue`](https://developer.mozilla.org/en-US/docs/Web/API/Element/nodeValue)
+  - [`nodeName`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeName)
+  - [`nodeType`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
+  - [`nodeValue`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeValue)
   - [`previousElementSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Element/previousElementSibling)
   - [`scrollHeight`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight)
   - [`scrollLeft`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft)
@@ -97,7 +97,7 @@ De [`Element`](https://developer.mozilla.org/en-US/docs/Web/API/Element):
   - [`scrollWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth)
   - [`tagName`](https://developer.mozilla.org/en-US/docs/Web/API/Element/tagName)
     - ℹ️ Retorna um nome de componente nativo normalizado prefixado com `RN:`, como `RN:View`.
-  - [`textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Element/textContent)
+  - [`textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
 - Methods
   - [`getBoundingClientRect()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
   - [`hasPointerCapture()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/hasPointerCapture)
@@ -116,7 +116,7 @@ De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
   - [`nodeType`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
   - [`nodeValue`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeValue)
   - [`ownerDocument`](https://developer.mozilla.org/en-US/docs/Web/API/Node/ownerDocument)
-    - ℹ️ Retornará a [instância de document](/docs/next/document-instances) onde este componente foi renderizado.
+    - ℹ️ Retornará o [nó document](/docs/next/document-nodes) onde este componente foi renderizado.
   - [`parentElement`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentElement)
   - [`parentNode`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode)
   - [`previousSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Node/previousSibling)

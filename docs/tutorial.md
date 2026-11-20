@@ -15,7 +15,6 @@ Vamos fazer isso.
 De acordo com as antigas tradições do nosso povo, primeiro devemos construir um app que não faz nada além de dizer "Hello, world!". Aqui está:
 
 ```SnackPlayer name=Hello%20World
-import React from 'react';
 import {Text, View} from 'react-native';
 
 const HelloWorldApp = () => {
@@ -35,7 +34,7 @@ export default HelloWorldApp;
 
 Se você estiver curioso, pode brincar com o código de exemplo diretamente nos simuladores web. Você também pode colá-lo no seu arquivo `App.js` para criar um app real na sua máquina local.
 
-## O que está acontecendo aqui?
+## O que está acontecendo aqui? {#whats-going-on-here}
 
 1. Primeiro de tudo, precisamos importar `React` para poder usar `JSX`, que será então transformado nos componentes nativos de cada plataforma.
 2. Na linha 2, importamos os componentes `Text` e `View` do `react-native`
@@ -68,7 +67,6 @@ Seus próprios componentes também podem usar `props`. Isso permite que você fa
 <TabItem value="javascript">
 
 ```SnackPlayer name=Hello%20Props&ext=js
-import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -102,7 +100,6 @@ export default LotsOfGreetings;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Hello%20Props&ext=tsx
-import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -149,18 +146,18 @@ Com `props` e os componentes básicos [`Text`](text.md), [`Image`](image.md) e [
 
 Ao contrário das props [que são somente leitura](https://react.dev/reference/react/Component#props) e não devem ser modificadas, o `state` permite que componentes React alterem sua saída ao longo do tempo em resposta a ações do usuário, respostas de rede e qualquer outra coisa.
 
-#### Qual é a diferença entre state e props no React?
+#### Qual é a diferença entre state e props no React? {#whats-the-difference-between-state-and-props-in-react}
 
 Em um componente React, as props são as variáveis que passamos de um componente pai para um componente filho. Da mesma forma, o state também são variáveis, com a diferença de que elas não são passadas como parâmetros, mas sim que o componente as inicializa e gerencia internamente.
 
-#### Existem diferenças entre React e React Native para lidar com o state?
+#### Existem diferenças entre React e React Native para lidar com o state? {#are-there-differences-between-react-and-react-native-to-handle-the-state}
 
 <div className="two-columns">
 
 ```tsx
-// ReactJS Counter Example using Hooks!
+// React Counter Example using Hooks!
 
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 
 
@@ -191,7 +188,7 @@ const App = () => {
 ```tsx
 // React Native Counter Example using Hooks!
 
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 
 const App = () => {
@@ -225,7 +222,7 @@ Como mostrado acima, não há diferença no tratamento do `state` entre [React](
 No exemplo a seguir, mostraremos o mesmo exemplo de contador acima usando classes.
 
 ```SnackPlayer name=Hello%20Classes
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 
 class App extends Component {

@@ -6,7 +6,7 @@ title: Depuração de Builds de Release
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-## Simbolizando um stack trace
+## Simbolizando um stack trace {#symbolicating-a-stack-trace}
 
 Se um aplicativo React Native lançar uma exceção não tratada em um build de release, a saída pode estar ofuscada e difícil de ler.
 
@@ -21,9 +21,9 @@ Se um aplicativo React Native lançar uma exceção não tratada em um build de 
 
 No stack trace acima, entradas como `p@1:132161` são nomes de funções minificados e offsets de bytecode. Para depurar essas chamadas, queremos traduzi-las em arquivo, linha e nome de função, por exemplo `AwesomeProject/App.js:54:initializeMap`. Isso é conhecido como **simbolização.**
 
-Você pode simbolizar nomes de funções minificados e bytecode como os acima passando o stack trace e um source map gerado para [`metro-symbolicate`](http://npmjs.com/package/metro-symbolicate).
+Você pode simbolizar nomes de funções minificados e bytecode como os acima passando o stack trace e um source map gerado para [`metro-symbolicate`](https://www.npmjs.com/package/metro-symbolicate).
 
-### Habilitando source maps
+### Habilitando source maps {#enabling-source-maps}
 
 Source maps são necessários para simbolizar stack traces. Certifique-se de que os source maps estejam habilitados na configuração de build para a plataforma de destino.
 
@@ -76,7 +76,7 @@ Writing sourcemap output to:, Build/Intermediates.noindex/ArchiveIntermediates/a
 </TabItem>
 </Tabs>
 
-### Usando `metro-symbolicate`
+### Usando `metro-symbolicate` {#using-metro-symbolicate}
 
 Com os source maps sendo gerados, agora podemos traduzir nossos stack traces.
 
@@ -91,7 +91,7 @@ npx metro-symbolicate android/app/build/generated/sourcemaps/react/release/index
 adb logcat -d | npx metro-symbolicate android/app/build/generated/sourcemaps/react/release/index.android.bundle.map
 ```
 
-### Notas sobre source maps
+### Notas sobre source maps {#notes-on-source-maps}
 
 - Vários source maps podem ser gerados pelo processo de build. Certifique-se de usar o que está no local mostrado nos exemplos.
 - Certifique-se de que o source map que você usa corresponde ao commit exato do aplicativo com falha. Pequenas alterações no código-fonte podem causar grandes diferenças nos offsets.

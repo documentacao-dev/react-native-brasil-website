@@ -8,7 +8,8 @@ Anima automaticamente as views para suas novas posições quando o próximo layo
 
 Uma maneira comum de usar esta API é chamá-la antes de atualizar o state hook em componentes funcionais e chamar `setState` em componentes de classe.
 
-Note que para fazer isso funcionar no **Android** você precisa configurar as seguintes flags via `UIManager`:
+:::note
+No **Android**, ao usar a **Legacy Architecture**, você precisa habilitar as animações de layout via `UIManager`. Essa flag habilita as animações de layout globalmente e só precisa ser chamada uma vez (por exemplo, no arquivo de entrada `index.js` ou no componente raiz do app) antes de disparar qualquer animação de layout:
 
 ```js
 if (Platform.OS === 'android') {
@@ -18,10 +19,13 @@ if (Platform.OS === 'android') {
 }
 ```
 
+Na **New Architecture**, as animações de layout são habilitadas automaticamente, e chamar `setLayoutAnimationEnabledExperimental` é desnecessário (é um no-op).
+:::
+
 ## Example
 
 ```SnackPlayer name=LayoutAnimation%20Example&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   LayoutAnimation,
   Platform,
@@ -100,11 +104,11 @@ Agenda uma animação para acontecer no próximo layout.
 
 #### Parameters:
 
-| Name               | Type     | Required | Description                            |
-| ------------------ | -------- | -------- | -------------------------------------- |
-| config             | object   | Yes      | Veja a descrição de config abaixo.     |
-| onAnimationDidEnd  | function | No       | Chamado quando a animação termina.     |
-| onAnimationDidFail | function | No       | Chamado quando a animação falha.       |
+| Name               | Type     | Required | Description                        |
+| ------------------ | -------- | -------- | ---------------------------------- |
+| config             | object   | Yes      | Veja a descrição de config abaixo. |
+| onAnimationDidEnd  | function | No       | Chamado quando a animação termina. |
+| onAnimationDidFail | function | No       | Chamado quando a animação falha.   |
 
 O parâmetro `config` é um objeto com as chaves abaixo. [`create`](layoutanimation.md#create) retorna um objeto válido para `config`, e os objetos [`Presets`](layoutanimation.md#presets) também podem todos ser passados como o `config`.
 
@@ -135,7 +139,7 @@ Helper que cria um objeto (com campos `create`, `update` e `delete`) para passar
 **Example:**
 
 ```SnackPlayer name=LayoutAnimation&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   View,
   Platform,
@@ -220,7 +224,7 @@ Uma enumeração de tipos de animação a serem usados no método [`create`](lay
 
 ---
 
-### Properties
+### Properties {#properties-1}
 
 Uma enumeração de propriedades de layout a serem animadas a serem usadas no método [`create`](layoutanimation.md#create), ou nos configs `create`/`update`/`delete` para [`configureNext`](layoutanimation.md#configurenext). (exemplo de uso: `LayoutAnimation.Properties.opacity`)
 
@@ -264,7 +268,7 @@ Chama `configureNext()` com `Presets.spring`.
 **Example:**
 
 ```SnackPlayer name=LayoutAnimation&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   View,
   Platform,

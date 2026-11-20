@@ -11,7 +11,7 @@ tags: [engineering]
 
 A reunião mensal do React Native continua! Nesta sessão, fomos acompanhados pela [Infinite Red](https://infinite.red/), grandes mentes por trás da [Chain React, the React Native Conference](https://infinite.red/ChainReactConf). Como a maioria das pessoas aqui estava apresentando palestras na Chain React, adiamos a reunião para uma semana depois. As palestras da conferência foram [postadas online](https://www.youtube.com/playlist?list=PLFHvL21g9bk3RxJ1Ut5nR_uTZFVOxu522) e encorajo você a conferir. Então, vamos ver o que nossas equipes estão fazendo.
 
-## Equipes
+## Equipes {#teams}
 
 Nesta segunda reunião, tivemos 9 equipes se juntando a nós:
 
@@ -25,7 +25,7 @@ Nesta segunda reunião, tivemos 9 equipes se juntando a nós:
 - [Shoutem](https://github.com/shoutem)
 - [Wix](https://github.com/wix)
 
-## Notas
+## Notas {#notes}
 
 Aqui estão as notas de cada equipe:
 
@@ -96,6 +96,6 @@ Aqui estão as notas de cada equipe:
 - Detox para Android está avançando bem. Estamos obtendo ajuda significativa da comunidade. Estamos esperando uma versão inicial em cerca de duas semanas.
 - [DetoxInstruments](https://github.com/wix/detoxinstruments), nossa ferramenta de teste de performance, está ficando um pouco maior do que originalmente pretendíamos. Agora estamos planejando transformá-la em uma ferramenta standalone que não estará fortemente acoplada ao detox. Permitirá investigar a performance de aplicativos iOS em geral. Também será integrada com detox para que possamos executar testes automatizados em métricas de performance.
 
-## Próxima sessão
+## Próxima sessão {#next-session}
 
 A próxima sessão está agendada para 16 de agosto de 2017. Como esta foi apenas nossa segunda reunião, gostaríamos de saber como essas notas beneficiam a comunidade React Native. Sinta-se à vontade para me contatar [no Twitter](https://twitter.com/TomislavTenodi) se você tiver alguma sugestão sobre como devemos melhorar o resultado da reunião.

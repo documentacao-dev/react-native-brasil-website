@@ -9,7 +9,7 @@ title: AccessibilityInfo
 ## Example
 
 ```SnackPlayer name=AccessibilityInfo%20Example&supportedPlatforms=android,ios
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {AccessibilityInfo, Text, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -86,21 +86,21 @@ static addEventListener(
   handler: (
     event: AccessibilityChangeEvent | AccessibilityAnnouncementFinishedEvent,
   ) => void,
-): EmitterSubscription;
+): EventSubscription;
 ```
 
 Adiciona um manipulador de eventos. Eventos suportados:
 
-| Nome do evento                                                                           | Descrição                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `accessibilityServiceChanged`<br/><div className="label two-lines android">Android</div> | Dispara quando alguns serviços como TalkBack, outras tecnologias assistivas do Android e serviços de acessibilidade de terceiros são ativados. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando algum serviço de acessibilidade está ativado e `false` caso contrário.                   |
-| `announcementFinished`<br/><div className="label two-lines ios">iOS</div>                | Dispara quando o leitor de tela terminou de fazer um anúncio. O argumento para o manipulador de eventos é um dicionário com estas chaves:<ul><li>`announcement`: A string anunciada pelo leitor de tela.</li><li>`success`: Um boolean indicando se o anúncio foi feito com sucesso.</li></ul>                            |
-| `boldTextChanged`<br/><div className="label two-lines ios">iOS</div>                     | Dispara quando o estado da alternância de texto em negrito muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando texto em negrito está ativado e `false` caso contrário.                                                                                                                |
-| `grayscaleChanged`<br/><div className="label two-lines ios">iOS</div>                    | Dispara quando o estado da alternância de escala de cinza muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando a escala de cinza está ativada e `false` caso contrário.                                                                                                                |
-| `invertColorsChanged`<br/><div className="label two-lines ios">iOS</div>                 | Dispara quando o estado da alternância de inversão de cores muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando a inversão de cores está ativada e `false` caso contrário.                                                                                                            |
-| `reduceMotionChanged`                                                                    | Dispara quando o estado da alternância de redução de movimento muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando a redução de movimento está ativada (ou quando "Transition Animation Scale" em "Developer options" está como "Animation off") e `false` caso contrário.            |
-| `reduceTransparencyChanged`<br/><div className="label two-lines ios">iOS</div>           | Dispara quando o estado da alternância de redução de transparência muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando a redução de transparência está ativada e `false` caso contrário.                                                                                              |
-| `screenReaderChanged`                                                                    | Dispara quando o estado do leitor de tela muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando um leitor de tela está ativado e `false` caso contrário.                                                                                                                                |
+| Nome do evento                                                                           | Descrição                                                                                                                                                                                                                                                                                                      |
+| ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `accessibilityServiceChanged`<br/><div className="label two-lines android">Android</div> | Dispara quando alguns serviços como TalkBack, outras tecnologias assistivas do Android e serviços de acessibilidade de terceiros são ativados. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando algum serviço de acessibilidade está ativado e `false` caso contrário.        |
+| `announcementFinished`<br/><div className="label two-lines ios">iOS</div>                | Dispara quando o leitor de tela terminou de fazer um anúncio. O argumento para o manipulador de eventos é um dicionário com estas chaves:<ul><li>`announcement`: A string anunciada pelo leitor de tela.</li><li>`success`: Um boolean indicando se o anúncio foi feito com sucesso.</li></ul>                 |
+| `boldTextChanged`<br/><div className="label two-lines ios">iOS</div>                     | Dispara quando o estado da alternância de texto em negrito muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando texto em negrito está ativado e `false` caso contrário.                                                                                                     |
+| `grayscaleChanged`<br/><div className="label two-lines ios">iOS</div>                    | Dispara quando o estado da alternância de escala de cinza muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando a escala de cinza está ativada e `false` caso contrário.                                                                                                     |
+| `invertColorsChanged`<br/><div className="label two-lines ios">iOS</div>                 | Dispara quando o estado da alternância de inversão de cores muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando a inversão de cores está ativada e `false` caso contrário.                                                                                                 |
+| `reduceMotionChanged`                                                                    | Dispara quando o estado da alternância de redução de movimento muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando a redução de movimento está ativada (ou quando "Transition Animation Scale" em "Developer options" está como "Animation off") e `false` caso contrário. |
+| `reduceTransparencyChanged`<br/><div className="label two-lines ios">iOS</div>           | Dispara quando o estado da alternância de redução de transparência muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando a redução de transparência está ativada e `false` caso contrário.                                                                                   |
+| `screenReaderChanged`                                                                    | Dispara quando o estado do leitor de tela muda. O argumento para o manipulador de eventos é um boolean. O boolean é `true` quando um leitor de tela está ativado e `false` caso contrário.                                                                                                                     |
 
 ---
 
@@ -119,18 +119,21 @@ Posta uma string para ser anunciada pelo leitor de tela.
 ```tsx
 static announceForAccessibilityWithOptions(
   announcement: string,
-  options: {queue?: boolean},
+  options: {
+    queue?: boolean;
+    priority?: 'low' | 'default' | 'high';
+  },
 );
 ```
 
-Posta uma string para ser anunciada pelo leitor de tela com opções de modificação. Por padrão, os anúncios interromperão qualquer fala existente, mas no iOS eles podem ser enfileirados atrás da fala existente definindo `queue` como `true` no objeto de opções.
+Posta uma string para ser anunciada pelo leitor de tela com opções de modificação. Por padrão, os anúncios interromperão qualquer fala existente, mas no iOS eles podem ser enfileirados atrás da fala existente definindo `queue` como `true` no objeto de opções. Também é possível especificar uma `priority` opcional no iOS.
 
 **Parameters:**
 
-| Nome                                                              | Tipo   | Descrição                                                                                       |
-| ----------------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------- |
-| announcement <div className="label basic required">Required</div> | string | A string a ser anunciada                                                                        |
-| options <div className="label basic required">Required</div>      | object | `queue` - enfileira o anúncio atrás da fala existente <div className="label ios">iOS</div>     |
+| Nome                                                              | Tipo   | Descrição                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ----------------------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| announcement <div className="label basic required">Required</div> | string | A string a ser anunciada                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| options <div className="label basic required">Required</div>      | object | Objeto de opções com as seguintes chaves:<ul><li>`queue`: enfileira o anúncio atrás da fala existente. <div className="label ios">iOS</div></li><li>`priority`: a prioridade do anúncio (`'low'`, `'default'` ou `'high'`). Anúncios de prioridade alta interrompem qualquer fala em andamento e não podem ser interrompidos. Anúncios de prioridade padrão interrompem a fala em andamento, mas podem ser interrompidos. Anúncios de prioridade baixa não interrompem a fala em andamento e podem ser interrompidos. <div className="label ios">iOS</div></li></ul> |
 
 ---
 
@@ -145,9 +148,9 @@ Este valor é definido em "Time to take action (Accessibility timeout)" das conf
 
 **Parameters:**
 
-| Nome                                                                 | Tipo   | Descrição                                                                                             |
-| -------------------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
-| originalTimeout <div className="label basic required">Required</div> | number | O timeout a retornar se "Accessibility timeout" não estiver definido. Especifique em milissegundos.  |
+| Nome                                                                 | Tipo   | Descrição                                                                                           |
+| -------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------- |
+| originalTimeout <div className="label basic required">Required</div> | number | O timeout a retornar se "Accessibility timeout" não estiver definido. Especifique em milissegundos. |
 
 ---
 
@@ -225,6 +228,26 @@ Consulta se um leitor de tela está ativado no momento. Retorna uma promise que 
 
 ---
 
+### `isHighTextContrastEnabled()` <div className="label android">Android</div>
+
+```tsx
+static isHighTextContrastEnabled(): Promise<boolean>
+```
+
+Consulta se o alto contraste de texto está ativado no momento. Retorna uma promise que resolve para um boolean. O resultado é `true` quando o alto contraste de texto está ativado e `false` caso contrário.
+
+---
+
+### `isDarkerSystemColorsEnabled()` <div className="label ios">iOS</div>
+
+```tsx
+static isDarkerSystemColorsEnabled(): Promise<boolean>
+```
+
+Consulta se as cores escuras do sistema estão ativadas no momento. Retorna uma promise que resolve para um boolean. O resultado é `true` quando as cores escuras do sistema estão ativadas e `false` caso contrário.
+
+---
+
 ### `prefersCrossFadeTransitions()` <div className="label ios">iOS</div>
 
 ```tsx
@@ -235,7 +258,11 @@ Consulta se as configurações de redução de movimento e preferência por tran
 
 ---
 
-### `setAccessibilityFocus()`
+### 🗑️ `setAccessibilityFocus()`
+
+:::warning[Descontinuado]
+Prefira usar `sendAccessibilityEvent` com eventType `focus`.
+:::
 
 ```tsx
 static setAccessibilityFocus(reactTag: number);
@@ -248,3 +275,22 @@ No Android, isso chama o método `UIManager.sendAccessibilityEvent` com os argum
 :::note
 Certifique-se de que qualquer `View` que você deseja que receba o foco de acessibilidade tenha `accessible={true}`.
 :::
+
+---
+
+### `sendAccessibilityEvent()`
+
+```tsx
+static sendAccessibilityEvent(host: HostInstance, eventType: AccessibilityEventTypes);
+```
+
+Dispara imperativamente um evento de acessibilidade em um componente React, como trocar o elemento em foco para um leitor de tela.
+
+:::note
+Certifique-se de que qualquer `View` que você deseja que receba o foco de acessibilidade tenha `accessible={true}`.
+:::
+
+| Nome                                                           | Tipo                    | Descrição                                                                                                                     |
+| -------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| host <div className="label basic required">Required</div>      | HostInstance            | A ref do componente para o qual o evento será enviado.                                                                        |
+| eventType <div className="label basic required">Required</div> | AccessibilityEventTypes | Um de `'click'` (somente Android), `'focus'`, `'viewHoverEnter'` (somente Android) ou `'windowStateChange'` (somente Android) |

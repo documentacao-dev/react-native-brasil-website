@@ -11,7 +11,7 @@ Um componente React para exibir texto.
 No exemplo a seguir, o título e o corpo do texto aninhados herdarão o `fontFamily` de `styles.baseText`, mas o título fornece seus próprios estilos adicionais. O título e o corpo serão empilhados um sobre o outro devido às quebras de linha literais:
 
 ```SnackPlayer name=Text%20Function%20Component%20Example
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -60,7 +60,6 @@ export default TextInANest;
 Tanto Android quanto iOS permitem que você exiba texto formatado anotando intervalos de uma string com formatação específica, como negrito ou texto colorido (`NSAttributedString` no iOS, `SpannableString` no Android). Na prática, isso é muito tedioso. Para o React Native, decidimos usar o paradigma web para isso, onde você pode aninhar texto para obter o mesmo efeito.
 
 ```SnackPlayer name=Nested%20Text%20Example
-import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -218,7 +217,7 @@ Uma dica de acessibilidade ajuda os usuários a entender o que acontecerá quand
 
 ### `accessibilityLanguage` <div className="label ios">iOS</div>
 
-Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interagir com o elemento. Deve seguir a [BCP 47 specification](https://www.rfc-editor.org/info/bcp47).
+Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interagir com o elemento. Deve seguir a [BCP 47 specification](https://www.rfc-editor.org/info/bcp47/).
 
 Veja a [iOS `accessibilityLanguage` doc](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage) para mais informações.
 
@@ -242,7 +241,7 @@ Sobrescreve o texto que é lido pelo leitor de tela quando o usuário interage c
 
 Diz ao leitor de tela para tratar o elemento atualmente focado como tendo um papel específico.
 
-No iOS, esses papéis mapeiam para Accessibility Traits correspondentes. Image button tem a mesma funcionalidade como se o trait fosse definido como 'image' e 'button'. Veja o [Accessibility guide](accessibility.md#accessibilitytraits-ios) para mais informações.
+No iOS, esses papéis mapeiam para Accessibility Traits correspondentes. Image button tem a mesma funcionalidade como se o trait fosse definido como 'image' e 'button'. Veja o [Accessibility guide](accessibility.md#accessibilityrole) para mais informações.
 
 No Android, esses papéis têm funcionalidade similar no TalkBack como adicionar Accessibility Traits no Voiceover no iOS
 
@@ -292,7 +291,7 @@ Veja o [Accessibility guide](accessibility.md#accessibility-actions) para mais i
 
 Quando definido como `true`, indica que a view é um elemento de acessibilidade.
 
-Veja o [Accessibility guide](accessibility#accessible-ios-android) para mais informações.
+Veja o [guia de Accessibility](accessibility.md#accessible) para mais informações.
 
 | Type    | Default |
 | ------- | ------- |
@@ -746,22 +745,22 @@ O objeto `TextLayout` é parte do callback [`TextLayoutEvent`](text#textlayoutev
 
 #### Properties
 
-| Name      | Type   | Optional | Description                                                                  |
-| --------- | ------ | -------- | ---------------------------------------------------------------------------- |
-| ascender  | number | No       | A altura do ascendente da linha após as mudanças de layout do texto.        |
-| capHeight | number | No       | Altura da letra maiúscula acima da linha de base.                           |
-| descender | number | No       | A altura do descendente da linha após as mudanças de layout do texto.       |
-| height    | number | No       | Altura da linha após as mudanças de layout do texto.                        |
-| width     | number | No       | Largura da linha após as mudanças de layout do texto.                       |
-| x         | number | No       | Coordenada X da linha dentro do componente Text.                            |
-| xHeight   | number | No       | Distância entre a linha de base e a mediana da linha (tamanho do corpo).    |
-| y         | number | No       | Coordenada Y da linha dentro do componente Text.                            |
+| Name      | Type   | Optional | Description                                                              |
+| --------- | ------ | -------- | ------------------------------------------------------------------------ |
+| ascender  | number | No       | A altura do ascendente da linha após as mudanças de layout do texto.     |
+| capHeight | number | No       | Altura da letra maiúscula acima da linha de base.                        |
+| descender | number | No       | A altura do descendente da linha após as mudanças de layout do texto.    |
+| height    | number | No       | Altura da linha após as mudanças de layout do texto.                     |
+| width     | number | No       | Largura da linha após as mudanças de layout do texto.                    |
+| x         | number | No       | Coordenada X da linha dentro do componente Text.                         |
+| xHeight   | number | No       | Distância entre a linha de base e a mediana da linha (tamanho do corpo). |
+| y         | number | No       | Coordenada Y da linha dentro do componente Text.                         |
 
 ### TextLayoutEvent
 
 O objeto `TextLayoutEvent` é retornado no callback como resultado de uma mudança de layout do componente. Ele contém uma chave chamada `lines` com um valor que é um array contendo objetos [`TextLayout`](text#textlayout) correspondentes a cada linha de texto renderizada.
 
-#### Example
+#### Example {#example-1}
 
 ```js
 {
@@ -774,9 +773,9 @@ O objeto `TextLayoutEvent` é retornado no callback como resultado de uma mudan�
 }
 ```
 
-#### Properties
+#### Properties {#properties-1}
 
-| Name   | Type                                    | Optional | Description                                                |
-| ------ | --------------------------------------- | -------- | ---------------------------------------------------------- |
-| lines  | array of [TextLayout](text#textlayout)s | No       | Fornece os dados TextLayout para cada linha renderizada.   |
-| target | number                                  | No       | O node id do elemento.                                     |
+| Name   | Type                                    | Optional | Description                                              |
+| ------ | --------------------------------------- | -------- | -------------------------------------------------------- |
+| lines  | array of [TextLayout](text#textlayout)s | No       | Fornece os dados TextLayout para cada linha renderizada. |
+| target | number                                  | No       | O node id do elemento.                                   |

@@ -11,7 +11,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 Bem-vindo aos Módulos Nativos para Android. Comece lendo a [Introdução aos Módulos Nativos](native-modules-intro) para entender o que são módulos nativos.
 
-## Criar um Módulo Nativo de Calendário
+## Criar um Módulo Nativo de Calendário {#create-a-calendar-native-module}
 
 No guia a seguir, você criará um módulo nativo chamado `CalendarModule`, que permitirá acessar as APIs de calendário do Android a partir do JavaScript. Ao final, você poderá chamar `CalendarModule.createCalendarEvent('Dinner Party', 'My House');` do JavaScript, invocando um método Java/Kotlin que cria um evento de calendário.
 
@@ -28,7 +28,7 @@ Recomendamos usar o Android Studio para escrever seu código nativo. O Android S
 
 Também recomendamos habilitar o [Gradle Daemon](https://docs.gradle.org/2.9/userguide/gradle_daemon.html) para acelerar as compilações conforme você itera no código Java/Kotlin.
 
-### Criar um Arquivo de Módulo Nativo Customizado
+### Criar um Arquivo de Módulo Nativo Customizado {#create-a-custom-native-module-file}
 
 O primeiro passo é criar o arquivo Java/Kotlin (`CalendarModule.java` ou `CalendarModule.kt`) dentro da pasta `android/app/src/main/java/com/your-app-name/` (a pasta é a mesma para Kotlin e Java). Este arquivo Java/Kotlin conterá sua classe de módulo nativo Java/Kotlin.
 
@@ -43,7 +43,7 @@ Então adicione o seguinte conteúdo:
 <TabItem value="java">
 
 ```java
-package com.your-apps-package-name; // replace your-apps-package-name with your app's package name
+package com.your-apps-package-name; // replace your-apps-package-name with your app’s package name
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
@@ -63,7 +63,7 @@ public class CalendarModule extends ReactContextBaseJavaModule {
 <TabItem value="kotlin">
 
 ```kotlin
-package com.your-apps-package-name; // replace your-apps-package-name with your app's package name
+package com.your-apps-package-name; // replace your-apps-package-name with your app’s package name
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContext
@@ -84,7 +84,7 @@ Vale notar que tecnicamente as classes Java/Kotlin só precisam estender a class
 No entanto, recomendamos que você use `ReactContextBaseJavaModule`, como mostrado acima. `ReactContextBaseJavaModule` dá acesso ao `ReactApplicationContext` (RAC), que é útil para Módulos Nativos que precisam se conectar aos métodos de ciclo de vida da activity. Usar `ReactContextBaseJavaModule` também tornará mais fácil tornar seu módulo nativo type-safe no futuro. Para type-safety de módulos nativos, que está chegando em lançamentos futuros, o React Native olha para a especificação JavaScript de cada módulo nativo e gera uma classe base abstrata que estende `ReactContextBaseJavaModule`.
 :::
 
-### Nome do Módulo
+### Nome do Módulo {#module-name}
 
 Todos os módulos nativos Java/Kotlin no Android precisam implementar o método `getName()`. Este método retorna uma string, que representa o nome do módulo nativo. O módulo nativo pode então ser acessado no JavaScript usando seu nome. Por exemplo, no trecho de código abaixo, `getName()` retorna `"CalendarModule"`.
 
@@ -116,7 +116,7 @@ O módulo nativo pode então ser acessado em JS assim:
 const {CalendarModule} = ReactNative.NativeModules;
 ```
 
-### Exportar um Método Nativo para JavaScript
+### Exportar um Método Nativo para JavaScript {#export-a-native-method-to-javascript}
 
 Em seguida, você precisará adicionar um método ao seu módulo nativo que criará eventos de calendário e pode ser invocado em JavaScript. Todos os métodos de módulos nativos destinados a serem invocados a partir do JavaScript devem ser anotados com `@ReactMethod`.
 
@@ -173,7 +173,7 @@ fun createCalendarEvent(name: String, location: String) {
 
 Depois de terminar de implementar o módulo nativo e conectá-lo no JavaScript, você pode seguir [estas etapas](https://developer.android.com/studio/debug/am-logcat.html) para visualizar os logs do seu app.
 
-### Métodos Síncronos
+### Métodos Síncronos {#synchronous-methods}
 
 Você pode passar `isBlockingSynchronousMethod = true` para um método nativo para marcá-lo como um método síncrono.
 
@@ -196,7 +196,7 @@ Você pode passar `isBlockingSynchronousMethod = true` para um método nativo pa
 
 No momento, não recomendamos isso, pois chamar métodos de forma síncrona pode ter fortes penalidades de performance e introduzir bugs relacionados a threading nos seus módulos nativos. Além disso, observe que se você optar por habilitar `isBlockingSynchronousMethod`, seu app não poderá mais usar o depurador do Google Chrome. Isso porque métodos síncronos exigem que a VM JS compartilhe memória com o app. Para o depurador do Google Chrome, o React Native roda dentro da VM JS no Google Chrome e se comunica de forma assíncrona com os dispositivos móveis via WebSockets.
 
-### Registrar o Módulo (Específico do Android)
+### Registrar o Módulo (Específico do Android) {#register-the-module-android-specific}
 
 Uma vez que um módulo nativo é escrito, ele precisa ser registrado com o React Native. Para fazer isso, você precisa adicionar seu módulo nativo a um `ReactPackage` e registrar o `ReactPackage` com o React Native. Durante a inicialização, o React Native irá percorrer todos os packages e, para cada `ReactPackage`, registrar cada módulo nativo dentro dele.
 
@@ -210,7 +210,7 @@ Então adicione o seguinte conteúdo:
 <TabItem value="java">
 
 ```java
-package com.your-app-name; // replace your-app-name with your app's name
+package com.your-app-name; // replace your-app-name with your app’s name
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -244,7 +244,7 @@ public class MyAppPackage implements ReactPackage {
 <TabItem value="kotlin">
 
 ```kotlin
-package com.your-app-name // replace your-app-name with your app's name
+package com.your-app-name // replace your-app-name with your app’s name
 
 import android.view.View
 import com.facebook.react.ReactPackage
@@ -271,7 +271,7 @@ class MyAppPackage : ReactPackage {
 Este arquivo importa o módulo nativo que você criou, `CalendarModule`. Ele então instancia `CalendarModule` dentro da função `createNativeModules()` e o retorna como uma lista de `NativeModules` a serem registrados. Se você adicionar mais módulos nativos posteriormente, também pode instanciá-los e adicioná-los à lista retornada aqui.
 
 :::note
-Vale notar que essa forma de registrar módulos nativos inicializa todos os módulos nativos imediatamente quando a aplicação inicia, o que adiciona tempo de inicialização à aplicação. Você pode usar [TurboReactPackage](https://github.com/facebook/react-native/blob/main/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/TurboReactPackage.kt) como alternativa. Em vez de `createNativeModules`, que retorna uma lista de objetos de módulos nativos instanciados, o TurboReactPackage implementa um método `getModule(String name, ReactApplicationContext rac)` que cria o objeto do módulo nativo quando necessário. TurboReactPackage é um pouco mais complicado de implementar no momento. Além de implementar um método `getModule()`, você precisa implementar um método `getReactModuleInfoProvider()`, que retorna uma lista de todos os módulos nativos que o package pode instanciar junto com uma função que os instancia, veja o exemplo [aqui](https://github.com/facebook/react-native/blob/8ac467c51b94c82d81930b4802b2978c85539925/ReactAndroid/src/main/java/com/facebook/react/CoreModulesPackage.java#L86-L165). Novamente, usar TurboReactPackage permitirá que sua aplicação tenha um tempo de inicialização mais rápido, mas atualmente é um pouco trabalhoso de escrever. Portanto, proceda com cautela se optar por usar TurboReactPackages.
+Vale notar que essa forma de registrar módulos nativos inicializa todos os módulos nativos imediatamente quando a aplicação inicia, o que adiciona tempo de inicialização à aplicação. Você pode usar [TurboReactPackage](https://github.com/react/react-native/blob/main/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/TurboReactPackage.kt) como alternativa. Em vez de `createNativeModules`, que retorna uma lista de objetos de módulos nativos instanciados, o TurboReactPackage implementa um método `getModule(String name, ReactApplicationContext rac)` que cria o objeto do módulo nativo quando necessário. TurboReactPackage é um pouco mais complicado de implementar no momento. Além de implementar um método `getModule()`, você precisa implementar um método `getReactModuleInfoProvider()`, que retorna uma lista de todos os módulos nativos que o package pode instanciar junto com uma função que os instancia, veja o exemplo [aqui](https://github.com/react/react-native/blob/8ac467c51b94c82d81930b4802b2978c85539925/ReactAndroid/src/main/java/com/facebook/react/CoreModulesPackage.java#L86-L165). Novamente, usar TurboReactPackage permitirá que sua aplicação tenha um tempo de inicialização mais rápido, mas atualmente é um pouco trabalhoso de escrever. Portanto, proceda com cautela se optar por usar TurboReactPackages.
 :::
 
 Para registrar o package `CalendarModule`, você deve adicionar `MyAppPackage` à lista de packages retornados no método `getPackages()` do ReactNativeHost. Abra seu arquivo `MainApplication.java` ou `MainApplication.kt`, que pode ser encontrado no seguinte caminho: `android/app/src/main/java/com/your-app-name/`.
@@ -309,14 +309,13 @@ override fun getPackages(): List<ReactPackage> =
 
 Você agora registrou com sucesso seu módulo nativo para Android!
 
-### Testar o que Você Construiu
+### Testar o que Você Construiu {#test-what-you-have-built}
 
 Neste ponto, você configurou a estrutura básica para seu módulo nativo no Android. Teste isso acessando o módulo nativo e invocando seu método exportado em JavaScript.
 
 Encontre um lugar em sua aplicação onde você gostaria de adicionar uma chamada ao método `createCalendarEvent()` do módulo nativo. Abaixo está um exemplo de um componente, `NewModuleButton`, que você pode adicionar no seu app. Você pode invocar o módulo nativo dentro da função `onPress()` do `NewModuleButton`.
 
 ```tsx
-import React from 'react';
 import {NativeModules, Button} from 'react-native';
 
 const NewModuleButton = () => {
@@ -375,11 +374,11 @@ yarn android
 </TabItem>
 </Tabs>
 
-### Compilando Conforme Você Itera
+### Compilando Conforme Você Itera {#building-as-you-iterate}
 
 Conforme você trabalha através desses guias e itera em seu módulo nativo, você precisará fazer uma reconstrução nativa da sua aplicação para acessar suas mudanças mais recentes a partir do JavaScript. Isso porque o código que você está escrevendo fica dentro da parte nativa da sua aplicação. Embora o metro bundler do React Native possa observar mudanças no JavaScript e reconstruir em tempo real para você, ele não fará isso para código nativo. Então, se você quiser testar suas mudanças nativas mais recentes, você precisa reconstruir usando o comando acima.
 
-### Resumo✨
+### Resumo✨ {#recap}
 
 Agora você deve ser capaz de invocar seu método `createCalendarEvent()` no seu módulo nativo no app. No nosso exemplo, isso ocorre ao pressionar o `NewModuleButton`. Você pode confirmar isso visualizando o log que você configurou no seu método `createCalendarEvent()`. Você pode seguir [estas etapas](https://developer.android.com/studio/debug/am-logcat.html) para visualizar os logs ADB no seu app. Você deve então ser capaz de procurar por sua mensagem `Log.d` (no nosso exemplo "Create event called with name: testName and location: testLocation") e ver sua mensagem registrada cada vez que você invoca seu método de módulo nativo.
 
@@ -390,9 +389,9 @@ Agora você deve ser capaz de invocar seu método `createCalendarEvent()` no seu
 
 Neste ponto, você criou um módulo nativo Android e invocou seu método nativo a partir do JavaScript na sua aplicação React Native. Você pode continuar lendo para aprender mais sobre coisas como tipos de argumentos disponíveis para um método de módulo nativo e como configurar callbacks e promises.
 
-## Além de um Módulo Nativo de Calendário
+## Além de um Módulo Nativo de Calendário {#beyond-a-calendar-native-module}
 
-### Melhor Exportação de Módulo Nativo
+### Melhor Exportação de Módulo Nativo {#better-native-module-export}
 
 Importar seu módulo nativo extraindo-o de `NativeModules` como acima é um pouco desajeitado.
 
@@ -440,7 +439,7 @@ CalendarModule.createCalendarEvent('foo', 'bar');
 Isso assume que o lugar onde você está importando `CalendarModule` está na mesma hierarquia que `CalendarModule.js`. Atualize o import relativo conforme necessário.
 :::
 
-### Tipos de Argumentos
+### Tipos de Argumentos {#argument-types}
 
 Quando um método de módulo nativo é invocado no JavaScript, o React Native converte os argumentos de objetos JS para seus análogos de objetos Java/Kotlin. Então, por exemplo, se seu método de Módulo Nativo Java aceita um double, em JS você precisa chamar o método com um number. O React Native lidará com a conversão para você. Abaixo está uma lista dos tipos de argumentos suportados para métodos de módulos nativos e os equivalentes JavaScript para os quais eles mapeiam.
 
@@ -497,7 +496,7 @@ Para tipos de argumentos não listados acima, você precisará lidar com a conve
 </TabItem>
 </Tabs>
 
-### Exportando Constantes
+### Exportando Constantes {#exporting-constants}
 
 Um módulo nativo pode exportar constantes implementando o método nativo `getConstants()`, que está disponível em JS. Abaixo você implementará `getConstants()` e retornará um Map que contém uma constante `DEFAULT_EVENT_NAME` que você pode acessar em JavaScript:
 
@@ -566,7 +565,7 @@ import com.facebook.react.bridge.Callback
 </TabItem>
 </Tabs>
 
-Você pode então invocar o callback no seu método Java/Kotlin, fornecendo qualquer resultado que você queira passar para o JavaScript em um array. Note que você só pode passar dados serializáveis do código nativo para o JavaScript. Se você precisa passar de volta um objeto nativo, pode usar `WriteableMaps`, se você precisa usar uma coleção use `WritableArrays`. Também é importante destacar que o callback não é invocado imediatamente após a função nativa ser concluída - lembre-se que a comunicação é assíncrona.
+Você pode então invocar o callback no seu método Java/Kotlin, fornecendo qualquer dado que você queira passar para o JavaScript. Note que você só pode passar dados serializáveis do código nativo para o JavaScript. Se você precisa passar de volta um objeto nativo, pode usar `WriteableMaps`, se você precisa usar uma coleção use `WritableArrays`. Também é importante destacar que o callback não é invocado imediatamente após a função nativa ser concluída. Mais abaixo, o ID de um evento criado em uma chamada anterior é passado para o callback.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -609,7 +608,7 @@ const onPress = () => {
 
 Outro detalhe importante a notar é que um método de módulo nativo só pode invocar um callback, uma vez. Isso significa que você pode chamar um success callback ou um failure callback, mas não ambos, e cada callback só pode ser invocado no máximo uma vez. Um módulo nativo pode, no entanto, armazenar o callback e invocá-lo mais tarde.
 
-Existem duas abordagens para o tratamento de erros com callbacks. A primeira é seguir a convenção do Node e tratar o primeiro argumento passado para o array de callback como um objeto de erro.
+Existem duas abordagens para o tratamento de erros com callbacks. A primeira é seguir a convenção do Node e tratar o primeiro argumento passado para o callback como um objeto de erro.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -779,7 +778,7 @@ code: String, message: String, userInfo: WritableMap, throwable: Throwable
 </TabItem>
 </Tabs>
 
-Para mais detalhes, você pode encontrar a interface `Promise.java` [aqui](https://github.com/facebook/react-native/blob/main/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/bridge/Promise.kt). Se `userInfo` não for fornecido, o ReactNative o definirá como null. Para o resto dos parâmetros, o React Native usará um valor padrão. O argumento `message` fornece a `message` de erro mostrada no topo de uma pilha de chamadas de erro. Abaixo está um exemplo da mensagem de erro mostrada em JavaScript a partir da seguinte chamada reject em Java/Kotlin.
+Para mais detalhes, você pode encontrar a interface `Promise.java` [aqui](https://github.com/react/react-native/blob/main/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/bridge/Promise.kt). Se `userInfo` não for fornecido, o ReactNative o definirá como null. Para o resto dos parâmetros, o React Native usará um valor padrão. O argumento `message` fornece a `message` de erro mostrada no topo de uma pilha de chamadas de erro. Abaixo está um exemplo da mensagem de erro mostrada em JavaScript a partir da seguinte chamada reject em Java/Kotlin.
 
 Chamada reject em Java/Kotlin:
 
@@ -807,7 +806,7 @@ Mensagem de erro no App React Native quando a promise é rejeitada:
   <figcaption>Imagem da mensagem de erro</figcaption>
 </figure>
 
-### Enviando Eventos para JavaScript
+### Enviando Eventos para JavaScript {#sending-events-to-javascript}
 
 Módulos nativos podem sinalizar eventos para JavaScript sem serem invocados diretamente. Por exemplo, você pode querer sinalizar para o JavaScript um lembrete de que um evento de calendário do aplicativo de calendário nativo do Android ocorrerá em breve. A maneira mais fácil de fazer isso é usar o `RCTDeviceEventEmitter` que pode ser obtido do `ReactContext` como no trecho de código abaixo.
 
@@ -898,7 +897,7 @@ sendEvent(reactContext, "EventReminder", params)
 </TabItem>
 </Tabs>
 
-Módulos JavaScript podem então se registrar para receber eventos por `addListener` na classe [NativeEventEmitter](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/EventEmitter/NativeEventEmitter.js).
+Módulos JavaScript podem então se registrar para receber eventos por `addListener` na classe [NativeEventEmitter](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/EventEmitter/NativeEventEmitter.js).
 
 ```tsx
 import {NativeEventEmitter, NativeModules} from 'react-native';
@@ -916,7 +915,7 @@ useEffect(() => {
   }, []);
 ```
 
-### Obtendo o Resultado da Activity de startActivityForResult
+### Obtendo o Resultado da Activity de startActivityForResult {#getting-activity-result-from-startactivityforresult}
 
 Você precisará ouvir `onActivityResult` se quiser obter resultados de uma activity que você iniciou com `startActivityForResult`. Para fazer isso, você deve estender `BaseActivityEventListener` ou implementar `ActivityEventListener`. O primeiro é preferível pois é mais resiliente a mudanças de API. Então, você precisa registrar o listener no construtor do módulo assim:
 
@@ -1128,7 +1127,7 @@ class ImagePickerModule(reactContext: ReactApplicationContext) :
 </TabItem>
 </Tabs>
 
-### Ouvindo Eventos de Ciclo de Vida
+### Ouvindo Eventos de Ciclo de Vida {#listening-to-lifecycle-events}
 
 Ouvir os eventos de ciclo de vida da activity, como `onResume`, `onPause` etc., é muito semelhante a como `ActivityEventListener` foi implementado. O módulo deve implementar `LifecycleEventListener`. Então, você precisa registrar um listener no construtor do módulo assim:
 

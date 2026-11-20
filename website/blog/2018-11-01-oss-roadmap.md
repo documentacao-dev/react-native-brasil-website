@@ -33,7 +33,7 @@ Nosso objetivo é [reduzir a área de superfície do React Native](https://githu
 
 [`WebView`](https://github.com/react-native-community/discussions-and-proposals/blob/master/proposals/0001-webview.md) é um exemplo de um componente que transferimos para a comunidade. Estamos trabalhando em um fluxo de trabalho que permitirá às equipes internas continuar usando esses componentes depois de removê-los do repositório. Identificamos [dezenas de componentes adicionais](https://github.com/react-native-community/discussions-and-proposals/issues/6) dos quais daremos a propriedade à comunidade.
 
-## 🎁 Open Sourcing Internals e 🛠Ferramental Atualizado
+## 🎁 Open Sourcing Internals e 🛠Ferramental Atualizado {#-open-sourcing-internals-and-updated-tooling}
 
 A experiência de desenvolvimento React Native para equipes de produto no Facebook pode ser bem diferente do open source. Ferramentas que podem ser populares na comunidade open source não são usadas no Facebook. Pode haver uma ferramenta interna que alcança o mesmo propósito. Em alguns casos, equipes do Facebook se acostumaram com ferramentas que não existem fora do Facebook. Essas disparidades podem apresentar desafios quando fazemos open source do nosso próximo trabalho de arquitetura.
 
@@ -44,7 +44,7 @@ Trabalharemos no lançamento de algumas dessas ferramentas internas. Também mel
 - Habilitar debugging sob a nova arquitetura.
 - Melhorar o suporte para CocoaPods, Gradle, Maven e novo sistema de build do Xcode.
 
-## ✅ Infraestrutura de Testes
+## ✅ Infraestrutura de Testes {#-testing-infrastructure}
 
 Quando engenheiros do Facebook publicam código, é considerado seguro incluir se passar em todos os testes. Esses testes identificam se uma mudança pode quebrar uma de nossas próprias superfícies React Native. No entanto, há diferenças em como o Facebook usa React Native. Isso nos permitiu quebrar inadvertidamente o React Native em open source.
 
@@ -52,11 +52,11 @@ Reforçaremos nossos testes internos para garantir que eles rodem em um ambiente
 
 Combinado com a área de superfície reduzida, isso permitirá que contribuidores mesclem pull requests mais rapidamente, com confiança.
 
-## 📜 API Pública
+## 📜 API Pública {#-public-api}
 
 Facebook consumirá React Native via API pública, da mesma forma que o open source, para reduzir mudanças breaking não intencionais. Começamos a converter sites de chamada internos para abordar isso. Nosso objetivo é convergir em uma API pública estável, levando à adoção de versionamento semântico na versão 1.0.
 
-## 📣 Comunicação
+## 📣 Comunicação {#-communication}
 
 React Native é um dos [principais projetos open source no GitHub](https://octoverse.github.com/#top-and-trending-projects) por contagem de contribuidores. Isso nos deixa muito felizes, e gostaríamos de manter isso. Continuaremos trabalhando em iniciativas que levam a contribuidores envolvidos, como aumento de transparência e discussão aberta. A documentação é uma das primeiras coisas que alguém novo no React Native encontrará, mas não tem sido uma prioridade. Gostaríamos de consertar isso, começando por trazer de volta documentação de referência de API gerada automaticamente, criar conteúdo adicional focado em criar [experiências de usuário de qualidade](/docs/improvingux), e melhorar nossas [notas de lançamento](https://github.com/react-native-community/react-native-releases/issues/47).
 

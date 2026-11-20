@@ -6,7 +6,7 @@ ia-translated: true
 
 A classe global [`PerformanceObserver`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver), conforme definida nas especificações Web.
 
-## Exemplo
+## Exemplo {#example}
 
 ```ts
 const observer = new PerformanceObserver(
@@ -46,7 +46,7 @@ Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/
 
 Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver/supportedEntryTypes).
 
-Retorna `['mark', 'measure', 'event', 'longtask']`.
+Retorna `['mark', 'measure', 'event', 'longtask', 'resource']`.
 
 ## Instance methods
 

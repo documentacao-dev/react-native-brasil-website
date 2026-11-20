@@ -6,7 +6,7 @@ title: Comunicação entre nativo e React Native
 
 No [guia de Integração com Apps Existentes](integration-with-existing-apps) e no [guia de Componentes UI Nativos](legacy/native-components-ios) aprendemos como incorporar React Native em um componente nativo e vice-versa. Quando misturamos componentes nativos e React Native, eventualmente encontraremos a necessidade de comunicação entre esses dois mundos. Algumas formas de alcançar isso já foram mencionadas em outros guias. Este artigo resume as técnicas disponíveis.
 
-## Introdução
+## Introdução {#introduction}
 
 React Native é inspirado no React, então a ideia básica do fluxo de informação é similar. O fluxo no React é unidirecional. Mantemos uma hierarquia de componentes, na qual cada componente depende apenas de seu pai e de seu próprio estado interno. Fazemos isso com properties: os dados são passados de um pai para seus filhos de maneira top-down. Se um componente ancestral depende do estado de seu descendente, deve-se passar um callback para ser usado pelo descendente para atualizar o ancestral.
 
@@ -16,7 +16,7 @@ O mesmo conceito se aplica ao React Native. Contanto que estejamos construindo n
 
 Properties são a forma mais direta de comunicação entre componentes. Então precisamos de uma maneira de passar properties tanto de nativo para React Native, quanto de React Native para nativo.
 
-### Passando properties de nativo para React Native
+### Passando properties de nativo para React Native {#passing-properties-from-native-to-react-native}
 
 Para incorporar uma view React Native em um componente nativo, usamos `RCTRootView`. `RCTRootView` é uma `UIView` que contém um app React Native. Também fornece uma interface entre o lado nativo e o app hospedado.
 
@@ -34,7 +34,6 @@ RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
 ```
 
 ```tsx
-import React from 'react';
 import {View, Image} from 'react-native';
 
 export default class ImageBrowserApp extends React.Component {
@@ -59,28 +58,28 @@ rootView.appProperties = @{@"images" : imageList};
 É adequado atualizar properties a qualquer momento. No entanto, as atualizações devem ser realizadas na thread principal. Você pode usar o getter em qualquer thread.
 
 :::note
-Atualmente, há um problema conhecido onde definir appProperties durante a inicialização do bridge, a mudança pode ser perdida. Veja https://github.com/facebook/react-native/issues/20115 para mais informações.
+Atualmente, há um problema conhecido onde definir appProperties durante a inicialização do bridge, a mudança pode ser perdida. Veja https://github.com/react/react-native/issues/20115 para mais informações.
 :::
 
 Não há como atualizar apenas algumas properties de cada vez. Sugerimos que você construa isso em seu próprio wrapper.
 
-### Passando properties de React Native para nativo
+### Passando properties de React Native para nativo {#passing-properties-from-react-native-to-native}
 
 O problema de expor properties de componentes nativos é coberto em detalhes [neste artigo](legacy/native-components-ios#properties). Em resumo, exporte properties com a macro `RCT_CUSTOM_VIEW_PROPERTY` em seu componente nativo customizado, então use-as no React Native como se o componente fosse um componente React Native comum.
 
-### Limitações das properties
+### Limitações das properties {#limits-of-properties}
 
 A principal desvantagem das properties cross-language é que elas não suportam callbacks, o que nos permitiria lidar com bindings de dados bottom-up. Imagine que você tem uma pequena view RN que deseja remover da view pai nativa como resultado de uma ação JS. Não há como fazer isso com props, pois a informação precisaria ir bottom-up.
 
 Embora tenhamos um tipo de callbacks cross-language ([descritos aqui](legacy/native-modules-ios#callbacks)), esses callbacks nem sempre são o que precisamos. O principal problema é que eles não são destinados a serem passados como properties. Em vez disso, este mecanismo nos permite disparar uma ação nativa a partir do JS e lidar com o resultado dessa ação no JS.
 
-## Outras formas de interação cross-language (events e native modules)
+## Outras formas de interação cross-language (events e native modules) {#other-ways-of-cross-language-interaction-events-and-native-modules}
 
 Como declarado no capítulo anterior, usar properties vem com algumas limitações. Às vezes properties não são suficientes para dirigir a lógica do nosso app e precisamos de uma solução que dê mais flexibilidade. Este capítulo cobre outras técnicas de comunicação disponíveis no React Native. Elas podem ser usadas para comunicação interna (entre as camadas JS e nativa no RN) assim como para comunicação externa (entre RN e a parte 'puramente nativa' do seu app).
 
 React Native permite que você execute chamadas de função cross-language. Você pode executar código nativo customizado a partir do JS e vice-versa. Infelizmente, dependendo do lado em que estamos trabalhando, alcançamos o mesmo objetivo de maneiras diferentes. Para nativo - usamos o mecanismo de events para agendar a execução de uma função handler no JS, enquanto para React Native chamamos diretamente métodos exportados por native modules.
 
-### Chamando funções React Native a partir do nativo (events)
+### Chamando funções React Native a partir do nativo (events) {#calling-react-native-functions-from-native-events}
 
 Events são descritos em detalhes [neste artigo](legacy/native-components-ios#events). Note que usar events não nos dá garantias sobre o tempo de execução, pois o event é tratado em uma thread separada.
 
@@ -92,9 +91,9 @@ Events são poderosos, porque nos permitem mudar componentes React Native sem pr
 
 O padrão comum que usamos ao incorporar nativo no React Native é tornar o RCTViewManager do componente nativo um delegate para as views, enviando events de volta para JavaScript via bridge. Isso mantém chamadas de events relacionadas em um só lugar.
 
-### Chamando funções nativas a partir do React Native (native modules)
+### Chamando funções nativas a partir do React Native (native modules) {#calling-native-functions-from-react-native-native-modules}
 
-Native modules são classes Objective-C que estão disponíveis no JS. Tipicamente uma instância de cada módulo é criada por bridge JS. Eles podem exportar funções e constantes arbitrárias para React Native. Eles foram cobertos em detalhes [neste artigo](legacy/native-modules-ios#content).
+Native modules são classes Objective-C que estão disponíveis no JS. Tipicamente uma instância de cada módulo é criada por bridge JS. Eles podem exportar funções e constantes arbitrárias para React Native. Eles foram cobertos em detalhes [neste artigo](legacy/native-modules-ios).
 
 O fato de que native modules são singletons limita o mecanismo no contexto de incorporação. Digamos que temos um componente React Native incorporado em uma view nativa e queremos atualizar a view pai nativa. Usando o mecanismo de native module, exportaríamos uma função que não apenas recebe os argumentos esperados, mas também um identificador da view pai nativa. O identificador seria usado para recuperar uma referência à view pai para atualizar. Dito isso, precisaríamos manter um mapeamento de identificadores para views nativas no módulo.
 
@@ -106,17 +105,17 @@ Native modules também podem ser usados para expor bibliotecas nativas existente
 Todos os native modules compartilham o mesmo namespace. Cuidado com colisões de nomes ao criar novos.
 :::
 
-## Fluxo de computação de layout
+## Fluxo de computação de layout {#layout-computation-flow}
 
 Ao integrar nativo e React Native, também precisamos de uma forma de consolidar dois sistemas de layout diferentes. Esta seção cobre problemas comuns de layout e fornece uma breve descrição dos mecanismos para resolvê-los.
 
-### Layout de um componente nativo incorporado no React Native
+### Layout de um componente nativo incorporado no React Native {#layout-of-a-native-component-embedded-in-react-native}
 
 Este caso é coberto [neste artigo](legacy/native-components-ios#styles). Para resumir, como todas as nossas views react nativas são subclasses de `UIView`, a maioria dos atributos de style e size funcionarão como você esperaria por padrão.
 
-### Layout de um componente React Native incorporado no nativo
+### Layout de um componente React Native incorporado no nativo {#layout-of-a-react-native-component-embedded-in-native}
 
-#### Conteúdo React Native com tamanho fixo
+#### Conteúdo React Native com tamanho fixo {#react-native-content-with-fixed-size}
 
 O cenário geral é quando temos um app React Native com tamanho fixo, que é conhecido pelo lado nativo. Em particular, uma view React Native de tela cheia se enquadra neste caso. Se quisermos uma root view menor, podemos definir explicitamente o frame do RCTRootView.
 
@@ -138,7 +137,7 @@ Quando temos uma root view de tamanho fixo, precisamos respeitar seus limites no
 
 É totalmente adequado atualizar o tamanho da root view dinamicamente redefinindo sua property frame. React Native cuidará do layout do conteúdo.
 
-#### Conteúdo React Native com tamanho flexível
+#### Conteúdo React Native com tamanho flexível {#react-native-content-with-flexible-size}
 
 Em alguns casos gostaríamos de renderizar conteúdo de tamanho inicialmente desconhecido. Digamos que o tamanho será definido dinamicamente no JS. Temos duas soluções para este problema.
 
@@ -190,7 +189,7 @@ Vejamos um exemplo.
 
 No exemplo temos uma view `FlexibleSizeExampleView` que contém uma root view. Criamos a root view, inicializamos e definimos o delegate. O delegate lidará com as atualizações de tamanho. Então, definimos a flexibilidade de tamanho da root view para `RCTRootViewSizeFlexibilityHeight`, o que significa que o método `rootViewDidChangeIntrinsicSize:` será chamado toda vez que o conteúdo React Native mudar sua altura. Finalmente, definimos a largura e posição da root view. Note que definimos a altura também, mas isso não tem efeito pois tornamos a altura dependente do RN.
 
-Você pode conferir o código fonte completo do exemplo [aqui](https://github.com/facebook/react-native/blob/main/packages/rn-tester/RNTester/NativeExampleViews/FlexibleSizeExampleView.mm).
+Você pode conferir o código fonte completo do exemplo [aqui](https://github.com/react/react-native/blob/main/packages/rn-tester/RNTester/NativeExampleViews/FlexibleSizeExampleView.mm).
 
 É adequado mudar o modo de flexibilidade de tamanho da root view dinamicamente. Mudar o modo de flexibilidade de uma root view agendará um recálculo de layout e o método delegate `rootViewDidChangeIntrinsicSize:` será chamado uma vez que o tamanho do conteúdo seja conhecido.
 

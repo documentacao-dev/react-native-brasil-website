@@ -1,6 +1,8 @@
 <!-- ia-translated: true -->
 
-## Instalando dependências
+import ThemedImage from '@theme/ThemedImage';
+
+## Instalando dependências {#installing-dependencies}
 
 Você precisará do Node, Watchman, a interface de linha de comando do React Native, Xcode e CocoaPods.
 
@@ -15,7 +17,7 @@ brew install node
 brew install watchman
 ```
 
-Se você já instalou o Node no seu sistema, certifique-se de que é o Node 20.19.4 ou mais recente.
+Se você já instalou o Node no seu sistema, certifique-se de que é o Node 22.11.0 ou mais recente.
 
 [Watchman](https://facebook.github.io/watchman) é uma ferramenta do Facebook para observar mudanças no sistema de arquivos. É altamente recomendado que você o instale para melhor desempenho.
 
@@ -23,15 +25,21 @@ Se você já instalou o Node no seu sistema, certifique-se de que é o Node 20.1
 
 Por favor, use a **versão mais recente** do Xcode.
 
-A maneira mais fácil de instalar o Xcode é via [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12). Instalar o Xcode também instalará o iOS Simulator e todas as ferramentas necessárias para compilar seu app iOS.
+A maneira mais fácil de instalar o Xcode é via [Mac App Store](https://apps.apple.com/us/app/xcode/id497799835). Instalar o Xcode também instalará o iOS Simulator e todas as ferramentas necessárias para compilar seu app iOS.
 
 #### Command Line Tools
 
 Você também precisará instalar o Xcode Command Line Tools. Abra o Xcode, depois escolha **Settings... (ou Preferences...)** no menu Xcode. Vá para o painel Locations e instale as ferramentas selecionando a versão mais recente no dropdown Command Line Tools.
 
-![Xcode Command Line Tools](/docs/assets/GettingStartedXcodeCommandLineTools.png)
+<ThemedImage
+alt="Xcode Command Line Tools configuration"
+sources={{
+    light: '/docs/assets/GettingStartedXcodeCommandLineTools.png',
+    dark: '/docs/assets/GettingStartedXcodeCommandLineToolsDark.png',
+  }}
+/>
 
-#### Instalando um iOS Simulator no Xcode
+#### Instalando um iOS Simulator no Xcode {#installing-an-ios-simulator-in-xcode}
 
 Para instalar um simulator, abra **Xcode > Settings... (ou Preferences...)** e selecione a aba **Platforms (ou Components)**. Selecione um simulator com a versão correspondente do iOS que você deseja usar.
 
@@ -43,7 +51,7 @@ Se você está usando o Xcode versão 14.0 ou superior para instalar um simulato
 
 Para mais informações, por favor visite o [guia Getting Started do CocoaPods](https://guides.cocoapods.org/using/getting-started.html).
 
-### [Opcional] Configurando seu ambiente
+### [Opcional] Configurando seu ambiente {#optional-configuring-your-environment}
 
 A partir do React Native versão 0.69, é possível configurar o ambiente do Xcode usando o arquivo `.xcode.env` fornecido pelo template.
 

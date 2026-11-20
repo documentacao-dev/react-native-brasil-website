@@ -1,7 +1,7 @@
 ---
 ia-translated: true
 id: out-of-tree-platforms
-title: Out-of-Tree Platforms
+title: Plataformas Out-of-Tree
 ---
 
 React Native não é apenas para dispositivos Android e iOS - nossos parceiros e a comunidade mantêm projetos que trazem React Native para outras plataformas, tais como:
@@ -11,6 +11,7 @@ React Native não é apenas para dispositivos Android e iOS - nossos parceiros e
 - [React Native macOS](https://github.com/microsoft/react-native-macos) - React Native para macOS e Cocoa.
 - [React Native Windows](https://github.com/microsoft/react-native-windows) - React Native para Universal Windows Platform (UWP) da Microsoft.
 - [React Native visionOS](https://github.com/callstack/react-native-visionos) - React Native para visionOS da Apple.
+- [React Native OpenHarmony](https://atomgit.com/CPF-RN/ohos_react_native) - React Native para OpenHarmony.
 
 **Da Comunidade**
 
@@ -18,9 +19,9 @@ React Native não é apenas para dispositivos Android e iOS - nossos parceiros e
 - [React Native Web](https://github.com/necolas/react-native-web) - React Native na web usando React DOM.
 - [React Native Skia](https://github.com/react-native-skia/react-native-skia) - React Native usando [Skia](https://skia.org/) como renderizador. Atualmente suporta Linux e macOS.
 
-## Criando sua própria plataforma React Native
+## Criando sua própria plataforma React Native {#creating-your-own-react-native-platform}
 
-No momento, o processo de criar uma plataforma React Native do zero não está muito bem documentado - um dos objetivos da próxima rearquitetura ([Fabric](/blog/2018/06/14/state-of-react-native-2018)) é tornar a manutenção de uma plataforma mais fácil.
+O processo de criar uma plataforma React Native do zero ainda não está muito bem documentado - um dos objetivos da New Architecture e do [Fabric](/architecture/fabric-renderer) é tornar a manutenção de uma plataforma mais fácil.
 
 ### Bundling
 

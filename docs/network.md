@@ -8,21 +8,21 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 Muitos aplicativos móveis precisam carregar recursos de uma URL remota. Você pode querer fazer uma requisição POST para uma API REST, ou pode precisar buscar um pedaço de conteúdo estático de outro servidor.
 
-## Usando Fetch
+## Usando Fetch {#using-fetch}
 
 React Native fornece a [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) para suas necessidades de networking. Fetch parecerá familiar se você já usou `XMLHttpRequest` ou outras APIs de networking antes. Você pode consultar o guia da MDN sobre [Usando Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) para informações adicionais.
 
-### Fazendo requisições
+### Fazendo requisições {#making-requests}
 
 Para buscar conteúdo de uma URL arbitrária, você pode passar a URL para fetch:
 
-```tsx
+```ts
 fetch('https://mywebsite.com/mydata.json');
 ```
 
 Fetch também aceita um segundo argumento opcional que permite você personalizar a requisição HTTP. Você pode querer especificar headers adicionais, ou fazer uma requisição POST:
 
-```tsx
+```ts
 fetch('https://mywebsite.com/endpoint/', {
   method: 'POST',
   headers: {
@@ -38,13 +38,13 @@ fetch('https://mywebsite.com/endpoint/', {
 
 Dê uma olhada na [documentação do Fetch Request](https://developer.mozilla.org/en-US/docs/Web/API/Request) para uma lista completa de propriedades.
 
-### Lidando com a resposta
+### Lidando com a resposta {#handling-the-response}
 
 Os exemplos acima mostram como você pode fazer uma requisição. Em muitos casos, você vai querer fazer algo com a resposta.
 
 Networking é uma operação inerentemente assíncrona. O método Fetch retornará uma [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) que torna direto escrever código que funciona de maneira assíncrona:
 
-```tsx
+```ts
 const getMoviesFromApi = () => {
   return fetch('https://reactnative.dev/movies.json')
     .then(response => response.json())
@@ -59,7 +59,7 @@ const getMoviesFromApi = () => {
 
 Você também pode usar a sintaxe `async` / `await` em um aplicativo React Native:
 
-```tsx
+```ts
 const getMoviesFromApiAsync = async () => {
   try {
     const response = await fetch(
@@ -79,7 +79,7 @@ Não se esqueça de capturar quaisquer erros que possam ser lançados por `fetch
 <TabItem value="javascript">
 
 ```SnackPlayer name=Fetch%20Example&ext=js
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 
 const App = () => {
@@ -128,7 +128,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Fetch%20Example&ext=tsx
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 
 type Movie = {
@@ -189,18 +189,18 @@ export default App;
 </Tabs>
 
 :::info
-Por padrão, iOS 9.0 ou posterior impõe App Transport Security (ATS). ATS requer que qualquer conexão HTTP use HTTPS. Se você precisar buscar de uma URL cleartext (uma que comece com `http`) você primeiro precisará [adicionar uma exceção ATS](integration-with-existing-apps.md#test-your-integration). Se você sabe com antecedência quais domínios você precisará acessar, é mais seguro adicionar exceções apenas para esses domínios; se os domínios não forem conhecidos até o runtime você pode [desabilitar ATS completamente](publishing-to-app-store.md#1-enable-app-transport-security). Note, no entanto, que desde janeiro de 2017, [a revisão da App Store da Apple exigirá justificativa razoável para desabilitar ATS](https://forums.developer.apple.com/thread/48979). Veja [documentação da Apple](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW33) para mais informações.
+Por padrão, o iOS impõe App Transport Security (ATS), exigindo que qualquer conexão HTTP use HTTPS. Se você precisar buscar de uma URL cleartext (uma que comece com `http`), você deve configurar uma exceção ATS no seu arquivo `Info.plist` usando [`NSAppTransportSecurity`](https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity). Recomenda-se adicionar exceções apenas para domínios específicos usando `NSExceptionDomains`, em vez de desabilitar o ATS globalmente (`NSAllowsArbitraryLoads`), já que a revisão da App Store da Apple exige justificativa para desabilitar o ATS. Veja a documentação da Apple sobre [Preventing Insecure Network Connections](https://developer.apple.com/documentation/security/preventing_insecure_network_connections) para mais informações.
 :::
 
 :::tip
 No Android, a partir do API Level 28, tráfego de texto claro também é bloqueado por padrão. Este comportamento pode ser sobrescrito definindo [`android:usesCleartextTraffic`](https://developer.android.com/guide/topics/manifest/application-element#usesCleartextTraffic) no arquivo manifest do aplicativo.
 :::
 
-## Usando Outras Bibliotecas de Networking
+## Usando Outras Bibliotecas de Networking {#using-other-networking-libraries}
 
 A [API XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) está embutida no React Native. Isso significa que você pode usar bibliotecas de terceiros como [frisbee](https://github.com/niftylettuce/frisbee) ou [axios](https://github.com/axios/axios) que dependem dela, ou você pode usar a API XMLHttpRequest diretamente se preferir.
 
-```tsx
+```ts
 const request = new XMLHttpRequest();
 request.onreadystatechange = e => {
   if (request.readyState !== 4) {
@@ -218,15 +218,15 @@ request.open('GET', 'https://mywebsite.com/endpoint/');
 request.send();
 ```
 
-:::warning Caution
+:::warning[Cuidado]
 O modelo de segurança para XMLHttpRequest é diferente da web, pois não há conceito de [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) em aplicativos nativos.
 :::
 
-## Suporte a WebSocket
+## Suporte a WebSocket {#websocket-support}
 
 React Native também suporta [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket), um protocolo que fornece canais de comunicação full-duplex sobre uma única conexão TCP.
 
-```tsx
+```ts
 const ws = new WebSocket('ws://host.com/path');
 
 ws.onopen = () => {
@@ -250,18 +250,17 @@ ws.onclose = e => {
 };
 ```
 
-## Problemas Conhecidos com `fetch` e autenticação baseada em cookie
+## Problemas Conhecidos com `fetch` e autenticação baseada em cookie {#known-issues-with-fetch-and-cookie-based-authentication}
 
 As seguintes opções atualmente não estão funcionando com `fetch`
 
 - `redirect:manual`
-- `credentials:omit`
 
-* Ter headers de mesmo nome no Android resultará em apenas o mais recente estar presente. Uma solução temporária pode ser encontrada aqui: https://github.com/facebook/react-native/issues/18837#issuecomment-398779994.
-* Autenticação baseada em cookie está atualmente instável. Você pode ver algumas das issues levantadas aqui: https://github.com/facebook/react-native/issues/23185
+* Ter headers de mesmo nome no Android resultará em apenas o mais recente estar presente. Uma solução temporária pode ser encontrada aqui: https://github.com/react/react-native/issues/18837#issuecomment-398779994.
+* Autenticação baseada em cookie está atualmente instável. Você pode ver algumas das issues levantadas aqui: https://github.com/react/react-native/issues/23185
 * Como mínimo no iOS, quando redirecionado através de um `302`, se um header `Set-Cookie` estiver presente, o cookie não é definido corretamente. Como o redirecionamento não pode ser tratado manualmente, isso pode causar um cenário onde requisições infinitas ocorrem se o redirecionamento for o resultado de uma sessão expirada.
 
-## Configurando NSURLSession no iOS
+## Configurando NSURLSession no iOS {#configuring-nsurlsession-on-ios}
 
 Para algumas aplicações pode ser apropriado fornecer uma `NSURLSessionConfiguration` personalizada para a `NSURLSession` subjacente que é usada para requisições de rede em um aplicativo React Native rodando no iOS. Por exemplo, pode ser necessário definir uma user agent string personalizada para todas as requisições de rede vindas do aplicativo ou fornecer à `NSURLSession` uma `NSURLSessionConfiguration` ephemeral. A função `RCTSetCustomNSURLSessionConfigurationProvider` permite tal personalização. Lembre-se de adicionar o seguinte import ao arquivo no qual `RCTSetCustomNSURLSessionConfigurationProvider` será chamado:
 
@@ -269,7 +268,24 @@ Para algumas aplicações pode ser apropriado fornecer uma `NSURLSessionConfigur
 #import <React/RCTHTTPRequestHandler.h>
 ```
 
-`RCTSetCustomNSURLSessionConfigurationProvider` deve ser chamado cedo no ciclo de vida da aplicação de modo que esteja prontamente disponível quando necessário pelo React, por exemplo:
+`RCTSetCustomNSURLSessionConfigurationProvider` deve ser chamada cedo no ciclo de vida da aplicação, de modo que esteja prontamente disponível quando necessário pelo React. Para apps que usam o ciclo de vida UIScene, chame-a a partir de `scene:willConnectToSession:options:` antes de iniciar o React Native:
+
+```objectivec
+- (void)scene:(UIScene *)scene
+    willConnectToSession:(UISceneSession *)session
+                 options:(UISceneConnectionOptions *)connectionOptions
+{
+  RCTSetCustomNSURLSessionConfigurationProvider(^NSURLSessionConfiguration *{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    // configure the session
+    return configuration;
+  });
+
+  // set up React Native
+}
+```
+
+Para apps sem o ciclo de vida UIScene, chame-a a partir de `application:didFinishLaunchingWithOptions:` antes de iniciar o React Native:
 
 ```objectivec
 -(void)application:(__unused UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

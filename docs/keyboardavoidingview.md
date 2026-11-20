@@ -6,10 +6,9 @@ title: KeyboardAvoidingView
 
 Este componente ajustará automaticamente sua altura, posição ou padding inferior com base na altura do teclado para permanecer visível enquanto o teclado virtual estiver sendo exibido.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=KeyboardAvoidingView&supportedPlatforms=android,ios
-import React from 'react';
 import {
   View,
   KeyboardAvoidingView,

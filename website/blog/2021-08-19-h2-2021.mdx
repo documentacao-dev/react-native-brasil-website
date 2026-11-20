@@ -1,0 +1,60 @@
+---
+ia-translated: true
+title: React Native no H2 2021
+authors: [lunaleaps]
+tags: [announcement]
+---
+
+No último ano, tanto mudou em nosso mundo, e o React Native não foi exceção. Recebemos novos membros em nossa equipe (os quais estamos animados para eventualmente conhecer pessoalmente!), nossos projetos amadureceram e novas oportunidades surgiram. Estamos empolgados em compartilhar tudo isso com você neste post e em outros que virão!
+
+No Facebook, nossa equipe trabalha em ciclos semestrais. A cada semestre revisamos nossa estratégia, definimos planos e os compartilhamos internamente. Hoje, queremos compartilhar nossos planos do H2 com você, nossa comunidade.
+
+O H2 de 2021 é um semestre emocionante para o React Native. Nossas áreas de foco incluem nutrir a comunidade, começar a implementar a nova arquitetura no open source e impulsionar a tecnologia adiante.
+
+{/* truncate */}
+
+## Preparando a Comunidade para o Sucesso {#setting-up-the-community-for-success}
+
+O ecossistema open source do React Native é uma de suas maiores forças. Identificamos as seguintes áreas como as melhores maneiras de expandir nossa parceria com a comunidade.
+
+### Engajamento da Comunidade {#community-engagement}
+
+Para que todos se movam na mesma direção, queremos comunicar continuamente nossa visão e status à comunidade. Compartilhar nosso progresso incremental publicamente ainda não é natural para nós. Neste semestre, estamos nos comprometendo com um cronograma de conteúdo mais consistente que exercite o músculo e estabeleça processos para reduzir o atrito. Além de compartilhar nossas atualizações, também queremos usar esta oportunidade para mostrar as realizações da comunidade.
+
+### Implementação da Nova Arquitetura e Lançamentos {#new-architecture-rollout-and-releases}
+
+No H1, [terminamos de implementar a nova arquitetura do React Native](https://twitter.com/reactnative/status/1415099806507167745) em todos os produtos móveis React Native no aplicativo do Facebook. O Facebook é composto de superfícies como Aba do Marketplace e Perfil de Namoro, e migramos mais de 1000 superfícies!
+
+No H2, estamos começando a trazer esta nova arquitetura para a comunidade. Montamos um playbook que mostra como migrar bibliotecas e aplicativos. Já compartilhamos rascunhos com parceiros iniciais que mantêm bibliotecas populares do React Native. Esperamos receber seus feedbacks, apoiá-los na atualização de suas bibliotecas e aprender como melhorar nosso playbook e implementações. Planejamos compartilhar o playbook mais amplamente assim que o trabalho se estabilizar.
+
+Também estamos focados em melhorar o processo de lançamento do React Native. Precisaremos de lançamentos frequentes e confiáveis para progressivamente entregar a nova arquitetura do React Native. Nosso objetivo é detectar bloqueadores de lançamento mais cedo e reduzir o tempo de resposta. Isso permitirá cronogramas de lançamento mais previsíveis com menos carga sobre os contribuidores e desenvolvedores.
+
+### Saúde do Repositório {#repository-health}
+
+Quando os desenvolvedores avaliam uma tecnologia, um sinal essencial é a saúde de seu repositório. Esta impressão é informada por sinais como taxa de processamento de pull requests, estrelas, idade do último commit, entre outros. O repositório do React Native historicamente carecia de um processo para garantir que issues e pull requests sejam revisados em tempo hábil. Nosso trabalho neste semestre é duplo: precisamos resolver um grande backlog de contribuições e precisamos construir práticas sustentáveis para lidar com contribuições recebidas. Esperamos que este trabalho também nos prepare para o sucesso de mais engajamento da comunidade via issues e PRs à medida que a comunidade começa a usar a nova arquitetura. Você pode acompanhar nosso progresso no backlog usando este [quadro de projeto.](https://github.com/facebook/react-native/projects/17)
+
+## Impulsionando a Tecnologia Adiante {#pushing-the-technology-forward}
+
+### Novas Capacidades Arquiteturais {#new-architectural-capabilities}
+
+Como mencionado, nossa nova arquitetura recentemente terminou de ser implementada nos aplicativos móveis do Facebook! Já estamos construindo novas capacidades que mudarão a curva de desempenho para o React Native. Isso inclui suporte ao Concurrent Rendering no React Native. O Concurrent Rendering permite ao React pausar e retomar o trabalho e responder rapidamente a eventos de alta prioridade como um gesto de toque. Algo que também nos empolga muito é usar o Concurrent Rendering para aproveitar ciclos de CPU ociosos para renderizar recursos de produto fora da tela sem desacelerar as interações do usuário na tela.
+
+### Mobile e Além {#mobile-and-beyond}
+
+Tivemos sucesso esmagador ao alimentar experiências móveis usando React no Facebook, e vimos produtos móveis incríveis de nossos parceiros. Agora queremos trazer esse sucesso para mais plataformas! Acreditamos que atingir muitas plataformas nos permite aprender novas lições e melhorar ainda mais nossa oferta em plataformas móveis. (Compartilharemos mais sobre isso em um post posterior.) A notícia emocionante é que já começamos a dar passos para tornar isso uma realidade!
+
+#### Messenger Desktop
+
+No verão passado, [expandimos nosso foco além do mobile](https://twitter.com/reactnative/status/1286061933293010944) ao fazer parceria com a Microsoft para acelerar o desenvolvimento do React Native no Windows e macOS. Fizemos parceria com a equipe do Messenger no Facebook para habilitar experiências de usuário que são apenas possíveis no desktop, e para entregar enormes ganhos de desempenho sobre sua implementação anterior em Electron. Nossa visão é combinar experiências de usuário desktop _nativas_ de alta qualidade e agradáveis com a excelente experiência de desenvolvedor do React Native.
+
+A equipe do Messenger tem planos ambiciosos para os aplicativos desktop do Messenger, incluindo encontrar novas maneiras de liberar ainda mais as capacidades únicas das plataformas desktop e telas grandes. Estamos animados em continuar habilitando essas experiências ao investir mais no React Native para desktop.
+
+#### React Native em Realidade Virtual {#react-native-in-virtual-reality}
+
+O Oculus há muito tempo usa React Native para alimentar experiências centrais como a Store, onde as pessoas compram aplicativos e jogos em VR. No H2, React Native e Oculus estão fazendo parceria para trazer novas experiências emocionantes para VR. Também estamos trazendo otimizações e melhorias de VR para mobile, e de mobile para VR. Isso incluirá expandir o React Native para suportar requisitos únicos de VR — de novos tipos de entrada como controles a novas otimizações de uso de memória. Este é o início de uma jornada emocionante para explorar e influenciar como experiências imersivas podem ser construídas para VR usando React Native.
+
+### Resumo {#summary}
+
+{/* alex ignore gross */}
+
+Esperamos que nossos planos do H2 empolgem você tanto quanto nos empolgam, e aguardamos compartilhar mais com você nos próximos meses! Também estaremos participando do React Native EU em 1º de setembro de 2021, onde o colega de equipe Joshua Gross ([@joshuaisgross](https://twitter.com/joshuaisgross)) compartilhará como substituímos a arquitetura do maior aplicativo React Native do mundo. [Registre-se para o React Native EU](https://www.react-native.eu/) se ainda não o fez! Enquanto isso, conecte-se conosco no Twitter ([@reactnative](https://twitter.com/reactnative)) para atualizações sobre eventos, nosso roadmap e muito mais.

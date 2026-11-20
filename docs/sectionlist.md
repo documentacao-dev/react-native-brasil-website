@@ -22,7 +22,6 @@ Se você não precisa de suporte a seções e quer uma interface mais simples, u
 ## Example
 
 ```SnackPlayer name=SectionList%20Example
-import React from 'react';
 import {StyleSheet, Text, View, SectionList, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -360,10 +359,10 @@ Um objeto que identifica os dados a serem renderizados para uma determinada seç
 
 **Properties:**
 
-| Name                                                      | Type               | Description                                                                                                                                                                  |
-| --------------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| data <div className="label basic required">Required</div> | array              | Os dados para renderizar itens nesta seção. Array de objetos, muito parecido com a [prop data do `FlatList`](flatlist#required-data).                                       |
-| key                                                       | string             | Chave opcional para acompanhar a reordenação de seções. Se você não planeja reordenar seções, o índice do array será usado por padrão.                                      |
-| renderItem                                                | function           | Opcionalmente define um renderizador de item arbitrário para esta seção, sobrescrevendo o [`renderItem`](sectionlist#renderitem) padrão para a lista.                       |
+| Name                                                      | Type               | Description                                                                                                                                                                |
+| --------------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data <div className="label basic required">Required</div> | array              | Os dados para renderizar itens nesta seção. Array de objetos, muito parecido com a [prop data do `FlatList`](flatlist#required-data).                                      |
+| key                                                       | string             | Chave opcional para acompanhar a reordenação de seções. Se você não planeja reordenar seções, o índice do array será usado por padrão.                                     |
+| renderItem                                                | function           | Opcionalmente define um renderizador de item arbitrário para esta seção, sobrescrevendo o [`renderItem`](sectionlist#requiredrenderitem) padrão para a lista.              |
 | ItemSeparatorComponent                                    | component, element | Opcionalmente define um separador de item arbitrário para esta seção, sobrescrevendo o [`ItemSeparatorComponent`](sectionlist#itemseparatorcomponent) padrão para a lista. |
-| keyExtractor                                              | function           | Opcionalmente define um extrator de chave arbitrário para esta seção, sobrescrevendo o [`keyExtractor`](sectionlist#keyextractor) padrão.                                   |
+| keyExtractor                                              | function           | Opcionalmente define um extrator de chave arbitrário para esta seção, sobrescrevendo o [`keyExtractor`](sectionlist#keyextractor) padrão.                                  |

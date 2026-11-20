@@ -8,7 +8,7 @@ import FabricWarning from './\_fabric-warning.mdx';
 
 <FabricWarning />
 
-#### O renderizador do React Native distribui o trabalho do [pipeline de renderização](render-pipeline) através de múltiplas threads.
+#### O renderizador do React Native distribui o trabalho do [pipeline de renderização](render-pipeline) através de múltiplas threads. {#the-react-native-renderer-distributes-the-work-of-the-render-pipeline-across-multiple-threads}
 
 Aqui definimos o threading model e fornecemos alguns exemplos para ilustrar o uso de threads do pipeline de renderização.
 
@@ -25,9 +25,9 @@ Vamos revisar os cenários suportados de execução para cada fase:
   <img src="/docs/assets/Architecture/threading-model/symbols.png" alt="Threading model symbols" />
 </figure>
 
-## Cenários de Renderização
+## Cenários de Renderização {#render-scenarios}
 
-### Render em uma JS Thread
+### Render em uma JS Thread {#render-in-a-js-thread}
 
 Este é o cenário mais comum onde a maior parte do pipeline de renderização acontece na JavaScript thread.
 
@@ -37,7 +37,7 @@ Este é o cenário mais comum onde a maior parte do pipeline de renderização a
 
 ---
 
-### Render na UI Thread
+### Render na UI Thread {#render-in-the-ui-thread}
 
 Quando há um evento de alta prioridade na UI Thread, o renderizador é capaz de executar todo o pipeline de renderização sincronamente na UI thread.
 
@@ -47,7 +47,7 @@ Quando há um evento de alta prioridade na UI Thread, o renderizador é capaz de
 
 ---
 
-### Interrupção de evento padrão ou contínuo
+### Interrupção de evento padrão ou contínuo {#default-or-continuous-event-interruption}
 
 Este cenário mostra a interrupção da fase de renderização por um evento de baixa prioridade na UI thread. React e o renderizador do React Native são capazes de interromper a fase de renderização e mesclar seu estado com um evento de baixa prioridade que é executado na UI thread. Neste caso, o processo de renderização continua executando na JS thread.
 
@@ -57,7 +57,7 @@ Este cenário mostra a interrupção da fase de renderização por um evento de 
 
 ---
 
-### Interrupção de evento discreto
+### Interrupção de evento discreto {#discrete-event-interruption}
 
 A fase de renderização é interrompível. Este cenário mostra a interrupção da fase de renderização por um evento de alta prioridade na UI thread. React e o renderizador são capazes de interromper a fase de renderização e mesclar seu estado com um evento de alta prioridade que foi executado na UI thread. A fase de renderização executa sincronamente na UI thread.
 
@@ -67,7 +67,7 @@ A fase de renderização é interrompível. Este cenário mostra a interrupção
 
 ---
 
-### Atualização de C++ State
+### Atualização de C++ State {#c-state-update}
 
 Atualização originando na UI thread e pula a fase de renderização. Veja [React Native Renderer State Updates](render-pipeline#react-native-renderer-state-updates) para mais detalhes.
 

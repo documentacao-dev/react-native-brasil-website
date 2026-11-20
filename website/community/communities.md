@@ -4,13 +4,13 @@ title: Comunidades
 description: A Comunidade React Native
 ---
 
-O ecossistema React Native é vasto e amplo, e as pessoas podem fazer parte dele de várias formas; aqui você encontrará apenas uma lista parcial de diferentes maneiras pelas quais um desenvolvedor pode participar. Se você conhece outras, ou quer ajudar a expandir esta página, [envie um PR](https://github.com/facebook/react-native-website/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)!
+O ecossistema React Native é vasto e amplo, e as pessoas podem fazer parte dele de várias formas; aqui você encontrará apenas uma lista parcial de diferentes maneiras pelas quais um desenvolvedor pode participar. Se você conhece outras, ou quer ajudar a expandir esta página, [envie um PR](https://github.com/react/react-native-website/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)!
 
-### Comunidades locais
+### Comunidades locais {#local-communities}
 
 Existem muitos encontros de React Native que acontecem ao redor do mundo. Frequentemente há conteúdo de React Native em meetups de React também, use ferramentas como [Meetup](https://www.meetup.com/topics/react-native/) e [Eventbrite](https://www.eventbrite.co.uk/d/online/react-native/?page=1) para descobrir eventos recentes na sua área - ou comece um!
 
-### Comunidades baseadas em empresas
+### Comunidades baseadas em empresas {#company-based-communities}
 
 Algumas empresas ativamente envolvidas no React Native também têm seus próprios canais de comunicação focados nos projetos que mantêm:
 
@@ -19,13 +19,13 @@ Algumas empresas ativamente envolvidas no React Native também têm seus própri
 - [Infinite Red's](https://infinite.red/) [Slack Group](https://community.infinite.red/)
 - [Expo's](https://expo.dev/) [Discord server](https://chat.expo.dev/)
 
-### Comunidades independentes
+### Comunidades independentes {#independent-communities}
 
 Comunidades orgânicas de desenvolvedores React Native, não patrocinadas por negócios com interesse comercial.
 
 - [The Reactiflux community](https://reactiflux.com) on [Discord](https://discord.gg/reactiflux)
 
-### Compartilhamento de conteúdo
+### Compartilhamento de conteúdo {#content-sharing}
 
 Conteúdo relacionado ao React Native pode ser encontrado em muitas plataformas, tais como:
 
@@ -35,4 +35,4 @@ Conteúdo relacionado ao React Native pode ser encontrado em muitas plataformas,
 - [Hacker News](https://hn.algolia.com/?q=react-native)
 - [r/reactnative/](https://www.reddit.com/r/reactnative/)
 
-Estes são lugares onde você pode compartilhar projetos, artigos e tutoriais sobre React Native, assim como iniciar discussões e pedir feedback sobre tópicos relacionados ao React Native. (mas lembre-se de dar um pouco de amor para a [documentação principal](https://github.com/facebook/react-native-website) também!)
+Estes são lugares onde você pode compartilhar projetos, artigos e tutoriais sobre React Native, assim como iniciar discussões e pedir feedback sobre tópicos relacionados ao React Native. (mas lembre-se de dar um pouco de amor para a [documentação principal](https://github.com/react/react-native-website) também!)

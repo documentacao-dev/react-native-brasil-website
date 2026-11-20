@@ -4,10 +4,12 @@ id: view-style-props
 title: Props de Estilo de View
 ---
 
-### Exemplo
+import ExperimentalAPIWarning from './\_experimental-api-warning.mdx';
+import {getCoreBranchNameForCurrentVersion} from '@site/src/getCoreBranchNameForCurrentVersion';
+
+### Exemplo {#example}
 
 ```SnackPlayer name=ViewStyleProps
-import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-# Referência
+# Referência {#reference}
 
 ## Props
 
@@ -69,6 +71,112 @@ export default App;
 | Type               |
 | ------------------ |
 | [color](colors.md) |
+
+---
+
+### `backgroundImage`
+
+`backgroundImage` permite desenhar um [`linear-gradient()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/gradient/linear-gradient) e um [`radial-gradient()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/gradient/radial-gradient) usando uma sintaxe semelhante à da web.
+
+```tsx
+// Simple usage:
+<View style={{ backgroundImage: 'linear-gradient(45deg, blue, red)' }} />
+
+<View style={{ backgroundImage: 'radial-gradient(ellipse farthest-corner at 30% 40%, red, blue)' }} />
+
+// Also with PlatformColor:
+<View
+style={{
+  backgroundImage: [
+    {
+      type: 'linear-gradient',
+      direction: 'to bottom',
+      colorStops: [
+        {
+          color: Platform.select({
+            ios: PlatformColor('systemTealColor'),
+            android: PlatformColor('@android:color/holo_purple'),
+            default: 'blue',
+          }),
+          positions: ['0%'],
+        },
+        {color: 'green', positions: ['100%']},
+      ],
+    },
+  ],
+}}
+/>
+```
+
+Exemplos mais complexos de uso podem ser encontrados no app RNTester (com suporte a `PlatformColor`):
+
+- <a href={`https://github.com/react/react-native/blob/${getCoreBranchNameForCurrentVersion()}/packages/rn-tester/js/examples/LinearGradient/LinearGradientExample.js`}>LinearGradientExample.js</a>
+- <a href={`https://github.com/react/react-native/blob/${getCoreBranchNameForCurrentVersion()}/packages/rn-tester/js/examples/RadialGradient/RadialGradientExample.js`}>RadialGradientExample.js</a>
+
+| Type                                                                                                                                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| string, array of objects: `{type: 'linear-gradient', direction: string, colorStops: object[] }`, `{type: 'radial-gradient', shape: string, position: object, size: string, colorStops: object[] }` |
+
+---
+
+### `backgroundPosition`
+
+Controla onde o gradiente de fundo é posicionado dentro da view. Isso é útil quando `backgroundImage` está definido e você quer deslocar ou centralizar o gradiente em vez de preenchê-lo em toda a área.
+
+```tsx
+<View
+  style={{
+    backgroundImage: 'radial-gradient(circle, #ff6b6b, #4ecdc4)',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '50px 50px',
+  }}
+/>
+```
+
+| Type                                                                                    |
+| --------------------------------------------------------------------------------------- |
+| string \| array of objects `{top: string, left: string, right: string, bottom: string}` |
+
+---
+
+### `backgroundRepeat`
+
+Controla se o gradiente de fundo é repetido, e como. Funciona junto com `backgroundImage` para repetir gradientes por toda a view.
+
+```tsx
+<View
+  style={{
+    backgroundImage: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
+    backgroundRepeat: 'repeat',
+    backgroundSize: '20px 20px',
+  }}
+/>
+```
+
+| Type                                                                                               |
+| -------------------------------------------------------------------------------------------------- |
+| enum(`'repeat'`, `'space'`, `'round'`, `'no-repeat'`) \| array of objects `{x: string, y: string}` |
+
+---
+
+### `backgroundSize`
+
+Controla o tamanho do gradiente de fundo. Isso é mais útil quando `backgroundImage` está definido e o gradiente não deve preencher a view inteira por padrão.
+
+```tsx
+<View
+  style={{
+    backgroundImage: 'linear-gradient(90deg, #a8edea, #fed6e3)',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100px 100px',
+  }}
+/>
+```
+
+| Type                                                |
+| --------------------------------------------------- |
+| string \| array of objects `{x: number, y: number}` |
 
 ---
 
@@ -325,8 +433,9 @@ Adiciona um efeito de sombra a um elemento, com a capacidade de controlar a posi
 Essas sombras podem ser compostas juntas para que um único `boxShadow` possa ser composto de múltiplas sombras diferentes.
 
 `boxShadow` aceita uma string que imita a [sintaxe web](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow#syntax) ou um array de objetos [BoxShadowValue](./boxshadowvalue).
-| Type |
-| --------------------------- |
+
+| Type                                      |
+| ----------------------------------------- |
 | array of BoxShadowValue objects \| string |
 
 ### `cursor` <div className="label ios">iOS</div>
@@ -341,7 +450,7 @@ No iOS 17+, definir como `pointer` permite efeitos de hover quando um ponteiro (
 
 ### `elevation` <div className="label android">Android</div>
 
-Define a elevação de uma view, usando a [API de elevação](https://developer.android.com/training/material/shadows-clipping.html#Elevation) subjacente do Android. Isso adiciona uma sombra projetada ao item e afeta a ordem z para views sobrepostas. Suportado apenas no Android 5.0+, não tem efeito em versões anteriores.
+Define a elevação de uma view, usando a [API de elevação](https://developer.android.com/develop/ui/views/theming/shadows-clipping#Elevation) subjacente do Android. Isso adiciona uma sombra projetada ao item e afeta a ordem z para views sobrepostas. Suportado apenas no Android 5.0+, não tem efeito em versões anteriores.
 
 | Type   |
 | ------ |
@@ -384,9 +493,46 @@ As seguintes funções de filtro funcionam apenas no Android:
 :::
 
 `filter` aceita um array de objetos compreendendo as funções de filtro acima ou uma string que imita a [sintaxe web](https://developer.mozilla.org/en-US/docs/Web/CSS/filter#syntax).
-| Type |
-| ------ |
-| array of objects: `{brightness: number\|string}`, `{opacity: number\|string}`, `{blur: number\|string}`, `{contrast: number\|string}`, `{dropShadow: DropShadowValue\|string}`, `{grayscale: number\|string}`, `{hueRotate: number\|string}`, `{invert: number\|string}`, `{sepia: number\|string}`, `{saturate: number\|string}` or string|
+
+| Type                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| array of objects: `{brightness: number\|string}`, `{opacity: number\|string}`, `{blur: number\|string}`, `{contrast: number\|string}`, `{dropShadow: DropShadowValue\|string}`, `{grayscale: number\|string}`, `{hueRotate: number\|string}`, `{invert: number\|string}`, `{sepia: number\|string}`, `{saturate: number\|string}` or string |
+
+---
+
+### `mixBlendMode`
+
+:::note
+`mixBlendMode` está disponível apenas na [Nova Arquitetura](/architecture/landing-page) e no **Android 10+**
+:::
+
+Controla como a `View` mescla suas cores com os outros elementos do seu **contexto de empilhamento**. Confira a [documentação do MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) para uma visão completa de cada função de mesclagem.
+
+Para um controle mais granular sobre o que deve ser mesclado, veja [isolation](layout-props#isolation).
+
+##### Valores de mixBlendMode {#mixblendmode-values}
+
+- `normal`: O elemento é desenhado por cima do fundo, sem mesclagem.
+- `multiply`: A cor de origem é multiplicada pela cor de destino e substitui o destino.
+- `screen`: Multiplica os complementos das cores do fundo e da origem e, em seguida, calcula o complemento do resultado.
+- `overlay`: Multiplica ou aplica `screen` às cores, dependendo do valor da cor do fundo.
+- `darken`: Seleciona a mais escura entre as cores do fundo e da origem.
+- `lighten`: Seleciona a mais clara entre as cores do fundo e da origem.
+- `color-dodge`: Clareia a cor do fundo para refletir a cor de origem. Pintar com preto não produz nenhuma mudança.
+- `color-burn`: Escurece a cor do fundo para refletir a cor de origem. Pintar com branco não produz nenhuma mudança.
+- `hard-light`: Multiplica ou aplica `screen` às cores, dependendo do valor da cor de origem. O efeito é semelhante a iluminar o fundo com um holofote forte.
+- `soft-light`: Escurece ou clareia as cores, dependendo do valor da cor de origem. O efeito é semelhante a iluminar o fundo com um holofote difuso.
+- `difference`: Subtrai a mais escura das duas cores da mais clara.
+- `exclusion`: Produz um efeito semelhante ao do modo Difference, mas com menor contraste.
+- `hue`: Cria uma cor com a matiz da cor de origem e a saturação e a luminosidade da cor do fundo.
+- `saturation`: Cria uma cor com a saturação da cor de origem e a matiz e a luminosidade da cor do fundo.
+- `color`: Cria uma cor com a matiz e a saturação da cor de origem e a luminosidade da cor do fundo. Isso preserva os tons de cinza do fundo e é útil para colorir imagens monocromáticas ou tingir imagens coloridas.
+- `luminosity`: Cria uma cor com a luminosidade da cor de origem e a matiz e a saturação da cor do fundo. Produz o efeito inverso ao do modo Color.
+- `plus-lighter`: Soma os canais de cor de origem e de destino, limitando cada um ao valor máximo.
+
+| Type                                                                                                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| enum(`'normal'`, `'multiply'`, `'screen'`, `'overlay'`, `'darken'`, `'lighten'`, `'color-dodge'`, `'color-burn'`, `'hard-light'`, `'soft-light'`, `'difference'`, `'exclusion'`, `'hue'`, `'saturation'`, `'color'`, `'luminosity'`, `'plus-lighter'`) |
 
 ---
 
@@ -466,5 +612,3 @@ Controla se a `View` pode ser o alvo de eventos de toque.
 | Type                                                  |
 | ----------------------------------------------------- |
 | enum(`'auto'`, `'box-none'`, `'box-only'`, `'none'` ) |
-
----

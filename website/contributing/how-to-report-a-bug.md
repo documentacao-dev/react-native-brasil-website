@@ -3,14 +3,14 @@ ia-translated: true
 title: Como Reportar um Bug
 ---
 
-Reportar um bug do React Native é uma das melhores formas de começar a contribuir com o projeto. Usamos as [GitHub issues](https://github.com/facebook/react-native/issues) como canal principal para lidar com novos relatos de bugs.
+Reportar um bug do React Native é uma das melhores formas de começar a contribuir com o projeto. Usamos as [GitHub issues](https://github.com/react/react-native/issues) como canal principal para lidar com novos relatos de bugs.
 
-Antes de abrir um novo bug, por favor [pesquise se o bug já existe](https://github.com/facebook/react-native/issues?q=sort%3Aupdated-desc%20is%3Aissue) em nosso issue tracker. Na maioria das vezes, essa é a forma mais rápida de encontrar uma resposta, pois outra pessoa já pode ter experimentado o mesmo problema.
+Antes de abrir um novo bug, por favor [pesquise se o bug já existe](https://github.com/react/react-native/issues?q=sort%3Aupdated-desc%20is%3Aissue) em nosso issue tracker. Na maioria das vezes, essa é a forma mais rápida de encontrar uma resposta, pois outra pessoa já pode ter experimentado o mesmo problema.
 
 Se você não conseguir encontrar seu bug no issue tracker, você pode abrir um novo. Ao criar uma nova issue, certifique-se de:
 
 - Adicionar uma descrição do problema.
-- Seguir as instruções no [issue template](https://github.com/facebook/react-native/issues/new?template=bug_report.yml).
+- Seguir as instruções no [issue template](https://github.com/react/react-native/issues/new?template=bug_report.yml).
 - Adicionar a versão do React Native que você está usando.
 - Adicionar a saída do comando `npx @react-native-community/cli info`.
 - Adicionar screenshots e vídeos do problema, se aplicável.
@@ -23,7 +23,7 @@ Devido ao alto número de issues que recebemos, reproducers são **obrigatórios
 
 :::
 
-## Fornecendo um Reproducer
+## Fornecendo um Reproducer {#providing-a-reproducers}
 
 O objetivo de um reproducer é fornecer uma forma de _reproduzir_ seu bug. Sem um reproducer, não conseguiremos entender o bug, e também não conseguiremos corrigi-lo.
 
@@ -36,13 +36,13 @@ Este processo é crucial, pois frequentemente as issues são de fato resolvidas 
 
 Devido à quantidade de tráfego que temos no React Native, podemos aceitar apenas um destes como um reproducer válido:
 
-1. Para a maioria dos bugs: envie-nos um Pull Request com o arquivo [RNTesterPlayground.js](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/Playground/RNTesterPlayground.js) editado para reproduzir seu bug.
+1. Para a maioria dos bugs: envie-nos um Pull Request com o arquivo [RNTesterPlayground.js](https://github.com/react/react-native/blob/main/packages/rn-tester/js/examples/Playground/RNTesterPlayground.js) editado para reproduzir seu bug.
 2. Se seu bug é relacionado à UI: um [Snack](https://snack.expo.dev).
 3. Se seu bug é relacionado a build/upgrade: um projeto usando nosso [Reproducer Template](https://github.com/react-native-community/reproducer-react-native/generate).
 
 ### RNTesterPlayground.js
 
-A melhor forma de você fornecer um reproducer é abrir um Pull Request contra o React Native que edite o arquivo [`RNTesterPlayground.js`](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/Playground/RNTesterPlayground.js).
+A melhor forma de você fornecer um reproducer é abrir um Pull Request contra o React Native que edite o arquivo [`RNTesterPlayground.js`](https://github.com/react/react-native/blob/main/packages/rn-tester/js/examples/Playground/RNTesterPlayground.js).
 
 :::tip
 
@@ -50,9 +50,9 @@ Este reproducer executará seu código contra a branch `main` do `react-native` 
 
 :::
 
-O arquivo `RNTesterPlayground.js` está localizado dentro da aplicação RN-Tester, nosso App de referência. Você pode ler mais sobre como ele funciona e como compilá-lo em seu [arquivo README dedicado](https://github.com/facebook/react-native/blob/main/packages/rn-tester/README.md).
+O arquivo `RNTesterPlayground.js` está localizado dentro da aplicação RN-Tester, nosso App de referência. Você pode ler mais sobre como ele funciona e como compilá-lo em seu [arquivo README dedicado](https://github.com/react/react-native/blob/main/packages/rn-tester/README.md).
 
-Um exemplo desse tipo de reproducer está aqui: [Reproduce modal layout issues #50704](https://github.com/facebook/react-native/pull/50704/).
+Um exemplo desse tipo de reproducer está aqui: [Reproduce modal layout issues #50704](https://github.com/react/react-native/pull/50704/).
 
 Depois que você editar o `RNTesterPlayground.js`, você poderá ver seu código sendo executado dentro da aba **Playground** do RNTester:
 

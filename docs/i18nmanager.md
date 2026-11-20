@@ -10,12 +10,11 @@ O módulo `I18nManager` fornece utilitários para gerenciar o suporte a layout d
 
 ## Examples
 
-### Alterar posições e animações baseadas em RTL
+### Alterar posições e animações baseadas em RTL {#change-positions-and-animations-based-on-rtl}
 
 Se você posicionar elementos de forma absoluta para alinhá-los com outros elementos flexbox, eles podem não alinhar em idiomas RTL. Usar `isRTL` pode ser usado para ajustar o alinhamento ou animações.
 
 ```SnackPlayer name=I18nManager%20Change%20Absolute%20Positions%20And%20Animations
-import React from 'react';
 import {I18nManager, Text, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -41,10 +40,10 @@ const App = () => {
 export default App;
 ```
 
-### Durante o Desenvolvimento
+### Durante o Desenvolvimento {#during-development}
 
 ```SnackPlayer name=I18nManager%20During%20Development
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Alert, I18nManager, StyleSheet, Switch, Text, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
