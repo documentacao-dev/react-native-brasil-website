@@ -190,12 +190,12 @@ const styles = StyleSheet.create({
 });
 ```
 
-**Interaction with `contentInsetAdjustmentBehavior` (iOS)**
+**Interação com `contentInsetAdjustmentBehavior` (iOS)**
 
-Commonly, `contentContainerStyle` is used to pad items away from the screen edges or the scroll indicator. When [`contentInsetAdjustmentBehavior`](#contentinsetadjustmentbehavior-ios) is set (recommended), `padding` applies slightly differently than on a regular `<View>`:
+Geralmente, `contentContainerStyle` é usado para afastar os itens das bordas da tela ou do indicador de scroll. Quando [`contentInsetAdjustmentBehavior`](#contentinsetadjustmentbehavior-ios) está definido (recomendado), `padding` se aplica de forma um pouco diferente de uma `<View>` comum:
 
-- **Pixel values:** If a safe area inset applies on an edge, the **greater of** the `padding` or the inset is used. An edge without an inset, such as the top of a scroll view below a header, keeps its full `padding`.
-- **Percentage values:** Across the scrollable axis, the `padding` is used directly, in place of the safe area inset. Along it, the safe area inset still applies, and the `padding` adds to it.
+- **Valores em pixels:** Se um safe area inset se aplica em uma borda, usa-se o **maior entre** o `padding` e o inset. Uma borda sem inset, como o topo de um scroll view abaixo de um header, mantém o `padding` completo.
+- **Valores em porcentagem:** No eixo rolável, o `padding` é usado diretamente, no lugar do safe area inset. Ao longo dele, o safe area inset ainda se aplica, e o `padding` se soma a ele.
 
 | Type                           |
 | ------------------------------ |
@@ -620,7 +620,7 @@ Tag usada para registrar desempenho de scroll neste scroll view. Forçará event
 
 ### `scrollsChildToFocus` <div className="label android">Android</div>
 
-When `true`, the ScrollView automatically scrolls to bring a focused child into view. Set to `false` to disable this behavior and take manual control of scroll position when focus changes.
+Quando `true`, o ScrollView rola automaticamente para trazer um filho focado à vista. Defina como `false` para desabilitar esse comportamento e assumir o controle manual da posição de scroll quando o foco mudar.
 
 | Type | Default |
 | ---- | ------- |
@@ -726,7 +726,7 @@ Use em conjunto com `snapToOffsets`. Por padrão, o início da lista conta como 
 
 ### `stickyHeaderHiddenOnScroll`
 
-Quando definido como `true`, header fixo será ocultado ao rolar para baixo a lista, e ele ancorado no topo da lista ao rolar para cima.
+Quando definido como `true`, header fixo será ocultado ao rolar para baixo a lista, e ele ficará ancorado no topo da lista ao rolar para cima.
 
 | Type | Default |
 | ---- | ------- |
@@ -797,5 +797,3 @@ scrollToEnd(options?: {animated?: boolean});
 Se este é um ScrollView vertical rola para o fim. Se este é um ScrollView horizontal rola para a direita.
 
 Use `scrollToEnd({animated: true})` para scroll animado suave, `scrollToEnd({animated: false})` para scroll imediato. Se nenhuma opção for passada, `animated` tem padrão `true`.
-
----

@@ -43,7 +43,7 @@ Então adicione o seguinte conteúdo:
 <TabItem value="java">
 
 ```java
-package com.your-apps-package-name; // replace your-apps-package-name with your app's package name
+package com.your-apps-package-name; // replace your-apps-package-name with your app’s package name
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
@@ -63,7 +63,7 @@ public class CalendarModule extends ReactContextBaseJavaModule {
 <TabItem value="kotlin">
 
 ```kotlin
-package com.your-apps-package-name; // replace your-apps-package-name with your app's package name
+package com.your-apps-package-name; // replace your-apps-package-name with your app’s package name
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContext
@@ -210,7 +210,7 @@ Então adicione o seguinte conteúdo:
 <TabItem value="java">
 
 ```java
-package com.your-app-name; // replace your-app-name with your app's name
+package com.your-app-name; // replace your-app-name with your app’s name
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -244,7 +244,7 @@ public class MyAppPackage implements ReactPackage {
 <TabItem value="kotlin">
 
 ```kotlin
-package com.your-app-name // replace your-app-name with your app's name
+package com.your-app-name // replace your-app-name with your app’s name
 
 import android.view.View
 import com.facebook.react.ReactPackage
@@ -565,7 +565,7 @@ import com.facebook.react.bridge.Callback
 </TabItem>
 </Tabs>
 
-Você pode então invocar o callback no seu método Java/Kotlin, fornecendo qualquer resultado que você queira passar para o JavaScript em um array. Note que você só pode passar dados serializáveis do código nativo para o JavaScript. Se você precisa passar de volta um objeto nativo, pode usar `WriteableMaps`, se você precisa usar uma coleção use `WritableArrays`. Também é importante destacar que o callback não é invocado imediatamente após a função nativa ser concluída - lembre-se que a comunicação é assíncrona.
+Você pode então invocar o callback no seu método Java/Kotlin, fornecendo qualquer dado que você queira passar para o JavaScript. Note que você só pode passar dados serializáveis do código nativo para o JavaScript. Se você precisa passar de volta um objeto nativo, pode usar `WriteableMaps`, se você precisa usar uma coleção use `WritableArrays`. Também é importante destacar que o callback não é invocado imediatamente após a função nativa ser concluída. Mais abaixo, o ID de um evento criado em uma chamada anterior é passado para o callback.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -608,7 +608,7 @@ const onPress = () => {
 
 Outro detalhe importante a notar é que um método de módulo nativo só pode invocar um callback, uma vez. Isso significa que você pode chamar um success callback ou um failure callback, mas não ambos, e cada callback só pode ser invocado no máximo uma vez. Um módulo nativo pode, no entanto, armazenar o callback e invocá-lo mais tarde.
 
-Existem duas abordagens para o tratamento de erros com callbacks. A primeira é seguir a convenção do Node e tratar o primeiro argumento passado para o array de callback como um objeto de erro.
+Existem duas abordagens para o tratamento de erros com callbacks. A primeira é seguir a convenção do Node e tratar o primeiro argumento passado para o callback como um objeto de erro.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">

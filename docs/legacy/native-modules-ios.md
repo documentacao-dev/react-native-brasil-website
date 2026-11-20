@@ -86,7 +86,7 @@ Se você não especificar um nome, o nome do módulo JavaScript corresponderá a
 Vamos seguir o exemplo abaixo e chamar `RCT_EXPORT_MODULE` sem nenhum argumento. Como resultado, o módulo será exposto ao React Native usando o nome `CalendarModule`, já que esse é o nome da classe Objective-C, com RCT removido.
 
 ```objectivec
-// Without passing in a name this will export the native module name as the Objective-C class name with "RCT" removed
+// Without passing in a name this will export the native module name as the Objective-C class name with “RCT” removed
 RCT_EXPORT_MODULE();
 ```
 

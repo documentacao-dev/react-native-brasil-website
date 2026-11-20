@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-# Referência
+# Referência {#reference}
 
 ## Props
 
@@ -76,7 +76,7 @@ export default App;
 
 ### `backgroundImage`
 
-`backgroundImage` provides the ability to draw a [`linear-gradient()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/gradient/linear-gradient) and [`radial-gradient()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/gradient/radial-gradient) using a web-like syntax.
+`backgroundImage` permite desenhar um [`linear-gradient()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/gradient/linear-gradient) e um [`radial-gradient()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/gradient/radial-gradient) usando uma sintaxe semelhante à da web.
 
 ```tsx
 // Simple usage:
@@ -108,7 +108,7 @@ style={{
 />
 ```
 
-More complex examples of usage can be found in the RNTester app (with `PlatformColor` supports):
+Exemplos mais complexos de uso podem ser encontrados no app RNTester (com suporte a `PlatformColor`):
 
 - <a href={`https://github.com/react/react-native/blob/${getCoreBranchNameForCurrentVersion()}/packages/rn-tester/js/examples/LinearGradient/LinearGradientExample.js`}>LinearGradientExample.js</a>
 - <a href={`https://github.com/react/react-native/blob/${getCoreBranchNameForCurrentVersion()}/packages/rn-tester/js/examples/RadialGradient/RadialGradientExample.js`}>RadialGradientExample.js</a>
@@ -121,7 +121,7 @@ More complex examples of usage can be found in the RNTester app (with `PlatformC
 
 ### `backgroundPosition`
 
-Controls where the background gradient is placed inside the view. This is useful when `backgroundImage` is set, and you want to offset or center it instead of filling the full area.
+Controla onde o gradiente de fundo é posicionado dentro da view. Isso é útil quando `backgroundImage` está definido e você quer deslocar ou centralizar o gradiente em vez de preenchê-lo em toda a área.
 
 ```tsx
 <View
@@ -142,7 +142,7 @@ Controls where the background gradient is placed inside the view. This is useful
 
 ### `backgroundRepeat`
 
-Controls whether the background gradient is repeated, and how. This works together with `backgroundImage` to tile gradients across the view.
+Controla se o gradiente de fundo é repetido, e como. Funciona junto com `backgroundImage` para repetir gradientes por toda a view.
 
 ```tsx
 <View
@@ -162,7 +162,7 @@ Controls whether the background gradient is repeated, and how. This works togeth
 
 ### `backgroundSize`
 
-Controls the size of the background gradient. This is most useful when `backgroundImage` is set and the gradient should not fill the entire view by default.
+Controla o tamanho do gradiente de fundo. Isso é mais útil quando `backgroundImage` está definido e o gradiente não deve preencher a view inteira por padrão.
 
 ```tsx
 <View
@@ -612,5 +612,3 @@ Controla se a `View` pode ser o alvo de eventos de toque.
 | Type                                                  |
 | ----------------------------------------------------- |
 | enum(`'auto'`, `'box-none'`, `'box-only'`, `'none'` ) |
-
----

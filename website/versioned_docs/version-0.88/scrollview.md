@@ -608,7 +608,7 @@ Tag usada para registrar desempenho de scroll neste scroll view. Forçará event
 
 ### `scrollsChildToFocus` <div className="label android">Android</div>
 
-When `true`, the ScrollView automatically scrolls to bring a focused child into view. Set to `false` to disable this behavior and take manual control of scroll position when focus changes.
+Quando `true`, o ScrollView rola automaticamente para trazer um filho focado à vista. Defina como `false` para desabilitar esse comportamento e assumir o controle manual da posição de scroll quando o foco mudar.
 
 | Type | Default |
 | ---- | ------- |
@@ -714,7 +714,7 @@ Use em conjunto com `snapToOffsets`. Por padrão, o início da lista conta como 
 
 ### `stickyHeaderHiddenOnScroll`
 
-Quando definido como `true`, header fixo será ocultado ao rolar para baixo a lista, e ele ancorado no topo da lista ao rolar para cima.
+Quando definido como `true`, header fixo será ocultado ao rolar para baixo a lista, e ele ficará ancorado no topo da lista ao rolar para cima.
 
 | Type | Default |
 | ---- | ------- |
@@ -785,5 +785,3 @@ scrollToEnd(options?: {animated?: boolean});
 Se este é um ScrollView vertical rola para o fim. Se este é um ScrollView horizontal rola para a direita.
 
 Use `scrollToEnd({animated: true})` para scroll animado suave, `scrollToEnd({animated: false})` para scroll imediato. Se nenhuma opção for passada, `animated` tem padrão `true`.
-
----
