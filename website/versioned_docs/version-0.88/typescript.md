@@ -204,7 +204,7 @@ yarn add --dev babel-plugin-module-resolver
 
 ```diff
 {
-  presets: ['module:metro-react-native-babel-preset'],
+   presets: ['module:metro-react-native-babel-preset'],
 +  plugins: [
 +    [
 +       'module-resolver',
