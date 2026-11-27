@@ -23,7 +23,6 @@ Imagine que você tem uma lista muito longa de itens que deseja exibir, talvez v
 ## Example
 
 ```SnackPlayer name=ScrollView%20Example
-import React from 'react';
 import {StyleSheet, Text, ScrollView, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -76,7 +75,7 @@ Herda [View Props](view#props).
 
 ### `StickyHeaderComponent`
 
-Um React Component que será usado para renderizar headers fixos, deve ser usado junto com `stickyHeaderIndices`. Você pode precisar definir este componente se seu header fixo usa transforms customizadas, por exemplo, quando você quer que sua lista tenha um header animado e ocultável. Se um componente não foi fornecido, o componente padrão [`ScrollViewStickyHeader`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Components/ScrollView/ScrollViewStickyHeader.js) será usado.
+Um React Component que será usado para renderizar headers fixos, deve ser usado junto com `stickyHeaderIndices`. Você pode precisar definir este componente se seu header fixo usa transforms customizadas, por exemplo, quando você quer que sua lista tenha um header animado e ocultável. Se um componente não foi fornecido, o componente padrão [`ScrollViewStickyHeader`](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Components/ScrollView/ScrollViewStickyHeader.js) será usado.
 
 | Type               |
 | ------------------ |
@@ -176,7 +175,7 @@ Quando `true`, o scroll view centraliza automaticamente o conteúdo quando o con
 
 ### `contentContainerStyle`
 
-Estes estilos serão aplicados ao container de conteúdo do scroll view que encapsula todas as views filhas. Exemplo:
+Estilos aplicados ao container de conteúdo que encapsula todas as views filhas. Exemplo:
 
 ```
 return (
@@ -190,6 +189,13 @@ const styles = StyleSheet.create({
   }
 });
 ```
+
+**Interação com `contentInsetAdjustmentBehavior` (iOS)**
+
+Geralmente, `contentContainerStyle` é usado para afastar os itens das bordas da tela ou do indicador de scroll. Quando [`contentInsetAdjustmentBehavior`](#contentinsetadjustmentbehavior-ios) está definido (recomendado), `padding` se aplica de forma um pouco diferente de uma `<View>` comum:
+
+- **Valores em pixels:** Se um safe area inset se aplica em uma borda, usa-se o **maior entre** o `padding` e o inset. Uma borda sem inset, como o topo de um scroll view abaixo de um header, mantém o `padding` completo.
+- **Valores em porcentagem:** Através do eixo de rolagem, o `padding` é usado diretamente, no lugar do safe area inset. Ao longo dele, o safe area inset ainda se aplica, e o `padding` se soma a ele.
 
 | Type                           |
 | ------------------------------ |
@@ -209,7 +215,12 @@ A quantidade pela qual o conteúdo do scroll view é inserido das bordas do scro
 
 ### `contentInsetAdjustmentBehavior` <div className="label ios">iOS</div>
 
-Esta propriedade especifica como os insets de área segura são usados para modificar a área de conteúdo do scroll view. Disponível no iOS 11 e posterior.
+Como os insets de área segura modificam a área de conteúdo do scroll view.
+
+- **Ao longo do eixo de rolagem**, os insets se tornam content insets, então o conteúdo rola por baixo da UI do sistema, como a barra de status ou o indicador da tela inicial.
+- **Através do eixo de rolagem**, todo valor exceto `'never'` aplica padding ao container de conteúdo com os insets, então o conteúdo fica posicionado sem sobrepor a UI do sistema, como o trilho do iPhone Duo ou o recorte da câmera na paisagem. O fundo do container e o indicador de rolagem ainda se estendem até a borda da tela.
+
+Em todas as bordas, o padding de [`contentContainerStyle`](#contentcontainerstyle) conta para o inset, então o conteúdo fica na maior das duas medidas.
 
 | Type                                                           | Default   |
 | -------------------------------------------------------------- | --------- |
@@ -350,12 +361,10 @@ Determina quando o teclado deve permanecer visível após um toque.
 - `'never'` tocar fora do input de texto focado quando o teclado está aberto dispensa o teclado. Quando isso acontece, os filhos não receberão o toque.
 - `'always'`, o teclado não dispensará automaticamente, e o scroll view não capturará toques, mas filhos do scroll view podem capturar toques.
 - `'handled'`, o teclado não dispensará automaticamente quando o toque foi tratado por filhos do scroll view (ou capturado por um ancestral).
-- `false`, **_deprecated_**, use `'never'` em vez disso
-- `true`, **_deprecated_**, use `'always'` em vez disso
 
-| Type                                                      | Default   |
-| --------------------------------------------------------- | --------- |
-| enum(`'always'`, `'never'`, `'handled'`, `false`, `true`) | `'never'` |
+| Type                                     | Default   |
+| ---------------------------------------- | --------- |
+| enum(`'always'`, `'never'`, `'handled'`) | `'never'` |
 
 ---
 
@@ -609,6 +618,16 @@ Tag usada para registrar desempenho de scroll neste scroll view. Forçará event
 
 ---
 
+### `scrollsChildToFocus` <div className="label android">Android</div>
+
+Quando `true`, o ScrollView rola automaticamente para trazer um filho focado à vista. Defina como `false` para desabilitar esse comportamento e assumir o controle manual da posição de scroll quando o foco mudar.
+
+| Type | Default |
+| ---- | ------- |
+| bool | `true`  |
+
+---
+
 ### `scrollToOverflowEnabled` <div className="label ios">iOS</div>
 
 Quando `true`, o scroll view pode ser rolado programaticamente além de seu tamanho de conteúdo.
@@ -707,7 +726,7 @@ Use em conjunto com `snapToOffsets`. Por padrão, o início da lista conta como 
 
 ### `stickyHeaderHiddenOnScroll`
 
-Quando definido como `true`, header fixo será ocultado ao rolar para baixo a lista, e ele ancorado no topo da lista ao rolar para cima.
+Quando definido como `true`, header fixo será ocultado ao rolar para baixo a lista, e ele ficará ancorado no topo da lista ao rolar para cima.
 
 | Type | Default |
 | ---- | ------- |
@@ -778,5 +797,3 @@ scrollToEnd(options?: {animated?: boolean});
 Se este é um ScrollView vertical rola para o fim. Se este é um ScrollView horizontal rola para a direita.
 
 Use `scrollToEnd({animated: true})` para scroll animado suave, `scrollToEnd({animated: false})` para scroll imediato. Se nenhuma opção for passada, `animated` tem padrão `true`.
-
----

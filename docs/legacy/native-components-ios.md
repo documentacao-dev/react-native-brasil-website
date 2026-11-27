@@ -12,7 +12,7 @@ Existem toneladas de widgets de UI nativos prontos para serem usados nos aplicat
 
 Como o guia de native module, este também é um guia mais avançado que assume que você está um pouco familiarizado com programação iOS. Este guia mostrará como construir um componente de UI nativo, guiando você através da implementação de um subconjunto do componente `MapView` existente disponível na biblioteca principal do React Native.
 
-## iOS MapView example
+## Exemplo de MapView no iOS {#ios-mapview-example}
 
 Digamos que queremos adicionar um Map interativo ao nosso aplicativo - podemos muito bem usar [`MKMapView`](https://developer.apple.com/library/prerelease/mac/documentation/MapKit/Reference/MKMapView_Class/index.html), só precisamos torná-lo utilizável a partir de JavaScript.
 
@@ -48,7 +48,7 @@ RCT_EXPORT_MODULE(RNTMap)
 Não tente definir as propriedades `frame` ou `backgroundColor` na instância `UIView` que você expõe através do método `-view`.
 React Native sobrescreverá os valores definidos por sua classe customizada para corresponder às props de layout do seu componente JavaScript.
 Se você precisa desta granularidade de controle, pode ser melhor envolver a instância `UIView` que você deseja estilizar em outra `UIView` e retornar a `UIView` wrapper.
-Veja [Issue 2948](https://github.com/facebook/react-native/issues/2948) para mais contexto.
+Veja [Issue 2948](https://github.com/react/react-native/issues/2948) para mais contexto.
 :::
 
 :::info
@@ -355,7 +355,7 @@ export default function MyApp() {
 }
 ```
 
-## Handling multiple native views
+## Lidando com várias views nativas {#handling-multiple-native-views}
 
 Uma view React Native pode ter mais de uma view filho na árvore de view, por exemplo:
 
@@ -404,9 +404,9 @@ class MyNativeView extends React.Component {
 
 `callNativeMethod` é nosso método iOS customizado que, por exemplo, muda o `backgroundColor` que é exposto através de `MyNativeView`. Este método usa `UIManager.dispatchViewManagerCommand` que precisa de 3 parâmetros:
 
-- `(nonnull NSNumber \*)reactTag`  -  id da react view.
-- `commandID:(NSInteger)commandID`  -  Id do método nativo que deve ser chamado
-- `commandArgs:(NSArray<id> \*)commandArgs`  -  Args do método nativo que podemos passar de JS para nativo.
+- `(nonnull NSNumber \*)reactTag` - id da react view.
+- `commandID:(NSInteger)commandID` - Id do método nativo que deve ser chamado
+- `commandArgs:(NSArray<id> \*)commandArgs` - Args do método nativo que podemos passar de JS para nativo.
 
 ```objectivec title='RNCMyNativeViewManager.m'
 #import <React/RCTViewManager.h>
@@ -477,4 +477,4 @@ As constantes `RCTDatePickerIOSConsts` são exportadas do nativo pegando o frame
 }
 ```
 
-Este guia cobriu muitos dos aspectos de fazer bridge sobre componentes nativos customizados, mas há ainda mais que você pode precisar considerar, como hooks customizados para inserir e fazer layout de subviews. Se você quiser ir ainda mais fundo, confira o [código fonte](https://github.com/facebook/react-native/tree/main/packages/react-native/React/Views) de alguns dos componentes implementados.
+Este guia cobriu muitos dos aspectos de fazer bridge sobre componentes nativos customizados, mas há ainda mais que você pode precisar considerar, como hooks customizados para inserir e fazer layout de subviews. Se você quiser ir ainda mais fundo, confira o [código fonte](https://github.com/react/react-native/tree/main/packages/react-native/React/Views) de alguns dos componentes implementados.

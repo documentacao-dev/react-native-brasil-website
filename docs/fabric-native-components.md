@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import constants from '@site/core/TabsConstants';
 import {FabricNativeComponentsAndroid,FabricNativeComponentsIOS} from './\_fabric-native-components';
 
-# Native Components
+# Componentes Nativos {#native-components}
 
 Se você quer construir _novos_ Componentes React Native que envolvem um [Host Component](https://reactnative.dev/architecture/glossary#host-view-tree-and-host-view) como um tipo único de [CheckBox](https://developer.android.com/reference/androidx/appcompat/widget/AppCompatCheckBox) no Android, ou um [UIButton](https://developer.apple.com/documentation/uikit/uibutton?language=objc) no iOS, você deve usar um Fabric Native Component.
 
@@ -26,7 +26,7 @@ Você vai precisar de uma aplicação template simples gerada para usar o compon
 npx @react-native-community/cli@latest init Demo --install-pods false
 ```
 
-## Criando um Componente WebView
+## Criando um Componente WebView {#creating-a-webview-component}
 
 Este guia mostrará como criar um componente Web View. Criaremos o componente usando o componente [`WebView`](https://developer.android.com/reference/android/webkit/WebView) do Android, e o componente [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview?language=objc) do iOS.
 
@@ -49,7 +49,7 @@ Demo
 - A pasta `ios` é a pasta que conterá nosso código iOS.
 - A pasta `specs` é a pasta que conterá o arquivo de especificação do Codegen.
 
-## 1. Definir Especificação para o Codegen
+## 1. Definir Especificação para o Codegen {#1-define-specification-for-codegen}
 
 Sua especificação deve ser definida em [TypeScript](https://www.typescriptlang.org/) ou [Flow](https://flow.org/) (veja a documentação do [Codegen](the-new-architecture/what-is-codegen) para mais detalhes). Isso é usado pelo Codegen para gerar o C++, Objective-C++ e Java para conectar seu código de plataforma ao runtime JavaScript onde o React executa.
 
@@ -116,9 +116,9 @@ Esta especificação é composta de três partes principais, excluindo os import
 - O `NativeProps` é uma definição das props que podemos definir no componente.
 - A declaração `codegenNativeComponent` nos permite fazer a codegeneração do código para o componente customizado e define um nome para o componente usado para corresponder às implementações nativas.
 
-Assim como com Native Modules, você pode ter múltiplos arquivos de especificação no diretório `specs/`. Para mais informações sobre os tipos que você pode usar, e os tipos de plataforma para os quais eles mapeiam, veja o [apêndice](appendix.md#codegen-typings).
+Assim como com Native Modules, você pode ter múltiplos arquivos de especificação no diretório `specs/`. Para mais informações sobre os tipos que você pode usar, e os tipos de plataforma para os quais eles mapeiam, veja o [apêndice](appendix.md#ii-codegen-typings).
 
-## 2. Configurar o Codegen para executar
+## 2. Configurar o Codegen para executar {#2-configure-codegen-to-run}
 
 A especificação é usada pelas ferramentas Codegen do React Native para gerar interfaces específicas da plataforma e boilerplate para nós. Para fazer isso, o Codegen precisa saber onde encontrar nossa especificação e o que fazer com ela. Atualize seu `package.json` para incluir:
 
@@ -148,7 +148,7 @@ Com tudo configurado para o Codegen, precisamos preparar nosso código nativo pa
 
 Note que para iOS, estamos mapeando declarativamente o nome do componente JS que é exportado pela especificação (`CustomWebView`) com a classe iOS que implementará o componente nativamente.
 
-## 2. Construindo seu Código Nativo
+## 2. Construindo seu Código Nativo {#2-building-your-native-code}
 
 Agora é hora de escrever o código de plataforma nativo para que quando o React precise renderizar uma view, a plataforma possa criar a view nativa certa e possa renderizá-la na tela.
 
@@ -168,12 +168,11 @@ Este guia mostra como criar um Native Component que funciona apenas com a Nova A
     </TabItem>
 </Tabs>
 
-## 3. Use seu Native Component
+## 3. Use seu Native Component {#3-use-your-native-component}
 
 Finalmente, você pode usar o novo componente em seu app. Atualize seu `App.tsx` gerado para:
 
 ```javascript title="Demo/App.tsx"
-import React from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
 import WebView from './specs/WebViewNativeComponent';
 
@@ -210,7 +209,7 @@ Este código cria um app que usa o novo componente `WebView` que criamos para ca
 
 O app também mostra um alerta quando a página web é carregada.
 
-## 4. Execute seu App usando o Componente WebView
+## 4. Execute seu App usando o Componente WebView {#4-run-your-app-using-the-webview-component}
 
 <Tabs groupId="platforms" queryString defaultValue={constants.defaultPlatform}>
 <TabItem value="android" label="Android">

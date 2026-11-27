@@ -9,7 +9,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 React Native é um framework open source para construir aplicações Android e iOS usando [React](https://react.dev/) e as capacidades nativas da plataforma do app. Com React Native, você usa JavaScript para acessar as APIs da sua plataforma, assim como para descrever a aparência e o comportamento da sua UI usando componentes React: pacotes de código reutilizável e aninhável. Você pode aprender mais sobre React na próxima seção. Mas primeiro, vamos cobrir como os componentes funcionam no React Native.
 
-## Views e desenvolvimento mobile
+## Views e desenvolvimento mobile {#views-and-mobile-development}
 
 No desenvolvimento Android e iOS, uma **view** é o bloco de construção básico da UI: um pequeno elemento retangular na tela que pode ser usado para exibir texto, imagens ou responder a entrada do usuário. Até mesmo os menores elementos visuais de um app, como uma linha de texto ou um botão, são tipos de views. Alguns tipos de views podem conter outras views. São views até o fim!
 
@@ -33,18 +33,17 @@ React Native também permite que você construa seus próprios Native Components
 
 React Native tem muitos Core Components para tudo, desde controles até indicadores de atividade. Você pode encontrar todos eles [documentados na seção de API](components-and-apis). Você trabalhará principalmente com os seguintes Core Components:
 
-| React Native UI Component | Android View   | iOS View         | Web Analog              | Description                                                                                                   |
-| ------------------------- | -------------- | ---------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------- |
+| React Native UI Component | Android View   | iOS View         | Web Analog              | Description                                                                                                  |
+| ------------------------- | -------------- | ---------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `<View>`                  | `<ViewGroup>`  | `<UIView>`       | A non-scrolling `<div>` | Um container que suporta layout com flexbox, estilo, algum tratamento de toque e controles de acessibilidade |
 | `<Text>`                  | `<TextView>`   | `<UITextView>`   | `<p>`                   | Exibe, estiliza e aninha strings de texto e até mesmo lida com eventos de toque                              |
-| `<Image>`                 | `<ImageView>`  | `<UIImageView>`  | `<img>`                 | Exibe diferentes tipos de imagens                                                                             |
-| `<ScrollView>`            | `<ScrollView>` | `<UIScrollView>` | `<div>`                 | Um container de rolagem genérico que pode conter múltiplos componentes e views                                |
-| `<TextInput>`             | `<EditText>`   | `<UITextField>`  | `<input type="text">`   | Permite que o usuário insira texto                                                                            |
+| `<Image>`                 | `<ImageView>`  | `<UIImageView>`  | `<img>`                 | Exibe diferentes tipos de imagens                                                                            |
+| `<ScrollView>`            | `<ScrollView>` | `<UIScrollView>` | `<div>`                 | Um container de rolagem genérico que pode conter múltiplos componentes e views                               |
+| `<TextInput>`             | `<EditText>`   | `<UITextField>`  | `<input type="text">`   | Permite que o usuário insira texto                                                                           |
 
 Na próxima seção, você começará a combinar esses Core Components para aprender sobre como o React funciona. Experimente com eles aqui agora!
 
 ```SnackPlayer name=Hello%20World
-import React from 'react';
 import {View, Text, Image, ScrollView, TextInput} from 'react-native';
 
 const App = () => {

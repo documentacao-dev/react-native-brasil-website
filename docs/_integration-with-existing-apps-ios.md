@@ -2,12 +2,13 @@
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import ThemedImage from '@theme/ThemedImage';
 import constants from '@site/core/TabsConstants';
 import CodeBlock from '@theme/CodeBlock';
 import RNTemplateRepoLink from '@site/core/RNTemplateRepoLink';
 import {getTemplateBranchNameForCurrentVersion} from '@site/src/getTemplateBranchNameForCurrentVersion';
 
-## Conceitos Chave
+## Conceitos Chave {#key-concepts}
 
 As chaves para integrar componentes React Native em sua aplicação iOS são:
 
@@ -18,20 +19,20 @@ As chaves para integrar componentes React Native em sua aplicação iOS são:
 5. Integrar React Native com seu código iOS usando um `RCTRootView`.
 6. Testar sua integração executando o bundler e vendo sua aplicação em ação.
 
-## Usando o Template da Comunidade
+## Usando o Template da Comunidade {#using-the-community-template}
 
 Enquanto você segue este guia, sugerimos que use o [React Native Community Template](https://github.com/react-native-community/template/) como referência. O template contém uma **aplicação iOS mínima** e ajudará você a entender como integrar React Native em uma aplicação iOS existente.
 
-## Pré-requisitos
+## Pré-requisitos {#prerequisites}
 
 Siga o guia sobre [configurar seu ambiente de desenvolvimento](set-up-your-environment) e usar [React Native sem um framework](getting-started-without-a-framework) para configurar seu ambiente de desenvolvimento para construir aplicações React Native para iOS.
 Este guia também assume que você está familiarizado com os conceitos básicos de desenvolvimento iOS, como criar um `UIViewController` e editar o arquivo `Podfile`.
 
-### 1. Configurar a estrutura de diretórios
+### 1. Configurar a estrutura de diretórios {#1-set-up-directory-structure}
 
 Para garantir uma experiência suave, crie uma nova pasta para seu projeto React Native integrado e então **mova seu projeto iOS existente** para a subpasta `/ios`.
 
-## 2. Instalar dependências NPM
+## 2. Instalar dependências NPM {#2-install-npm-dependencies}
 
 Vá para o diretório raiz e execute o seguinte comando:
 
@@ -64,13 +65,19 @@ O processo de instalação criou uma nova pasta `node_modules`. Esta pasta armaz
 
 Adicione `node_modules/` ao seu arquivo `.gitignore` (aqui está o <RNTemplateRepoLink href="template/_gitignore">padrão da Comunidade</RNTemplateRepoLink>).
 
-### 3. Instalar ferramentas de desenvolvimento
+### 3. Instalar ferramentas de desenvolvimento {#3-install-development-tools}
 
-### Command Line Tools para Xcode
+### Command Line Tools para Xcode {#command-line-tools-for-xcode}
 
 Instale o Command Line Tools. Escolha **Settings... (ou Preferences...)** no menu do Xcode. Vá para o painel Locations e instale as ferramentas selecionando a versão mais recente no dropdown Command Line Tools.
 
-![Xcode Command Line Tools](/docs/assets/GettingStartedXcodeCommandLineTools.png)
+<ThemedImage
+alt="Xcode Command Line Tools configuration"
+sources={{
+    light: '/docs/assets/GettingStartedXcodeCommandLineTools.png',
+    dark: '/docs/assets/GettingStartedXcodeCommandLineToolsDark.png',
+  }}
+/>
 
 ### CocoaPods
 
@@ -82,9 +89,9 @@ Recomendamos instalar CocoaPods usando [Homebrew](https://brew.sh/):
 brew install cocoapods
 ```
 
-## 4. Adicionando React Native à sua aplicação
+## 4. Adicionando React Native à sua aplicação {#4-adding-react-native-to-your-app}
 
-### Configurando CocoaPods
+### Configurando CocoaPods {#configuring-cocoapods}
 
 Para configurar CocoaPods, precisamos de dois arquivos:
 
@@ -135,13 +142,13 @@ bundle exec pod install
 
 O primeiro comando instalará as dependências Ruby e o segundo comando irá realmente integrar o código React Native em sua aplicação para que seus arquivos iOS possam importar os headers React Native.
 
-## 5. Escrevendo o código TypeScript
+## 5. Escrevendo o código TypeScript {#5-writing-the-typescript-code}
 
 Agora vamos realmente modificar a aplicação iOS nativa para integrar React Native.
 
 O primeiro pedaço de código que escreveremos é o código React Native real para a nova tela que será integrada em nossa aplicação.
 
-### Criar um arquivo `index.js`
+### Criar um arquivo `index.js` {#create-a-indexjs-file}
 
 Primeiro, crie um arquivo `index.js` vazio na raiz do seu projeto React Native.
 
@@ -156,12 +163,12 @@ import App from './App';
 AppRegistry.registerComponent('HelloWorld', () => App);
 ```
 
-### Criar um arquivo `App.tsx`
+### Criar um arquivo `App.tsx` {#create-a-apptsx-file}
 
 Vamos criar um arquivo `App.tsx`. Este é um arquivo [TypeScript](https://www.typescriptlang.org/) que pode ter expressões [JSX](<https://en.wikipedia.org/wiki/JSX_(JavaScript)>). Ele contém o componente React Native raiz que integraremos em nossa aplicação iOS (<RNTemplateRepoLink href="template/App.tsx">link</RNTemplateRepoLink>):
 
 ```tsx
-import React from 'react';
+import {type JSX} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -179,7 +186,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-function App(): React.JSX.Element {
+function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -233,21 +240,28 @@ export default App;
 
 Aqui está o <RNTemplateRepoLink href="template/App.tsx">arquivo do template da Comunidade como referência</RNTemplateRepoLink>.
 
-## 5. Integrando com seu código iOS
+## 5. Integrando com seu código iOS {#5-integrating-with-your-ios-code}
 
 Agora precisamos adicionar algum código nativo para iniciar o runtime React Native e dizer a ele para renderizar nossos componentes React.
 
-### Requisitos
+### Requisitos {#requirements}
 
 A inicialização do React Native agora não está vinculada a nenhuma parte específica de uma aplicação iOS.
 
 React Native pode ser inicializado usando uma classe chamada `RCTReactNativeFactory`, que cuida de gerenciar o ciclo de vida do React Native para você.
 
-Uma vez que a classe é inicializada, você pode iniciar uma view React Native fornecendo um objeto `UIWindow`, ou pode pedir à factory para gerar uma `UIView` que você pode carregar em qualquer `UIViewController`.
+:::note[`RCTAppDelegate` está obsoleto]
+`RCTAppDelegate` está obsoleto e será removido em uma versão futura do React Native. Novas aplicações devem iniciar a partir de um `SceneDelegate` próprio da aplicação (veja [Inicialização com SceneDelegate](#6-bootstrapping-with-scenedelegate)). Aplicações existentes que estendem `RCTAppDelegate` devem migrar diretamente para `RCTReactNativeFactory`.
+:::
+
+Depois que a classe é inicializada, você pode:
+
+- inicializar uma aplicação completa a partir do seu `SceneDelegate` (veja [Inicialização com SceneDelegate](#6-bootstrapping-with-scenedelegate)), ou
+- gerar uma `UIView` a partir da factory e carregá-la em qualquer `UIViewController` (a abordagem abaixo).
 
 No exemplo a seguir, criaremos um ViewController que pode carregar uma view React Native como sua `view`.
 
-#### Criar o ReactViewController
+#### Criar o ReactViewController {#create-the-reactviewcontroller}
 
 Crie um novo arquivo a partir do template (<kbd>⌘</kbd>+<kbd>N</kbd>) e escolha o template Cocoa Touch Class.
 
@@ -263,7 +277,7 @@ Agora abra o arquivo `ReactViewController.m` e aplique as seguintes alterações
 +#import <React/RCTBundleURLProvider.h>
 +#import <RCTReactNativeFactory.h>
 +#import <RCTDefaultReactNativeFactoryDelegate.h>
-+#import <RCTAppDependencyProvider.h>
++#import <ReactAppDependencyProvider/RCTAppDependencyProvider.h>
 
 
 @interface ReactViewController ()
@@ -354,7 +368,7 @@ class ReactViewController: UIViewController {
 </TabItem>
 </Tabs>
 
-#### Apresentando uma view React Native em um rootViewController
+#### Apresentando uma view React Native em um rootViewController {#presenting-a-react-native-view-in-a-rootviewcontroller}
 
 Finalmente, podemos apresentar nossa view React Native. Para fazer isso, precisamos de um novo View Controller que possa hospedar uma view na qual podemos carregar o conteúdo JS.
 Já temos o `ViewController` inicial, e podemos fazê-lo apresentar o `ReactViewController`. Existem várias maneiras de fazer isso, dependendo da sua aplicação. Para este exemplo, assumimos que você tem um botão que apresenta React Native modalmente.
@@ -456,7 +470,226 @@ Finalmente, certifique-se de adicionar a chave `UIViewControllerBasedStatusBarAp
 
 ![Disable UIViewControllerBasedStatusBarAppearance](/docs/assets/disable-UIViewControllerBasedStatusBarAppearance.png)
 
-## 6. Testar sua integração
+## 6. Inicialização com SceneDelegate {#6-bootstrapping-with-scenedelegate}
+
+:::info[Requer React Native 0.88 ou superior]
+As APIs de `SceneDelegate` descritas nesta seção exigem React Native 0.88 ou superior. Versões anteriores não oferecem as sobrecargas `connectionOptions:` de `startReactNative` nem os métodos de `SceneDelegate` em `RCTLinkingManager`.
+:::
+
+Se sua aplicação usa o ciclo de vida UIScene (o padrão para aplicações criadas com versões recentes do Xcode), a inicialização do React Native acontece no `SceneDelegate` da sua aplicação. Seu `AppDelegate` continua sendo o ponto de entrada do processo (`@main`) e trata os callbacks em nível de `UIApplication`, como notificações push.
+
+Para inicializar o React Native com o SceneDelegate:
+
+1. Declare `UIApplicationSceneManifest` no `Info.plist` e aponte para a sua classe `SceneDelegate`.
+2. Mantenha `UIApplicationSupportsMultipleScenes` como `false`. O React Native ainda não oferece suporte a aplicações com múltiplas janelas ou múltiplas instâncias.
+3. Herde de `RCTDefaultReactNativeFactoryDelegate`, implemente `UIWindowSceneDelegate`, crie um `RCTReactNativeFactory` e chame `startReactNativeWithModuleName:inWindow:connectionOptions:` dentro de `scene:willConnectToSession:options:`.
+4. Encaminhe os deep links do seu `SceneDelegate` para o `RCTLinkingManager`.
+5. Mantenha as notificações push e os demais callbacks de `UIApplicationDelegate` no seu `AppDelegate`.
+
+### Info.plist
+
+Adicione um scene manifest semelhante ao do Community Template. No mínimo, você precisa de:
+
+```xml
+<key>UIApplicationSceneManifest</key>
+<dict>
+  <key>UIApplicationSupportsMultipleScenes</key>
+  <false/>
+  <key>UISceneConfigurations</key>
+  <dict>
+    <key>UIWindowSceneSessionRoleApplication</key>
+    <array>
+      <dict>
+        <key>UISceneConfigurationName</key>
+        <string>Default Configuration</string>
+        <key>UISceneDelegateClassName</key>
+        <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+      </dict>
+    </array>
+  </dict>
+</dict>
+```
+
+Para aplicações Objective-C, use diretamente o nome da sua classe SceneDelegate no lugar de `$(PRODUCT_MODULE_NAME).SceneDelegate`.
+
+### Criar o SceneDelegate {#create-the-scenedelegate}
+
+<Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
+<TabItem value="objc">
+
+Crie `SceneDelegate.h`:
+
+```objc title="SceneDelegate.h"
+#import <RCTDefaultReactNativeFactoryDelegate.h>
+#import <RCTReactNativeFactory.h>
+#import <UIKit/UIKit.h>
+
+@interface SceneDelegate : RCTDefaultReactNativeFactoryDelegate <UIWindowSceneDelegate>
+
+@property (nonatomic, strong, nullable) UIWindow *window;
+@property (nonatomic, strong, nullable) RCTReactNativeFactory *reactNativeFactory;
+
+@end
+```
+
+Crie `SceneDelegate.m`:
+
+```objc title="SceneDelegate.m"
+#import "SceneDelegate.h"
+
+#import <React/RCTBundleURLProvider.h>
+#import <React/RCTLinkingManager.h>
+#import <ReactAppDependencyProvider/RCTAppDependencyProvider.h>
+
+@implementation SceneDelegate
+
+- (void)scene:(UIScene *)scene
+    willConnectToSession:(UISceneSession *)session
+                 options:(UISceneConnectionOptions *)connectionOptions
+{
+  if (![scene isKindOfClass:[UIWindowScene class]]) {
+    return;
+  }
+
+  self.dependencyProvider = [RCTAppDependencyProvider new];
+  self.reactNativeFactory = [[RCTReactNativeFactory alloc] initWithDelegate:self];
+
+  UIWindowScene *windowScene = (UIWindowScene *)scene;
+  self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+
+  [self.reactNativeFactory startReactNativeWithModuleName:@"HelloWorld"
+                                                 inWindow:self.window
+                                        connectionOptions:connectionOptions];
+}
+
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts
+{
+  [RCTLinkingManager scene:scene openURLContexts:URLContexts];
+}
+
+- (void)scene:(UIScene *)scene continueUserActivity:(NSUserActivity *)userActivity
+{
+  [RCTLinkingManager scene:scene continueUserActivity:userActivity];
+}
+
+- (NSURL *)bundleURL
+{
+#if DEBUG
+  return [RCTBundleURLProvider.sharedSettings jsBundleURLForBundleRoot:@"index"];
+#else
+  return [NSBundle.mainBundle URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
+}
+
+@end
+```
+
+</TabItem>
+<TabItem value="swift">
+
+Crie `SceneDelegate.swift`:
+
+```swift title="SceneDelegate.swift"
+import React
+import React_RCTAppDelegate
+import ReactAppDependencyProvider
+import UIKit
+
+class SceneDelegate: RCTDefaultReactNativeFactoryDelegate, UIWindowSceneDelegate {
+  var window: UIWindow?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func scene(
+    _ scene: UIScene,
+    willConnectTo session: UISceneSession,
+    options connectionOptions: UIScene.ConnectionOptions
+  ) {
+    guard let windowScene = scene as? UIWindowScene else {
+      return
+    }
+
+    dependencyProvider = RCTAppDependencyProvider()
+    reactNativeFactory = RCTReactNativeFactory(delegate: self)
+    window = UIWindow(windowScene: windowScene)
+
+    reactNativeFactory?.startReactNative(
+      withModuleName: "HelloWorld",
+      in: window,
+      connectionOptions: connectionOptions
+    )
+  }
+
+  func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+    RCTLinkingManager.scene(scene, openURLContexts: URLContexts)
+  }
+
+  func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+    RCTLinkingManager.scene(scene, continue: userActivity)
+  }
+
+  override func bundleURL() -> URL? {
+    #if DEBUG
+    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+    #else
+    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+    #endif
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Responsabilidades do AppDelegate {#application-delegate-responsibilities}
+
+Seu `AppDelegate` pode continuar mínimo e tratar apenas os callbacks que pertencem ao objeto da aplicação, como notificações push:
+
+<Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
+<TabItem value="objc">
+
+```objc title="AppDelegate.m"
+#import "AppDelegate.h"
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  return YES;
+}
+
+@end
+```
+
+</TabItem>
+<TabItem value="swift">
+
+```swift title="AppDelegate.swift"
+import UIKit
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    true
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+:::note
+O React Native atualmente oferece suporte a uma única instância por processo, então múltiplas cenas não são suportadas. Mantenha `UIApplicationSupportsMultipleScenes` como `false`.
+:::
+
+:::tip[Campo `reactNativeFactory`]
+Guarde o `RCTReactNativeFactory` em uma propriedade do seu `SceneDelegate` para que ele seja mantido durante toda a vida da cena. Se ele fosse mantido apenas por uma variável local, seria desalocado assim que `scene:willConnectToSession:options:` retornasse, e o React Native seria encerrado junto com ele.
+:::
+
+## 7. Testar sua integração {#7-test-your-integration}
 
 Você completou todos os passos básicos para integrar React Native com sua aplicação. Agora vamos iniciar o [Metro bundler](https://metrobundler.dev/) para construir seu código TypeScript em um bundle. O servidor HTTP do Metro compartilha o bundle de `localhost` no seu ambiente de desenvolvimento para um simulador ou dispositivo. Isso permite o [hot reloading](https://reactnative.dev/blog/2016/03/24/introducing-hot-reloading).
 
@@ -500,7 +733,7 @@ Uma vez que você alcançar sua Activity com React dentro da aplicação, ela de
 
 <center><img src="/docs/assets/EmbeddedAppIOS078.gif" width="300" /></center>
 
-### Criando um build de release no Xcode
+### Criando um build de release no Xcode {#creating-a-release-build-in-xcode}
 
 Você também pode usar Xcode para criar seus builds de release! O único passo adicional é adicionar um script que é executado quando a aplicação é construída para empacotar seu JS e imagens na aplicação iOS.
 
@@ -523,13 +756,13 @@ REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"
 
 Agora, se você construir sua aplicação para Release, ela funcionará como esperado.
 
-## 7. Passando props iniciais para a view React Native
+## 8. Passando props iniciais para a view React Native {#8-passing-initial-props-to-the-react-native-view}
 
 Em alguns casos, você gostaria de passar algumas informações da aplicação nativa para JavaScript. Por exemplo, você pode querer passar o id do usuário atualmente logado para React Native, junto com um token que pode ser usado para recuperar informações de um banco de dados.
 
 Isso é possível usando o parâmetro `initialProperties` da sobrecarga `view(withModuleName:initialProperty)` da classe `RCTReactNativeFactory`. Os passos a seguir mostram como fazer isso.
 
-### Atualizar o arquivo App.tsx para ler as propriedades iniciais.
+### Atualizar o arquivo App.tsx para ler as propriedades iniciais. {#update-the-apptsx-file-to-read-the-initial-properties}
 
 Abra o arquivo `App.tsx` e adicione o seguinte código:
 
@@ -599,7 +832,46 @@ export default App;
 
 Essas alterações dirão ao React Native que seu componente App agora está aceitando algumas propriedades. O `RCTreactNativeFactory` cuidará de passá-las para o componente quando ele for renderizado.
 
-### Atualizar o código nativo para passar as propriedades iniciais para JavaScript.
+### Atualizar o código nativo para passar as propriedades iniciais para JavaScript. {#update-the-native-code-to-pass-the-initial-properties-to-javascript}
+
+#### Inicialização com SceneDelegate {#scenedelegate-bootstrap}
+
+<Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
+<TabItem value="objc">
+
+Modifique o `SceneDelegate.m` para passar as propriedades iniciais ao iniciar o React Native:
+
+```diff title="SceneDelegate.m"
+  [self.reactNativeFactory startReactNativeWithModuleName:@"HelloWorld"
+                                                 inWindow:self.window
++                                       initialProperties:@{
++                                         @"userID": @"12345678",
++                                         @"token": @"secretToken"
++                                       }
+                                        connectionOptions:connectionOptions];
+```
+
+</TabItem>
+<TabItem value="swift">
+
+Modifique o `SceneDelegate.swift` para passar as propriedades iniciais ao iniciar o React Native:
+
+```diff title="SceneDelegate.swift"
+    reactNativeFactory?.startReactNative(
+      withModuleName: "HelloWorld",
+      in: window,
++     initialProperties: [
++       "userID": "12345678",
++       "token": "secretToken"
++     ],
+      connectionOptions: connectionOptions
+    )
+```
+
+</TabItem>
+</Tabs>
+
+#### View controller embutido {#embedded-view-controller}
 
 <Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
 <TabItem value="objc">
@@ -652,6 +924,6 @@ Modifique o `ReactViewController.swift` para passar as propriedades iniciais par
   <img src="/docs/assets/brownfield-with-initial-props.png" width="30%" height="30%"/>
 </center>
 
-## E agora?
+## E agora? {#now-what}
 
 Neste ponto você pode continuar desenvolvendo sua aplicação normalmente. Consulte nossa documentação sobre [debugging](debugging) e [deployment](running-on-device) para aprender mais sobre trabalhar com React Native.

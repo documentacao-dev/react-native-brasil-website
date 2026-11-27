@@ -11,7 +11,6 @@ A maioria dos componentes pode ser customizada quando são criados, com diferent
 Por exemplo, um componente básico do React Native é o `Image`. Quando você cria uma imagem, você pode usar um prop chamado `source` para controlar qual imagem ela mostra.
 
 ```SnackPlayer name=Props
-import React from 'react';
 import {Image} from 'react-native';
 
 const Bananas = () => {
@@ -34,7 +33,6 @@ Seus próprios componentes também podem usar `props`. Isso permite que você cr
 <TabItem value="javascript">
 
 ```SnackPlayer name=Props&ext=js
-import React from 'react';
 import {Text, View} from 'react-native';
 
 const Greeting = props => {
@@ -62,7 +60,6 @@ export default LotsOfGreetings;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Props&ext=tsx
-import React from 'react';
 import {Text, View} from 'react-native';
 
 type GreetingProps = {

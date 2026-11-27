@@ -13,11 +13,11 @@ Ouvimos de muitas pessoas que há tanto trabalho acontecendo com React Native, p
 
 Se você tem sugestões de recursos que acha que seriam valiosos no roadmap, confira o [Canny](https://react-native.canny.io/feature-requests), onde você pode sugerir novos recursos e discutir propostas existentes.
 
-## O que há de novo no React Native
+## O que há de novo no React Native {#whats-new-in-react-native}
 
 [Versão 0.37 do React Native](https://github.com/facebook/react-native/releases/tag/v0.37.0), lançada hoje, introduz um novo componente core para facilitar muito a adição de um Button tocável a qualquer aplicativo. Também estamos introduzindo suporte para o novo gerenciador de pacotes [Yarn](https://yarnpkg.com/), que deve acelerar todo o processo de atualização das dependências do seu aplicativo.
 
-## Introduzindo Button
+## Introduzindo Button {#introducing-button}
 
 Hoje estamos introduzindo um componente básico `<Button />` que fica ótimo em todas as plataformas. Isso aborda um dos feedbacks mais comuns que recebemos: React Native é um dos únicos kits de desenvolvimento mobile sem um botão pronto para usar imediatamente.
 
@@ -35,7 +35,7 @@ Desenvolvedores React Native experientes sabem como fazer um botão: use Touchab
 
 Button foi feito para funcionar muito bem e parecer nativo em todas as plataformas, então não suportará todos os recursos extras que botões customizados têm. É um ótimo ponto de partida, mas não foi feito para substituir todos os seus botões existentes. Para saber mais, confira a [nova documentação do Button](/docs/button), completa com um exemplo executável!
 
-## Acelere o `react-native init` usando Yarn
+## Acelere o `react-native init` usando Yarn {#speed-up-react-native-init-using-yarn}
 
 Agora você pode usar [Yarn](https://yarnpkg.com/), o novo gerenciador de pacotes para JavaScript, para acelerar significativamente o `react-native init`. Para ver a aceleração, por favor [instale o yarn](https://yarnpkg.com/en/docs/install) e atualize seu `react-native-cli` para 1.2.0:
 
@@ -49,6 +49,6 @@ Agora você deve ver "Using yarn" ao configurar novos aplicativos:
 
 Em testes locais simples, `react-native init` terminou em **cerca de 1 minuto em uma boa rede** (vs cerca de 3 minutos ao usar npm 3.10.8). Instalar yarn é opcional, mas altamente recomendado.
 
-## Obrigado!
+## Obrigado! {#thank-you}
 
 Gostaríamos de agradecer a todos que contribuíram para este lançamento. As [notas de lançamento](https://github.com/facebook/react-native/releases/tag/v0.37.0) completas agora estão disponíveis no GitHub. Com mais de duas dúzias de correções de bugs e novos recursos, React Native continua melhorando graças a você.

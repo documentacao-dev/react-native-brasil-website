@@ -56,6 +56,6 @@ A reunião mensal do React Native continua! Vamos ver o que nossas equipes estã
 - [Shoutem UI](https://github.com/shoutem/ui) recebeu algumas melhorias de componentes e correções de bugs. Também verificamos compatibilidade com as versões mais recentes do React Native.
 - A plataforma Shoutem recebeu algumas atualizações notáveis, novas integrações estão disponíveis como parte do [projeto de extensões open-source](https://github.com/shoutem/extensions). Estamos realmente animados em ver desenvolvimento ativo em extensões Shoutem de outros desenvolvedores. Ativamente contatamos e oferecemos conselhos e orientação sobre suas extensões.
 
-## Próxima sessão
+## Próxima sessão {#next-session}
 
 A próxima sessão está agendada para quarta-feira, 6 de dezembro de 2017. Sinta-se à vontade para me contatar [no Twitter](https://twitter.com/TomislavTenodi) se você tiver alguma sugestão sobre como devemos melhorar o resultado da reunião.

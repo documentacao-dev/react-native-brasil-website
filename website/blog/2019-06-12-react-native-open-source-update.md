@@ -5,13 +5,13 @@ authors: [cpojer]
 tags: [announcement]
 ---
 
-## Saúde do Código & Comunidade
+## Saúde do Código & Comunidade {#code--community-health}
 
 Nos últimos seis meses, um total de 2800 commits foram feitos no React Native por mais de 550 colaboradores. 400 colaboradores da comunidade criaram mais de [1.150 Pull Requests](https://github.com/facebook/react-native/pulls?page=24&q=is%3Apr+closed%3A%3E2018-12-01&utf8=%E2%9C%93), dos quais [820 Pull Requests](https://github.com/facebook/react-native/pulls?utf8=%E2%9C%93&q=is%3Apr+closed%3A%3E2018-12-01+label%3A%22Merged%22+) foram mesclados.
 
 A média de Pull Requests por dia ao longo dos últimos seis meses aumentou de três para cerca de seis, mesmo tendo separado o website, CLI e muitos módulos do React Native através do esforço Lean Core. A quantidade média de pull requests abertos agora está abaixo de 25 e geralmente respondemos com sugestões e revisões em horas ou dias.
 
-### Contribuições Significativas da Comunidade
+### Contribuições Significativas da Comunidade {#meaningful-community-contributions}
 
 Gostaríamos de destacar uma série de contribuições recentes que achamos fantásticas:
 
@@ -34,11 +34,11 @@ A principal motivação do [Lean Core](https://github.com/react-native-community
 
 Também aproveitamos a oportunidade para remover polyfills obsoletos e componentes legados do próprio React Native. Polyfills eram necessários no passado para suportar recursos de linguagem como [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) e [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) em versões mais antigas do JavaScriptCore (JSC). Agora que o React Native é distribuído com uma nova versão, esses polyfills foram removidos.
 
-Este trabalho ainda está em progresso e muitas outras coisas ainda precisam ser separadas ou removidas tanto no lado nativo quanto no JavaScript, mas há sinais iniciais de que conseguimos reverter a tendência de aumentar a área de superfície e o tamanho do app: Ao olhar para o bundle JavaScript, por exemplo, cerca de um ano atrás na versão 0.54 o tamanho do bundle JavaScript do React Native era 530kb e cresceu para 607kb (+77kb) até a versão 0.57 em apenas 6 meses. Agora estamos vendo uma redução no tamanho do bundle de 28kb para 579kb no master, uma diferença de mais de 100kb!
+Este trabalho ainda está em progresso e muitas outras coisas ainda precisam ser separadas ou removidas tanto no lado nativo quanto no JavaScript, mas há sinais iniciais de que conseguimos reverter a tendência de aumentar a área de superfície e o tamanho do app: Ao olhar para o bundle JavaScript, por exemplo, cerca de um ano atrás na versão 0.54 o tamanho do bundle JavaScript do React Native era 530kb e cresceu para 607kb (+77kb) até a versão 0.57 em apenas 6 meses. Agora estamos vendo uma redução de 28kb no tamanho do bundle, que chegou a 579kb no master, uma diferença de mais de 100kb!
 
 Conforme concluímos a primeira iteração do esforço Lean Core, faremos um esforço para ser mais intencionais sobre novas APIs adicionadas ao React Native e avaliaremos continuamente formas de tornar o React Native menor e mais rápido, bem como encontrar maneiras de capacitar a comunidade a assumir a propriedade de vários componentes.
 
-## Feedback dos Usuários
+## Feedback dos Usuários {#user-feedback}
 
 Seis meses atrás perguntamos à comunidade "[O que você não gosta no React Native?](https://github.com/react-native-community/discussions-and-proposals/issues/64)", que deu uma boa visão geral dos problemas que as pessoas estão enfrentando. [Respondemos ao post alguns meses atrás](https://github.com/react-native-community/discussions-and-proposals/issues/104) e é hora de resumir o progresso que foi feito nos principais problemas:
 
@@ -56,12 +56,12 @@ Infelizmente não conseguimos melhorar tudo ainda:
 
 Dada a grande quantidade de mudanças nos últimos seis meses, gostaríamos de fazer a mesma pergunta novamente. Se você está usando a versão mais recente do React Native e tem coisas sobre as quais gostaria de dar feedback, por favor comente em nossa nova edição de ["O que você não gosta no React Native?"](https://github.com/react-native-community/discussions-and-proposals/issues/134)
 
-## Integração Contínua
+## Integração Contínua {#continuous-integration}
 
 O Facebook mescla todos os Pull Requests e mudanças internas diretamente no repositório do Facebook primeiro e depois sincroniza todos os commits de volta para o GitHub. A infraestrutura do Facebook é diferente dos serviços comuns de integração contínua e nem todos os testes open source eram executados dentro do Facebook. Isso significa que commits sincronizados para o GitHub frequentemente quebravam testes no open source, o que levava muito tempo para corrigir.
 
 [Héctor Ramos](https://twitter.com/hectorramos) da equipe React Native passou os últimos dois meses melhorando os sistemas de integração contínua do React Native tanto no Facebook quanto no GitHub. A maioria dos testes open source agora são executados antes que as mudanças sejam commitadas no React Native no Facebook, o que manterá o CI estável no GitHub quando os commits forem sincronizados.
 
-## Próximos Passos
+## Próximos Passos {#next}
 
 Não deixe de conferir nossas palestras sobre o futuro do React Native! Nos próximos meses, membros da equipe React Native no Facebook falarão na [Chain React](https://infinite.red/ChainReactConf) e na [React Native EU](https://react-native.eu/). Além disso, fique atento ao nosso próximo lançamento, 0.60, que está logo ali na esquina. _Vai ser empolgante_ ✨

@@ -20,13 +20,13 @@ Para optar por esta nova implementação, use a prop [`useWebKit`](https://react
 />
 ```
 
-## Melhorias
+## Melhorias {#improvements}
 
 `UIWebView` não tinha uma maneira legítima de facilitar a comunicação entre o JavaScript rodando no WebView e React Native. Quando mensagens eram enviadas do WebView, contávamos com um hack para entregá-las ao React Native. Resumidamente, codificávamos os dados da mensagem em uma url com um esquema especial e navegávamos o WebView para ela. No lado nativo, interceptávamos e cancelávamos essa navegação, parseávamos os dados da url e finalmente chamávamos no React Native. Esta implementação era propensa a erros e insegura. Estou feliz em anunciar que aproveitamos os recursos do `WKWebView` para substituí-la completamente.
 
 Outros benefícios do WKWebView sobre UIWebView incluem execução JavaScript mais rápida e uma arquitetura multi-processo. Consulte este [WWDC 2014](https://developer.apple.com/videos/play/wwdc2014/206) para mais detalhes.
 
-## Ressalvas
+## Ressalvas {#caveats}
 
 Se seus componentes usam as seguintes props, então você pode experimentar problemas ao mudar para WKWebView. Por enquanto, sugerimos que você evite usar essas props:
 

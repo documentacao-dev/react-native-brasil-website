@@ -21,7 +21,7 @@ DynamicColorIOS({
 
 Em runtime, o sistema escolherá qual das cores exibir dependendo da aparência atual do sistema e das configurações de acessibilidade. Cores dinâmicas são úteis para cores de marca ou outras cores específicas do aplicativo que ainda respondem automaticamente às mudanças de configuração do sistema.
 
-#### Notas do desenvolvedor
+#### Notas do desenvolvedor {#developer-notes}
 
 <Tabs groupId="guide" queryString defaultValue="web" values={constants.getDevNotesTabs(["ios", "web"])}>
 
@@ -41,7 +41,7 @@ A função `DynamicColorIOS` é similar aos métodos nativos do iOS [`UIColor co
 </TabItem>
 </Tabs>
 
-## Exemplo
+## Exemplo {#example}
 
 ```tsx
 import {DynamicColorIOS} from 'react-native';

@@ -1,0 +1,115 @@
+---
+ia-translated: true
+title: Anunciando React Native 0.70
+authors: [dmytrorykun, titozzz, cortinico, kelset]
+tags: [announcement, release]
+---
+
+# Anunciando 0.70
+
+Estamos empolgados em lançar uma nova versão do React Native, 0.70.0. Esta versão vem com várias melhorias como uma nova configuração unificada para Codegen, Hermes como engine padrão e suporte completo ao CMake para builds Android, juntamente com uma atualização da documentação para a New Architecture. Continue lendo para saber mais!
+
+### Seções {#sections}
+
+- [Nova Documentação da New Architecture](/blog/2022/09/05/version-070#new-architectures-new-documentation)
+- [Hermes como engine padrão](/blog/2022/09/05/version-070#hermes-as-default-engine)
+- [Uma nova configuração unificada para Codegen](/blog/2022/09/05/version-070#a-new-unified-configuration-for-codegen)
+- [Auto-linking Android para bibliotecas New Architecture](/blog/2022/09/05/version-070#android-auto-linking-for-new-architecture-libraries)
+- [Suporte completo ao CMake para builds Android](/blog/2022/09/05/version-070#full-cmake-support-for-android-builds)
+- [Destaques do 0.70](/blog/2022/09/05/version-070#highlights-of-070)
+
+{/* truncate */}
+
+## Nova Documentação da New Architecture {#new-architectures-new-documentation}
+
+Nos últimos meses, estivemos trabalhando para adicionar mais conteúdo à seção [New Architecture](/architecture/landing-page) da documentação. Na nova seção você pode encontrar guias de migração, exemplos e tutoriais para se atualizar.
+
+Junto com isso, você pode encontrar novos documentos mergulhando em [Por que uma New Architecture](https://reactnative.dev/docs/next/the-new-architecture/why) e [as várias partes dela](https://reactnative.dev/docs/next/the-new-architecture/pillars). Esperamos que isso ajude você a entender melhor o raciocínio por trás das novas APIs.
+
+Qualquer feedback é mais do que bem-vindo, por favor nos avise no repositório [react-native-website](https://github.com/facebook/react-native-website).
+
+## Hermes como engine padrão {#hermes-as-default-engine}
+
+React Native 0.70 é a primeira versão com Hermes, nosso engine JS interno, habilitado por padrão.
+
+Este é o resultado do esforço colaborativo entre a equipe do Hermes e a equipe do React Native, juntamente com as contribuições valiosas da comunidade. Trabalhamos para melhorar e ajustar o Hermes para torná-lo mais performático e entregar recursos altamente solicitados pela comunidade.
+
+Você pode ler mais sobre isso no [post de anúncio oficial](https://reactnative.dev/blog/2022/07/08/hermes-as-the-default).
+
+## Uma nova configuração unificada para Codegen {#a-new-unified-configuration-for-codegen}
+
+Com 0.70, introduzimos uma maneira unificada de definir as specs do Codegen tanto para iOS quanto para Android. Anteriormente, você tinha que colocar a configuração do Android em um arquivo `build.gradle` separado.
+
+Agora, você pode defini-la diretamente no package.json com:
+
+```json
+  "codegenConfig": {
+    "name": "CustomAnimationView",
+    "type": "components",
+    "jsSrcsDir": "./src",
+    "android": {
+      "javaPackageName": "com.custom.animation"
+    }
+  }
+```
+
+Esta melhoria fornece uma experiência mais consistente para mantenedores de bibliotecas na migração de suas bases de código para a New Architecture.
+
+Se você é um mantenedor de biblioteca, certifique-se de nos informar como o processo está indo para você [nesta discussão](https://github.com/reactwg/react-native-new-architecture/discussions/6) no [React Native New Architecture working group](https://github.com/reactwg/react-native-new-architecture).
+
+## Auto-linking Android para bibliotecas New Architecture {#android-auto-linking-for-new-architecture-libraries}
+
+Com 0.70, usuários na New Architecture podem automaticamente linkar bibliotecas sem nenhuma configuração adicional em seus arquivos Android.mk ou CMake.
+
+Autolinking é uma parte crucial da experiência de desenvolvimento React Native. Permite que você inclua bibliotecas externas com um comando `yarn add`, sem lidar com configurações CocoaPods ou Gradle.
+
+A New Architecture exigiu que adaptássemos os recursos de auto-linking para suportar bibliotecas que estão usando o Codegen e expondo código nativo para desenvolvedores de aplicativos.
+
+Embora o Autolinking funcionasse bem para bibliotecas New Architecture no iOS, o mesmo não era verdade para Android. Com 0.70 fechamos esta lacuna e agora você pode continuar incluindo bibliotecas com `yarn add` ao seu projeto: elas serão linkadas corretamente em qualquer arquitetura.
+
+## Suporte completo ao CMake para builds Android {#full-cmake-support-for-android-builds}
+
+A partir de 0.70, os usuários agora podem usar CMake para configurar seus builds Native. Embora não esperemos que usuários de aplicativos escrevam código C++ diretamente, você ainda precisa de um ponto de entrada para a compilação nativa.
+
+De agora em diante você pode usar um arquivo `CMakeLists.txt` em vez de um arquivo `Android.mk` para qualquer coisa relacionada a Android/Native em seu projeto.
+
+Esta mudança beneficia tanto usuários de aplicativos quanto de bibliotecas na New Architecture, pois:
+
+- O arquivo CMake criado em seu aplicativo é muito menor ([3 linhas de código](https://github.com/facebook/react-native/blob/9923ac1b524ae959abdf50a28a3094198015f77e/packages/rn-tester/android/app/src/main/jni/CMakeLists.txt#L6-L11) versus [50+ para arquivos Android.mk](https://github.com/facebook/react-native/blob/main/template/android/app/src/main/jni/Android.mk?rgh-link-date=2022-07-20T18%3A29%3A07Z)). Isso facilita a experiência de atualização entre versões do React Native no futuro e menos código para manter do seu lado.
+- Codegen agora está gerando tanto `Android.mk` quanto `CMakeLists.txt`, então as bibliotecas não devem se preocupar em fazer nada se estiverem usando a configuração padrão que fornecemos para bibliotecas New Architecture.
+- O Auto-linking mencionado acima funcionará com arquivos CMake e Android.mk prontos para uso.
+- Apesar dos aplicativos serem livres para usar arquivos `Android.mk` ou CMake, a solução recomendada no futuro seria arquivos CMake (devido à melhor documentação, ferramentas e ecossistema em torno do CMake).
+
+## Destaques do 0.70 {#highlights-of-070}
+
+Como mencionado acima, algumas das melhorias mais importantes neste lançamento estão centradas na experiência da New Architecture. No entanto, houve outras mudanças notáveis, incluindo:
+
+- Correção para Catalyst está ativa, defina `mac_catalyst_enabled` como `true` no Podfile (veja diff do [upgrade-helper](https://react-native-community.github.io/upgrade-helper/?from=0.69.1&to=0.70.0-rc.0) para detalhes).
+- Atualização do metro para 0.72.0 que habilitará a nova React JSX Transform: [reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
+- Removendo `reactnativeutilsjni` pois é compilado das mesmas fontes que `reactnativejni` o que resulta em ~220 KBs economizados de cada build APK Android. ([https://github.com/facebook/react-native/pull/34339](https://github.com/facebook/react-native/pull/34339)).
+
+### Breaking changes
+
+Também houve algumas breaking changes:
+
+- Removido jest/preprocessor do pacote react-native ([0301cb285b](https://github.com/facebook/react-native/commit/0301cb285b2e85b48a397fe58d565196654d9754) por [@motiz88](https://github.com/motiz88))
+- Removido `Promise.prototype.done` não-padrão ([018d5cf985](https://github.com/facebook/react-native/commit/018d5cf985497273dd700b56168cf1cf64f498d5) por [@motiz88](https://github.com/motiz88))
+
+Observe também que a versão do Metro foi atualizada para 0.72, que vem [com 5 breaking changes](https://github.com/facebook/metro/releases/tag/v0.72.0).
+
+### Atualizações {#upgrades}
+
+E atualizamos algumas de nossas dependências:
+
+- Atualização do RN CLI para v9.0.0
+- Atualização do Android Gradle Plugin para 7.2.1
+- Atualização do Gradle para 7.5.1
+- Atualização do RCT-Folly para 2021-07-22
+- Atualização do Metro para 0.72
+- Atualização do SoLoader para 0.10.4
+
+Você pode conferir a lista completa de mudanças [no changelog](https://github.com/facebook/react-native/blob/main/CHANGELOG.md).
+
+### Agradecimentos {#acknowledgements}
+
+88 colaboradores com seus 493 commits ajudaram a tornar este lançamento possível - obrigado a todos! Também agradecemos a todos os outros que deram seu feedback para garantir que este lançamento seja o mais estável possível.

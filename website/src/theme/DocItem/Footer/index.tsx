@@ -13,7 +13,6 @@ import TagsListInline, {
 import type {EditUrlButton} from '../../../../docusaurus.config';
 import styles from './styles.module.css';
 import DocsRating from '../../../../core/DocsRating';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 
 function TagsRow(props: TagsListInlineProps) {
@@ -71,15 +70,17 @@ function EditMetaRow({editUrl, lastUpdatedAt, lastUpdatedBy}) {
 
 function TranslationIssueMessage() {
   const isBrowser = useIsBrowser();
-  const {siteConfig} = useDocusaurusContext();
 
   const getIssueUrl = () => {
     if (!isBrowser) return '#';
 
-    const currentUrl = encodeURIComponent(window.location.href);
     const repoUrl = 'https://github.com/ulisseshen/react-native-brasil-website';
-    const issueTitle = encodeURIComponent('[Tradução] Problema encontrado na página');
-    const issueBody = encodeURIComponent(`## URL da Página\n\n${window.location.href}\n\n## Tipo de Problema\n\n- [ ] Erro de tradução (tradução incorreta ou confusa)\n- [ ] Conteúdo não traduzido (ainda em inglês)\n- [ ] Conteúdo desatualizado (tradução antiga que precisa atualização)\n- [ ] Outro (descreva abaixo)\n\n## Descrição\n\n<!-- Descreva o problema aqui -->\n`);
+    const issueTitle = encodeURIComponent(
+      '[Tradução] Problema encontrado na página'
+    );
+    const issueBody = encodeURIComponent(
+      `## URL da Página\n\n${window.location.href}\n\n## Tipo de Problema\n\n- [ ] Erro de tradução (tradução incorreta ou confusa)\n- [ ] Conteúdo não traduzido (ainda em inglês)\n- [ ] Conteúdo desatualizado (tradução antiga que precisa atualização)\n- [ ] Outro (descreva abaixo)\n\n## Descrição\n\n<!-- Descreva o problema aqui -->\n`
+    );
 
     return `${repoUrl}/issues/new?template=translation_issue.md&title=${issueTitle}&body=${issueBody}&labels=tradução`;
   };

@@ -12,7 +12,7 @@ Não use a menos que você tenha uma razão muito boa. Todos os elementos que re
 
 `TouchableWithoutFeedback` suporta apenas um filho (child). Se você deseja ter vários componentes filhos, envolva-os em um View. É importante notar que `TouchableWithoutFeedback` funciona clonando seu filho e aplicando props de resposta (responder props) a ele. Portanto, é necessário que quaisquer componentes intermediários passem essas props para o componente React Native subjacente.
 
-## Padrão de Uso
+## Padrão de Uso {#usage-pattern}
 
 ```tsx
 function MyComponent(props: MyComponentProps) {
@@ -28,10 +28,10 @@ function MyComponent(props: MyComponentProps) {
 </TouchableWithoutFeedback>;
 ```
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=TouchableWithoutFeedback
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {StyleSheet, TouchableWithoutFeedback, Text, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -83,7 +83,7 @@ export default TouchableWithoutFeedbackExample;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Props
 
@@ -91,7 +91,7 @@ export default TouchableWithoutFeedbackExample;
 
 Um valor indicando se esta view deve ou não ser invertida quando a inversão de cores está ativada. Um valor `true` dirá à view para não ser invertida mesmo se a inversão de cores estiver ativada.
 
-Veja o [guia de Accessibility](accessibility.md#accessibilityignoresinvertcolors) para mais informações.
+Veja o [guia de Accessibility](accessibility.md#accessibilityignoresinvertcolors-ios) para mais informações.
 
 | Type    |
 | ------- |
@@ -121,7 +121,7 @@ Substitui o texto que é lido pelo leitor de tela quando o usuário interage com
 
 ### `accessibilityLanguage` <div className="label ios">iOS</div>
 
-Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interage com o elemento. Deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47).
+Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interage com o elemento. Deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47/).
 
 Veja a [documentação do iOS `accessibilityLanguage`](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage) para mais informações.
 
@@ -185,7 +185,7 @@ Uma dica de acessibilidade ajuda os usuários a entenderem o que acontecerá qua
 
 Descreve o estado atual de um componente ao usuário de uma tecnologia assistiva.
 
-Veja o [guia de Accessibility](accessibility.md#accessibilitystate-ios-android) para mais informações.
+Veja o [guia de Accessibility](accessibility.md#accessibilitystate) para mais informações.
 
 | Type                                                                                             |
 | ------------------------------------------------------------------------------------------------ |
@@ -283,7 +283,7 @@ Indica que um elemento será atualizado e descreve os tipos de atualizações qu
 
 ### `aria-modal` <div className="label ios">iOS</div>
 
-Valor booleano indicando se o VoiceOver deve ignorar os elementos dentro de views que são irmãs do receptor. Tem precedência sobre a prop [`accessibilityViewIsModal`](#accessibilityviewismodal-ios).
+Valor booleano indicando se o VoiceOver deve ignorar os elementos dentro de views que são irmãs do receptor. Tem precedência sobre a prop [`accessibilityViewIsModal`](accessibility.md#accessibilityviewismodal-ios).
 
 | Type    | Default |
 | ------- | ------- |
@@ -315,7 +315,7 @@ Veja o [guia de Accessibility](accessibility.md#accessibility-actions) para mais
 
 Representa o valor atual de um componente. Pode ser uma descrição textual do valor de um componente ou, para componentes baseados em faixa (range), como sliders e barras de progresso, contém informações de faixa (mínimo, atual e máximo).
 
-Veja o [guia de Accessibility](accessibility.md#accessibilityvalue-ios-android) para mais informações.
+Veja o [guia de Accessibility](accessibility.md#accessibilityvalue) para mais informações.
 
 | Type                                                            |
 | --------------------------------------------------------------- |
@@ -530,5 +530,3 @@ Se true, não reproduz um som do sistema no toque.
 | Type    |
 | ------- |
 | Boolean |
-
----

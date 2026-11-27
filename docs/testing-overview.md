@@ -3,7 +3,7 @@ ia-translated: true
 id: testing-overview
 title: Testando
 author: Vojtech Novak
-authorURL: 'https://twitter.com/vonovak'
+authorURL: 'https://x.com/vonovak'
 description: Este guia apresenta aos desenvolvedores React Native os conceitos-chave por trás de testes, como escrever bons testes e quais tipos de testes você pode incorporar ao seu workflow.
 ---
 
@@ -13,7 +13,7 @@ Neste guia, abordaremos diferentes maneiras automatizadas de garantir que seu ap
 
 <img src="/docs/assets/diagram_testing.svg" alt="Testar é um ciclo de corrigir, testar e passar para release ou falhar de volta para teste." />
 
-## Por que Testar
+## Por que Testar {#why-test}
 
 Somos humanos e humanos cometem erros. Testar é importante porque ajuda você a descobrir esses erros e verifica se seu código está funcionando. Talvez ainda mais importante, testar garante que seu código continue funcionando no futuro à medida que você adiciona novos recursos, refatora os existentes ou atualiza dependências principais do seu projeto.
 
@@ -23,7 +23,7 @@ Os testes também podem servir como documentação para novas pessoas que se jun
 
 Por último, mas não menos importante, mais testes automatizados significam menos tempo gasto com <abbr title="Quality Assurance">QA</abbr> manual, liberando tempo valioso.
 
-## Static Analysis
+## Análise Estática {#static-analysis}
 
 O primeiro passo para melhorar a qualidade do seu código é começar a usar ferramentas de análise estática. A análise estática verifica seu código em busca de erros enquanto você o escreve, mas sem executar nenhum código.
 
@@ -32,7 +32,7 @@ O primeiro passo para melhorar a qualidade do seu código é começar a usar fer
 
 React Native vem com duas dessas ferramentas configuradas por padrão: [ESLint](https://eslint.org/) para linting e [TypeScript](typescript) para type checking.
 
-## Writing Testable Code
+## Escrevendo Código Testável {#writing-testable-code}
 
 Para começar com testes, você primeiro precisa escrever código que seja testável. Considere um processo de fabricação de aeronaves - antes que qualquer modelo decole pela primeira vez para mostrar que todos os seus sistemas complexos funcionam bem juntos, partes individuais são testadas para garantir que sejam seguras e funcionem corretamente. Por exemplo, as asas são testadas dobrando-as sob carga extrema; partes do motor são testadas quanto à sua durabilidade; o para-brisa é testado contra impacto simulado de pássaros.
 
@@ -46,7 +46,7 @@ Teoricamente, você poderia ir tão longe a ponto de mover toda a lógica e busc
 Encorajamos você a explorar mais o tópico de código testável em outros recursos de aprendizagem.
 :::
 
-## Writing Tests
+## Escrevendo Testes {#writing-tests}
 
 Depois de escrever código testável, é hora de escrever alguns testes reais! O template padrão do React Native vem com [Jest](https://jestjs.io) testing framework. Ele inclui um preset que é adaptado para este ambiente, para que você possa ser produtivo sem ajustar a configuração e mocks imediatamente—[mais sobre mocks](#mocking) em breve. Você pode usar Jest para escrever todos os tipos de testes apresentados neste guia.
 
@@ -54,7 +54,7 @@ Depois de escrever código testável, é hora de escrever alguns testes reais! O
 Se você faz desenvolvimento orientado a testes, você na verdade escreve testes primeiro! Dessa forma, a testabilidade do seu código é garantida.
 :::
 
-### Structuring Tests
+### Estruturando Testes {#structuring-tests}
 
 Seus testes devem ser curtos e idealmente testar apenas uma coisa. Vamos começar com um exemplo de teste unitário escrito com Jest:
 
@@ -78,7 +78,7 @@ Se o seu teste tem muitas etapas ou muitas expectations, você provavelmente que
 
 Por último, como desenvolvedores gostamos quando nosso código funciona bem e não trava. Com testes, isso geralmente é o oposto. Pense em um teste que falhou como uma _coisa boa!_ Quando um teste falha, muitas vezes significa que algo não está certo. Isso lhe dá a oportunidade de corrigir o problema antes que ele afete os usuários.
 
-## Unit Tests
+## Testes Unitários {#unit-tests}
 
 Testes unitários cobrem as menores partes de código, como funções individuais ou classes.
 
@@ -88,7 +88,7 @@ A grande vantagem dos testes unitários é que eles são rápidos de escrever e 
 
 <img src="/docs/assets/p_tests-unit.svg" alt=" " />
 
-### Mocking
+### Mocks {#mocking}
 
 Às vezes, quando seus objetos testados têm dependências externas, você vai querer fazer "mock" delas. "Mocking" é quando você substitui alguma dependência do seu código com sua própria implementação.
 
@@ -108,7 +108,7 @@ Portanto, você pode fornecer uma implementação mock do serviço, substituindo
 O Jest vem com [suporte para mocking](https://jestjs.io/docs/en/mock-functions#mocking-modules) desde o nível de função até o nível de módulo.
 :::
 
-## Integration Tests
+## Testes de Integração {#integration-tests}
 
 Ao escrever sistemas de software maiores, peças individuais precisam interagir umas com as outras. Em testes unitários, se sua unidade depende de outra, você às vezes acaba fazendo mock da dependência, substituindo-a por uma falsa.
 
@@ -125,7 +125,7 @@ Observe que a terminologia em torno do que significa teste de integração nem s
 
 <img src="/docs/assets/p_tests-integration.svg" alt=" " />
 
-## Component Tests
+## Testes de Componentes {#component-tests}
 
 Componentes React são responsáveis por renderizar seu app, e os usuários interagirão diretamente com sua saída. Mesmo que a lógica de negócios do seu app tenha alta cobertura de teste e esteja correta, sem testes de componentes você ainda pode entregar uma UI quebrada aos seus usuários. Os testes de componentes podem se enquadrar tanto em testes unitários quanto de integração, mas como são uma parte tão central do React Native, nós os cobrimos separadamente.
 
@@ -147,7 +147,7 @@ Testes de componentes são apenas testes JavaScript executando em ambiente Node.
 
 <img src="/docs/assets/p_tests-component.svg" alt=" " />
 
-### Testing User Interactions
+### Testando Interações do Usuário {#testing-user-interactions}
 
 Além de renderizar alguma UI, seus componentes lidam com eventos como `onChangeText` para `TextInput` ou `onPress` para `Button`. Eles também podem conter outras funções e callbacks de eventos. Considere o seguinte exemplo:
 
@@ -218,7 +218,7 @@ test('given empty GroceryShoppingList, user can add an item to it', () => {
 
 Este exemplo não está testando como algum state muda quando você chama uma função. Ele testa o que acontece quando um usuário muda o texto no `TextInput` e pressiona o `Button`!
 
-### Testing Rendered Output
+### Testando a Saída Renderizada {#testing-rendered-output}
 
 [Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) é um tipo avançado de teste habilitado pelo Jest. É uma ferramenta muito poderosa e de baixo nível, então atenção extra é aconselhada ao usá-la.
 
@@ -246,11 +246,11 @@ Snapshots têm vários pontos fracos:
 
 Snapshots em si não garantem que sua lógica de renderização do componente esteja correta, eles são meramente bons em proteger contra mudanças inesperadas e para verificar que os componentes na árvore React sob teste recebam as props esperadas (styles e etc.).
 
-Recomendamos que você use apenas snapshots pequenos (veja a regra [`no-large-snapshots`](https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/no-large-snapshots.md)). Se você quiser testar uma _mudança_ entre dois estados de componente React, use [`snapshot-diff`](https://github.com/jest-community/snapshot-diff). Quando em dúvida, prefira expectations explícitas como descrito no parágrafo anterior.
+Recomendamos que você use apenas snapshots pequenos (veja a regra [`no-large-snapshots`](https://github.com/jest-community/eslint-plugin-jest/blob/main/docs/rules/no-large-snapshots.md)). Se você quiser testar uma _mudança_ entre dois estados de componente React, use [`snapshot-diff`](https://github.com/jest-community/snapshot-diff). Quando em dúvida, prefira expectations explícitas como descrito no parágrafo anterior.
 
 <img src="/docs/assets/p_tests-snapshot.svg" alt=" " />
 
-## End-to-End Tests
+## Testes End-to-End {#end-to-end-tests}
 
 Em testes end-to-end (E2E), você verifica se seu app está funcionando conforme esperado em um dispositivo (ou um simulator / emulator) da perspectiva do usuário.
 
@@ -266,15 +266,15 @@ Testes E2E lhe dão a maior confiança possível de que parte do seu app está f
 
 Tente cobrir as partes vitais do seu app com testes E2E: fluxo de autenticação, funcionalidades principais, pagamentos, etc. Use testes JS mais rápidos para as partes não vitais do seu app. Quanto mais testes você adiciona, maior sua confiança, mas também mais tempo você gastará mantendo-os e executando-os. Considere os tradeoffs e decida o que é melhor para você.
 
-Existem várias ferramentas de testes E2E disponíveis: na comunidade React Native, [Detox](https://github.com/wix/detox/) é um framework popular porque é feito sob medida para apps React Native. Outra biblioteca popular no espaço de apps iOS e Android é [Appium](https://appium.io/) ou [Maestro](https://maestro.mobile.dev/).
+Existem várias ferramentas de testes E2E disponíveis: na comunidade React Native, [Detox](https://github.com/wix/detox/) é um framework popular porque é feito sob medida para apps React Native. Outra biblioteca popular no espaço de apps iOS e Android é [Appium](https://appium.io/), [Maestro](https://maestro.mobile.dev/) ou [e2e](https://github.com/e2e-inc/e2e).
 
 <img src="/docs/assets/p_tests-e2e.svg" alt=" " />
 
-## Summary
+## Resumo {#summary}
 
 Esperamos que você tenha gostado de ler e aprendido algo com este guia. Existem muitas maneiras de testar seus apps. Pode ser difícil decidir o que usar no início. No entanto, acreditamos que tudo fará sentido assim que você começar a adicionar testes ao seu incrível app React Native. Então o que você está esperando? Aumente sua cobertura!
 
-### Links
+### Links úteis {#links}
 
 - [React testing overview](https://react.dev/reference/react/act)
 - [React Native Testing Library](https://callstack.github.io/react-native-testing-library/)
@@ -285,4 +285,4 @@ Esperamos que você tenha gostado de ler e aprendido algo com este guia. Existem
 
 ---
 
-_Este guia foi originalmente criado e contribuído integralmente por [Vojtech Novak](https://twitter.com/vonovak)._
+_Este guia foi originalmente criado e contribuído integralmente por [Vojtech Novak](https://x.com/vonovak)._

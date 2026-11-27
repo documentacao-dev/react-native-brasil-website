@@ -13,7 +13,6 @@ O componente `FlatList` requer duas props: `data` e `renderItem`. `data` é a fo
 Este exemplo cria um `FlatList` básico com dados fixos. Cada item nas props `data` é renderizado como um componente `Text`. O componente `FlatListBasics` então renderiza o `FlatList` e todos os componentes `Text`.
 
 ```SnackPlayer name=FlatList%20Basics
-import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -56,7 +55,6 @@ export default FlatListBasics;
 Se você quiser renderizar um conjunto de dados dividido em seções lógicas, talvez com cabeçalhos de seção, similar ao `UITableView` no iOS, então [SectionList](sectionlist.md) é o caminho a seguir.
 
 ```SnackPlayer name=SectionList%20Basics
-import React from 'react';
 import {SectionList, StyleSheet, Text, View} from 'react-native';
 
 const styles = StyleSheet.create({

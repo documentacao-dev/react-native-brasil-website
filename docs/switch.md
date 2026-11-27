@@ -8,10 +8,10 @@ Renderiza um input booleano.
 
 Este é um componente controlado que requer um callback `onValueChange` que atualiza a prop `value` para que o componente reflita as ações do usuário. Se a prop `value` não for atualizada, o componente continuará a renderizar a prop `value` fornecida ao invés do resultado esperado de quaisquer ações do usuário.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=Switch&supportedPlatforms=android,ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Switch, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -47,7 +47,7 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Props
 
@@ -117,7 +117,7 @@ Cor da alça do switch em primeiro plano. Se isto for definido no iOS, a alça d
 
 Cores customizadas para a trilha do switch.
 
-_iOS_: Quando o valor do switch é `false`, a trilha encolhe para dentro da borda. Se você quiser alterar a cor do background exposto pela trilha encolhida, use [`ios_backgroundColor`](switch.md#ios_backgroundColor).
+_iOS_: Quando o valor do switch é `false`, a trilha encolhe para dentro da borda. Se você quiser alterar a cor do background exposto pela trilha encolhida, use [`ios_backgroundColor`](switch.md#ios_backgroundcolor-ios).
 
 | Tipo                                                         |
 | ------------------------------------------------------------ |

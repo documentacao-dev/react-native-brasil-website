@@ -4,16 +4,15 @@ id: progressbarandroid
 title: '🗑️ ProgressBarAndroid'
 ---
 
-:::warning Descontinuado
+:::warning[Descontinuado]
 Use um dos [pacotes da comunidade](https://reactnative.directory/?search=progressbar) em vez disso.
 :::
 
 Componente React exclusivo para Android usado para indicar que o aplicativo está carregando ou há alguma atividade no aplicativo.
 
-### Exemplo
+### Exemplo {#example}
 
 ```SnackPlayer name=ProgressBarAndroid&supportedPlatforms=android
-import React from 'react';
 import {View, StyleSheet, ProgressBarAndroid, Text} from 'react-native';
 
 const App = () => {
@@ -21,15 +20,19 @@ const App = () => {
     <View style={styles.container}>
       <View style={styles.example}>
         <Text>Circle Progress Indicator</Text>
-        <ProgressBarAndroid />
+        <ProgressBarAndroid indeterminate styleAttr="Normal" />
       </View>
       <View style={styles.example}>
         <Text>Horizontal Progress Indicator</Text>
-        <ProgressBarAndroid styleAttr="Horizontal" />
+        <ProgressBarAndroid indeterminate styleAttr="Horizontal" />
       </View>
       <View style={styles.example}>
         <Text>Colored Progress Indicator</Text>
-        <ProgressBarAndroid styleAttr="Horizontal" color="#2196F3" />
+        <ProgressBarAndroid
+          indeterminate
+          styleAttr="Horizontal"
+          color="#2196F3"
+        />
       </View>
       <View style={styles.example}>
         <Text>Fixed Progress Value</Text>
@@ -59,7 +62,7 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Props
 
@@ -70,8 +73,8 @@ Herda [View Props](view.md#props).
 Se deve mostrar o ProgressBar (true, o padrão) ou ocultá-lo (false).
 
 | Tipo | Obrigatório |
-| ---- | -------- |
-| bool | Não       |
+| ---- | ----------- |
+| bool | Não         |
 
 ---
 
@@ -80,8 +83,8 @@ Se deve mostrar o ProgressBar (true, o padrão) ou ocultá-lo (false).
 Cor da barra de progresso.
 
 | Tipo               | Obrigatório |
-| ------------------ | -------- |
-| [color](colors.md) | Não       |
+| ------------------ | ----------- |
+| [color](colors.md) | Não         |
 
 ---
 
@@ -90,8 +93,8 @@ Cor da barra de progresso.
 Se a barra de progresso mostrará progresso indeterminado. Note que isso só pode ser false se styleAttr for Horizontal, e requer um valor `progress`.
 
 | Tipo              | Obrigatório |
-| ----------------- | -------- |
-| indeterminateType | Não       |
+| ----------------- | ----------- |
+| indeterminateType | Não         |
 
 ---
 
@@ -100,8 +103,8 @@ Se a barra de progresso mostrará progresso indeterminado. Note que isso só pod
 O valor de progresso (entre 0 e 1).
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| number | Não       |
+| ------ | ----------- |
+| number | Não         |
 
 ---
 
@@ -118,8 +121,8 @@ Estilo do ProgressBar. Um de:
 - LargeInverse
 
 | Tipo                                                                                      | Obrigatório |
-| ----------------------------------------------------------------------------------------- | -------- |
-| enum('Horizontal', 'Normal', 'Small', 'Large', 'Inverse', 'SmallInverse', 'LargeInverse') | Não       |
+| ----------------------------------------------------------------------------------------- | ----------- |
+| enum('Horizontal', 'Normal', 'Small', 'Large', 'Inverse', 'SmallInverse', 'LargeInverse') | Não         |
 
 ---
 
@@ -128,5 +131,5 @@ Estilo do ProgressBar. Um de:
 Usado para localizar esta view em testes end-to-end.
 
 | Tipo   | Obrigatório |
-| ------ | -------- |
-| string | Não       |
+| ------ | ----------- |
+| string | Não         |

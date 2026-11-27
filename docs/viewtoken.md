@@ -4,9 +4,9 @@ title: ViewToken Object Type
 ia-translated: true
 ---
 
-O objeto `ViewToken` é retornado como uma das propriedades no callback `onViewableItemsChanged` (por exemplo, no componente [FlatList](flatlist)). Ele é exportado pelo [`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js).
+O objeto `ViewToken` é retornado como uma das propriedades no callback `onViewableItemsChanged` (por exemplo, no componente [FlatList](flatlist)). Ele é exportado pelo [`ViewabilityHelper.js`](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js).
 
-## Exemplo
+## Exemplo {#example}
 
 ```js
 {
@@ -17,11 +17,13 @@ O objeto `ViewToken` é retornado como uma das propriedades no callback `onViewa
 }
 ```
 
-## Chaves e valores
+## Chaves e valores {#keys-and-values}
 
 ### `index`
 
 Identificador numérico único atribuído ao elemento de dados.
+
+Esta propriedade pode ser `null` quando o elemento visível não é um item do array de dados, por exemplo quando um cabeçalho ou rodapé de seção se torna visível em [`SectionList`](sectionlist).
 
 | Tipo   | Opcional |
 | ------ | -------- |
@@ -59,7 +61,7 @@ Dados da seção do item quando usado com `SectionList`.
 | ---- | -------- |
 | any  | Sim      |
 
-## Usado por
+## Usado por {#used-by}
 
 - [`FlatList`](flatlist)
 - [`SectionList`](sectionlist)

@@ -21,13 +21,12 @@ Uma interface performática para renderizar listas básicas e planas, com suport
 
 Se você precisa de suporte a seções, use [`<SectionList>`](sectionlist.md).
 
-## Example
+## Exemplo {#example}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer name=Simple%20FlatList%20Example&ext=js
-import React from 'react';
 import {View, FlatList, StyleSheet, Text, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -87,7 +86,6 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Simple%20FlatList%20Example&ext=tsx
-import React from 'react';
 import {View, FlatList, StyleSheet, Text, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -152,14 +150,14 @@ Para renderizar múltiplas colunas, use a prop [`numColumns`](flatlist.md#numcol
 
 Exemplo mais complexo e selecionável abaixo.
 
-- Ao passar `extraData={selectedId}` para `FlatList`, garantimos que o próprio `FlatList` será re-renderizado quando o estado mudar. Sem definir essa prop, `FlatList` não saberia que precisa re-renderizar nenhum item porque é um `PureComponent` e a comparação de props não mostrará nenhuma mudança.
+- Ao passar `extraData={selectedId}` para `FlatList`, garantimos que o `FlatList` será re-renderizado quando `selectedId` mudar. Como o `FlatList` implementa `PureComponent`, ele só é re-renderizado se suas props mudarem. Embora o `renderItem` deste exemplo seja recriado a cada renderização por ser definido inline, passar `extraData` é essencial sempre que o `renderItem` tiver uma referência estável (como quando é memoizado ou definido fora do componente), para que o `FlatList` saiba que uma dependência externa foi atualizada.
 - `keyExtractor` informa à lista para usar os `id`s como chaves do React em vez da propriedade `key` padrão.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer name=flatlist-selectable&ext=js
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   FlatList,
   StatusBar,
@@ -243,7 +241,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=flatlist-selectable&ext=tsx
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   FlatList,
   StatusBar,
@@ -487,6 +485,16 @@ Estilo para a View interna de `ListHeaderComponent`.
 
 ---
 
+### `ListItemComponent`
+
+Cada item de dados é renderizado usando este elemento, como alternativa a `renderItem`. Ele recebe as mesmas props e tem precedência sobre `renderItem` quando ambos são fornecidos.
+
+| Type               |
+| ------------------ |
+| component, element |
+
+---
+
 ### `columnWrapperStyle`
 
 Estilo personalizado opcional para linhas de múltiplos itens geradas quando `numColumns > 1`.
@@ -653,7 +661,7 @@ Quando `true`, as views filhas fora da tela são removidas de sua superview nati
 
 ### `viewabilityConfig`
 
-Veja [`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js) para o tipo flow e documentação adicional.
+Veja [`ViewabilityHelper.js`](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js) para o tipo flow e documentação adicional.
 
 | Type              |
 | ----------------- |
@@ -668,7 +676,7 @@ Veja [`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main
 | itemVisiblePercentThreshold      | number  |
 | waitForInteraction               | boolean |
 
-Pelo menos um de `viewAreaCoveragePercentThreshold` ou `itemVisiblePercentThreshold` é necessário. Isso precisa ser feito no `constructor` para evitar o seguinte erro ([ref](https://github.com/facebook/react-native/issues/17408)):
+Pelo menos um de `viewAreaCoveragePercentThreshold` ou `itemVisiblePercentThreshold` é necessário. Isso precisa ser feito no `constructor` para evitar o seguinte erro ([ref](https://github.com/react/react-native/issues/17408)):
 
 ```
   Error: Changing viewabilityConfig on the fly is not supported

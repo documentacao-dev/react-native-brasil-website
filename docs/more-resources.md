@@ -6,7 +6,7 @@ title: Mais Recursos
 
 Sempre há mais para aprender: fluxos de trabalho de desenvolvimento, publicação nas lojas de aplicativos, internacionalização, segurança e muito mais.
 
-## Para onde ir a partir daqui
+## Para onde ir a partir daqui {#where-to-go-from-here}
 
 - [Configure seu ambiente](environment-setup)
 - [Configure seu fluxo de trabalho de desenvolvimento](running-on-device)
@@ -15,7 +15,7 @@ Sempre há mais para aprender: fluxos de trabalho de desenvolvimento, publicaç�
 - [Torne seu app multiplataforma](platform-specific-code)
 - [Envolva-se na comunidade React Native](/community/overview)
 
-## Mergulhe fundo
+## Mergulhe fundo {#dive-deep}
 
 - [Documentação do React](https://react.dev/learn)
 - [Tutoriais, referências e guias de JavaScript do MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -25,17 +25,17 @@ Sempre há mais para aprender: fluxos de trabalho de desenvolvimento, publicaç�
 
 Recomendamos usar o editor de código [VS Code](https://code.visualstudio.com/) e suas úteis [ferramentas React Native](https://marketplace.visualstudio.com/items?itemName=msjsdiag.vscode-react-native).
 
-## Plataformas para experimentar
+## Plataformas para experimentar {#platforms-to-try}
 
 [Expo](https://docs.expo.dev/) é um framework de ferramentas e serviços para React Native que se concentra em ajudá-lo a construir, publicar e iterar em seu app, usar fluxos de trabalho de implantação de preview que são populares no desenvolvimento web e automatizar seus fluxos de trabalho de desenvolvimento. O Expo também torna possível construir apps React Native sem nunca tocar no Xcode ou Android Studio, e não atrapalha se você quiser usar essas ferramentas.
 
 [Ignite](https://github.com/infinitered/ignite) é um CLI de kit inicial com vários boilerplates React Native. O mais recente, Ignite Maverick, usa MobX-State-Tree para gerenciamento de estado, React Navigation e outras bibliotecas comuns. Ele tem geradores para telas, modelos e muito mais, e suporta Expo out of the box. O Ignite também vem com uma biblioteca de componentes que é ajustada para designs personalizados, suporte a temas e testes. Se você está procurando uma pilha de tecnologia pré-configurada, o Ignite pode ser perfeito para você.
 
-## Apps de Exemplo
+## Apps de Exemplo {#example-apps}
 
 Experimente apps do [Showcase](https://reactnative.dev/showcase) para ver do que o React Native é capaz! Procurando algo mais prático? Confira este [conjunto de apps de exemplo no GitHub](https://github.com/ReactNativeNews/React-Native-Apps). Você pode ver o código-fonte deles—tente executar um em um simulador ou dispositivo.
 
-## Encontre, crie e compartilhe seus próprios Native Components e TurboModules
+## Encontre, crie e compartilhe seus próprios Native Components e TurboModules {#find-make-and-share-your-own-native-components-and-turbomodules}
 
 React Native tem uma comunidade de milhares de desenvolvedores como você criando conteúdo, ferramentas, tutoriais—e Native Components!
 

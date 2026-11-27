@@ -50,7 +50,7 @@ Se você quiser renderizar um conjunto de dados dividido em seções lógicas, t
 
 A implementação por trás dos bastidores com uma API mais flexível. Especialmente útil se seus dados não estão em um array simples (por exemplo, uma lista imutável).
 
-## Recursos
+## Recursos {#features}
 
 Listas são usadas em muitos contextos, então empacotamos os novos componentes cheios de recursos para lidar com a maioria dos casos de uso prontos para uso:
 
@@ -63,7 +63,7 @@ Listas são usadas em muitos contextos, então empacotamos os novos componentes 
 - `scrollToEnd`, `scrollToIndex` e `scrollToItem`
 - Melhor tipagem Flow.
 
-### Algumas Ressalvas
+### Algumas Ressalvas {#some-caveats}
 
 - O estado interno das subárvores de itens não é preservado quando o conteúdo sai da janela de renderização. Certifique-se de que todos os seus dados sejam capturados nos dados do item ou em stores externos como Flux, Redux ou Relay.
 
@@ -108,7 +108,7 @@ Limitar a janela de renderização também reduz a quantidade de trabalho que pr
 
 Também fizemos algumas melhorias com agendamento que devem ajudar com a responsividade do aplicativo. Itens na borda da janela de renderização são renderizados com pouca frequência e em prioridade mais baixa após quaisquer gestos ativos, animações ou outras interações terem sido concluídas.
 
-## Uso Avançado
+## Uso Avançado {#advanced-usage}
 
 Ao contrário de `ListView`, todos os itens na janela de renderização são re-renderizados sempre que qualquer prop muda. Frequentemente isso é bom porque o windowing reduz o número de itens para um número constante, mas se seus itens forem complexos, você deve certificar-se de seguir as melhores práticas do React para performance e usar `React.PureComponent` e/ou `shouldComponentUpdate` conforme apropriado dentro de seus componentes para limitar re-renderizações da subárvore recursiva.
 
@@ -118,7 +118,7 @@ Se você tiver um tipo de dados alternativo, como uma lista imutável, `<Virtual
 
 Há também vários parâmetros que você pode ajustar se tiver um caso de uso incomum. Por exemplo, você pode usar `windowSize` para compensar uso de memória vs. experiência do usuário, `maxToRenderPerBatch` para ajustar taxa de preenchimento vs. responsividade, `onEndReachedThreshold` para controlar quando o carregamento por rolagem acontece, e mais.
 
-## Trabalho Futuro
+## Trabalho Futuro {#future-work}
 
 - Migração de superfícies existentes (eventualmente deprecação de `ListView`).
 - Mais recursos conforme vermos/ouvirmos a necessidade (nos avise!).

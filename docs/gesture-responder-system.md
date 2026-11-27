@@ -8,7 +8,7 @@ O sistema gesture responder gerencia o ciclo de vida dos gestos em seu app. Um t
 
 O sistema touch responder é necessário para permitir que componentes negociem essas interações de toque sem qualquer conhecimento adicional sobre seus componentes pai ou filho.
 
-### Melhores Práticas
+### Melhores Práticas {#best-practices}
 
 Para fazer seu app parecer ótimo, toda ação deve ter os seguintes atributos:
 
@@ -17,11 +17,11 @@ Para fazer seu app parecer ótimo, toda ação deve ter os seguintes atributos:
 
 Esses recursos fazem os usuários se sentirem mais confortáveis ao usar um app, porque permite que as pessoas experimentem e interajam sem medo de cometer erros.
 
-### TouchableHighlight e Touchable\*
+### TouchableHighlight e Touchable\* {#touchablehighlight-and-touchable}
 
 O sistema responder pode ser complicado de usar. Então fornecemos uma implementação abstrata de `Touchable` para coisas que devem ser "tocáveis". Isso usa o sistema responder e permite que você configure interações de toque declarativamente. Use `TouchableHighlight` em qualquer lugar onde você usaria um button ou link na web.
 
-## Ciclo de Vida do Responder
+## Ciclo de Vida do Responder {#responder-lifecycle}
 
 Uma view pode se tornar o touch responder implementando os métodos de negociação corretos. Existem dois métodos para perguntar à view se ela quer se tornar responder:
 
@@ -53,7 +53,7 @@ Se a view está respondendo, os seguintes manipuladores podem ser chamados:
   - `timestamp` - Um identificador de tempo para o toque, útil para cálculo de velocidade
   - `touches` - Array de todos os toques atuais na tela
 
-### Manipuladores ShouldSet de Captura
+### Manipuladores ShouldSet de Captura {#capture-shouldset-handlers}
 
 `onStartShouldSetResponder` e `onMoveShouldSetResponder` são chamados com um padrão de bubbling, onde o node mais profundo é chamado primeiro. Isso significa que o componente mais profundo se tornará responder quando múltiplas Views retornam true para os manipuladores `*ShouldSetResponder`. Isso é desejável na maioria dos casos, porque garante que todos os controles e botões sejam usáveis.
 

@@ -6,7 +6,7 @@ title: Tipo de Objeto BoxShadowValue
 
 O objeto `BoxShadowValue` é recebido pela propriedade de estilo [`boxShadow`](./view-style-props.md#boxshadow). Ele é composto por 2-4 comprimentos, uma cor opcional e um booleano `inset` opcional. Esses valores definem coletivamente a cor, posição, tamanho e desfoque da sombra da caixa.
 
-## Exemplo
+## Exemplo {#example}
 
 ```js
 {
@@ -19,7 +19,7 @@ O objeto `BoxShadowValue` é recebido pela propriedade de estilo [`boxShadow`](.
 }
 ```
 
-## Chaves e valores
+## Chaves e valores {#keys-and-values}
 
 ### `offsetX`
 
@@ -39,19 +39,19 @@ O deslocamento no eixo y. Pode ser positivo ou negativo. Um valor positivo indic
 
 ### `blurRadius`
 
-Representa o raio usado no algoritmo de [Guassian blur](https://en.wikipedia.org/wiki/Gaussian_blur). Quanto maior o valor, mais desfocada fica a sombra. Apenas valores não-negativos são válidos. O padrão é 0.
+Representa o raio usado no algoritmo de [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur). Quanto maior o valor, mais desfocada fica a sombra. Apenas valores não-negativos são válidos. O padrão é 0.
 
-| Tipo            | Opcional |
-| --------------- | -------- |
-| numer \| string | Sim      |
+| Tipo             | Opcional |
+| ---------------- | -------- |
+| number \| string | Sim      |
 
 ### `spreadDistance`
 
 Quanto maior ou menor a sombra cresce ou diminui. Um valor positivo aumentará a sombra, um valor negativo diminuirá a sombra.
 
-| Tipo            | Opcional |
-| --------------- | -------- |
-| numer \| string | Sim      |
+| Tipo             | Opcional |
+| ---------------- | -------- |
+| number \| string | Sim      |
 
 ### `color`
 
@@ -63,12 +63,12 @@ A cor da sombra. O padrão é `black`.
 
 ### `inset`
 
-Se a sombra é inset ou não. Sombras inset aparecerão ao redor do interior da caixa de borda do elemento, em oposição ao exterior.
+Se a sombra é inset ou não. Sombras inset aparecem ao redor do interior da caixa de borda do elemento, em oposição ao exterior.
 
 | Tipo    | Opcional |
 | ------- | -------- |
 | boolean | Sim      |
 
-## Usado por
+## Usado por {#used-by}
 
 - [`boxShadow`](./view-style-props.md#boxshadow)

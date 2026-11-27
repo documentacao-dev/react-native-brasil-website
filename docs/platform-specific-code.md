@@ -13,7 +13,7 @@ O React Native oferece duas maneiras de organizar seu código e separá-lo por p
 
 Certos componentes podem ter propriedades que funcionam em apenas uma plataforma. Todas essas props são anotadas com `@platform` e têm um pequeno badge ao lado delas no site.
 
-## Módulo Platform
+## Módulo Platform {#platform-module}
 
 O React Native fornece um módulo que detecta a plataforma na qual o aplicativo está sendo executado. Você pode usar a lógica de detecção para implementar código específico de plataforma. Use esta opção quando apenas pequenas partes de um component forem específicas de plataforma.
 
@@ -73,7 +73,7 @@ const Component = Platform.select({
 <Component />;
 ```
 
-### Detectando a versão do Android <div className="label android" title="This section is related to Android platform">Android</div>
+### Detectando a versão do Android <div className="label android">Android</div> {#detecting-the-android-version-android}
 
 No Android, o módulo `Platform` também pode ser usado para detectar a versão da Plataforma Android na qual o aplicativo está sendo executado:
 
@@ -87,7 +87,7 @@ if (Platform.Version === 25) {
 
 **Nota**: `Version` é definido para a versão da API Android, não para a versão do sistema operacional Android. Para encontrar um mapeamento, consulte [Android Version History](https://en.wikipedia.org/wiki/Android_version_history#Overview).
 
-### Detectando a versão do iOS <div className="label ios" title="This section is related to iOS platform">iOS</div>
+### Detectando a versão do iOS <div className="label ios">iOS</div> {#detecting-the-ios-version-ios}
 
 No iOS, o `Version` é resultado de `-[UIDevice systemVersion]`, que é uma string com a versão atual do sistema operacional. Um exemplo da versão do sistema é "10.3". Por exemplo, para detectar o número da versão principal no iOS:
 
@@ -100,7 +100,7 @@ if (majorVersionIOS <= 9) {
 }
 ```
 
-## Extensões específicas de plataforma
+## Extensões específicas de plataforma {#platform-specific-extensions}
 
 Quando seu código específico de plataforma é mais complexo, você deve considerar dividir o código em arquivos separados. O React Native detectará quando um arquivo tem uma extensão `.ios.` ou `.android.` e carregará o arquivo de plataforma relevante quando necessário a partir de outros components.
 
@@ -119,7 +119,7 @@ import BigButton from './BigButton';
 
 O React Native selecionará automaticamente o arquivo correto com base na plataforma em execução.
 
-## Extensões específicas de Native (ou seja, compartilhando código com NodeJS e Web)
+## Extensões específicas de Native (ou seja, compartilhando código com NodeJS e Web) {#native-specific-extensions-ie-sharing-code-with-nodejs-and-web}
 
 Você também pode usar a extensão `.native.js` quando um módulo precisa ser compartilhado entre NodeJS/Web e React Native, mas não tem diferenças entre Android/iOS. Isso é especialmente útil para projetos que têm código comum compartilhado entre React Native e ReactJS.
 

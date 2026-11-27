@@ -9,7 +9,6 @@ Transformações são propriedades de estilo que ajudam você a modificar a apar
 ## Example
 
 ```SnackPlayer name=Transforms%20Example
-import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -130,6 +129,20 @@ const App = () => (
           ]}>
           <Text style={styles.text}>TranslateY by 50 </Text>
         </View>
+
+        <View
+          style={[
+            styles.box,
+            {
+              transform: [
+                {
+                  matrix: [1, 0.5, 0, 0, 0.5, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+                },
+              ],
+            },
+          ]}>
+          <Text style={styles.text}>Matrix Transform</Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   </SafeAreaProvider>
@@ -166,7 +179,7 @@ export default App;
 
 ---
 
-# Reference
+# Referência {#reference}
 
 ## Transform
 
@@ -196,15 +209,74 @@ As transformações de inclinação requerem uma string para que a transformaç�
 }
 ```
 
-| Type                                                                                                                                                                                                                                                                                                          | Required |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| array of objects: `{matrix: number[]}`, `{perspective: number}`, `{rotate: string}`, `{rotateX: string}`, `{rotateY: string}`, `{rotateZ: string}`, `{scale: number}`, `{scaleX: number}`, `{scaleY: number}`, `{translateX: number}`, `{translateY: number}`, `{skewX: string}`, `{skewY: string}` or string | No       |
+As transformações de translação (`translateX` e `translateY`) aceitam números (pontos) ou strings de porcentagem (por exemplo, `'50%'`, `'100%'`). Ao usar porcentagens, o deslocamento é relativo à largura do elemento (para `translateX`) ou à altura (para `translateY`). A translação com porcentagem é suportada na [New Architecture](/architecture/landing-page). Por exemplo:
+
+```js
+{
+  transform: [{translateX: '50%'}, {translateY: 100}],
+}
+```
+
+### Transformação de matriz {#matrix-transform}
+
+A transformação `matrix` aceita uma matriz de transformação 4x4 como um array de 16 números. Isso permite aplicar transformações complexas que combinam translação, rotação, escala e inclinação em uma única operação.
+
+A matriz é especificada na ordem column-major:
+
+```js
+{
+  transform: [
+    {
+      matrix: [
+        scaleX,
+        skewY,
+        0,
+        0,
+        skewX,
+        scaleY,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        translateX,
+        translateY,
+        0,
+        1,
+      ],
+    },
+  ];
+}
+```
+
+Por exemplo, para aplicar uma combinação de escala e inclinação:
+
+```js
+{
+  transform: [
+    {
+      matrix: [
+        1, 0.5, 0, 0, 0.5, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1,
+      ],
+    },
+  ];
+}
+```
+
+:::note
+Transformações de matriz são úteis quando você precisa aplicar matrizes de transformação pré-calculadas, como as de bibliotecas de animação ou ao criar aplicativos de editor de UI. Para transformações básicas, recomenda-se usar as propriedades de transformação individuais (scale, rotate, translate etc.), pois são mais legíveis.
+:::
+
+| Tipo                                                                                                                                                                                                                                                                                                                              | Obrigatório |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| array de objetos: `{matrix: number[]}`, `{perspective: number}`, `{rotate: string}`, `{rotateX: string}`, `{rotateY: string}`, `{rotateZ: string}`, `{scale: number}`, `{scaleX: number}`, `{scaleY: number}`, `{translateX: number \| string}`, `{translateY: number \| string}`, `{skewX: string}`, `{skewY: string}` ou string | Não         |
 
 ---
 
-### `decomposedMatrix`, `rotation`, `scaleX`, `scaleY`, `transformMatrix`, `translateX`, `translateY`
+### 🗑️ `decomposedMatrix`, `rotation`, `scaleX`, `scaleY`, `transformMatrix`, `translateX`, `translateY`
 
-:::warning Deprecated
+:::warning[Deprecated]
 Use a prop [`transform`](transforms#transform) no lugar.
 :::
 
@@ -212,10 +284,10 @@ Use a prop [`transform`](transforms#transform) no lugar.
 
 A propriedade `transformOrigin` define a origem para as transformações de uma view. A origem da transformação é o ponto ao redor do qual uma transformação é aplicada. Por padrão, a origem de uma transformação é `center`.
 
-# Example
+# Exemplo {#example-1}
 
 ```SnackPlayer name=TransformOrigin%20Example
-import React, {useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import {Animated, View, StyleSheet, Easing} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 

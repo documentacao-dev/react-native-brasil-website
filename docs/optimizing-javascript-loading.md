@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 Fazer o parsing e executar código JavaScript requer memória e tempo. Por causa disso, à medida que seu aplicativo cresce, geralmente é útil adiar o carregamento de código até que seja necessário pela primeira vez. React Native vem com algumas otimizações padrão que estão ativadas por padrão, e há técnicas que você pode adotar em seu próprio código para ajudar React a carregar seu aplicativo de forma mais eficiente. Existem também algumas otimizações automáticas avançadas (com seus próprios trade-offs) que são adequadas para aplicativos muito grandes.
 
-## Recomendado: Use Hermes
+## Recomendado: Use Hermes {#recommended-use-hermes}
 
 Hermes é o mecanismo padrão para novos aplicativos React Native e é altamente otimizado para carregamento eficiente de código. Em builds de release, o código JavaScript é totalmente compilado para bytecode antecipadamente. Bytecode é carregado na memória sob demanda e não precisa ser analisado como JavaScript simples.
 
@@ -16,7 +16,7 @@ Hermes é o mecanismo padrão para novos aplicativos React Native e é altamente
 Leia mais sobre o uso do Hermes no React Native [aqui](./hermes).
 :::
 
-## Recomendado: Lazy-load de componentes grandes
+## Recomendado: Lazy-load de componentes grandes {#recommended-lazy-load-large-components}
 
 Se um componente com muito código/dependências não é provável de ser usado ao renderizar inicialmente seu aplicativo, você pode usar a API [`lazy`](https://react.dev/reference/react/lazy) do React para adiar o carregamento de seu código até que seja renderizado pela primeira vez. Normalmente, você deve considerar fazer lazy-loading de componentes no nível de tela em seu aplicativo, para que adicionar novas telas ao seu aplicativo não aumente seu tempo de inicialização.
 
@@ -24,16 +24,16 @@ Se um componente com muito código/dependências não é provável de ser usado 
 Leia mais sobre [lazy-loading de componentes com Suspense](https://react.dev/reference/react/lazy#suspense-for-code-splitting), incluindo exemplos de código, na documentação do React.
 :::
 
-### Dica: Evite efeitos colaterais de módulos
+### Dica: Evite efeitos colaterais de módulos {#tip-avoid-module-side-effects}
 
 Fazer lazy-loading de componentes pode alterar o comportamento do seu aplicativo se os módulos do seu componente (ou suas dependências) tiverem _efeitos colaterais_, como modificar variáveis globais ou se inscrever em eventos fora de um componente. A maioria dos módulos em aplicativos React não deve ter efeitos colaterais.
 
 ```tsx title="SideEffects.tsx"
 import Logger from './utils/Logger';
 
-//  🚩 🚩 🚩 Efeito colateral! Isso deve ser executado antes que React possa até começar a
-// renderizar o componente SplashScreen, e pode quebrar inesperadamente código em outro lugar
-// no seu app se você decidir mais tarde fazer lazy-load do SplashScreen.
+//  🚩 🚩 🚩 Side effect! This must be executed before React can even begin to
+// render the SplashScreen component, and can unexpectedly break code elsewhere
+// in your app if you later decide to lazy-load SplashScreen.
 global.logger = new Logger();
 
 export function SplashScreen() {
@@ -41,7 +41,7 @@ export function SplashScreen() {
 }
 ```
 
-## Avançado: Chame `require` inline
+## Avançado: Chame `require` inline {#advanced-call-require-inline}
 
 Às vezes você pode querer adiar o carregamento de algum código até usá-lo pela primeira vez, sem usar `lazy` ou um `import()` assíncrono. Você pode fazer isso usando a função [`require()`](https://metrobundler.dev/docs/module-api/#require) onde você normalmente usaria um `import` estático no topo do arquivo.
 
@@ -85,7 +85,7 @@ export default function Optimize() {
 }
 ```
 
-## Avançado: Inline automático de chamadas `require`
+## Avançado: Inline automático de chamadas `require` {#advanced-automatically-inline-require-calls}
 
 Se você usa o React Native CLI para construir seu aplicativo, chamadas `require` (mas não `import`s) serão automaticamente inline para você, tanto em seu código quanto dentro de quaisquer pacotes de terceiros (`node_modules`) que você usa.
 
@@ -117,7 +117,7 @@ export default function Optimize() {
 Alguns frameworks React Native desabilitam esse comportamento. Em particular, em projetos Expo, chamadas `require` não são inline por padrão. Você pode habilitar essa otimização editando a configuração Metro do seu projeto e definindo `inlineRequires: true` em [`getTransformOptions`](https://metrobundler.dev/docs/configuration#gettransformoptions).
 :::
 
-### Armadilhas de `require`s inline
+### Armadilhas de `require`s inline {#pitfalls-of-inline-requires}
 
 Fazer inline de chamadas `require` altera a ordem em que os módulos são avaliados, e pode até fazer com que alguns módulos _nunca_ sejam avaliados. Isso geralmente é seguro fazer automaticamente, porque módulos JavaScript geralmente são escritos para serem livres de efeitos colaterais.
 
@@ -173,10 +173,10 @@ module.exports = {
 
 Veja a documentação para [`getTransformOptions` no Metro](https://metrobundler.dev/docs/configuration#gettransformoptions) para mais detalhes sobre configurar e ajustar seus `require`s inline.
 
-## Avançado: Use random access module bundles (não-Hermes)
+## Avançado: Use random access module bundles (não-Hermes) {#advanced-use-random-access-module-bundles-non-hermes}
 
 :::tip
-**Não suportado ao [usar Hermes](#use-hermes).** Bytecode Hermes não é compatível com o formato RAM bundle e fornece o mesmo (ou melhor) desempenho em todos os casos de uso.
+**Não suportado ao [usar Hermes](#recommended-use-hermes).** Bytecode Hermes não é compatível com o formato RAM bundle e fornece o mesmo (ou melhor) desempenho em todos os casos de uso.
 :::
 
 Random access module bundles (também conhecidos como RAM bundles) funcionam em conjunto com as técnicas mencionadas acima para limitar a quantidade de código JavaScript que precisa ser analisado e carregado na memória. Cada módulo é armazenado como uma string separada (ou arquivo) que é analisada apenas quando o módulo precisa ser executado.

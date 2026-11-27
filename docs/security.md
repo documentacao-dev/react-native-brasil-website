@@ -12,7 +12,7 @@ Segurança é frequentemente negligenciada ao construir aplicativos. É verdade 
 
 Neste guia, você aprenderá sobre as melhores práticas para armazenar informações sensíveis, autenticação, segurança de rede e ferramentas que ajudarão você a proteger seu aplicativo. Esta não é uma checklist pré-voo — é um catálogo de opções, cada uma das quais ajudará a proteger ainda mais seu aplicativo e usuários.
 
-## Armazenando Informações Sensíveis
+## Armazenando Informações Sensíveis {#storing-sensitive-info}
 
 Nunca armazene API keys sensíveis no código do seu aplicativo. Qualquer coisa incluída no seu código pode ser acessada em texto simples por qualquer pessoa inspecionando o bundle do aplicativo. Ferramentas como [react-native-dotenv](https://github.com/goatandsheep/react-native-dotenv) e [react-native-config](https://github.com/luggit/react-native-config/) são ótimas para adicionar variáveis específicas do ambiente como endpoints de API, mas não devem ser confundidas com variáveis de ambiente server-side, que frequentemente podem conter secrets e API keys.
 
@@ -28,14 +28,14 @@ Se você precisa ter uma API key ou um secret para acessar algum recurso do seu 
 
 [Async Storage](https://github.com/react-native-async-storage/async-storage) é um módulo mantido pela comunidade para React Native que fornece um armazenamento de chave-valor assíncrono e não criptografado. Async Storage não é compartilhado entre aplicativos: cada aplicativo tem seu próprio ambiente sandbox e não tem acesso a dados de outros aplicativos.
 
-| **Use** async storage quando...              | **Não use** async storage para... |
-| --------------------------------------------- | ---------------------------------- |
-| Persistir dados não sensíveis entre execuções do aplicativo | Armazenamento de token                      |
-| Persistir estado Redux                        | Secrets                            |
-| Persistir estado GraphQL                      |                                    |
-| Armazenar variáveis globais em todo o aplicativo             |                                    |
+| **Use** async storage quando...                             | **Não use** async storage para... |
+| ----------------------------------------------------------- | --------------------------------- |
+| Persistir dados não sensíveis entre execuções do aplicativo | Armazenamento de token            |
+| Persistir estado Redux                                      | Secrets                           |
+| Persistir estado GraphQL                                    |                                   |
+| Armazenar variáveis globais em todo o aplicativo            |                                   |
 
-#### Notas do Desenvolvedor
+#### Notas do Desenvolvedor {#developer-notes}
 
 <Tabs groupId="guide" queryString defaultValue="web" values={constants.getDevNotesTabs(["web"])}>
 
@@ -69,11 +69,11 @@ Para usar iOS Keychain services ou Android Secure Shared Preferences, você pode
 - [expo-secure-store](https://docs.expo.dev/versions/latest/sdk/securestore/)
 - [react-native-keychain](https://github.com/oblador/react-native-keychain)
 
-:::warning Cuidado
+:::warning[Cuidado]
 **Seja cuidadoso para não armazenar ou expor informações sensíveis não intencionalmente.** Isso pode acontecer acidentalmente, por exemplo salvando dados de formulário sensíveis no estado redux e persistindo a árvore de estado completa no Async Storage. Ou enviando tokens de usuário e informações pessoais para um serviço de monitoramento de aplicativos como Sentry ou Crashlytics.
 :::
 
-## Autenticação e Deep Linking
+## Autenticação e Deep Linking {#authentication-and-deep-linking}
 
 <img src="/docs/assets/d_security_deep-linking.svg" width={225} alt=" " style={{float: 'right', margin: '0 0 1em 1em'}} />
 
@@ -89,7 +89,7 @@ Não há nada impedindo um aplicativo malicioso de sequestrar seu deep link tamb
 
 Quando o sistema operacional tem dois ou mais aplicativos para escolher ao abrir um link, Android mostrará ao usuário um [Disambiguation dialog](https://developer.android.com/training/basics/intents/sending#disambiguation-dialog) e pedirá que ele escolha qual aplicativo usar para abrir o link. No iOS, no entanto, o sistema operacional fará a escolha por você, então o usuário ficará completamente alheio. A Apple deu passos para abordar este problema em versões posteriores do iOS (iOS 11) onde instituíram um princípio de primeiro a chegar, primeiro a ser servido, embora esta vulnerabilidade ainda possa ser explorada de diferentes maneiras sobre as quais você pode ler mais [aqui](https://thehackernews.com/2019/07/ios-custom-url-scheme.html). Usar [universal links](https://developer.apple.com/ios/universal-links/) permitirá vincular ao conteúdo dentro do seu aplicativo com segurança no iOS.
 
-### OAuth2 e Redirects
+### OAuth2 e Redirects {#oauth2-and-redirects}
 
 O protocolo de autenticação OAuth2 é incrivelmente popular atualmente, orgulhoso como o protocolo mais completo e seguro por aí. O protocolo OpenID Connect também é baseado neste. No OAuth2, o usuário é solicitado a autenticar via terceiros. Após conclusão bem-sucedida, este terceiro redireciona de volta ao aplicativo solicitante com um código de verificação que pode ser trocado por um JWT — um [JSON Web Token](https://jwt.io/introduction/). JWT é um padrão aberto para transmitir informações com segurança entre partes na web.
 
@@ -118,7 +118,7 @@ Uma biblioteca a considerar para OAuth nativo é [react-native-app-auth](https:/
 
 ![OAuth2 with PKCE](/docs/assets/diagram_pkce.svg)
 
-## Segurança de Rede
+## Segurança de Rede {#network-security}
 
 Suas APIs devem sempre usar [SSL encryption](https://www.ssl.com/faqs/faq-what-is-ssl/). SSL encryption protege contra os dados solicitados serem lidos em texto simples entre quando sai do servidor e antes de chegar ao cliente. Você saberá que o endpoint é seguro, porque começa com `https://` em vez de `http://`.
 
@@ -128,10 +128,10 @@ Usar endpoints https ainda pode deixar seus dados vulneráveis a interceptação
 
 **SSL pinning** é uma técnica que pode ser usada no lado do cliente para evitar este ataque. Funciona incorporando (ou fixando) uma lista de certificados confiáveis ao cliente durante o desenvolvimento, para que apenas as solicitações assinadas com um dos certificados confiáveis sejam aceitas, e quaisquer certificados auto-assinados não serão.
 
-:::warning Cuidado
+:::warning[Cuidado]
 Ao usar SSL pinning, você deve estar atento à expiração de certificados. Certificados expiram a cada 1-2 anos e quando um expira, ele precisará ser atualizado no aplicativo, bem como no servidor. Assim que o certificado no servidor for atualizado, quaisquer aplicativos com o certificado antigo incorporado neles deixarão de funcionar.
 :::
 
-## Resumo
+## Resumo {#summary}
 
 Não há maneira à prova de balas de lidar com segurança, mas com esforço consciente e diligência, é possível reduzir significativamente a probabilidade de uma violação de segurança em seu aplicativo. Invista em segurança proporcional à sensibilidade dos dados armazenados em seu aplicativo, o número de usuários e o dano que um hacker poderia fazer ao obter acesso à conta deles. E lembre-se: é significativamente mais difícil acessar informações que nunca foram solicitadas em primeiro lugar.

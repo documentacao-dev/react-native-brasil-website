@@ -18,12 +18,11 @@ Vamos cobrir os conceitos fundamentais por trás do React:
 
 Se você quiser se aprofundar, recomendamos que consulte a [documentação oficial do React](https://react.dev/learn).
 
-## Seu primeiro component
+## Seu primeiro component {#your-first-component}
 
 O restante desta introdução ao React usa gatos em seus exemplos: criaturas amigáveis e acessíveis que precisam de nomes e um café para trabalhar. Aqui está seu primeiro component Cat:
 
 ```SnackPlayer name=Your%20Cat
-import React from 'react';
 import {Text} from 'react-native';
 
 const Cat = () => {
@@ -33,10 +32,9 @@ const Cat = () => {
 export default Cat;
 ```
 
-Veja como fazer isso: Para definir seu component `Cat`, primeiro use o [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) do JavaScript para importar o React e o Core Component [`Text`](/docs/next/text) do React Native:
+Veja como fazer isso: Para definir seu component `Cat`, primeiro use o [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) do JavaScript para importar o Core Component [`Text`](/docs/next/text) do React Native:
 
 ```tsx
-import React from 'react';
 import {Text} from 'react-native';
 ```
 
@@ -77,7 +75,6 @@ Agora dê uma olhada mais de perto nessa instrução `return`. `<Text>Hello, I a
 React e React Native usam **JSX,** uma sintaxe que permite escrever elementos dentro do JavaScript assim: `<Text>Hello, I am your cat!</Text>`. A documentação do React tem [um guia abrangente sobre JSX](https://react.dev/learn/writing-markup-with-jsx) que você pode consultar para aprender ainda mais. Como JSX é JavaScript, você pode usar variáveis dentro dele. Aqui você está declarando um nome para o gato, `name`, e incorporando-o com chaves dentro de `<Text>`.
 
 ```SnackPlayer name=Curly%20Braces
-import React from 'react';
 import {Text} from 'react-native';
 
 const Cat = () => {
@@ -94,7 +91,6 @@ Qualquer expressão JavaScript funcionará entre chaves, incluindo chamadas de f
 <TabItem value="javascript">
 
 ```SnackPlayer name=Curly%20Braces&ext=js
-import React from 'react';
 import {Text} from 'react-native';
 
 const getFullName = (firstName, secondName, thirdName) => {
@@ -112,7 +108,6 @@ export default Cat;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Curly%20Braces&ext=tsx
-import React from 'react';
 import {Text} from 'react-native';
 
 const getFullName = (
@@ -135,10 +130,6 @@ export default Cat;
 
 Você pode pensar nas chaves como criando um portal para a funcionalidade JS no seu JSX!
 
-:::tip
-Como JSX está incluído na biblioteca React, ele não funcionará se você não tiver `import React from 'react'` no topo do seu arquivo!
-:::
-
 ## Custom Components
 
 Você já conheceu os [Core Components do React Native](intro-react-native-components). React permite que você aninhe esses components dentro uns dos outros para criar novos components. Esses components aninhados e reutilizáveis estão no coração do paradigma do React.
@@ -146,7 +137,6 @@ Você já conheceu os [Core Components do React Native](intro-react-native-compo
 Por exemplo, você pode aninhar [`Text`](text) e [`TextInput`](textinput) dentro de um [`View`](view) abaixo, e o React Native irá renderizá-los juntos:
 
 ```SnackPlayer name=Custom%20Components
-import React from 'react';
 import {Text, TextInput, View} from 'react-native';
 
 const Cat = () => {
@@ -191,7 +181,6 @@ No Android, você geralmente coloca suas views dentro de `LinearLayout`, `FrameL
 Você pode renderizar este component várias vezes e em vários lugares sem repetir seu código usando `<Cat>`:
 
 ```SnackPlayer name=Multiple%20Components
-import React from 'react';
 import {Text, View} from 'react-native';
 
 const Cat = () => {
@@ -228,7 +217,6 @@ Você pode colocar quantos gatos quiser no seu café. Cada `<Cat>` renderiza um 
 <TabItem value="javascript">
 
 ```SnackPlayer name=Multiple%20Props&ext=js
-import React from 'react';
 import {Text, View} from 'react-native';
 
 const Cat = props => {
@@ -256,7 +244,6 @@ export default Cafe;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Multiple%20Props&ext=tsx
-import React from 'react';
 import {Text, View} from 'react-native';
 
 type CatProps = {
@@ -290,7 +277,6 @@ export default Cafe;
 A maioria dos Core Components do React Native também pode ser customizada com props. Por exemplo, ao usar [`Image`](image), você passa a ele um prop chamado [`source`](image#source) para definir qual imagem ele mostra:
 
 ```SnackPlayer name=Props
-import React from 'react';
 import {Text, View, Image} from 'react-native';
 
 const CatApp = () => {
@@ -334,7 +320,7 @@ Você pode adicionar state a um component chamando o [Hook `useState` do React](
 <TabItem value="javascript">
 
 ```SnackPlayer name=State&ext=js
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Button, Text, View} from 'react-native';
 
 const Cat = props => {
@@ -372,7 +358,7 @@ export default Cafe;
 <TabItem value="typescript">
 
 ```SnackPlayer name=State&ext=tsx
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Button, Text, View} from 'react-native';
 
 type CatProps = {
@@ -416,7 +402,7 @@ export default Cafe;
 Primeiro, você vai querer importar `useState` do React assim:
 
 ```tsx
-import React, {useState} from 'react';
+import {useState} from 'react';
 ```
 
 Então você declara o state do component chamando `useState` dentro de sua função. Neste exemplo, `useState` cria uma variável de state `isHungry`:
@@ -461,7 +447,8 @@ Agora, quando alguém pressiona o botão, `onPress` será disparado, chamando `s
 ```
 
 :::info
-Você pode ter notado que, embora `isHungry` seja uma [const](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/const), ela é aparentemente reatribuível! O que está acontecendo é que quando uma função de definição de state como `setIsHungry` é chamada, seu component será re-renderizado. Neste caso, a função `Cat` será executada novamente—e desta vez, `useState` nos dará o próximo valor de `isHungry`.
+Você pode ter notado que, embora `isHungry` seja uma [const](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/const), ela é aparentemente reatribuível! A palavra-chave `const` aqui não significa que o state em si é imutável. Na verdade, ela significa que a referência ao objeto, que contém o state e a função para atualizá-lo, não muda.
+O que acontece é que, quando uma função de definição de state como `setIsHungry` é chamada, seu component será re-renderizado. Neste caso, a função `Cat` será executada novamente—e desta vez, `useState` nos dará o próximo valor de `isHungry`.
 :::
 
 Finalmente, coloque seus gatos dentro de um component `Cafe`:

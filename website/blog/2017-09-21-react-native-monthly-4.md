@@ -37,6 +37,6 @@ Tentando diminuir a barreira de entrada para desenvolvedores abraçando React Na
 - Lançou recurso de Code Signing para CodePush. Desenvolvedores React Native agora podem assinar seus bundles de aplicativo no CodePush. O anúncio pode ser encontrado [aqui](https://microsoft.github.io/code-push/articles/CodeSigningAnnouncement.html)
 - Trabalhando em completar a integração do CodePush ao Mobile Center. Considerando integração de teste/crash também.
 
-## Próxima sessão
+## Próxima sessão {#next-session}
 
 A próxima sessão está agendada para quarta-feira, 10 de outubro de 2017. Como esta foi apenas nossa quarta reunião, gostaríamos de saber como essas notas beneficiam a comunidade React Native. Sinta-se à vontade para me contatar [no Twitter](https://twitter.com/grabbou) se você tiver alguma sugestão sobre como devemos melhorar o resultado da reunião.

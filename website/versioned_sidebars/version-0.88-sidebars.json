@@ -1,0 +1,390 @@
+{
+  "docs": {
+    "O Básico": [
+      "getting-started",
+      "intro-react-native-components",
+      "intro-react",
+      "handling-text-input",
+      "using-a-scrollview",
+      "using-a-listview",
+      "troubleshooting",
+      "platform-specific-code",
+      "more-resources"
+    ],
+    "Configuração do Ambiente": [
+      "environment-setup",
+      "set-up-your-environment",
+      "integration-with-existing-apps",
+      "integration-with-android-fragment",
+      "building-for-tv",
+      "out-of-tree-platforms"
+    ],
+    "Fluxo de Trabalho": [
+      "running-on-device",
+      "fast-refresh",
+      "metro",
+      "libraries",
+      "typescript",
+      "strict-typescript-api",
+      "release-levels",
+      "upgrading"
+    ],
+    "UI e Interação": [
+      "style",
+      "height-and-width",
+      "flexbox",
+      "images",
+      "colors",
+      {
+        "type": "category",
+        "label": "Interação",
+        "collapsible": false,
+        "collapsed": false,
+        "items": [
+          "handling-touches",
+          "navigation",
+          "animations",
+          "gesture-responder-system"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Conectividade",
+        "collapsible": false,
+        "collapsed": false,
+        "items": [
+          "network",
+          "security"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Inclusão",
+        "collapsible": false,
+        "collapsed": false,
+        "items": [
+          "accessibility"
+        ]
+      }
+    ],
+    "Depuração": [
+      "debugging",
+      "react-native-devtools",
+      "debugging-native-code",
+      "debugging-release-builds",
+      "other-debugging-methods"
+    ],
+    "Testes": [
+      "testing-overview"
+    ],
+    "Desempenho": [
+      "performance",
+      "build-speed",
+      "optimizing-flatlist-configuration",
+      "optimizing-javascript-loading",
+      "profiling"
+    ],
+    "Runtime JavaScript": [
+      "javascript-environment",
+      "timers",
+      "hermes"
+    ],
+    "Codegen": [
+      "the-new-architecture/what-is-codegen",
+      "the-new-architecture/using-codegen",
+      "the-new-architecture/codegen-cli"
+    ],
+    "Desenvolvimento Nativo": [
+      {
+        "type": "doc",
+        "id": "native-platform",
+        "label": "Introduction"
+      },
+      {
+        "type": "category",
+        "label": "Módulos",
+        "collapsible": false,
+        "collapsed": false,
+        "items": [
+          {
+            "type": "doc",
+            "id": "turbo-native-modules-introduction",
+            "label": "Android e iOS"
+          },
+          {
+            "type": "doc",
+            "id": "the-new-architecture/pure-cxx-modules",
+            "label": "Multiplataforma com C++"
+          },
+          {
+            "type": "doc",
+            "id": "the-new-architecture/advanced-topics-modules",
+            "label": "Tópicos Avançados"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Componentes",
+        "collapsible": false,
+        "collapsed": false,
+        "items": [
+          {
+            "type": "doc",
+            "id": "fabric-native-components-introduction",
+            "label": "Android e iOS"
+          },
+          {
+            "type": "doc",
+            "id": "the-new-architecture/advanced-topics-components",
+            "label": "Tópicos Avançados"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Diversos",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "doc",
+            "id": "appendix",
+            "label": "Appendix"
+          },
+          {
+            "type": "doc",
+            "id": "the-new-architecture/create-module-library"
+          }
+        ]
+      }
+    ],
+    "Guias Android e iOS": [
+      {
+        "type": "category",
+        "label": "Android",
+        "collapsible": false,
+        "collapsed": false,
+        "items": [
+          "headless-js-android",
+          "signed-apk-android",
+          "communication-android",
+          "react-native-gradle-plugin"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "iOS",
+        "collapsible": false,
+        "collapsed": false,
+        "items": [
+          "linking-libraries-ios",
+          "running-on-simulator-ios",
+          "communication-ios",
+          "app-extensions",
+          "publishing-to-app-store"
+        ]
+      }
+    ],
+    "Arquitetura Legada": [
+      {
+        "type": "category",
+        "label": "Módulos Nativos",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "legacy/native-modules-intro",
+          "legacy/native-modules-android",
+          "legacy/native-modules-ios",
+          "legacy/native-modules-setup",
+          "legacy/local-library-setup"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Componentes Nativos",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "legacy/native-components-android",
+          "legacy/native-components-ios",
+          "legacy/direct-manipulation"
+        ]
+      }
+    ]
+  },
+  "api": {
+    "APIs": [
+      "accessibilityinfo",
+      "alert",
+      "animated",
+      "animatedvalue",
+      "animatedvaluexy",
+      "appearance",
+      "appregistry",
+      "appstate",
+      "devsettings",
+      "dimensions",
+      "easing",
+      "i18nmanager",
+      "keyboard",
+      "layoutanimation",
+      "linking",
+      "panresponder",
+      "pixelratio",
+      "platform",
+      "platformcolor",
+      "reactnativeversion",
+      "roottag",
+      "share",
+      "stylesheet",
+      "systrace",
+      "transforms",
+      "vibration",
+      {
+        "type": "category",
+        "label": "Globais",
+        "collapsed": true,
+        "items": [
+          "global-__DEV__",
+          "global-AbortController",
+          "global-AbortSignal",
+          "global-alert",
+          "global-Blob",
+          "global-cancelAnimationFrame",
+          "global-cancelIdleCallback",
+          "global-clearInterval",
+          "global-clearTimeout",
+          "global-console",
+          "global-EventCounts",
+          "global-fetch",
+          "global-File",
+          "global-FileReader",
+          "global-FormData",
+          "global-global",
+          "global-Headers",
+          "global-intersectionobserver",
+          "global-intersectionobserverentry",
+          "global-navigator",
+          "global-performance",
+          "global-PerformanceEntry",
+          "global-PerformanceEventTiming",
+          "global-PerformanceLongTaskTiming",
+          "global-PerformanceMark",
+          "global-PerformanceMeasure",
+          "global-PerformanceObserver",
+          "global-PerformanceObserverEntryList",
+          "global-PerformanceResourceTiming",
+          "global-process",
+          "global-queueMicrotask",
+          "global-Request",
+          "global-requestAnimationFrame",
+          "global-requestIdleCallback",
+          "global-Response",
+          "global-setInterval",
+          "global-setTimeout",
+          "global-URL",
+          "global-URLSearchParams",
+          "global-WebSocket",
+          "global-window",
+          "global-XMLHttpRequest"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Hooks",
+        "collapsed": false,
+        "items": [
+          "usecolorscheme",
+          "usewindowdimensions"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "APIs Android",
+        "collapsed": false,
+        "items": [
+          "backhandler",
+          "permissionsandroid",
+          "toastandroid"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "APIs iOS",
+        "collapsed": false,
+        "items": [
+          "actionsheetios",
+          "dynamiccolorios",
+          "settings"
+        ]
+      }
+    ]
+  },
+  "components": {
+    "Componentes Principais": [
+      "components-and-apis",
+      "activityindicator",
+      "button",
+      "flatlist",
+      "image",
+      "imagebackground",
+      "keyboardavoidingview",
+      "modal",
+      "pressable",
+      "refreshcontrol",
+      "scrollview",
+      "sectionlist",
+      "statusbar",
+      "switch",
+      "text",
+      "textinput",
+      "touchablehighlight",
+      "touchableopacity",
+      "touchablewithoutfeedback",
+      "view",
+      "virtualizedlist",
+      {
+        "type": "category",
+        "label": "Componentes Android",
+        "collapsed": false,
+        "items": [
+          "drawerlayoutandroid",
+          "touchablenativefeedback"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Componentes iOS",
+        "collapsed": false,
+        "items": [
+          "inputaccessoryview",
+          "safeareaview"
+        ]
+      }
+    ],
+    "Refs": [
+      "nodes",
+      "element-nodes",
+      "text-nodes",
+      "document-nodes"
+    ],
+    "Props": [
+      "image-style-props",
+      "layout-props",
+      "shadow-props",
+      "text-style-props",
+      "view-style-props"
+    ],
+    "Tipos de Objetos": [
+      "boxshadowvalue",
+      "dropshadowvalue",
+      "layoutevent",
+      "pressevent",
+      "react-node",
+      "rect",
+      "targetevent",
+      "viewtoken"
+    ]
+  }
+}

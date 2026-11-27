@@ -1,15 +1,19 @@
 ---
 id: inputaccessoryview
-title: InputAccessoryView
+title: '🗑️ InputAccessoryView'
 ia-translated: true
 ---
+
+:::warning[Deprecated]
+`InputAccessoryView` está obsoleto e será removido em uma versão futura.
+:::
 
 Um componente que permite a customização da view de acessório de entrada do teclado no iOS. A view de acessório de entrada é exibida acima do teclado sempre que um `TextInput` tem foco. Este componente pode ser usado para criar toolbars personalizadas.
 
 Para usar este componente, envolva sua toolbar personalizada com o componente InputAccessoryView e defina um `nativeID`. Em seguida, passe esse `nativeID` como o `inputAccessoryViewID` de qualquer `TextInput` que você desejar. Um exemplo básico:
 
 ```SnackPlayer name=InputAccessoryView&supportedPlatforms=ios
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   Button,
   InputAccessoryView,
@@ -61,11 +65,11 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-Este componente também pode ser usado para criar text inputs fixos (text inputs que são ancorados ao topo do teclado). Para fazer isso, envolva um `TextInput` com o componente `InputAccessoryView` e não defina um `nativeID`. Para um exemplo, veja [InputAccessoryViewExample.js](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/InputAccessoryView/InputAccessoryViewExample.js).
+Este componente também pode ser usado para criar text inputs fixos (text inputs que são ancorados ao topo do teclado). Para fazer isso, envolva um `TextInput` com o componente `InputAccessoryView` e não defina um `nativeID`. Para um exemplo, veja [InputAccessoryViewExample.js](https://github.com/react/react-native/blob/main/packages/rn-tester/js/examples/InputAccessoryView/InputAccessoryViewExample.js).
 
 ---
 
-# Reference
+# Referência {#reference}
 
 ## Props
 
@@ -93,7 +97,7 @@ Um ID que é usado para associar este `InputAccessoryView` a TextInput(s) especi
 | --------------------------------- |
 | [View Style](view-style-props.md) |
 
-# Known issues
+# Problemas conhecidos {#known-issues}
 
-- [react-native#18997](https://github.com/facebook/react-native/issues/18997): Doesn't support multiline `TextInput`
-- [react-native#20157](https://github.com/facebook/react-native/issues/20157): Can't use with a bottom tab bar
+- [react-native#18997](https://github.com/react/react-native/issues/18997): Não funciona com `TextInput` multilinha
+- [react-native#20157](https://github.com/react/react-native/issues/20157): Não pode ser usado com uma tab bar inferior

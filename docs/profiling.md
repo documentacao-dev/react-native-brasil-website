@@ -10,13 +10,17 @@ Para iOS, Instruments é uma ferramenta inestimável, e no Android você deve ap
 
 Mas primeiro, [**certifique-se de que o Development Mode está DESLIGADO!**](performance.md#running-in-development-mode-devtrue).
 
-## Profiling de Desempenho de UI Android com System Tracing
+## Profiling de Desempenho de UI Android com System Tracing {#profiling-android-ui-performance-with-system-tracing}
 
 Android suporta mais de 10 mil telefones diferentes e é generalizado para suportar renderização de software: a arquitetura do framework e a necessidade de generalizar em muitos alvos de hardware infelizmente significa que você recebe menos de graça em relação ao iOS. Mas às vezes, há coisas que você pode melhorar -- e muitas vezes não é culpa do código nativo!
 
 O primeiro passo para depurar esse jank é responder à questão fundamental de onde seu tempo está sendo gasto durante cada frame de 16ms. Para isso, usaremos o [profiler System Tracing integrado no Android Studio](https://developer.android.com/studio/profile).
 
-### 1. Coletando um trace
+:::note
+A ferramenta `systrace` independente foi removida das platform-tools do Android. Use o Android Studio Profiler, que oferece a mesma funcionalidade com uma interface melhor.
+:::
+
+### 1. Coletando um trace {#1-collecting-a-trace}
 
 Primeiro, conecte um dispositivo que exiba o stuttering que você quer investigar ao seu computador via USB. Abra a pasta `android` do seu projeto no Android Studio, selecione seu dispositivo no painel superior direito e [execute seu projeto como profileable](https://developer.android.com/studio/profile#build-and-run).
 
@@ -24,19 +28,19 @@ Quando seu aplicativo estiver construído como profileable e estiver rodando no 
 
 Assim que o trace começar a coletar, execute a animação ou interação que você se importa. Em seguida, pressione "Stop recording". Agora você pode [inspecionar o trace diretamente no Android Studio](https://developer.android.com/studio/profile/jank-detection). Alternativamente, você pode selecioná-lo no painel "Past Recordings", pressionar "Export recording" e abri-lo em uma ferramenta como [Perfetto](https://perfetto.dev/).
 
-### 2. Lendo o trace
+### 2. Lendo o trace {#2-reading-the-trace}
 
 Depois de abrir o trace no Android Studio ou Perfetto, você deve ver algo assim:
 
 ![Example](/docs/assets/SystraceExample.png)
 
-:::note Dica
+:::note[Dica]
 Use as teclas WASD para deslocar e dar zoom.
 :::
 
 A UI exata pode ser diferente, mas as instruções abaixo se aplicarão independentemente da ferramenta que você estiver usando.
 
-:::info Habilite o realce de VSync
+:::info[Habilite o realce de VSync]
 Marque esta caixa de seleção no canto superior direito da tela para realçar os limites de frame de 16ms:
 
 ![Enable VSync Highlighting](/docs/assets/SystraceHighlightVSync.png)
@@ -44,7 +48,7 @@ Marque esta caixa de seleção no canto superior direito da tela para realçar o
 Você deve ver listras zebradas como na captura de tela acima. Se não ver, tente fazer profiling em um dispositivo diferente: Samsung é conhecida por ter problemas ao exibir vsyncs, enquanto a série Nexus é geralmente bastante confiável.
 :::
 
-### 3. Encontre seu processo
+### 3. Encontre seu processo {#3-find-your-process}
 
 Role até ver (parte do) nome do seu pacote. Neste caso, eu estava fazendo profiling de `com.facebook.adsmanager`, que aparece como `book.adsmanager` por causa de limites bobos de nome de thread no kernel.
 
@@ -66,7 +70,7 @@ No lado esquerdo, você verá um conjunto de threads que correspondem às linhas
 
   ![Render Thread Example](/docs/assets/SystraceRenderThreadExample.png)
 
-## Identificando um culpado
+## Identificando um culpado {#identifying-a-culprit}
 
 Uma animação suave deve se parecer com o seguinte:
 
@@ -88,7 +92,7 @@ Neste caso, as threads UI e render são as que têm trabalho atravessando os lim
 
 Neste ponto, você terá algumas informações muito úteis para informar seus próximos passos.
 
-## Resolvendo problemas de JavaScript
+## Resolvendo problemas de JavaScript {#resolving-javascript-issues}
 
 Se você identificou um problema JS, procure pistas no JavaScript específico que você está executando. No cenário acima, vemos `RCTEventEmitter` sendo chamado várias vezes por frame. Aqui está um zoom na thread JS do trace acima:
 
@@ -96,14 +100,14 @@ Se você identificou um problema JS, procure pistas no JavaScript específico qu
 
 Isso não parece certo. Por que está sendo chamado com tanta frequência? São realmente eventos diferentes? As respostas para essas perguntas provavelmente dependerão do código do seu produto. E muitas vezes, você vai querer olhar para [shouldComponentUpdate](https://react.dev/reference/react/Component#shouldcomponentupdate).
 
-## Resolvendo problemas de UI nativa
+## Resolvendo problemas de UI nativa {#resolving-native-ui-issues}
 
 Se você identificou um problema de UI nativa, geralmente há dois cenários:
 
 1. a UI que você está tentando desenhar em cada frame envolve muito trabalho na GPU, ou
 2. Você está construindo nova UI durante a animação/interação (por exemplo, carregando novo conteúdo durante uma rolagem).
 
-### Muito trabalho na GPU
+### Muito trabalho na GPU {#too-much-gpu-work}
 
 No primeiro cenário, você verá um trace que tem a thread UI e/ou Render Thread parecendo assim:
 
@@ -116,7 +120,7 @@ Para mitigar isso, você deve:
 - investigar o uso de `renderToHardwareTextureAndroid` para conteúdo complexo e estático que está sendo animado/transformado (por exemplo, as animações de deslize/alfa do `Navigator`)
 - certifique-se de que você **não** está usando `needsOffscreenAlphaCompositing`, que é desabilitado por padrão, pois aumenta muito a carga por frame na GPU na maioria dos casos.
 
-### Criando novas views na thread UI
+### Criando novas views na thread UI {#creating-new-views-on-the-ui-thread}
 
 No segundo cenário, você verá algo mais parecido com isso:
 
@@ -126,11 +130,11 @@ Observe que primeiro a thread JS pensa um pouco, depois você vê algum trabalho
 
 Não há uma maneira rápida de mitigar isso, a menos que você seja capaz de adiar a criação de nova UI até depois da interação, ou você seja capaz de simplificar a UI que está criando. A equipe do react native está trabalhando em uma solução de nível de infraestrutura para isso que permitirá que nova UI seja criada e configurada fora da thread principal, permitindo que a interação continue suavemente.
 
-### Encontrando hotspots de CPU nativa
+### Encontrando hotspots de CPU nativa {#finding-native-cpu-hotspots}
 
 Se o problema parecer estar no lado nativo, você pode usar o [profiler de hotspot de CPU](https://developer.android.com/studio/profile/record-java-kotlin-methods) para obter mais detalhes sobre o que está acontecendo. Abra o painel Android Studio Profiler e selecione "Find CPU Hotspots (Java/Kotlin Method Recording)".
 
-:::info Escolha a gravação Java/Kotlin
+:::info[Escolha a gravação Java/Kotlin]
 
 Certifique-se de selecionar "Find CPU Hotspots **(Java/Kotlin Recording)**" em vez de "Find CPU Hotspots (Callstack Sample)". Eles têm ícones semelhantes, mas fazem coisas diferentes.
 :::

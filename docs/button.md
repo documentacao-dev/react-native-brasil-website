@@ -6,7 +6,7 @@ title: Button
 
 Um componente básico de botão que deve renderizar bem em qualquer plataforma. Suporta um nível mínimo de customização.
 
-Se este botão não parecer adequado para seu aplicativo, você pode criar seu próprio botão usando [Pressable](pressable). Para inspiração, veja o [código-fonte do componente Button](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Components/Button.js).
+Se este botão não parecer adequado para seu aplicativo, você pode criar seu próprio botão usando [Pressable](pressable). Para inspiração, veja o [código-fonte do componente Button](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Components/Button.js).
 
 ```tsx
 <Button
@@ -17,14 +17,21 @@ Se este botão não parecer adequado para seu aplicativo, você pode criar seu p
 />
 ```
 
-## Exemplo
+## Exemplo {#example}
 
-```SnackPlayer name=Button%20Example
-import React from 'react';
-import {StyleSheet, Button, View, Text, Alert} from 'react-native';
+```SnackPlayer name=Button%20Example&ext=js
+import {StyleSheet, Button, View, Text, Alert, Platform} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const Separator = () => <View style={styles.separator} />;
+
+function showAlert(message) {
+  if (Platform.OS === 'web') {
+    window.alert(message);
+  } else {
+    Alert.alert(message);
+  }
+}
 
 const App = () => (
   <SafeAreaProvider>
@@ -36,7 +43,7 @@ const App = () => (
         </Text>
         <Button
           title="Press me"
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={() => showAlert('Simple Button pressed')}
         />
       </View>
       <Separator />
@@ -49,7 +56,7 @@ const App = () => (
         <Button
           title="Press me"
           color="#f194ff"
-          onPress={() => Alert.alert('Button with adjusted color pressed')}
+          onPress={() => showAlert('Button with adjusted color pressed')}
         />
       </View>
       <Separator />
@@ -60,7 +67,7 @@ const App = () => (
         <Button
           title="Press me"
           disabled
-          onPress={() => Alert.alert('Cannot press this one')}
+          onPress={() => showAlert('Cannot press this one')}
         />
       </View>
       <Separator />
@@ -71,11 +78,11 @@ const App = () => (
         <View style={styles.fixToText}>
           <Button
             title="Left button"
-            onPress={() => Alert.alert('Left button pressed')}
+            onPress={() => showAlert('Left button pressed')}
           />
           <Button
             title="Right button"
-            onPress={() => Alert.alert('Right button pressed')}
+            onPress={() => showAlert('Right button pressed')}
           />
         </View>
       </View>
@@ -109,7 +116,7 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Props
 
@@ -145,7 +152,7 @@ Texto a ser exibido para recursos de acessibilidade para cegueira.
 
 ### `accessibilityLanguage` <div className="label ios">iOS</div>
 
-Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interage com o elemento. Deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47).
+Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interage com o elemento. Deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47/).
 
 Veja a [documentação do `accessibilityLanguage` do iOS](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage) para mais informações.
 
@@ -206,16 +213,6 @@ export function ColorDefaults() {
 ### `disabled`
 
 Se `true`, desabilita todas as interações para este componente.
-
-| Type | Default |
-| ---- | ------- |
-| bool | `false` |
-
----
-
-### `hasTVPreferredFocus` <div className="label tv">TV</div>
-
-Foco preferencial para TV.
 
 | Type | Default |
 | ---- | ------- |

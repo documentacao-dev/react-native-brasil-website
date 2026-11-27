@@ -25,17 +25,17 @@ function Hero() {
       <div className={styles.socialLinks}>
         <a
           className="twitter-follow-button"
-          href={`https://twitter.com/reactnative?ref_src=twsrc%5Etfw`}
+          href="https://x.com/reactnative"
           data-show-count="false"
           data-size="large">
-          Siga @reactnative
+          Follow @reactnative
         </a>
         <GitHubButton
-          href="https://github.com/facebook/react-native"
+          href="https://github.com/react/react-native"
           data-icon="octicon-star"
           data-size="large"
           data-color-scheme={colorMode}
-          aria-label="Marque facebook/react-native como favorito no GitHub">
+          aria-label="Marque react/react-native como favorito no GitHub">
           Favoritar
         </GitHubButton>
       </div>
@@ -53,7 +53,9 @@ function Hero() {
       <div className={styles.content}>
         <Logo />
         <h1 className={styles.title}>React Native</h1>
-        <h2 className={styles.subtitle}>Aprenda uma vez, escreva em qualquer lugar.</h2>
+        <h2 className={styles.subtitle}>
+          Aprenda uma vez, escreva em qualquer lugar.
+        </h2>
         <div className={styles.buttonContainer}>
           <a href="/docs/environment-setup" className={styles.primaryButton}>
             Começar

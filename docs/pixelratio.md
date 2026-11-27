@@ -6,7 +6,7 @@ title: PixelRatio
 
 `PixelRatio` fornece acesso à densidade de pixels e escala de fonte do dispositivo.
 
-## Buscando uma imagem com tamanho correto
+## Buscando uma imagem com tamanho correto {#fetching-a-correctly-sized-image}
 
 Você deve obter uma imagem de resolução mais alta se estiver em um dispositivo com alta densidade de pixels. Uma boa regra prática é multiplicar o tamanho da imagem que você exibe pela proporção de pixels.
 
@@ -18,7 +18,7 @@ const image = getImage({
 <Image source={image} style={{width: 200, height: 100}} />;
 ```
 
-## Ajuste à grade de pixels
+## Ajuste à grade de pixels {#pixel-grid-snapping}
 
 No iOS, você pode especificar posições e dimensões para elementos com precisão arbitrária, por exemplo 29.674825. Mas, em última análise, a tela física tem apenas um número fixo de pixels, por exemplo 640×1136 para iPhone SE (1ª geração) ou 828×1792 para iPhone 11. O iOS tenta ser o mais fiel possível ao valor do usuário distribuindo um pixel original em vários para enganar o olho. A desvantagem dessa técnica é que ela faz o elemento resultante parecer desfocado.
 
@@ -28,10 +28,9 @@ Precisamos ter cuidado ao fazer esse arredondamento. Você nunca quer trabalhar 
 
 No React Native, tudo em JavaScript e no mecanismo de layout funciona com números de precisão arbitrária. É apenas quando definimos a posição e dimensões do elemento nativo na thread principal que arredondamos. Além disso, o arredondamento é feito em relação à raiz em vez do pai, novamente para evitar acumular erros de arredondamento.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=PixelRatio%20Example
-import React from 'react';
 import {
   Image,
   PixelRatio,
@@ -104,9 +103,9 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
-## Métodos
+## Métodos {#methods}
 
 ### `get()`
 

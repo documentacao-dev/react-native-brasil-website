@@ -11,15 +11,15 @@ tags: [engineering]
 
 Pelo último ano, temos trabalhado na melhoria do desempenho de animações que usam a biblioteca Animated. Animações são muito importantes para criar uma experiência de usuário bonita, mas também podem ser difíceis de fazer corretamente. Queremos facilitar para os desenvolvedores criarem animações performáticas sem ter que se preocupar com algum código causando lentidão.
 
-## O que é isso?
+## O que é isso? {#what-is-this}
 
 A API Animated foi projetada com uma restrição muito importante em mente: ela é serializável. Isso significa que podemos enviar tudo sobre a animação para o nativo antes mesmo de ela ter começado e permite que o código nativo execute a animação na UI thread sem ter que passar pela bridge em cada frame. É muito útil porque uma vez que a animação tenha começado, a JS thread pode ser bloqueada e a animação ainda será executada suavemente. Na prática, isso pode acontecer muito porque o código do usuário é executado na JS thread e as renderizações do React também podem bloquear o JS por um longo tempo.
 
-## Um pouco de história...
+## Um pouco de história... {#a-bit-of-history}
 
 Este projeto começou há cerca de um ano, quando a Expo construiu o aplicativo li.st no Android. [Krzysztof Magiera](https://twitter.com/kzzzf) foi contratado para construir a implementação inicial no Android. Acabou funcionando bem e li.st foi o primeiro aplicativo a ser lançado com animações native driven usando Animated. Alguns meses depois, [Brandon Withrow](https://github.com/buba447) construiu a implementação inicial no iOS. Depois disso, [Ryan Gomba](https://twitter.com/ryangomba) e eu trabalhamos na adição de recursos ausentes como suporte para `Animated.event`, bem como corrigir bugs que encontramos ao usar em aplicativos de produção. Este foi verdadeiramente um esforço da comunidade e gostaria de agradecer a todos que estiveram envolvidos, bem como a Expo por patrocinar grande parte do desenvolvimento. Agora é usado pelos componentes `Touchable` no React Native, bem como para animações de navegação na recém-lançada biblioteca [React Navigation](https://github.com/react-community/react-navigation).
 
-## Como funciona?
+## Como funciona? {#how-does-it-work}
 
 Primeiro, vamos verificar como as animações funcionam atualmente usando Animated com o driver JS. Ao usar Animated, você declara um grafo de nós que representam as animações que deseja executar e, em seguida, usa um driver para atualizar um valor Animated usando uma curva predefinida. Você também pode atualizar um valor Animated conectando-o a um evento de uma `View` usando `Animated.event`.
 
@@ -104,11 +104,11 @@ E agora aqui está o detalhamento do que acontece quando a animação é executa
 
 Como você pode ver, sem mais JS thread e sem mais bridge, o que significa animações mais rápidas! 🎉🎉
 
-## Como uso isso no meu aplicativo?
+## Como uso isso no meu aplicativo? {#how-do-i-use-this-in-my-app}
 
 Para animações normais, a resposta é simples: apenas adicione `useNativeDriver: true` à configuração de animação ao iniciá-la.
 
-Before:
+Antes:
 
 ```
 Animated.timing(this.state.animatedValue, {
@@ -117,7 +117,7 @@ Animated.timing(this.state.animatedValue, {
 }).start();
 ```
 
-After:
+Depois:
 
 ```
 Animated.timing(this.state.animatedValue, {
@@ -131,7 +131,7 @@ Valores Animated são compatíveis apenas com um driver, então se você usar o 
 
 Também funciona com `Animated.event`, isso é muito útil se você tiver uma animação que deve seguir a posição de scroll porque sem o native driver ela sempre será executada um frame atrás do gesto por causa da natureza assíncrona do React Native.
 
-Before:
+Antes:
 
 ```
 <ScrollView
@@ -144,7 +144,7 @@ Before:
 </ScrollView>
 ```
 
-After:
+Depois:
 
 ```
 <Animated.ScrollView // <-- Use the Animated ScrollView wrapper
@@ -158,14 +158,14 @@ After:
 </Animated.ScrollView>
 ```
 
-## Ressalvas
+## Ressalvas {#caveats}
 
 Nem tudo que você pode fazer com Animated é atualmente suportado no Native Animated. A principal limitação é que você pode apenas animar propriedades não relacionadas a layout, coisas como `transform` e `opacity` funcionarão, mas propriedades de Flexbox e posição não. Outra é com `Animated.event`, ele só funcionará com eventos diretos e não eventos bubbling. Isso significa que não funciona com `PanResponder`, mas funciona com coisas como `ScrollView#onScroll`.
 
 Native Animated também faz parte do React Native há um bom tempo, mas nunca foi documentado porque era considerado experimental. Por causa disso, certifique-se de que está usando uma versão recente (0.40+) do React Native se quiser usar este recurso.
 
-## Recursos
+## Recursos {#resources}
 
-Para mais informações sobre animated, recomendo assistir [this talk](https://www.youtube.com/watch?v=xtqUJVqpKNo) por [Christopher Chedeau](https://twitter.com/Vjeux).
+Para mais informações sobre animated, recomendo assistir [esta palestra](https://www.youtube.com/watch?v=xtqUJVqpKNo) por [Christopher Chedeau](https://twitter.com/Vjeux).
 
-Se você quer um mergulho profundo em animações e como transferi-las para o nativo pode melhorar a experiência do usuário, há também [this talk](https://www.youtube.com/watch?v=qgSMjYWqBk4) por [Krzysztof Magiera](https://twitter.com/kzzzf).
+Se você quer um mergulho profundo em animações e como transferi-las para o nativo pode melhorar a experiência do usuário, há também [esta palestra](https://www.youtube.com/watch?v=qgSMjYWqBk4) por [Krzysztof Magiera](https://twitter.com/kzzzf).

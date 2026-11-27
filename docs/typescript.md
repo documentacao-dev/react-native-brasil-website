@@ -1,14 +1,14 @@
 ---
 ia-translated: true
 id: typescript
-title: Using TypeScript
+title: Usando TypeScript
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 [TypeScript][ts] é uma linguagem que estende JavaScript adicionando definições de tipo. Novos projetos React Native têm TypeScript como padrão, mas também suportam JavaScript e Flow.
 
-## Getting Started with TypeScript
+## Primeiros passos com TypeScript {#getting-started-with-typescript}
 
 Novos projetos criados pela [React Native CLI](getting-started-without-a-framework#step-1-creating-a-new-application) ou templates populares como [Ignite][ignite] usarão TypeScript por padrão.
 
@@ -18,7 +18,7 @@ TypeScript também pode ser usado com [Expo][expo], que mantém templates TypeSc
 npx create-expo-app --template
 ```
 
-## Adding TypeScript to an Existing Project
+## Adicionando TypeScript a um projeto existente {#adding-typescript-to-an-existing-project}
 
 1. Adicione TypeScript, types e plugins ESLint ao seu projeto.
 
@@ -76,15 +76,15 @@ yarn tsc
 </TabItem>
 </Tabs>
 
-## Using JavaScript Instead of TypeScript
+## Usando JavaScript em vez de TypeScript {#using-javascript-instead-of-typescript}
 
 React Native define novos aplicativos para TypeScript por padrão, mas JavaScript ainda pode ser usado. Arquivos com extensão `.jsx` são tratados como JavaScript em vez de TypeScript, e não terão verificação de tipo. Módulos JavaScript ainda podem ser importados por módulos TypeScript, junto com o inverso.
 
-## How TypeScript and React Native works
+## Como TypeScript e React Native funcionam {#how-typescript-and-react-native-works}
 
 Por padrão, fontes TypeScript são transformadas pelo [Babel][babel] durante o bundling. Recomendamos que você use o compilador TypeScript apenas para verificação de tipo. Este é o comportamento padrão do `tsc` para aplicativos recém-criados. Se você tiver código TypeScript existente sendo portado para React Native, há [uma ou duas ressalvas][babel-7-caveats] ao usar Babel em vez de TypeScript.
 
-## What does React Native + TypeScript look like
+## Como é React Native + TypeScript na prática {#what-does-react-native--typescript-look-like}
 
 Você pode fornecer uma interface para as [Props](props) e [State](state) de um React Component via `React.Component<Props, State>` que fornecerá verificação de tipo e auto-completar do editor ao trabalhar com esse componente em JSX.
 
@@ -154,13 +154,13 @@ export default Hello;
 
 Você pode explorar a sintaxe mais no [TypeScript playground][tsplay].
 
-## Where to Find Useful Advice
+## Onde encontrar dicas úteis {#where-to-find-useful-advice}
 
-- [TypeScript Handbook][ts-handbook]
-- [React's documentation on TypeScript][react-ts]
+- [Manual do TypeScript][ts-handbook]
+- [Documentação do React sobre TypeScript][react-ts]
 - [React + TypeScript Cheatsheets][cheat] tem uma boa visão geral sobre como usar React com TypeScript
 
-## Using Custom Path Aliases with TypeScript
+## Usando aliases de caminho personalizados com TypeScript {#using-custom-path-aliases-with-typescript}
 
 Para usar aliases de caminho customizados com TypeScript, você precisa configurar os aliases de caminho para funcionar tanto do Babel quanto do TypeScript. Veja como:
 
@@ -204,7 +204,7 @@ yarn add --dev babel-plugin-module-resolver
 
 ```diff
 {
-  presets: ['module:metro-react-native-babel-preset'],
+   presets: ['module:metro-react-native-babel-preset'],
 +  plugins: [
 +    [
 +       'module-resolver',
@@ -234,5 +234,3 @@ yarn add --dev babel-plugin-module-resolver
 [expo]: https://expo.io
 [ignite]: https://github.com/infinitered/ignite
 [tsplay]: https://www.typescriptlang.org/play?strictNullChecks=false&jsx=3#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wG4BYAKFEljgG8AhAVxhggDsAaOAZRgCeAGyS8AFkiQweAFSQAPaXABqwJAHcAvnGy4CRdDAC0HFDGAA3JGSpUFteILBI4ABRxgAznAC8DKnBwpiBIAFxwnjBQwBwA5hSUgQBGKJ5IAKIcMGLMnsCpIAAySFZCAPzhHMwgSUhQCZq2lGickXAAEkhCQhDhyIYAdABiAMIAPO4QXgB8vnAAFPRBKCE8KWmZ2bn5nkUlXXMADHCaAJS+s-QBcC0cbQDaSFk5eQXFpTxpMJsvO3ulAF05v0MANcqIYGYkPN1hlnts3vshKcEtdbm1OABJDhoIghLJzebnHyzL4-BG7d5deZPLavSlIuAAajgAEYUWjWvBOAARJC4pD4+B+IkXCJScn0-7U2m-RGlOCzY5lOCyinSoRwIxsuDhQ4cyicu7wWIS+RoIQrMzATgAWRQUAA1t4RVUQCMxA7PJVqrUoMTZm6PV7FXBlXAAIJQKAoATzIOeqDeFnsgYAKwgMXm+AAhPhzuF8DZDYk4EQYMwoBwFtdAmNVBoIoIRD56JFhEhPANbpCYnVNNNa4E4GM5Iomx3W+2RF3YkQpDFYgOh8OOl0evR8ARGqXV4F6MEkDu98P6KbvubLSBrXaHc6afCpVTkce92MAPRjmCD3fD+tqdQfxPOsWDYTgVz3cwYBbAAibEBVSFw1SlGCINXdA0E7PIkmAIRgEEQoUFqIQfBgmIBSFVDfxPTh3Cw1ssRxPFaVfYCbggHooFIpIhGYJAqLY98gOAsZQPYDg0OHKDYL5BC0lVR8-gEti4AwrDgBwvCCKIrpSIAE35ZismUtjaKITxPAYjhZKMmBWOAlpONIog9JMvchIgj8G0AocvIA4SDU0VFmi5CcZzmfgO3ESQYG7AwYGhK5Sx7FA+ygcIktXTARHkcJWS4IcUDw2IOExBKQG9OAYMwrI6hggrfzTXJzEwAQRk4BKsnCaraTq65NAawI5xixcMqHTAOt4YAAC8wjgAAmQ5BuHCasgAdSQYBYjEGBCySDi9PwZbAmvKBYhiPKADZloGqgzmC+xoHgAzMBQZghHgTpuggBIgA
-```
-

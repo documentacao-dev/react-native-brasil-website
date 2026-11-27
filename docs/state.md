@@ -16,7 +16,7 @@ Por exemplo, digamos que queremos fazer um texto que pisca o tempo todo. O texto
 <TabItem value="javascript">
 
 ```SnackPlayer name=State&ext=js
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {Text, View} from 'react-native';
 
 const Blink = props => {
@@ -55,7 +55,7 @@ export default BlinkApp;
 <TabItem value="typescript">
 
 ```SnackPlayer name=State&ext=tsx
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {Text, View} from 'react-native';
 
 type BlinkProps = {

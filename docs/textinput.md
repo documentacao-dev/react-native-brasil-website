@@ -9,13 +9,13 @@ Um componente fundamental para inserir texto no aplicativo através de um teclad
 O caso de uso mais básico é colocar um `TextInput` e se inscrever nos eventos `onChangeText` para ler a entrada do usuário. Existem também outros eventos, como `onSubmitEditing` e `onFocus` que podem ser assinados. Um exemplo mínimo:
 
 ```SnackPlayer name=TextInput%20Example
-import React from 'react';
+import {useState} from 'react';
 import {StyleSheet, TextInput} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const TextInputExample = () => {
-  const [text, onChangeText] = React.useState('Useless Text');
-  const [number, onChangeNumber] = React.useState('');
+  const [text, onChangeText] = useState('Useless Text');
+  const [number, onChangeNumber] = useState('');
 
   return (
     <SafeAreaProvider>
@@ -51,15 +51,15 @@ export default TextInputExample;
 
 Dois métodos expostos através do elemento nativo são `.focus()` e `.blur()` que focam ou desfocam o TextInput programaticamente.
 
-Note que algumas props estão disponíveis apenas com `multiline={true/false}`. Além disso, estilos de borda que se aplicam a apenas um lado do elemento (por exemplo, `borderBottomColor`, `borderLeftWidth`, etc.) não serão aplicados se `multiline=true`. Para alcançar o mesmo efeito, você pode envolver seu `TextInput` em uma `View`:
+Note que algumas props estão disponíveis apenas com `multiline={true/false}`:
 
 ```SnackPlayer name=Multiline%20TextInput%20Example
-import React from 'react';
+import {useState} from 'react';
 import {TextInput, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const MultilineTextInputExample = () => {
-  const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
+  const [value, onChangeText] = useState('Useless Multiline Placeholder');
 
   // If you type something in the text box that is a color,
   // the background will change to that color.
@@ -230,20 +230,6 @@ Se `false`, desativa a correção automática. O valor padrão é `true`.
 ### `autoFocus`
 
 Se `true`, foca o input. O valor padrão é `false`.
-
-| Type |
-| ---- |
-| bool |
-
----
-
-### `blurOnSubmit`
-
-:::warning Deprecated
-Note que `submitBehavior` agora toma o lugar de `blurOnSubmit` e substituirá qualquer comportamento definido por `blurOnSubmit`. Veja [submitBehavior](textinput#submitbehavior).
-:::
-
-Se `true`, o campo de texto ficará desfocado quando enviado. O valor padrão é true para campos de linha única e false para campos multilinha. Note que para campos multilinha, definir `blurOnSubmit` como `true` significa que pressionar return desfocará o campo e disparará o evento `onSubmitEditing` em vez de inserir uma nova linha no campo.
 
 | Type |
 | ---- |
@@ -1142,6 +1128,6 @@ Retorna `true` se o input estiver atualmente focado; `false` caso contrário.
 
 # Known issues
 
-- [react-native#19096](https://github.com/facebook/react-native/issues/19096): Não suporta o `onKeyPreIme` do Android.
-- [react-native#19366](https://github.com/facebook/react-native/issues/19366): Chamar .focus() após fechar o teclado do Android via botão voltar não abre o teclado novamente.
-- [react-native#26799](https://github.com/facebook/react-native/issues/26799): Não suporta `secureTextEntry` do Android quando `keyboardType="email-address"` ou `keyboardType="phone-pad"`.
+- [react-native#19096](https://github.com/react/react-native/issues/19096): Não suporta o `onKeyPreIme` do Android.
+- [react-native#19366](https://github.com/react/react-native/issues/19366): Chamar .focus() após fechar o teclado do Android via botão voltar não abre o teclado novamente.
+- [react-native#26799](https://github.com/react/react-native/issues/26799): Não suporta `secureTextEntry` do Android quando `keyboardType="email-address"` ou `keyboardType="phone-pad"`.

@@ -7,7 +7,6 @@ title: StyleSheet
 Um StyleSheet é uma abstração similar aos CSS StyleSheets.
 
 ```SnackPlayer name=StyleSheet
-import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -50,9 +49,9 @@ Dicas de qualidade de código:
 
 ---
 
-# Referência
+# Referência {#reference}
 
-## Métodos
+## Métodos {#methods}
 
 ### `compose()`
 
@@ -62,8 +61,7 @@ static compose(style1: Object, style2: Object): Object | Object[];
 
 Combina dois estilos de forma que `style2` sobrescreverá quaisquer estilos em `style1`. Se qualquer um dos estilos for falsy, o outro é retornado sem alocar um array, economizando alocações e mantendo a igualdade de referência para verificações de PureComponent.
 
-```SnackPlayer name=Compose
-import React from 'react';
+```SnackPlayer name=Compose&ext=js
 import {StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -124,7 +122,6 @@ static flatten(style: Array<Object extends Record<string, ViewStyle | ImageStyle
 Achata um array de objetos de estilo em um único objeto de estilo agregado.
 
 ```SnackPlayer name=Flatten
-import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -175,7 +172,7 @@ export default App;
 
 ### `setStyleAttributePreprocessor()`
 
-:::warning Experimental
+:::warning[Experimental]
 Mudanças que quebram compatibilidade provavelmente acontecerão com frequência e não serão anunciadas de forma confiável. Tudo isso pode ser deletado, quem sabe? Use por sua conta e risco.
 :::
 
@@ -188,7 +185,7 @@ static setStyleAttributePreprocessor(
 
 Define uma função a ser usada para pré-processar um valor de propriedade de estilo. Isso é usado internamente para processar valores de cor e transformação. Você não deve usar isso a menos que realmente saiba o que está fazendo e tenha esgotado outras opções.
 
-## Propriedades
+## Propriedades {#properties}
 
 ---
 
@@ -197,7 +194,6 @@ Define uma função a ser usada para pré-processar um valor de propriedade de e
 Um padrão muito comum é criar overlays com posição absoluta e posicionamento zero (`position: 'absolute', left: 0, right: 0, top: 0, bottom: 0`), então `absoluteFill` pode ser usado por conveniência e para reduzir a duplicação desses estilos repetidos. Se você quiser, absoluteFill pode ser usado para criar uma entrada customizada em um StyleSheet, por exemplo:
 
 ```SnackPlayer name=absoluteFill
-import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -253,76 +249,11 @@ export default App;
 
 ---
 
-### `absoluteFillObject`
-
-Às vezes você pode querer `absoluteFill` mas com alguns ajustes - `absoluteFillObject` pode ser usado para criar uma entrada customizada em um `StyleSheet`, por exemplo:
-
-```SnackPlayer name=absoluteFillObject
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
-
-const App = () => (
-  <SafeAreaProvider>
-    <SafeAreaView style={styles.container}>
-      <View style={styles.box1}>
-        <Text style={styles.text}>1</Text>
-      </View>
-      <View style={styles.box2}>
-        <Text style={styles.text}>2</Text>
-      </View>
-      <View style={styles.box3}>
-        <Text style={styles.text}>3</Text>
-      </View>
-    </SafeAreaView>
-  </SafeAreaProvider>
-);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  box1: {
-    position: 'absolute',
-    top: 40,
-    left: 40,
-    width: 100,
-    height: 100,
-    backgroundColor: 'red',
-  },
-  box2: {
-    ...StyleSheet.absoluteFillObject,
-    top: 120,
-    left: 50,
-    width: 100,
-    height: 100,
-    backgroundColor: 'blue',
-  },
-  box3: {
-    ...StyleSheet.absoluteFillObject,
-    top: 120,
-    left: 120,
-    width: 100,
-    height: 100,
-    backgroundColor: 'green',
-  },
-  text: {
-    color: '#FFF',
-    fontSize: 80,
-  },
-});
-
-export default App;
-```
-
----
-
 ### `hairlineWidth`
 
 Isso é definido como a largura de uma linha fina na plataforma. Pode ser usado como a espessura de uma borda ou divisão entre dois elementos. Exemplo:
 
 ```SnackPlayer name=hairlineWidth
-import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 const App = () => (

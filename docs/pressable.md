@@ -12,7 +12,7 @@ Pressable é um wrapper de Core Component que pode detectar vários estágios de
 </Pressable>
 ```
 
-## Como funciona
+## Como funciona {#how-it-works}
 
 Em um elemento envolvido por `Pressable`:
 
@@ -42,13 +42,14 @@ A área de toque nunca se estende além dos limites da view pai e o Z-index de v
 </figure>
 
 :::info
-`Pressable` usa a API `Pressability` do React Native. Para mais informações sobre o fluxo da máquina de estados de Pressability e como ela funciona, confira a implementação de [Pressability](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Pressability/Pressability.js#L350).
+`Pressable` usa a API `Pressability` do React Native. Para mais informações sobre o fluxo da máquina de estados de Pressability e como ela funciona, confira a implementação de [Pressability](https://github.com/react/react-native/blob/main/packages/react-native/Libraries/Pressability/Pressability.js#L350).
+
 :::
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=Pressable
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -123,7 +124,7 @@ Se verdadeiro, não reproduz o som do sistema Android ao pressionar.
 
 ### `android_ripple` <div className="label android">Android</div>
 
-Habilita o efeito ripple do Android e configura suas propriedades.
+Habilita o efeito ripple do Android e configura suas propriedades. O campo `color` aceita tanto cores simples quanto valores de [`PlatformColor`](platformcolor), então você pode referenciar atributos de tema como `?attr/colorAccent`. Quando um `PlatformColor` é usado, o ripple é atualizado automaticamente quando a configuração do sistema muda (por exemplo, ao alternar entre o modo claro e o escuro).
 
 | Type                                   |
 | -------------------------------------- |
@@ -261,9 +262,10 @@ Configuração do efeito ripple para a propriedade `android_ripple`.
 
 **Properties:**
 
-| Name       | Type            | Required | Description                                                                                                                                                                                                                                                                         |
-| ---------- | --------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| color      | [color](colors) | No       | Define a cor do efeito ripple.                                                                                                                                                                                                                                                      |
-| borderless | boolean         | No       | Define se o efeito ripple não deve incluir borda.                                                                                                                                                                                                                                   |
-| radius     | number          | No       | Define o raio do efeito ripple.                                                                                                                                                                                                                                                     |
-| foreground | boolean         | No       | Defina como true para adicionar o efeito ripple ao primeiro plano da view, em vez do plano de fundo. Isso é útil se uma de suas views filhas tem um plano de fundo próprio, ou se você está, por exemplo, exibindo imagens, e não quer que o ripple seja coberto por elas. |
+| Name       | Type                                              | Required | Description                                                                                                                                                                                                                                                                |
+| ---------- | ------------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| color      | [color](colors) ou [PlatformColor](platformcolor) | No       | Define a cor do efeito ripple.                                                                                                                                                                                                                                             |
+| borderless | boolean                                           | No       | Define se o efeito ripple não deve incluir borda.                                                                                                                                                                                                                          |
+| radius     | number                                            | No       | Define o raio do efeito ripple.                                                                                                                                                                                                                                            |
+| foreground | boolean                                           | No       | Defina como true para adicionar o efeito ripple ao primeiro plano da view, em vez do plano de fundo. Isso é útil se uma de suas views filhas tem um plano de fundo próprio, ou se você está, por exemplo, exibindo imagens, e não quer que o ripple seja coberto por elas. |
+| alpha      | number                                            | No       | Controla a opacidade do ripple. Aceita um valor entre `0.0` (totalmente transparente) e `1.0` (totalmente opaco). O valor é aplicado sobre qualquer alpha já presente na cor.                                                                                              |

@@ -6,7 +6,7 @@ title: Tipo de Objeto PressEvent
 
 O objeto `PressEvent` é retornado no callback como resultado da interação de pressionamento do usuário, por exemplo `onPress` no componente [Button](button).
 
-## Exemplo
+## Exemplo {#example}
 
 ```js
 {
@@ -22,7 +22,7 @@ O objeto `PressEvent` é retornado no callback como resultado da interação de 
 }
 ```
 
-## Chaves e valores
+## Chaves e valores {#keys-and-values}
 
 ### `changedTouches`
 
@@ -104,7 +104,7 @@ Array de todos os PressEvents atuais na tela.
 | -------------------- | -------- |
 | array of PressEvents | No       |
 
-## Usado por
+## Usado por {#used-by}
 
 - [`Button`](button)
 - [`PanResponder`](panresponder)

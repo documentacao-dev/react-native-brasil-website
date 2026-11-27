@@ -18,7 +18,7 @@ Se você tem restrições que não são bem atendidas por um [Framework](/archit
 
 Para fazer isso, primeiro você precisará [configurar seu ambiente](set-up-your-environment). Uma vez configurado, continue com os passos abaixo para criar uma aplicação e começar a desenvolver.
 
-### Passo 1: Criando uma nova aplicação
+### Passo 1: Criando uma nova aplicação {#step-1-creating-a-new-application}
 
 <RemoveGlobalCLI />
 
@@ -40,7 +40,7 @@ Se você está tendo problemas com iOS, tente reinstalar as dependências execut
 
 :::
 
-#### [Opcional] Usando uma versão ou template específico
+#### [Opcional] Usando uma versão ou template específico {#optional-using-a-specific-version-or-template}
 
 Se você quiser iniciar um novo projeto com uma versão específica do React Native, você pode usar o argumento `--version`:
 
@@ -50,7 +50,7 @@ npx @react-native-community/cli@X.XX.X init AwesomeProject --version X.XX.X
 
 Você também pode iniciar um projeto com um template React Native customizado com o argumento `--template`, leia mais [aqui](https://github.com/react-native-community/cli/blob/main/docs/init.md#initializing-project-with-custom-template).
 
-### Passo 2: Iniciar o Metro
+### Passo 2: Iniciar o Metro {#step-2-start-metro}
 
 [**Metro**](https://metrobundler.dev/) é a ferramenta de build JavaScript para React Native. Para iniciar o servidor de desenvolvimento Metro, execute o seguinte a partir da pasta do seu projeto:
 
@@ -75,7 +75,7 @@ yarn start
 Se você está familiarizado com desenvolvimento web, Metro é similar a bundlers como Vite e webpack, mas é projetado end-to-end para React Native. Por exemplo, Metro usa [Babel](https://babel.dev/) para transformar sintaxe como JSX em JavaScript executável.
 :::
 
-### Passo 3: Iniciar sua aplicação
+### Passo 3: Iniciar sua aplicação {#step-3-start-your-application}
 
 Deixe o Metro Bundler executar em seu próprio terminal. Abra um novo terminal dentro da pasta do seu projeto React Native. Execute o seguinte:
 
@@ -104,20 +104,20 @@ Esta é uma maneira de executar seu app - você também pode executá-lo diretam
 Se você não conseguir fazer isso funcionar, veja a página [Troubleshooting](troubleshooting.md).
 :::
 
-### Passo 4: Modificando seu app
+### Passo 4: Modificando seu app {#step-4-modifying-your-app}
 
 Agora que você executou o app com sucesso, vamos modificá-lo.
 
 - Abra `App.tsx` em seu editor de texto de escolha e edite algumas linhas.
 - Pressione a tecla <kbd>R</kbd> duas vezes ou selecione `Reload` do Dev Menu (<kbd>Ctrl</kbd> + <kbd>M</kbd>) para ver suas alterações!
 
-### É isso!
+### É isso! {#thats-it}
 
 Parabéns! Você executou e modificou com sucesso seu primeiro app React Native básico.
 
 <center><img src="/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
 
-### E agora?
+### E agora? {#now-what}
 
 - Se você quiser adicionar este novo código React Native a uma aplicação existente, confira o [guia de Integração](integration-with-existing-apps.md).
 - Se você está curioso para aprender mais sobre React Native, confira a [Introdução ao React Native](getting-started).

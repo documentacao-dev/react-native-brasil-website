@@ -23,13 +23,13 @@ No entanto, _existem_ algumas limitações ao suporte do Babel ao TypeScript, so
 
 Em todo caso, divirta-se! O blog post original continua abaixo.
 
-## Pré-requisitos
+## Pré-requisitos {#prerequisites}
 
 Como você pode estar desenvolvendo em uma de várias plataformas diferentes, visando vários tipos diferentes de dispositivos, a configuração básica pode ser envolvente. Você deve primeiro garantir que pode executar um app React Native simples sem TypeScript. Siga [as instruções no site do React Native para começar](/docs/getting-started). Quando você conseguir fazer deploy para um dispositivo ou emulador, estará pronto para começar um app React Native TypeScript.
 
 Você também precisará de [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com) e [Yarn](https://yarnpkg.com/lang/en).
 
-## Inicialização
+## Inicialização {#initializing}
 
 Uma vez que você tenha tentado criar um projeto React Native comum, você estará pronto para começar a adicionar TypeScript. Vamos em frente e fazer isso.
 
@@ -38,7 +38,7 @@ react-native init MyAwesomeProject
 cd MyAwesomeProject
 ```
 
-## Adicionando TypeScript
+## Adicionando TypeScript {#adding-typescript}
 
 O próximo passo é adicionar TypeScript ao seu projeto. Os seguintes comandos irão:
 
@@ -80,7 +80,7 @@ module.exports = {
 };
 ```
 
-## Migrando para TypeScript
+## Migrando para TypeScript {#migrating-to-typescript}
 
 Renomeie os arquivos `App.js` e `__tests_/App.js` gerados para `App.tsx`. `index.js` precisa usar a extensão `.js`. Todos os novos arquivos devem usar a extensão `.tsx` (ou `.ts` se o arquivo não contiver JSX).
 
@@ -96,7 +96,7 @@ Parte disso tem a ver com diferenças em como Babel e TypeScript interoperam com
 
 Neste ponto, você deve ser capaz de executar o app React Native.
 
-## Adicionando Infraestrutura de Teste TypeScript
+## Adicionando Infraestrutura de Teste TypeScript {#adding-typescript-testing-infrastructure}
 
 React Native vem com [Jest](https://github.com/facebook/jest), então para testar um app React Native com TypeScript, queremos adicionar [ts-jest](https://www.npmjs.com/package/ts-jest) às nossas `devDependencies`.
 
@@ -131,7 +131,7 @@ Então, abriremos nosso `package.json` e substituiremos o campo `jest` pelo segu
 
 Isso configurará o Jest para executar arquivos `.ts` e `.tsx` com `ts-jest`.
 
-## Instalando Declarações de Tipo de Dependência
+## Instalando Declarações de Tipo de Dependência {#installing-dependency-type-declarations}
 
 Para obter a melhor experiência em TypeScript, queremos que o verificador de tipos entenda a forma e API de nossas dependências. Algumas bibliotecas publicarão seus pacotes com arquivos `.d.ts` (arquivos de declaração de tipo/definição de tipo), que podem descrever a forma do JavaScript subjacente. Para outras bibliotecas, precisaremos instalar explicitamente o pacote apropriado no escopo npm `@types/`.
 
@@ -145,7 +145,7 @@ Salvamos esses pacotes de arquivo de declaração em nossas dependências de _de
 
 Você pode ler mais [aqui sobre obter arquivos `.d.ts`](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html).
 
-## Ignorando Mais Arquivos
+## Ignorando Mais Arquivos {#ignoring-more-files}
 
 Para seu controle de código-fonte, você vai querer começar a ignorar a pasta `.jest`. Se você está usando git, podemos apenas adicionar entradas ao nosso arquivo `.gitignore`.
 
@@ -164,7 +164,7 @@ git add .
 git commit -am "Initial commit."
 ```
 
-## Adicionando um Componente
+## Adicionando um Componente {#adding-a-component}
 
 Vamos adicionar um componente ao nosso app. Vamos em frente e criar um componente `Hello.tsx`. É um componente pedagógico, não algo que você realmente escreveria em um app, mas algo não trivial que mostra como usar TypeScript em React Native.
 
@@ -272,7 +272,7 @@ Uau! Isso é muito, mas vamos decompor:
 - Em vez de renderizar elementos HTML como `div`, `span`, `h1`, etc., estamos renderizando componentes como `View` e `Button`. Esses são componentes nativos que funcionam em diferentes plataformas.
 - O estilo é especificado usando a função `StyleSheet.create` que o React Native nos fornece. As stylesheets do React nos permitem controlar nosso layout usando Flexbox, e estilizar usando outros constructos similares aos do CSS.
 
-## Adicionando um Teste de Componente
+## Adicionando um Teste de Componente {#adding-a-component-test}
 
 Agora que temos um componente, vamos tentar testá-lo.
 
@@ -301,7 +301,7 @@ it('renders correctly with defaults', () => {
 
 A primeira vez que o teste é executado, ele criará um snapshot do componente renderizado e o armazenará no arquivo `components/__tests__/__snapshots__/Hello.tsx.snap`. Quando você modificar seu componente, precisará atualizar os snapshots e revisar a atualização para mudanças inadvertidas. Você pode ler mais sobre testar componentes React Native [aqui](https://facebook.github.io/jest/docs/en/tutorial-react-native.html).
 
-## Próximos Passos
+## Próximos Passos {#next-steps}
 
 Confira o [tutorial oficial do React](https://reactjs.org/tutorial/tutorial.html) e a biblioteca de gerenciamento de estado [Redux](https://redux.js.org). Esses recursos podem ser úteis ao escrever apps React Native. Além disso, você pode querer olhar para [ReactXP](https://microsoft.github.io/reactxp/), uma biblioteca de componentes escrita inteiramente em TypeScript que suporta tanto React na web quanto React Native.
 

@@ -7,28 +7,24 @@
 
 // ia-translated: true
 
-import React, {useEffect, useState} from 'react';
+import {type PropsWithChildren, useEffect, useState} from 'react';
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
-import type users from '../../showcase.json';
-import IconExternalLink from '../theme/Icon/ExternalLink';
+import {ShowcaseApp, ShowcaseData} from '@site/src/types';
 import ThemedImage from '@theme/ThemedImage';
+import Layout from '@theme/Layout';
 
-type UserAppType = (typeof users)[keyof typeof users][number];
-
-const renderApp = (app: UserAppType, i: number) => (
-  <AppBox app={app} key={`app-${app.name}-${i}`} />
-);
+import IconExternalLink from '../theme/Icon/ExternalLink';
 
 function Section({
   children,
   background = 'light',
-}: React.PropsWithChildren<{background?: 'light' | 'dark'}>) {
+}: PropsWithChildren<{background?: 'light' | 'dark'}>) {
   return <section className={`Section ${background}`}>{children}</section>;
 }
 
-const AppBox = ({app}: {app: UserAppType}) => {
+const AppBox = ({app}: {app: ShowcaseApp}) => {
   const imgSource = useBaseUrl(
     app.icon.startsWith('http') ? app.icon : 'img/showcase/' + app.icon
   );
@@ -59,7 +55,7 @@ const AppBox = ({app}: {app: UserAppType}) => {
   );
 };
 
-const renderLinks = (app: UserAppType) => {
+const renderLinks = (app: ShowcaseApp) => {
   const links = [
     app.linkAppStore ? (
       <a key="ios" href={app.linkAppStore} target="_blank">
@@ -94,15 +90,17 @@ const renderLinks = (app: UserAppType) => {
   return <p className="showcaseLinks">{links}</p>;
 };
 
-const randomizeApps = apps =>
+const randomizeApps = (apps: ShowcaseApp[]) =>
   [...apps].filter(app => !app.group).sort(() => 0.5 - Math.random());
 
 const Showcase = () => {
   const {siteConfig} = useDocusaurusContext();
-  const {meta, microsoft, shopify, wix, amazon, others} = siteConfig
-    .customFields.users as typeof users;
-  const [pinnedRandomizedApps, setPinnedRandomizedApps] = useState([]);
-  const [randomizedApps, setRandomizedApps] = useState([]);
+  const {meta, microsoft, wix, amazon, others} = siteConfig.customFields
+    .users as ShowcaseData;
+  const [pinnedRandomizedApps, setPinnedRandomizedApps] = useState<
+    ShowcaseApp[]
+  >([]);
+  const [randomizedApps, setRandomizedApps] = useState<ShowcaseApp[]>([]);
 
   useEffect(() => {
     setRandomizedApps(randomizeApps(others.filter(app => !app.pinned)));
@@ -112,16 +110,18 @@ const Showcase = () => {
   return (
     <Layout
       title="Showcase"
-      description="Milhares de apps estão usando React Native, confira esses apps!">
+      description="Milhares de apps estão usando React Native, confira esses apps!"
+      wrapperClassName="showcase-wrapper">
       <Section background="dark">
         <div className="sectionContainer headerContainer">
           <h1>
             Quem está usando <span>React Native</span>?
           </h1>
           <p>
-            Milhares de apps estão usando React Native, desde empresas estabelecidas da Fortune
-            500 até startups promissoras. Se você está curioso para ver o que
-            pode ser realizado com React Native, confira esses apps!
+            Milhares de apps estão usando React Native, desde empresas
+            estabelecidas da Fortune 500 até startups promissoras. Se você está
+            curioso para ver o que pode ser realizado com React Native, confira
+            esses apps!
           </p>
         </div>
       </Section>
@@ -139,10 +139,14 @@ const Showcase = () => {
           </h2>
           <p className="showcaseSectionDescription">
             React Native está moldando experiências mobile, web e desktop dentro
-            do ecossistema de produtos da Meta, do Facebook Marketplace, Messenger
-            Desktop, Ads Manager ao app Meta Quest e muitos outros.
+            do ecossistema de produtos da Meta, do Facebook Marketplace,
+            Messenger Desktop, Ads Manager ao app Meta Quest e muitos outros.
           </p>
-          <div className="logos">{meta.map(renderApp)}</div>
+          <div className="logos">
+            {meta.map((app, i) => (
+              <AppBox app={app} key={`app-${app.name}-${i}`} />
+            ))}
+          </div>
         </div>
         <div className="showcaseSection">
           <h2 className="withLogo">
@@ -156,11 +160,12 @@ const Showcase = () => {
             />
           </h2>
           <p className="showcaseSectionDescription">
-            A Microsoft aproveita o poder do React Native para entregar excelentes
-            experiências ao cliente em alguns de seus apps mais conhecidos.
-            <br />
-            A Microsoft não para apenas nas plataformas mobile -- a Microsoft
-            aproveita React Native para atingir desktop também! Saiba mais no{' '}
+            A Microsoft aproveita o poder do React Native para entregar
+            excelentes experiências ao cliente em alguns de seus apps mais
+            conhecidos.
+            <br />A Microsoft não para apenas nas plataformas mobile -- a
+            Microsoft aproveita React Native para atingir desktop também! Saiba
+            mais no{' '}
             <a
               href="https://microsoft.github.io/react-native-windows/resources-showcase"
               target="_blank">
@@ -168,7 +173,11 @@ const Showcase = () => {
             </a>{' '}
             para React Native Windows e macOS.
           </p>
-          <div className="logos">{microsoft.map(renderApp)}</div>
+          <div className="logos">
+            {microsoft.map((app, i) => (
+              <AppBox app={app} key={`app-${app.name}-${i}`} />
+            ))}
+          </div>
         </div>
         <div className="showcaseSection">
           <h2 className="withLogo">
@@ -182,33 +191,17 @@ const Showcase = () => {
             />
           </h2>
           <p className="showcaseSectionDescription">
-            A Amazon usou React Native para entregar rapidamente novos recursos voltados ao cliente
-            em alguns de seus aplicativos mobile mais populares desde
-            2016. A Amazon também usa React Native para dar suporte a dispositivos favoritos dos clientes
-            como os leitores digitais Kindle.
+            A Amazon usou React Native para entregar rapidamente novos recursos
+            voltados ao cliente em alguns de seus aplicativos mobile mais
+            populares desde 2016. A Amazon também usa React Native para dar
+            suporte a dispositivos favoritos dos clientes como os leitores
+            digitais Kindle.
           </p>
-          <div className="logos">{amazon.map(renderApp)}</div>
-        </div>
-        <div className="showcaseSection">
-          <h2 className="withLogo">
-            <ThemedImage
-              alt="Logo da Shopify"
-              width={160}
-              sources={{
-                light: useBaseUrl('/img/showcase/shopify_logo_whitebg.svg'),
-                dark: useBaseUrl('/img/showcase/shopify_logo_darkbg.svg'),
-              }}
-            />
-          </h2>
-          <p className="showcaseSectionDescription">
-            Todos os aplicativos mobile na Shopify são construídos usando React Native. Você pode
-            ler mais sobre o desenvolvimento em React Native na Shopify em nosso{' '}
-            <a href="https://shopify.engineering/topics/mobile" target="_blank">
-              blog
-            </a>
-            .
-          </p>
-          <div className="logos">{shopify.map(renderApp)}</div>
+          <div className="logos">
+            {amazon.map((app, i) => (
+              <AppBox app={app} key={`app-${app.name}-${i}`} />
+            ))}
+          </div>
         </div>
         <div className="showcaseSection">
           <h2 className="withLogo">
@@ -222,18 +215,26 @@ const Showcase = () => {
             />
           </h2>
           <p className="showcaseSectionDescription">
-            Com uma das maiores bases de código React Native do mundo, a Wix
-            tem um longo histórico com a comunidade de desenvolvimento e mantém uma
-            variedade de projetos de código aberto. A Wix é uma das primeiras a adotar React
-            Native e o usa para todo seu conjunto de aplicações.
+            Com uma das maiores bases de código React Native do mundo, a Wix tem
+            um longo histórico com a comunidade de desenvolvimento e mantém uma
+            variedade de projetos de código aberto. A Wix é uma das primeiras a
+            adotar React Native e o usa para todo seu conjunto de aplicações.
           </p>
-          <div className="logos">{wix.map(renderApp)}</div>
+          <div className="logos">
+            {wix.map((app, i) => (
+              <AppBox app={app} key={`app-${app.name}-${i}`} />
+            ))}
+          </div>
         </div>
         <div className="showcaseSection showcaseCustomers">
           <h2>Showcase de Usuários</h2>
           <div className="logos">
-            {pinnedRandomizedApps.map(renderApp)}
-            {randomizedApps.map(renderApp)}
+            {pinnedRandomizedApps.map((app, i) => (
+              <AppBox app={app} key={`app-${app.name}-${i}`} />
+            ))}
+            {randomizedApps.map((app, i) => (
+              <AppBox app={app} key={`app-${app.name}-${i}`} />
+            ))}
           </div>
         </div>
       </Section>

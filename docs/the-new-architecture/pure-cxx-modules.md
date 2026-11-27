@@ -1,4 +1,6 @@
 <!-- ia-translated: true -->
+
+import {getCoreBranchNameForCurrentVersion} from '@site/src/getCoreBranchNameForCurrentVersion';
 import {getCurrentVersion} from '@site/src/getCurrentVersion';
 import CodeBlock from '@theme/CodeBlock';
 
@@ -19,10 +21,10 @@ Neste guia, vamos percorrer a criação de um módulo Turbo Native Module C++ pu
 O restante deste guia assume que você criou sua aplicação executando o comando:
 
 <CodeBlock language="bash" title="shell">
-{`npx @react-native-community/cli@latest init SampleApp --version ${getCurrentVersion()}`}
+{`npx @react-native-community/cli@latest init SampleApp --version "${getCurrentVersion()}"`}
 </CodeBlock>
 
-## 1. Criar as specs JS
+## 1. Criar as specs JS {#1-create-the-js-specs}
 
 Módulos Turbo Native Module C++ puros são Turbo Native Modules. Eles precisam de um arquivo de especificação (também chamado de arquivo spec) para que o Codegen possa criar o código scaffolding para nós. O arquivo de especificação também é o que usamos para acessar o Turbo Native Module em JS.
 
@@ -70,9 +72,9 @@ export default TurboModuleRegistry.getEnforcing<Spec>(
 </TabItem>
 </Tabs>
 
-## 2. Configurar o Codegen
+## 2. Configurar o Codegen {#2-configure-codegen}
 
-O próximo passo é configurar o [Codegen](what-is-codegen.md) no seu `package.json`. Atualize o arquivo para incluir:
+O próximo passo é configurar o [Codegen](what-is-codegen.mdx) no seu `package.json`. Atualize o arquivo para incluir:
 
 ```json title="package.json"
      "start": "react-native start",
@@ -93,7 +95,7 @@ O próximo passo é configurar o [Codegen](what-is-codegen.md) no seu `package.j
 
 Esta configuração diz ao Codegen para procurar arquivos spec na pasta `specs`. Ela também instrui o Codegen a gerar código apenas para `modules` e a dar namespace ao código gerado como `AppSpecs`.
 
-## 3. Escrever o Código Nativo
+## 3. Escrever o Código Nativo {#3-write-the-native-code}
 
 Escrever um módulo Turbo Native Module C++ permite que você compartilhe o código entre Android e iOS. Portanto, vamos escrever o código uma vez e veremos quais mudanças precisamos aplicar às plataformas para que o código C++ possa ser utilizado.
 
@@ -147,7 +149,7 @@ Vamos dar uma olhada nos dois arquivos que criamos:
 
 O arquivo `NativeSampleModule.cpp` é a implementação real do nosso Turbo Native Module e implementa o construtor e o método que declaramos nas specs.
 
-## 4. Registrar o Módulo na plataforma
+## 4. Registrar o Módulo na plataforma {#4-register-the-module-in-the-platform}
 
 Os próximos passos nos permitirão registrar o módulo na plataforma. Este é o passo que expõe o código nativo ao JS para que a aplicação React Native possa finalmente chamar os métodos nativos da camada JS.
 
@@ -161,7 +163,7 @@ Para garantir que o app Android possa efetivamente compilar o módulo Turbo Nati
 2. Modificar o `build.gradle` para apontar para o arquivo `CMakeLists.txt` recém-criado.
 3. Criar um arquivo `OnLoad.cpp` no nosso app Android para registrar o novo Turbo Native Module.
 
-#### 1. Criar o arquivo `CMakeLists.txt`
+#### 1. Criar o arquivo `CMakeLists.txt` {#1-create-the-cmakeliststxt-file}
 
 Android usa CMake para compilar. O CMake precisa acessar os arquivos que definimos em nossa pasta shared para poder compilá-los.
 
@@ -191,7 +193,7 @@ O arquivo CMake faz as seguintes coisas:
 - Adiciona o código fonte C++ do módulo que precisamos compilar com as diretivas `target_sources`. Por padrão, o React Native já irá preencher a biblioteca `appmodules` com as fontes padrão, aqui incluímos nossa fonte customizada. Você pode ver que precisamos voltar da pasta `jni` para a pasta `shared` onde nosso módulo Turbo C++ vive.
 - Especifica onde o CMake pode encontrar os arquivos de cabeçalho do módulo. Também neste caso precisamos voltar da pasta `jni`.
 
-#### 2. Modificar `build.gradle` para incluir o código C++ customizado
+#### 2. Modificar `build.gradle` para incluir o código C++ customizado {#2-modify-buildgradle-to-include-the-custom-c-code}
 
 Gradle é a ferramenta que orquestra a compilação do Android. Precisamos dizer a ele onde pode encontrar os arquivos `CMake` para compilar o Turbo Native Module.
 
@@ -222,14 +224,14 @@ Gradle é a ferramenta que orquestra a compilação do Android. Precisamos dizer
 
 Este bloco diz ao arquivo Gradle onde procurar o arquivo CMake. O caminho é relativo à pasta onde o arquivo `build.gradle` vive, então precisamos adicionar o caminho para o arquivo `CMakeLists.txt` na pasta `jni`.
 
-#### 3. Registrar o novo Turbo Native Module
+#### 3. Registrar o novo Turbo Native Module {#3-register-the-new-turbo-native-module}
 
 O passo final é registrar o novo módulo Turbo Native Module C++ no runtime, para que quando o JS requisitar o módulo Turbo Native Module C++, o app saiba onde encontrá-lo e possa retorná-lo.
 
 1. Da pasta `SampleApp/android/app/src/main/jni`, execute o seguinte comando:
 
 <CodeBlock language="sh" title="shell">
-{`curl -O https://raw.githubusercontent.com/facebook/react-native/${getCurrentVersion() === 'latest' ? '' : 'v'}${getCurrentVersion()}/packages/react-native/ReactAndroid/cmake-utils/default-app-setup/OnLoad.cpp`}
+{`curl -O https://raw.githubusercontent.com/react/react-native/${getCoreBranchNameForCurrentVersion()}/packages/react-native/ReactAndroid/cmake-utils/default-app-setup/OnLoad.cpp`}
 </CodeBlock>
 
 2. Em seguida, modifique este arquivo da seguinte forma:
@@ -258,7 +260,7 @@ std::shared_ptr<TurboModule> cxxModuleProvider(
   //   return std::make_shared<NativeCxxModuleExample>(jsInvoker);
   // }
 
-+  // This code register the module so that when the JS side asks for it, the app can return it
++  // This code registers the module so that when the JS side asks for it, the app can return it
 +  if (name == NativeSampleModule::kModuleName) {
 +    return std::make_shared<NativeSampleModule>(jsInvoker);
 +  }
@@ -287,7 +289,7 @@ Para garantir que o app iOS possa efetivamente compilar o módulo Turbo Native M
 2. Adicionar a pasta `shared` ao nosso projeto iOS.
 3. Registrar o módulo Turbo Native Module C++ na aplicação.
 
-#### 1. Instalar Pods e Executar o Codegen.
+#### 1. Instalar Pods e Executar o Codegen. {#1-install-pods-and-run-codegen}
 
 O primeiro passo que precisamos executar são os passos usuais que executamos toda vez que temos que preparar nossa aplicação iOS. CocoaPods é a ferramenta que usamos para configurar e instalar as dependências do React Native e, como parte do processo, ele também executará o Codegen para nós.
 
@@ -297,7 +299,7 @@ bundle install
 bundle exec pod install
 ```
 
-#### 2. Adicionar a pasta shared ao projeto iOS
+#### 2. Adicionar a pasta shared ao projeto iOS {#2-add-the-shared-folder-to-the-ios-project}
 
 Este passo adiciona a pasta `shared` ao projeto para torná-la visível ao Xcode.
 
@@ -320,7 +322,7 @@ Se você fez tudo certo, seu projeto à esquerda deve parecer assim:
 
 ![Xcode Project](/docs/assets/CxxTMGuideXcodeProject.png)
 
-#### 3. Registrando o módulo Cxx Turbo Native Module no seu app
+#### 3. Registrando o módulo Cxx Turbo Native Module no seu app {#3-registering-the-cxx-turbo-native-module-in-your-app}
 
 Para registrar um módulo Cxx Turbo Native Module puro no seu app, você precisa:
 
@@ -329,14 +331,14 @@ Para registrar um módulo Cxx Turbo Native Module puro no seu app, você precisa
 
 O ModuleProvider é um Objective-C++ que cola o módulo C++ puro com o resto do seu app iOS.
 
-##### 3.1 Criar o ModuleProvider
+##### 3.1 Criar o ModuleProvider {#31-create-the-moduleprovider}
 
 1. Do Xcode, selecione o projeto `SampleApp` e pressione <kbd>⌘</kbd> + <kbd>N</kbd> para criar um novo arquivo.
 2. Selecione o template `Cocoa Touch Class`
-3. Adicione o nome `SampleNativeModuleProvider` (mantenha os outros campos como `Subclass of: NSObject` e `Language: Objective-C`)
+3. Adicione o nome `NativeSampleModuleProvider` (mantenha os outros campos como `Subclass of: NSObject` e `Language: Objective-C`)
 4. Clique em Next para gerar os arquivos.
-5. Renomeie o `SampleNativeModuleProvider.m` para `SampleNativeModuleProvider.mm`. A extensão `mm` denota um arquivo Objective-C++.
-6. Implemente o conteúdo do `SampleNativeModuleProvider.h` com o seguinte:
+5. Renomeie o `NativeSampleModuleProvider.m` para `NativeSampleModuleProvider.mm`. A extensão `mm` denota um arquivo Objective-C++.
+6. Implemente o conteúdo do `NativeSampleModuleProvider.h` com o seguinte:
 
 ```objc title="NativeSampleModuleProvider.h"
 
@@ -354,7 +356,7 @@ NS_ASSUME_NONNULL_END
 
 Isso declara um objeto `NativeSampleModuleProvider` que está em conformidade com o protocolo `RCTModuleProvider`.
 
-7. Implemente o conteúdo do `SampleNativeModuleProvider.mm` com o seguinte:
+7. Implemente o conteúdo do `NativeSampleModuleProvider.mm` com o seguinte:
 
 ```objc title="NativeSampleModuleProvider.mm"
 
@@ -376,7 +378,7 @@ Isso declara um objeto `NativeSampleModuleProvider` que está em conformidade co
 
 Este código implementa o protocolo `RCTModuleProvider` criando o `NativeSampleModule` C++ puro quando o método `getTurboModule:` é chamado.
 
-##### 3.2 Atualizar o package.json
+##### 3.2 Atualizar o package.json {#32-update-the-packagejson}
 
 O último passo consiste em atualizar o `package.json` para dizer ao React Native sobre o link entre as specs JS do Native Module e a implementação concreta dessas specs no código nativo.
 
@@ -415,7 +417,7 @@ open SampleApp.xcworkspace
 
 Se você agora compilar sua aplicação do Xcode, você deve conseguir compilar com sucesso.
 
-## 5. Testando seu Código
+## 5. Testando seu Código {#5-testing-your-code}
 
 Agora é hora de acessar nosso módulo Turbo Native Module C++ do JS. Para fazer isso, temos que modificar o arquivo `App.tsx` para importar o Turbo Native Module e chamá-lo em nosso código.
 
@@ -423,7 +425,7 @@ Agora é hora de acessar nosso módulo Turbo Native Module C++ do JS. Para fazer
 2. Substitua o conteúdo do template pelo seguinte código:
 
 ```tsx title="App.tsx"
-import React from 'react';
+import {type JSX, useState} from 'react';
 import {
   Button,
   SafeAreaView,
@@ -434,9 +436,9 @@ import {
 } from 'react-native';
 import SampleTurboModule from './specs/NativeSampleModule';
 
-function App(): React.JSX.Element {
-  const [value, setValue] = React.useState('');
-  const [reversedValue, setReversedValue] = React.useState('');
+function App(): JSX.Element {
+  const [value, setValue] = useState('');
+  const [reversedValue, setReversedValue] = useState('');
 
   const onPress = () => {
     const revString = SampleTurboModule.reverseString(value);
@@ -449,7 +451,7 @@ function App(): React.JSX.Element {
         <Text style={styles.title}>
           Welcome to C++ Turbo Native Module Example
         </Text>
-        <Text>Write down here he text you want to revert</Text>
+        <Text>Write down here the text you want to reverse</Text>
         <TextInput
           style={styles.textInput}
           placeholder="Write your text here"

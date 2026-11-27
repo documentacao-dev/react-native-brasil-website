@@ -1,4 +1,5 @@
 <!-- ia-translated: true -->
+
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 # Avançado: Tipos C++ Personalizados
@@ -7,15 +8,15 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 Este guia assume que você está familiarizado com o guia [**Pure C++ Turbo Native Modules**](pure-cxx-modules.md). Isso será construído em cima desse guia.
 :::
 
-C++ Turbo Native Modules suportam [funcionalidade de bridging](https://github.com/facebook/react-native/tree/main/packages/react-native/ReactCommon/react/bridging) para a maioria dos tipos padrão `std::`. Você pode usar a maioria desses tipos em seus módulos sem qualquer código adicional necessário.
+C++ Turbo Native Modules suportam [funcionalidade de bridging](https://github.com/react/react-native/tree/main/packages/react-native/ReactCommon/react/bridging) para a maioria dos tipos padrão `std::`. Você pode usar a maioria desses tipos em seus módulos sem qualquer código adicional necessário.
 
 Se você quiser adicionar suporte para tipos novos e personalizados em seu aplicativo ou biblioteca, você precisa fornecer o arquivo header `bridging` necessário.
 
-## Adicionando um Novo Tipo Personalizado: Int64
+## Adicionando um Novo Tipo Personalizado: Int64 {#adding-a-new-custom-int64}
 
 C++ Turbo Native Modules ainda não suportam números `int64_t` - porque JavaScript não suporta números maiores que 2^53. Para representar números maiores que 2^53, podemos usar um tipo `string` em JS e convertê-lo automaticamente para `int64_t` em C++.
 
-### 1. Crie o Arquivo Header de Bridging
+### 1. Crie o Arquivo Header de Bridging {#1-create-the-bridging-header-file}
 
 O primeiro passo para suportar um novo tipo personalizado é definir o header de bridging que cuida da conversão do tipo **da** representação JS para a representação C++, e da representação C++ **para** a JS.
 
@@ -65,7 +66,7 @@ Os componentes-chave para seu header de bridging personalizado são:
 No iOS, lembre-se de adicionar o arquivo `Int64.h` ao projeto Xcode.
 :::
 
-### 2. Modifique a Spec JS
+### 2. Modifique a Spec JS {#2-modify-the-js-spec}
 
 Agora, podemos modificar a spec JS para adicionar um método que usa o novo tipo. Como de costume, podemos usar Flow ou TypeScript para nossas specs.
 
@@ -111,7 +112,7 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
 
 Nestes arquivos, estamos definindo a função que precisa ser implementada em C++.
 
-### 3. Implemente o Código Nativo
+### 3. Implemente o Código Nativo {#3-implement-the-native-code}
 
 Agora, precisamos implementar a função que declaramos na especificação JS.
 
@@ -164,7 +165,7 @@ std::string NativeSampleModule::reverseString(jsi::Runtime& rt, std::string inpu
 
 A implementação importa a biblioteca C++ `<cmath>` para realizar operações matemáticas, então implementa a função `cubicRoot` usando a primitiva `cbrt` do módulo `<cmath>`.
 
-### 4. Teste seu Código no seu App
+### 4. Teste seu Código no seu App {#4-test-your-code-in-your-app}
 
 Agora, podemos testar o código em nosso aplicativo.
 
@@ -174,8 +175,8 @@ Primeiro, precisamos atualizar o arquivo `App.tsx` para usar o novo método do T
 
 ```diff title="App.tsx"
 // ...
-+ const [cubicSource, setCubicSource] = React.useState('')
-+ const [cubicRoot, setCubicRoot] = React.useState(0)
++ const [cubicSource, setCubicSource] = useState('')
++ const [cubicRoot, setCubicRoot] = useState(0)
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -210,7 +211,7 @@ Primeiro, precisamos atualizar o arquivo `App.tsx` para usar o novo método do T
 2. Para testar o aplicativo no Android, execute `yarn android` da pasta raiz do seu projeto.
 3. Para testar o aplicativo no iOS, execute `yarn ios` da pasta raiz do seu projeto.
 
-## Adicionando um Novo Tipo Personalizado Estruturado: Address
+## Adicionando um Novo Tipo Personalizado Estruturado: Address {#adding-a-new-structured-custom-type-address}
 
 A abordagem acima pode ser generalizada para qualquer tipo de tipo. Para tipos estruturados, React Native fornece algumas funções auxiliares que tornam mais fácil fazer o bridge deles de JS para C++ e vice-versa.
 
@@ -224,7 +225,7 @@ interface Address {
 }
 ```
 
-### 1. Defina o tipo nas specs
+### 1. Defina o tipo nas specs {#1-define-the-type-in-the-specs}
 
 Para o primeiro passo, vamos definir o novo tipo personalizado nas specs JS, para que o Codegen possa gerar todo o código de suporte. Dessa forma, não precisamos escrever o código manualmente.
 
@@ -285,7 +286,7 @@ Este código define o novo tipo `Address` e define uma nova função `validateAd
 
 Também é possível ter funções que retornam tipos personalizados.
 
-### 2. Defina o código de bridging
+### 2. Defina o código de bridging {#2-define-the-bridging-code}
 
 Do tipo `Address` definido nas specs, o Codegen irá gerar dois tipos auxiliares: `NativeSampleModuleAddress` e `NativeSampleModuleAddressBridging`.
 
@@ -320,7 +321,7 @@ Existe uma convenção que é seguida para gerar esses tipos:
 - A segunda parte do nome é sempre o nome do tipo JS definido nas specs. `Address`, neste exemplo.
   :::
 
-### 3. Implemente o Código Nativo
+### 3. Implemente o Código Nativo {#3-implement-the-native-code-1}
 
 Agora, precisamos implementar a função `validateAddress` em C++. Primeiro, precisamos adicionar a declaração da função no arquivo `.h`, e então podemos implementá-la no arquivo `.cpp`.
 
@@ -359,7 +360,7 @@ Uma vez que analisamos manualmente o objeto, podemos implementar a lógica que p
 Se você quiser aprender mais sobre `JSI` e como funciona, dê uma olhada nesta [ótima palestra](https://youtu.be/oLmGInjKU2U?feature=shared) da App.JS 2024
 :::
 
-### 4. Testando o código no aplicativo
+### 4. Testando o código no aplicativo {#4-testing-the-code-in-the-app}
 
 Para testar o código no aplicativo, temos que modificar o arquivo `App.tsx`.
 
@@ -367,9 +368,9 @@ Para testar o código no aplicativo, temos que modificar o arquivo `App.tsx`.
 2. Substitua o corpo da função `App()` com o seguinte código:
 
 ```tsx title="App.tsx (App function body replacement)"
-const [street, setStreet] = React.useState('');
-const [num, setNum] = React.useState('');
-const [isValidAddress, setIsValidAddress] = React.useState<
+const [street, setStreet] = useState('');
+const [num, setNum] = useState('');
+const [isValidAddress, setIsValidAddress] = useState<
   boolean | null
 >(null);
 

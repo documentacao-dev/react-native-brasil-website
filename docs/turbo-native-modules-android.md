@@ -204,10 +204,10 @@ class NativeLocalStoragePackage : BaseReactPackage() {
 
 Finalmente, precisamos informar ao React Native em nosso aplicativo principal como encontrar este `Package`. Chamamos isso de "registrar" o package no React Native.
 
-Neste caso, você o adiciona para ser retornado pelo método [getPackages](https://github.com/facebook/react-native/blob/8d8b8c343e62115a5509e1aed62047053c2f6e39/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/ReactNativeHost.java#L233).
+Neste caso, você o adiciona para ser retornado pelo método [getPackages](https://github.com/react/react-native/blob/8d8b8c343e62115a5509e1aed62047053c2f6e39/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/ReactNativeHost.java#L233).
 
 :::info
-Mais tarde você aprenderá como distribuir seus Native Modules como [pacotes npm](the-new-architecture/create-module-library.md#publish-the-library-on-npm), que nossas ferramentas de build farão autolink para você.
+Mais tarde você aprenderá como distribuir seus Native Modules como [pacotes npm](the-new-architecture/create-module-library.mdx#publish-the-library-on-npm), que nossas ferramentas de build farão autolink para você.
 :::
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>

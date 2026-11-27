@@ -13,7 +13,6 @@ O componente mais fundamental para construir uma UI, `View` é um container que 
 Este exemplo cria uma `View` que envolve duas caixas com cor e um componente de texto em uma linha com padding.
 
 ```SnackPlayer name=View%20Example
-import React from 'react';
 import {View, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -84,7 +83,7 @@ Uma dica de acessibilidade ajuda os usuários a entenderem o que acontecerá qua
 
 ### `accessibilityLanguage` <div className="label ios">iOS</div>
 
-Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interage com o elemento. Deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47).
+Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interage com o elemento. Deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47/).
 
 Veja a [documentação do iOS `accessibilityLanguage`](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage) para mais informações.
 
@@ -98,7 +97,7 @@ Veja a [documentação do iOS `accessibilityLanguage`](https://developer.apple.c
 
 Um valor indicando que esta view deve ou não ser invertida quando a inversão de cores estiver ativada. Um valor de `true` dirá à view para não ser invertida mesmo se a inversão de cores estiver ativada.
 
-Veja o [guia de Accessibility](accessibility.md#accessibilityignoresinvertcolors) para mais informações.
+Veja o [guia de Accessibility](accessibility.md#accessibilityignoresinvertcolors-ios) para mais informações.
 
 | Type |
 | ---- |
@@ -177,7 +176,7 @@ Veja a [documentação do Android `View`](https://developer.android.com/referenc
 
 Descreve o estado atual de um componente ao usuário de uma tecnologia assistiva.
 
-Veja o [guia de Accessibility](accessibility.md#accessibilitystate-ios-android) para mais informações.
+Veja o [guia de Accessibility](accessibility.md#accessibilitystate) para mais informações.
 
 | Type                                                                                             |
 | ------------------------------------------------------------------------------------------------ |
@@ -189,7 +188,7 @@ Veja o [guia de Accessibility](accessibility.md#accessibilitystate-ios-android) 
 
 Representa o valor atual de um componente. Pode ser uma descrição textual do valor de um componente, ou para componentes baseados em intervalo, como sliders e barras de progresso, contém informações de intervalo (mínimo, atual e máximo).
 
-Veja o [guia de Accessibility](accessibility.md#accessibilityvalue-ios-android) para mais informações.
+Veja o [guia de Accessibility](accessibility.md#accessibilityvalue) para mais informações.
 
 | Type                                                            |
 | --------------------------------------------------------------- |

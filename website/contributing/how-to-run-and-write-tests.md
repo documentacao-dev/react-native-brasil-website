@@ -3,11 +3,11 @@ ia-translated: true
 title: Como Executar e Escrever Testes
 ---
 
-## Executando Testes
+## Executando Testes {#running-tests}
 
 Esta seção é sobre testar suas alterações no React Native como contribuidor. Se você ainda não o fez, siga os passos para configurar seu ambiente de desenvolvimento para [construir projetos com código nativo](/docs/environment-setup).
 
-### Testes JavaScript
+### Testes JavaScript {#javascript-tests}
 
 A maneira mais simples de executar a suíte de testes JavaScript é usando o seguinte comando na raiz do seu checkout do React Native:
 
@@ -24,9 +24,9 @@ yarn flow
 yarn lint
 ```
 
-### Testes iOS
+### Testes iOS {#ios-tests}
 
-Siga as instruções do [README.md](https://github.com/facebook/react-native/blob/main/packages/rn-tester/README.md) no diretório `packages/rn-tester`.
+Siga as instruções do [README.md](https://github.com/react/react-native/blob/main/packages/rn-tester/README.md) no diretório `packages/rn-tester`.
 
 Em seguida, volte para a raiz do seu checkout do React Native e execute `yarn`. Isso configurará suas dependências JavaScript.
 
@@ -44,7 +44,7 @@ O Xcode também permite executar testes individuais através do Test Navigator. 
 `objc-test.sh` garante que seu ambiente de teste está configurado para executar todos os testes. Ele também desabilita testes que são conhecidos por serem instáveis ou quebrados. Tenha isso em mente ao executar testes usando o Xcode. Se você ver uma falha inesperada, verifique primeiro se está desabilitado em `objc-test.sh`.
 :::
 
-#### Testes iOS Podfile/Ruby
+#### Testes iOS Podfile/Ruby {#ios-podfileruby-tests}
 
 Se você está fazendo modificações nas configurações do `Podfile`, então há testes Ruby que podem verificá-las.
 
@@ -55,7 +55,7 @@ cd scripts
 sh run_ruby_tests.sh
 ```
 
-### Testes Android
+### Testes Android {#android-tests}
 
 Os testes unitários Android não executam em um emulador, mas executam na JVM em sua máquina local.
 
@@ -65,18 +65,18 @@ Para executar os testes unitários Android, invoque o seguinte script da raiz do
 ./gradlew test
 ```
 
-## Escrevendo Testes
+## Escrevendo Testes {#writing-tests}
 
 Sempre que você estiver corrigindo um bug ou adicionando nova funcionalidade ao React Native, é uma boa ideia adicionar um teste que cubra isso. Dependendo da mudança que você está fazendo, existem diferentes tipos de testes que podem ser apropriados.
 
-### Testes JavaScript
+### Testes JavaScript {#javascript-tests-1}
 
 Os testes JavaScript podem ser encontrados dentro de diretórios `__test__`, colocados ao lado dos arquivos que estão sendo testados. Veja [`TouchableHighlight-test.js`][js-jest-test] para um exemplo básico. Você também pode seguir o tutorial [Testing React Native Apps][jest-tutorial] do Jest para aprender mais.
 
-[js-jest-test]: https://github.com/facebook/react-native/blob/main/Libraries/Components/Touchable/__tests__/TouchableHighlight-test.js
+[js-jest-test]: https://github.com/react/react-native/blob/main/Libraries/Components/Touchable/__tests__/TouchableHighlight-test.js
 [jest-tutorial]: https://jestjs.io/docs/en/tutorial-react-native
 
-### Testes de Integração iOS
+### Testes de Integração iOS {#ios-integration-tests}
 
 O React Native fornece facilidades para tornar mais fácil testar componentes integrados que requerem que componentes nativos e JS se comuniquem através da bridge.
 
@@ -92,33 +92,33 @@ Veja o seguinte para exemplos de uso e pontos de integração:
 - [`RNTesterIntegrationTests.m`][f-ios-integration-tests]
 - [`IntegrationTestsApp.js`][f-ios-integration-test-app]
 
-[f-ios-test-harness]: https://github.com/facebook/react-native/blob/main/IntegrationTests/IntegrationTestHarnessTest.js
-[f-ios-integration-tests]: https://github.com/facebook/react-native/blob/main/RNTester/RNTesterIntegrationTests/RNTesterIntegrationTests.m
-[f-ios-integration-test-app]: https://github.com/facebook/react-native/blob/main/IntegrationTests/IntegrationTestsApp.js
+[f-ios-test-harness]: https://github.com/react/react-native/blob/main/IntegrationTests/IntegrationTestHarnessTest.js
+[f-ios-integration-tests]: https://github.com/react/react-native/blob/main/RNTester/RNTesterIntegrationTests/RNTesterIntegrationTests.m
+[f-ios-integration-test-app]: https://github.com/react/react-native/blob/main/IntegrationTests/IntegrationTestsApp.js
 
-### Testes de Snapshot iOS
+### Testes de Snapshot iOS {#ios-snapshot-tests}
 
 Um tipo comum de teste de integração é o teste de snapshot. Esses testes renderizam um componente e verificam snapshots da tela contra imagens de referência usando `TestModule.verifySnapshot()`, usando a biblioteca [`FBSnapshotTestCase`](https://github.com/facebook/ios-snapshot-test-case) nos bastidores. Imagens de referência são gravadas definindo `recordMode = YES` no `RCTTestRunner` e então executando os testes.
 
-Snapshots diferirão ligeiramente entre 32 e 64 bits e várias versões do SO, então é recomendado que você force a execução dos testes com a [configuração correta](https://github.com/facebook/react-native/blob/main/scripts/.tests.env).
+Snapshots diferirão ligeiramente entre 32 e 64 bits e várias versões do SO, então é recomendado que você force a execução dos testes com a [configuração correta](https://github.com/react/react-native/blob/main/scripts/.tests.env).
 
-Também é altamente recomendado que todos os dados de rede sejam mockados, junto com outras dependências potencialmente problemáticas. Veja [`SimpleSnapshotTest`](https://github.com/facebook/react-native/blob/main/IntegrationTests/SimpleSnapshotTest.js) para um exemplo básico.
+Também é altamente recomendado que todos os dados de rede sejam mockados, junto com outras dependências potencialmente problemáticas. Veja [`SimpleSnapshotTest`](https://github.com/react/react-native/blob/main/IntegrationTests/SimpleSnapshotTest.js) para um exemplo básico.
 
 Se você fizer uma alteração que afeta um teste de snapshot em um pull request, como adicionar um novo caso de exemplo a um dos exemplos que é capturado em snapshot, você precisará regravar a imagem de referência do snapshot.
 
-Para fazer isso, altere a flag `recordMode` para `_runner.recordMode = YES;` em [RNTester/RNTesterSnapshotTests.m](https://github.com/facebook/react-native/blob/136666e2e7d2bb8d3d51d599fc1384a2f68c43d3/RNTester/RNTesterIntegrationTests/RNTesterSnapshotTests.m#L29), execute novamente os testes que falharam, depois mude record de volta para `NO` e envie/atualize seu pull request e aguarde para ver se o build do CircleCI passa.
+Para fazer isso, altere a flag `recordMode` para `_runner.recordMode = YES;` em [RNTester/RNTesterSnapshotTests.m](https://github.com/react/react-native/blob/136666e2e7d2bb8d3d51d599fc1384a2f68c43d3/RNTester/RNTesterIntegrationTests/RNTesterSnapshotTests.m#L29), execute novamente os testes que falharam, depois mude record de volta para `NO` e envie/atualize seu pull request e aguarde para ver se o build do CircleCI passa.
 
-### Testes Unitários Android
+### Testes Unitários Android {#android-unit-tests}
 
 É uma boa ideia adicionar um teste unitário Android sempre que você estiver trabalhando em código que pode ser testado apenas por código Java/Kotlin. Os testes unitários Android estão localizados em `packages/react-native/ReactAndroid/src/test/`.
 
 Recomendamos navegar por eles para ter uma ideia de como um bom teste unitário pode ser.
 
-## Testes Contínuos
+## Testes Contínuos {#continuous-testing}
 
 Usamos o [CircleCI][config-circleci] para executar automaticamente nossos testes de código aberto. O CircleCI executará esses testes sempre que um commit for adicionado a um pull request, como uma forma de ajudar os mantenedores a entender se uma mudança de código introduz uma regressão. Os testes também executam em commits nas branches `main` e `*-stable` para acompanhar a saúde dessas branches.
 
-[config-circleci]: https://github.com/facebook/react-native/blob/main/.circleci/config.yml
+[config-circleci]: https://github.com/react/react-native/blob/main/.circleci/config.yml
 
 Há outro conjunto de testes que executam na infraestrutura de testes interna da Meta. Alguns desses testes são testes de integração definidos por consumidores internos do React Native (por exemplo, testes unitários para uma surface React Native no aplicativo Facebook).
 
@@ -133,7 +133,7 @@ A maioria dos colaboradores de código aberto depende do CircleCI para ver os re
 
 ### F.A.Q.
 
-#### Como atualizar a versão do Xcode usada nos testes CI?
+#### Como atualizar a versão do Xcode usada nos testes CI? {#how-do-i-upgrade-the-xcode-version-used-in-ci-tests}
 
 Ao atualizar para uma nova versão do Xcode, primeiro certifique-se de que ela é [suportada pelo CircleCI](https://circleci.com/docs/testing-ios#supported-xcode-versions).
 

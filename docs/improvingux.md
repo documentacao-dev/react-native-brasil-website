@@ -6,7 +6,7 @@ ia-translated: true
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-## Configure text inputs
+## Configure campos de texto {#configure-text-inputs}
 
 Inserir texto em telefones touch é um desafio - tela pequena, teclado de software. Mas com base no tipo de dados que você precisa, você pode facilitar isso configurando adequadamente os text inputs:
 
@@ -22,7 +22,7 @@ Confira a [documentação do `TextInput`](textinput.md) para mais opções de co
 <TabItem value="javascript">
 
 ```SnackPlayer name=TextInput%20form%20example&ext=js
-import React, {useState, useRef} from 'react';
+import {useState, useRef} from 'react';
 import {
   Alert,
   Text,
@@ -65,7 +65,7 @@ const App = () => {
         keyboardType="default"
         returnKeyType="next"
         onSubmitEditing={() => emailInput.current.focus()}
-        blurOnSubmit={false}
+        submitBehavior="submit"
       />
       <TextInput
         style={styles.input}
@@ -78,7 +78,7 @@ const App = () => {
         keyboardType="email-address"
         returnKeyType="send"
         onSubmitEditing={submit}
-        blurOnSubmit={true}
+        submitBehavior="blurAndSubmit"
       />
     </View>
   );
@@ -116,7 +116,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=TextInput%20form%20example&ext=tsx
-import React, {useState, useRef} from 'react';
+import {useState, useRef} from 'react';
 import {
   Alert,
   Text,
@@ -126,8 +126,10 @@ import {
   StyleSheet,
 } from 'react-native';
 
+type TextInputInstance = React.ComponentRef<typeof TextInput>;
+
 const App = () => {
-  const emailInput = useRef<TextInput>(null);
+  const emailInput = useRef<TextInputInstance>(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -159,7 +161,7 @@ const App = () => {
         keyboardType="default"
         returnKeyType="next"
         onSubmitEditing={() => emailInput.current?.focus()}
-        blurOnSubmit={false}
+        submitBehavior="submit"
       />
       <TextInput
         style={styles.input}
@@ -172,7 +174,7 @@ const App = () => {
         keyboardType="email-address"
         returnKeyType="send"
         onSubmitEditing={submit}
-        blurOnSubmit={true}
+        submitBehavior="blurAndSubmit"
       />
     </View>
   );
@@ -209,7 +211,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-## Gerencie o layout quando o teclado está visível
+## Gerencie o layout quando o teclado está visível {#manage-layout-when-keyboard-is-visible}
 
 O teclado de software ocupa quase metade da tela. Se você tiver elementos interativos que podem ser cobertos pelo teclado, certifique-se de que eles ainda estejam acessíveis usando o [componente `KeyboardAvoidingView`](keyboardavoidingview.md).
 
@@ -217,7 +219,7 @@ O teclado de software ocupa quase metade da tela. Se você tiver elementos inter
 <TabItem value="javascript">
 
 ```SnackPlayer name=KeyboardAvoidingView%20example&ext=js
-import React, {useState, useRef} from 'react';
+import {useState, useRef} from 'react';
 import {
   Alert,
   Text,
@@ -261,7 +263,7 @@ const App = () => {
           keyboardType="email-address"
           returnKeyType="send"
           onSubmitEditing={submit}
-          blurOnSubmit={true}
+          submitBehavior="blurAndSubmit"
         />
         <View>
           <Button title="Sign Up" onPress={submit} />
@@ -314,7 +316,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=KeyboardAvoidingView%20example&ext=tsx
-import React, {useState, useRef} from 'react';
+import {useState, useRef} from 'react';
 import {
   Alert,
   Text,
@@ -326,8 +328,10 @@ import {
   StyleSheet,
 } from 'react-native';
 
+type TextInputInstance = React.ComponentRef<typeof TextInput>;
+
 const App = () => {
-  const emailInput = useRef<TextInput>(null);
+  const emailInput = useRef<TextInputInstance>(null);
   const [email, setEmail] = useState('');
 
   const submit = () => {
@@ -358,7 +362,7 @@ const App = () => {
           keyboardType="email-address"
           returnKeyType="send"
           onSubmitEditing={submit}
-          blurOnSubmit={true}
+          submitBehavior="blurAndSubmit"
         />
         <View>
           <Button title="Sign Up" onPress={submit} />
@@ -410,12 +414,11 @@ export default App;
 </TabItem>
 </Tabs>
 
-## Torne áreas tocáveis maiores
+## Torne áreas tocáveis maiores {#make-tappable-areas-larger}
 
 Em telefones celulares é difícil ser muito preciso ao pressionar botões. Certifique-se de que todos os elementos interativos tenham 44x44 ou mais. Uma maneira de fazer isso é deixar espaço suficiente para o elemento, os valores de estilo `padding`, `minWidth` e `minHeight` podem ser úteis para isso. Alternativamente, você pode usar a [prop `hitSlop`](touchablewithoutfeedback.md#hitslop) para aumentar a área interativa sem afetar o layout. Aqui está uma demonstração:
 
 ```SnackPlayer name=HitSlop%20example
-import React from 'react';
 import {
   Text,
   StatusBar,
@@ -489,12 +492,11 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-## Use Android Ripple
+## Use o efeito ripple do Android {#use-android-ripple}
 
 Android API 21+ usa o material design ripple para fornecer feedback ao usuário quando ele toca em uma área interativa na tela. React Native expõe isso através do [componente `TouchableNativeFeedback`](touchablenativefeedback.md). Usar esse efeito touchable em vez de opacity ou highlight geralmente fará com que seu aplicativo pareça muito mais adequado à plataforma. Dito isso, você precisa ter cuidado ao usá-lo porque ele não funciona no iOS ou no Android API < 21, então você precisará fazer um fallback para usar um dos outros componentes Touchable no iOS. Você pode usar uma biblioteca como [react-native-platform-touchable](https://github.com/react-community/react-native-platform-touchable) para lidar com as diferenças de plataforma para você.
 
 ```SnackPlayer name=Android%20Ripple%20example&supportedPlatforms=android
-import React from 'react';
 import {
   TouchableNativeFeedback,
   TouchableOpacity,
@@ -586,12 +588,12 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-## Bloqueio de orientação de tela
+## Bloqueio de orientação de tela {#screen-orientation-lock}
 
 Múltiplas orientações de tela devem funcionar bem por padrão, a menos que você esteja usando a API `Dimensions` e não lide com mudanças de orientação. Se você não quiser suportar múltiplas orientações de tela, você pode bloquear a orientação da tela para retrato ou paisagem.
 
 No iOS, na aba General e na seção Deployment Info do Xcode, ative a Device Orientation que você deseja suportar (certifique-se de ter selecionado iPhone no menu Devices ao fazer as alterações). Para Android, abra o arquivo AndroidManifest.xml e dentro do elemento activity adicione `'android:screenOrientation="portrait"'` para bloquear em retrato ou `'android:screenOrientation="landscape"'` para bloquear em paisagem.
 
-# Saiba mais
+# Saiba mais {#learn-more}
 
 [Material Design](https://material.io/) e [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines) são ótimos recursos para aprender mais sobre design para plataformas móveis.

@@ -11,7 +11,6 @@ A prop `style` pode ser um objeto JavaScript simples. Isso é o que geralmente u
 À medida que um componente cresce em complexidade, muitas vezes é mais limpo usar `StyleSheet.create` para definir vários estilos em um só lugar. Aqui está um exemplo:
 
 ```SnackPlayer name=Style
-import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 const LotsOfStyles = () => {
@@ -50,4 +49,4 @@ Agora você pode tornar seu texto bonito. O próximo passo para se tornar um esp
 
 ## Known issues
 
-- [react-native#29308](https://github.com/facebook/react-native/issues/29308#issuecomment-792864162): Em alguns casos, o React Native não corresponde a como o CSS funciona na web, por exemplo, a área de toque nunca se estende além dos limites da view pai e no Android margem negativa não é suportada.
+- [react-native#29308](https://github.com/react/react-native/issues/29308#issuecomment-792864162): Em alguns casos, o React Native não corresponde a como o CSS funciona na web, por exemplo, a área de toque nunca se estende além dos limites da view pai e no Android margem negativa não é suportada.

@@ -18,7 +18,6 @@ A partir do Android 11 (API level 30), definir a gravidade não tem efeito em to
 :::
 
 ```SnackPlayer name=Toast%20Android%20API%20Example&supportedPlatforms=android
-import React from 'react';
 import {StyleSheet, ToastAndroid, Button, StatusBar} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -77,7 +76,7 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Methods
 

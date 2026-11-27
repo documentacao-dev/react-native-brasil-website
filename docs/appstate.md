@@ -14,17 +14,21 @@ AppState é frequentemente usado para determinar a intenção e o comportamento 
 - `background` - O aplicativo está sendo executado em segundo plano. O usuário está:
   - em outro aplicativo
   - na tela inicial
-  - [Android] em outra `Activity` (mesmo que tenha sido iniciada pelo seu aplicativo)
+  - [Android] em outra `Activity`, incluindo atividades temporárias do sistema, como seletores de credenciais de preenchimento automático (mesmo que tenham sido iniciadas pelo seu aplicativo ou pelo sistema)
 - [iOS] `inactive` - Este é um estado que ocorre ao fazer a transição entre primeiro plano e segundo plano, e durante períodos de inatividade, como ao entrar na visualização de multitarefa, abrir a Central de Notificações ou no caso de uma chamada recebida.
 
 Para mais informações, consulte [a documentação da Apple](https://developer.apple.com/documentation/uikit/app_and_scenes/managing_your_app_s_life_cycle)
 
 ## Basic Usage
 
-Para ver o estado atual, você pode verificar `AppState.currentState`, que será mantido atualizado. No entanto, `currentState` será null na inicialização enquanto `AppState` o recupera pela bridge.
+Para ver o estado atual, você pode verificar `AppState.currentState`, que será mantido atualizado.
+
+:::info
+Se você estiver usando a arquitetura legada, `currentState` será `null` na inicialização até que seja obtido de forma assíncrona do lado nativo.
+:::
 
 ```SnackPlayer name=AppState%20Example
-import React, {useRef, useState, useEffect} from 'react';
+import {useRef, useState, useEffect} from 'react';
 import {AppState, StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -35,7 +39,7 @@ const AppStateExample = () => {
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
       if (
-        appState.current.match(/inactive|background/) &&
+        appState.current?.match(/inactive|background/) &&
         nextAppState === 'active'
       ) {
         console.log('App has come to the foreground!');
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
 export default AppStateExample;
 ```
 
-Este exemplo sempre parecerá mostrar "Current state is: active" porque o aplicativo só é visível para o usuário quando no estado `active`, e o estado null ocorrerá apenas momentaneamente. Se você quiser experimentar com o código, recomendamos usar seu próprio dispositivo ao invés da prévia incorporada.
+Este exemplo sempre parecerá mostrar "Current state is: active" porque o aplicativo só é visível para o usuário quando no estado `active`. Se você quiser experimentar com o código, recomendamos usar seu próprio dispositivo ao invés da prévia incorporada.
 
 ---
 
@@ -83,9 +87,9 @@ Este exemplo sempre parecerá mostrar "Current state is: active" porque o aplica
 
 Este evento é recebido quando o estado do aplicativo mudou. O listener é chamado com um dos [valores atuais do estado do aplicativo](appstate#app-states).
 
-### `memoryWarning`
+### `memoryWarning` <div className="label ios">iOS</div>
 
-Este evento é usado quando há necessidade de lançar um aviso de memória ou liberá-la.
+Dispara quando o aplicativo recebe um aviso de memória do sistema operacional.
 
 ### `focus` <div className="label android">Android</div>
 
@@ -103,7 +107,7 @@ Recebido quando o usuário não está interagindo ativamente com o aplicativo. �
 static addEventListener(
   type: AppStateEvent,
   listener: (state: AppStateStatus) => void,
-): NativeEventSubscription;
+): EventSubscription;
 ```
 
 Configura uma função que será chamada sempre que o tipo de evento especificado em AppState ocorrer. Valores válidos para `eventType` estão [listados acima](#events). Retorna o `EventSubscription`.

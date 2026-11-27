@@ -37,7 +37,7 @@ Estamos cientes de que nossa abordagem para comunicar esses esforços não tem s
 
 Se você não está nessa rede social, lembre-se de que você sempre pode acompanhar repositórios via GitHub; este recurso melhorou nos últimos meses com a possibilidade de ser notificado apenas para lançamentos, então você deve considerar usá-lo de qualquer forma.
 
-## O que nos espera pela frente 🎓
+## O que nos espera pela frente 🎓 {#what-awaits-ahead-}
 
 Nos últimos 7-8 meses, os colaboradores principais aprimoraram a [organização GitHub da Comunidade React Native](https://github.com/react-native-community) para assumir mais responsabilidade sobre o desenvolvimento do React Native, e melhorar a colaboração com o Facebook. Mas isso sempre careceu da estrutura formal que projetos similares podem ter em vigor.
 

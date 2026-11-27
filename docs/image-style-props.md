@@ -1,15 +1,14 @@
 ---
 ia-translated: true
 id: image-style-props
-title: Propriedades de Estilo de Image
+title: Props de Estilo de Image
 ---
 
-## Exemplos
+## Exemplos {#examples}
 
-### Modo de Redimensionamento de Image
+### Modo de Redimensionamento de Image {#image-resize-mode}
 
 ```SnackPlayer name=Image%20Resize%20Modes%20Example
-import React from 'react';
 import {View, Image, Text, StyleSheet, ScrollView} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -80,10 +79,9 @@ const styles = StyleSheet.create({
 export default DisplayAnImageWithStyle;
 ```
 
-### Borda de Image
+### Borda de Image {#image-border}
 
 ```SnackPlayer name=Style%20BorderWidth%20and%20BorderColor%20Example
-import React from 'react';
 import {Image, StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -116,10 +114,9 @@ const styles = StyleSheet.create({
 export default DisplayAnImageWithStyle;
 ```
 
-### Raio de Borda de Image
+### Raio de Borda de Image {#image-border-radius}
 
 ```SnackPlayer name=Style%20Border%20Radius%20Example
-import React from 'react';
 import {View, Image, StyleSheet, Text, ScrollView} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -182,10 +179,9 @@ const styles = StyleSheet.create({
 export default DisplayAnImageWithStyle;
 ```
 
-### Matiz de Image
+### Matiz de Image {#image-tint}
 
 ```SnackPlayer name=Style%20tintColor%20Function%20Component
-import React from 'react';
 import {Image, StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -217,13 +213,13 @@ const styles = StyleSheet.create({
 export default DisplayAnImageWithStyle;
 ```
 
-# Referência
+# Referência {#reference}
 
-## Propriedades
+## Props
 
 ### `backfaceVisibility`
 
-A propriedade define se a face traseira de uma imagem rotacionada deve ou não ser visível.
+A prop define se a face traseira de uma imagem rotacionada deve ou não ser visível.
 
 | Tipo                          | Padrão      |
 | ----------------------------- | ----------- |
@@ -320,7 +316,7 @@ Quando a imagem tem cantos arredondados, especificar um overlayColor fará com q
 - Certos modos de redimensionamento, como `'contain'`
 - GIFs animados
 
-Uma maneira típica de usar esta propriedade é com imagens exibidas em um fundo sólido e definir o `overlayColor` para a mesma cor do fundo.
+Uma maneira típica de usar esta prop é com imagens exibidas em um fundo sólido e definir o `overlayColor` para a mesma cor do fundo.
 
 Para detalhes de como isso funciona internamente, consulte a [documentação do Fresco](https://frescolib.org/docs/rounded-corners-and-circles.html).
 

@@ -6,17 +6,17 @@ title: RefreshControl
 
 Este componente é usado dentro de um ScrollView ou ListView para adicionar a funcionalidade pull to refresh. Quando o ScrollView está em `scrollY: 0`, deslizar para baixo dispara um evento `onRefresh`.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=RefreshControl&supportedPlatforms=ios,android
-import React from 'react';
+import {useCallback, useState} from 'react';
 import {RefreshControl, ScrollView, StyleSheet, Text} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
@@ -59,7 +59,7 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Props
 

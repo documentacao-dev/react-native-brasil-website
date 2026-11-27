@@ -73,13 +73,21 @@ def ancorar(en, pt):
         return None, 0
     linhas = pt.split('\n')
     n = 0
+    vistos = {}  # github-slugger: o título repetido ganha o sufixo -1, -2...
     for (_, nivel, txt_en), (i, _, txt_pt) in zip(te, tp):
         texto_en, id_en = separar_id(txt_en)
         texto_pt, _ = separar_id(txt_pt)
         alvo = id_en or slug(texto_en)
         if not alvo:
             continue
-        precisa = id_en is not None or alvo != slug(texto_pt)
+        if id_en is None:
+            base = alvo
+            k = vistos.get(base, 0)
+            vistos[base] = k + 1
+            if k:
+                alvo = f'{base}-{k}'
+        precisa = (id_en is not None or alvo != slug(texto_pt)
+                   or alvo != (slug(texto_en)))
         novo = f'{"#" * nivel} {texto_pt}' + (f' {{#{alvo}}}' if precisa else '')
         if novo != linhas[i]:
             linhas[i] = novo

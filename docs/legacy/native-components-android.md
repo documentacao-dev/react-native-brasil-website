@@ -307,7 +307,7 @@ export default function MyCustomView(props: {
     [props.onChangeMessage],
   );
 
-  return <RCTMyCustomView {...props} onChange={props.onChange} />;
+  return <RCTMyCustomView {...props} onChange={onChange} />;
 }
 ```
 
@@ -737,7 +737,7 @@ public class MyViewManager extends ViewGroupManager<FrameLayout> {
 </TabItem>
 </Tabs>
 
-### 4. Register the `ViewManager`
+### 4. Register the `ViewManager` {#4-register-the-viewmanager-1}
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">
@@ -832,7 +832,7 @@ export const MyViewManager =
 II. Em seguida implemente a custom View chamando o método `create`:
 
 ```tsx title="MyView.tsx"
-import React, {useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import {
   PixelRatio,
   UIManager,

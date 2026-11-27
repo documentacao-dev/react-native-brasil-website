@@ -19,7 +19,7 @@ In the following guide you will create a native module, `CalendarModule`, that w
 To get started, open up the iOS project within your React Native application in Xcode. You can find your iOS project here within a React Native app:
 
 <figure>
-  <img src="/docs/assets/native-modules-ios-open-project.png" width="500" alt="Image of opening up an iOS project within a React Native app inside of xCode." />
+  <img src="/docs/assets/native-modules-ios-open-project.png" width="500" alt="Image of opening up an iOS project within a React Native app inside of Xcode." />
   <figcaption>Image of where you can find your iOS project</figcaption>
 </figure>
 
@@ -141,7 +141,6 @@ At this point you have set up the basic scaffolding for your native module in iO
 Find a place in your application where you would like to add a call to the native module’s `createCalendarEvent()` method. Below is an example of a component, `NewModuleButton` you can add in your app. You can invoke the native module inside `NewModuleButton`'s `onPress()` function.
 
 ```tsx
-import React from 'react';
 import {Button} from 'react-native';
 
 const NewModuleButton = () => {
@@ -551,7 +550,7 @@ RCT_EXPORT_METHOD(doSomethingExpensive:(NSString *)param callback:(RCTResponseSe
 
 ```
 
-:::info Sharing dispatch queues between modules
+:::info[Sharing dispatch queues between modules]
 The `methodQueue` method will be called once when the module is initialized, and then retained by React Native, so there is no need to keep a reference to the queue yourself, unless you wish to make use of it within your module. However, if you wish to share the same queue between multiple modules then you will need to ensure that you retain and return the same queue instance for each of them.
 :::
 

@@ -4,6 +4,6 @@ id: alertios
 title: '❌ AlertIOS'
 ---
 
-:::danger Removido do React Native
+:::danger[Removido do React Native]
 Use [`Alert`](alert) ao invés disso.
 :::

@@ -8,32 +8,32 @@ authorImageURL: 'https://avatars2.githubusercontent.com/u/13990087?s=400&u=5841d
 tags: [engineering]
 ---
 
-## Motivação
+## Motivação {#motivation}
 
 À medida que a tecnologia avança e os apps móveis se tornam cada vez mais importantes para a vida cotidiana, a necessidade de criar aplicações acessíveis também cresceu em importância.
 
 A API de Acessibilidade limitada do React Native sempre foi um grande ponto de dor para os desenvolvedores, então fizemos algumas atualizações na API de Acessibilidade para tornar mais fácil criar aplicações móveis inclusivas.
 
-## Problemas com a API Existente
+## Problemas com a API Existente {#problems-with-the-existing-api}
 
-### Problema Um: Duas Props Completamente Diferentes Porém Similares - accessibilityComponentType (Android) e accessibilityTraits (iOS)
+### Problema Um: Duas Props Completamente Diferentes Porém Similares - accessibilityComponentType (Android) e accessibilityTraits (iOS) {#problem-one-two-completely-different-yet-similar-props---accessibilitycomponenttype-android-and-accessibilitytraits-ios}
 
 `accessibilityComponentType` e `accessibilityTraits` são duas propriedades que são usadas para dizer ao TalkBack no Android e VoiceOver no iOS que tipo de elemento de UI o usuário está interagindo. Os dois maiores problemas com essas propriedades são que:
 
 1. **Elas são duas propriedades diferentes com métodos de uso diferentes, mas têm o mesmo propósito.** Na API anterior, essas são duas propriedades separadas (uma para cada plataforma), o que não era apenas inconveniente, mas também confuso para muitos desenvolvedores. `accessibilityTraits` no iOS permite 17 valores diferentes enquanto `accessibilityComponentType` no Android permite apenas 4 valores. Além disso, os valores em sua maioria não tinham sobreposição. Até os tipos de entrada para essas duas propriedades são diferentes. `accessibilityTraits` permite que um array de traits seja passado ou um único trait, enquanto `accessibilityComponentType` permite apenas um único valor.
 2. **Há funcionalidade muito limitada no Android.** Com a antiga propriedade, os únicos elementos de UI que o Talkback era capaz de reconhecer eram "button," "radiobutton_checked," e "radiobutton_unchecked."
 
-### Problema Dois: Hints de Acessibilidade Inexistentes:
+### Problema Dois: Hints de Acessibilidade Inexistentes: {#problem-two-non-existent-accessibility-hints}
 
 Hints de Acessibilidade ajudam usuários usando TalkBack ou VoiceOver a entender o que acontecerá quando eles executarem uma ação em um elemento de acessibilidade que não é aparente apenas pelo label de acessibilidade. Esses hints podem ser ligados e desligados no painel de configurações. Anteriormente, a API do React Native não suportava hints de acessibilidade de forma alguma.
 
-### Problema Três: Ignorando Cores Invertidas:
+### Problema Três: Ignorando Cores Invertidas: {#problem-three-ignoring-inverted-colors}
 
 Alguns usuários com perda de visão usam cores invertidas em seus telefones celulares para ter maior contraste de tela. A Apple forneceu uma API para iOS que permite aos desenvolvedores ignorar certas views. Dessa forma, imagens e vídeos não são distorcidos quando um usuário tem a configuração de cores invertidas ativada. Esta API atualmente não é suportada pelo React Native.
 
-## Design da Nova API
+## Design da Nova API {#design-of-the-new-api}
 
-### Solução Um: Combinando accessibilityComponentType (Android) e accessibilityTraits (iOS)
+### Solução Um: Combinando accessibilityComponentType (Android) e accessibilityTraits (iOS) {#solution-one-combining-accessibilitycomponenttype-android-and-accessibilitytraits-ios}
 
 Para resolver a confusão entre `accessibilityComponentType` e `accessibilityTraits`, decidimos mesclá-las em uma única propriedade. Isso fazia sentido porque tecnicamente tinham a mesma funcionalidade pretendida e ao mesclá-las, os desenvolvedores não precisavam mais se preocupar com peculiaridades específicas da plataforma ao construir recursos de acessibilidade.
 
@@ -76,7 +76,7 @@ A nova propriedade, `accessibilityStates`, é usada para dizer ao Talkback ou Vo
 - `selected`
 - `disabled`
 
-### Solução Dois: Adicionando Hints de Acessibilidade
+### Solução Dois: Adicionando Hints de Acessibilidade {#solution-two-adding-accessibility-hints}
 
 Para isso, adicionamos uma nova propriedade, `accessibilityHint`. Definir esta propriedade permitirá que o Talkback ou Voiceover recite o hint para os usuários.
 
@@ -90,21 +90,21 @@ No Android, definir esta propriedade anexa o valor do hint ao final do label de 
 
 A razão pela qual tomamos esta decisão no Android é porque normalmente, hints de acessibilidade correspondem com uma ação específica (por exemplo, clique), e queríamos manter comportamentos consistentes entre plataformas.
 
-### Solução para o Problema Três
+### Solução para o Problema Três {#solution-to-problem-three}
 
 **`accessibilityIgnoresInvertColors`**
 
 Expusemos a api AccessibilityIgnoresInvertColors da Apple para JavaScript, então agora quando você tem uma view onde não quer que as cores sejam invertidas (por exemplo, imagem), você pode definir esta propriedade como true, e ela não será invertida.
 
-## Novo Uso
+## Novo Uso {#new-usage}
 
 Essas novas propriedades estarão disponíveis no lançamento React Native 0.57.
 
-### Como Atualizar
+### Como Atualizar {#how-to-upgrade}
 
 Se você está usando atualmente `accessibilityComponentType` e `accessibilityTraits`, aqui estão os passos que você pode tomar para atualizar para as novas propriedades.
 
-#### 1. Usando jscodeshift
+#### 1. Usando jscodeshift {#1-using-jscodeshift}
 
 Os casos de uso mais simples podem ser substituídos executando um script jscodeshift.
 
@@ -123,7 +123,7 @@ accessibilityRole= "trait"
 
 Este script também remove instâncias de `AccessibilityComponentType` (assumindo que em todos os lugares que você define `AccessibilityComponentType`, você também definiria `AccessibilityTraits`).
 
-#### 2. Usando um codemod manual
+#### 2. Usando um codemod manual {#2-using-a-manual-codemod}
 
 Para os casos que usaram `AccessibilityTraits` que não têm um valor correspondente para `AccessibilityRole`, e os casos onde múltiplos traits foram passados para `AccessibilityTraits`, um codemod manual teria que ser feito.
 

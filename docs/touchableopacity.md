@@ -12,10 +12,10 @@ Um wrapper para fazer views responderem adequadamente a toques. Ao pressionar, a
 
 A opacidade é controlada envolvendo os children em um `Animated.View`, que é adicionado à hierarquia de view. Esteja ciente de que isso pode afetar o layout.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=TouchableOpacity%20Example
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -59,11 +59,11 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Props
 
-### [Props do TouchableWithoutFeedback](touchablewithoutfeedback.md#props)
+### [Props do TouchableWithoutFeedback](touchablewithoutfeedback.md#props) {#touchablewithoutfeedback-props}
 
 Herda as [Props do TouchableWithoutFeedback](touchablewithoutfeedback.md#props).
 
@@ -84,16 +84,6 @@ Determina qual deve ser a opacidade da view envolvida quando o toque está ativo
 | Type   |
 | ------ |
 | number |
-
----
-
-### `hasTVPreferredFocus` <div className="label ios">iOS</div>
-
-_(Somente Apple TV)_ Foco preferido de TV (veja a documentação do componente View).
-
-| Type |
-| ---- |
-| bool |
 
 ---
 

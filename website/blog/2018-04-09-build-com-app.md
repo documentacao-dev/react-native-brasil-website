@@ -17,7 +17,7 @@ Você pode conferir o app em [https://www.build.com/app](https://www.build.com/a
   <img src="/blog/assets/build-com-blog-image.jpg" />
 </p>
 
-## Recursos
+## Recursos {#features}
 
 Nosso app tem recursos completos e inclui tudo que você esperaria de um app de e-commerce: listagens de produtos, busca e ordenação, a capacidade de configurar produtos complexos, favoritos, etc. Aceitamos métodos de pagamento com cartão de crédito padrão, bem como PayPal e Apple Pay para nossos usuários iOS.
 
@@ -29,7 +29,7 @@ Alguns recursos de destaque que você pode não esperar incluem:
 
 Estamos trabalhando em muitos recursos novos e empolgantes que continuarão a melhorar nossa experiência de app, incluindo a próxima fase de Compra Imersiva com AR.
 
-## Nosso Fluxo de Trabalho de Desenvolvimento
+## Nosso Fluxo de Trabalho de Desenvolvimento {#our-development-workflow}
 
 Build.com permite que cada desenvolvedor escolha as ferramentas que melhor se adequam a ele.
 
@@ -39,7 +39,7 @@ Build.com permite que cada desenvolvedor escolha as ferramentas que melhor se ad
 - Testes de integração incluem um pool compartilhado de testadores que trabalham em desktop, mobile e web. Nosso engenheiro de automação está construindo nossa suite de testes de integração automatizados usando Java e Appium.
 - Outras partes do fluxo de trabalho incluem uma configuração detalhada do eslint, regras customizadas que impõem propriedades necessárias para testes, e hooks pre-push que bloqueiam mudanças ofensivas.
 
-## Bibliotecas Usadas no App
+## Bibliotecas Usadas no App {#libraries-used-in-the-app}
 
 O app Build.com depende de várias bibliotecas open source comuns, incluindo: Redux, Moment, Numeral, Enzyme e um monte de módulos bridge React Native. Também usamos várias bibliotecas open source com fork; com fork seja porque foram abandonadas ou porque precisávamos de recursos customizados. Uma contagem rápida mostra cerca de 115 dependências JavaScript e nativas. Gostaríamos de explorar ferramentas que removem bibliotecas não utilizadas.
 
@@ -48,7 +48,7 @@ Estamos no processo de adicionar tipagem estática via TypeScript e olhando para
 - Dados que são do tipo errado
 - Dados que são undefined porque um objeto não continha o que esperávamos
 
-## Contribuições Open Source
+## Contribuições Open Source {#open-source-contributions}
 
 Como dependemos tanto de open source, nossa equipe está comprometida em contribuir de volta para a comunidade. Build.com permite que a equipe faça open source de bibliotecas que construímos e nos encoraja a contribuir de volta para as bibliotecas que usamos.
 
@@ -60,19 +60,19 @@ Lançamos e mantemos várias bibliotecas React Native:
 
 Também contribuímos para uma longa lista de bibliotecas, incluindo: React e React Native, `react-native-schemes-manager`, `react-native-swipeable`, `react-native-gallery`, `react-native-view-transformer`, `react-native-navigation`.
 
-## Nossa Jornada
+## Nossa Jornada {#our-journey}
 
 Vimos muito crescimento em React Native e no ecossistema nos últimos dois anos. No início, parecia que cada versão do React Native corrigiria alguns bugs, mas introduziria vários mais. Por exemplo, Remote JS Debugging estava quebrado no Android por vários meses. Felizmente, as coisas se tornaram muito mais estáveis em 2017.
 
-### Bibliotecas de Navegação
+### Bibliotecas de Navegação {#navigation-libraries}
 
 Um dos nossos grandes desafios recorrentes tem sido com bibliotecas de navegação. Por muito tempo, estávamos usando a biblioteca ex-nav do Expo. Funcionou bem para nós, mas acabou sendo descontinuada. No entanto, estávamos em desenvolvimento pesado de recursos na época, então tirar tempo para mudar uma biblioteca de navegação não era viável. Isso significou que tivemos que fazer fork da biblioteca e patcheá-la para suportar React 16 e o iPhone X. Eventualmente, conseguimos migrar para [`react-native-navigation`](https://github.com/wix/react-native-navigation) e esperamos que isso veja suporte contínuo.
 
-### Módulos Bridge
+### Módulos Bridge {#bridge-modules}
 
 Outro grande desafio tem sido com módulos bridge. Quando começamos, muitas bridges críticas estavam faltando. Um dos meus colegas de equipe escreveu `react-native-contact-picker` porque precisávamos de acesso ao contact picker do Android em nosso app. Também vimos muitas bridges que foram quebradas por mudanças dentro do React Native. Por exemplo, houve uma mudança breaking dentro do React Native v40 e quando atualizamos nosso app, tive que enviar PRs para corrigir 3 ou 4 bibliotecas que ainda não haviam sido atualizadas.
 
-## Olhando para o Futuro
+## Olhando para o Futuro {#looking-forward}
 
 Conforme o React Native continua a crescer, nossa lista de desejos para nossa comunidade inclui:
 

@@ -6,10 +6,10 @@ title: Animated.ValueXY
 
 Value 2D para conduzir animações 2D, como gestos de pan. API quase idêntica ao [`Animated.Value`](animatedvalue) normal, mas multiplexado. Contém dois `Animated.Value`s regulares internamente.
 
-## Exemplo
+## Exemplo {#example}
 
 ```SnackPlayer name=Animated.ValueXY%20Example
-import React, {useRef} from 'react';
+import {useRef} from 'react';
 import {Animated, PanResponder, StyleSheet} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -18,13 +18,16 @@ const DraggableView = () => {
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
-    onPanResponderMove: Animated.event([
-      null,
-      {
-        dx: pan.x, // x,y are Animated.Value
-        dy: pan.y,
-      },
-    ]),
+    onPanResponderMove: Animated.event(
+      [
+        null,
+        {
+          dx: pan.x, // x,y are Animated.Value
+          dy: pan.y,
+        },
+      ],
+      {useNativeDriver: false},
+    ),
     onPanResponderRelease: () => {
       Animated.spring(
         pan, // Auto-multiplexed
@@ -64,9 +67,9 @@ export default DraggableView;
 
 ---
 
-# Referência
+# Referência {#reference}
 
-## Métodos
+## Métodos {#methods}
 
 ### `setValue()`
 
@@ -94,9 +97,9 @@ Define um offset que é aplicado sobre qualquer valor que esteja definido, seja 
 
 **Parâmetros:**
 
-| Nome   | Tipo                     | Obrigatório | Descrição     |
-| ------ | ------------------------ | ----------- | ------------- |
-| offset | `{x: number; y: number}` | Sim         | Valor offset  |
+| Nome   | Tipo                     | Obrigatório | Descrição    |
+| ------ | ------------------------ | ----------- | ------------ |
+| offset | `{x: number; y: number}` | Sim         | Valor offset |
 
 ---
 
@@ -132,9 +135,9 @@ Retorna uma string que serve como identificador para o listener.
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                                                                   |
-| -------- | -------- | ----------- | ------------------------------------------------------------------------------------------- |
-| callback | function | Sim         | A função callback que receberá um objeto com uma chave `value` definida para o novo valor.  |
+| Nome     | Tipo     | Obrigatório | Descrição                                                                                  |
+| -------- | -------- | ----------- | ------------------------------------------------------------------------------------------ |
+| callback | function | Sim         | A função callback que receberá um objeto com uma chave `value` definida para o novo valor. |
 
 ---
 
@@ -148,9 +151,9 @@ Remove o registro de um listener. O parâmetro `id` deve corresponder ao identif
 
 **Parâmetros:**
 
-| Nome | Tipo   | Obrigatório | Descrição                          |
-| ---- | ------ | ----------- | ---------------------------------- |
-| id   | string | Sim         | Id do listener sendo removido.     |
+| Nome | Tipo   | Obrigatório | Descrição                      |
+| ---- | ------ | ----------- | ------------------------------ |
+| id   | string | Sim         | Id do listener sendo removido. |
 
 ---
 
@@ -174,9 +177,9 @@ Para qualquer animação ou rastreamento em execução. O `callback` é invocado
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                 |
-| -------- | -------- | ----------- | ----------------------------------------- |
-| callback | function | Não         | Uma função que receberá o valor final.    |
+| Nome     | Tipo     | Obrigatório | Descrição                              |
+| -------- | -------- | ----------- | -------------------------------------- |
+| callback | function | Não         | Uma função que receberá o valor final. |
 
 ---
 
@@ -190,9 +193,9 @@ Para qualquer animação e redefine o valor para o seu original.
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                    |
-| -------- | -------- | ----------- | -------------------------------------------- |
-| callback | function | Não         | Uma função que receberá o valor original.    |
+| Nome     | Tipo     | Obrigatório | Descrição                                 |
+| -------- | -------- | ----------- | ----------------------------------------- |
+| callback | function | Não         | Uma função que receberá o valor original. |
 
 ---
 

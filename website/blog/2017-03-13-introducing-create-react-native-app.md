@@ -25,12 +25,12 @@ $ npm start
 
 Isso iniciará o packager do React Native e imprimirá um código QR. Abra-o no [aplicativo Expo](https://expo.io) para carregar seu JavaScript. Chamadas para `console.log` são encaminhadas para seu terminal. Você pode fazer uso de qualquer API padrão do React Native, bem como do [Expo SDK](https://docs.expo.dev/versions/latest/).
 
-## E quanto ao código nativo?
+## E quanto ao código nativo? {#what-about-native-code}
 
 Muitos projetos React Native têm dependências Java ou Objective-C/Swift que precisam ser compiladas. O aplicativo Expo inclui APIs para câmera, vídeo, contatos e muito mais, e agrupa bibliotecas populares como [react-native-maps da Airbnb](https://docs.expo.dev/versions/latest/sdk/map-view/), ou [autenticação Facebook](https://docs.expo.dev/versions/latest/sdk/facebook/). No entanto, se você precisar de uma dependência de código nativo que a Expo não agrupa, provavelmente precisará ter sua própria configuração de build para isso. Assim como Create React App, "ejetar" é suportado pelo CRNA.
 
 Você pode executar `npm run eject` para obter um projeto muito similar ao que `react-native init` geraria. Nesse ponto, você precisará do Xcode e/ou Android Studio assim como você precisaria se começasse com `react-native init`, adicionar bibliotecas com `react-native link` funcionará, e você terá controle total sobre o processo de compilação de código nativo.
 
-## Perguntas? Feedback?
+## Perguntas? Feedback? {#questions-feedback}
 
 Create React Native App agora está estável o suficiente para uso geral, o que significa que estamos muito ansiosos para ouvir sobre sua experiência usando-o! Você pode me encontrar [no Twitter](https://twitter.com/dika10sune) ou abrir uma issue no [repositório GitHub](https://github.com/react-community/create-react-native-app). Pull requests são muito bem-vindos!

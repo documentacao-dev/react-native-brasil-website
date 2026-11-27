@@ -19,7 +19,7 @@ Abra um Prompt de Comando como Administrador (clique com o botão direito em Pro
 choco install -y nodejs-lts microsoft-openjdk17
 ```
 
-Se você já instalou o Node no seu sistema, certifique-se de que é o Node 18 ou mais recente. Se você já tem um JDK no seu sistema, recomendamos o JDK17. Você pode encontrar problemas usando versões mais recentes do JDK.
+Se você já instalou o Node no seu sistema, certifique-se de que é o Node 22.11.0 ou mais recente. Se você já tem um JDK no seu sistema, recomendamos o JDK17. Você pode encontrar problemas usando versões mais recentes do JDK.
 
 :::note
 Você pode encontrar opções de instalação adicionais na [página de Downloads do Node](https://nodejs.org/en/download/).
@@ -29,11 +29,11 @@ Você pode encontrar opções de instalação adicionais na [página de Download
 Se você estiver usando a versão mais recente do Java Development Kit, você precisará alterar a versão do Gradle do seu projeto para que ele possa reconhecer o JDK. Você pode fazer isso indo para `{project root folder}\android\gradle\wrapper\gradle-wrapper.properties` e alterando o valor de `distributionUrl` para atualizar a versão do Gradle. Você pode conferir [aqui as versões mais recentes do Gradle](https://gradle.org/releases/).
 :::
 
-<h3>Android development environment</h3>
+<h3>Ambiente de desenvolvimento Android</h3>
 
 Configurar seu ambiente de desenvolvimento pode ser um pouco tedioso se você é novo no desenvolvimento Android. Se você já está familiarizado com o desenvolvimento Android, há algumas coisas que você pode precisar configurar. Em qualquer caso, certifique-se de seguir cuidadosamente os próximos passos.
 
-<h4 id="android-studio">1. Install Android Studio</h4>
+<h4 id="android-studio">1. Instale o Android Studio</h4>
 
 [Baixe e instale o Android Studio](https://developer.android.com/studio). Durante o assistente de instalação do Android Studio, certifique-se de que as caixas ao lado de todos os seguintes itens estejam marcadas:
 
@@ -50,7 +50,7 @@ Se as caixas de seleção estiverem acinzentadas, você terá a chance de instal
 
 Uma vez que a configuração tenha finalizado e você seja apresentado à tela de boas-vindas, prossiga para o próximo passo.
 
-<h4 id="android-sdk">2. Install the Android SDK</h4>
+<h4 id="android-sdk">2. Instale o Android SDK</h4>
 
 O Android Studio instala o Android SDK mais recente por padrão. Compilar um aplicativo React Native com código nativo, no entanto, requer o SDK `Android 15 (VanillaIceCream)` em particular. SDKs Android adicionais podem ser instalados através do SDK Manager no Android Studio.
 
@@ -67,11 +67,11 @@ Selecione a aba "SDK Platforms" dentro do SDK Manager, então marque a caixa ao 
 - `Android SDK Platform 35`
 - `Intel x86 Atom_64 System Image` ou `Google APIs Intel x86 Atom System Image`
 
-Em seguida, selecione a aba "SDK Tools" e marque a caixa ao lado de "Show Package Details" aqui também. Procure e expanda a entrada `Android SDK Build-Tools`, então certifique-se de que `35.0.0` esteja selecionado.
+Em seguida, selecione a aba "SDK Tools" e marque a caixa ao lado de "Show Package Details" aqui também. Procure e expanda a entrada `Android SDK Build-Tools`, então certifique-se de que `36.0.0` e `Android SDK Command-line Tools (latest)` estejam selecionados.
 
 Finalmente, clique em "Apply" para baixar e instalar o Android SDK e as ferramentas de compilação relacionadas.
 
-<h4>3. Configure the ANDROID_HOME environment variable</h4>
+<h4>3. Configure a variável de ambiente ANDROID_HOME</h4>
 
 As ferramentas do React Native requerem que algumas variáveis de ambiente sejam configuradas para compilar aplicativos com código nativo.
 
@@ -96,7 +96,7 @@ Abra uma nova janela do Prompt de Comando para garantir que a nova variável de 
 2. Copie e cole **Get-ChildItem -Path Env:\\** no powershell
 3. Verifique se `ANDROID_HOME` foi adicionado
 
-<h4>4. Add platform-tools to Path</h4>
+<h4>4. Adicione o platform-tools ao Path</h4>
 
 1. Abra o **Windows Control Panel.**
 2. Clique em **User Accounts,** então clique em **User Accounts** novamente
@@ -111,17 +111,17 @@ O local padrão para esta pasta é:
 %LOCALAPPDATA%\Android\Sdk\platform-tools
 ```
 
-<h2>Preparing the Android device</h2>
+<h2>Preparando o dispositivo Android</h2>
 
 Você precisará de um dispositivo Android para executar seu aplicativo React Native Android. Isso pode ser um dispositivo Android físico, ou mais comumente, você pode usar um Android Virtual Device que permite emular um dispositivo Android no seu computador.
 
 De qualquer forma, você precisará preparar o dispositivo para executar aplicativos Android para desenvolvimento.
 
-<h3>Using a physical device</h3>
+<h3>Usando um dispositivo físico</h3>
 
 Se você tem um dispositivo Android físico, você pode usá-lo para desenvolvimento no lugar de um AVD conectando-o ao seu computador usando um cabo USB e seguindo as instruções [aqui](running-on-device.md).
 
-<h3>Using a virtual device</h3>
+<h3>Usando um dispositivo virtual</h3>
 
 Se você usar o Android Studio para abrir `./AwesomeProject/android`, você pode ver a lista de Android Virtual Devices (AVDs) disponíveis abrindo o "AVD Manager" dentro do Android Studio. Procure por um ícone que se parece com este:
 
@@ -135,13 +135,13 @@ Se você não tem o HAXM instalado, clique em "Install HAXM" ou siga [estas inst
 
 Clique em "Next" e então "Finish" para criar seu AVD. Neste ponto você deve ser capaz de clicar no botão de triângulo verde ao lado do seu AVD para iniciá-lo.
 
-<h3>That's it!</h3>
+<h3>É isso!</h3>
 
 Parabéns! Você configurou com sucesso seu ambiente de desenvolvimento.
 
 <center><img src="/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
 
-<h2>Now what?</h2>
+<h2>E agora?</h2>
 
 - Se você quiser adicionar este novo código React Native a um aplicativo existente, confira o [guia de Integração](integration-with-existing-apps.md).
 - Se você está curioso para aprender mais sobre React Native, confira a [Introdução ao React Native](getting-started).

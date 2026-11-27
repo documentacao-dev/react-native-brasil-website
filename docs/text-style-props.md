@@ -4,7 +4,7 @@ id: text-style-props
 title: Props de Estilo de Texto
 ---
 
-### Exemplo
+### Exemplo {#example}
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
@@ -12,7 +12,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 <TabItem value="javascript">
 
 ```SnackPlayer name=TextStyleProps&supportedPlatforms=ios,android&ext=js&dependencies=@react-native-community/slider
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   FlatList,
   Platform,
@@ -28,7 +28,6 @@ import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const fontStyles = ['normal', 'italic'];
 const fontVariants = [
-  undefined,
   'small-caps',
   'oldstyle-nums',
   'lining-nums',
@@ -373,7 +372,7 @@ export default App;
 <TabItem value="typescript">
 
 ```SnackPlayer name=TextStyleProps&supportedPlatforms=ios,android&ext=tsx&dependencies=@react-native-community/slider
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
   FlatList,
   Platform,
@@ -629,7 +628,7 @@ const CustomSlider = ({
 
 type CustomPickerProps = {
   label: string;
-  data?: ArrayLike<any> | null;
+  data?: ArrayLike<string> | undefined;
   currentIndex: number;
   onSelected: (index: number) => void;
 };
@@ -677,7 +676,6 @@ const CustomPicker = ({
 
 const fontStyles = ['normal', 'italic'];
 const fontVariants = [
-  undefined,
   'small-caps',
   'oldstyle-nums',
   'lining-nums',
@@ -760,7 +758,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-# Referência
+# Referência {#reference}
 
 ## Props
 
@@ -822,9 +820,34 @@ Defina como `false` para remover o padding extra da fonte destinado a criar espa
 
 Permite que você defina todas as variantes de fonte para uma fonte. Pode ser definido usando um array de enums ou uma string separada por espaços, por exemplo `'small-caps common-ligatures'`.
 
-| Tipo                                                                                                                | Padrão |
-| ------------------------------------------------------------------------------------------------------------------- | ------ |
+| Tipo                                                                                                                 | Padrão |
+| -------------------------------------------------------------------------------------------------------------------- | ------ |
 | array de enum(`'small-caps'`, `'oldstyle-nums'`, `'lining-nums'`, `'tabular-nums'`, `'proportional-nums'`) ou string | `[]`   |
+
+---
+
+### `fontVariationSettings`
+
+Configura os eixos de variação para uma fonte variável. Cada eixo é identificado por uma tag OpenType de quatro caracteres, como `wght` para peso, `wdth` para largura, `opsz` para tamanho óptico, ou um eixo personalizado suportado pela fonte. As configurações podem ser fornecidas como um objeto ou como uma string compatível com CSS.
+
+As formas de objeto e de string abaixo são equivalentes; ambas definem o eixo wght como 500:
+
+```tsx
+<Text
+  style={{
+    fontVariationSettings: {wght: 500},
+    // Equivalent CSS-compatible string:
+    fontVariationSettings: "'wght' 500",
+  }}>
+  Variable font
+</Text>
+```
+
+Para mais informações sobre eixos de variação e a sintaxe de string do CSS, veja a documentação do MDN sobre [font-variation-settings](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variation-settings).
+
+| Tipo                                         |
+| -------------------------------------------- |
+| string ou objeto: `{[axis: string]: number}` |
 
 ---
 
@@ -859,6 +882,8 @@ Especifica o alinhamento do texto. No Android, o valor 'justify' é suportado ap
 ---
 
 ### `textAlignVertical` <div className="label android">Android</div>
+
+Um alias para a prop de estilo `verticalAlign`. Se você usar as duas propriedades, `verticalAlign` terá precedência sobre `textAlignVertical`.
 
 | Tipo                                            | Padrão   |
 | ----------------------------------------------- | -------- |
@@ -945,5 +970,3 @@ Permite que o usuário selecione texto e use a funcionalidade nativa de copiar e
 | Tipo                                                     | Padrão |
 | -------------------------------------------------------- | ------ |
 | enum(`'auto'`, `'text'`, `'none'`, `'contain'`, `'all'`) | `none` |
-
----

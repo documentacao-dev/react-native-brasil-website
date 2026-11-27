@@ -27,8 +27,7 @@ function Platforms() {
           <>
             React Native traz as melhores partes do desenvolvimento com React
             para o desenvolvimento nativo.
-            <br />
-            É uma biblioteca JavaScript de primeira classe para construir
+            <br />É uma biblioteca JavaScript de primeira classe para construir
             interfaces de usuário.
           </>
         }
@@ -81,8 +80,9 @@ function Platforms() {
         <FoxFact className={styles.fox} />
         <p>
           <strong>Escrito em JavaScript, renderizado com código nativo.</strong>{' '}
-          Os primitivos React renderizam para a UI nativa da plataforma, o que significa que seu aplicativo usa
-          as mesmas APIs nativas da plataforma que outros aplicativos usam.
+          Os primitivos React renderizam para a UI nativa da plataforma, o que
+          significa que seu aplicativo usa as mesmas APIs nativas da plataforma
+          que outros aplicativos usam.
         </p>
       </div>
     </Section>

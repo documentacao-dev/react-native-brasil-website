@@ -6,13 +6,12 @@ title: Share
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-## Exemplo
+## Exemplo {#example}
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
 
 ```SnackPlayer name=Example&supportedPlatforms=ios,android&ext=js
-import React from 'react';
 import {Alert, Share, Button} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -52,7 +51,6 @@ export default ShareExample;
 <TabItem value="typescript">
 
 ```SnackPlayer name=Example&supportedPlatforms=ios,android&ext=tsx
-import React from 'react';
 import {Alert, Share, Button} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -91,9 +89,9 @@ export default ShareExample;
 </TabItem>
 </Tabs>
 
-# Referência
+# Referência {#reference}
 
-## Métodos
+## Métodos {#methods}
 
 ### `share()`
 
@@ -109,14 +107,14 @@ No Android, retorna uma Promise que sempre será resolvida com action sendo `Sha
 
 **Propriedades:**
 
-| Nome                                                         | Tipo   | Descrição                                                                                                                                                                                                                                                                                                                                                                                    |
-| ------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| content <div className="label basic required">Obrigatório</div> | object | `message` - uma mensagem para compartilhar<br/>`url` - uma URL para compartilhar <div className="label ios">iOS</div><br/>`title` - título da mensagem <div className="label android">Android</div><hr/>Pelo menos um de `url` e `message` é obrigatório.                                                                                                                                          |
-| options                                                      | object | `dialogTitle` <div className="label android">Android</div><br/>`excludedActivityTypes` <div className="label ios">iOS</div><br/>`subject` - um assunto para compartilhar via email <div className="label ios">iOS</div><br/>`tintColor` <div className="label ios">iOS</div><br/>`anchor` - o nó ao qual a action sheet deve ser ancorada (usado para iPad) <div className="label ios">iOS</div> |
+| Nome                                                            | Tipo   | Descrição                                                                                                                                                                                                                                                                                                                                                                                        |
+| --------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| content <div className="label basic required">Obrigatório</div> | object | `message` - uma mensagem para compartilhar<br/>`url` - uma URL para compartilhar <div className="label ios">iOS</div><br/>`title` - título da mensagem <div className="label android">Android</div><hr/>Pelo menos um de `url` e `message` é obrigatório.                                                                                                                                        |
+| options                                                         | object | `dialogTitle` <div className="label android">Android</div><br/>`excludedActivityTypes` <div className="label ios">iOS</div><br/>`subject` - um assunto para compartilhar via email <div className="label ios">iOS</div><br/>`tintColor` <div className="label ios">iOS</div><br/>`anchor` - o nó ao qual a action sheet deve ser ancorada (usado para iPad) <div className="label ios">iOS</div> |
 
 ---
 
-## Propriedades
+## Propriedades {#properties}
 
 ### `sharedAction`
 

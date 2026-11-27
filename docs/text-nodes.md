@@ -7,14 +7,14 @@ title: Text nodes
 Text nodes representam conteúdo de texto bruto na árvore (similar aos nodes [`Text`](https://developer.mozilla.org/en-US/docs/Web/API/Text) na Web). Eles não são diretamente acessíveis via `refs`, mas podem ser acessados usando métodos como [`childNodes`](https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes) em refs de elementos.
 
 ```SnackPlayer ext=js&name=Text%20instances%20example
-import * as React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import {useEffect, useRef, useState} from 'react';
+import {SafeAreaView, StyleSheet, Text} from 'react-native';
 
 const TextWithRefs = () => {
-  const ref = React.useRef(null);
-  const [viewInfo, setViewInfo] = React.useState('');
+  const ref = useRef(null);
+  const [viewInfo, setViewInfo] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     // `textElement` is an object implementing the interface described here.
     const textElement = ref.current;
     const textNode = textElement.childNodes[0];
@@ -74,7 +74,7 @@ De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
   - [`nodeType`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
   - [`nodeValue`](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeValue)
   - [`ownerDocument`](https://developer.mozilla.org/en-US/docs/Web/API/Node/ownerDocument)
-    - ℹ️ Retornará a [instância de document](/docs/next/document-instances) onde este componente foi renderizado.
+    - ℹ️ Retornará o [document node](/docs/next/document-nodes) onde este componente foi renderizado.
   - [`parentElement`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentElement)
   - [`parentNode`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode)
   - [`previousSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Node/previousSibling)

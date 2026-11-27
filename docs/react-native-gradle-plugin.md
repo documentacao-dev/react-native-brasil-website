@@ -6,7 +6,7 @@ title: React Native Gradle Plugin
 
 Este guia descreve como configurar o **React Native Gradle Plugin** (frequentemente referido como RNGP), ao compilar seu aplicativo React Native para Android.
 
-## Usando o plugin
+## Usando o plugin {#using-the-plugin}
 
 O React Native Gradle Plugin é distribuído como um pacote NPM separado que é instalado automaticamente com `react-native`.
 
@@ -14,7 +14,7 @@ O plugin já está **configurado** para novos projetos criados usando `npx react
 
 Se você está integrando React Native em um projeto existente, consulte [a página correspondente](/docs/next/integration-with-existing-apps#configuring-gradle): ela contém instruções específicas sobre como instalar o plugin.
 
-## Configurando o plugin
+## Configurando o plugin {#configuring-the-plugin}
 
 Por padrão, o plugin funcionará **out of the box** com padrões sensatos. Você deve consultar este guia e personalizar o comportamento apenas se precisar.
 
@@ -159,7 +159,7 @@ Desabilitar a compressão para o `.bundle` permite que ele seja diretamente mape
 
 Por padrão isso está desabilitado, e você não deve ativá-lo, a menos que esteja realmente preocupado com o espaço em disco para seu aplicativo.
 
-## Usando Flavors & Build Variants
+## Usando Flavors & Build Variants {#using-flavors--build-variants}
 
 Ao compilar aplicativos Android, você pode querer usar [custom flavors](https://developer.android.com/studio/build/build-variants#product-flavors) para ter versões diferentes do seu aplicativo a partir do mesmo projeto.
 
@@ -180,7 +180,7 @@ react {
 
 Isso é necessário porque o plugin pulará o bundling de JS para todas as `debuggableVariants`: você precisará do Metro para executá-las. Por exemplo, se você listar `fullStaging` nas `debuggableVariants`, você não poderá publicá-la em uma loja, pois estará faltando o bundle.
 
-## O que o plugin está fazendo nos bastidores?
+## O que o plugin está fazendo nos bastidores? {#what-is-the-plugin-doing-under-the-hood}
 
 O React Native Gradle Plugin é responsável por configurar a build do seu Application para enviar aplicativos React Native para produção.
 O plugin também é usado dentro de bibliotecas de terceiros, para executar o [Codegen](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/codegen.md) usado para a New Architecture.

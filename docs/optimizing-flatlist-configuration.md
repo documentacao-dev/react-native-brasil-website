@@ -4,7 +4,7 @@ id: optimizing-flatlist-configuration
 title: Otimizando a Configuração do FlatList
 ---
 
-## Termos
+## Termos {#terms}
 
 - **VirtualizedList:** O componente por trás do `FlatList` (implementação do React Native do conceito [`Virtual List`](https://bvaughn.github.io/react-virtualized/#/components/List).)
 
@@ -24,8 +24,8 @@ Aqui está uma lista de props que podem ajudar a melhorar o desempenho do `FlatL
 
 ### `removeClippedSubviews`
 
-| Type    | Default                              |
-| ------- | ------------------------------------ |
+| Type    | Default                                   |
+| ------- | ----------------------------------------- |
 | Boolean | `true` no Android, caso contrário `false` |
 
 Se `true`, views que estão fora do viewport são automaticamente desacopladas da hierarquia de view nativa.
@@ -82,15 +82,15 @@ O número passado aqui é uma unidade de medida onde 1 é equivalente à altura 
 
 **Contras:** Para um `windowSize` maior, você terá mais consumo de memória. Para um `windowSize` menor, você terá uma chance maior de ver áreas em branco.
 
-## Itens da lista
+## Itens da lista {#list-items}
 
 Abaixo estão algumas dicas sobre componentes de itens de lista. Eles são o núcleo da sua lista, então eles precisam ser rápidos.
 
-### Use componentes básicos
+### Use componentes básicos {#use-basic-components}
 
 Quanto mais complexos seus componentes forem, mais lenta será a renderização. Tente evitar muita lógica e aninhamento em seus itens de lista. Se você está reutilizando este componente de item de lista muito em seu aplicativo, crie um componente apenas para suas grandes listas e faça-os com o mínimo de lógica e aninhamento possível.
 
-### Use componentes leves
+### Use componentes leves {#use-light-components}
 
 Quanto mais pesados seus componentes forem, mais lenta será a renderização. Evite imagens pesadas (use uma versão cortada ou miniatura para itens de lista, tão pequena quanto possível). Fale com sua equipe de design, use o mínimo possível de efeitos, interações e informações em sua lista. Mostre-os nos detalhes do seu item.
 
@@ -99,7 +99,7 @@ Quanto mais pesados seus componentes forem, mais lenta será a renderização. E
 `React.memo()` cria um componente memoizado que será re-renderizado apenas quando as props passadas para o componente mudarem. Podemos usar esta função para otimizar os componentes no FlatList.
 
 ```tsx
-import React, {memo} from 'react';
+import {memo} from 'react';
 import {View, Text} from 'react-native';
 
 const MyListItem = memo(
@@ -118,7 +118,7 @@ export default MyListItem;
 
 Neste exemplo, determinamos que MyListItem deve ser re-renderizado apenas quando o título mudar. Passamos a função de comparação como o segundo argumento para React.memo() para que o componente seja re-renderizado apenas quando a prop especificada for alterada. Se a função de comparação retornar true, o componente não será re-renderizado.
 
-### Use imagens otimizadas em cache
+### Use imagens otimizadas em cache {#use-cached-optimized-images}
 
 Você pode usar os pacotes da comunidade (como [@d11/react-native-fast-image](https://github.com/ds-horizon/react-native-fast-image) da [Dream11](https://github.com/ds-horizon)) para imagens com melhor desempenho. Cada imagem em sua lista é uma instância `new Image()`. Quanto mais rápido ela atinge o hook `loaded`, mais rápido sua thread JavaScript estará livre novamente.
 
@@ -128,13 +128,13 @@ Se todos os componentes de item da sua lista tiverem a mesma altura (ou largura,
 
 Se seus componentes tiverem tamanho dinâmico e você realmente precisar de desempenho, considere perguntar à sua equipe de design se eles podem pensar em um redesign para ter um melhor desempenho.
 
-### Use `keyExtractor` ou `key`
+### Use `keyExtractor` ou `key` {#use-keyextractor-or-key}
 
 Você pode definir o [`keyExtractor`](flatlist#keyextractor) para seu componente `FlatList`. Esta prop é usada para cache e como a `key` do React para rastrear a reordenação de itens.
 
 Você também pode usar uma prop `key` no seu componente de item.
 
-### Evite função anônima em `renderItem`
+### Evite função anônima em `renderItem` {#avoid-anonymous-function-on-renderitem}
 
 Para componentes funcionais, mova a função `renderItem` para fora do JSX retornado. Além disso, certifique-se de que ela está envolvida em um hook `useCallback` para evitar que seja recriada a cada renderização.
 
