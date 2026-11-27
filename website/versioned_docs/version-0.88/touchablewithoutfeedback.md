@@ -83,7 +83,7 @@ export default TouchableWithoutFeedbackExample;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Props
 

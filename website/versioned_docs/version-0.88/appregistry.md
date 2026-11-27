@@ -29,7 +29,7 @@ Para "parar" um aplicativo quando uma view deve ser destruída, chame `AppRegist
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Métodos {#methods}
 

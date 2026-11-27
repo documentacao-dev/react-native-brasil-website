@@ -758,7 +758,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-# Referência
+# Referência {#reference}
 
 ## Props
 

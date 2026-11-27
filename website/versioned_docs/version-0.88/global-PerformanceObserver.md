@@ -32,7 +32,7 @@ observer.observe({entryTypes: ['mark', 'measure']});
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Constructor
 

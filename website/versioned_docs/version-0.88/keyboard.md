@@ -67,7 +67,7 @@ export default Example;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Métodos {#methods}
 

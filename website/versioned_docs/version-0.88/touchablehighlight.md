@@ -83,7 +83,7 @@ export default TouchableHighlightExample;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Props
 

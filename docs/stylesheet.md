@@ -49,7 +49,7 @@ Dicas de qualidade de código:
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Métodos {#methods}
 

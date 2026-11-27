@@ -76,7 +76,7 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Methods
 

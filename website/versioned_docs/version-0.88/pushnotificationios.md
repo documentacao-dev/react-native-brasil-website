@@ -113,7 +113,7 @@ Se a notificação tocada resultou na inicialização do aplicativo, chame `setI
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Methods
 

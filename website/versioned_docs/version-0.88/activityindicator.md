@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-# Referência
+# Referência {#reference}
 
 ## Props
 

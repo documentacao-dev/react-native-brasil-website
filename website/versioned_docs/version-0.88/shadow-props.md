@@ -217,7 +217,7 @@ export default App;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 Existem 3 conjuntos de APIs de sombra no React Native:
 

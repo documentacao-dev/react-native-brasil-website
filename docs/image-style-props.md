@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
 export default DisplayAnImageWithStyle;
 ```
 
-# Referência
+# Referência {#reference}
 
 ## Propriedades {#props}
 

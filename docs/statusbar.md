@@ -238,7 +238,7 @@ Para casos onde usar um componente não é ideal, também existe uma API imperat
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Constants
 

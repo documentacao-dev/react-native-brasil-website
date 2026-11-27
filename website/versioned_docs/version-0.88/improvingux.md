@@ -594,6 +594,6 @@ Múltiplas orientações de tela devem funcionar bem por padrão, a menos que vo
 
 No iOS, na aba General e na seção Deployment Info do Xcode, ative a Device Orientation que você deseja suportar (certifique-se de ter selecionado iPhone no menu Devices ao fazer as alterações). Para Android, abra o arquivo AndroidManifest.xml e dentro do elemento activity adicione `'android:screenOrientation="portrait"'` para bloquear em retrato ou `'android:screenOrientation="landscape"'` para bloquear em paisagem.
 
-# Saiba mais
+# Saiba mais {#learn-more}
 
 [Material Design](https://material.io/) e [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines) são ótimos recursos para aprender mais sobre design para plataformas móveis.

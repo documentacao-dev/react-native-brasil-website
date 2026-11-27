@@ -89,7 +89,7 @@ export default ShareExample;
 </TabItem>
 </Tabs>
 
-# Referência
+# Referência {#reference}
 
 ## Métodos {#methods}
 

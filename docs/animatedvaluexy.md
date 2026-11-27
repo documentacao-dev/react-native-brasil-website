@@ -67,7 +67,7 @@ export default DraggableView;
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Métodos {#methods}
 

@@ -8,7 +8,7 @@ O objeto global [`performance`](https://developer.mozilla.org/en-US/docs/Web/API
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Propriedades da instância {#instance-properties}
 

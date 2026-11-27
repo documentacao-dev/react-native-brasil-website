@@ -8,7 +8,7 @@ O módulo `DevSettings` expõe métodos para personalizar configurações para d
 
 ---
 
-# Referência
+# Referência {#reference}
 
 ## Métodos {#methods}
 
