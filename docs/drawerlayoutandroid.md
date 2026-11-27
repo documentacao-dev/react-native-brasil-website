@@ -4,8 +4,8 @@ id: drawerlayoutandroid
 title: '🗑️ DrawerLayoutAndroid'
 ---
 
-:::warning[Deprecated]
-Use [`react-native-drawer-layout`](https://reactnavigation.org/docs/drawer-layout/) instead.
+:::warning[Descontinuado]
+Use [`react-native-drawer-layout`](https://reactnavigation.org/docs/drawer-layout/) no lugar.
 :::
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';

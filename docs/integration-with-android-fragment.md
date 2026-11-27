@@ -35,7 +35,7 @@ Isso é necessário pelo React Native para lidar com o evento de pressionar o bo
 Vá para sua host activity e certifique-se de que ela implementa a interface `DefaultHardwareBackBtnHandler`:
 
 :::warning[Deprecated]
-`Activity.onBackPressed()` foi [descontinuado](<https://developer.android.com/reference/android/app/Activity#onBackPressed()>) desde o API level 33. Dispositivos Android 16 com aplicativos direcionados ao API level 36 [não chamarão mais](https://developer.android.com/about/versions/16/behavior-changes-16#predictive-back) e [OnBackPressedDispatcher](https://developer.android.com/reference/androidx/activity/OnBackPressedDispatcher) deve ser usado em vez disso.
+`Activity.onBackPressed()` foi [descontinuado](<https://developer.android.com/reference/android/app/Activity#onBackPressed()>) desde o API level 33. No Android 16, para apps que miram o API level 36, `Activity.onBackPressed()` [não é mais chamado](https://developer.android.com/about/versions/16/behavior-changes-16#predictive-back), e deve-se usar o [OnBackPressedDispatcher](https://developer.android.com/reference/androidx/activity/OnBackPressedDispatcher) em vez disso.
 :::
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>

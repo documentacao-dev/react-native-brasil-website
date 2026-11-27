@@ -12,7 +12,7 @@ Existem toneladas de widgets de UI nativos prontos para serem usados nos aplicat
 
 Como o guia de native module, este também é um guia mais avançado que assume que você está um pouco familiarizado com programação iOS. Este guia mostrará como construir um componente de UI nativo, guiando você através da implementação de um subconjunto do componente `MapView` existente disponível na biblioteca principal do React Native.
 
-## iOS MapView example
+## Exemplo de MapView no iOS {#ios-mapview-example}
 
 Digamos que queremos adicionar um Map interativo ao nosso aplicativo - podemos muito bem usar [`MKMapView`](https://developer.apple.com/library/prerelease/mac/documentation/MapKit/Reference/MKMapView_Class/index.html), só precisamos torná-lo utilizável a partir de JavaScript.
 
@@ -355,7 +355,7 @@ export default function MyApp() {
 }
 ```
 
-## Handling multiple native views
+## Lidando com várias views nativas {#handling-multiple-native-views}
 
 Uma view React Native pode ter mais de uma view filho na árvore de view, por exemplo:
 

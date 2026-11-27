@@ -108,7 +108,7 @@ Como você pode ver, sem mais JS thread e sem mais bridge, o que significa anima
 
 Para animações normais, a resposta é simples: apenas adicione `useNativeDriver: true` à configuração de animação ao iniciá-la.
 
-Before:
+Antes:
 
 ```
 Animated.timing(this.state.animatedValue, {
@@ -117,7 +117,7 @@ Animated.timing(this.state.animatedValue, {
 }).start();
 ```
 
-After:
+Depois:
 
 ```
 Animated.timing(this.state.animatedValue, {
@@ -131,7 +131,7 @@ Valores Animated são compatíveis apenas com um driver, então se você usar o 
 
 Também funciona com `Animated.event`, isso é muito útil se você tiver uma animação que deve seguir a posição de scroll porque sem o native driver ela sempre será executada um frame atrás do gesto por causa da natureza assíncrona do React Native.
 
-Before:
+Antes:
 
 ```
 <ScrollView
@@ -144,7 +144,7 @@ Before:
 </ScrollView>
 ```
 
-After:
+Depois:
 
 ```
 <Animated.ScrollView // <-- Use the Animated ScrollView wrapper
@@ -166,6 +166,6 @@ Native Animated também faz parte do React Native há um bom tempo, mas nunca fo
 
 ## Recursos {#resources}
 
-Para mais informações sobre animated, recomendo assistir [this talk](https://www.youtube.com/watch?v=xtqUJVqpKNo) por [Christopher Chedeau](https://twitter.com/Vjeux).
+Para mais informações sobre animated, recomendo assistir [esta palestra](https://www.youtube.com/watch?v=xtqUJVqpKNo) por [Christopher Chedeau](https://twitter.com/Vjeux).
 
-Se você quer um mergulho profundo em animações e como transferi-las para o nativo pode melhorar a experiência do usuário, há também [this talk](https://www.youtube.com/watch?v=qgSMjYWqBk4) por [Krzysztof Magiera](https://twitter.com/kzzzf).
+Se você quer um mergulho profundo em animações e como transferi-las para o nativo pode melhorar a experiência do usuário, há também [esta palestra](https://www.youtube.com/watch?v=qgSMjYWqBk4) por [Krzysztof Magiera](https://twitter.com/kzzzf).

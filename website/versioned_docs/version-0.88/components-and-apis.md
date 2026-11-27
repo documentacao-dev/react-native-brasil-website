@@ -202,7 +202,7 @@ Esses componentes podem ser úteis para determinados aplicativos. Para uma lista
   <div className="component">
     <a href="./reactnativeversion">
       <h3>ReactNativeVersion</h3>
-      <p>Exposes the resolved React Native package version on the JS side.</p>
+      <p>Expõe a versão resolvida do pacote React Native no lado JS.</p>
     </a>
   </div>
   <div className="component">

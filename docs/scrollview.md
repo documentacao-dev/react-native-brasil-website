@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
 Geralmente, `contentContainerStyle` é usado para afastar os itens das bordas da tela ou do indicador de scroll. Quando [`contentInsetAdjustmentBehavior`](#contentinsetadjustmentbehavior-ios) está definido (recomendado), `padding` se aplica de forma um pouco diferente de uma `<View>` comum:
 
 - **Valores em pixels:** Se um safe area inset se aplica em uma borda, usa-se o **maior entre** o `padding` e o inset. Uma borda sem inset, como o topo de um scroll view abaixo de um header, mantém o `padding` completo.
-- **Valores em porcentagem:** No eixo rolável, o `padding` é usado diretamente, no lugar do safe area inset. Ao longo dele, o safe area inset ainda se aplica, e o `padding` se soma a ele.
+- **Valores em porcentagem:** Através do eixo de rolagem, o `padding` é usado diretamente, no lugar do safe area inset. Ao longo dele, o safe area inset ainda se aplica, e o `padding` se soma a ele.
 
 | Type                           |
 | ------------------------------ |

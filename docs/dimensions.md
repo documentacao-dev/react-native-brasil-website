@@ -165,7 +165,7 @@ No Android, a dimensão `window` será reduzida pelo tamanho da barra de status 
 
 ### DisplayMetricsAndroid
 
-`DisplayMetricsAndroid` includes all [`DisplayMetrics`](dimensions#displaymetrics) properties and the following property:
+`DisplayMetricsAndroid` inclui todas as propriedades de [`DisplayMetrics`](dimensions#displaymetrics) e a seguinte propriedade:
 
 | Name       | Type   |
 | ---------- | ------ |

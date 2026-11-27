@@ -1,7 +1,7 @@
 ---
 ia-translated: true
 id: image-style-props
-title: Propriedades de Estilo de Image
+title: Props de Estilo de Image
 ---
 
 ## Exemplos {#examples}
@@ -215,11 +215,11 @@ export default DisplayAnImageWithStyle;
 
 # Referência {#reference}
 
-## Propriedades {#props}
+## Props
 
 ### `backfaceVisibility`
 
-A propriedade define se a face traseira de uma imagem rotacionada deve ou não ser visível.
+A prop define se a face traseira de uma imagem rotacionada deve ou não ser visível.
 
 | Tipo                          | Padrão      |
 | ----------------------------- | ----------- |
@@ -316,7 +316,7 @@ Quando a imagem tem cantos arredondados, especificar um overlayColor fará com q
 - Certos modos de redimensionamento, como `'contain'`
 - GIFs animados
 
-Uma maneira típica de usar esta propriedade é com imagens exibidas em um fundo sólido e definir o `overlayColor` para a mesma cor do fundo.
+Uma maneira típica de usar esta prop é com imagens exibidas em um fundo sólido e definir o `overlayColor` para a mesma cor do fundo.
 
 Para detalhes de como isso funciona internamente, consulte a [documentação do Fresco](https://frescolib.org/docs/rounded-corners-and-circles.html).
 

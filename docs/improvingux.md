@@ -6,7 +6,7 @@ ia-translated: true
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-## Configure text inputs
+## Configure campos de texto {#configure-text-inputs}
 
 Inserir texto em telefones touch é um desafio - tela pequena, teclado de software. Mas com base no tipo de dados que você precisa, você pode facilitar isso configurando adequadamente os text inputs:
 
@@ -492,7 +492,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-## Use Android Ripple
+## Use o efeito ripple do Android {#use-android-ripple}
 
 Android API 21+ usa o material design ripple para fornecer feedback ao usuário quando ele toca em uma área interativa na tela. React Native expõe isso através do [componente `TouchableNativeFeedback`](touchablenativefeedback.md). Usar esse efeito touchable em vez de opacity ou highlight geralmente fará com que seu aplicativo pareça muito mais adequado à plataforma. Dito isso, você precisa ter cuidado ao usá-lo porque ele não funciona no iOS ou no Android API < 21, então você precisará fazer um fallback para usar um dos outros componentes Touchable no iOS. Você pode usar uma biblioteca como [react-native-platform-touchable](https://github.com/react-community/react-native-platform-touchable) para lidar com as diferenças de plataforma para você.
 
